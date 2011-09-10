@@ -13,9 +13,6 @@ defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
 # Expand print panel by default
 defaults write -g PMPrintingExpandedStateForPrint -bool true
 
-# Disable shadow in screenshots
-defaults write com.apple.screencapture disable-shadow -bool true
-
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilte-stack -bool true
 
@@ -30,11 +27,6 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 # Disable window animations
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
-
-# Disable disk image verification
-defaults write com.apple.frameworks.diskimages skip-verify -bool true
-defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
-defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
 
 # Automatically open a new Finder window when a volume is mounted
 defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
