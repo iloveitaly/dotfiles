@@ -13,3 +13,7 @@ httpcompression() {
 digga() {
   dig +nocmd "$1" any +multiline +noall +answer
 }
+
+gmp() {
+  git commit -a -m "%@" && git push
+}
