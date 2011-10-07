@@ -1,6 +1,9 @@
 # Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
+# Enable subpixel font rendering on non-Apple LCDs
+defaults write NSGlobalDomain AppleFontSmoothing -int 2
+
 # Enable the 2D Dock
 defaults write com.apple.dock no-glass -bool true
 
@@ -119,8 +122,9 @@ chflags nohidden ~/Library
 # Disable local Time Machine backups
 hash tmutil &> /dev/null && sudo tmutil disablelocal
 
+# Fix for the ancient UTF-8 bug in QuickLook (http://mths.be/bbo)
+# Commented out, as this is known to cause problems when saving files in Adobe Illustrator CS5 :(
+#echo "0x08000100:0" > ~/.CFUserTextEncoding
+
 # Kill affected applications
 for app in Safari Finder Dock Mail; do killall "$app"; done
-
-# Fix for the ancient UTF-8 bug in QuickLook (http://mths.be/bbo)
-echo "0x08000100:0" > ~/.CFUserTextEncoding
