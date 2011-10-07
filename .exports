@@ -9,3 +9,6 @@ export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
 # Make some commands not show up in history
 export HISTIGNORE="ls:ls *"
+
+# dont check for mail often
+export MAILCHECK=3600
