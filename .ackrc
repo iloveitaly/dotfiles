@@ -1,3 +1,10 @@
 --ignore-dir=ckeditor
 --type-add=css=.less
-
+--type-set=haml=.haml
+--type-set=rb=.rb
+--type-set=txt=.txt
+--type-set=erb=.erb
+--type-set=feature=.feature
+--type-set=textile=.textile
+--type-set=gemspec=.gemspec
+--type-set=scss=.scss
