@@ -1,3 +1,7 @@
 --ignore-dir=ckeditor
---type-add=css=.less
-
+--type-add=ruby=.haml,.rake,.ru
+--type-add=html=.html.erb,.html.haml,.mustache
+--type-add=js=.js.erb
+--type-add=css=.sass,.less,.scss
+--type-set=markdown=.markdown,.md
+--type-set=cucumber=.feature
