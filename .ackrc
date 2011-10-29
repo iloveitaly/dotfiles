@@ -5,3 +5,8 @@
 --type-add=css=.sass,.less,.scss
 --type-set=markdown=.markdown,.md
 --type-set=cucumber=.feature
+--type-set=txt=.txt
+--type-set=erb=.erb
+--type-set=feature=.feature
+--type-set=textile=.textile
+--type-set=gemspec=.gemspec
