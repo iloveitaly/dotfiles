@@ -5,6 +5,9 @@ for file in bash_prompt exports aliases functions extra; do
   [ -e "$file" ] && source "$file"
 done
 
+# load in rvm
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
 
