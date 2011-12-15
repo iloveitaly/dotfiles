@@ -1,0 +1,8 @@
+# https://gist.github.com/1478685
+
+TM_GIT			 = "/usr/bin/git"
+fontName         = "Menlo"
+fontSize         = 13
+
+[ attr.untitled ]
+fileType         = 'text'
