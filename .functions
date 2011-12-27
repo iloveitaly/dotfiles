@@ -18,6 +18,23 @@ function digga() {
   dig +nocmd "$1" any +multiline +noall +answer
 }
 
-gmp() {
-  git commit -a -m "%@" && git push
+# git functions
+# most pulled from https://github.com/ignu/dotfiles2.0
+
+function gc() {
+  git commit -v -a -m "$*"
+}
+
+function gbtr() {
+  git branch --track $2 remotes/$1/$2
+  git checkout $2
+  git rebase master
+  git checkout master
+  git rebase $2
+  git branch -D $2
+}
+
+function gbt() {
+  git branch --track $2 remotes/$1/$2
+  git checkout $2
 }
