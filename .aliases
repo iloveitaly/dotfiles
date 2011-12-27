@@ -33,7 +33,8 @@ alias server="open http://localhost:8080/ && python -m SimpleHTTPServer 8080"
 alias c="tr -d '\n' | pbcopy"
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
+alias d="cd ~/Dropbox"
+alias ds="cd ~/Desktop"
 alias p="cd ~/Projects"
 alias s="cd ~/Sites"
 alias m="mate ."
