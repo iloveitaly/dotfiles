@@ -1,5 +1,9 @@
 # https://gist.github.com/1478685
 
+# excludeInFileChooser = "{$excludeInFileChooser,log,vendor,tmp}"
+excludeInBrowser = "{$excludeInBrowser,log,tmp}"
+excludeInFolderSearch = "{$excludeInFolderSearch,log,tmp}"
+
 TM_GIT			 = "/usr/bin/git"
 fontName         = "Menlo"
 fontSize         = 13
