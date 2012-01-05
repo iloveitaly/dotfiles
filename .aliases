@@ -10,6 +10,9 @@ alias la="ls -Gla"
 # List only directories
 alias lsd='ls -l | grep "^d"'
 
+# google apps manager
+alias gam="python ~/Projects/gam/gam.py"
+
 # Undo a `git push`
 alias undopush="git push -f origin HEAD^:master"
 
