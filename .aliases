@@ -41,6 +41,7 @@ alias ds="cd ~/Desktop"
 alias p="cd ~/Projects"
 alias s="cd ~/Sites"
 alias m="mate ."
+alias rmatec="ssh -R 52698:localhost:52698"
 
 # File size
 alias fs="stat -f \"%z bytes\""
