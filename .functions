@@ -25,6 +25,10 @@ function gc() {
   git commit -v -a -m "$*"
 }
 
+function gd() {
+  git difftool $1 -t opendiff -y
+}
+
 function gbtr() {
   git branch --track $2 remotes/$1/$2
   git checkout $2
