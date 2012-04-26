@@ -41,6 +41,8 @@ alias ds="cd ~/Desktop"
 alias p="cd ~/Projects"
 alias s="cd ~/Sites"
 alias m="mate ."
+alias s="subl ."
+alias sb="subl"
 alias rmatec="ssh -R 52698:localhost:52698"
 
 # File size
@@ -49,6 +51,9 @@ alias fs="stat -f \"%z bytes\""
 # git
 alias glo='git log --graph --pretty=format:"%Cred%h%Creset - %s %Cgreen(%cr)%Creset" --abbrev-commit --date=relative'
 alias g="git"
+
+# rails
+alias spree_clear_test="rm -R spec/dummy && bundle exec rake test_app"
 
 # ROT13-encode text. Works for decoding, too! ;)
 alias rot13='tr a-zA-Z n-za-mN-ZA-M'
