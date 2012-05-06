@@ -13,9 +13,6 @@ alias lsd='ls -l | grep "^d"'
 # google apps manager
 alias gam="python ~/Projects/gam/gam.py"
 
-# Undo a `git push`
-alias undopush="git push -f origin HEAD^:master"
-
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en1"
@@ -50,15 +47,18 @@ alias fs="stat -f \"%z bytes\""
 # git
 alias glo='git log --graph --pretty=format:"%Cred%h%Creset - %s %Cgreen(%cr)%Creset" --abbrev-commit --date=relative'
 alias g="git"
+# Undo a `git push`
+alias undopush="git push -f origin HEAD^:master"
 
 # rails
 alias spree_clear_test="rm -R spec/dummy && bundle exec rake test_app"
+alias tl='tail -f log/development.log'
+alias tts="touch tmp/restart.txt"
+alias be="b exec"
+alias b="bundle"
 
 # ROT13-encode text. Works for decoding, too! ;)
 alias rot13='tr a-zA-Z n-za-mN-ZA-M'
-
-# Empty the Trash
-alias emptytrash="rm -rfv ~/.Trash"
 
 # Show/hide hidden files in Finder
 alias show="defaults write com.apple.Finder AppleShowAllFiles -bool true && killall Finder"
