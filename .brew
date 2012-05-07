@@ -12,6 +12,7 @@ brew install lynx
 brew install node
 brew install rename
 brew install tree
+brew install grc
 
 gem install notes
 gem install github
