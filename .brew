@@ -3,6 +3,7 @@ brew update && brew upgrade
 
 brew install bash
 brew install bash-completion
+brew install rails-completion
 
 # Everything else
 brew install ack
@@ -11,3 +12,6 @@ brew install lynx
 brew install node
 brew install rename
 brew install tree
+
+gem install notes
+gem install github
