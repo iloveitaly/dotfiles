@@ -9,50 +9,34 @@ IRB.conf[:PROMPT_MODE] = :SIMPLE
 IRB.conf[:AUTO_INDENT] = true
 
 require 'rubygems'
-begin
-  require 'ap'
-  unless ENV['DISABLE_AP']
-    unless IRB.version.include?('DietRB')
-      IRB::Irb.class_eval do
-        def output_value
-          ap @context.last_value
-        end
-      end
-    else # MacRuby
-      IRB.formatter = Class.new(IRB::Formatter) do
-        def inspect_object(object)
-          object.ai
-        end
-      end.new
-    end
-  end
-rescue LoadError
-  puts "IRB was initialized without awesome_print support: 'gem install awesome_print' to enable this functionality."
+require 'awesome_print'
+require 'brice'
+
+Brice.init do |config|
+
 end
 
 class Object
-  # list methods which aren't in superclass
+  # Return a list of methods defined locally for a particular object.  Useful
+  # for seeing what it does whilst losing all the guff that's implemented
+  # by its parents (eg Object).
   def local_methods(obj = self)
     (obj.methods - obj.class.superclass.instance_methods).sort
   end
 end
 
-def copy(string)
-  IO.popen('pbcopy', 'w') { |f| f << string.to_s }
-  "Copied '#{string.to_s}' to the clipboard"
+def copy(str)
+  IO.popen('pbcopy', 'w') { |f| f << str.to_s }
+end
+
+def copy_history
+  history = Readline::HISTORY.entries
+  index = history.rindex("exit") || -1
+  content = history[(index+1)..-2].join("\n")
+  puts content
+  copy content
 end
 
 def paste
   `pbpaste`
-end
-
-railsrc_path = File.expand_path('~/.railsrc')
-if ( ENV['RAILS_ENV'] || defined? Rails ) && File.exist?( railsrc_path )
-  begin
-    load railsrc_path
-  rescue Exception => ex
-    warn "Could not load: #{ railsrc_path }" # because of $!.message
-    puts ex.to_s
-    puts ex.backtrace.join("\n")
-  end
 end

@@ -16,3 +16,8 @@ brew install grc
 
 gem install notes
 gem install github
+
+# irb / rails console additions
+gem install awesome_print
+gem install brice
+gem install added_methods
