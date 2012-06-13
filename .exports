@@ -1,5 +1,7 @@
 # Make textmate the default editor
-export EDITOR="/usr/local/bin/mate -w"
+if [[ `uname` == 'Darwin' ]]; then
+	export EDITOR="/usr/local/bin/mate -w"
+fi
 
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"
@@ -13,4 +15,6 @@ export HISTCONTROL=ignoredups
 export HISTIGNORE="ls:ls *"
 
 # dont check for mail often
-export MAILCHECK=3600
+if [[ `uname` == 'Darwin' ]]; then
+	export MAILCHECK=3600
+fi

@@ -14,6 +14,16 @@ brew install rename
 brew install tree
 brew install grc
 
+# rails tools
+brew install vagrant
+# vagrant box add ubuntu-12.04 http://files.vagrantup.com/precise64.box
+brew install siege
+brew install sproxy
+
+# nokogiri
+brew install libxml2 libxslt
+brew link libxml2 libxslt
+
 gem install notes
 gem install github
 
