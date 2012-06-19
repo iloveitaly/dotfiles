@@ -12,17 +12,20 @@ brew install lynx
 brew install node
 brew install rename
 brew install tree
+brew install imagemagick
 brew install grc
+brew install wget
+
+# for nokogiri
+brew install libxml2 libxslt
+brew link libxml2 libxslt
 
 # rails tools
 brew install vagrant
 # vagrant box add ubuntu-12.04 http://files.vagrantup.com/precise64.box
 brew install siege
 brew install sproxy
-
-# nokogiri
-brew install libxml2 libxslt
-brew link libxml2 libxslt
+brew install sqlite
 
 rvm --default use 1.9.3
 gem install notes
