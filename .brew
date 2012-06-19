@@ -7,7 +7,7 @@ brew install rails-completion
 
 # Everything else
 brew install ack
-# brew install git
+brew install git
 brew install lynx
 brew install node
 brew install rename
@@ -24,6 +24,7 @@ brew install sproxy
 brew install libxml2 libxslt
 brew link libxml2 libxslt
 
+rvm --default use 1.9.3
 gem install notes
 gem install github
 
