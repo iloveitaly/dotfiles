@@ -12,9 +12,6 @@ done
 # load in rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-# colorize
-[[ -e `which brew` ]] && . "`brew --prefix`/etc/grc.bashrc"
-
 # git autocompletion
 if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion

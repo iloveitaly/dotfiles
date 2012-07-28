@@ -13,8 +13,8 @@ brew install node
 brew install rename
 brew install tree
 brew install imagemagick
-brew install grc
 brew install wget
+brew install ngrep
 
 # for nokogiri
 brew install libxml2 libxslt
@@ -30,6 +30,8 @@ brew install sqlite
 rvm --default use 1.9.3
 gem install notes
 gem install github
+gem install powder
+gem install heroku
 
 # irb / rails console additions
 gem install awesome_print
