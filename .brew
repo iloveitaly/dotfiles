@@ -15,6 +15,7 @@ brew install tree
 brew install imagemagick
 brew install wget
 brew install ngrep
+brew install linklint
 
 # for nokogiri
 brew install libxml2 libxslt
