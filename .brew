@@ -46,11 +46,14 @@ gem install notes
 gem install github
 gem install powder
 gem install heroku
+gem install cocoapods
 
 # irb / rails console additions
 gem install awesome_print
 gem install brice
 gem install added_methods
+
+brew cleanup
 
 # symlink sublime text binary & preferences
 sudo ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/local/bin/sb
