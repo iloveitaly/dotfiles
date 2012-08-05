@@ -1,9 +1,9 @@
+return if 'macruby' == RUBY_ENGINE
+
 require 'irb/completion'
 
-unless 'macruby' == RUBY_ENGINE
-  require 'irb/ext/save-history'
-  ARGV.concat [ "--readline", "--prompt-mode", "simple" ]
-end
+require 'irb/ext/save-history'
+ARGV.concat [ "--readline", "--prompt-mode", "simple" ]
 
 IRB.conf[:HISTORY_FILE] = File.expand_path('~/.irb_history')
 IRB.conf[:SAVE_HISTORY] = 1000
@@ -13,11 +13,9 @@ IRB.conf[:AUTO_INDENT] = true
 require 'rubygems'
 require 'awesome_print'
 
-unless 'macruby' == RUBY_ENGINE
-  require 'brice'
-  Brice.init do |config|
+require 'brice'
+Brice.init do |config|
 
-  end
 end
 
 class Object
