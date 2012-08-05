@@ -21,14 +21,27 @@ brew install linklint
 brew install libxml2 libxslt
 brew link libxml2 libxslt
 
+# ruby
+RUBY_VERSION=1.9.3-p194
+brew install rbenv
+brew install ruby-build
+
+. ~/.bash_profile
+rbenv install $RUBY_VERSION
+rbenv rehash
+rbenv global $RUBY_VERSION
+. ~/.bash_profile
+
 # rails tools
+brew install pow
+brew install mysql
+brew install sqlite
 brew install vagrant
 # vagrant box add ubuntu-12.04 http://files.vagrantup.com/precise64.box
 brew install siege
 brew install sproxy
 brew install sqlite
 
-rvm --default use 1.9.3
 gem install notes
 gem install github
 gem install powder
@@ -38,3 +51,8 @@ gem install heroku
 gem install awesome_print
 gem install brice
 gem install added_methods
+
+# symlink sublime text binary & preferences
+sudo ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/local/bin/sb
+rm -R "$HOME/Library/Application Support/Sublime Text 2/"*
+ln -s $HOME/Dropbox/ApplicationSupport/SublimeText2/* "$HOME/Library/Application Support/Sublime Text 2/"

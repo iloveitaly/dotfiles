@@ -9,8 +9,6 @@
   attributesfile = ~/.gitattributes
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space
   editor = nano
-  autocrlf = input
-  safecrlf = true
 [alias]
   st = status
   # Find FIXME, TODO, etc

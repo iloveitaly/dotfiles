@@ -9,8 +9,10 @@ for file in bash_prompt exports aliases functions extra; do
   [ -e "$file" ] && source "$file"
 done
 
-# load in rvm
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# load in rbenv
+if [[ ! -z `which rbenv` ]]; then
+	eval "$(rbenv init -)"
+fi
 
 # git autocompletion
 if [ -f `brew --prefix`/etc/bash_completion ]; then

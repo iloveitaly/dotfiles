@@ -1,6 +1,6 @@
 # Make textmate the default editor
 if [[ `uname` == 'Darwin' ]]; then
-	export EDITOR="/usr/local/bin/mate -w"
+	export EDITOR="/usr/local/bin/sb"
 fi
 
 # Don’t clear the screen after quitting a manual page
