@@ -16,6 +16,7 @@ brew install imagemagick
 brew install wget
 brew install ngrep
 brew install linklint
+brew install duti
 
 # for nokogiri
 brew install libxml2 libxslt
@@ -55,7 +56,25 @@ gem install added_methods
 
 brew cleanup
 
-# symlink sublime text binary & preferences
+# setup default extension handlers
+
+duti < ~/.duti
+
+# symlink preference files
+
+# sublime
 sudo ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/local/bin/sb
 rm -R "$HOME/Library/Application Support/Sublime Text 2/"*
 ln -s $HOME/Dropbox/ApplicationSupport/SublimeText2/* "$HOME/Library/Application Support/Sublime Text 2/"
+
+# forklift
+rm ~/Library/Preferences/*com.binarynights.ForkLift2.plist*
+ln -s $HOME/Dropbox/ApplicationSupport/Preferences/com.binarynights.ForkLift2.plist ~/Library/Preferences/com.binarynights.ForkLift2.plist
+
+# sequel pro
+
+rm ~/Library/Preferences/*google.code.sequel-pro*
+ln -s $HOME/Dropbox/ApplicationSupport/Preferences/com.google.code.sequel-pro.plist ~/Library/Preferences
+
+rm -Rf "$HOME/Library/Application Support/Sequel Pro/"*
+ln -s $HOME/Dropbox/ApplicationSupport/SequelPro/* "$HOME/Library/Application Support/Sequel Pro/"
