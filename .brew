@@ -17,6 +17,7 @@ brew install wget
 brew install ngrep
 brew install linklint
 brew install duti
+brew install mongodb
 
 # for nokogiri
 brew install libxml2 libxslt
