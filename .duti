@@ -1,4 +1,7 @@
+# http://bit.ly/U4nU7O
+
 com.sublimetext.2 public.xml all
 com.sublimetext.2 public.plain-text all
 com.sublimetext.2 public.script all
-
+com.sublimetext.2 public.shell-script all
+com.sublimetext.2 public.ruby-script all
