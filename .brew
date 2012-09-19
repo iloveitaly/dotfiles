@@ -18,6 +18,7 @@ brew install ngrep
 brew install linklint
 brew install duti
 brew install mongodb
+brew install optipng
 
 # for nokogiri
 brew install libxml2 libxslt

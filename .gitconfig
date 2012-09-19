@@ -11,6 +11,7 @@
   editor = nano
 [alias]
   st = status
+  c = checkout
   # Find FIXME, TODO, etc
   n = !"git ls-files | xargs notes 2>/dev/null | awk -F: '{ print $1,$2; print $3,$4; print $5}' | grcat conf.notes "
 [color]
