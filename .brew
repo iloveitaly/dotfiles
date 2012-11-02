@@ -19,6 +19,7 @@ brew install linklint
 brew install duti
 brew install mongodb
 brew install optipng
+brew install hub
 
 # for nokogiri
 brew install libxml2 libxslt
@@ -46,10 +47,12 @@ brew install sproxy
 brew install sqlite
 
 gem install notes
-gem install github
 gem install powder
 gem install heroku
 gem install cocoapods
+
+# useful for mysql2sqlite conversion
+gem install sequel
 
 # irb / rails console additions
 gem install awesome_print
