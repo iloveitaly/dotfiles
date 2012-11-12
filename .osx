@@ -13,10 +13,15 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ###############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
-sudo scutil --set ComputerName "BiancoBook"
-sudo scutil --set HostName "BiancoBook"
-sudo scutil --set LocalHostName "BiancoBook"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "BiancoBook"
+if [[ `sysctl hw.model` == *iMac* ]]; then
+	COMPUTER_NAME="BiancoMac"
+else
+	COMPUTER_NAME="BiancoBook"
+fi
+sudo scutil --set ComputerName $COMPUTER_NAME
+sudo scutil --set HostName $COMPUTER_NAME
+sudo scutil --set LocalHostName $COMPUTER_NAME
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $COMPUTER_NAME
 
 # Menu bar: disable transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
@@ -314,7 +319,9 @@ defaults write com.apple.dock autohide-time-modifier -float 0
 defaults write com.apple.dock no-glass -bool true
 
 # Automatically hide and show the Dock
-defaults write com.apple.dock autohide -bool true
+if [[ $COMPUTER_NAME == "BiancoBook" ]]; then
+	defaults write com.apple.dock autohide -bool true
+fi
 
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
