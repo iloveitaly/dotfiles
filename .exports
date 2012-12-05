@@ -14,6 +14,10 @@ export HISTCONTROL=ignoredups
 # Make some commands not show up in history
 export HISTIGNORE="ls:ls *"
 
+# encoding
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 # dont check for mail often
 if [[ `uname` == 'Darwin' ]]; then
 	export MAILCHECK=3600
