@@ -26,12 +26,13 @@ brew install libxml2 libxslt
 brew link libxml2 libxslt
 
 # ruby
-RUBY_VERSION=1.9.3-p194
+brew install autoconf
+RUBY_VERSION=1.9.3-p327-perf
 brew install rbenv
 brew install ruby-build
 
 . ~/.bash_profile
-rbenv install $RUBY_VERSION
+curl https://raw.github.com/gist/1688857/rbenv.sh | sh
 rbenv rehash
 rbenv global $RUBY_VERSION
 . ~/.bash_profile
@@ -84,7 +85,6 @@ ln -s $HOME/Dropbox/ApplicationSupport/Preferences/com.google.code.sequel-pro.pl
 rm -Rf "$HOME/Library/Application Support/Sequel Pro/"*
 ln -s $HOME/Dropbox/ApplicationSupport/SequelPro/* "$HOME/Library/Application Support/Sequel Pro/"
 
-
 # mail
-rm -Rf "$HOME/Library/Mail/V2/MailData/Signatures" 
+rm -Rf "$HOME/Library/Mail/V2/MailData/Signatures"
 ln -s "$HOME/Dropbox/ApplicationSupport/Mail/Signatures" "$HOME/Library/Mail/V2/MailData/Signatures"
