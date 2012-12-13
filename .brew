@@ -20,6 +20,7 @@ brew install duti
 brew install mongodb
 brew install optipng
 brew install hub
+brew install the_silver_searcher
 
 # for nokogiri
 brew install libxml2 libxslt
