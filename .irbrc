@@ -12,10 +12,7 @@ unless RUBY_ENGINE == 'macruby'
   require 'rubygems'
   require 'awesome_print'
 
-  require 'brice'
-  Brice.init do |config|
-
-  end
+  require 'brice/init' unless ENV.has_key? 'ZEUS_MASTER_FD'
 
   class Object
     # Return a list of methods defined locally for a particular object.  Useful
