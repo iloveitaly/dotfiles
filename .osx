@@ -204,9 +204,6 @@ defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
-# Finder: show hidden files by default
-# defaults write com.apple.Finder AppleShowAllFiles -bool true
-
 # Finder: show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
@@ -279,11 +276,6 @@ defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false
 # Show the ~/Library folder
 chflags nohidden ~/Library
 
-# Remove Dropbox’s green checkmark icons in Finder
-# file=/Applications/Dropbox.app/Contents/Resources/check.icns
-# [ -e "$file" ] && mv -f "$file" "$file.bak"
-# unset file
-
 ###############################################################################
 # Dock & hot corners                                                          #
 ###############################################################################
@@ -314,7 +306,7 @@ defaults write com.apple.dock expose-group-by-app -bool false
 defaults write com.apple.dock dashboard-in-overlay -bool true
 
 # Remove the auto-hiding Dock delay
-defaults write com.apple.Dock autohide-delay -float 0
+defaults write com.apple.dock autohide-delay -float 0
 # Remove the animation when hiding/showing the Dock
 defaults write com.apple.dock autohide-time-modifier -float 0
 
@@ -328,6 +320,8 @@ fi
 
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
+
+defaults write com.apple.dock mineffect -string scale
 
 # Reset Launchpad
 find ~/Library/Application\ Support/Dock -name "*.db" -maxdepth 1 -delete
@@ -476,35 +470,6 @@ defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 # Enable the debug menu in Disk Utility
 defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
 defaults write com.apple.DiskUtility advanced-image-options -bool true
-
-###############################################################################
-# SizeUp.app                                                                  #
-###############################################################################
-
-# Start SizeUp at login
-# defaults write com.irradiatedsoftware.SizeUp StartAtLogin -bool true
-
-# Don’t show the preferences window on next start
-# defaults write com.irradiatedsoftware.SizeUp ShowPrefsOnNextStart -bool false
-
-###############################################################################
-# Transmission.app                                                            #
-###############################################################################
-
-# Use `~/Documents/Torrents` to store incomplete downloads
-# defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
-# defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Documents/Torrents"
-
-# Don’t prompt for confirmation before downloading
-# defaults write org.m0k.transmission DownloadAsk -bool false
-
-# Trash original torrent files
-# defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
-
-# Hide the donate message
-# defaults write org.m0k.transmission WarningDonate -bool false
-# Hide the legal disclaimer
-# defaults write org.m0k.transmission WarningLegal -bool false
 
 ###############################################################################
 # Twitter.app                                                                 #
