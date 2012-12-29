@@ -50,10 +50,14 @@ brew install siege
 brew install sproxy
 brew install sqlite
 
+# http://xquartz.macosforge.org/landing/
+# imagemagick + rmagic issues: https://gist.github.com/3177887
+
 gem install notes
 gem install powder
 gem install heroku
 gem install cocoapods
+gem install bundle
 
 # useful for mysql2sqlite conversion
 gem install sequel
