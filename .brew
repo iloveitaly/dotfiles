@@ -33,10 +33,12 @@ brew install rbenv
 brew install ruby-build
 
 . ~/.bash_profile
-curl https://raw.github.com/gist/1688857/rbenv.sh | sh
-rbenv rehash
-rbenv global $RUBY_VERSION
-. ~/.bash_profile
+if [[ `rbenv global` != '1.9.3-p327-perf' ]]; then
+	curl https://raw.github.com/gist/1688857/rbenv.sh | sh
+	rbenv rehash
+	rbenv global $RUBY_VERSION
+	. ~/.bash_profile
+fi
 
 # rails tools
 brew install pow
@@ -69,23 +71,31 @@ duti < ~/.duti
 
 # symlink preference files
 
+function preference_link {
+	rm ~/Library/Preferences/*$1*
+	ln -s $HOME/Dropbox/ApplicationSupport/Preferences/$1 ~/Library/Preferences/$1
+}
+
 # sublime
-sudo ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/local/bin/sb
+sudo ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/bin
 rm -R "$HOME/Library/Application Support/Sublime Text 2/"*
 ln -s $HOME/Dropbox/ApplicationSupport/SublimeText2/* "$HOME/Library/Application Support/Sublime Text 2/"
 
 # forklift
-rm ~/Library/Preferences/*com.binarynights.ForkLift2.plist*
-ln -s $HOME/Dropbox/ApplicationSupport/Preferences/com.binarynights.ForkLift2.plist ~/Library/Preferences/com.binarynights.ForkLift2.plist
+preference_link "com.binarynights.ForkLift2.plist"
+
+# istatmenus
+preference_link "com.bjango.istatmenus.plist"
+
+# divvy
+preference_link "com.mizage.divvy.plist"
 
 # sequel pro
+preference_link "com.google.code.sequel-pro.plist"
 
-rm ~/Library/Preferences/*google.code.sequel-pro*
-ln -s $HOME/Dropbox/ApplicationSupport/Preferences/com.google.code.sequel-pro.plist ~/Library/Preferences
+# soulver
+preference_link "com.acqualia.soulver.plist"
 
+mkdir -p "$HOME/Library/Application Support/Sequel Pro/"
 rm -Rf "$HOME/Library/Application Support/Sequel Pro/"*
 ln -s $HOME/Dropbox/ApplicationSupport/SequelPro/* "$HOME/Library/Application Support/Sequel Pro/"
-
-# mail
-rm -Rf "$HOME/Library/Mail/V2/MailData/Signatures"
-ln -s "$HOME/Dropbox/ApplicationSupport/Mail/Signatures" "$HOME/Library/Mail/V2/MailData/Signatures"
