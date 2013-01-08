@@ -58,6 +58,7 @@ gem install powder
 gem install heroku
 gem install cocoapods
 gem install bundle
+gem install papertrail
 
 # useful for mysql2sqlite conversion
 gem install sequel

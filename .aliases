@@ -47,7 +47,7 @@ alias fs="stat -f \"%z bytes\""
 # git
 alias glo='git log --graph --pretty=format:"%Cred%h%Creset - %s %Cgreen(%cr)%Creset" --abbrev-commit --date=relative'
 alias g="hub"
-alias undopush="git push -f origin HEAD^:master"
+alias gpb='g pull --rebase origin master'
 
 # rails
 alias spree_clear_test="rm -R spec/dummy && bundle exec rake test_app"
