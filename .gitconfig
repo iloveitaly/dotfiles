@@ -15,6 +15,7 @@
   b = branch
   # Find FIXME, TODO, etc
   n = !"git ls-files | xargs notes 2>/dev/null | awk -F: '{ print $1,$2; print $3,$4; print $5}' | grcat conf.notes "
+  ksreview = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool $BRANCH...$SHA; }; f"
 [color]
   ui = auto
 [color "branch"]
@@ -32,11 +33,21 @@
   untracked = cyan
 [merge]
   log = true
+  tool = Kaleidoscope
 [format]
   pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
 [rerere]
   enabled = 1
 [credential]
   helper = osxkeychain
-# [help]
-#   autocorrect = 1
+
+# Kaleidoscope stuff
+[difftool "Kaleidoscope"]
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[diff]
+  tool = Kaleidoscope
+[difftool]
+  prompt = false
+[mergetool "Kaleidoscope"]
+  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+  trustExitCode = true
