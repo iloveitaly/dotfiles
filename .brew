@@ -21,6 +21,7 @@ brew install mongodb
 brew install optipng
 brew install hub
 brew install the_silver_searcher
+brew install iftop
 
 # node
 curl http://npmjs.org/install.sh | sh
