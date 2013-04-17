@@ -89,8 +89,8 @@ function preference_link {
 
 # sublime
 sudo ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/bin
-rm -R "$HOME/Library/Application Support/Sublime Text 2/"*
-ln -s $HOME/Dropbox/ApplicationSupport/SublimeText2/* "$HOME/Library/Application Support/Sublime Text 2/"
+rm -R "$HOME/Library/Application Support/Sublime Text 3/Packages/"*
+ln -s $HOME/Dropbox/ApplicationSupport/SublimeText3/* "$HOME/Library/Application Support/Sublime Text 3/Packages"
 
 # forklift
 preference_link "com.binarynights.ForkLift2.plist"
