@@ -28,11 +28,8 @@ curl http://npmjs.org/install.sh | sh
 npm install -g coffee-script
 npm install -g bower
 
-# for nokogiri
-brew install libxml2 libxslt
-brew link libxml2 libxslt
-
 # ruby
+brew install icu4c
 brew install autoconf
 RUBY_VERSION=1.9.3-p327-perf
 brew install rbenv
