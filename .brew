@@ -88,7 +88,8 @@ function preference_link {
 }
 
 # sublime
-sudo ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/bin
+rm /usr/local/bin/subl
+ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin
 rm -R "$HOME/Library/Application Support/Sublime Text 3/Packages/"*
 ln -s $HOME/Dropbox/ApplicationSupport/SublimeText3/* "$HOME/Library/Application Support/Sublime Text 3/Packages"
 
