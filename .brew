@@ -105,6 +105,10 @@ preference_link "com.google.code.sequel-pro.plist"
 # soulver
 preference_link "com.acqualia.soulver.plist"
 
+# sequel pro
 mkdir -p "$HOME/Library/Application Support/Sequel Pro/"
 rm -Rf "$HOME/Library/Application Support/Sequel Pro/"*
 ln -s $HOME/Dropbox/ApplicationSupport/SequelPro/* "$HOME/Library/Application Support/Sequel Pro/"
+
+# on the job
+ln -s "$HOME/Dropbox/ApplicationSupport/On The Job 3/" "$HOME/Library/Application Support/On The Job 3"
