@@ -13,8 +13,10 @@
   st = status -sb
   c = checkout
   b = branch
+  d = diff
   # Find FIXME, TODO, etc
   n = !"git ls-files | xargs notes 2>/dev/null | awk -F: '{ print $1,$2; print $3,$4; print $5}' | grcat conf.notes "
+  # review changes exclusive to the current branch (right diff) in Kaleidoscope
   ksreview = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool $BRANCH...$SHA; }; f"
   logv = log --pretty=fuller
 
