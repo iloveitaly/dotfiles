@@ -22,6 +22,7 @@ brew install optipng
 brew install hub
 brew install the_silver_searcher
 brew install iftop
+brew install webkit2png
 
 # node
 curl http://npmjs.org/install.sh | sh
