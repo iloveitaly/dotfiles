@@ -6,6 +6,9 @@ if [[ `uname` == 'Darwin' ]]; then
 	export MAILCHECK=3600
 fi
 
+# enable colored output from ls, etc
+export CLICOLOR=1
+
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"
 
