@@ -48,6 +48,7 @@ alias gpb='g pull --rebase origin `git rev-parse --abbrev-ref HEAD`'
 
 # rails
 alias spree_clear_test="rm -R spec/dummy && bundle exec rake test_app"
+alias rk="rake"
 alias tl='tail -f log/development.log'
 alias tts="touch tmp/restart.txt"
 alias be="b exec"
