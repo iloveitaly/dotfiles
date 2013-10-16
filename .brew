@@ -24,10 +24,18 @@ brew install the_silver_searcher
 brew install iftop
 brew install webkit2png
 
+# php
+brew tap josegonzalez/php
+brew tap homebrew/dupes
+brew install php53
+brew install wp-cli
+
 # node
+# TODO skip node install if it's already installed?
 curl http://npmjs.org/install.sh | sh
 npm install -g coffee-script
 npm install -g bower
+npm update -g
 
 # ruby
 brew install icu4c
