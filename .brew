@@ -23,6 +23,7 @@ brew install hub
 brew install the_silver_searcher
 brew install iftop
 brew install webkit2png
+brew install jq
 
 # php
 brew tap josegonzalez/php
