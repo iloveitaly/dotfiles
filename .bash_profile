@@ -1,3 +1,6 @@
+# https://discussions.apple.com/thread/2173922
+[[ ${-#*i} != ${-} ]] || return
+
 if [[ `uname` == 'Darwin' ]]; then
 	PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/local/mysql/bin:/usr/local/sbin:/usr/local/share/npm/bin
 fi
