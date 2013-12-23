@@ -23,3 +23,7 @@ export HISTIGNORE="ls:ls *"
 # encoding
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+# http://fredwu.me/post/60441991350/protip-ruby-devs-please-tweak-your-gc-settings-for
+export RUBY_GC_MALLOC_LIMIT=90000000
+export RUBY_FREE_MIN=200000
