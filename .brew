@@ -73,6 +73,9 @@ gem install cocoapods
 gem install bundle
 gem install papertrail
 
+# parallel bundler job processing
+bundle config --global jobs 4
+
 # useful for mysql2sqlite conversion
 gem install sequel
 
@@ -86,6 +89,12 @@ brew cleanup
 # setup default extension handlers
 
 duti < ~/.duti
+
+# quicklook plugins
+# https://github.com/sindresorhus/quick-look-plugins
+brew tap phinze/cask
+brew install brew-cask
+brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzipql webp-quicklook suspicious-package
 
 # symlink preference files
 
