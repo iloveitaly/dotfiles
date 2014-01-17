@@ -6,6 +6,10 @@ def pbcopy(str)
   IO.popen('pbcopy', 'r+') {|io| io.puts str }
   output.puts "-- Copy to clipboard --\n#{str}"
 end
+
+def pbpaste
+	IO.popen('pbpaste') {|clipboard| clipboard.read}
+end
  
 Pry.config.commands.command "hiscopy", "History copy to clipboard" do |n|
   pbcopy _pry_.input_array[n ? n.to_i : -1]
