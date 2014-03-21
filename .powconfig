@@ -1,2 +1,5 @@
 export POW_DST_PORT=88
 export POW_EXT_DOMAINS=com
+
+# fixes "LoadError: no such file to load -- bundler/setup"; snippet from Pow wiki
+export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
