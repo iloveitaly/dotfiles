@@ -31,6 +31,10 @@ brew tap homebrew/dupes
 brew install php53
 brew install wp-cli
 
+# gitsh
+brew tap thoughtbot/formulae
+brew install gitsh
+
 # node
 # TODO skip node install if it's already installed?
 curl http://npmjs.org/install.sh | sh
