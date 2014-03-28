@@ -62,3 +62,5 @@
 [gitsh]
   defaultCommand = st
   noGreeting = true
+[hub]
+  protocol = https
