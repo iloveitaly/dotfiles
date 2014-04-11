@@ -30,3 +30,6 @@ shopt -s nocaseglob
 
 # Add tab completion for `defaults read|write NSGlobalDomain`
 complete -W "NSGlobalDomain" defaults
+
+# Autocomplete for 'g' as well
+complete -o default -o nospace -F _git g
