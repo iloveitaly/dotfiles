@@ -19,6 +19,7 @@
   # review changes exclusive to the current branch (right diff) in Kaleidoscope
   ksreview = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool $BRANCH...$SHA; }; f"
   logv = log --pretty=fuller
+  undo-commit = reset --soft HEAD^
 
   # http://technosorcery.net/blog/2010/02/07/fun-with-the-upcoming-1-7-release-of-git-rebase---interactive---autosquash/
   fixup = !sh -c 'git commit --fixup=$1' -
