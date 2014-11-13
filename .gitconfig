@@ -46,7 +46,7 @@
 [format]
   pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
 [rerere]
-  enabled = 1
+  enabled = 0
 [credential]
   helper = osxkeychain
 
