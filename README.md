@@ -9,7 +9,13 @@ git clone https://github.com/mathiasbynens/dotfiles.git && cd dotfiles && ./boot
 When setting up a new Mac, you may want to set some sensible OS X defaults:
 
 ```bash
-./.osx
+./osx.sh
+```
+
+Also, there is a very opinionated set of dev apps, setting, etc available by running:
+
+```bash
+./brew.sh
 ```
 
 To update, `cd` into your local `dotfiles` repository and then:
