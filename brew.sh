@@ -46,6 +46,7 @@ brew cask install mou
 brew cask install heroku-toolbelt
 brew cask install adobe-creative-cloud
 brew cask install java7
+brew cask install valentina-studio
 
 # TODO test if CC is already installed
 open “/opt/homebrew-cask/Caskroom/adobe-creative-cloud/latest/Creative Cloud Installer.app”
