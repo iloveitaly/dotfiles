@@ -45,6 +45,7 @@ brew cask install spectacle
 brew cask install mou
 brew cask install heroku-toolbelt
 brew cask install adobe-creative-cloud
+brew cask install java7
 
 # TODO test if CC is already installed
 open “/opt/homebrew-cask/Caskroom/adobe-creative-cloud/latest/Creative Cloud Installer.app”
@@ -124,8 +125,8 @@ if [[ `rbenv global` != $RUBY_VERSION ]]; then
 fi
 
 # rails tools
-brew install pow
 brew install mysql
+$(brew --prefix mysql)/bin/mysqladmin -u root password root
 brew install sqlite
 brew install vagrant
 # vagrant box add ubuntu-12.04 http://files.vagrantup.com/precise64.box
@@ -140,6 +141,8 @@ gem install powder
 gem install cocoapods
 gem install bundle
 gem install papertrail
+
+powder install
 
 # parallel bundler job processing
 # https://gist.github.com/cbrunsdon/f9cfe01d7278e2bbc0d4
