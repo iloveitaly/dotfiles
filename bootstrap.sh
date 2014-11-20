@@ -5,14 +5,16 @@ read -p "This may overwrite existing files in your home directory. Are you sure?
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   rsync --exclude ".git/" \
-  	--exclude ".osx" \
-  	--exclude ".brew" \
+  	--exclude "osx.sh" \
+  	--exclude "brew.sh" \
   	--exclude "my.cnf" \
+        --exclude "pow.conf" \
   	--exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" --exclude "ssh_config" -av . ~
 fi
 
 cp -f ./ssh_config ~/.ssh/config
-cp -f ./my.cnf /etc/my.cnf
+sudo cp -f pow.conf /etc/apache2/other/pow.conf
+# sudo cp -f ./my.cnf /etc/my.cnf
 source "$HOME/.bash_profile"
 
 sudo apachectl start
