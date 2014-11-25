@@ -50,6 +50,7 @@ brew cask install valentina-studio
 brew cask install insync
 brew cask install libreoffice
 brew cask install rescuetime
+brew cask install bee
 
 # TODO test if CC is already installed
 open “/opt/homebrew-cask/Caskroom/adobe-creative-cloud/latest/Creative Cloud Installer.app”
