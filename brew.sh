@@ -57,11 +57,12 @@ brew cask install insync
 brew cask install libreoffice
 brew cask install rescuetime
 brew cask install bee
+brew cask install flash
 
 brew cask alfred link
 
 # TODO test if CC is already installed
-open “/opt/homebrew-cask/Caskroom/adobe-creative-cloud/latest/Creative Cloud Installer.app”
+open "/opt/homebrew-cask/Caskroom/adobe-creative-cloud/latest/Creative Cloud Installer.app"
 
 brew cask install sublime-text3
 brew cask install google-chrome-canary
@@ -71,12 +72,14 @@ brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch 
 
 
 # App Store / Manual Installations
+# 
 #   * Billings Pro
 #   * Twitter
 #   * Air Mail
 #   * Dash
 #   * Pixemator
 #   * Sketch
+#   * Glui
 
 # Make sure we’re using the latest Homebrew, and upgrade any already-installed formulae
 brew update && brew upgrade
@@ -132,15 +135,24 @@ brew install ruby-build
 . ~/.bash_profile
 
 if [[ `rbenv global` != $RUBY_VERSION ]]; then
+	# stuck on 1.9.x on an older rails project
 	rbenv install $RUBY_VERSION
+
+	# some newer projects are on 2.0
+	rbenv install 2.0.0-p451
+
 	rbenv rehash
 	rbenv global $RUBY_VERSION
+
 	. ~/.bash_profile
 fi
 
-# rails tools
+# mysql setup
 brew install mysql
+mysql.server start
 $(brew --prefix mysql)/bin/mysqladmin -u root password root
+
+# rails tools
 brew install sqlite
 brew install vagrant
 # vagrant box add ubuntu-12.04 http://files.vagrantup.com/precise64.box
@@ -156,11 +168,13 @@ gem install cocoapods
 gem install bundle
 gem install papertrail
 
+# need to reload the env to get `bundle`
+source ~/.bash_profile
+
 powder install
 
 # parallel bundler job processing
 # https://gist.github.com/cbrunsdon/f9cfe01d7278e2bbc0d4
-source ~/.bash_profile
 bundle config --global jobs 4
 bundle config --global path vendor/bundle
 bundle config --global disable-shared-gems 1
@@ -180,7 +194,7 @@ duti < ~/.duti
 # symlink application preferences to Dropbox
 
 if [ ! -d ~/Dropbox ]; then
-	echo “Dropbox is not installed. Install DropBox to symlink preferences”
+	echo "Dropbox is not installed. Install DropBox to symlink preferences"
 	exit 1
 fi
 
