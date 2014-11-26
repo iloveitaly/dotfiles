@@ -6,6 +6,12 @@ if ! command -v brew >/dev/null; then
 	exit 0
 fi
 
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 # os x application install
 
 brew install caskroom/cask/brew-cask
@@ -51,6 +57,8 @@ brew cask install insync
 brew cask install libreoffice
 brew cask install rescuetime
 brew cask install bee
+
+brew cask alfred link
 
 # TODO test if CC is already installed
 open “/opt/homebrew-cask/Caskroom/adobe-creative-cloud/latest/Creative Cloud Installer.app”
@@ -122,6 +130,7 @@ brew install rbenv
 brew install ruby-build
 
 . ~/.bash_profile
+
 if [[ `rbenv global` != $RUBY_VERSION ]]; then
 	rbenv install $RUBY_VERSION
 	rbenv rehash
@@ -151,6 +160,7 @@ powder install
 
 # parallel bundler job processing
 # https://gist.github.com/cbrunsdon/f9cfe01d7278e2bbc0d4
+source ~/.bash_profile
 bundle config --global jobs 4
 bundle config --global path vendor/bundle
 bundle config --global disable-shared-gems 1
@@ -169,7 +179,7 @@ duti < ~/.duti
 
 # symlink application preferences to Dropbox
 
-if [ ! -d $HOME/Dropbox ]; then
+if [ ! -d ~/Dropbox ]; then
 	echo “Dropbox is not installed. Install DropBox to symlink preferences”
 	exit 1
 fi
