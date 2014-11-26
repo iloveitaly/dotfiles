@@ -194,35 +194,13 @@ duti < ~/.duti
 # symlink application preferences to Dropbox
 
 if [ ! -d ~/Dropbox ]; then
-	echo "Dropbox is not installed. Install DropBox to symlink preferences"
+	echo "Dropbox is not installed. Install DropBox to symlink Sublime Text."
 	exit 1
 fi
-
-# symlink preference files
-
-function preference_link {
-	rm ~/Library/Preferences/*$1*
-	ln -s $HOME/Dropbox/ApplicationSupport/Preferences/$1 ~/Library/Preferences/$1
-}
 
 # sublime
 rm -R "$HOME/Library/Application Support/Sublime Text 3/Packages/"* "$HOME/Library/Application Support/Sublime Text 3/Installed Packages/"*
 ln -s $HOME/Dropbox/ApplicationSupport/SublimeText3/Packages/* "$HOME/Library/Application Support/Sublime Text 3/Packages"
 ln -s $HOME/Dropbox/ApplicationSupport/SublimeText3/InstalledPackages/* "$HOME/Library/Application Support/Sublime Text 3/Installed Packages"
 
-# forklift
-preference_link "com.binarynights.ForkLift2.plist"
-
-# istatmenus
-preference_link "com.bjango.istatmenus.plist"
-
-# sequel pro
-preference_link "com.google.code.sequel-pro.plist"
-
-# soulver
-preference_link "com.acqualia.soulver.plist"
-
-# sequel pro
-mkdir -p "$HOME/Library/Application Support/Sequel Pro/"
-rm -Rf "$HOME/Library/Application Support/Sequel Pro/"*
-ln -s $HOME/Dropbox/ApplicationSupport/SequelPro/* "$HOME/Library/Application Support/Sequel Pro/"
+# other preference syncing is handled by `mackup`
