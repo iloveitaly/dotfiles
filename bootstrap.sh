@@ -8,17 +8,17 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   	--exclude "osx.sh" \
   	--exclude "brew.sh" \
     --exclude "apache.conf" \
+    --exclude "my.cnf" \
   	--exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" --exclude "ssh_config" -av . ~
 fi
 
 cp -f ./ssh_config ~/.ssh/config
 
 mkdir -p ~/Sites/logs
-
 sudo rm /etc/apache2/other/*
 sudo cp -f apache.conf /etc/apache2/other/vhosts.conf
 
-# TODO customize MySQL config
+sudo cp -f my.conf /etc/my.cnf
 
 source "$HOME/.bash_profile"
 
