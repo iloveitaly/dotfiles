@@ -70,6 +70,10 @@ brew cask install google-chrome-canary
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzipql webp-quicklook suspicious-package
 
+# RubyMotion
+curl http://www.rubymotion.com/files/RubyMotion%20Installer.zip -o ~/Desktop/RubyMotion.zip
+open ~/Desktop/RubyMotion.zip
+open ~/Desktop/RubyMotion\ Installer.app
 
 # App Store / Manual Installations
 # 
