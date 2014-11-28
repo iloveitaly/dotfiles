@@ -159,6 +159,10 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 # (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
+# Set trackpad & mouse speed 
+defaults write -g com.apple.trackpad.scaling 1.5
+defaults write -g com.apple.mouse.scaling 1.5
+
 # Enable access for assistive devices
 echo -n 'a' | sudo tee /private/var/db/.AccessibilityAPIEnabled > /dev/null 2>&1
 sudo chmod 444 /private/var/db/.AccessibilityAPIEnabled
@@ -179,6 +183,7 @@ defaults write NSGlobalDomain KeyRepeat -int 2
 
 # Automatically illuminate built-in MacBook keyboard in low light
 defaults write com.apple.BezelServices kDim -bool true
+
 # Turn off keyboard illumination when computer is not used for 5 minutes
 defaults write com.apple.BezelServices kDimTime -int 300
 
@@ -437,6 +442,10 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 # Enable the WebKit Developer Tools in the Mac App Store
 defaults write com.apple.appstore WebKitDeveloperExtras -bool true
+
+# Use native print dialog in Chrome
+defaults write com.google.Chrome DisablePrintPreview -bool true
+defaults write com.google.Chrome.canary DisablePrintPreview -bool true
 
 ###############################################################################
 # iTunes                                                                      #
