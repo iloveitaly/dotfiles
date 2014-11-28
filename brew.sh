@@ -68,7 +68,13 @@ brew cask install sublime-text3
 brew cask install google-chrome-canary
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
-brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzipql webp-quicklook suspicious-package
+brew cask install qlcolorcode \
+		  qlstephen \
+		  qlmarkdown \
+		  quicklook-json \
+		  qlprettypatch \
+		  quicklook-csv \
+		  webp-quicklook 
 
 # RubyMotion
 curl http://www.rubymotion.com/files/RubyMotion%20Installer.zip -o ~/Desktop/RubyMotion.zip
