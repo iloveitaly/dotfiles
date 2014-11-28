@@ -60,6 +60,7 @@ brew cask install bee
 brew cask install flash
 brew cask install microsoft-intellitype
 brew cask install xtrafinder
+brew cask install spotifree
 
 brew cask alfred link
 
