@@ -176,9 +176,11 @@ brew install sqlite
 
 gem install notes
 gem install powder
-gem install cocoapods
 gem install bundle
-gem install papertrail
+
+rbenv version 2.0.0-p451
+gem install cocoapods
+rbenv version $RUBY_VERSION
 
 # need to reload the env to get `bundle`
 source ~/.bash_profile
