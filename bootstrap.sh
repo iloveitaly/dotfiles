@@ -7,14 +7,15 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   rsync --exclude ".git/" \
   	--exclude "osx.sh" \
   	--exclude "brew.sh" \
-  	--exclude "my.cnf" \
         --exclude "pow.conf" \
   	--exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" --exclude "ssh_config" -av . ~
 fi
 
 cp -f ./ssh_config ~/.ssh/config
 sudo cp -f pow.conf /etc/apache2/other/pow.conf
-# sudo cp -f ./my.cnf /etc/my.cnf
+
+# TODO customize MySQL config
+
 source "$HOME/.bash_profile"
 
 sudo apachectl start
