@@ -58,6 +58,7 @@ brew cask install libreoffice
 brew cask install rescuetime
 brew cask install bee
 brew cask install flash
+brew cask install microsoft-intellitype
 
 brew cask alfred link
 
