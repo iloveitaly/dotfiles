@@ -123,20 +123,19 @@ brew install jq
 brew install ngrok
 brew install lftp
 
-# php
+# php / WordPress
+# TODO look into homebrew-php instead of josegonzalez
 brew tap josegonzalez/php
 brew tap homebrew/dupes
 brew install php53
 brew install wp-cli
+brew install composer
 
 # node
 if ! command -v brew >/dev/null; then
 	curl http://npmjs.org/install.sh | sh
-	npm install -g coffee-script
-	npm install -g bower
+	npm install -g grunt
 fi
-
-npm update -g
 
 # ruby
 brew install icu4c
