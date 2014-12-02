@@ -85,6 +85,9 @@ defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 # Set Help Viewer windows to non-floating mode
 defaults write com.apple.helpviewer DevMode -bool true
 
+# Use 10.8-style multiple display support
+defaults write com.apple.spaces spans-displays -bool true
+
 # Fix for the ancient UTF-8 bug in QuickLook (http://mths.be/bbo)
 # Commented out, as this is known to cause problems when saving files in
 # Adobe Illustrator CS5 :(
