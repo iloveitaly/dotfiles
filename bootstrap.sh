@@ -18,7 +18,7 @@ mkdir -p ~/Sites/logs
 sudo rm /etc/apache2/other/*
 sudo cp -f apache.conf /etc/apache2/other/vhosts.conf
 
-sudo cp -f my.conf /etc/my.cnf
+sudo cp -f my.cnf /etc/my.cnf
 
 source "$HOME/.bash_profile"
 
