@@ -1,9 +1,16 @@
 # https://discussions.apple.com/thread/2173922
 [[ ${-#*i} != ${-} ]] || return
 
-if [[ `uname` == 'Darwin' ]]; then
-	PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/local/mysql/bin:/usr/local/sbin:/usr/local/share/npm/bin
+# brew
+export PATH="/usr/local/sbin:$PATH"
+
+# load in rbenv
+if [[ ! -z `which rbenv` ]]; then
+	eval "$(rbenv init -)"
 fi
+
+# mkdir .git/safe in the root of repositories you trust, for binstubs
+export PATH=".git/safe/../../bin:$PATH"
 
 # Load ~/.bash_prompt, ~/.exports, ~/.aliases, ~/.functions and ~/.extra
 # ~/.extra can be used for settings you don’t want to commit
@@ -11,11 +18,6 @@ for file in bash_prompt exports aliases functions extra; do
   file="$HOME/.$file"
   [ -e "$file" ] && source "$file"
 done
-
-# load in rbenv
-if [[ ! -z `which rbenv` ]]; then
-	eval "$(rbenv init -)"
-fi
 
 # git autocompletion
 if [ -f `brew --prefix`/etc/bash_completion ]; then
