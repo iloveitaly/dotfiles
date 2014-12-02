@@ -12,6 +12,11 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until `.osx` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+# Make sure we’re using the latest Homebrew, and upgrade any already-installed formulae
+brew update && brew upgrade
+
+brew upgrade brew-cask
+
 # os x application install
 
 brew install caskroom/cask/brew-cask
@@ -93,9 +98,6 @@ open ~/Desktop/RubyMotion\ Installer.app
 #   * Pixemator
 #   * Sketch
 #   * Glui
-
-# Make sure we’re using the latest Homebrew, and upgrade any already-installed formulae
-brew update && brew upgrade
 
 brew install bash
 brew install bash-completion
