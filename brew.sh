@@ -67,6 +67,7 @@ brew cask install microsoft-intellitype
 brew cask install xtrafinder
 brew cask install coteditor
 brew cask install onyx
+brew cask install cyberduck
 
 brew cask alfred link
 
