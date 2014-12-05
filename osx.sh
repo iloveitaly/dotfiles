@@ -13,15 +13,9 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ###############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
-if [[ `sysctl hw.model` == *iMac* ]]; then
-	if [[ `sysctl hw.model` == *iMac12,2* ]]; then
-		COMPUTER_NAME="BiancoWorkMac"
-	else
-		COMPUTER_NAME="BiancoMac"
-	fi
-else
-	COMPUTER_NAME="BiancoBook"
-fi
+echo "Enter a name for this computer"
+read COMPUTER_NAME
+
 sudo scutil --set ComputerName $COMPUTER_NAME
 sudo scutil --set HostName $COMPUTER_NAME
 sudo scutil --set LocalHostName $COMPUTER_NAME

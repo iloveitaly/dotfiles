@@ -86,21 +86,6 @@ brew cask install qlcolorcode \
 		  quicklook-csv \
 		  webp-quicklook 
 
-# RubyMotion
-curl http://www.rubymotion.com/files/RubyMotion%20Installer.zip -o ~/Desktop/RubyMotion.zip
-open ~/Desktop/RubyMotion.zip
-open ~/Desktop/RubyMotion\ Installer.app
-
-# App Store / Manual Installations
-# 
-#   * Billings Pro
-#   * Twitter
-#   * Air Mail
-#   * Dash
-#   * Pixemator
-#   * Sketch
-#   * Glui
-
 brew install bash
 brew install bash-completion
 brew install rails-completion
