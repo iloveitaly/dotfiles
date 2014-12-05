@@ -446,6 +446,8 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 # Enable the WebKit Developer Tools in the Mac App Store
 defaults write com.apple.appstore WebKitDeveloperExtras -bool true
 
+defaults write com.apple.Safari ShowFavoritesUnderSmartSearchField 0
+
 # Use native print dialog in Chrome
 defaults write com.google.Chrome DisablePrintPreview -bool true
 defaults write com.google.Chrome.canary DisablePrintPreview -bool true
