@@ -68,6 +68,7 @@ brew cask install xtrafinder
 brew cask install coteditor
 brew cask install onyx
 brew cask install cyberduck
+brew cask install dash
 
 brew cask alfred link
 
@@ -96,7 +97,6 @@ open ~/Desktop/RubyMotion\ Installer.app
 #   * Billings Pro
 #   * Twitter
 #   * Air Mail
-#   * Dash
 #   * Pixemator
 #   * Sketch
 #   * Glui
