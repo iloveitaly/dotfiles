@@ -69,6 +69,7 @@ brew cask install coteditor
 brew cask install onyx
 brew cask install cyberduck
 brew cask install dash
+brew cask install monotype-skyfonts
 
 brew cask alfred link
 
