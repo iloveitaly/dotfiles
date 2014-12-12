@@ -70,6 +70,7 @@ brew cask install onyx
 brew cask install cyberduck
 brew cask install dash
 brew cask install monotype-skyfonts
+brew cask install chromecast
 
 brew cask alfred link
 
