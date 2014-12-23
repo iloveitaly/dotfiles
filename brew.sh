@@ -16,6 +16,8 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 brew update && brew upgrade
 
 brew upgrade brew-cask
+brew cask cleanup
+brew cask update
 
 # os x application install
 
@@ -71,6 +73,7 @@ brew cask install cyberduck
 brew cask install dash
 brew cask install monotype-skyfonts
 brew cask install chromecast
+brew cask install macdown
 
 brew cask alfred link
 
@@ -224,5 +227,7 @@ fi
 rm -R "$HOME/Library/Application Support/Sublime Text 3/Packages/"* "$HOME/Library/Application Support/Sublime Text 3/Installed Packages/"*
 ln -s $HOME/Dropbox/ApplicationSupport/SublimeText3/Packages/* "$HOME/Library/Application Support/Sublime Text 3/Packages"
 ln -s $HOME/Dropbox/ApplicationSupport/SublimeText3/InstalledPackages/* "$HOME/Library/Application Support/Sublime Text 3/Installed Packages"
+
+ln -s /opt/homebrew-cask/Caskroom/macdown/*/MacDown.app/Contents/SharedSupport/bin/macdown /usr/local/bin
 
 # other preference syncing is handled by `mackup`
