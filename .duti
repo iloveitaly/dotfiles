@@ -1,7 +1,11 @@
 # http://bit.ly/U4nU7O
 
-com.sublimetext.2 public.xml all
-com.sublimetext.2 public.plain-text all
-com.sublimetext.2 public.script all
-com.sublimetext.2 public.shell-script all
-com.sublimetext.2 public.ruby-script all
+# /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -dump | grep '[[:space:]]uti:' | awk '{ print $2 }' | sort | uniq
+
+com.sublimetext.3 public.xml all
+com.sublimetext.3 public.plain-text all
+com.sublimetext.3 public.script all
+com.sublimetext.3 public.shell-script all
+com.sublimetext.3 public.ruby-script all
+com.sublimetext.3 public.xhtml  all
+com.uranusjr.macdown net.daringfireball.markdown all
