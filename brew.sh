@@ -75,6 +75,7 @@ brew cask install monotype-skyfonts
 brew cask install chromecast
 brew cask install macdown
 brew cask install base
+brew cask install mailplane
 
 brew cask alfred link
 
