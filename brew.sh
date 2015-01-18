@@ -76,6 +76,7 @@ brew cask install chromecast
 brew cask install macdown
 brew cask install base
 brew cask install mailplane
+brew cask install openrefine
 
 brew cask alfred link
 
