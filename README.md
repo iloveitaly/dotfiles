@@ -24,8 +24,6 @@ To update, `cd` into your local `dotfiles` repository and then:
 ./bootstrap.sh
 ```
 
-**Note about Apache:** Apache is configured specific to my username. You'll have to edit the `apache.conf` to fit your needs (submit a PR if you know how to make the apache.conf dynamic!).
-
 Suggestions/improvements
 [welcome](https://github.com/mathiasbynens/dotfiles/issues)!
 

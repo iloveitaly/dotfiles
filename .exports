@@ -23,3 +23,6 @@ export HISTIGNORE="ls:ls *"
 # encoding
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+# rails
+export RAILS_TEST_SERVER_PORT=8081
