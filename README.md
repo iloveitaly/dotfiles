@@ -1,9 +1,13 @@
-# Mathias’s dotfiles
+# Ascension Press dotfiles
+
+All you need to set up a development environment to contriubte to Ascension Press projects.
 
 ## Installation
 
 ```bash
-git clone https://github.com/mathiasbynens/dotfiles.git && cd dotfiles && ./bootstrap.sh
+git clone https://github.com/mathiasbynens/dotfiles.git
+cd dotfiles
+./bootstrap.sh
 ```
 
 When setting up a new Mac, you may want to set some sensible OS X defaults:
