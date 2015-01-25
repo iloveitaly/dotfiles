@@ -136,6 +136,7 @@ brew install webkit2png
 brew install jq
 brew install ngrok
 brew install lftp
+brew install ghi
 
 # php / WordPress
 # TODO look into homebrew-php instead of josegonzalez
