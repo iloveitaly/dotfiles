@@ -118,7 +118,7 @@ powder install
 bundle config --global jobs 4
 bundle config --global path vendor/bundle
 bundle config --global disable-shared-gems 1
-bundle config --global disable-local-branch-check true
+bundle config --global disable_local_branch_check true
 
 # irb / rails console additions
 gem install awesome_print
