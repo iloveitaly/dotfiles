@@ -80,6 +80,7 @@ brew cask install openrefine
 brew cask install launchrocket
 brew cask install undercover
 brew cask install colorpicker-skalacolor
+brew cask install recordit
 
 brew cask alfred link
 
