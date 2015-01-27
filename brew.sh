@@ -117,7 +117,7 @@ powder install
 # https://gist.github.com/cbrunsdon/f9cfe01d7278e2bbc0d4
 bundle config --global jobs 4
 bundle config --global path vendor/bundle
-bundle config --global disable-shared-gems 1
+bundle config --global disable_shared_gems 1
 bundle config --global disable_local_branch_check true
 
 # irb / rails console additions
