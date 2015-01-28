@@ -64,8 +64,6 @@ brew cask install undercover
 brew cask install colorpicker-skalacolor
 brew cask install recordit
 
-brew cask alfred link
-
 # TODO test if CC is already installed
 open "/opt/homebrew-cask/Caskroom/adobe-creative-cloud/latest/Creative Cloud Installer.app"
 
