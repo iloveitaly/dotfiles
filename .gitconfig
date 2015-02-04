@@ -14,7 +14,7 @@
   c = checkout
   b = branch
   d = diff
-  # review changes exclusive to the current branch (right diff) in Kaleidoscope
+  # review changes exclusive to the current branch (right diff)
   ksreview = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool $BRANCH...$SHA; }; f"
   logv = log --pretty=fuller
   undo-commit = reset --soft HEAD^
@@ -23,6 +23,7 @@
   fixup = !sh -c 'git commit --fixup=$1' -
   squash = !sh -c 'git commit --squash=$1' -
   ri = rebase --interactive --autosquash
+  sha = !sh -c 'git rev-parse HEAD | pbcopy'
 [color]
   ui = auto
 [color "branch"]
