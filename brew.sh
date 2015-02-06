@@ -45,6 +45,7 @@ brew install jq
 brew install ngrok
 brew install lftp
 brew install ghi
+brew install gist
 
 # php / WordPress
 # TODO look into homebrew-php instead of josegonzalez
