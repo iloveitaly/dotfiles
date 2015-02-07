@@ -46,6 +46,7 @@ brew install ngrok
 brew install lftp
 brew install ghi
 brew install gist
+brew install spoof-mac
 
 # php / WordPress
 # TODO look into homebrew-php instead of josegonzalez
