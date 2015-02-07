@@ -23,7 +23,7 @@
   fixup = !sh -c 'git commit --fixup=$1' -
   squash = !sh -c 'git commit --squash=$1' -
   ri = rebase --interactive --autosquash
-  sha = !sh -c 'git rev-parse HEAD | pbcopy'
+  sha = !sh -c 'git rev-parse HEAD | tr -d "[:space:]" | pbcopy'
 [color]
   ui = auto
 [color "branch"]
