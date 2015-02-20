@@ -1,5 +1,9 @@
 # http://bit.ly/U4nU7O
 
+# list all installed apps:
+# mdfind kMDItemContentTypeTree=com.apple.application | while read line; do  mdls -name kMDItemCFBundleIdentifier -raw "$line"; echo; done
+
+# list all file types:
 # /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -dump | grep '[[:space:]]uti:' | awk '{ print $2 }' | sort | uniq
 
 com.sublimetext.3 public.xml all
@@ -9,3 +13,4 @@ com.sublimetext.3 public.shell-script all
 com.sublimetext.3 public.ruby-script all
 com.sublimetext.3 public.xhtml  all
 com.uranusjr.macdown net.daringfireball.markdown all
+com.apple.iWork.Numbers public.comma-separated-values-text all
