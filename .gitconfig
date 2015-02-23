@@ -3,7 +3,6 @@
   email = iloveitaly@gmail.com
 [github]
   user = iloveitaly
-  token = 77e92535c1c0c00e080c1e601713ba3f
 [core]
   excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
