@@ -20,9 +20,9 @@ for file in bash_prompt exports aliases functions extra; do
 done
 
 # git autocompletion
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-    . `brew --prefix`/etc/bash_completion
-fi
+if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+	complete -o default -o nospace -F _git g;
+fi;
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
@@ -32,6 +32,3 @@ shopt -s nocaseglob
 
 # Add tab completion for `defaults read|write NSGlobalDomain`
 complete -W "NSGlobalDomain" defaults
-
-# Autocomplete for 'g' as well
-complete -o default -o nospace -F _git g
