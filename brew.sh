@@ -105,6 +105,7 @@ brew install sqlite
 gem install notes
 gem install powder
 gem install bundle
+gem install dokkufy
 
 rbenv version 2.0.0-p451
 gem install cocoapods
