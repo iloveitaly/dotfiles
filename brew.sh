@@ -49,10 +49,11 @@ brew install gist
 brew install spoof-mac
 
 # php / WordPress
-# TODO look into homebrew-php instead of josegonzalez
-brew tap josegonzalez/php
 brew tap homebrew/dupes
-brew install php53
+brew tap homebrew/versions
+brew tap homebrew/homebrew-php
+brew install freetype jpeg libpng gd
+brew install php56
 brew install wp-cli
 brew install composer
 
