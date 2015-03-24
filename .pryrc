@@ -1,5 +1,9 @@
 Pry.config.editor = "/usr/local/bin/subl"
 
+Pry.commands.alias_command 'c', 'continue'
+Pry.commands.alias_command 's', 'step'
+Pry.commands.alias_command 'n', 'next'
+
 # tried using pry-clipboard; wasn't loading for me
 # https://gist.github.com/hotchpotch/1978295
 def pbcopy(str)
