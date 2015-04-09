@@ -6,11 +6,11 @@
 # list all file types:
 # /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -dump | grep '[[:space:]]uti:' | awk '{ print $2 }' | sort | uniq
 
-com.sublimetext.3 public.xml all
-com.sublimetext.3 public.plain-text all
-com.sublimetext.3 public.script all
-com.sublimetext.3 public.shell-script all
-com.sublimetext.3 public.ruby-script all
-com.sublimetext.3 public.xhtml  all
+com.github.atom public.xml all
+com.github.atom public.plain-text all
+com.github.atom public.script all
+com.github.atom public.shell-script all
+com.github.atom public.ruby-script all
+com.github.atom public.xhtml  all
 com.uranusjr.macdown net.daringfireball.markdown all
 com.apple.iWork.Numbers public.comma-separated-values-text all
