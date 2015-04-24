@@ -74,8 +74,6 @@ RUBY_VERSION=1.9.3-p551
 brew install rbenv
 brew install ruby-build
 
-. ~/.bash_profile
-
 if [[ `rbenv global` != $RUBY_VERSION ]]; then
 	# stuck on 1.9.x on an older rails project
 	rbenv install $RUBY_VERSION
@@ -85,9 +83,10 @@ if [[ `rbenv global` != $RUBY_VERSION ]]; then
 
 	rbenv rehash
 	rbenv global $RUBY_VERSION
-
-	. ~/.bash_profile
 fi
+
+# reload rbenv into bash profile
+eval "$(rbenv init -)"
 
 # mysql setup
 brew install mysql
