@@ -135,19 +135,3 @@ brew cleanup
 # setup default extension handlers
 
 duti < ~/.duti
-
-# symlink application preferences to Dropbox
-
-if [ ! -d ~/Dropbox ]; then
-	echo "Dropbox is not installed. Install DropBox to symlink Sublime Text."
-	exit 1
-fi
-
-# sublime
-rm -R "$HOME/Library/Application Support/Sublime Text 3/Packages/"* "$HOME/Library/Application Support/Sublime Text 3/Installed Packages/"*
-ln -s $HOME/Dropbox/ApplicationSupport/SublimeText3/Packages/* "$HOME/Library/Application Support/Sublime Text 3/Packages"
-ln -s $HOME/Dropbox/ApplicationSupport/SublimeText3/InstalledPackages/* "$HOME/Library/Application Support/Sublime Text 3/Installed Packages"
-
-ln -s /opt/homebrew-cask/Caskroom/macdown/*/MacDown.app/Contents/SharedSupport/bin/macdown /usr/local/bin
-
-# other preference syncing is handled by `mackup`
