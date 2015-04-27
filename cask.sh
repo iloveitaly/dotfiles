@@ -10,7 +10,7 @@ brew cask install google-chrome
 brew cask install alfred
 brew cask install dropbox
 brew cask install bartender
-brew cask install onepassword
+brew cask install 1password
 brew cask install google-drive
 brew cask install sequel-pro
 brew cask install soulver
