@@ -92,6 +92,7 @@ eval "$(rbenv init -)"
 brew install mysql
 mysql.server start
 $(brew --prefix mysql)/bin/mysqladmin -u root password root
+printf "\n\nIf the mysql install throws an error you may need to follow the steps documented here: http://stackoverflow.com/questions/4788381/getting-cant-connect-through-socket-tmp-mysql-when-installing-mysql-on-m\n\n"
 
 # rails tools
 brew install sqlite
