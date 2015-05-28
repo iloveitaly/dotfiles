@@ -27,7 +27,7 @@ source "$HOME/.bash_profile"
 # http://askubuntu.com/questions/230476/when-using-sudo-with-redirection-i-get-permission-denied
 echo -e "export RAILS_TEST_SERVER_PORT=$RAILS_TEST_SERVER_PORT\nexport USER=$USER" | sudo tee /usr/sbin/envvars
 
-sudo apachectl -k restart
+sudo apachectl -k restart || (sudo killall httpd; killall httpd; sudo apachectl)
 mysql.server restart || sudo killall mysqld
 
 powder install
