@@ -58,6 +58,8 @@
 [mergetool "Kaleidoscope"]
   cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
   trustExitCode = true
+[merge]
+  ff = only
 [gitsh]
   defaultCommand = st
   noGreeting = true
