@@ -68,6 +68,7 @@ brew cask install arq
 brew cask install fantastical
 brew cask install lunchy
 brew cask install psequel
+brew cask install paparazzi
 
 # TODO test if CC is already installed
 open "/opt/homebrew-cask/Caskroom/adobe-creative-cloud/latest/Creative Cloud Installer.app"
