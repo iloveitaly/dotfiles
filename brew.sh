@@ -13,7 +13,7 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Make sure we’re using the latest Homebrew, and upgrade any already-installed formulae
-brew update && brew upgrade
+brew update && brew upgrade && brew cleanup
 
 brew upgrade brew-cask
 brew cask cleanup
