@@ -31,3 +31,5 @@ sudo apachectl -k restart || (sudo killall httpd; killall httpd; sudo apachectl)
 mysql.server restart || sudo killall mysqld
 
 powder install
+
+lunchy install /usr/local/opt/mysql/*.plist
