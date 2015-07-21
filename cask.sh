@@ -17,7 +17,6 @@ brew cask install soulver
 brew cask install istat-menus
 brew cask install forklift
 brew cask install iterm2
-brew cask install todoist
 brew cask install slack
 brew cask install mactracker
 brew cask install omnigraffle
@@ -99,3 +98,4 @@ open ~/Desktop/RubyMotion\ Installer.app
 #   * Pixemator
 #   * Sketch
 #   * Glui
+#   * Todoist
