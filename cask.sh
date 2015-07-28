@@ -75,6 +75,7 @@ open "/opt/homebrew-cask/Caskroom/adobe-creative-cloud/latest/Creative Cloud Ins
 
 brew cask install sublime-text3
 brew cask install google-chrome-canary
+brew cask install rdm
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode \
