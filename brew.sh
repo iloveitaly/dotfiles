@@ -109,6 +109,7 @@ gem install notes
 gem install powder
 gem install bundle
 gem install dokkufy
+gem install method_log
 
 rbenv version 2.0.0-p451
 gem install cocoapods
