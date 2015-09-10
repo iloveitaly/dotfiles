@@ -48,6 +48,7 @@ brew install lftp
 brew install ghi
 brew install gist
 brew install spoof-mac
+brew install tmux
 
 # php / WordPress
 brew tap homebrew/dupes
