@@ -101,3 +101,5 @@ open ~/Desktop/RubyMotion\ Installer.app
 #   * Sketch
 #   * Glui
 #   * Todoist
+#   * Icon Slate
+#   * Textual
