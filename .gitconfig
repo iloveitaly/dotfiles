@@ -23,6 +23,9 @@
   squash = !sh -c 'git commit --squash=$1' -
   ri = rebase --interactive --autosquash
   sha = !sh -c 'git rev-parse HEAD | tr -d "[:space:]" | pbcopy'
+
+  # http://stackoverflow.com/questions/2514172/listing-each-branch-and-its-last-revisions-date-in-git
+  branchdate = !git for-each-ref --sort='-authordate' --format='%(refname)%09%(authordate)' refs/heads | sed -e 's-refs/heads/--'
 [color]
   ui = auto
 [color "branch"]
