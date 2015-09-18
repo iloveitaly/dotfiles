@@ -26,6 +26,9 @@
 
   # http://stackoverflow.com/questions/2514172/listing-each-branch-and-its-last-revisions-date-in-git
   branchdate = !git for-each-ref --sort='-authordate' --format='%(refname)%09%(authordate)' refs/heads | sed -e 's-refs/heads/--'
+
+  # http://urbanautomaton.com/blog/2014/09/22/tracking-method-history-in-git/
+  lm = "!f(){ local method=$1; local file=$2; [[ -n \"$method\" && -n \"$file\" ]] || exit 1; git log -L :$method:$file;}; f"
 [color]
   ui = auto
 [color "branch"]
