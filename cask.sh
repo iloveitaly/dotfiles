@@ -71,6 +71,7 @@ brew cask install paparazzi
 brew cask install rightfont
 brew cask install messenger
 brew cask install gitter
+brew cask install scrivener
 
 # TODO test if CC is already installed
 open "/opt/homebrew-cask/Caskroom/adobe-creative-cloud/latest/Creative Cloud Installer.app"
