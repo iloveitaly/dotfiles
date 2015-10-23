@@ -49,6 +49,7 @@ brew install ghi
 brew install gist
 brew install spoof-mac
 brew install tmux
+brew install httpie
 
 # php / WordPress
 brew tap homebrew/dupes
