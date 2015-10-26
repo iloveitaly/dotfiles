@@ -74,6 +74,7 @@ brew cask install gitter
 brew cask install scrivener
 brew cask install postico
 brew cask install focus
+brew cask install kindlepreviewer
 
 # TODO test if CC is already installed
 open "/opt/homebrew-cask/Caskroom/adobe-creative-cloud/latest/Creative Cloud Installer.app"
