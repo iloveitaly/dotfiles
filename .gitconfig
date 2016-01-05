@@ -27,6 +27,9 @@
   # http://stackoverflow.com/questions/2514172/listing-each-branch-and-its-last-revisions-date-in-git
   branchdate = !git for-each-ref --sort='-authordate' --format='%(refname)%09%(authordate)' refs/heads | sed -e 's-refs/heads/--'
 
+  # http://stackoverflow.com/questions/6127328/how-can-i-delete-all-git-branches-which-have-been-merged
+  cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
+
   # http://urbanautomaton.com/blog/2014/09/22/tracking-method-history-in-git/
   lm = "!f(){ local method=$1; local file=$2; [[ -n \"$method\" && -n \"$file\" ]] || exit 1; git log -L :$method:$file;}; f"
 [color]
