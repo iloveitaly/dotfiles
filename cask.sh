@@ -77,6 +77,7 @@ brew cask install focus
 brew cask install kindlepreviewer
 brew cask install appcleaner
 brew cask install wordpresscom
+brew cask install gpgtools
 
 # TODO test if CC is already installed
 open "/opt/homebrew-cask/Caskroom/adobe-creative-cloud/latest/Creative Cloud Installer.app"
