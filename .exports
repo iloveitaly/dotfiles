@@ -1,6 +1,6 @@
 if [[ `uname` == 'Darwin' ]]; then
 	# Make sublime text the default editor
-	export EDITOR="/usr/local/bin/sb"
+	export EDITOR="/usr/local/bin/atom"
 
 	# dont check for mail often
 	export MAILCHECK=3600
