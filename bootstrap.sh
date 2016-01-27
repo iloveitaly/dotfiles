@@ -10,6 +10,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     --exclude "apache.conf" \
     --exclude "my.cnf" \
     --exclude "cask.sh" \
+    --exclude "backup.sh" \
   	--exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" --exclude "ssh_config" -av . ~
 fi
 
