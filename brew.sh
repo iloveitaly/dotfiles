@@ -50,6 +50,7 @@ brew install gist
 brew install spoof-mac
 brew install tmux
 brew install httpie
+brew install awscli
 
 # php / WordPress
 brew tap homebrew/dupes
