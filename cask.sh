@@ -86,6 +86,7 @@ brew cask install hyperterm
 brew cask install soundflowerbed
 brew cask install soundflower
 brew cask install typora
+brew cask install tripmode
 
 # TODO test if CC is already installed
 open "/opt/homebrew-cask/Caskroom/adobe-creative-cloud/latest/Creative Cloud Installer.app"
@@ -101,18 +102,11 @@ brew cask install qlcolorcode \
 		  quicklook-json \
 		  qlprettypatch \
 		  quicklook-csv \
-		  webp-quicklook 
-
-# RubyMotion
-curl http://www.rubymotion.com/files/RubyMotion%20Installer.zip -o ~/Desktop/RubyMotion.zip
-open ~/Desktop/RubyMotion.zip
-open ~/Desktop/RubyMotion\ Installer.app
+		  webp-quicklook
 
 # App Store / Manual Installations
-# 
-#   * Billings Pro
+#
 #   * Twitter
-#   * Air Mail
 #   * Pixemator
 #   * Sketch
 #   * Glui
