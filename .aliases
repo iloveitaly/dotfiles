@@ -46,6 +46,7 @@ alias glo='git log --graph --pretty=format:"%Cred%h%Creset - %s %Cgreen(%cr)%Cre
 alias g="hub"
 alias gpb='g pull --rebase origin `git rev-parse --abbrev-ref HEAD`'
 alias gsu="git submodule sync && git submodule update --init --recursive"
+alias gp="g push origin HEAD"
 
 # rails
 alias spree_clear_test="rm -R spec/dummy && bundle exec rake test_app"
