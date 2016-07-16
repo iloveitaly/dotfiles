@@ -82,6 +82,7 @@ brew cask install safari-technology-preview
 brew cask install grammarly
 brew cask install kitematic
 brew cask install launchcontrol
+brew cask install hyperterm
 
 # TODO test if CC is already installed
 open "/opt/homebrew-cask/Caskroom/adobe-creative-cloud/latest/Creative Cloud Installer.app"
