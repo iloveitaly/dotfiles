@@ -83,6 +83,9 @@ brew cask install grammarly
 brew cask install kitematic
 brew cask install launchcontrol
 brew cask install hyperterm
+brew cask install soundflowerbed
+brew cask install soundflower
+brew cask install typora
 
 # TODO test if CC is already installed
 open "/opt/homebrew-cask/Caskroom/adobe-creative-cloud/latest/Creative Cloud Installer.app"
