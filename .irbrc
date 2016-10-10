@@ -39,3 +39,10 @@ unless RUBY_ENGINE == 'macruby'
     `pbpaste`
   end
 end
+
+# http://stackoverflow.com/questions/4229571/how-do-you-save-irb-inputs-to-a-rb-file
+Kernel.at_exit {
+  File.open("irb.log", "w") do |f|
+    f << Readline::HISTORY.to_a.join("\n")
+  end
+}
