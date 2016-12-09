@@ -89,6 +89,7 @@ brew cask install typora
 brew cask install tripmode
 brew cask install calendly-click
 brew cask install quickbooks
+brew cask install gitscout
 
 # TODO test if CC is already installed
 open "/opt/homebrew-cask/Caskroom/adobe-creative-cloud/latest/Creative Cloud Installer.app"
