@@ -80,6 +80,15 @@ brew cask install gitscout
 brew cask install sublime-text
 brew cask install google-chrome-canary
 brew cask install rdm
+brew cask install ishowu-studio
+brew cask install zoomus
+brew cask install amazon-drive
+brew cask install google-hangouts
+brew cask install harvest
+brew cask install the-unarchiver
+brew cask install sketch
+brew cask install disk-sensei
+brew cask install bettertouchtool
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode \
@@ -87,15 +96,5 @@ brew cask install qlcolorcode \
 		  qlmarkdown \
 		  quicklook-json \
 		  qlprettypatch \
-		  quicklook-csv \
-		  webp-quicklook
-
-# App Store / Manual Installations
-#
-#   * Twitter
-#   * Pixemator
-#   * Sketch
-#   * Glui
-#   * Todoist
-#   * Icon Slate
-#   * Textual
+		  qlimagesize \
+		  webpquicklook
