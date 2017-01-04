@@ -4,6 +4,7 @@
 # make sure brew.sh is run first
 
 brew tap caskroom/versions
+brew tap caskroom/fonts
 
 brew cask install google-chrome
 brew cask install alfred
@@ -89,6 +90,10 @@ brew cask install the-unarchiver
 brew cask install sketch
 brew cask install disk-sensei
 brew cask install bettertouchtool
+brew cask install flux
+brew cask install vagrant
+# vagrant box add ubuntu-12.04 http://files.vagrantup.com/precise64.box
+brew cask install paw
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode \
@@ -98,3 +103,5 @@ brew cask install qlcolorcode \
 		  qlprettypatch \
 		  qlimagesize \
 		  webpquicklook
+
+brew cask install font-source-code-pro
