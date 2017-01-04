@@ -4,7 +4,7 @@
 # mdfind kMDItemContentTypeTree=com.apple.application | while read line; do  mdls -name kMDItemCFBundleIdentifier -raw "$line"; echo; done
 
 # list all file types:
-# /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -dump | grep '[[:space:]]uti:' | awk '{ print $2 }' | sort | uniq
+# /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -dump | grep '[[:space:]]uti:' | awk '{ print $2 }' | sort | uniq | while read line; do echo "$line > "`echo "$line" | xargs duti -l`; done
 
 com.github.atom public.xml all
 com.github.atom public.plain-text all
