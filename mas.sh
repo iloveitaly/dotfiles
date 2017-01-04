@@ -9,3 +9,5 @@ mas install 430255202 # Mactracker
 mas install 431511738 # Timing
 mas install 483014855 # Browser Fairy
 mas install 1124077199 # Paws for Trello
+mas install 1172952443 # Refly Editor
+mas install 1017470484 # Next Meeting
