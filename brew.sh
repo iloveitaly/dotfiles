@@ -15,17 +15,15 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # Make sure we’re using the latest Homebrew, and upgrade any already-installed formulae
 brew update && brew upgrade && brew cleanup
 
-brew install caskroom/cask/brew-cask
-brew upgrade brew-cask
 brew cask cleanup
 brew cask update
-brew install mas
 
 brew install bash
 brew install bash-completion
 brew install rails-completion
 
 # Everything else
+brew install mas
 brew install ack
 brew install git
 brew install lynx
@@ -52,6 +50,8 @@ brew install spoof-mac
 brew install tmux
 brew install httpie
 brew install awscli
+brew install vim
+brew install heroku
 
 # php / WordPress
 brew tap homebrew/dupes
@@ -72,23 +72,22 @@ if ! command -v bower >/dev/null; then
 fi
 
 # ruby
-brew install qt
+# 5.5 must be installed https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit
+brew install qt55
+brew install cmake
 brew install icu4c
 brew install autoconf
-RUBY_VERSION=1.9.3-p551
 brew install rbenv
 brew install ruby-build
 
-if [[ `rbenv global` != $RUBY_VERSION ]]; then
-	# stuck on 1.9.x on an older rails project
-	rbenv install $RUBY_VERSION
+# some newer projects are on 2.0
+rbenv install 2.0.0-p451
+rbenv install 2.2.3
+rbenv install 2.3.0
+rbenv install 2.4.0
 
-	# some newer projects are on 2.0
-	rbenv install 2.0.0-p451
-
-	rbenv rehash
-	rbenv global $RUBY_VERSION
-fi
+rbenv rehash
+rbenv global 2.3.0
 
 # reload rbenv into bash profile
 eval "$(rbenv init -)"
@@ -97,16 +96,10 @@ eval "$(rbenv init -)"
 brew install mysql
 mysql.server start
 $(brew --prefix mysql)/bin/mysqladmin -u root password root
-printf "\n\nIf the mysql install throws an error you may need to follow the steps documented here: http://stackoverflow.com/questions/4788381/getting-cant-connect-through-socket-tmp-mysql-when-installing-mysql-on-m\n\n"
-
-brew install vim
 
 # rails tools
 brew install sqlite
-brew install vagrant
-# vagrant box add ubuntu-12.04 http://files.vagrantup.com/precise64.box
 brew install siege
-brew install sqlite
 
 # http://xquartz.macosforge.org/landing/
 # imagemagick + rmagic issues: https://gist.github.com/3177887
@@ -118,14 +111,10 @@ gem install dokkufy
 gem install method_log
 gem install bundler-patch
 
-rbenv version 2.0.0-p451
-gem install cocoapods
-rbenv version $RUBY_VERSION
-
-# need to reload the env to get `bundle`
-source ~/.bash_profile
-
-powder install
+# irb / rails console additions
+gem install awesome_print
+gem install brice
+gem install added_methods
 
 # parallel bundler job processing
 # https://gist.github.com/cbrunsdon/f9cfe01d7278e2bbc0d4
@@ -134,10 +123,8 @@ bundle config --global path vendor/bundle
 bundle config --global disable_shared_gems 1
 bundle config --global disable_local_branch_check true
 
-# irb / rails console additions
-gem install awesome_print
-gem install brice
-gem install added_methods
+# need to reload the env to get `bundle`
+source ~/.bash_profile
 
 brew cleanup
 
