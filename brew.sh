@@ -19,6 +19,7 @@ brew install caskroom/cask/brew-cask
 brew upgrade brew-cask
 brew cask cleanup
 brew cask update
+brew install mas
 
 brew install bash
 brew install bash-completion
