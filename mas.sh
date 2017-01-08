@@ -11,3 +11,4 @@ mas install 483014855 # Browser Fairy
 mas install 1124077199 # Paws for Trello
 mas install 1172952443 # Refly Editor
 mas install 1017470484 # Next Meeting
+mas install 918207447 # Annotate (2.1.4)

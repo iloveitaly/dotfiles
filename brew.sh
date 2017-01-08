@@ -20,7 +20,10 @@ brew cask update
 
 brew install bash
 brew install bash-completion
-brew install rails-completion
+brew install homebrew/completions/bundler-completion
+brew install homebrew/completions/gem-completion
+brew install homebrew/completions/rake-completion
+brew install homebrew/completions/rails-completion
 
 # Everything else
 brew install mas
