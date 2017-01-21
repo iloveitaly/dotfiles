@@ -92,10 +92,10 @@ brew cask install disk-sensei
 brew cask install bettertouchtool
 brew cask install flux
 brew cask install vagrant
-# vagrant box add ubuntu-12.04 http://files.vagrantup.com/precise64.box
 brew cask install paw
 brew cask install epichrome
 brew cask install safari-technology-preview
+brew cask install qbserve
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode \

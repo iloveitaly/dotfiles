@@ -12,3 +12,7 @@ mas install 1124077199 # Paws for Trello
 mas install 1172952443 # Refly Editor
 mas install 1017470484 # Next Meeting
 mas install 918207447 # Annotate (2.1.4)
+mas install 1030442215 # Momentum Habit Tracker - Routines, Goals & Rituals
+
+# Other
+# Hemmingway OS X
