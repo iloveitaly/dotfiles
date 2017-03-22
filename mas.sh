@@ -13,6 +13,8 @@ mas install 1172952443 # Refly Editor
 mas install 1017470484 # Next Meeting
 mas install 918207447 # Annotate (2.1.4)
 mas install 1030442215 # Momentum Habit Tracker - Routines, Goals & Rituals
-
+mas install 1090969894 # Escape by FocusList - distraction tracker
+mas install 1063631769 # Medis - GUI for Redis
+mas install 1173932628 # Drop - Color Picker
 # Other
 # Hemmingway OS X
