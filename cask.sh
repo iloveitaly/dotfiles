@@ -96,6 +96,10 @@ brew cask install paw
 brew cask install epichrome
 brew cask install safari-technology-preview
 brew cask install qbserve
+brew cask install blue-jeans-launcher
+brew cask install ccmenu
+brew cask install openrefine-dev
+brew cask install ngrok
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode \
