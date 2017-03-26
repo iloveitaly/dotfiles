@@ -100,6 +100,7 @@ brew cask install blue-jeans-launcher
 brew cask install ccmenu
 brew cask install openrefine-dev
 brew cask install ngrok
+brew cask install handbrake
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode \
