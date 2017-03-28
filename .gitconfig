@@ -13,6 +13,9 @@
   c = checkout
   b = branch
   d = diff
+  dc = diff --cached
+  cm = commit
+  cp = cherry-pick
   # review changes exclusive to the current branch (right diff)
   ksreview = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool $BRANCH...$SHA; }; f"
   logv = log --pretty=fuller
