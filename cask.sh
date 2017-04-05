@@ -102,6 +102,7 @@ brew cask install openrefine-dev
 brew cask install ngrok
 brew cask install handbrake
 brew cask install displaylink
+brew cask install drop-to-gif
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode \
