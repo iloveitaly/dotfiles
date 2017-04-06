@@ -103,6 +103,7 @@ brew cask install ngrok
 brew cask install handbrake
 brew cask install displaylink
 brew cask install drop-to-gif
+brew cask install lepton
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode \
