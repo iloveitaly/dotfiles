@@ -113,6 +113,7 @@ gem install bundle
 gem install dokkufy
 gem install method_log
 gem install bundler-patch
+gem install bundler-audit
 
 # irb / rails console additions
 gem install awesome_print
