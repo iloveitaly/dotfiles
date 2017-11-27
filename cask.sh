@@ -13,7 +13,7 @@ brew cask install bartender
 brew cask install 1password
 brew cask install google-drive
 brew cask install sequel-pro
-brew cask install soulver
+brew cask install soulverk
 brew cask install istat-menus
 brew cask install forklift
 brew cask install iterm2
@@ -64,7 +64,7 @@ brew cask install gitter
 brew cask install scrivener
 brew cask install postico
 brew cask install focus
-brew cask install kindlepreviewer
+brew cask install kindle
 brew cask install appcleaner
 brew cask install wordpresscom
 brew cask install gpgtools
