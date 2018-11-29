@@ -106,6 +106,7 @@ brew cask install drop-to-gif
 brew cask install lepton
 brew cask install muzzle
 brew cask install screenflow
+brew cask install virtualbox
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode \
