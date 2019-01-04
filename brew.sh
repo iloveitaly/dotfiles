@@ -20,10 +20,7 @@ brew cask update
 
 brew install bash
 brew install bash-completion
-brew install homebrew/completions/bundler-completion
-brew install homebrew/completions/gem-completion
-brew install homebrew/completions/rake-completion
-brew install homebrew/completions/rails-completion
+brew install ruby-completion
 
 # Everything else
 brew install mas
@@ -53,8 +50,7 @@ brew install spoof-mac
 brew install tmux
 brew install httpie
 brew install awscli
-brew install vim
-brew install heroku
+brew install heroku/brew/heroku
 
 # php / WordPress
 brew tap homebrew/dupes
