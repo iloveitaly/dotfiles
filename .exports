@@ -1,10 +1,5 @@
-if [[ `uname` == 'Darwin' ]]; then
-	# Make sublime text the default editor
-	export EDITOR="/usr/local/bin/atom"
-
-	# dont check for mail often
-	export MAILCHECK=3600
-fi
+# Make atom text the default editor
+export EDITOR="/usr/local/bin/atom"
 
 # enable colored output from ls, etc
 export CLICOLOR=1
