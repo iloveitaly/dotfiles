@@ -8,6 +8,8 @@
   attributesfile = ~/.gitattributes
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space
   editor = nano
+  # http://stackoverflow.com/questions/18257622/why-is-git-core-preloadindex-default-value-false
+  preloadindex = true
 [alias]
   st = status -sb
   c = checkout
@@ -83,3 +85,5 @@
   protocol = https
 [gist]
   private = true
+[push]
+  default = simple
