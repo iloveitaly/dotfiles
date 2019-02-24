@@ -18,14 +18,12 @@ brew cask install forklift
 brew cask install iterm2
 brew cask install slack
 brew cask install mactracker
-brew cask install firefox
 brew cask install amazon-music
 brew cask install atom
 brew cask install github
 brew cask install soulver
 brew cask install stay
 brew cask install kaleidoscope
-# sip color picker
 brew cask install skype
 brew cask install postgres
 brew cask install spectacle
@@ -34,7 +32,6 @@ brew cask install valentina-studio
 brew cask install insync
 brew cask install libreoffice
 brew cask install rescuetime
-brew cask install bee
 brew cask install microsoft-intellitype
 brew cask install xtrafinder
 brew cask install coteditor
@@ -78,7 +75,6 @@ brew cask install harvest
 brew cask install the-unarchiver
 brew cask install sketch
 brew cask install disk-sensei
-brew cask install bettertouchtool
 brew cask install flux
 brew cask install vagrant
 brew cask install paw
@@ -92,7 +88,7 @@ brew cask install handbrake
 brew cask install displaylink
 brew cask install lepton
 brew cask install muzzle
-brew cask install screenflow
+brew cask install https://raw.githubusercontent.com/Homebrew/homebrew-cask/00a37cb6ea00ca2820652b75ebd1f57ba160c3e5/Casks/screenflow.rb
 brew cask install visual-studio-code
 brew cask install cloudapp
 
