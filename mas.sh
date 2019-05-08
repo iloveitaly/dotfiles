@@ -9,11 +9,10 @@ mas install 483014855 # Browser Fairy
 mas install 1278508951 # Trello
 mas install 1172952443 # Refly Editor
 mas install 1017470484 # Next Meeting
-mas install 1355117041 # Up next
-mas install 1030442215 # Momentum Habit Tracker - Routines, Goals & Rituals
 mas install 1063631769 # Medis - GUI for Redis
 mas install 1173932628 # Drop - Color Picker
 
 # Other
 # Hemmingway OS X
 # TODO find better distraction tracking tools
+# TODO find better habit tracking, maybe something that ties in with alexa?
