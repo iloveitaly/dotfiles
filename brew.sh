@@ -38,7 +38,7 @@ brew install duti
 brew install mongodb
 brew install optipng
 brew install hub
-brew install the_silver_searcher
+brew install ripgrep
 brew install iftop
 brew install webkit2png
 brew install jq
