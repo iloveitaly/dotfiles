@@ -4,6 +4,9 @@
 # brew
 export PATH="/usr/local/sbin:$PATH"
 
+# postgres
+export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+
 # load in rbenv
 if [[ ! -z `which rbenv` ]]; then
 	eval "$(rbenv init -)"
