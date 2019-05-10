@@ -22,12 +22,16 @@ brew install bash
 brew install bash-completion
 brew install ruby-completion
 
+# systems
+brew install node
+brew install mongodb
+
 # Everything else
+brew install mackup
 brew install mas
 brew install ack
 brew install git
 brew install lynx
-brew install node
 brew install rename
 brew install tree
 brew install imagemagick
@@ -35,7 +39,6 @@ brew install wget
 brew install ngrep
 brew install linklint
 brew install duti
-brew install mongodb
 brew install optipng
 brew install hub
 brew install ripgrep
@@ -78,6 +81,7 @@ brew install icu4c
 brew install autoconf
 brew install rbenv
 brew install ruby-build
+brew install puma/puma/puma-dev
 
 # some newer projects are on 2.0
 rbenv install 2.0.0-p451
@@ -104,9 +108,7 @@ brew install siege
 # imagemagick + rmagic issues: https://gist.github.com/3177887
 
 gem install notes
-gem install powder
 gem install bundle
-gem install dokkufy
 gem install method_log
 gem install bundler-patch
 gem install bundler-audit
