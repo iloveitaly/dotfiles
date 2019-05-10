@@ -1,11 +1,13 @@
 #!/bin/bash
 
-# manual
+# Manual Configuration Required:
+# 
 #   - Alfred Configuration Backup. Sync to cloud storage.
 #   - Google Chrome. Sync to user profile.
 #   - 1Password. Support was never merged, sensitive application to muck with permissions. https://github.com/lra/mackup/pull/1080
 #   - Dash. Save preferences and snippets in-app.
 #   - SSH and GPG
+#   - Enable location services
 
 mackup backup
 
