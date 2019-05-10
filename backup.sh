@@ -11,7 +11,8 @@
 
 mackup backup
 
-apm star --installed
+cp "$HOME/Library/Application Support/Code/User/settings.json" ./vscode-settings.json
+code --list-extensions > ./vscode-extensions.txt
 
 # manually copy files to the new machine
 pg_dumpall > ~/Desktop/postgres_backup
