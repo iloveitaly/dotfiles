@@ -1,0 +1,11 @@
+DavidAnson.vscode-markdownlint
+dbaeumer.vscode-eslint
+eamodio.gitlens
+earshinov.permute-lines
+mikestead.dotenv
+ms-vscode.atom-keybindings
+rebornix.ruby
+ryanolsonx.solarized
+sysoev.vscode-open-in-github
+v4run.transpose
+zhuangtongfa.Material-theme
