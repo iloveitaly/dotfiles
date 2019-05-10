@@ -91,7 +91,7 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 # Automatically quit printer app once the print jobs complete
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
-# Disable the “Are you sure you want to open this application?” dialog
+# Disable the "Are you sure you want to open this application?"" dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 # Remove duplicates in the “Open With” menu (also see `lscleanup` alias)
@@ -144,7 +144,7 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
 # Disable auto-correct
-defaults write NSGlobalDomain NSAutoma ticSpellingCorrectionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 ###############################################################################
 # SSD-specific tweaks                                                         #
@@ -201,6 +201,7 @@ defaults write .GlobalPreferences com.apple.scrollwheel.scaling -1
 # Enable access for assistive devices
 echo -n 'a' | sudo tee /private/var/db/.AccessibilityAPIEnabled > /dev/null 2>&1
 sudo chmod 444 /private/var/db/.AccessibilityAPIEnabled
+
 # TODO: avoid GUI password prompt somehow (http://apple.stackexchange.com/q/60476/4408)
 #sudo osascript -e 'tell application "System Events" to set UI elements enabled to true'
 
@@ -232,6 +233,9 @@ defaults write com.apple.BezelServices kDimTime -int 300
 
 # Set the timezone; see `systemsetup -listtimezones` for other values
 systemsetup -settimezone "America/Denver" > /dev/null
+
+# Note that location services needs to be enabled manually
+sudo defaults write /Library/Preferences/com.apple.timezone.auto Active -bool true
 
 # Stop iTunes from responding to the keyboard media keys
 launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
@@ -691,6 +695,7 @@ defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool t
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Dropbox.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Flux.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Google Drive.app", hidden:true}'
+osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Google Drive File Stream.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/RescueTime.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Dash.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Stay.app", hidden:true}'
