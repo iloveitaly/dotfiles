@@ -53,6 +53,7 @@ brew install spoof-mac
 brew install tmux
 brew install httpie
 brew install awscli
+brew install go
 brew install heroku/brew/heroku
 
 # php / WordPress
