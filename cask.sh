@@ -84,6 +84,7 @@ brew cask install muzzle
 brew cask install https://raw.githubusercontent.com/Homebrew/homebrew-cask/00a37cb6ea00ca2820652b75ebd1f57ba160c3e5/Casks/screenflow.rb
 brew cask install visual-studio-code
 brew cask install cloudapp
+brew cask install mongodb-compass-community
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode \
