@@ -85,6 +85,7 @@ brew cask install https://raw.githubusercontent.com/Homebrew/homebrew-cask/00a37
 brew cask install visual-studio-code
 brew cask install cloudapp
 brew cask install mongodb-compass-community
+brew cask install pock
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode \
