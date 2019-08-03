@@ -21,6 +21,7 @@ brew cask update
 brew install bash
 brew install bash-completion
 brew install ruby-completion
+brew install mix-completion
 
 # systems
 brew install node
