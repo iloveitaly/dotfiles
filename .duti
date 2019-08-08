@@ -6,11 +6,16 @@
 # list all file types:
 # /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -dump | grep '[[:space:]]uti:' | awk '{ print $2 }' | sort | uniq | while read line; do echo "$line > "`echo "$line" | xargs duti -l`; done
 
-com.github.atom public.xml all
-com.github.atom public.plain-text all
-com.github.atom public.script all
-com.github.atom public.shell-script all
-com.github.atom public.ruby-script all
-com.github.atom public.xhtml  all
+# list information for a specific file type:
+# duti -e exs
+
+com.microsoft.VSCode public.xml all
+com.microsoft.VSCode public.plain-text all
+com.microsoft.VSCode public.script all
+com.microsoft.VSCode public.shell-script all
+com.microsoft.VSCode public.ruby-script all
+com.microsoft.VSCode public.xhtml  all
+com.microsoft.VSCode com.apple.logic.exs all
+
 com.uranusjr.macdown net.daringfireball.markdown all
 com.apple.iWork.Numbers public.comma-separated-values-text all
