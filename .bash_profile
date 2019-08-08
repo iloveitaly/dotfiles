@@ -12,6 +12,11 @@ if [[ ! -z `which rbenv` ]]; then
 	eval "$(rbenv init -)"
 fi
 
+if [[ ! -z `which asdf` ]]; then
+  . `brew --prefix asdf`/asdf.sh
+  . `brew --prefix asdf`/etc/bash_completion.d/asdf.bash
+fi
+
 # mkdir .git/safe in the root of repositories you trust, for binstubs
 export PATH=".git/safe/../../bin:$PATH"
 
