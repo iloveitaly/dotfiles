@@ -87,6 +87,7 @@ brew cask install cloudapp
 brew cask install mongodb-compass-community
 brew cask install pock
 brew cask install youtube-dl
+brew cask install contexts
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode \
