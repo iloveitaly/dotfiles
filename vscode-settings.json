@@ -13,5 +13,12 @@
     "explorer.openEditors.visible": 0,
     "editor.minimap.enabled": false,
     "diffEditor.ignoreTrimWhitespace": true,
-    "workbench.tree.indent": 25
+    "workbench.tree.indent": 25,
+    "explorer.autoReveal": false,
+    "emmet.includeLanguages": {
+        "HTML (Eex)": "html"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
