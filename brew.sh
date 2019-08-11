@@ -75,6 +75,10 @@ if ! command -v bower >/dev/null; then
 	npm install -g livereloadx
 fi
 
+# elixir
+brew install asdf
+asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+
 # ruby
 # 5.5 must be installed https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit
 brew install qt55
