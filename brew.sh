@@ -56,6 +56,7 @@ brew install httpie
 brew install awscli
 brew install go
 brew install heroku/brew/heroku
+brew install cloc
 
 # php / WordPress
 brew tap homebrew/dupes
