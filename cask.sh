@@ -39,7 +39,6 @@ brew cask install dash
 brew cask install skyfonts
 brew cask install macdown
 brew cask install base
-brew cask install launchrocket
 brew cask install undercover
 brew cask install colorpicker-skalacolor
 brew cask install arq
@@ -51,7 +50,6 @@ brew cask install rightfont
 brew cask install messenger
 brew cask install scrivener
 brew cask install postico
-brew cask install focus
 brew cask install kindle
 brew cask install appcleaner
 brew cask install wordpresscom
@@ -61,7 +59,6 @@ brew cask install kitematic
 brew cask install launchcontrol
 brew cask install hyper
 brew cask install typora
-brew cask install quickbooks-online
 brew cask install gitscout
 brew cask install sublime-text
 brew cask install google-chrome-canary
