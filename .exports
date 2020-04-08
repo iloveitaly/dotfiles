@@ -27,3 +27,6 @@ export LESS_TERMCAP_md="${yellow}";
 
 # rails
 export RAILS_TEST_SERVER_PORT=8081
+
+# elixir
+export ERL_AFLAGS="-kernel shell_history enabled"
