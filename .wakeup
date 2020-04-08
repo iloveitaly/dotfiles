@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# to run as root (which is required to modify `hosts`)
+# sudo brew services start sleepwatcher
+
+# test this script:
+#   sudo /usr/local/sbin/sleepwatcher --verbose \
+#     --wakeup .wakeup
+
+# asdf is operating in a different environment, we can't use it directly
+
+# commands to get the node & hostile paths
+#   - `asdf which node`
+#   - `asdf which hostile`
+
+/Users/mike/.asdf/installs/nodejs/12.14.1/bin/node \
+  /Users/mike/.asdf/installs/nodejs/12.14.1/.npm/bin/hostile \
+  load /Users/mike/distracting_sites.txt
+
+# https://apple.stackexchange.com/questions/303110/flush-cache-of-dns-on-macos-sierra-high-sierra/303119#303119
+sudo killall -HUP mDNSResponder
+
+# safari will often cache DNS, lets clear it to ensure everything is blocked
+osascript << EOF
+tell application "Safari"
+	activate
+end tell
+
+tell application "System Events"
+	tell process "Safari"
+		tell menu bar 1 to tell menu bar item "Develop" to tell menu 1 to tell menu item "Empty Caches" to click
+	end tell
+end tell
+EOF
