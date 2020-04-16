@@ -54,7 +54,7 @@ brew install spoof-mac
 brew install tmux
 brew install httpie
 brew install awscli
-brew install go
+brew install ansible
 brew install heroku/brew/heroku
 brew install cloc
 
@@ -69,11 +69,12 @@ brew install composer
 
 # node
 if ! command -v bower >/dev/null; then
-	# TODO may need to be installed manually
+	# TODO use `asdf` to install node
 	curl http://npmjs.org/install.sh | sh
 	npm install -g grunt
 	npm install -g bower
 	npm install -g livereloadx
+	npm install -g hostile
 fi
 
 # elixir
@@ -90,14 +91,10 @@ brew install rbenv
 brew install ruby-build
 brew install puma/puma/puma-dev
 
-# some newer projects are on 2.0
-rbenv install 2.0.0-p451
-rbenv install 2.2.3
-rbenv install 2.3.0
-rbenv install 2.4.0
+rbenv install 2.6.5
 
 rbenv rehash
-rbenv global 2.3.0
+rbenv global 2.6.5
 
 # reload rbenv into bash profile
 eval "$(rbenv init -)"
