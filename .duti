@@ -9,6 +9,7 @@
 # list information for a specific file type:
 # duti -e exs
 
+com.microsoft.VSCode public.text all
 com.microsoft.VSCode public.xml all
 com.microsoft.VSCode public.plain-text all
 com.microsoft.VSCode public.script all
