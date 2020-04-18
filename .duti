@@ -18,4 +18,4 @@ com.microsoft.VSCode public.xhtml  all
 com.microsoft.VSCode com.apple.logic.exs all
 
 com.uranusjr.macdown net.daringfireball.markdown all
-com.apple.iWork.Numbers public.comma-separated-values-text all
+com.microsoft.Excel public.comma-separated-values-text all
