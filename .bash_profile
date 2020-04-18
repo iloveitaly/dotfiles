@@ -12,7 +12,7 @@ export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 
 # load in rbenv
 if [[ ! -z `which rbenv` ]]; then
-	eval "$(rbenv init -)"
+	. "$(rbenv init -)"
 fi
 
 if [[ ! -z `which asdf` ]]; then
