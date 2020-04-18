@@ -1,6 +1,9 @@
 # https://discussions.apple.com/thread/2173922
 [[ ${-#*i} != ${-} ]] || return
 
+# https://www.iterm2.com/documentation-shell-integration.html
+. ~/.iterm2_shell_integration.bash
+
 # brew
 export PATH="/usr/local/sbin:$PATH"
 
