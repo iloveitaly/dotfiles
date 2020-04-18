@@ -12,6 +12,7 @@
   preloadindex = true
 [alias]
   st = status -sb
+  ss = status -uno
   c = checkout
   b = branch
   d = diff
