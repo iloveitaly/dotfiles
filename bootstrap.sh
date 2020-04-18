@@ -14,6 +14,11 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   	--exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" --exclude "ssh_config" -av . ~
 fi
 
+mackup restore
+
+cat ./vscode-extensions.txt | xargs -L 1 echo code --install-extension
+cp ./vscode-settings.json "$HOME/Library/Application Support/Code/User/settings.json"
+
 cp -f ./ssh_config ~/.ssh/config
 
 mkdir -p ~/Sites/logs
@@ -30,7 +35,5 @@ echo -e "export RAILS_TEST_SERVER_PORT=$RAILS_TEST_SERVER_PORT\nexport USER=$USE
 
 sudo apachectl -k restart || (sudo killall httpd; killall httpd; sudo apachectl)
 mysql.server restart || sudo killall mysqld
-
-powder install
 
 lunchy install /usr/local/opt/mysql/*.plist
