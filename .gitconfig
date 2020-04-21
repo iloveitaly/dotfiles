@@ -11,6 +11,7 @@
   # http://stackoverflow.com/questions/18257622/why-is-git-core-preloadindex-default-value-false
   preloadindex = true
 [alias]
+  amend = commit --amend --reuse-message=HEAD
   st = status -sb
   ss = status -uno
   c = checkout
