@@ -85,6 +85,7 @@ brew cask install mongodb-compass-community
 brew cask install pock
 brew cask install youtube-dl
 brew cask install contexts
+brew cask install chromedriver
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode \
@@ -96,3 +97,4 @@ brew cask install qlcolorcode \
 
 # fonts
 brew cask install font-source-code-pro
+brew cask install font-hack
