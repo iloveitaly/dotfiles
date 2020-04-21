@@ -25,7 +25,7 @@ brew cask install stay
 brew cask install kaleidoscope
 brew cask install skype
 brew cask install postgres
-brew cask install spectacle
+brew cask install rectangle
 brew cask install valentina-studio
 brew cask install insync
 brew cask install libreoffice
