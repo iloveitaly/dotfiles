@@ -425,6 +425,9 @@ defaults write com.apple.dock mineffect -string scale
 # Disable the Launchpad gesture (pinch with thumb and three fingers)
 defaults write com.apple.dock showLaunchpadGestureEnabled -int 0
 
+# Don't show recently used applications in the Dock
+defaults write com.Apple.Dock show-recents -bool false
+
 # Reset Launchpad, but keep the desktop wallpaper intact
 find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
 
