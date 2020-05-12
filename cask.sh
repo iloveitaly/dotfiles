@@ -86,6 +86,7 @@ brew cask install pock
 brew cask install youtube-dl
 brew cask install contexts
 brew cask install chromedriver
+brew cask install docker
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode \
