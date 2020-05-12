@@ -6,7 +6,6 @@
     "editor.tabCompletion": "on",
     "atomKeymap.promptV3Features": true,
     "editor.formatOnPaste": true,
-    "search.location": "panel",
     "workbench.colorTheme": "One Dark Pro Vivid",
     "editor.scrollBeyondLastLine": false,
     "files.trimTrailingWhitespace": true,
@@ -14,11 +13,19 @@
     "editor.minimap.enabled": false,
     "diffEditor.ignoreTrimWhitespace": true,
     "workbench.tree.indent": 25,
-    "explorer.autoReveal": false,
     "emmet.includeLanguages": {
         "HTML (Eex)": "html"
     },
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "explorer.autoReveal": false,
+    "editor.columnSelection": false,
+    "editor.fontFamily": "Hack, Menlo, Monaco, 'Courier New', monospace",
+    "debug.node.useV3": true,
+    "debug.extensionHost.useV3": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "timeline.excludeSources": [
+        "git-history"
+    ]
 }
