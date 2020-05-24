@@ -41,7 +41,7 @@ brew cask install macdown
 brew cask install base
 brew cask install undercover
 brew cask install colorpicker-skalacolor
-brew cask install arq
+brew cask install https://raw.githubusercontent.com/Homebrew/homebrew-cask/5b112c6a968113fb37d147f854451fb0988bd4db/Casks/arq.rb
 brew cask install fantastical
 brew cask install lunchy
 brew cask install psequel

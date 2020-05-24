@@ -57,6 +57,7 @@ brew install awscli
 brew install ansible
 brew install heroku/brew/heroku
 brew install cloc
+brew install fasd
 
 # php / WordPress
 brew tap homebrew/dupes

@@ -29,11 +29,14 @@ sudo cp -f my.cnf /etc/my.cnf
 
 source "$HOME/.bash_profile"
 
-# http://krypted.com/mac-security/apache2-umasks/
-# http://askubuntu.com/questions/230476/when-using-sudo-with-redirection-i-get-permission-denied
-echo -e "export RAILS_TEST_SERVER_PORT=$RAILS_TEST_SERVER_PORT\nexport USER=$USER" | sudo tee /usr/sbin/envvars
+# TODO install extensiopns via requirements.txt
+code --install-extension
 
-sudo apachectl -k restart || (sudo killall httpd; killall httpd; sudo apachectl)
-mysql.server restart || sudo killall mysqld
+# TODO document vscode customizations
 
-lunchy install /usr/local/opt/mysql/*.plist
+# block distracting sites
+# https://gist.githubusercontent.com/iloveitaly/88f86faecfb6cb0bf3e085bdcaf5a87f/raw/81d13fda0eda1b84fd5e301f76cf1a84657940af/distracting_websites.txt
+sed '/^$/d' ./distracting_websites.txt | sed $'s/\(.*\)/127.0.0.1  \\1\\\n127.0.0.1  www.\\1/' > ~/distracting_sites.txt
+
+sudo -E `asdf which node` `asdf which hostile` load ~/distracting_sites.txt
+sudo -E `asdf which node` `asdf which hostile` unload ~/distracting_sites.txt

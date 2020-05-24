@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-# to run as root (which is required to modify `hosts`)
-# sudo brew services start sleepwatcher
+# you'll need to run this as root to modify the /etc/hosts file
 
-# test this script:
-#   sudo /usr/local/sbin/sleepwatcher --verbose \
-#     --wakeup .wakeup
+# to test this script using sleepwatcher:
+# 	sudo brew services start sleepwatcher
+# 	test this script:
+#  	 sudo /usr/local/sbin/sleepwatcher --verbose \
+#			--wakeup .wakeup
 
 # asdf is operating in a different environment, we can't use it directly
 

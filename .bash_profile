@@ -10,6 +10,8 @@ export PATH="/usr/local/sbin:$PATH"
 # postgres
 export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 
+eval "$(fasd --init auto)"
+
 # load in rbenv
 if [[ ! -z `which rbenv` ]]; then
 	. "$(rbenv init -)"
