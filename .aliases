@@ -34,8 +34,7 @@ alias d="cd ~/Dropbox"
 alias ds="cd ~/Desktop"
 alias p="cd ~/Projects"
 alias s="cd ~/Sites"
-alias e="subl ."
-alias sb="subl"
+alias e="code ."
 alias rmatec="ssh -R 52698:localhost:52698"
 
 # Detect which `ls` flavor is in use
