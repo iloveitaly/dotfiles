@@ -37,3 +37,16 @@ function gbt() {
   git branch --track $2 remotes/$1/$2
   git checkout $2
 }
+
+function makegif() {
+  # include trailing slash
+  screenshot_dir=~/Desktop/
+  latest_movie=$screenshot_dir`ls -tp "$screenshot_dir" | grep '.*\.mov' | head -n 1`
+  gif_destination=`echo "$latest_movie" | sed 's/.mov/.gif/'`
+
+  # brew install ffmpeg gifsicle
+  ffmpeg -i "$latest_movie" -r 10 -f gif - | gifsicle > "$gif_destination"
+
+  echo $gif_destination
+  open -a "Google Chrome" "$gif_destination"
+}
