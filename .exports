@@ -1,5 +1,5 @@
-# Make atom text the default editor
-export EDITOR="/usr/local/bin/atom"
+# Make nano the default editor for context-less editing in the terminal
+export EDITOR=nano
 
 # enable colored output from ls, etc
 export CLICOLOR=1
