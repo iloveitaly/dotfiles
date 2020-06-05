@@ -1,2 +1,7 @@
+# include line + column number with the file name
 --vimgrep
+
+# vimgrep kills coloring, let's add it back in
 --color auto
+
+--smart-case
