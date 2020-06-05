@@ -8,7 +8,9 @@ export ZSH="/Users/mbianco/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+
+# I like Soliah
+ZSH_THEME="random"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -23,14 +25,8 @@ ZSH_THEME="robbyrussell"
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
 # Uncomment the following line to automatically update without prompting.
 # DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS=true
@@ -50,7 +46,7 @@ ZSH_THEME="robbyrussell"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -68,7 +64,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(gitfast fasd ripgrep osx safe-paste)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -98,20 +94,32 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# TODO https://github.com/jeromedalbert/dotfiles/blob/3e91c7bf8b44b4d989eaab49cc4ca412f7ecbb73/.zshrc
+# Shell Options
+
+setopt interactive_comments
+setopt prompt_subst
+
+setopt append_history
+setopt extended_history
+setopt hist_ignore_dups
+
+# Evals
+
+# https://www.iterm2.com/documentation-shell-integration.html
+eval ~/.iterm2_shell_integration.zsh
 
 eval $(brew shellenv)
 
-eval "$(fasd --init auto)"
+# eval "$(fasd --init auto)"
 
 # load in rbenv
-if [[ ! -z `which rbenv` ]]; then
-	. "$(rbenv init -)"
+if type rbenv > /dev/null; then
+	eval "$(rbenv init -)"
 fi
 
 # TODO feels like there's a better way to load up asdf into the shell
-if [[ ! -z `which asdf` ]]; then
-  . `brew --prefix asdf`/asdf.sh
+if type asdf > /dev/null; then
+  eval `brew --prefix asdf`/asdf.sh
 fi
 
 # Load ~/.exports, ~/.aliases, ~/.functions and ~/.extra
