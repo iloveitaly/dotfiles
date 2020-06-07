@@ -1,9 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-export ZSH="/Users/mbianco/.oh-my-zsh"
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -66,7 +63,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(gitfast fasd ripgrep osx safe-paste)
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -119,7 +116,7 @@ fi
 
 # TODO feels like there's a better way to load up asdf into the shell
 if type asdf > /dev/null; then
-  eval `brew --prefix asdf`/asdf.sh
+  source `brew --prefix asdf`/asdf.sh
 fi
 
 # Load ~/.exports, ~/.aliases, ~/.functions and ~/.extra
@@ -128,3 +125,5 @@ for file in exports aliases functions extra; do
   file="$HOME/.$file"
   [ -e "$file" ] && source "$file"
 done
+
+source ~/.zsh_plugins.sh
