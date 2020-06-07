@@ -10,13 +10,13 @@ export MANPAGER="less -X"
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export PYTHONIOENCODING='UTF-8';
 
-# Larger bash history (allow 32³ entries; default is 500)
-export HISTSIZE=32768
-export HISTFILESIZE=$HISTSIZE
-export HISTCONTROL=ignoreboth:erasedups
+# large shell history
+export HISTFILE=~/.zsh_history
+export SAVEHIST=10000
+export HISTSIZE=10000
 
 # Make some commands not show up in history
-export HISTIGNORE="ls:ls *"
+export HISTORY_IGNORE="(ls|cd|pwd|exit|cd)"
 
 # encoding
 export LC_ALL=en_US.UTF-8
