@@ -2,6 +2,6 @@
 --vimgrep
 
 # vimgrep kills coloring, let's add it back in
---color auto
+--color=auto
 
 --smart-case

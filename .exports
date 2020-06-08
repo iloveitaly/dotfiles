@@ -10,6 +10,8 @@ export MANPAGER="less -X"
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export PYTHONIOENCODING='UTF-8';
 
+export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
+
 # large shell history
 export HISTFILE=~/.zsh_history
 export SAVEHIST=10000
