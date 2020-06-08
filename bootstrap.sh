@@ -21,13 +21,7 @@ cp ./vscode-settings.json "$HOME/Library/Application Support/Code/User/settings.
 
 cp -f ./ssh_config ~/.ssh/config
 
-mkdir -p ~/Sites/logs
-sudo rm /etc/apache2/other/*
-sudo cp -f apache.conf /etc/apache2/other/vhosts.conf
-
 sudo cp -f my.cnf /etc/my.cnf
-
-source "$HOME/.bash_profile"
 
 # TODO install extensiopns via requirements.txt
 code --install-extension
