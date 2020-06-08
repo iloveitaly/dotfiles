@@ -1,23 +1,17 @@
-# Test if HTTP compression (RFC 2616 + SDCH) is enabled for a given URL.
-# Send a fake UA string for sites that sniff it instead of using the Accept-Encoding header. (Looking at you, ajax.googleapis.com!)
-function httpcompression() {
-  encoding="$(curl -LIs -H 'User-Agent: Mozilla/5 Gecko' -H 'Accept-Encoding: gzip,deflate,compress,sdch' "$1" | grep '^Content-Encoding:')" && echo "$1 is encoded using ${encoding#* }" || echo "$1 is not using any encoding"
-}
-
 # All the dig info
 function digga() {
   dig +nocmd "$1" any +multiline +noall +answer
 }
 
 # git functions
-# most pulled from https://github.com/ignu/dotfiles2.0
+# most pulled from https://github.com/ignu/dotfiles
 
 function gc() {
   git commit -v -a -m "$*"
 }
 
 function gd() {
-  git difftool $1 -t opendiff -y
+  git difftool $1 -t Kaleidoscope -y
 }
 
 function gbtr() {
@@ -34,13 +28,16 @@ function gbt() {
   git checkout $2
 }
 
+# make a gif out of the last recorded video
 function makegif() {
-  # include trailing slash
+  # make sure to include trailing slash
+  # TODO we should be able to determine the default SS directly automatically
   screenshot_dir=~/Desktop/
+
   latest_movie=$screenshot_dir`ls -tp "$screenshot_dir" | grep '.*\.mov' | head -n 1`
   gif_destination=`echo "$latest_movie" | sed 's/.mov/.gif/'`
 
-  # brew install ffmpeg gifsicle
+  # `brew install ffmpeg gifsicle`
   ffmpeg -i "$latest_movie" -r 10 -f gif - | gifsicle > "$gif_destination"
 
   echo $gif_destination
