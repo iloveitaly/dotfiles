@@ -4,8 +4,7 @@
     "files.autoSave": "onFocusChange",
     "editor.tabSize": 2,
     "editor.tabCompletion": "on",
-    "atomKeymap.promptV3Features": true,
-    "editor.formatOnPaste": true,
+    "editor.formatOnPaste": false,
     "workbench.colorTheme": "One Dark Pro Vivid",
     "editor.scrollBeyondLastLine": false,
     "files.trimTrailingWhitespace": true,
@@ -22,10 +21,14 @@
     "explorer.autoReveal": false,
     "editor.columnSelection": false,
     "editor.fontFamily": "Hack, Menlo, Monaco, 'Courier New', monospace",
-    "debug.node.useV3": true,
-    "debug.extensionHost.useV3": true,
     "javascript.updateImportsOnFileMove.enabled": "always",
     "timeline.excludeSources": [
         "git-history"
-    ]
+    ],
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "terminal.integrated.shell.osx":"/usr/local/bin/zsh"
 }
