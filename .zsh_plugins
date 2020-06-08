@@ -1,10 +1,28 @@
-# gitfast
-# fasd
-# ripgrep
-# osx
-# safe-paste
+# https://github.com/ephur/zshrc/blob/master/antibody_plugins_darwin.txt
 
-djui/alias-tips
+# oh-my-zsh plugins
+# oh-my-zsh root is omitted in favor of prompt and manual definition of a couple of exports
+robbyrussell/oh-my-zsh path:plugins/gitfast
+# TODO customize fasd loader to eliminate some of the custom aliases I don't like
+robbyrussell/oh-my-zsh path:plugins/fasd
+robbyrussell/oh-my-zsh path:plugins/ripgrep
+robbyrussell/oh-my-zsh path:lib/termsupport.zsh
+
+# definitely keeping
+mafredri/zsh-async
 zsh-users/zsh-completions
-zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-autosuggestions
+
+# experimental
+robbyrussell/oh-my-zsh path:plugins/safe-paste
+robbyrussell/oh-my-zsh path:plugins/colorize
+djui/alias-tips # tipz is another plugin here
+junegunn/fzf path:shell/key-bindings.zsh
+junegunn/fzf path:shell/completion.zsh
+caarlos0/ports
+Aloxaf/fzf-tab
+
+# must load last
+sindresorhus/pure
+zdharma/fast-syntax-highlighting
 zsh-users/zsh-history-substring-search
