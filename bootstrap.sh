@@ -24,13 +24,11 @@ cp -f ./ssh_config ~/.ssh/config
 sudo cp -f my.cnf /etc/my.cnf
 
 # TODO install extensiopns via requirements.txt
+# TODO document vscode customizations
 code --install-extension
 
-# TODO document vscode customizations
-
-# block distracting sites
-# https://gist.githubusercontent.com/iloveitaly/88f86faecfb6cb0bf3e085bdcaf5a87f/raw/81d13fda0eda1b84fd5e301f76cf1a84657940af/distracting_websites.txt
+# block distracting websites
+# some additional configuration is required here
+# http://mikebian.co/how-to-block-distracting-websites-on-your-laptop/
 sed '/^$/d' ./distracting_websites.txt | sed $'s/\(.*\)/127.0.0.1  \\1\\\n127.0.0.1  www.\\1/' > ~/distracting_sites.txt
-
 sudo -E `asdf which node` `asdf which hostile` load ~/distracting_sites.txt
-sudo -E `asdf which node` `asdf which hostile` unload ~/distracting_sites.txt
