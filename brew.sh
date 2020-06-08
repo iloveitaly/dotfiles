@@ -15,14 +15,6 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # Make sure we’re using the latest Homebrew, and upgrade any already-installed formulae
 brew update && brew upgrade && brew cleanup
 
-brew cask cleanup
-brew cask update
-
-brew install bash
-brew install bash-completion
-brew install ruby-completion
-brew install mix-completion
-
 # systems
 brew install node
 brew install mongodb
@@ -42,7 +34,6 @@ brew install linklint
 brew install duti
 brew install optipng
 brew install hub
-brew install ripgrep
 brew install iftop
 brew install webkit2png
 brew install jq
@@ -51,13 +42,26 @@ brew install lftp
 brew install ghi
 brew install gist
 brew install spoof-mac
-brew install tmux
 brew install httpie
 brew install awscli
 brew install ansible
 brew install heroku/brew/heroku
 brew install cloc
+brew install ffmpeg gifsicle
+
+# shell
+brew install ripgrep
 brew install fasd
+brew install fzf
+brew install diff-so-fancy
+brew install bat
+brew install exa
+brew install tmux
+brew install antibody
+curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
+
+# https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
+sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
 
 # php / WordPress
 brew tap homebrew/dupes
@@ -136,5 +140,4 @@ source ~/.bash_profile
 brew cleanup
 
 # setup default extension handlers
-
 duti < ~/.duti
