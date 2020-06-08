@@ -18,6 +18,13 @@ export HISTSIZE=10000
 # Make some commands not show up in history
 export HISTORY_IGNORE="(ls|cd|pwd|exit|cd)"
 
+# faster git status loading for large repos
+export PURE_GIT_UNTRACKED_DIRTY=1
+
+# env config for compatibility with omz
+export ZSH=${HOME}/.zsh
+export ZSH_CACHE_DIR=${ZSH}/cache
+
 # encoding
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
