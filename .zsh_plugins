@@ -7,6 +7,7 @@ robbyrussell/oh-my-zsh path:plugins/gitfast
 robbyrussell/oh-my-zsh path:plugins/fasd
 robbyrussell/oh-my-zsh path:plugins/ripgrep
 robbyrussell/oh-my-zsh path:lib/termsupport.zsh
+robbyrussell/oh-my-zsh path:lib/spectrum.zsh
 
 # definitely keeping
 mafredri/zsh-async
@@ -21,6 +22,7 @@ junegunn/fzf path:shell/key-bindings.zsh
 junegunn/fzf path:shell/completion.zsh
 caarlos0/ports
 Aloxaf/fzf-tab
+bigH/git-fuzzy kind:path path:bin
 
 # must load last
 sindresorhus/pure
