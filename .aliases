@@ -1,5 +1,8 @@
 alias ff=fzf
 
+# fancier ping
+alias ping='prettyping --nolegend'
+
 # List all files colorized in long format, including dot files
 alias la="ls -Gla"
 
@@ -13,7 +16,7 @@ alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 alias whois="whois -h whois-servers.net"
 
 # Flush Directory Service cache
-alias flush="dscacheutil -flushcache"
+alias flush="sudo killall -HUP mDNSResponder"
 
 # View HTTP traffic
 alias sniff="sudo ngrep -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
@@ -25,10 +28,9 @@ alias server="open http://localhost:8080/ && python -m SimpleHTTPServer 8080"
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | pbcopy"
 
-# Shortcuts
+# Dir shortcuts. Most of these aren't
 alias p="cd ~/Projects"
 alias e="code ."
-alias rmatec="ssh -R 52698:localhost:52698"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
