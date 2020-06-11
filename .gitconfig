@@ -21,15 +21,18 @@
   dc = diff --cached
   cm = commit
   cp = cherry-pick
-  # review changes exclusive to the current branch (right diff)
-  ksreview = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool $BRANCH...$SHA; }; f"
   logv = log --pretty=fuller
   undo-commit = reset --soft HEAD^
 
-  # http://technosorcery.net/blog/2010/02/07/fun-with-the-upcoming-1-7-release-of-git-rebase---interactive---autosquash/
+  # review changes exclusive to the current branch (right diff) using Kalidescope
+  ksreview = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool $BRANCH...$SHA; }; f"
+
+  # `ffixup file_path` will automatically fixup against the last modification against the specified file
+  ffixup = "g commit --fixup=`git rev-list --max-count=1 HEAD -- $1 | tr -d '[:space:]'` $1`"
   fixup = !sh -c 'git commit --fixup=$1' -
   squash = !sh -c 'git commit --squash=$1' -
   ri = rebase --interactive --autosquash
+
   sha = !sh -c 'git rev-parse HEAD | tr -d "[:space:]" | pbcopy'
   # http://stackoverflow.com/questions/12373733/staging-deleted-files
   rm-deleted = !git rm $(git ls-files --deleted)
