@@ -5,3 +5,5 @@
 --color=auto
 
 --smart-case
+
+--max-columns=150

@@ -12,6 +12,9 @@ export PYTHONIOENCODING='UTF-8';
 
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
+# always show a file preview on the right. cntrl-o opens the file in vscode
+export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort' --preview 'bat --color always {}'"
+
 # large shell history
 export HISTFILE=~/.zsh_history
 export SAVEHIST=10000
@@ -31,11 +34,11 @@ export ZSH_CACHE_DIR=${ZSH}/cache
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-# Highlight section titles in manual pages.
-export LESS_TERMCAP_md="${yellow}";
+# more powerful less config
+# https://www.topbug.net/blog/2016/09/27/make-gnu-less-more-powerful/
+export LESS='--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'
 
-# rails
-export RAILS_TEST_SERVER_PORT=8081
+# TODO add configuration to autocolor less output
 
 # elixir
 export ERL_AFLAGS="-kernel shell_history enabled"
