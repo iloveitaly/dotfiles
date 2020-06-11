@@ -16,7 +16,6 @@ zsh-users/zsh-autosuggestions
 
 # experimental
 robbyrussell/oh-my-zsh path:plugins/safe-paste
-robbyrussell/oh-my-zsh path:plugins/colorize
 djui/alias-tips # tipz is another plugin here
 junegunn/fzf path:shell/key-bindings.zsh
 junegunn/fzf path:shell/completion.zsh
