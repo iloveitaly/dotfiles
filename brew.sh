@@ -50,6 +50,7 @@ brew install cloc
 brew install ffmpeg gifsicle
 
 # shell
+brew install zsh
 brew install ripgrep
 brew install fasd
 brew install fzf
@@ -59,9 +60,10 @@ brew install exa
 brew install tmux
 brew install antibody
 curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
+(cd ~ && curl -LO https://raw.githubusercontent.com/sindresorhus/iterm2-snazzy/master/Snazzy.itermcolors) && open ~/Snazzy.itermcolors
 
 # https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
-sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
+sudo dscl . -create $HOME UserShell /usr/local/bin/zsh
 
 # php / WordPress
 brew tap homebrew/dupes
