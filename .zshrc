@@ -92,6 +92,10 @@ else
   echo "Antibody is not present in path, get it at: https://getantibody.github.io/"
 fi
 
+# fixes autosuggest rendering issues. Must be loaded after antibody.
+# https://github.com/zsh-users/zsh-autosuggestions/issues/363#issuecomment-449554814
+ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(backward-kill-word)
+
 # =============
 # Keybindings
 # =============
