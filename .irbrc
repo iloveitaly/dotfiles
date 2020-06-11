@@ -1,12 +1,11 @@
 require 'irb/completion'
-
 require 'irb/ext/save-history'
-ARGV.concat [ "--readline", "--prompt-mode", "simple" ]
 
 IRB.conf[:HISTORY_FILE] = File.expand_path('~/.irb_history')
 IRB.conf[:SAVE_HISTORY] = 1000
 IRB.conf[:PROMPT_MODE] = :SIMPLE
 IRB.conf[:AUTO_INDENT] = true
+IRB.conf[:USE_READLINE] = true
 
 %w[rubygems looksee/shortcuts awesome_print brice/init].each do |gem|
   begin
