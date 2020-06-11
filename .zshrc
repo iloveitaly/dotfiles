@@ -28,7 +28,6 @@ setopt extended_glob
 # Set history behavior
 setopt append_history           # Dont overwrite history
 setopt extended_history         # Also record time and duration of commands.
-setopt share_history            # Share history between multiple shells
 setopt hist_expire_dups_first   # Clear duplicates when trimming internal hist.
 setopt hist_find_no_dups        # Dont display duplicates during searches.
 setopt hist_ignore_dups         # Ignore consecutive duplicates.
@@ -70,6 +69,8 @@ unset file
 # faster antibody loading
 # ttps://github.com/ephur/zshrc/blob/41850e3335e718ab9d70f2e6583e6137694e7845/antibody_setup.zsh
 function update_zsh_plugins() {
+  mkdir -p ${ZSH_CACHE_DIR}
+
   antibody bundle < ${HOME}/.zsh_plugins > ${ZSH_CACHE_DIR}/antibody_plugins.zsh
   antibody update
 
@@ -111,3 +112,7 @@ zle -N down-line-or-beginning-search
 
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
+bindkey "^K" kill-line
+
+# https://til.hashrocket.com/posts/7evpdebn7g-remove-duplicates-in-zsh-path
+typeset -aU path
