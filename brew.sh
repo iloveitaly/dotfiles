@@ -52,6 +52,11 @@ brew install ffmpeg gifsicle
 # shell
 brew install zsh
 brew install ripgrep
+brew install entr
+brew install prettyping
+brew install less
+brew install fd
+brew install tldr
 brew install fasd
 brew install fzf
 brew install diff-so-fancy
