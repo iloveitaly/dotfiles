@@ -1,24 +1,45 @@
-christian-kohler.npm-intellisense
-DavidAnson.vscode-markdownlint
-dbaeumer.vscode-eslint
+# util
 dkundel.vscode-new-file
-eamodio.gitlens
 earshinov.permute-lines
 EditorConfig.EditorConfig
-eg2.vscode-npm-script
 esbenp.prettier-vscode
-firsttris.vscode-jest-runner
 HookyQR.beautify
-JakeBecker.elixir-ls
+v4run.transpose
+adamwalzer.string-converter
+IBM.output-colorizer
+christian-kohler.path-intellisense
+CoenraadS.bracket-pair-colorizer
+wmaurer.change-case
+
+zhuangtongfa.material-theme
+akamud.vscode-theme-onedark
+
+# misc languages
+DavidAnson.vscode-markdownlint
 mikestead.dotenv
-mjmcloug.vscode-elixir
 ms-python.python
+VisualStudioExptTeam.vscodeintellicode
+redhat.vscode-yaml
+
+# javascript
+christian-kohler.npm-intellisense
+eg2.vscode-npm-script
+firsttris.vscode-jest-runner
+
+# elixir
+dbaeumer.vscode-eslint
+JakeBecker.elixir-ls
+mjmcloug.vscode-elixir
+stefanjarina.vscode-eex-snippets
+
+# ruby
 rebornix.ruby
 ryanolsonx.solarized
-stefanjarina.vscode-eex-snippets
-sysoev.vscode-open-in-github
-v4run.transpose
-VisualStudioExptTeam.vscodeintellicode
 wingrunr21.vscode-ruby
-zhuangtongfa.material-theme
+castwide.solargraph
+kaiwood.endwise
+miguel-savignano.ruby-symbols
+
+# git
+eamodio.gitlens
 ziyasal.vscode-open-in-github
