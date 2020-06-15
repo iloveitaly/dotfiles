@@ -11,6 +11,9 @@
   editor = nano
   # http://stackoverflow.com/questions/18257622/why-is-git-core-preloadindex-default-value-false
   preloadindex = true
+[commit]
+  # Show the diff as a comment in the commit message template.
+  verbose = true
 [alias]
   amend = commit --amend --reuse-message=HEAD
   st = status -sb
