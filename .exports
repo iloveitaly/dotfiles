@@ -20,6 +20,10 @@ export HISTFILE=~/.zsh_history
 export SAVEHIST=10000
 export HISTSIZE=10000
 
+# autocomplete on completions as well
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
+
 # Make some commands not show up in history
 export HISTORY_IGNORE="(ls|cd|pwd|exit|cd)"
 
@@ -38,7 +42,8 @@ export LANG=en_US.UTF-8
 # https://www.topbug.net/blog/2016/09/27/make-gnu-less-more-powerful/
 export LESS='--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'
 
-# TODO add configuration to autocolor less output
+# TODO add configuration to autocolor less output https://superuser.com/a/564531?
+# TODO or use bat instead? Appartently it can be used as a pager as well?
 
 # elixir
 export ERL_AFLAGS="-kernel shell_history enabled"
