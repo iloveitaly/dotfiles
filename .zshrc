@@ -17,6 +17,9 @@ zstyle ':completion:*' rehash true
 # menu if nb items > 2
 zstyle ':completion:*' menu select=2
 
+# don't show fzf unless there are more than 4 items
+zstyle ':fzf-tab:*' ignore false 4
+
 # =============
 # Shell Options
 # =============
@@ -25,6 +28,7 @@ setopt interactive_comments
 setopt prompt_subst
 setopt extended_glob
 setopt long_list_jobs
+setopt auto_cd
 
 # Set history behavior
 setopt append_history           # Dont overwrite history
@@ -94,9 +98,9 @@ else
   echo "Antibody is not present in path, get it at: https://getantibody.github.io/"
 fi
 
-# =====================
-# Keybindings & Patches
-# =====================
+# ===========
+# Keybindings
+# ===========
 
 autoload -Uz compinit compaudit
 compinit
@@ -110,6 +114,10 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 bindkey "^K" kill-line
+
+# ===========
+# Misc Config
+# ===========
 
 # https://til.hashrocket.com/posts/7evpdebn7g-remove-duplicates-in-zsh-path
 typeset -aU path
