@@ -10,6 +10,8 @@ IBM.output-colorizer
 christian-kohler.path-intellisense
 CoenraadS.bracket-pair-colorizer
 wmaurer.change-case
+sleistner.vscode-fileutils
+streetsidesoftware.code-spell-checker
 
 zhuangtongfa.material-theme
 akamud.vscode-theme-onedark
