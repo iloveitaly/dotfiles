@@ -45,11 +45,11 @@ fi
 alias fs="stat -f \"%z bytes\""
 
 # git
-alias glo='git log --graph --pretty=format:"%Cred%h%Creset - %s %Cgreen(%cr)%Creset" --abbrev-commit --date=relative'
 alias g="hub"
-alias gpb='g pull --rebase origin `git rev-parse --abbrev-ref HEAD`'
-alias gsu="git submodule sync && git submodule update --init --recursive"
 alias gp="g push origin HEAD"
+alias gpb='g pull --rebase origin `git rev-parse --abbrev-ref HEAD`'
+alias gpf='g push --force origin HEAD'
+alias glo='git log --graph --pretty=format:"%Cred%h%Creset - %s %Cgreen(%cr)%Creset" --abbrev-commit --date=relative'
 
 # rails
 alias rk="rake"
