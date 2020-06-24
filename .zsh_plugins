@@ -15,13 +15,16 @@ zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 
 # experimental
-robbyrussell/oh-my-zsh path:plugins/safe-paste
 djui/alias-tips # tipz is another plugin here
 junegunn/fzf path:shell/key-bindings.zsh
 junegunn/fzf path:shell/completion.zsh
 caarlos0/ports
 Aloxaf/fzf-tab
 bigH/git-fuzzy kind:path path:bin
+
+# disabled
+# does not work with zsh-autocomplete https://github.com/ohmyzsh/ohmyzsh/pull/7887
+# robbyrussell/oh-my-zsh path:plugins/safe-paste
 
 # must load last
 sindresorhus/pure
