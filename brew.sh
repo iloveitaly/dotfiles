@@ -48,6 +48,7 @@ brew install ansible
 brew install heroku/brew/heroku
 brew install cloc
 brew install ffmpeg gifsicle
+brew install github/gh/gh
 
 # shell
 brew install zsh
@@ -55,6 +56,7 @@ brew install ripgrep
 brew install entr
 brew install prettyping
 brew install less
+brew install nano
 brew install fd
 brew install tldr
 brew install fasd
@@ -66,6 +68,7 @@ brew install tmux
 brew install antibody
 curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
 (cd ~ && curl -LO https://raw.githubusercontent.com/sindresorhus/iterm2-snazzy/master/Snazzy.itermcolors) && open ~/Snazzy.itermcolors
+curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
 
 # https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
 sudo dscl . -create $HOME UserShell /usr/local/bin/zsh
