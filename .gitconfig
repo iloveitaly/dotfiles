@@ -35,11 +35,20 @@
   # review changes exclusive to the current branch (right diff) using Kalidescope
   ksreview = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool $BRANCH...$SHA; }; f"
 
+  # NOTE aliases don't seem to be able to execute sub commands and store the result in a variable
+  # i.e. don't try `f() { local=$(git something $1); git something-else $local }`, use xargs instead
+  # https://stackoverflow.com/questions/1309430/how-to-embed-bash-script-directly-inside-a-git-alias
+
   # `ffixup file_path` will automatically fixup against the last modification against the specified file
-  ffixup = "g commit --fixup=`git rev-list --max-count=1 HEAD -- $1 | tr -d '[:space:]'` $1`"
+  # https://stackoverflow.com/questions/26243145/git-aliases-operate-in-the-wrong-directory
+  ffixup = "!f() { cd -- ${GIT_PREFIX:-.}; local file=$1; git rev-list --max-count=1 HEAD -- $file | tr -d '[:space:]' | xargs -I{} git commit --fixup={} $file; }; f"
+
   fixup = !sh -c 'git commit --fixup=$1' -
   squash = !sh -c 'git commit --squash=$1' -
   ri = rebase --interactive --autosquash
+
+  # Like "git show myfile", but uses the last commit that changed "myfile".
+	showlast = log -n 1 -p
 
   sha = !sh -c 'git rev-parse HEAD | tr -d "[:space:]" | pbcopy'
   # http://stackoverflow.com/questions/12373733/staging-deleted-files
