@@ -19,6 +19,7 @@
   load /Users/mike/distracting_sites.txt
 
 # https://apple.stackexchange.com/questions/303110/flush-cache-of-dns-on-macos-sierra-high-sierra/303119#303119
+sudo dscacheutil -flushcache
 sudo killall -HUP mDNSResponder
 
 # safari will often cache DNS, lets clear it to ensure everything is blocked
