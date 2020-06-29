@@ -1,3 +1,8 @@
+# replace common utilities with some improved replacements
+alias cat='bat'
+alias find='fd'
+alias ls='exa -l --group-directories-first'
+
 alias ff=fzf
 
 # fancier ping
@@ -30,6 +35,8 @@ alias c="tr -d '\n' | pbcopy"
 
 # Dir shortcuts. Most of these aren't
 alias p="cd ~/Projects"
+
+# Edit current directory
 alias e="code ."
 
 # Detect which `ls` flavor is in use
@@ -58,17 +65,13 @@ alias tts="touch tmp/restart.txt"
 alias be="b exec"
 alias b="bundle"
 
-# ROT13-encode text. Works for decoding, too! ;)
-alias rot13='tr a-zA-Z n-za-mN-ZA-M'
-
 # Hide/show all desktop icons (useful when presenting)
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
-# Disable Spotlight
-# alias spotoff="sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist && sudo mdutil -a -i off"
-# Enable Spotlight
-# alias spoton="sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist && sudo mdutil -a -i on"
+# Toggle spotlight
+alias spotoff="sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist && sudo mdutil -a -i off"
+alias spoton="sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist && sudo mdutil -a -i on"
 
 # PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
 alias plistbuddy="/usr/libexec/PlistBuddy"
