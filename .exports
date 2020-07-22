@@ -10,6 +10,9 @@ export MANPAGER="less -X"
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export PYTHONIOENCODING='UTF-8';
 
+# https://github.com/bigH/git-fuzzy/pull/16/files
+export GIT_FUZZY_STATUS_ADD_KEY='Ctrl-A'
+
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
 # always show a file preview on the right. cntrl-o opens the file in vscode
