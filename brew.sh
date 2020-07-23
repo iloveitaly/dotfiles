@@ -70,6 +70,10 @@ curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.
 (cd ~ && curl -LO https://raw.githubusercontent.com/sindresorhus/iterm2-snazzy/master/Snazzy.itermcolors) && open ~/Snazzy.itermcolors
 curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
 
+# iTerm copy mode conflicted with a previous shortcut that I have seared into my memory
+# however, I can remap this via macos config. TODO would be great to move this over to `osx.sh`
+# https://www.intego.com/mac-security-blog/how-to-make-custom-keyboard-shortcuts-for-any-macos-menu-items-and-to-launch-your-favorite-apps/
+
 # https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
 sudo dscl . -create $HOME UserShell /usr/local/bin/zsh
 
@@ -83,14 +87,12 @@ brew install wp-cli
 brew install composer
 
 # node
-if ! command -v bower >/dev/null; then
-	# TODO use `asdf` to install node
-	curl http://npmjs.org/install.sh | sh
-	npm install -g grunt
-	npm install -g bower
-	npm install -g livereloadx
-	npm install -g hostile
-fi
+# remember to use `npx npkill` to remove unneeded `node_modules` folders
+# TODO use `asdf` to install node
+curl http://npmjs.org/install.sh | sh
+npm install -g grunt
+npm install -g livereloadx
+npm install -g hostile
 
 # elixir
 brew install asdf
