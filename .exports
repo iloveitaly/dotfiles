@@ -17,6 +17,7 @@ export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
 # always show a file preview on the right. cntrl-o opens the file in vscode
 export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort' --preview 'bat --color always {}'"
+export FZF_CTRL_R_OPTS="--preview-window up:3 --preview 'echo {}'"
 
 # large shell history
 export HISTFILE=~/.zsh_history
