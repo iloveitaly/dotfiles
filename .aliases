@@ -2,7 +2,7 @@
 alias cat='bat'
 alias find='fd'
 alias ls='exa -l --group-directories-first'
-
+alias j='fasd_cd -d -0'
 alias ff=fzf
 
 # fancier ping
