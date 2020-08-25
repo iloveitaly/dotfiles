@@ -15,10 +15,10 @@ com.microsoft.VSCode public.xml all
 com.microsoft.VSCode public.plain-text all
 com.microsoft.VSCode public.script all
 com.microsoft.VSCode public.shell-script all
+com.microsoft.VSCode public.zsh-script all
 com.microsoft.VSCode public.ruby-script all
 com.microsoft.VSCode public.xhtml  all
 com.microsoft.VSCode public.json  all
-com.microsoft.VSCode com.apple.logic.exs all
 com.microsoft.VSCode com.netscape.javascript-source all
 com.uranusjr.macdown net.daringfireball.markdown all
 com.microsoft.Excel public.comma-separated-values-text all
