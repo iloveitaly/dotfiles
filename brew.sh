@@ -49,6 +49,7 @@ brew install heroku/brew/heroku
 brew install cloc
 brew install ffmpeg gifsicle
 brew install github/gh/gh
+brew install q
 
 # shell
 brew install zsh
