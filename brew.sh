@@ -69,6 +69,8 @@ brew install tmux
 brew install antibody
 curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
 (cd ~ && curl -LO https://raw.githubusercontent.com/sindresorhus/iterm2-snazzy/master/Snazzy.itermcolors) && open ~/Snazzy.itermcolors
+
+# run after nanorc is copied, this modifies nanorc
 curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
 
 # iTerm copy mode conflicted with a previous shortcut that I have seared into my memory
