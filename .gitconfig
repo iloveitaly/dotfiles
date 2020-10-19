@@ -7,7 +7,8 @@
   excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space
-  pager = "diff-so-fancy | less --tabs=4 -RFX"
+  # https://github.com/so-fancy/diff-so-fancy/issues/364#issuecomment-652598381
+  pager = "diff-so-fancy | LESS= less --tabs=4 -RFX"
   editor = nano
 
   # http://stackoverflow.com/questions/18257622/why-is-git-core-preloadindex-default-value-false
