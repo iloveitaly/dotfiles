@@ -50,6 +50,7 @@ brew install cloc
 brew install ffmpeg gifsicle
 brew install github/gh/gh
 brew install q
+brew install free-ruler
 
 # shell
 brew install zsh
