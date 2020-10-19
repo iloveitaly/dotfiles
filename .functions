@@ -34,7 +34,7 @@ function makegif() {
   # TODO we should be able to determine the default SS directly automatically
   screenshot_dir=~/Desktop/
 
-  latest_movie=$screenshot_dir`ls -tp "$screenshot_dir" | grep '.*\.mov' | head -n 1`
+  latest_movie=$screenshot_dir`/bin/ls -tp "$screenshot_dir" | grep '.*\.mov' | head -n 1`
   gif_destination=`echo "$latest_movie" | sed 's/.mov/.gif/'`
 
   # `brew install ffmpeg gifsicle`
