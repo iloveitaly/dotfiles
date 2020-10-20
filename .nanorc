@@ -6,3 +6,5 @@ bind ^w cutwordleft main
 # opt left/right word jump mapping
 bind M-B prevword main
 bind M-F nextword main
+
+# https://github.com/scopatz/nanorc/ is included after this line
