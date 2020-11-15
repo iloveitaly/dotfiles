@@ -51,6 +51,7 @@ brew install ffmpeg gifsicle
 brew install github/gh/gh
 brew install q
 brew install free-ruler
+brew install homebrew/cask/kite
 
 # shell
 brew install zsh
@@ -101,6 +102,7 @@ npm install -g hostile
 # elixir
 brew install asdf
 asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
 
 # ruby
 # 5.5 must be installed https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit
