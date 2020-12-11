@@ -80,6 +80,7 @@ brew cask install youtube-dl
 brew cask install contexts
 brew cask install chromedriver
 brew cask install docker
+brew cask install monitorcontrol
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode \
