@@ -12,7 +12,6 @@ brew cask install dropbox
 brew cask install bartender
 brew cask install 1password
 brew cask install google-backup-and-sync
-brew cask install sequel-pro
 brew cask install istat-menus
 brew cask install iterm2
 brew cask install slack
@@ -46,7 +45,7 @@ brew cask install scrivener
 brew cask install postico
 brew cask install kindle
 brew cask install wordpresscom
-brew cask install gpgtools
+brew cask install gpg-suite
 brew cask install grammarly
 brew cask install kitematic
 brew cask install launchcontrol
@@ -81,6 +80,9 @@ brew cask install contexts
 brew cask install chromedriver
 brew cask install docker
 brew cask install monitorcontrol
+brew cask install activitywatch
+brew cask install discord
+brew cask install sequel-ace
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode \
