@@ -52,6 +52,10 @@ brew install github/gh/gh
 brew install q
 brew install free-ruler
 brew install homebrew/cask/kite
+brew install saulpw/vd/visidata
+brew install rga
+# helpful dependencies for rga
+brew install pandoc poppler tesseract ffmpeg
 
 # shell
 brew install zsh
@@ -83,6 +87,7 @@ curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
 sudo dscl . -create $HOME UserShell /usr/local/bin/zsh
 
 # php / WordPress
+# TODO update PHP install instructions, way out of date!
 brew tap homebrew/dupes
 brew tap homebrew/versions
 brew tap homebrew/homebrew-php
