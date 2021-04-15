@@ -49,7 +49,6 @@ source ~/.iterm2_shell_integration.zsh
 
 eval $(brew shellenv)
 
-# load in rbenv
 if type rbenv > /dev/null; then
 	eval "$(rbenv init -)"
 fi
@@ -61,58 +60,28 @@ fi
 # Load ~/.exports, ~/.aliases, ~/.functions and ~/.extra
 # ~/.extra can be used for settings you don’t want to commit
 for file in exports aliases functions extra; do
-  file="$HOME/.$file"
+  local file="$HOME/.$file"
   [ -e "$file" ] && source "$file"
 done
 
-unset file
+# ========
+# Plugins
+# ========
 
-# =============
-# Antibody Plugins
-# =============
-
-# faster antibody loading
-# ttps://github.com/ephur/zshrc/blob/41850e3335e718ab9d70f2e6583e6137694e7845/antibody_setup.zsh
-function update_zsh_plugins() {
-  mkdir -p ${ZSH_CACHE_DIR}
-
-  antibody bundle < ${HOME}/.zsh_plugins > ${ZSH_CACHE_DIR}/antibody_plugins.zsh
-  antibody update
-
-  antibody_cache=`antibody home`
-
-  for i in `find $antibody_cache -name '*.zsh' -print`; do
-    zcompile ${i} >/dev/null 2>&1
-  done
-
-  zcompile ${ZSH_CACHE_DIR}/antibody_plugins.zsh
-}
-
-if type antibody > /dev/null; then
-  if [ ! -f "${ZSH_CACHE_DIR}/antibody_plugins.zsh" ]; then
-    update_zsh_plugins
-  fi
-
-  source ${ZSH_CACHE_DIR}/antibody_plugins.zsh
-else
-  echo "Antibody is not present in path, get it at: https://getantibody.github.io/"
-fi
+source `brew --prefix zinit`/zinit.zsh
+source ~/.zsh_plugins
 
 # ===========
 # Keybindings
 # ===========
 
+# TODO cache completions https://callstack.com/blog/supercharge-your-terminal-with-zsh/
+# TODO look into complist
 autoload -Uz compinit compaudit
 compinit
 
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-
-bindkey "^[[A" up-line-or-beginning-search # Up
-bindkey "^[[B" down-line-or-beginning-search # Down
+bindkey "^[[A" history-substring-search-up # Up
+bindkey "^[[B" history-substring-search-down # Down
 bindkey "^K" kill-line
 
 # ===========

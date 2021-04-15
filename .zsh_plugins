@@ -1,32 +1,33 @@
-# https://github.com/ephur/zshrc/blob/master/antibody_plugins_darwin.txt
-
 # oh-my-zsh plugins
 # oh-my-zsh root is omitted in favor of prompt and manual definition of a couple of exports
-robbyrussell/oh-my-zsh path:plugins/gitfast
+zinit snippet OMZ::plugins/gitfast
 # TODO customize fasd loader to eliminate some of the custom aliases I don't like
-robbyrussell/oh-my-zsh path:plugins/fasd
-robbyrussell/oh-my-zsh path:plugins/ripgrep
-robbyrussell/oh-my-zsh path:lib/termsupport.zsh
-robbyrussell/oh-my-zsh path:lib/spectrum.zsh
+zinit snippet OMZ::plugins/fasd
+zinit snippet OMZ::plugins/ripgrep/_ripgrep
+zinit snippet OMZ::lib/termsupport.zsh
+zinit snippet OMZ::lib/spectrum.zsh
 
 # definitely keeping
-mafredri/zsh-async
-zsh-users/zsh-completions
-zsh-users/zsh-autosuggestions
+zinit light mafredri/zsh-async
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
 
 # experimental
-djui/alias-tips # tipz is another plugin here
-junegunn/fzf path:shell/key-bindings.zsh
-junegunn/fzf path:shell/completion.zsh
-caarlos0/ports
-Aloxaf/fzf-tab
-bigH/git-fuzzy kind:path path:bin
+zinit light djui/alias-tips
+zinit snippet https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh
+zinit snippet https://github.com/junegunn/fzf/blob/master/shell/completion.zsh
+zinit light caarlos0/ports
+zinit ice wait'2' lucid as"program" pick"bin/git-fuzzy"
+zinit light bigH/git-fuzzy
+# TODO larkery/zsh-histdb
+# TODO https://github.com/dim-an/cod
 
 # disabled
 # does not work with zsh-autocomplete https://github.com/ohmyzsh/ohmyzsh/pull/7887
 # robbyrussell/oh-my-zsh path:plugins/safe-paste
 
 # must load last
-sindresorhus/pure
-zdharma/fast-syntax-highlighting
-zsh-users/zsh-history-substring-search
+zinit light sindresorhus/pure
+zinit light zdharma/fast-syntax-highlighting
+zinit light zsh-users/zsh-history-substring-search
