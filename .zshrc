@@ -91,23 +91,12 @@ bindkey "^K" kill-line
 # https://til.hashrocket.com/posts/7evpdebn7g-remove-duplicates-in-zsh-path
 typeset -aU path
 
-# fixes autosuggest rendering issues. Must be loaded after antibody.
-# https://github.com/zsh-users/zsh-autosuggestions/issues/363#issuecomment-449554814
-# https://github.com/zsh-users/zsh-autosuggestions/issues/351
-ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(backward-kill-word)
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste accept-line)
-
 # https://github.com/ohmyzsh/ohmyzsh/issues/8743
 # https://unix.stackexchange.com/questions/250690/how-to-configure-ctrlw-as-delete-word-in-zsh
 autoload -U select-word-style
 select-word-style bash
 
 WORDCHARS='.-'
-
-# https://archive.zhimingwang.org/blog/2015-09-21-zsh-51-and-bracketed-paste.html
-# TODO doesn't work with zsh-autocomplete yet, couldn't figure this out
-# autoload -Uz bracketed-paste-magic
-# zle -N bracketed-paste bracketed-paste-magic
 
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/misc.zsh
 autoload -Uz url-quote-magic

@@ -7,6 +7,7 @@ zinit ice svn wait"0" lucid
 zinit snippet OMZ::plugins/gitfast
 # TODO customize fasd loader to eliminate some of the custom aliases I don't like
 zinit snippet OMZ::plugins/fasd
+zinit snippet OMZ::plugins/safe-paste
 zinit ice wait lucid as'completion' blockf
 zinit snippet OMZ::plugins/ripgrep/_ripgrep
 zinit ice svn; zinit snippet OMZ::plugins/extract
@@ -27,15 +28,9 @@ zinit light caarlos0/ports
 zinit light marzocchi/zsh-notify
 # TODO wait until available in brew https://github.com/dim-an/cod
 
-# TODO need to manually modify reverse-i, zsh-autosuggest, and sed larkery/zsh-histdb
-
 # git-fuzzy is installed via zinit instead of brew
 zinit ice wait'2' lucid as"program" pick"bin/git-fuzzy"
 zinit light bigH/git-fuzzy
-
-# disabled
-# does not work with zsh-autocomplete https://github.com/ohmyzsh/ohmyzsh/pull/7887
-# robbyrussell/oh-my-zsh path:plugins/safe-paste
 
 # must load last
 zinit light sindresorhus/pure
