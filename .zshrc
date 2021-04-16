@@ -14,6 +14,11 @@ zstyle ':completion:*' insert-tab pending
 # rehash if command not found (possibly recently installed)
 zstyle ':completion:*' rehash true
 
+# speed https://coderwall.com/p/9fksra/speed-up-your-zsh-completions
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
 # menu if nb items > 2
 zstyle ':completion:*' menu select=2
 
@@ -68,20 +73,20 @@ for file in exports aliases functions extra; do
   [ -e "$file" ] && source "$file"
 done
 
-# ========
-# Plugins
-# ========
+# we don't use the OMZ snippet in order to customize `j` to jump to the first selection
+# this snippet is copied from https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/fasd/fasd.plugin.zsh
+local fasd_cache="${ZSH_CACHE_DIR}/fasd-init-cache"
+if [[ "$commands[fasd]" -nt "$fasd_cache" || ! -s "$fasd_cache" ]]; then
+  fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install \
+    zsh-wcomp zsh-wcomp-install >| "$fasd_cache"
+fi
+source "$fasd_cache"
 
 source ~/.zsh_plugins
 
 # ===========
 # Keybindings
 # ===========
-
-# TODO cache completions https://callstack.com/blog/supercharge-your-terminal-with-zsh/
-# TODO look into complist
-autoload -Uz compinit compaudit
-compinit
 
 bindkey "^[[A" history-substring-search-up # Up
 bindkey "^[[B" history-substring-search-down # Down
