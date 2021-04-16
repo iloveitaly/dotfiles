@@ -3,34 +3,38 @@
 # oh-my-zsh plugins
 
 # https://github.com/zdharma/zinit/issues/477
-zinit ice svn wait"0" lucid; zinit snippet OMZ::plugins/gitfast
-# TODO customize fasd loader to eliminate some of the custom aliases I don't like
-zinit snippet OMZ::plugins/fasd
-zinit ice wait lucid as'completion' blockf; zinit snippet OMZ::plugins/ripgrep/_ripgrep
-zinit ice svn; zinit snippet OMZ::plugins/extract
-zinit snippet OMZ::lib/termsupport.zsh
-zinit snippet OMZ::lib/spectrum.zsh
-zinit snippet OMZ::plugins/safe-paste
+zinit svn wait lucid for \
+  OMZ::plugins/gitfast \
+  OMZ::plugins/extract \
+  as'completion' blockf OMZ::plugins/ripgrep/_ripgrep
+zinit wait lucid for \
+  OMZ::lib/termsupport.zsh \
+  OMZ::lib/spectrum.zsh \
+  OMZ::plugins/safe-paste
 
 # definitely keeping
-zinit light mafredri/zsh-async
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
+zinit wait lucid for \
+  mafredri/zsh-async \
+  blockf atpull'zinit creinstall -q .' zsh-users/zsh-completions \
+  zsh-users/zsh-autosuggestions \
+  Aloxaf/fzf-tab \
+  atinit"zicompinit; zicdreplay" zdharma/fast-syntax-highlighting
 
 # experimental
-zinit light djui/alias-tips
-zinit snippet https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh
-zinit snippet https://github.com/junegunn/fzf/blob/master/shell/completion.zsh
-zinit light caarlos0/ports
-zinit light marzocchi/zsh-notify
-# TODO wait until available in brew https://github.com/dim-an/cod
+zinit wait lucid for \
+  djui/alias-tips \
+  caarlos0/ports \
+  marzocchi/zsh-notify \
+  https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh \
+  https://github.com/junegunn/fzf/blob/master/shell/completion.zsh
 
 # git-fuzzy is installed via zinit instead of brew
 zinit ice wait'2' lucid as"program" pick"bin/git-fuzzy"
 zinit light bigH/git-fuzzy
 
 # must load last
+zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
-zinit light zdharma/fast-syntax-highlighting
+
+# load sync for other zsh config reliant on these functions
 zinit light zsh-users/zsh-history-substring-search
