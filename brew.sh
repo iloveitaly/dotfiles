@@ -53,6 +53,7 @@ brew install q
 brew install free-ruler
 brew install homebrew/cask/kite
 brew install saulpw/vd/visidata
+brew install hey
 brew install rga
 # helpful dependencies for rga
 brew install pandoc poppler tesseract ffmpeg
@@ -64,15 +65,18 @@ brew install entr
 brew install prettyping
 brew install less
 brew install nano
-brew install fd
+brew install fd # find
 brew install tldr
 brew install fasd
 brew install fzf
 brew install diff-so-fancy
-brew install bat
-brew install exa
+brew install bat # cat
+brew install exa # ls
 brew install tmux
-brew install antibody
+brew install tre-command
+brew install terminal-notifier # for `zsh-notify`
+brew install zinit
+brew install svn # for `zinit ice svn`
 curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
 (cd ~ && curl -LO https://raw.githubusercontent.com/sindresorhus/iterm2-snazzy/master/Snazzy.itermcolors) && open ~/Snazzy.itermcolors
 

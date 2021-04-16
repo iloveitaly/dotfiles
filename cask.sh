@@ -82,7 +82,12 @@ brew cask install docker
 brew cask install monitorcontrol
 brew cask install activitywatch
 brew cask install discord
+brew cask install keybase
+brew cask install telegram
 brew cask install sequel-ace
+brew cask install --no-quarantine alacritty
+# helpful for phone-only applications that you want to run your mac without apple silicon
+brew cask install bluestacks
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode \
