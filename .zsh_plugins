@@ -18,6 +18,7 @@ zinit wait lucid for \
   blockf atpull'zinit creinstall -q .' zsh-users/zsh-completions \
   zsh-users/zsh-autosuggestions \
   Aloxaf/fzf-tab \
+  # runs `compinit` so you don't have to
   atinit"zicompinit; zicdreplay" zdharma/fast-syntax-highlighting
 
 # experimental
