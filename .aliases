@@ -4,6 +4,7 @@ alias find='fd'
 alias ls='exa -l --group-directories-first'
 alias j='fasd_cd -d -0'
 alias ff=fzf
+alias tree='tre'
 
 # fancier ping
 alias ping='prettyping --nolegend'
