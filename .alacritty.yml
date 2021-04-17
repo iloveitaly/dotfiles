@@ -1,8 +1,18 @@
+# all configuration options
+# https://github.com/alacritty/alacritty/blob/master/alacritty.yml
+
 window:
   dynamic_padding: true
   padding:
     x: 3
     y: 3
+
+# Live config reload (changes require restart)
+live_config_reload: true
+hide_cursor_when_typing: false
+cursor:
+  unfocused_hollow: false
+
 # Colors (Snazzy)
 colors:
   # Default colors

@@ -3,6 +3,8 @@ set wordbounds
 # https://www.nano-editor.org/dist/latest/nanorc.5.html
 bind ^w cutwordleft main
 
+# TODO need to rebind the search function
+
 # opt left/right word jump mapping
 bind M-B prevword main
 bind M-F nextword main

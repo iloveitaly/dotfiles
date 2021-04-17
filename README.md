@@ -50,3 +50,4 @@ Clone all of these dotfiles into `dotfiles-inspiration` folder so you can easily
 * [Markus Wein](https://github.com/cypher/dotfiles)
 * [Victor Afanasev](https://github.com/vifreefly/dotfiles)
 * [Nikita Voloboev](https://github.com/nikitavoloboev/dotfiles)
+* [Jerome Dalbert](https://github.com/jeromedalbert/dotfiles)

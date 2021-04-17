@@ -1,8 +1,5 @@
-# TODO use zinit turbo
-
 # oh-my-zsh plugins
-
-# https://github.com/zdharma/zinit/issues/477
+# gitfast workaround: https://github.com/zdharma/zinit/issues/477
 zinit svn wait lucid for \
   OMZ::plugins/gitfast \
   OMZ::plugins/extract \
@@ -12,26 +9,27 @@ zinit wait lucid for \
   OMZ::lib/spectrum.zsh \
   OMZ::plugins/safe-paste
 
-# definitely keeping
+# keeping
+# zicompinit runs `compinit` to generate completions
+# important to load suggestions *after* zsh-completions
 zinit wait lucid for \
   mafredri/zsh-async \
   blockf atpull'zinit creinstall -q .' zsh-users/zsh-completions \
-  zsh-users/zsh-autosuggestions \
-  Aloxaf/fzf-tab \
-  # runs `compinit` so you don't have to
-  atinit"zicompinit; zicdreplay" zdharma/fast-syntax-highlighting
+  atinit"zicompinit; zicdreplay" zdharma/fast-syntax-highlighting \
+  atload'_zsh_autosuggest_start' zsh-users/zsh-autosuggestions \
+  djui/alias-tips \
+  Aloxaf/fzf-tab
 
 # experimental
 zinit wait lucid for \
-  djui/alias-tips \
-  caarlos0/ports \
   marzocchi/zsh-notify \
   https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh \
   https://github.com/junegunn/fzf/blob/master/shell/completion.zsh
 
-# git-fuzzy is installed via zinit instead of brew
-zinit ice wait'2' lucid as"program" pick"bin/git-fuzzy"
-zinit light bigH/git-fuzzy
+# binaries installed via zinit
+zinit wait'2' lucid for \
+  as"program" pick"bin/git-fuzzy" bigH/git-fuzzy \
+  caarlos0/ports
 
 # must load last
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'

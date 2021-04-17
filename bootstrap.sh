@@ -9,7 +9,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   	--exclude "brew.sh" \
     --exclude "cask.sh" --exclude "mas.sh" \
     --exclude "vscode-extensions.txt" --exclude "vscode-settings.json" \
-    --exclude "apache.conf" \
     --exclude "backup.sh" \
   	--exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" --exclude "ssh_config" \
     -av . ~
