@@ -14,6 +14,7 @@ zinit wait lucid for \
 # important to load suggestions *after* zsh-completions
 zinit wait lucid for \
   mafredri/zsh-async \
+  zpm-zsh/zsh-better-npm-completion \
   blockf atpull'zinit creinstall -q .' zsh-users/zsh-completions \
   atinit"zicompinit; zicdreplay" zdharma/fast-syntax-highlighting \
   atload'_zsh_autosuggest_start' zsh-users/zsh-autosuggestions \
@@ -23,6 +24,9 @@ zinit wait lucid for \
 # experimental
 zinit wait lucid for \
   marzocchi/zsh-notify \
+  larkery/zsh-histdb \
+  chrissicool/zsh-256color \
+  zpm-zsh/colors \
   https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh \
   https://github.com/junegunn/fzf/blob/master/shell/completion.zsh
 
