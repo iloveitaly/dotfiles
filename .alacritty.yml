@@ -13,14 +13,31 @@ hide_cursor_when_typing: false
 cursor:
   unfocused_hollow: false
 
+font:
+  size: 13
+  smoothing: false
+  use_thin_strokes: true
+  normal:
+    family: Hack
+    style: Regular
+
 # Colors (Snazzy)
+# https://github.com/alebelcor/alacritty-snazzy/blob/master/snazzy.yml
+draw_bold_text_with_bright_colors: true
+
 colors:
-  # Default colors
+
   primary:
     background: '#282a36'
     foreground: '#eff0eb'
 
-  # Normal colors
+  cursor:
+    cursor: '#97979b'
+
+  selection:
+    text:       '#282a36'
+    background: '#feffff'
+
   normal:
     black:   '#282a36'
     red:     '#ff5c57'
@@ -31,7 +48,6 @@ colors:
     cyan:    '#9aedfe'
     white:   '#f1f1f0'
 
-  # Bright colors
   bright:
     black:   '#686868'
     red:     '#ff5c57'
@@ -40,10 +56,4 @@ colors:
     blue:    '#57c7ff'
     magenta: '#ff6ac1'
     cyan:    '#9aedfe'
-    white:   '#f1f1f0'
-
-font:
-  size: 13
-  normal:
-    family: Hack
-    style: Regular
+    white:   '#eff0eb'
