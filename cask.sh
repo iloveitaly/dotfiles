@@ -88,6 +88,7 @@ brew install --cask sequel-ace
 brew install --cask --no-quarantine alacritty
 # helpful for phone-only applications that you want to run your mac without apple silicon
 brew install --cask bluestacks
+brew install --cask tip
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew install --cask qlcolorcode \
