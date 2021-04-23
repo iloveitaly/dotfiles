@@ -1,13 +1,13 @@
 # oh-my-zsh plugins
 # gitfast workaround: https://github.com/zdharma/zinit/issues/477
 zinit svn wait lucid for \
-  OMZ::plugins/gitfast \
-  OMZ::plugins/extract \
-  as'completion' blockf OMZ::plugins/ripgrep/_ripgrep
+  OMZ::plugins/gitfast atpull'zinit creinstall -q .' \
+  OMZ::plugins/extract
 zinit wait lucid for \
   OMZ::lib/termsupport.zsh \
   OMZ::lib/spectrum.zsh \
-  OMZ::plugins/safe-paste
+  OMZ::plugins/safe-paste \
+  OMZ::plugins/rbenv
 
 # keeping
 # zicompinit runs `compinit` to generate completions
@@ -15,6 +15,7 @@ zinit wait lucid for \
 zinit wait lucid for \
   mafredri/zsh-async \
   zpm-zsh/zsh-better-npm-completion \
+  as'completion' blockf OMZ::plugins/ripgrep/_ripgrep \
   blockf atpull'zinit creinstall -q .' zsh-users/zsh-completions \
   atinit"zicompinit; zicdreplay" zdharma/fast-syntax-highlighting \
   atload'_zsh_autosuggest_start' zsh-users/zsh-autosuggestions \
@@ -24,6 +25,8 @@ zinit wait lucid for \
 # experimental
 zinit wait lucid for \
   marzocchi/zsh-notify \
+  b4b4r07/enhancd \
+  iloveitaly/cod \
   larkery/zsh-histdb \
   chrissicool/zsh-256color \
   zpm-zsh/colors \

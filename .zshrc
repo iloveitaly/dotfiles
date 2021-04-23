@@ -58,14 +58,13 @@ eval $(brew shellenv)
 
 source `brew --prefix zinit`/zinit.zsh
 
-if type rbenv > /dev/null; then
-	eval "$(rbenv init -)"
-fi
-
+# omz loads completions, which don't load property, so we want to avoid it
+# https://github.com/ohmyzsh/ohmyzsh/blob/12669f29f0843b8b980dd137f150a74511f88842/plugins/asdf/asdf.plugin.zsh#L17
 if type asdf > /dev/null; then
   source `brew --prefix asdf`/asdf.sh
 fi
 
+# TODO https://github.com/zdharma/zinit/issues/173#issuecomment-537325714
 # Load ~/.exports, ~/.aliases, ~/.functions and ~/.extra
 # ~/.extra can be used for settings you don’t want to commit
 for file in exports aliases functions extra; do
