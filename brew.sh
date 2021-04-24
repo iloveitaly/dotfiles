@@ -75,6 +75,7 @@ brew install exa # ls
 brew install tmux
 brew install tre-command
 brew install terminal-notifier # for `zsh-notify`
+brew install cod
 brew install zinit
 brew install svn # for `zinit ice svn`
 curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
@@ -91,14 +92,24 @@ curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
 sudo dscl . -create $HOME UserShell /usr/local/bin/zsh
 
 # php / WordPress
-# TODO update PHP install instructions, way out of date!
-brew tap homebrew/dupes
-brew tap homebrew/versions
-brew tap homebrew/homebrew-php
-brew install freetype jpeg libpng gd
-brew install php56
+# https://github.com/asdf-community/asdf-php/blob/248e9c6e2a7824510788f05e8cee848a62200b65/bin/install#L22
+brew install bison bzip2 freetype gettext libiconv icu4c jpeg libedit libpng libxml2 libzip openssl readline webp zlib
+brew install gmp libsodium imagemagick
+asdf plugin-add php
+asdf install php 7.4.16
+asdf global php 7.4.16
+asdf reshim
+
+# common php extensions
+pecl install redis
+pecl install imagick
+pecl install ast
+echo "extension=redis.so
+extension=ast.so
+extension=imagick.so
+memory_limit=512M" > $(asdf where php)/conf.d/php.ini
+
 brew install wp-cli
-brew install composer
 
 # node
 # remember to use `npx npkill` to remove unneeded `node_modules` folders
@@ -107,6 +118,7 @@ curl http://npmjs.org/install.sh | sh
 npm install -g grunt
 npm install -g livereloadx
 npm install -g hostile
+npm install -g yarn
 
 # elixir
 brew install asdf
@@ -133,8 +145,8 @@ eval "$(rbenv init -)"
 
 # mysql setup
 brew install mysql
-mysql.server start
-$(brew --prefix mysql)/bin/mysqladmin -u root password root
+brew services start mysql
+# make sure you run `mysql_secure_installation` and set password to root
 
 # rails tools
 brew install sqlite
