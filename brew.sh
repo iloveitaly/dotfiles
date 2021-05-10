@@ -54,6 +54,7 @@ brew install free-ruler
 brew install homebrew/cask/kite
 brew install saulpw/vd/visidata
 brew install hey
+brew install gh
 brew install rga
 # helpful dependencies for rga
 brew install pandoc poppler tesseract ffmpeg
@@ -102,12 +103,24 @@ asdf reshim
 
 # common php extensions
 pecl install redis
+# imagick is not supported on php8 yet
+# https://github.com/Imagick/imagick/issues/358
 pecl install imagick
 pecl install ast
+pecl install xdebug
 echo "extension=redis.so
 extension=ast.so
 extension=imagick.so
-memory_limit=512M" > $(asdf where php)/conf.d/php.ini
+zend_extension=$(asdf where php)/lib/php/extensions/no-debug-non-zts-20200930/xdebug.so
+
+display_errors=1
+error_reporting=E_ALL
+memory_limit=1024M
+
+xdebug.mode = debug
+xdebug.start_with_request = yes
+xdebug.client_port = 9000
+" > $(asdf where php)/conf.d/php.ini
 
 brew install wp-cli
 
@@ -124,6 +137,10 @@ npm install -g yarn
 brew install asdf
 asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
 asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
+
+# python
+asdf plugin-add python
+pip install bpython
 
 # ruby
 # 5.5 must be installed https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit
