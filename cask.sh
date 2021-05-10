@@ -47,7 +47,6 @@ brew install --cask kindle
 brew install --cask wordpresscom
 brew install --cask gpg-suite
 brew install --cask grammarly
-brew install --cask kitematic
 brew install --cask launchcontrol
 brew install --cask hyper
 brew install --cask typora
@@ -65,7 +64,6 @@ brew install --cask flux
 brew install --cask paw
 brew install --cask epichrome
 brew install --cask safari-technology-preview
-brew install --cask qbserve
 brew install --cask openrefine-dev
 brew install --cask ngrok
 brew install --cask lepton
@@ -89,6 +87,7 @@ brew install --cask --no-quarantine alacritty
 # helpful for phone-only applications that you want to run your mac without apple silicon
 brew install --cask bluestacks
 brew install --cask tip
+brew install --cask kite
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew install --cask qlcolorcode \
