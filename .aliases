@@ -3,7 +3,8 @@ alias cat='bat'
 alias find='fd'
 alias ls='exa -l --group-directories-first'
 alias j='fasd_cd -d -0'
-alias ff=fzf
+alias jj='zz'
+alias ff="fzf --preview='bat --color=always {}' --bind='space:toggle-preview'"
 alias tree='tre'
 
 # fancier ping
