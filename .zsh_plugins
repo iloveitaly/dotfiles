@@ -1,42 +1,50 @@
 # oh-my-zsh plugins
 # gitfast workaround: https://github.com/zdharma/zinit/issues/477
+# gitfast is based on https://github.com/felipec/git-completion
 zinit svn wait lucid for \
   OMZ::plugins/gitfast atpull'zinit creinstall -q .' \
   OMZ::plugins/extract
 zinit wait lucid for \
   OMZ::lib/termsupport.zsh \
-  OMZ::lib/spectrum.zsh \
-  OMZ::plugins/safe-paste \
-  OMZ::plugins/rbenv
+  OMZ::plugins/safe-paste
 
 # keeping
 # zicompinit runs `compinit` to generate completions
 # important to load suggestions *after* zsh-completions
+#   - fzf/key-bindings: sets up reverse-i via fzf
 zinit wait lucid for \
   mafredri/zsh-async \
   zpm-zsh/zsh-better-npm-completion \
+  'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh' \
+  'https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh' \
   as'completion' blockf OMZ::plugins/ripgrep/_ripgrep \
   blockf atpull'zinit creinstall -q .' zsh-users/zsh-completions \
   atinit"zicompinit; zicdreplay" zdharma/fast-syntax-highlighting \
   atload'_zsh_autosuggest_start' zsh-users/zsh-autosuggestions \
-  djui/alias-tips \
   Aloxaf/fzf-tab
 
 # experimental
-zinit wait lucid for \
+#   - zsh-256color: configures env for 256 color support
+#   - colors: sets aliases for some colors and most styles via '$c'
+#   - lib/spectrum.zsh: 'spectrum_ls' alias to visually inspect colors
+zinit wait'1' lucid for \
   marzocchi/zsh-notify \
   b4b4r07/enhancd \
   iloveitaly/cod \
+  djui/alias-tips \
   larkery/zsh-histdb \
   chrissicool/zsh-256color \
   zpm-zsh/colors \
-  https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh \
-  https://github.com/junegunn/fzf/blob/master/shell/completion.zsh
+  OMZ::lib/spectrum.zsh
 
 # binaries installed via zinit
+#   - git-fuzzy: 'git fuzzy' for interactive git commit cli
+#   - ports: 'ports ls' to inspect what ports are open
+#   - universalarchive: 'ua' for easily unarchiving everything from the command line`
 zinit wait'2' lucid for \
   as"program" pick"bin/git-fuzzy" bigH/git-fuzzy \
-  caarlos0/ports
+  caarlos0/ports \
+  OMZ::plugins/universalarchive
 
 # must load last
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
