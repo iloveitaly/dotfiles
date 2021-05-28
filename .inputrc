@@ -1,3 +1,5 @@
+# readline config used by various applications, including ruby's IRB
+
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on
 
