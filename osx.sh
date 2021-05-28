@@ -718,3 +718,4 @@ done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
 
 # TODO enable TRIM on SSD
+# TODO reduce motion via accessibility
