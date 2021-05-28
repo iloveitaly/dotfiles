@@ -22,7 +22,6 @@ brew install mongodb
 # Everything else
 brew install mackup
 brew install mas
-brew install ack
 brew install git
 brew install lynx
 brew install rename
@@ -39,7 +38,6 @@ brew install webkit2png
 brew install jq
 brew install ngrok
 brew install lftp
-brew install ghi
 brew install gist
 brew install spoof-mac
 brew install httpie
