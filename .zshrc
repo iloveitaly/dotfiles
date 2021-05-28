@@ -56,7 +56,12 @@ source ~/.iterm2_shell_integration.zsh
 
 eval $(brew shellenv)
 
-source `brew --prefix zinit`/zinit.zsh
+# in some environments, the package may not be available in brew
+if [ -f ~/.zinit/bin/zinit.zsh ]; then
+  source ~/.zinit/bin/zinit.zsh
+else
+  source `brew --prefix zinit`/zinit.zsh
+fi
 
 # omz loads completions, which don't load property, so we want to avoid it
 # https://github.com/ohmyzsh/ohmyzsh/blob/12669f29f0843b8b980dd137f150a74511f88842/plugins/asdf/asdf.plugin.zsh#L17
