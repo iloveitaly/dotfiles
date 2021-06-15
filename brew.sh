@@ -54,6 +54,8 @@ brew install saulpw/vd/visidata
 brew install hey
 brew install gh
 brew install rga
+brew install xsv
+brew install dust
 # helpful dependencies for rga
 brew install pandoc poppler tesseract ffmpeg
 
@@ -76,6 +78,8 @@ brew install tre-command
 brew install terminal-notifier # for `zsh-notify`
 brew install cod
 brew install zinit
+brew install procs # ps
+brew install sd # sed
 brew install svn # for `zinit ice svn`
 curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
 (cd ~ && curl -LO https://raw.githubusercontent.com/sindresorhus/iterm2-snazzy/master/Snazzy.itermcolors) && open ~/Snazzy.itermcolors
