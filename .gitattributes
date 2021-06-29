@@ -1,3 +1,7 @@
+# https://tekin.co.uk/2020/10/better-git-diff-output-for-ruby-python-elixir-and-more?src=twitter
+# not useful if you have a customer pager/differ installed
+
 * text=auto
 *.rb diff=ruby
+*.rake diff=ruby
 *.html diff=html
