@@ -102,9 +102,6 @@
   trustExitCode = true
 [merge]
   ff = only
-[gitsh]
-  defaultCommand = st
-  noGreeting = true
 [advice]
   statusHints = false
 [hub]
