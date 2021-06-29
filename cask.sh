@@ -10,6 +10,7 @@ brew install --cask google-chrome
 brew install --cask alfred
 brew install --cask dropbox
 brew install --cask bartender
+brew install --cask dozer
 brew install --cask 1password
 brew install --cask google-backup-and-sync
 brew install --cask istat-menus
