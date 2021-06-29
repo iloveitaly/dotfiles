@@ -23,6 +23,7 @@
   amend = commit --amend --reuse-message=HEAD
   st = status -sb
   ss = status -uno
+  f = fuzzy status
   c = checkout
   b = branch
   d = diff
