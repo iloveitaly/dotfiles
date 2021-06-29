@@ -6,4 +6,5 @@
 
 --smart-case
 
+# if you hit a minified file, avoid outputting a mess in your terminal
 --max-columns=150
