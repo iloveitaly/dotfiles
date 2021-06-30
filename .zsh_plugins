@@ -12,6 +12,7 @@ zinit wait lucid for \
 # zicompinit runs `compinit` to generate completions
 # important to load suggestions *after* zsh-completions
 #   - fzf/key-bindings: sets up reverse-i via fzf
+#   - fzf-tab: load order is important
 zinit wait lucid for \
   mafredri/zsh-async \
   zpm-zsh/zsh-better-npm-completion \
@@ -30,9 +31,9 @@ zinit wait lucid for \
 zinit wait'1' lucid for \
   marzocchi/zsh-notify \
   b4b4r07/enhancd \
-  iloveitaly/cod \
+  dim-an/cod \
+  ellie/atuin \
   djui/alias-tips \
-  larkery/zsh-histdb \
   chrissicool/zsh-256color \
   zpm-zsh/colors \
   OMZ::lib/spectrum.zsh
