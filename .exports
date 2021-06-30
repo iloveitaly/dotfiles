@@ -1,3 +1,5 @@
+export ATUIN_NOBIND=1
+
 # Make nano the default editor for context-less editing in the terminal
 export EDITOR=nano
 
@@ -14,8 +16,8 @@ export GIT_FUZZY_STATUS_COMMIT_KEY='Ctrl-S'
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
 # always show a file preview on the right. cntrl-o opens the file in vscode
-export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort' --preview 'bat --color always {}'"
-export FZF_CTRL_R_OPTS="--preview-window up:3 --preview 'echo {}'"
+export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort' --info=hidden"
+export FZF_CTRL_R_OPTS="--preview-window up:3"
 
 # large shell history
 export HISTFILE=~/.zsh_history
