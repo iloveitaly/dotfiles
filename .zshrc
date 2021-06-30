@@ -81,6 +81,7 @@ done
 # this snippet is copied from https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/fasd/fasd.plugin.zsh
 local fasd_cache="${ZSH_CACHE_DIR}/fasd-init-cache"
 if [[ "$commands[fasd]" -nt "$fasd_cache" || ! -s "$fasd_cache" ]]; then
+  # although I don't use any `posix-alias` aliases, fast_cd is defined there which I use indirectly
   fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install \
     zsh-wcomp zsh-wcomp-install >| "$fasd_cache"
 fi
@@ -105,7 +106,7 @@ bindkey '^x^e' edit-command-line
 
 # save current command in buffer & restore after next command is run
 # https://unix.stackexchange.com/a/74381
-bindkey "^e" push-input
+bindkey "^s" push-input
 
 # ===========
 # Misc Config
