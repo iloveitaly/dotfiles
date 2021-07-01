@@ -9,7 +9,6 @@ brew tap caskroom/fonts
 brew install --cask google-chrome
 brew install --cask alfred
 brew install --cask dropbox
-brew install --cask bartender
 brew install --cask dozer
 brew install --cask 1password
 brew install --cask google-backup-and-sync
@@ -101,3 +100,4 @@ brew install --cask qlcolorcode \
 # fonts
 brew install --cask font-source-code-pro
 brew install --cask font-hack
+brew install --cask font-roboto-mono-nerd-font
