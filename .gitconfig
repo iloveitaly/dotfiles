@@ -9,7 +9,9 @@
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space
   # https://github.com/so-fancy/diff-so-fancy/issues/364#issuecomment-652598381
   pager = "diff-so-fancy | LESS= less --tabs=4 -RFX"
-  editor = nano
+
+  # nano `/dev/tty` is required for git-fuzzy otherwise nano will error out
+  editor = nano < /dev/tty
 
   # http://stackoverflow.com/questions/18257622/why-is-git-core-preloadindex-default-value-false
   preloadindex = true
