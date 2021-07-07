@@ -52,3 +52,7 @@ export LESS='--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --
 
 # elixir
 export ERL_AFLAGS="-kernel shell_history enabled"
+
+# python
+export IPDB_CONTEXT_SIZE=10
+export PYTHONBREAKPOINT=ipdb.set_trace
