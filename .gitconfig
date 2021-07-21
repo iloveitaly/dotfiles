@@ -99,6 +99,10 @@
   tool = Kaleidoscope
 [difftool]
   prompt = false
+[difftool "vscode"]
+  cmd = code --wait --diff --new-window $LOCAL $REMOTE
+[mergetool "vscode"]
+        cmd = code --wait --new-window $MERGED
 [mergetool "Kaleidoscope"]
   cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
   trustExitCode = true
