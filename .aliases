@@ -50,7 +50,6 @@ alias gp="g push origin HEAD"
 alias gpb='g pull --rebase origin `git rev-parse --abbrev-ref HEAD`'
 alias gpf='g push --force origin HEAD'
 alias glo='git log --graph --pretty=format:"%Cred%h%Creset - %s %Cgreen(%cr)%Creset" --abbrev-commit --date=relative'
-alias gcb='git checkout $(git branch --sort=-committerdate --format="%(refname:short)" | fzf)'
 
 # rails
 alias rk="rake"

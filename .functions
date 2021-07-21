@@ -14,13 +14,9 @@ function gd() {
   git difftool $1 -t Kaleidoscope -y
 }
 
-function gbtr() {
-  git branch --track $2 remotes/$1/$2
-  git checkout $2
-  git rebase master
-  git checkout master
-  git rebase $2
-  git branch -D $2
+# this caused strange terminal input glitches when written as an alias
+function gcb() {
+  git checkout $(git branch --sort=-committerdate --format="%(refname:short)" | fzf)
 }
 
 function gbt() {
