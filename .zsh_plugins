@@ -1,9 +1,12 @@
 # oh-my-zsh plugins
 # gitfast workaround: https://github.com/zdharma/zinit/issues/477
 # gitfast is based on https://github.com/felipec/git-completion
-zinit svn wait lucid for \
-  OMZ::plugins/gitfast atpull'zinit creinstall -q .' \
-  OMZ::plugins/extract
+# in some environments, we may not be able to install svn
+if type svn &> /dev/null; then
+  zinit svn wait lucid for \
+    OMZ::plugins/gitfast atpull'zinit creinstall -q .' \
+    OMZ::plugins/extract
+fi
 zinit wait lucid for \
   OMZ::lib/termsupport.zsh \
   OMZ::plugins/safe-paste
