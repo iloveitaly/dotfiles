@@ -18,6 +18,7 @@ com.microsoft.VSCode public.shell-script all
 com.microsoft.VSCode public.zsh-script all
 com.microsoft.VSCode public.php-script all
 com.microsoft.VSCode public.ruby-script all
+com.microsoft.VSCode public.python-script all
 com.microsoft.VSCode public.xhtml  all
 com.microsoft.VSCode public.json  all
 com.microsoft.VSCode com.netscape.javascript-source all
