@@ -56,6 +56,7 @@ brew install gh
 brew install rga
 brew install xsv
 brew install dust
+brew install pandoc
 # helpful dependencies for rga
 brew install pandoc poppler tesseract ffmpeg
 
