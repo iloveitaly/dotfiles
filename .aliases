@@ -55,6 +55,7 @@ alias glo='git log --graph --pretty=format:"%Cred%h%Creset - %s %Cgreen(%cr)%Cre
 alias rk="rake"
 alias tl='tail -f log/development.log'
 alias tts="touch tmp/restart.txt"
+alias rt="bundle exec rails test"
 alias be="b exec"
 alias b="bundle"
 
