@@ -45,7 +45,6 @@ setopt hist_ignore_dups         # Ignore consecutive duplicates.
 setopt hist_ignore_space        # Ignore items that start with a space
 setopt hist_reduce_blanks       # Remove superfluous blanks.
 setopt hist_save_no_dups        # Omit older commands in favor of newer ones.
-setopt share_history            # Share history across terminal sessions
 
 # =============
 # Evals
