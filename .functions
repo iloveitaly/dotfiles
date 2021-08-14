@@ -1,3 +1,7 @@
+function touchp() {
+  mkdir -p $(dirname $1) && touch "$1"
+}
+
 # All the dig info
 function digga() {
   dig +nocmd "$1" any +multiline +noall +answer
