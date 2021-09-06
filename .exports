@@ -6,9 +6,6 @@ export EDITOR=nano
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"
 
-# Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
-export PYTHONIOENCODING='UTF-8';
-
 # https://github.com/bigH/git-fuzzy/pull/16/files
 export GIT_FUZZY_STATUS_ADD_KEY='Ctrl-A'
 export GIT_FUZZY_STATUS_COMMIT_KEY='Ctrl-S'
@@ -55,4 +52,11 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 
 # python
 export IPDB_CONTEXT_SIZE=10
+# command to use for `breakpoint()`
 export PYTHONBREAKPOINT=ipdb.set_trace
+# Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
+export PYTHONIOENCODING='UTF-8';
+# https://www.erdaltaskesen.com/blog/how-to-remove-pycache-folders-and-pyc-files/
+export PYTHONDONTWRITEBYTECODE=""
+# https://github.com/python-poetry/poetry/issues/1853
+export VIRTUAL_ENV_DISABLE_PROMPT=1
