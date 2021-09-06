@@ -1,6 +1,7 @@
 [user]
   name = Michael Bianco
   email = iloveitaly@gmail.com
+  signingkey = F8C4375D734A914F075A607AE5E32D3B0D0B4261
 [github]
   user = iloveitaly
 [core]
@@ -21,6 +22,7 @@
 [commit]
   # Show the diff as a comment in the commit message template.
   verbose = true
+  gpgsign = true
 [alias]
   amend = commit --amend --reuse-message=HEAD
   st = status -sb
