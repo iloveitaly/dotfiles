@@ -8,6 +8,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   	--exclude "osx.sh" \
   	--exclude "brew.sh" \
     --exclude "cask.sh" --exclude "mas.sh" \
+    --exclude ipython_config.py \
     --exclude "vscode-extensions.txt" --exclude "vscode-settings.json" \
     --exclude "backup.sh" \
   	--exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" --exclude "ssh_config" \
@@ -20,6 +21,8 @@ cat ./vscode-extensions.txt | xargs -L 1 echo code --install-extension
 cp ./vscode-settings.json "$HOME/Library/Application Support/Code/User/settings.json"
 
 cp -f ./ssh_config ~/.ssh/config
+
+cp ipython_config.py ~/.ipython/profile_default/
 
 # block distracting websites
 # some additional configuration is required here:
