@@ -24,8 +24,7 @@ function gcb() {
 }
 
 function gbt() {
-  git branch --track $2 remotes/$1/$2
-  git checkout $2
+  git checkout -b $1 --track origin/$1
 }
 
 # make a gif out of the last recorded video
