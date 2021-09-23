@@ -53,6 +53,7 @@ brew install homebrew/cask/kite
 brew install saulpw/vd/visidata
 brew install hey
 brew install gh
+brew install htmlq
 brew install rga
 brew install xsv
 brew install dust
