@@ -10,6 +10,7 @@ export MANPAGER="less -X"
 export GIT_FUZZY_STATUS_ADD_KEY='Ctrl-A'
 export GIT_FUZZY_STATUS_COMMIT_KEY='Ctrl-S'
 export GIT_FUZZY_STATUS_DISCARD_KEY='Ctrl-D'
+export GIT_FUZZY_STATUS_RESET_KEY='Ctrl-R'
 
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
