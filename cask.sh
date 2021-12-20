@@ -90,11 +90,9 @@ brew install --cask tip
 brew install --cask kite
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
-brew install --cask qlcolorcode \
-		  qlstephen \
-		  qlmarkdown \
-		  quicklook-json \
+brew install --cask qlmarkdown \
 		  qlimagesize \
+			syntax-highlight \
 		  webpquicklook
 
 # fonts
