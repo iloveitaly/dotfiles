@@ -89,7 +89,7 @@ brew install --cask tip
 brew install --cask cron
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
-brew install --cask qlmarkdown \
+brew install --cask --no-quarantine qlmarkdown \
 		  qlimagesize \
 			syntax-highlight \
 		  webpquicklook
