@@ -71,7 +71,6 @@ brew install --cask muzzle
 brew install --cask https://raw.githubusercontent.com/Homebrew/homebrew-cask/00a37cb6ea00ca2820652b75ebd1f57ba160c3e5/Casks/screenflow.rb
 brew install --cask visual-studio-code
 brew install --cask cloudapp
-brew install --cask mongodb-compass-community
 brew install --cask pock
 brew install --cask youtube-dl
 brew install --cask contexts
@@ -87,7 +86,7 @@ brew install --cask --no-quarantine alacritty
 # helpful for phone-only applications that you want to run your mac without apple silicon
 brew install --cask bluestacks
 brew install --cask tip
-brew install --cask kite
+brew install --cask cron
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew install --cask qlmarkdown \
