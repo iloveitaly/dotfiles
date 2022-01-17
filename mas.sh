@@ -18,4 +18,3 @@ mas install 588726889 # ReadKit
 mas install 1180442868 # SmileAllDay
 mas install 1472777122 # Honey
 mas install 1474298973 # Buffer
-mas install 588726889 # ReadKit
