@@ -17,7 +17,6 @@ brew update && brew upgrade && brew cleanup
 
 # systems
 brew install node
-brew install mongodb
 
 # Everything else
 brew install mackup
@@ -193,6 +192,11 @@ bundle config --global jobs 4
 bundle config --global path vendor/bundle
 bundle config --global disable_shared_gems 1
 bundle config --global disable_local_branch_check true
+
+# mongodb
+brew tap mongodb/brew
+brew install mongodb-compass
+brew install mongodb-community
 
 # need to reload the env to get `bundle`
 source ~/.bash_profile
