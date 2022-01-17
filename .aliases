@@ -11,10 +11,10 @@ alias tree='tre'
 alias ping='prettyping --nolegend'
 
 # List all files colorized in long format, including dot files
-alias la="ls -Gla"
+alias la="exa -laF --group-directories-first"
 
 # List only directories
-alias lsd='ls -l | grep "^d"'
+alias lsd='exa -l -D'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -23,7 +23,7 @@ alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 alias whois="whois -h whois-servers.net"
 
 # Flush Directory Service cache
-alias flush="sudo killall -HUP mDNSResponder"
+alias flushdns="sudo killall -HUP mDNSResponder"
 
 # View HTTP traffic
 alias sniff="sudo ngrep -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
@@ -75,9 +75,6 @@ alias spoton="sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.met
 
 # PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
 alias plistbuddy="/usr/libexec/PlistBuddy"
-
-# Launch iOS Simulator
-alias ioss="open -a /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app"
 
 # Kill all the tabs in Chrome to free up memory
 # [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
