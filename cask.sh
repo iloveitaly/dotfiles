@@ -32,7 +32,6 @@ brew install --cask onyx
 brew install --cask cyberduck
 brew install --cask dash
 brew install --cask skyfonts
-brew install --cask macdown
 brew install --cask base
 brew install --cask colorpicker-skalacolor
 brew install --cask https://raw.githubusercontent.com/Homebrew/homebrew-cask/5b112c6a968113fb37d147f854451fb0988bd4db/Casks/arq.rb
@@ -87,6 +86,8 @@ brew install --cask --no-quarantine alacritty
 brew install --cask bluestacks
 brew install --cask tip
 brew install --cask cron
+brew install --cask obsidian
+brew install --cask logseq
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew install --cask --no-quarantine qlmarkdown \
