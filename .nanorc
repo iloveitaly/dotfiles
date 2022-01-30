@@ -1,11 +1,13 @@
 # ^G to display all bindings
 
 set wordbounds
+set linenumbers
 
 # https://www.nano-editor.org/dist/latest/nanorc.5.html
-bind ^w cutwordleft main
+bind ^w chopwordleft main
 
-# TODO need to rebind the search function
+# rebind search
+bind ^F whereis main
 
 # opt left/right word jump mapping
 bind M-B prevword main
