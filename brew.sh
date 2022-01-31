@@ -81,6 +81,7 @@ brew install zinit
 brew install procs # ps
 brew install sd # sed
 brew install svn # for `zinit ice svn`
+brew install fig
 curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
 (cd ~ && curl -LO https://raw.githubusercontent.com/sindresorhus/iterm2-snazzy/master/Snazzy.itermcolors) && open ~/Snazzy.itermcolors
 
@@ -119,9 +120,9 @@ display_errors=1
 error_reporting=E_ALL
 memory_limit=1024M
 
-xdebug.mode = debug
-xdebug.start_with_request = yes
-xdebug.client_port = 9000
+# xdebug.mode = debug
+# xdebug.start_with_request = yes
+# xdebug.client_port = 9000
 " > $(asdf where php)/conf.d/php.ini
 
 brew install wp-cli
