@@ -48,7 +48,6 @@ brew install ffmpeg gifsicle
 brew install github/gh/gh
 brew install q
 brew install free-ruler
-brew install homebrew/cask/kite
 brew install saulpw/vd/visidata
 brew install hey
 brew install gh
