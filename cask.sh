@@ -88,6 +88,7 @@ brew install --cask tip
 brew install --cask cron
 brew install --cask obsidian
 brew install --cask logseq
+brew install --cask  calibre
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew install --cask --no-quarantine qlmarkdown \
