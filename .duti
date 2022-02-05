@@ -22,5 +22,5 @@ com.microsoft.VSCode public.python-script all
 com.microsoft.VSCode public.xhtml  all
 com.microsoft.VSCode public.json  all
 com.microsoft.VSCode com.netscape.javascript-source all
-com.uranusjr.macdown net.daringfireball.markdown all
+com.microsoft.VSCode net.daringfireball.markdown all
 com.microsoft.Excel public.comma-separated-values-text all
