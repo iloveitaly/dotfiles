@@ -7,6 +7,8 @@ alias jj='zz'
 alias ff="fzf --preview='bat --color=always {}' --bind='space:toggle-preview'"
 alias tree='tre'
 
+alias fixcamera="sudo killall VDCAssistant; sudo killall AppleCameraAssistant"
+
 # fancier ping
 alias ping='prettyping --nolegend'
 
