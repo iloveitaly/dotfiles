@@ -46,7 +46,8 @@ brew install heroku/brew/heroku
 brew install cloc
 brew install ffmpeg gifsicle
 brew install github/gh/gh
-brew install q
+brew install q # sql on csv
+brew install dsq # sql over json and other formats
 brew install free-ruler
 brew install saulpw/vd/visidata
 brew install hey
