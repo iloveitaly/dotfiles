@@ -90,6 +90,7 @@ brew install --cask obsidian
 brew install --cask logseq
 brew install --cask calibre
 brew install --cask send-to-kindle
+brew install --cask shortcutdetective
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew install --cask --no-quarantine qlmarkdown \
