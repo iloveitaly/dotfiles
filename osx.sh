@@ -59,6 +59,10 @@ defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 # Always show scrollbars
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 
+# Always show proxy icon
+defaults write com.apple.Finder NSToolbarTitleViewRolloverDelay -float 0
+defaults write com.apple.universalaccess showWindowTitlebarIcons -bool true
+
 # Disable the over-the-top focus ring animation
 defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
 
