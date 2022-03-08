@@ -11,7 +11,7 @@ brew install --cask alfred
 brew install --cask dropbox
 brew install --cask dozer
 brew install --cask 1password
-brew install --cask google-backup-and-sync
+brew install --cask google-drive
 brew install --cask istat-menus
 brew install --cask iterm2
 brew install --cask slack
