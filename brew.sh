@@ -48,6 +48,8 @@ brew install ffmpeg gifsicle
 brew install github/gh/gh
 brew install q # sql on csv
 brew install dsq # sql over json and other formats
+brew install yq # yq for yaml and others
+brew install dasel # consistent language for extracting data from XML, CSV, and others
 brew install free-ruler
 brew install saulpw/vd/visidata
 brew install hey
