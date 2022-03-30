@@ -56,14 +56,24 @@
   showlast = log -n 1 -p
 
   sha = !sh -c 'git rev-parse HEAD | tr -d "[:space:]" | pbcopy'
+
   # http://stackoverflow.com/questions/12373733/staging-deleted-files
   rm-deleted = !git rm $(git ls-files --deleted)
 
   # http://stackoverflow.com/questions/2514172/listing-each-branch-and-its-last-revisions-date-in-git
   branchdate = !git for-each-ref --sort='-authordate' --format='%(refname)%09%(authordate)' refs/heads | sed -e 's-refs/heads/--' | less
 
+  # TODO should look into removing this old cleanup
   # http://stackoverflow.com/questions/6127328/how-can-i-delete-all-git-branches-which-have-been-merged
   cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
+
+  # deletes all local branches that have no differences with master (i.e. have been squashed into master)
+  rm-merged = "!cl() { git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch\^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done }; cl"
+
+  # get remote branches that aren't pulled by default via the repo's config
+  # helpful for large projects where you limit branches pulled via `fetch`
+  remote-fetch = "!rf() { git config --add remote.origin.fetch +refs/heads/$1:refs/remotes/origin/$1 && git fetch origin +$1:refs/remotes/origin/$1 && git c -t origin/$1; }; rf"
+  remote-purge = "!rp() { git config --unset remote.origin.fetch \".*$1.*\"; git update-ref -d refs/remotes/origin/$1; }; rp"
 
   # http://urbanautomaton.com/blog/2014/09/22/tracking-method-history-in-git/
   lm = "!f(){ local method=$1; local file=$2; [[ -n \"$method\" && -n \"$file\" ]] || exit 1; git log -L :$method:$file;}; f"
