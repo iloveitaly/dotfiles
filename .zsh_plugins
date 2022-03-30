@@ -25,7 +25,8 @@ zinit wait lucid for \
   blockf atpull'zinit creinstall -q .' zsh-users/zsh-completions \
   atinit"zicompinit; zicdreplay" zdharma/fast-syntax-highlighting \
   atload'_zsh_autosuggest_start' zsh-users/zsh-autosuggestions \
-  Aloxaf/fzf-tab
+  Aloxaf/fzf-tab \
+  sudosubin/zsh-github-cli
 
 # experimental
 #   - zsh-256color: configures env for 256 color support
