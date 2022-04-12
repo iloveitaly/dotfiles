@@ -7,8 +7,11 @@ if type svn &> /dev/null; then
     OMZ::plugins/gitfast atpull'zinit creinstall -q .' \
     OMZ::plugins/extract
 fi
+
+# autopair must be loaded before syntax highlight
 zinit wait lucid for \
   OMZ::lib/termsupport.zsh \
+  hlissner/zsh-autopair \
   OMZ::plugins/safe-paste
 
 # keeping
@@ -16,8 +19,10 @@ zinit wait lucid for \
 # important to load suggestions *after* zsh-completions
 #   - fzf/key-bindings: sets up reverse-i via fzf
 #   - fzf-tab: load order is important
+# TODO should probably remove gitfast above with git-completion in place
 zinit wait lucid for \
   mafredri/zsh-async \
+  felipec/git-completion \
   zpm-zsh/zsh-better-npm-completion \
   'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh' \
@@ -36,6 +41,7 @@ zinit wait'1' lucid for \
   marzocchi/zsh-notify \
   b4b4r07/enhancd \
   dim-an/cod \
+  wookayin/fzf-fasd \
   ellie/atuin \
   djui/alias-tips \
   chrissicool/zsh-256color \
