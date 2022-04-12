@@ -58,6 +58,8 @@ interesting_repos=(
   https://github.com/ephur/zshrc
   https://github.com/ptarjan/dotfiles
   https://github.com/nixme/dotfiles
+  https://github.com/dbalatero/dotfiles
+  https://github.com/yujinyuz/dotfiles
 )
 
 cd ~/Projects/dotfiles-inspiration
