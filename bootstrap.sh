@@ -24,8 +24,7 @@ cp -f ./ssh_config ~/.ssh/config
 
 cp ipython_config.py ~/.ipython/profile_default/
 
-# block distracting websites
-# some additional configuration is required here:
-# http://mikebian.co/how-to-block-distracting-websites-on-your-laptop/
+# https://apple.stackexchange.com/questions/92710/why-is-safari-ignoring-my-etc-hosts-file
+# block distracting websites. More info: http://mikebian.co/how-to-block-distracting-websites-on-your-laptop/
 sed '/^$/d' ./distracting_websites.txt | sed -E $'s/\(.*\)/127.0.0.1  \\1\\\n127.0.0.1  www.\\1/' > ~/distracting_sites.txt
 sudo -E `asdf which node` `asdf which hostile` load ~/distracting_sites.txt
