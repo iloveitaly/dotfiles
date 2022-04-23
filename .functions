@@ -42,3 +42,7 @@ function makegif() {
   echo $gif_destination
   open -a "Google Chrome" "$gif_destination"
 }
+
+function httpless {
+  http --pretty=all --print=hb "$@" | less -R
+}
