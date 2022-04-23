@@ -74,7 +74,7 @@ brew install tldr
 brew install fasd
 brew install fzf
 brew install diff-so-fancy
-brew install bat # cat
+brew install bat # cat, can also do paging
 brew install exa # ls
 brew install tmux
 brew install tre-command
@@ -85,6 +85,7 @@ brew install procs # ps
 brew install sd # sed
 brew install svn # for `zinit ice svn`
 brew install fig
+brew install afnanenayet/tap/diffsitter
 curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
 (cd ~ && curl -LO https://raw.githubusercontent.com/sindresorhus/iterm2-snazzy/master/Snazzy.itermcolors) && open ~/Snazzy.itermcolors
 
