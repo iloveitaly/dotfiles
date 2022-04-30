@@ -59,9 +59,8 @@ brew install --cask harvest
 brew install --cask the-unarchiver
 brew install --cask sketch
 brew install --cask disk-sensei
-brew install --cask flux
 brew install --cask paw
-brew install --cask epichrome
+brew install --cask webcatalog
 brew install --cask safari-technology-preview
 brew install --cask openrefine-dev
 brew install --cask ngrok
