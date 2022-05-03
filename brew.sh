@@ -49,7 +49,8 @@ brew install github/gh/gh
 brew install q # sql on csv
 brew install dsq # sql over json and other formats
 brew install yq # yq for yaml and others
-brew install dasel # consistent language for extracting data from XML, CSV, and others
+brew install dasel # consistent language for extracting data from XML, CSV, and others. No aggregates.
+brew install brimdata/tap/zq # faster/better jq, has aggregates
 brew install free-ruler
 brew install saulpw/vd/visidata
 brew install hey
@@ -73,7 +74,8 @@ brew install fd # find
 brew install tldr
 brew install fasd
 brew install fzf
-brew install diff-so-fancy
+brew install diff-so-fancy # diff replacement
+brew install git-delta # diff replacement
 brew install bat # cat, can also do paging
 brew install exa # ls
 brew install tmux
