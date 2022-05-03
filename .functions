@@ -71,3 +71,16 @@ nq() {
     node -i -e "const $ = JSON.parse(require('fs').readFileSync('$1'))"
   fi
 }
+
+# ripgrep "only": only display the matching text in the first capture group
+# this is helpful for selecting and transforming
+rgo() {
+  params=()
+
+  # check if the user is passing in `-r`, if not, then default to a basic option
+  if ((${@[(I)*-r*]} == 0)); then
+    params+=("-r \$1")
+  fi
+
+  rg $@ $params --no-filename --no-column --no-line-number --color never --only-matching
+}
