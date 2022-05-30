@@ -7,7 +7,6 @@ brew tap caskroom/versions
 brew tap caskroom/fonts
 
 brew install --cask google-chrome
-brew install --cask alfred
 brew install --cask dropbox
 brew install --cask dozer
 brew install --cask 1password
@@ -16,7 +15,6 @@ brew install --cask istat-menus
 brew install --cask iterm2
 brew install --cask slack
 brew install --cask amazon-music
-brew install --cask atom
 brew install --cask github
 brew install --cask soulver
 brew install --cask stay
@@ -25,9 +23,7 @@ brew install --cask skype
 brew install --cask postgres
 brew install --cask rectangle
 brew install --cask valentina-studio
-brew install --cask insync
 brew install --cask libreoffice
-brew install --cask rescuetime
 brew install --cask onyx
 brew install --cask cyberduck
 brew install --cask dash
@@ -45,6 +41,7 @@ brew install --cask postico
 brew install --cask kindle
 brew install --cask wordpresscom
 brew install --cask gpg-suite
+brew install --cask gimp
 brew install --cask grammarly
 brew install --cask launchcontrol
 brew install --cask hyper
@@ -90,6 +87,7 @@ brew install --cask logseq
 brew install --cask calibre
 brew install --cask send-to-kindle
 brew install --cask shortcutdetective
+brew install --cask appcleaner
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew install --cask --no-quarantine qlmarkdown \

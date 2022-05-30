@@ -9,6 +9,9 @@ alias tree='tre'
 
 alias fixcamera="sudo killall VDCAssistant; sudo killall AppleCameraAssistant"
 
+# TODO the username on this needs to be dynamic in some way
+alias pisync='rsync -avh --filter=":- .gitignore" --progress $PWD lunchmoney@raspberrypi.local:`basename $PWD`'
+
 # fancier ping
 alias ping='prettyping --nolegend'
 
