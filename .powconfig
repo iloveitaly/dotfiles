@@ -1,4 +1,0 @@
-export POW_DST_PORT=88
-export POW_DOMAINS=dev,test
-export POW_EXT_DOMAINS=com,ngrok.com
-export POW_WORKERS=1
