@@ -56,8 +56,11 @@ source ~/.iterm2_shell_integration.zsh
 eval $(brew shellenv)
 
 # in some environments, the package may not be available in brew
-if [ -f ~/.zinit/bin/zinit.zsh ]; then
-  source ~/.zinit/bin/zinit.zsh
+local possible_zinit_home
+possible_zinit_home=${HOME}/.local/share/zinit/zinit.git
+if [ -f $possible_zinit_home/zinit.zsh ]; then
+  ZINIT_HOME=$possible_zinit_home
+  source "${ZINIT_HOME}/zinit.zsh"
 else
   source `brew --prefix zinit`/zinit.zsh
 fi
