@@ -88,14 +88,16 @@ brew install --cask calibre
 brew install --cask send-to-kindle
 brew install --cask shortcutdetective
 brew install --cask appcleaner
+brew install --cask logitech-options
+brew install --cask karabiner-elements
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew install --cask --no-quarantine qlmarkdown \
-		  qlimagesize \
-			syntax-highlight \
-		  webpquicklook
+	qlimagesize \
+	syntax-highlight \
+	webpquicklook
 
 # fonts
-brew install --cask font-source-code-pro
-brew install --cask font-hack
-brew install --cask font-roboto-mono-nerd-font
+brew install --cask font-source-code-pro \
+	font-hack
+	font-roboto-mono-nerd-font
