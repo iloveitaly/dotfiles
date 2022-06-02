@@ -19,6 +19,7 @@
   # https://dropbox.tech/application/speeding-up-a-git-monorepo-at-dropbox-with--200-lines-of-code
   untrackedCache = true
   fsmonitor-watchman = .git/hooks/fsmonitor-watchmanv2
+  deltabasecachelimit = 4g
 [commit]
   # Show the diff as a comment in the commit message template.
   verbose = true
@@ -130,9 +131,13 @@
   protocol = https
 [gist]
   private = true
+[fetch]
+	prune = true
 [push]
   default = simple
 [pull]
   rebase = true
 [rebase]
   autoStash = true
+[feature]
+	manyfiles = true
