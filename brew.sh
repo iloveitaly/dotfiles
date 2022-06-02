@@ -45,7 +45,6 @@ brew install ansible
 brew install heroku/brew/heroku
 brew install cloc
 brew install ffmpeg gifsicle
-brew install github/gh/gh
 brew install q # sql on csv
 brew install dsq # sql over json and other formats
 brew install yq # yq for yaml and others
@@ -56,10 +55,9 @@ brew install saulpw/vd/visidata
 brew install hey
 brew install gh
 brew install htmlq
-brew install rga
 brew install xsv
 brew install dust
-brew install pandoc
+brew install rga
 # helpful dependencies for rga
 brew install pandoc poppler tesseract ffmpeg
 
@@ -100,7 +98,7 @@ curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
 # https://www.intego.com/mac-security-blog/how-to-make-custom-keyboard-shortcuts-for-any-macos-menu-items-and-to-launch-your-favorite-apps/
 
 # https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
-sudo dscl . -create $HOME UserShell /usr/local/bin/zsh
+sudo dscl . -create $HOME UserShell /opt/homebrew/bin/zsh
 
 # php / WordPress
 # https://github.com/asdf-community/asdf-php/blob/248e9c6e2a7824510788f05e8cee848a62200b65/bin/install#L22
@@ -162,10 +160,10 @@ brew install rbenv
 brew install ruby-build
 brew install puma/puma/puma-dev
 
-rbenv install 2.6.5
+rbenv install 2.6.10
 
 rbenv rehash
-rbenv global 2.6.5
+rbenv global 2.6.10
 
 # reload rbenv into bash profile
 eval "$(rbenv init -)"
