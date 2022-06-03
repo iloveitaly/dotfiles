@@ -32,7 +32,7 @@ Pry::Commands.block_command 'o', 'Open current line in VS Code' do |n|
   `code --goto #{file}:#{line}`
 end
 
-Pry::Commands.block_command 'hiscopy', 'History copy to clipboard' do |n|
+Pry::Commands.block_command 'clast', 'History copy to clipboard' do |n|
   pbcopy pry_instance.input_ring[n ? n.to_i : -1]
 end
 
