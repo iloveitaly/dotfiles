@@ -10,6 +10,7 @@ brew install --cask google-chrome
 brew install --cask dropbox
 brew install --cask dozer
 brew install --cask 1password
+brew install --cask 1password-cli
 brew install --cask google-drive
 brew install --cask istat-menus
 brew install --cask iterm2
