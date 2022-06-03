@@ -7,6 +7,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   rsync --exclude ".git/" \
   	--exclude "osx.sh" \
   	--exclude "brew.sh" \
+    --exclude "duti" \
     --exclude "cask.sh" --exclude "mas.sh" \
     --exclude ipython_config.py \
     --exclude "vscode-extensions.txt" --exclude "vscode-settings.json" \

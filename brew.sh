@@ -209,4 +209,4 @@ source ~/.bash_profile
 brew cleanup
 
 # setup default extension handlers
-duti < ~/.duti
+duti < ./duti
