@@ -9,6 +9,9 @@ alias tree='tre'
 
 alias fixcamera="sudo killall VDCAssistant; sudo killall AppleCameraAssistant"
 
+# copy last shell command into the clipboard
+alias clast="echo !! | pbcopy"
+
 # TODO the username on this needs to be dynamic in some way
 alias pisync='rsync -avh --filter=":- .gitignore" --progress $PWD lunchmoney@raspberrypi.local:`basename $PWD`'
 
