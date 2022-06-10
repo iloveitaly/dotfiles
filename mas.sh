@@ -13,6 +13,7 @@ mas install 1017470484 # Next Meeting
 mas install 1456226992 # CurrentKey Stats
 mas install 588726889 # ReadKit
 mas install 963034692 # Streaks
+mas install 1172053162 # Webcam Control
 
 # safari extensions
 mas install 1180442868 # SmileAllDay
