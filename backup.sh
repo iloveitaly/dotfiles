@@ -8,6 +8,7 @@
 #   - Dash. Save preferences and snippets in-app.
 #   - SSH and GPG
 #   - Enable location services
+#   - Add '~/Projects' to Spotlight exclusion to avoid matching against node_modules
 
 mackup backup
 
