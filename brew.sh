@@ -135,6 +135,7 @@ brew install wp-cli
 # node
 # remember to use `npx npkill` to remove unneeded `node_modules` folders
 # TODO use `asdf` to install node
+asdf plugin-add deno
 curl http://npmjs.org/install.sh | sh
 npm install -g grunt
 npm install -g livereloadx
@@ -148,7 +149,11 @@ asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
 
 # python
 asdf plugin-add python
-pip install bpython
+asdf install python 3.10.4
+# note: for each python version installed, you'll need to do this
+# for the breakpoint() magic to work properly
+pip install ipython
+pip install ipdb
 
 # ruby
 # 5.5 must be installed https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit
