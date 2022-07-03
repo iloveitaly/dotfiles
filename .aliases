@@ -13,7 +13,7 @@ alias fixcamera="sudo killall VDCAssistant; sudo killall AppleCameraAssistant"
 alias clast="echo !! | pbcopy"
 
 # TODO the username on this needs to be dynamic in some way
-alias pisync='rsync -avh --filter=":- .gitignore" --progress $PWD lunchmoney@raspberrypi.local:`basename $PWD`'
+alias pisync='rsync -avh --filter=":- .gitignore" --progress $PWD pi@raspberrypi.local:~'
 
 # fancier ping
 alias ping='prettyping --nolegend'
