@@ -19,7 +19,7 @@ brew install --cask amazon-music
 brew install --cask github
 brew install --cask soulver
 brew install --cask stay
-brew install --cask kaleidoscope
+brew install --cask homebrew/cask-versions/kaleidoscope2
 brew install --cask skype
 brew install --cask postgres
 brew install --cask rectangle
