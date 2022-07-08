@@ -4,7 +4,7 @@ export ATUIN_NOBIND=1
 export EDITOR=nano
 
 # Don’t clear the screen after quitting a manual page
-export MANPAGER="less -X"
+export MANPAGER="less -FX"
 
 # https://github.com/bigH/git-fuzzy/pull/16/files
 export GIT_FUZZY_STATUS_ADD_KEY='Ctrl-A'
