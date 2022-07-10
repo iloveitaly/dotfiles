@@ -69,6 +69,7 @@ brew install prettyping
 brew install less
 brew install nano
 brew install fd # find
+brew install yank
 brew install tldr
 brew install fasd
 brew install fzf
