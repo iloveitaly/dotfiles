@@ -95,9 +95,6 @@
   added = yellow
   changed = green
   untracked = cyan
-[merge]
-  log = true
-  tool = Kaleidoscope
 [format]
   pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
 [rerere]
@@ -105,26 +102,32 @@
 [credential]
   helper = osxkeychain
 
-# Kaleidoscope stuff
-[difftool "Kaleidoscope"]
-  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [diff]
-  tool = Kaleidoscope
+  tool = ksdiff
   renames = copies                    # identify renames and copies
   mnemonicprefix = true               # use better symbols than A and B
   algorithm = histogram               # Better diffs
+
 [difftool]
   prompt = false
+[difftool "ksdiff"]
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [difftool "vscode"]
-  cmd = code --wait --diff --new-window $LOCAL $REMOTE
+  cmd = code --wait --diff $LOCAL $REMOTE
+
+[merge]
+  log = true
+  ff = only
+  # https://blog.nilbus.com/take-the-pain-out-of-git-conflict-resolution-use-diff3/
+  conflictstyle=diff3
+  tool = ksdiff
+
 [mergetool "vscode"]
-        cmd = code --wait --new-window $MERGED
-[mergetool "Kaleidoscope"]
+  cmd = code --wait --new-window $MERGED
+[mergetool "ksdiff"]
   cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
   trustExitCode = true
 
-[merge]
-  ff = only
 [advice]
   statusHints = false
 [hub]
