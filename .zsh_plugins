@@ -18,7 +18,7 @@ zinit wait lucid for \
 # zicompinit runs `compinit` to generate completions
 # important to load suggestions *after* zsh-completions
 #   - fzf/key-bindings: sets up reverse-i via fzf
-#   - fzf-tab: load order is important
+#   - fzf-tab: load order is important, must go last
 # TODO should probably remove gitfast above with git-completion in place
 zinit wait lucid for \
   mafredri/zsh-async \
@@ -40,8 +40,6 @@ zinit wait lucid for \
 zinit wait'1' lucid for \
   marzocchi/zsh-notify \
   ptavares/zsh-direnv \
-  b4b4r07/enhancd \
-  dim-an/cod \
   wookayin/fzf-fasd \
   ellie/atuin \
   djui/alias-tips \
