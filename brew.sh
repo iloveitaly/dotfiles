@@ -77,7 +77,7 @@ brew install diff-so-fancy # diff replacement
 brew install git-delta # diff replacement
 brew install bat # cat, can also do paging
 brew install exa # ls
-brew install tmux
+brew install tmux reattach-to-user-namespace
 brew install tre-command
 brew install terminal-notifier # for `zsh-notify`
 brew install cod
