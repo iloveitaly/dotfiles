@@ -3,9 +3,6 @@ export ATUIN_NOBIND=1
 # Make nano the default editor for context-less editing in the terminal
 export EDITOR=nano
 
-# Don’t clear the screen after quitting a manual page
-export MANPAGER="less -FX"
-
 # https://github.com/bigH/git-fuzzy/pull/16/files
 export GIT_FUZZY_STATUS_ADD_KEY='Ctrl-A'
 export GIT_FUZZY_STATUS_COMMIT_KEY='Ctrl-S'
@@ -40,6 +37,12 @@ export ZSH_CACHE_DIR=${ZSH}/cache
 # encoding
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+# without this some CLI tools (gh cli, for instance) do not page contents
+export PAGER=less
+
+# Don’t clear the screen after quitting a manual page
+export MANPAGER="less -FX"
 
 # more powerful less config
 # https://www.topbug.net/blog/2016/09/27/make-gnu-less-more-powerful/
