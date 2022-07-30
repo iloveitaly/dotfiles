@@ -78,6 +78,7 @@ brew install git-delta # diff replacement
 brew install bat # cat, can also do paging
 brew install exa # ls
 brew install tmux reattach-to-user-namespace
+brew install urlview
 brew install tre-command
 brew install terminal-notifier # for `zsh-notify`
 brew install cod
@@ -89,6 +90,7 @@ brew install fig
 brew install dog # dig replacement
 brew install moreutils # sponge
 brew install afnanenayet/tap/diffsitter
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
 (cd ~ && curl -LO https://raw.githubusercontent.com/sindresorhus/iterm2-snazzy/master/Snazzy.itermcolors) && open ~/Snazzy.itermcolors
 
@@ -209,9 +211,6 @@ bundle config --global disable_local_branch_check true
 brew tap mongodb/brew
 brew install mongodb-compass
 brew install mongodb-community
-
-# need to reload the env to get `bundle`
-source ~/.bash_profile
 
 brew cleanup
 
