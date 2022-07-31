@@ -39,6 +39,7 @@ zinit wait lucid for \
 #   - lib/spectrum.zsh: 'spectrum_ls' alias to visually inspect colors
 zinit wait'1' lucid for \
   marzocchi/zsh-notify \
+  MichaelAquilina/zsh-autoswitch-virtualenv \
   ptavares/zsh-direnv \
   wookayin/fzf-fasd \
   ellie/atuin \
