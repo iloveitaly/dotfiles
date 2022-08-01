@@ -22,6 +22,9 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 # menu if nb items > 2
 zstyle ':completion:*' menu select=2
 
+# preview directory's content with exa when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+
 # don't show fzf unless there are more than 4 items
 zstyle ':fzf-tab:*' ignore false 4
 
@@ -31,7 +34,7 @@ zstyle ':fzf-tab:*' ignore false 4
 
 setopt interactive_comments
 setopt prompt_subst
-setopt extended_glob
+setopt extended_glob            # Allow extended matchers like ^file, etc
 setopt long_list_jobs
 setopt auto_cd
 setopt menu_complete            # Auto pick a menu match
