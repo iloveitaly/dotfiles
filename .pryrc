@@ -8,6 +8,8 @@ Pry.commands.alias_command 's', 'step'
 Pry.commands.alias_command 'n', 'next'
 Pry.commands.alias_command 'q', 'exit-program'
 Pry.commands.alias_command 'bt', 'pry-backtrace'
+Pry.commands.alias_command 'ss', 'stack -a'
+
 # Pry.commands.alias_command '?', 'show-source'
 
 # tried using pry-clipboard; wasn't loading for me
@@ -22,8 +24,16 @@ def pbpaste
 end
 
 def locals
-  # TODO exclude magic pry variables
-  binding.local_variables
+  binding.callers[1].local_variables - [
+    :__,
+    :_,
+    :_ex_,
+    :pry_instance,
+    :_out_,
+    :_in_,
+    :_dir_,
+    :_file_,
+  ]
 end
 
 Pry::Commands.block_command 'o', 'Open current line in VS Code' do |n|
@@ -66,4 +76,10 @@ class Object
   def local_methods(obj = self)
     (obj.methods - obj.class.superclass.instance_methods).sort
   end
+end
+
+# fixes `help` output in `less`
+# https://github.com/pry/pry/pull/2207
+def (Pry::Pager::SystemPager).default_pager
+  'less -r -F -X'
 end
