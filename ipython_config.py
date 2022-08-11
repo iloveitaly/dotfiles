@@ -27,4 +27,7 @@ c.InteractiveShellApp.exec_lines.append('%autoreload 2')
 # https://stackoverflow.com/questions/50437791/ipython-magic-print-variables-on-assignment
 c.InteractiveShell.ast_node_interactivity = 'last_expr_or_assign'
 
-#%autocall
+# https://ipython.readthedocs.io/en/stable/interactive/magics.html?highlight=autocall#magic-autocall
+c.InteractiveShellApp.exec_lines.append('%autocall 1')
+
+# create alias for `!sys.exc_info()`
