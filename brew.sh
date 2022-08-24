@@ -60,6 +60,7 @@ brew install dust
 brew install rga
 # helpful dependencies for rga
 brew install pandoc poppler tesseract ffmpeg
+brew install keith/formulae/zap
 
 # shell
 brew install zsh
@@ -158,6 +159,7 @@ asdf install python 3.10.4
 # for the breakpoint() magic to work properly
 pip install ipython
 pip install ipdb
+pip install pdbr
 
 # ruby
 # 5.5 must be installed https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit
