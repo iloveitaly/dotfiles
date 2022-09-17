@@ -27,6 +27,24 @@ function gbt() {
   git checkout -b $1 --track origin/$1
 }
 
+# https://blog.takanabe.tokyo/en/2020/04/remove-squash-merged-local-git-branches/
+function git-clean-squash-and-merge() (
+  set -euo pipefail
+
+  # xargs to trim whitespace https://stackoverflow.com/questions/369758/how-to-trim-whitespace-from-a-bash-variable
+  local master_branch=$(git branch -l master main | sed 's/^* //' | xargs)
+  echo "Using $master_branch as master"
+
+  git checkout -q $master_branch
+  git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do
+    local ancestor=$(git merge-base $master_branch $branch)
+
+    if [[ $(git cherry main $(git commit-tree $(git rev-parse $branch'^{tree}') -p $ancestor -m _)) == "-"* ]]; then
+      git branch -D $branch
+    fi
+  done
+)
+
 # make a gif out of the last recorded video
 function makegif() {
   # make sure to include trailing slash
