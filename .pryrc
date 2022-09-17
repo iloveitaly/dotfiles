@@ -8,6 +8,7 @@ Pry.commands.alias_command 's', 'step'
 Pry.commands.alias_command 'n', 'next'
 Pry.commands.alias_command 'q', 'exit-program'
 Pry.commands.alias_command 'bt', 'pry-backtrace'
+# TODO: ideally `main` at the top of the stack is cut off
 Pry.commands.alias_command 'ss', 'stack -a'
 
 # Pry.commands.alias_command '?', 'show-source'
@@ -46,14 +47,12 @@ Pry::Commands.block_command 'clast', 'History copy to clipboard' do |n|
   pbcopy pry_instance.input_ring[n ? n.to_i : -1]
 end
 
-Pry::Commands.block_command "copy", "Copy to clipboard" do |str|
-  unless str
-    str = "#{pry_instance.input_ring[-1]}#=> #{pry_instance.last_result}\n"
-  end
+Pry::Commands.block_command 'copy', 'Copy to clipboard' do |str|
+  str ||= "#{pry_instance.input_ring[-1]}#=> #{pry_instance.last_result}\n"
   pbcopy str
 end
 
-Pry::Commands.block_command "lastcopy", "Last result copy to clipboard" do
+Pry::Commands.block_command 'lastcopy', 'Last result copy to clipboard' do
   pbcopy pry_instance.last_result.chomp
 end
 
