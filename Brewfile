@@ -41,6 +41,7 @@ brew "yank"
 brew "tldr"
 brew "fasd"
 brew "fzf"
+brew "bc" # used by git-fuzzy
 brew "diff-so-fancy" # diff replacement
 brew "git-delta" # diff replacement
 brew "bat" # cat, can also do paging
