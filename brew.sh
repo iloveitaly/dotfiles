@@ -17,33 +17,6 @@ brew update && brew upgrade && brew cleanup
 
 brew bundle
 
-# Everything else
-brew install git
-brew install lynx
-brew install rename
-brew install wget
-brew install ngrep # network grep
-brew install optipng
-brew install iftop
-brew install lftp
-brew install hub
-brew install httpie
-brew install awscli
-brew install ansible
-brew install heroku/brew/heroku
-brew install cloc # code analytics
-brew install jq
-brew install q # sql on csv
-brew install dsq # sql over json and other formats
-brew install yq # yq for yaml and others
-brew install dasel # consistent language for extracting data from XML, CSV, and others. No aggregates.
-brew install brimdata/tap/zq # faster/better jq, has aggregates
-brew install hey
-brew install gh
-brew install htmlq
-brew install xsv
-brew install dust
-
 # macos
 # some of these tools are strictly terminal related, but do not play well with linux/codespaces
 brew install ffmpeg gifsicle
@@ -62,32 +35,6 @@ brew install fig
 brew install ngrok
 
 # shell
-brew install zsh
-brew install ripgrep
-brew install entr
-brew install prettyping
-brew install less
-brew install nano
-brew install fd # find
-brew install yank
-brew install tldr
-brew install fasd
-brew install fzf
-brew install diff-so-fancy # diff replacement
-brew install git-delta # diff replacement
-brew install bat # cat, can also do paging
-brew install exa # ls
-brew install tmux reattach-to-user-namespace
-brew install urlview
-brew install tre-command
-brew install terminal-notifier # for `zsh-notify`
-brew install zinit
-brew install procs # ps
-brew install sd # sed
-brew install svn # for `zinit ice svn`
-brew install dog # dig replacement
-brew install moreutils # sponge
-brew install afnanenayet/tap/diffsitter
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
 (cd ~ && curl -LO https://raw.githubusercontent.com/sindresorhus/iterm2-snazzy/master/Snazzy.itermcolors) && open ~/Snazzy.itermcolors
