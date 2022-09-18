@@ -15,52 +15,51 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # Make sure we’re using the latest Homebrew, and upgrade any already-installed formulae
 brew update && brew upgrade && brew cleanup
 
-# systems
-brew install node
+brew bundle
 
 # Everything else
-brew install mackup
-brew install mas
 brew install git
 brew install lynx
 brew install rename
-brew install tree
-brew install imagemagick
 brew install wget
-brew install ngrep
-brew install linklint
-brew install duti
+brew install ngrep # network grep
 brew install optipng
-brew install hub
 brew install iftop
-brew install webkit2png
-brew install jq
-brew install ngrok
 brew install lftp
-brew install gist
-brew install spoof-mac
+brew install hub
 brew install httpie
 brew install awscli
 brew install ansible
 brew install heroku/brew/heroku
-brew install cloc
-brew install ffmpeg gifsicle
+brew install cloc # code analytics
+brew install jq
 brew install q # sql on csv
 brew install dsq # sql over json and other formats
 brew install yq # yq for yaml and others
 brew install dasel # consistent language for extracting data from XML, CSV, and others. No aggregates.
 brew install brimdata/tap/zq # faster/better jq, has aggregates
-brew install free-ruler
-brew install saulpw/vd/visidata
 brew install hey
 brew install gh
 brew install htmlq
 brew install xsv
 brew install dust
+
+# macos
+# some of these tools are strictly terminal related, but do not play well with linux/codespaces
+brew install ffmpeg gifsicle
+brew install mackup
+brew install duti
+brew install spoof-mac
+brew install free-ruler
+brew install keith/formulae/zap
+brew install mas
+brew install webkit2png
 brew install rga
 # helpful dependencies for rga
 brew install pandoc poppler tesseract ffmpeg
-brew install keith/formulae/zap
+brew install saulpw/vd/visidata # had trouble installing on linux
+brew install fig
+brew install ngrok
 
 # shell
 brew install zsh
@@ -82,12 +81,10 @@ brew install tmux reattach-to-user-namespace
 brew install urlview
 brew install tre-command
 brew install terminal-notifier # for `zsh-notify`
-brew install cod
 brew install zinit
 brew install procs # ps
 brew install sd # sed
 brew install svn # for `zinit ice svn`
-brew install fig
 brew install dog # dig replacement
 brew install moreutils # sponge
 brew install afnanenayet/tap/diffsitter
@@ -102,6 +99,7 @@ curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
 # however, I can remap this via macos config. TODO would be great to move this over to `osx.sh`
 # https://www.intego.com/mac-security-blog/how-to-make-custom-keyboard-shortcuts-for-any-macos-menu-items-and-to-launch-your-favorite-apps/
 
+# set zsh as default shell
 # https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
 sudo dscl . -create $HOME UserShell /opt/homebrew/bin/zsh
 
@@ -137,9 +135,10 @@ memory_limit=1024M
 
 brew install wp-cli
 
+# TODO use `asdf` to install node
+
 # node
 # remember to use `npx npkill` to remove unneeded `node_modules` folders
-# TODO use `asdf` to install node
 asdf plugin-add deno
 curl http://npmjs.org/install.sh | sh
 npm install -g grunt
