@@ -22,6 +22,7 @@ brew "q" # sql on csv
 brew "dsq" # sql over json and other formats
 brew "yq" # yq for yaml and others
 brew "dasel" # consistent language for extracting data from XML, CSV, and others. No aggregates.
+tap "brimdata/tap"
 brew "brimdata/tap/zq" # faster/better jq, has aggregates
 brew "hey"
 brew "gh"
@@ -54,7 +55,7 @@ brew "terminal-notifier" # for `zsh-notify`
 brew "zinit"
 brew "procs" # ps
 brew "sd" # sed
-# brew "svn" # for `zinit ice svn`
+brew "svn" # for `zinit ice svn`
 brew "dog" # dig replacement
 brew "moreutils" # sponge
 
