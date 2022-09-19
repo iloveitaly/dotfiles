@@ -1,5 +1,12 @@
-Pry.config.editor = 'nano'
+# Pry.config.input = Reline
 
+begin
+  require 'pry-doc'
+rescue LoadError
+  nil
+end
+
+Pry.config.editor = 'nano'
 Pry.config.skip_cruby_source = true
 
 # @ = whereami by default
@@ -25,15 +32,15 @@ def pbpaste
 end
 
 def locals
-  binding.callers[1].local_variables - [
-    :__,
-    :_,
-    :_ex_,
-    :pry_instance,
-    :_out_,
-    :_in_,
-    :_dir_,
-    :_file_,
+  binding.callers[1].local_variables - %i[
+    __
+    _
+    _ex_
+    pry_instance
+    _out_
+    _in_
+    _dir_
+    _file_
   ]
 end
 
