@@ -62,8 +62,7 @@ fi
 eval $(brew shellenv)
 
 # in some environments, the package may not be available in brew
-local possible_zinit_home
-possible_zinit_home=${HOME}/.local/share/zinit/zinit.git
+local possible_zinit_home=${HOME}/.local/share/zinit/zinit.git
 if [ -f $possible_zinit_home/zinit.zsh ]; then
   ZINIT_HOME=$possible_zinit_home
   source "${ZINIT_HOME}/zinit.zsh"
@@ -84,16 +83,6 @@ for file in exports aliases functions extra; do
   local file="$HOME/.$file"
   [ -e "$file" ] && source "$file"
 done
-
-# we don't use the OMZ snippet in order to customize `j` to jump to the first selection
-# this snippet is copied from https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/fasd/fasd.plugin.zsh
-local fasd_cache="${ZSH_CACHE_DIR}/fasd-init-cache"
-if [[ "$commands[fasd]" -nt "$fasd_cache" || ! -s "$fasd_cache" ]]; then
-  # although I don't use any `posix-alias` aliases, fast_cd is defined there which I use indirectly
-  fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install \
-    zsh-wcomp zsh-wcomp-install >| "$fasd_cache"
-fi
-source "$fasd_cache"
 
 source ~/.zsh_plugins
 

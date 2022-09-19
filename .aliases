@@ -2,8 +2,8 @@
 alias cat='bat'
 alias find='fd'
 alias ls='exa -l --group-directories-first'
-alias j='fasd_cd -d -0'
-alias jj='zz'
+alias j='z'
+alias jj='zi'
 alias ff="fzf --preview='bat --color=always {}' --bind='space:toggle-preview'"
 alias tree='tre'
 

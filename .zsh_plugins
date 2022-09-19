@@ -41,7 +41,7 @@ zinit wait'1' lucid for \
   marzocchi/zsh-notify \
   MichaelAquilina/zsh-autoswitch-virtualenv \
   ptavares/zsh-direnv \
-  wookayin/fzf-fasd \
+  ajeetdsouza/zoxide \
   ellie/atuin \
   djui/alias-tips \
   chrissicool/zsh-256color \

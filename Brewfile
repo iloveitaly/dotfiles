@@ -40,7 +40,7 @@ brew "nano"
 brew "fd" # find
 brew "yank"
 brew "tldr"
-brew "fasd"
+brew "zoxide"
 brew "fzf"
 brew "bc" # used by git-fuzzy
 brew "diff-so-fancy" # diff replacement
