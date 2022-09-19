@@ -13,3 +13,9 @@ rsync --exclude ".git/" \
       -av . ~
 
 brew bundle
+
+# TODO run zinit
+
+# https://cs.github.com/justincampbell/.dotfiles/blob/c8a8d72f49c6e66dc1dded2ada283aa50e35537f/install-codespaces.sh
+git config --global credential.helper /.codespaces/bin/gitcredential_github.sh
+git config --global gpg.program /.codespaces/bin/gh-gpgsign
