@@ -9,6 +9,8 @@ EditorConfig.EditorConfig
 errata-ai.vale-server
 esbenp.prettier-vscode
 ezforo.copy-relative-path-and-line-numbers
+github.copilot-labs
+github.copilot-nightly
 GitHub.vscode-pull-request-github
 hashicorp.terraform
 Hridoy.rails-snippets
@@ -34,10 +36,8 @@ sleistner.vscode-fileutils
 streetsidesoftware.code-spell-checker
 timonwong.shellcheck
 v4run.transpose
+wayou.vscode-todo-highlight
 wingrunr21.vscode-ruby
 wmaurer.change-case
 zhuangtongfa.material-theme
 ziyasal.vscode-open-in-github
-wayou.vscode-todo-highlight
-github.copilot-nightly
-github.copilot-labs
