@@ -38,3 +38,6 @@ wingrunr21.vscode-ruby
 wmaurer.change-case
 zhuangtongfa.material-theme
 ziyasal.vscode-open-in-github
+wayou.vscode-todo-highlight
+github.copilot-nightly
+github.copilot-labs
