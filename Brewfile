@@ -58,6 +58,7 @@ brew "sd" # sed
 brew "svn" # for `zinit ice svn`
 brew "dog" # dig replacement
 brew "moreutils" # sponge
+brew "xplr" # file management
 
 # == Experimental
 tap "afnanenayet/tap"
