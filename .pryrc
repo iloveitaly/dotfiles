@@ -28,7 +28,29 @@ def pbcopy(str)
 end
 
 def pbpaste
-	IO.popen('pbpaste') {|clipboard| clipboard.read}
+  IO.popen('pbpaste') { |clipboard| clipboard.read }
+end
+
+def reload!
+  root_dir = if defined?(Rails)
+               Rails.root
+             else
+               # TODO: this will not be accurate for non-rails projects!
+               File.expand_path('..', __dir__)
+  end
+
+  # Directories within the project that should be reloaded.
+  reload_dirs = %w[lib]
+  # Loop through and reload every file in all relevant project directories.
+  reload_dirs.each do |dir|
+    Dir.glob("#{root_dir}/#{dir}/**/*.rb").each do |f|
+      load(f)
+    rescue StandardError
+      puts "error reloading file #{f}"
+    end
+  end
+
+  true
 end
 
 def locals
