@@ -32,12 +32,13 @@ def pbpaste
 end
 
 def reload!
-  root_dir = if defined?(Rails)
-               Rails.root
-             else
-               # TODO: this will not be accurate for non-rails projects!
-               File.expand_path('..', __dir__)
-  end
+  # TODO: this will not be accurate for non-rails projects!
+  root_dir = File.expand_path('..', __dir__)
+
+  root_dir = Rails.root if defined?(Rails)
+
+  verbose = $VERBOSE
+  $VERBOSE = nil
 
   # Directories within the project that should be reloaded.
   reload_dirs = %w[lib]
@@ -49,6 +50,8 @@ def reload!
       puts "error reloading file #{f}"
     end
   end
+
+  $VERBOSE = verbose
 
   true
 end
