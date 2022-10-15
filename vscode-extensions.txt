@@ -32,7 +32,6 @@ idleberg.applescript
 JakeBecker.elixir-ls
 kaiwood.endwise
 lextudio.restructuredtext
-lindraupe.aw-watcher-vscode
 mechatroner.rainbow-csv
 mikestead.dotenv
 mjmcloug.vscode-elixir
