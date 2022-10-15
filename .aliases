@@ -1,5 +1,5 @@
 # replace common utilities with some improved replacements
-alias cat='bat'
+alias cat='bat --wrap=never'
 alias find='fd'
 alias ls='exa -l --group-directories-first'
 alias j='z'
