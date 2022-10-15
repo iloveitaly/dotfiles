@@ -92,6 +92,7 @@ brew install --cask appcleaner
 brew install --cask logitech-options
 brew install --cask karabiner-elements
 brew install --cask insomnia
+brew install mysteriumvpn
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew install --cask --no-quarantine qlmarkdown \
