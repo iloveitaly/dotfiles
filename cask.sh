@@ -12,7 +12,6 @@ brew install --cask dozer
 brew install --cask 1password
 brew install --cask 1password-cli
 brew install --cask google-drive
-brew install --cask istat-menus
 brew install --cask iterm2
 brew install --cask slack
 brew install --cask amazon-music
@@ -93,6 +92,7 @@ brew install --cask logitech-options
 brew install --cask karabiner-elements
 brew install --cask insomnia
 brew install mysteriumvpn
+brew install stats
 
 # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
 brew install --cask --no-quarantine qlmarkdown \
