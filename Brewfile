@@ -3,6 +3,7 @@
 
 # == General Utilities
 brew "git"
+brew "vim"
 brew "lynx"
 brew "rename"
 brew "wget"
@@ -12,6 +13,9 @@ brew "iftop"
 brew "lftp"
 brew "hub"
 brew "httpie"
+brew "ncdu"
+brew "curl"
+brew "awk" # in codespaces, the default version is especially strange
 brew "awscli"
 brew "ansible"
 tap "heroku/brew"
@@ -63,3 +67,5 @@ brew "xplr" # file management
 # == Experimental
 tap "afnanenayet/tap"
 brew "afnanenayet/tap/diffsitter"
+tap "noahgorstein/tap"
+brew "noahgorstein/tap/jqp"
