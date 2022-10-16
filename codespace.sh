@@ -20,7 +20,12 @@ zsh -c "zinit update --parallel"
 # https://cs.github.com/justincampbell/.dotfiles/blob/c8a8d72f49c6e66dc1dded2ada283aa50e35537f/install-codespaces.sh
 git config --global credential.helper /.codespaces/bin/gitcredential_github.sh
 git config --global gpg.program /.codespaces/bin/gh-gpgsign
+
 git config --global diff.tool vscode
+git config --global --unset user.signingkey
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
 
 # continue even if some extensions cannot be installed on codespaces
 cat vscode-extensions.txt | xargs -i zsh -c "code --install-extension {} || true"
