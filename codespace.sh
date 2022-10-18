@@ -14,8 +14,8 @@ rsync --exclude ".git/" \
 
 brew bundle
 
-# run zinit
-zsh -c "zinit update --parallel"
+# run zinit to install all plugins
+zsh -c "source ~/.zshrc && zinit update --parallel"
 
 # https://cs.github.com/justincampbell/.dotfiles/blob/c8a8d72f49c6e66dc1dded2ada283aa50e35537f/install-codespaces.sh
 git config --global credential.helper /.codespaces/bin/gitcredential_github.sh
