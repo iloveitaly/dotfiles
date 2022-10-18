@@ -22,10 +22,11 @@ git config --global credential.helper /.codespaces/bin/gitcredential_github.sh
 git config --global gpg.program /.codespaces/bin/gh-gpgsign
 
 git config --global diff.tool vscode
+
+# in a codespace, GPG is signed using some sort of HTTP service via github, not your local
+# machine's GPG key
 git config --global --unset user.signingkey
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# TODO this does not seem to work properly unless run as root?
 curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
-
-# continue even if some extensions cannot be installed on codespaces
-cat vscode-extensions.txt | xargs -i zsh -c "code --install-extension {} || true"
