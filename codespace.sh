@@ -15,7 +15,7 @@ rsync --exclude ".git/" \
 brew bundle
 
 # run zinit to install all plugins
-zsh -c "source ~/.zshrc && zinit update --parallel"
+zsh -lc "source ~/.zshrc && zinit update --parallel"
 
 # https://cs.github.com/justincampbell/.dotfiles/blob/c8a8d72f49c6e66dc1dded2ada283aa50e35537f/install-codespaces.sh
 git config --global credential.helper /.codespaces/bin/gitcredential_github.sh
@@ -31,5 +31,5 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # TODO this does not seem to work properly unless run as root?
 curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
 
-# set zsh as the default shell
+# set zsh as the default shell, the vscode setting does not seem to work on first run
 sudo chsh -s "$(which zsh)" "$(whoami)"
