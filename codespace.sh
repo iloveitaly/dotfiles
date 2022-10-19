@@ -30,3 +30,6 @@ git config --global --unset user.signingkey
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # TODO this does not seem to work properly unless run as root?
 curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
+
+# set zsh as the default shell
+sudo chsh -s "$(which zsh)" "$(whoami)"
