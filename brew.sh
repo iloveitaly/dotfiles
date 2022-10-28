@@ -160,6 +160,13 @@ brew tap mongodb/brew
 brew install mongodb-compass
 brew install mongodb-community
 
+# let programs that don't properly source the shell know where gpg is
+# https://github.com/denolehov/obsidian-git/issues/21
+git config --global gpg.program $(which gpg)
+
+# easily create new codespaces for a repo
+gh alias set cs-create --shell 'gh cs create --repo $(gh repo view --json nameWithOwner | jq -r .nameWithOwner)'
+
 brew cleanup
 
 # setup default extension handlers
