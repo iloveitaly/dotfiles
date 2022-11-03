@@ -106,6 +106,7 @@ asdf install python 3.10.4
 pip install ipython
 pip install ipdb
 pip install pdbr
+pip install ipython-autoimport
 
 # ruby
 # 5.5 must be installed https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit
