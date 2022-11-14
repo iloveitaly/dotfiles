@@ -36,3 +36,6 @@ cp ipython_config.py ~/.ipython/profile_default/
 # block distracting websites. More info: http://mikebian.co/how-to-block-distracting-websites-on-your-laptop/
 sed '/^$/d' ./distracting_websites.txt | sed -E $'s/\(.*\)/127.0.0.1  \\1\\\n127.0.0.1  www.\\1/' > ~/distracting_sites.txt
 sudo -E `asdf which node` `asdf which hostile` load ~/distracting_sites.txt
+
+# setup default extension handlers
+duti < ./duti

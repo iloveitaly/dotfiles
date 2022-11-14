@@ -103,10 +103,7 @@ asdf plugin-add python
 asdf install python 3.10.4
 # note: for each python version installed, you'll need to do this
 # for the breakpoint() magic to work properly
-pip install ipython
-pip install ipdb
-pip install pdbr
-pip install ipython-autoimport
+pip install ipython ipdb pdbr ipython-autoimport rich
 
 # ruby
 # 5.5 must be installed https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit
@@ -169,6 +166,3 @@ git config --global gpg.program $(which gpg)
 gh alias set cs-create --shell 'gh cs create --repo $(gh repo view --json nameWithOwner | jq -r .nameWithOwner)'
 
 brew cleanup
-
-# setup default extension handlers
-duti < ./duti
