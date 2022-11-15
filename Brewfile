@@ -21,7 +21,7 @@ brew "ansible"
 tap "heroku/brew"
 brew "heroku/brew/heroku"
 brew "cloc" # code analytics
-brew "jq"
+brew "jq" # json extraction
 brew "q" # sql on csv
 brew "dsq" # sql over json and other formats
 brew "yq" # yq for yaml and others
@@ -31,8 +31,7 @@ brew "brimdata/tap/zq" # faster/better jq, has aggregates
 brew "hey"
 brew "gh"
 brew "htmlq"
-brew "xsv"
-brew "dust"
+brew "xsv" # csv tooling
 
 # == Shell productivity utilities
 brew "zsh"
@@ -63,6 +62,7 @@ brew "svn" # for `zinit ice svn`
 brew "dog" # dig replacement
 brew "moreutils" # sponge
 brew "xplr" # file management
+brew "dust" # du replacement
 
 # == Experimental
 tap "afnanenayet/tap"
