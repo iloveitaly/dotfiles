@@ -14,6 +14,10 @@ mas install 1456226992 # CurrentKey Stats
 mas install 588726889 # ReadKit
 mas install 963034692 # Streaks
 mas install 1172053162 # Webcam Control
+mas install 517602535   # Baby Monitor
+mas install 497799835   # Xcode
+mas install 1565701763  # AudioWrangler
+mas install 963034692   # Streaks
 
 # safari extensions
 mas install 1180442868 # SmileAllDay
