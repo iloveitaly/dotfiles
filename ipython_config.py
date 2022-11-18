@@ -4,6 +4,9 @@
 # examples:
 #  - https://github.com/YaBoiBurner/dotfiles/blob/dom/.config/ipython/profile_default/ipython_config.py
 
+# get last output
+# %history -l 1
+
 c = get_config()
 
 # stop asking me if I really want to c-D
