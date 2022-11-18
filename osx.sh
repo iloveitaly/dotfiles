@@ -25,9 +25,6 @@ sudo scutil --set HostName $COMPUTER_NAME
 sudo scutil --set LocalHostName $COMPUTER_NAME
 sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $COMPUTER_NAME
 
-# set custom DNS servers (google)
-networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4
-
 # Set standby delay to 24 hours (default is 1 hour)
 sudo pmset -a standbydelay 86400
 
@@ -35,7 +32,7 @@ sudo pmset -a standbydelay 86400
 sudo nvram SystemAudioVolume=" "
 
 # Disable transparency in the menu bar and elsewhere on Yosemite
-defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
+defaults write com.apple.universalaccess reduceTransparency -bool true
 
 # Menu bar: hide the Time Machine, Volume, and User icons
 for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
@@ -65,6 +62,9 @@ defaults write com.apple.universalaccess showWindowTitlebarIcons -bool true
 
 # Disable the over-the-top focus ring animation
 defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
+
+# Adjust toolbar title rollover delay
+defaults write NSGlobalDomain NSToolbarTitleViewRolloverDelay -float 0
 
 # Disable smooth scrolling
 defaults write -g NSScrollAnimationEnabled -bool false
@@ -146,9 +146,6 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 
 # Disable smart dashes as they’re annoying when typing code
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
-
-# Disable auto-correct
-defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 ###############################################################################
 # SSD-specific tweaks                                                         #
@@ -433,6 +430,9 @@ defaults write com.apple.dock showLaunchpadGestureEnabled -int 0
 # Don't show recently used applications in the Dock
 defaults write com.Apple.Dock show-recents -bool false
 
+dockutil --no-restart --add ~/Downloads --sort dateadded --display folder --view list
+dockutil --no-restart --add ~/Documents --sort name --display folder --view list
+
 # Reset Launchpad, but keep the desktop wallpaper intact
 find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
 
@@ -440,6 +440,11 @@ find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -dele
 #defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
 # Add a spacer to the right side of the Dock (where the Trash is)
 #defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}'
+
+# Disable keyboard shortcuts for Mission Control
+/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:79:enabled NO" ~/Library/Preferences/com.apple.symbolichotkeys.plist
+/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:80:enabled NO" ~/Library/Preferences/com.apple.symbolichotkeys.plist
+/usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:81:enabled NO" ~/Library/Preferences/com.apple.symbolichotkeys.plist
 
 # Hot corners
 # Top left screen corner → Mission Control
@@ -451,6 +456,38 @@ find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -dele
 # Bottom left screen corner → Start screen saver
 # defaults write com.apple.dock wvous-bl-corner -int 5
 # defaults write com.apple.dock wvous-bl-modifier -int 0
+
+###############################################################################
+# Zoom
+###############################################################################
+
+killall Zoom
+sudo launchctl unload /Library/LaunchDaemons/us.zoom.ZoomDaemon.plist
+
+defaults write us.zoom.xos zDisableVideo -bool true
+defaults write us.zoom.xos zUse720PByDefault -bool true
+defaults write us.zoom.xos MuteVoipWhenJoin -bool true
+
+# TODO keyboard shortcuts
+defaults write com.apple.finder FXInfoPanesExpanded -dict \
+	General -bool true \
+	OpenWith -bool true \
+	Privileges -bool true
+
+# TODO General > use dual monitors
+# TODO General > Show meeting duration
+# TODO always show names
+# TODO explode out videos from the primary area
+
+# ~/Library/DoNotDisturb/DB/ModeConfigurations.json
+# do not share focus status on multiple devices, this will prevent notifications from appearing
+# if you are a heavy DND user on ios
+defaults write com.apple.donotdisturbd disableCloudSync -bool true
+defaults write com.apple.notificationcenterui bannerTime 30
+# TODO disable notifications https://cs.github.com/tiiiecherle/osx_install_config/blob/67f7d618ace45f39f51d96c685ed027a84f48e38/_config_file/shellscriptsrc.sh?q=APPLICATIONS_TO_SET_NOTIFICATIONS#L1155
+# TODO schedule shutdown energy saver
+# open ~/Library/Preferences/com.apple.ncprefs.plist for noticiation center setup
+# Sys Prefs > Notification Center > Allow notifications: click all
 
 ###############################################################################
 # Safari & WebKit                                                             #
@@ -514,49 +551,10 @@ defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool fals
 defaults write com.apple.Safari ShowFavoritesUnderSmartSearchField 0
 
 # Disable AutoFill
-defaults write com.apple.Safari AutoFillFromAddressBook -bool false
+defaults write com.apple.Safari AutoFillFromAddressBook -bool true
 defaults write com.apple.Safari AutoFillPasswords -bool false
 defaults write com.apple.Safari AutoFillCreditCardData -bool false
 defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
-
-###############################################################################
-# iTunes                                                                      #
-###############################################################################
-
-# Disable the iTunes store link arrows
-defaults write com.apple.iTunes show-store-link-arrows -bool false
-
-# Disable the Genius sidebar in iTunes
-defaults write com.apple.iTunes disableGeniusSidebar -bool true
-
-# Disable the Ping sidebar in iTunes
-defaults write com.apple.iTunes disablePingSidebar -bool true
-
-# Disable all the other Ping stuff in iTunes
-defaults write com.apple.iTunes disablePing -bool true
-
-# Disable radio stations in iTunes
-defaults write com.apple.iTunes disableRadio -bool true
-
-# Make ⌘ + F focus the search input in iTunes
-# To use these commands in another language, browse iTunes’s package contents,
-# open `Contents/Resources/your-language.lproj/Localizable.strings`, and look
-# for `kHiddenMenuItemTargetSearch`.
-defaults write com.apple.iTunes NSUserKeyEquivalents -dict-add "Target Search Field" "@F"
-
-###############################################################################
-# Mail                                                                        #
-###############################################################################
-
-# Disable send and reply animations in Mail.app
-defaults write com.apple.mail DisableReplyAnimations -bool true
-defaults write com.apple.mail DisableSendAnimations -bool true
-
-# Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
-defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
-
-# Add the keyboard shortcut ⌘ + Enter to send an email in Mail.app
-# defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\\U21a9"
 
 ###############################################################################
 # Terminal                                                                    #
@@ -704,9 +702,12 @@ defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool t
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Dropbox.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Dash.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Stay.app", hidden:true}'
-osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Fantastical 2.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Rectangle.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Raycast.app", hidden:true}'
+osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Karabiner-Elements.app", hidden:true}'
+osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Muzzle.app", hidden:true}'
+osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/MonitorControl.app", hidden:true}'
+osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/iStat Menus.app", hidden:true}'
 
 ###############################################################################
 # Kill affected applications                                                  #
@@ -714,10 +715,10 @@ osascript -e 'tell application "System Events" to make login item at end with pr
 
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
 	"Dock" "Finder" "Google Chrome" "Google Chrome Canary" "Messages" \
-	"Photos" "Safari" "SpectRectangleacle" "SystemUIServer" "Terminal" \
-	"Twitter" "iCal"; do
+	"Photos" "Safari" "SystemUIServer" "Terminal" "iCal" "NotificationCenter"; do
 	killall "${app}" &> /dev/null
 done
+
 echo "Done. Note that some of these changes require a logout/restart to take effect."
 
 # TODO enable TRIM on SSD
