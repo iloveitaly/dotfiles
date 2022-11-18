@@ -97,6 +97,7 @@ bindkey '^x^e' edit-command-line
 
 # save current command in buffer & restore after next command is run
 # https://unix.stackexchange.com/a/74381
+# TODO what is the binding here? ctrl+s isn't working for me
 bindkey "^s" push-input
 
 # ===========
