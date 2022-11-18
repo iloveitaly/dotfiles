@@ -1,0 +1,76 @@
+{
+  "$schema": "https://raw.githubusercontent.com/iloveitaly/hyper-focus/main/schema.json",
+  "initial_wake": "~/.config/focus/initial_wake.sh",
+  "wake": "~/.config/focus/wake.sh",
+  "schedule": [
+    {
+      "start": 0,
+      "end": 12,
+      "name": "morning focus",
+      "block_hosts": [
+        "mail.google.com",
+        "news.ycombinator.com",
+        "twitter.com",
+        "feedbin.com",
+        "linkedin.com",
+        "youtube.com",
+
+        "airbnb.com",
+        "my.lunchmoney.app",
+        "cigna.com",
+        "amazon.com",
+        "smile.amazon.com",
+        "alliantcreditunion.com",
+        "chase.com",
+        "costco.com"
+      ],
+      "block_urls": [
+        "https://www.google.com/search?q=world+news",
+        "https://www.google.com/search?tbm=nws",
+        "https://www.google.com/search?tbm=shop",
+        "https://www.google.com/search?q=vti",
+        "https://www.google.com/search?q=vxus",
+        "https://www.google.com/search?q=vteb"
+      ],
+      "block_apps": [
+        "Slack",
+        "Texts",
+        "Messages",
+        "Discord",
+        "Podcasts",
+        "Zoom",
+        "Discord",
+        "Amazon Music",
+        "Cron",
+        "Gmail",
+        "ReadKit"
+      ]
+    },
+    {
+      "name": "scheduling",
+      "block_hosts": [],
+      "block_apps": [],
+      "block_urls": []
+    },
+    {
+      "name": "family chores",
+      "block_hosts": [],
+      "block_apps": [],
+      "block_urls": []
+    },
+    {
+      "name": "standard focus",
+      "start": 12,
+      "end": 24,
+      "block_hosts": [
+        "twitter.com",
+        "feedbin.com",
+        "my.lunchmoney.com",
+        "linkedin.com",
+        "mail.google.com"
+      ],
+      "block_urls": [],
+      "block_apps": ["ReadKit"]
+    }
+  ]
+}
