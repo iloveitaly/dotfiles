@@ -1,0 +1,86 @@
+- [ ] https://getpingr.app
+- [ ] cross platform clipboard https://github.com/atotto/clipboard maybe for tmux on codespace
+- [ ] https://www.thunderclient.com postman vs code plugin
+- [ ] https://hoppscotch.io another postman alternative
+- [ ] alias gh alias set cs-create --shell 'gh cs create --repo $(gh repo view --json nameWithOwner | jq -r .nameWithOwner)'
+- [ ] zle clipboard integration https://github.com/kutsan/zsh-system-clipboard
+- [ ] store signatures somehow?
+- [ ] faster docker https://notes.alexkehayias.com/mutagen-greatly-speeds-up-docker-on-macos/
+- [ ] csv as sql https://github.com/roapi/roapi/blob/main/columnq-cli/README.md
+- [ ] https://github.com/jesseduffield/lazygit
+- [ ] maybe fix for enhanced https://github.com/Aloxaf/fzf-tab/issues/221#event-7144392149
+- [ ] vim mode for zsh https://stackoverflow.com/questions/58187542/how-to-setup-vi-editing-mode-for-zsh
+- [ ] https://github.com/Aloxaf/fzf-tab/wiki/Configuration more style customizations
+- [ ] try out b4b4r07/enhancd again, felt like fzf-tab was just as good
+- [ ] give cod another shot dim-an/cod
+- [ ] shortcut, where are these? https://www.icloud.com/shortcuts/f2f351b0c7a24af5ac9616def7708629
+- [ ] how to execute a widget directly? https://unix.stackexchange.com/questions/620958/what-are-zsh-commands-for-cut-copy-paste
+- [ ] https://github.com/marlonrichert/zsh-edit clipboard yank; https://unix.stackexchange.com/questions/620958/what-are-zsh-commands-for-cut-copy-paste
+- [ ] localhost named domains https://www.npmjs.com/package/chalet
+- [ ] "Limit IP Address Tracking" defaults write https://cs.github.com/?scopeName=All+repos&scope=&q=lang%3Ashell+ip+tracking+%28path%3A*macos*+OR+path%3A*osx*%29
+- [ ] https://joeyh.name/code/moreutils/?utm_source=hackernewsletter&utm_medium=email&utm_term=code
+- [ ] https://news.ycombinator.com/item?id=31075608 diff3 style
+- [ ] https://github.com/lotabout/skim
+- [ ] ngrok alternative https://github.com/ekzhang/bore
+- [ ] https://www.commands.dev
+- [ ] https://jvns.ca/blog/2022/04/12/a-list-of-new-ish--command-line-tools/?utm_source=hackernewsletter&utm_medium=email&utm_term=fav
+- [ ] add shellcheck github workflows
+- [ ] tail-like utility https://www.kylheku.com/cgit/pw/tree/pw.1
+- [ ] integrate shell history with fzf https://github.com/ellie/atuin/issues/68#issuecomment-1110691288
+- [ ] https://c-command.com/toothfairy/
+- [ ] dbalatero/dotfiles has some really interesting hammerspoon stuff
+- [ ] https://github.com/ttscoff/KeyBindings or something like https://ke-complex-modifications.pqrs.org/?q=delete%20line
+- [ ] neat sql lite tooling https://sqlite-utils.datasette.io/en/stable/index.html?utm_source=hackernewsletter&utm_medium=email&utm_term=data
+- [ ] this fixed the weird scrolling issues with logitech mx https://www.laptopmag.com/articles/logitech-scroll-wheel-not-working-macos-mojave
+- [ ] https://github.com/peterhajas/dotfiles investigate
+- [ ] https://www.scriptkit.com has an integration with raycast
+- [ ] pull python history into ipython https://github.com/ipython/ipython/pull/13485#event-6138294679
+- [ ] https://github.com/phmullins/awesome-macos/blob/master/readme.md
+- [ ] neat rich text to md https://cs.github.com/raycast/script-commands/blob/a770b25bace6ff185d73735c18a1a70bc9345686/commands/conversions/rich-text-clipboard-to-markdown.sh
+- [ ] https://bunchapp.co
+- [ ] https://github.com/raycast/extensions/pull/738
+- [ ] use python for shell scripts? https://github.com/CZ-NIC/pz
+- [ ] upgrade https://github.com/ellie/atuin
+- [ ] https://idiomdrottning.org/xj html to json
+- [ ] https://github.com/pqrs-org/Karabiner-Elements/issues/1241 for MX mouse
+- [ ] https://github.com/lunchbag/dotfiles
+- [ ] better VS code git diff integration; use that by default instead of kalediascope
+- [ ] https://github.com/johnkerl/miller for CSV manipulation
+- [ ] indicate a venv is loaded https://stackoverflow.com/questions/10406926/how-do-i-change-the-default-virtualenv-prompt
+- [ ] learn about ncat https://blog.ikuamike.io/posts/2021/netcat/
+- [ ] google spelling via alfred https://github.com/noahcoad/google-spell-check/blob/3c36c0bcd698fd22cbeaa34885b7969e60def75f/google-spell-check.py
+- [ ] reverse-r with atuin https://github.com/ellie/atuin/issues/68
+- [ ] https://github.com/cantino/mcfly
+- [ ] https://www.nushell.sh/book/
+- [ ] disable siri https://apple.stackexchange.com/questions/324119/how-do-you-disable-siri-permanently-on-macos-sierra-10-12-6
+- [ ] https://gist.github.com/justin808/1fe1dfbecc00a18e7f2a
+- [ ] pdfdiff https://apps.apple.com/us/app/pdf-diff/id1543607881?mt=12
+- [ ] add this to https://apple.stackexchange.com/questions/151264/warn-before-quitting-in-safari
+- [ ] mouse copying in the vs code terminal doesn't work
+- [ ] https://github.com/ambiso/alacritty/commit/68994d6c1a4f8fac34e470cc2aa021bf1a81acae looks like alacritty has a fast search function
+- [ ] alacritty font smoothing https://github.com/alacritty/alacritty/issues/4616
+- [ ] GPU powered terminal https://sw.kovidgoyal.net/kitty
+- [ ] keyboard based ui navigation https://github.com/dexterleng/vimac/
+- [ ] monitor switching via hammerspoon https://balatero.com/writings/hammerspoon/create-a-quick-monitor-input-switcher/
+- [ ] word breaks in irb https://stackoverflow.com/questions/5097919/word-boundaries-in-irb?rq=1
+- [ ] https://www.google.com/search?client=safari&rls=en&q=don%27t+show+preview+if+no+content+fzf&ie=UTF-8&oe=UTF-8
+- [ ] give histdb another shot
+- [ ] look into https://github.com/unixorn/awesome-zsh-plugins#themes
+- [ ] look into excluding node modules `fd --exclude Library -td node_modules
+- [ ] sudo defaults write /Volumes/foo/.Spotlight-V100/VolumeConfiguration.plist Exclusions -array-add '/path/to/folder` https://apple.stackexchange.com/questions/87090/how-to-programatically-add-folder-to-spotlight-do-not-index
+- [ ] https://github.com/tanin47/noo
+- [ ] https://github.com/wfxr/forgit
+- [ ] make sure https://github.com/felipec/git-completion/pull/3 is merged into gitfast
+- [ ] https://wakatime.com/pricing they have a zsh plugin. Interesting programming productivity tool.
+- [ ] window management with hammerspoon https://thume.ca/2016/07/16/advanced-hackery-with-the-hammerspoon-window-manager/
+- [ ] fzf-tab is colliding with enhancd, make sure the cd-tab overrides the fzf-tab
+- [ ] test MichaelAquilina/zsh-autoswitch-virtualenv
+- [ ] give histdb https://github.com/m42e/zsh-histdb-fzf/blob/master/fzf-histdb.zsh
+- [ ] https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/termsupport.zsh is conflicting with some of the auto-title stuff
+- [ ] pretty sure the iterm integration is conflicting with some of the other plugins
+- [ ] do we need rbenv with asdf in place? There's some neat functions here https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/rbenv/rbenv.plugin.zsh
+- [ ] more fine grained word jump like an editor
+- [ ] only allow one vs code editor group to open up a given file
+
+* larkery/zsh-histdb doesn't play well with ff additions, also requires too much hacking to be simple
+  * specifically, we should detect OS X and change the sed functionality https://stackoverflow.com/questions/394230/how-to-detect-the-os-from-a-bash-script
