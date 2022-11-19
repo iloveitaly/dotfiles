@@ -53,13 +53,14 @@ setopt hist_save_no_dups        # Omit older commands in favor of newer ones.
 # Evals
 # =============
 
+export PATH="/opt/homebrew/bin:$PATH"
+eval $(brew shellenv)
+
 # iterm is only on macos
 # https://www.iterm2.com/documentation-shell-integration.html
 if [[ -f ~/.iterm2_shell_integration.zsh ]]; then
   source ~/.iterm2_shell_integration.zsh
 fi
-
-eval $(brew shellenv)
 
 # in some environments, the package may not be available in brew
 local possible_zinit_home=${HOME}/.local/share/zinit/zinit.git
