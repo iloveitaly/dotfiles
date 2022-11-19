@@ -84,6 +84,7 @@ if OS.mac?
     brew "lunchy"
     brew "youtube-dl"
     brew "gpg"
+    brew "pinentry-mac"
 
     cask "google-chrome"
     cask "dropbox"
@@ -117,8 +118,6 @@ if OS.mac?
     cask "postico"
     cask "kindle"
     cask "wordpresscom"
-    cask "gpg-suite" # required for passphrase entry
-    cask "pinentry-mac"
     cask "gimp"
     cask "grammarly"
     cask "launchcontrol"
