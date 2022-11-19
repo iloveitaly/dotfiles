@@ -9,7 +9,16 @@
 #   - SSH and GPG
 #   - Enable location services
 #   - Add '~/Projects' to Spotlight exclusion to avoid matching against node_modules
-
+#   - Slack setup. Login under various emails.
+#   - Discord
+#   - Some zoom configuration doesn't copy over:
+#       * General > use dual monitors
+#       * General > Show meeting duration
+#       * Video > Hide Self View
+#       * Video > Always show participant name on the video
+#       * Audio > Mute my mic when joining a meeting
+#       * Show meeting duration
+# # TODO explode out videos from the primary area
 mackup backup
 
 # backup vscode config
