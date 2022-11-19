@@ -158,14 +158,11 @@ sudo tmutil disablelocal
 sudo pmset -a hibernatemode 0
 
 # Remove the sleep image file to save disk space
-sudo rm /Private/var/vm/sleepimage
+sudo rm /private/var/vm/sleepimage
 # Create a zero-byte file instead…
-sudo touch /Private/var/vm/sleepimage
+sudo touch /private/var/vm/sleepimage
 # …and make sure it can’t be rewritten
-sudo chflags uchg /Private/var/vm/sleepimage
-
-# Disable the sudden motion sensor as it’s not useful for SSDs
-sudo pmset -a sms 0
+sudo chflags uchg /private/var/vm/sleepimage
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
@@ -430,9 +427,6 @@ defaults write com.apple.dock showLaunchpadGestureEnabled -int 0
 # Don't show recently used applications in the Dock
 defaults write com.Apple.Dock show-recents -bool false
 
-dockutil --no-restart --add ~/Downloads --sort dateadded --display folder --view list
-dockutil --no-restart --add ~/Documents --sort name --display folder --view list
-
 # Reset Launchpad, but keep the desktop wallpaper intact
 find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
 
@@ -457,33 +451,18 @@ find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -dele
 # defaults write com.apple.dock wvous-bl-corner -int 5
 # defaults write com.apple.dock wvous-bl-modifier -int 0
 
-###############################################################################
-# Zoom
-###############################################################################
-
-killall Zoom
-sudo launchctl unload /Library/LaunchDaemons/us.zoom.ZoomDaemon.plist
-
-defaults write us.zoom.xos zDisableVideo -bool true
-defaults write us.zoom.xos zUse720PByDefault -bool true
-defaults write us.zoom.xos MuteVoipWhenJoin -bool true
-
 # TODO keyboard shortcuts
 defaults write com.apple.finder FXInfoPanesExpanded -dict \
 	General -bool true \
 	OpenWith -bool true \
 	Privileges -bool true
 
-# TODO General > use dual monitors
-# TODO General > Show meeting duration
-# TODO always show names
-# TODO explode out videos from the primary area
-
 # ~/Library/DoNotDisturb/DB/ModeConfigurations.json
 # do not share focus status on multiple devices, this will prevent notifications from appearing
 # if you are a heavy DND user on ios
 defaults write com.apple.donotdisturbd disableCloudSync -bool true
 defaults write com.apple.notificationcenterui bannerTime 30
+
 # TODO disable notifications https://cs.github.com/tiiiecherle/osx_install_config/blob/67f7d618ace45f39f51d96c685ed027a84f48e38/_config_file/shellscriptsrc.sh?q=APPLICATIONS_TO_SET_NOTIFICATIONS#L1155
 # TODO schedule shutdown energy saver
 # open ~/Library/Preferences/com.apple.ncprefs.plist for noticiation center setup
@@ -539,22 +518,44 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 # Add a context menu item for showing the Web Inspector in web views
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
-# Enable the WebKit Developer Tools in the Mac App Store
-defaults write com.apple.appstore WebKitDeveloperExtras -bool true
-
 # Enable continuous spellchecking
 defaults write com.apple.Safari WebContinuousSpellCheckingEnabled -bool true
-
 # Disable auto-correct
-defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool false
-
-defaults write com.apple.Safari ShowFavoritesUnderSmartSearchField 0
+defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool true
 
 # Disable AutoFill
 defaults write com.apple.Safari AutoFillFromAddressBook -bool true
 defaults write com.apple.Safari AutoFillPasswords -bool false
 defaults write com.apple.Safari AutoFillCreditCardData -bool false
 defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
+
+# Warn about fraudulent websites
+defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true
+
+# Disable plug-ins
+defaults write com.apple.Safari WebKitPluginsEnabled -bool false
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2PluginsEnabled -bool false
+
+# Disable Java
+defaults write com.apple.Safari WebKitJavaEnabled -bool false
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabled -bool false
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabledForLocalFiles -bool false
+
+# Block pop-up windows
+defaults write com.apple.Safari WebKitJavaScriptCanOpenWindowsAutomatically -bool false
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically -bool false
+
+# Disable auto-playing video
+#defaults write com.apple.Safari WebKitMediaPlaybackAllowsInline -bool false
+#defaults write com.apple.SafariTechnologyPreview WebKitMediaPlaybackAllowsInline -bool false
+#defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowsInlineMediaPlayback -bool false
+#defaults write com.apple.SafariTechnologyPreview com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowsInlineMediaPlayback -bool false
+
+# Enable “Do Not Track”
+defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
+
+# Update extensions automatically
+defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 
 ###############################################################################
 # Terminal                                                                    #
