@@ -1,6 +1,9 @@
 # A subset of packages that are safe to install on both macos and linux and documented in this Brewfile
 # the goal is to provide a common of set of utilities that can be installed on a macos or linux (codespace) machine
 
+tap 'homebrew/cask'
+tap 'homebrew/bundle'
+
 # == General Utilities
 brew "git"
 brew "vim"
@@ -32,6 +35,8 @@ brew "hey"
 brew "gh"
 brew "htmlq"
 brew "xsv" # csv tooling
+brew "dust"
+brew "sqlite"
 
 # == Shell productivity utilities
 brew "zsh"
@@ -70,3 +75,190 @@ brew "afnanenayet/tap/diffsitter"
 tap "noahgorstein/tap"
 brew "noahgorstein/tap/jqp"
 brew "act"
+
+if OS.mac?
+    tap "homebrew/cask-drivers"
+    tap 'homebrew/cask-fonts'
+    tap 'homebrew/cask-versions'
+
+    brew "lunchy"
+    brew "youtube-dl"
+    brew "gpg"
+
+    cask "google-chrome"
+    cask "dropbox"
+    cask "dozer"
+    cask "1password"
+    cask "1password-cli"
+    cask "google-drive"
+    cask "iterm2"
+    # cask "slack"
+    cask "slack-beta"
+    # does not support silicon installation yet
+    system "arch -x86_64 brew install amazon-music"
+    cask "github"
+    cask "soulver"
+    cask "stay"
+    cask "homebrew/cask-versions/kaleidoscope2"
+    cask "skype"
+    cask "postgres-unofficial"
+    cask "rectangle"
+    cask "valentina-studio"
+    cask "libreoffice"
+    cask "onyx"
+    cask "cyberduck"
+    cask "dash"
+    cask "skyfonts"
+    cask "base"
+    cask "colorpicker-skalacolor"
+    cask "homebrew/cask-versions/arq5"
+    cask "paparazzi"
+    cask "messenger"
+    cask "scrivener"
+    cask "postico"
+    cask "kindle"
+    cask "wordpresscom"
+    cask "gpg-suite"
+    cask "gimp"
+    cask "grammarly"
+    cask "launchcontrol"
+    cask "hyper"
+    cask "typora"
+    cask "gitscout"
+    cask "raycast"
+    cask "google-chrome-canary"
+    cask "another-redis-desktop-manager"
+    cask "zoom"
+    cask "the-unarchiver"
+    cask "sketch"
+    # cask "disk-sensei"
+    cask "paw"
+    cask "webcatalog"
+    cask "safari-technology-preview"
+    cask "openrefine"
+    cask "ngrok"
+    cask "lepton"
+    cask "muzzle"
+    # cask "https://raw.githubusercontent.com/Homebrew/homebrew-cask/00a37cb6ea00ca2820652b75ebd1f57ba160c3e5/Casks/screenflow.rb"
+    cask "visual-studio-code"
+    cask "cloudapp"
+    cask "chromedriver"
+    cask "docker"
+    cask "monitorcontrol"
+    cask "activitywatch"
+    cask "discord"
+    cask "keybase"
+    cask "telegram"
+    cask "sequel-ace"
+    cask "alacritty", no_quarantine: true
+    # helpful for phone-only applications that you want to run your mac without apple silicon
+    cask "bluestacks"
+    cask "cron"
+    cask "obsidian"
+    cask "calibre"
+    cask "send-to-kindle"
+    cask "shortcutdetective"
+    cask "appcleaner"
+    cask "logitech-options"
+    cask "karabiner-elements"
+    cask "insomnia"
+    cask "mysteriumvpn"
+    cask "stats"
+    cask "vnc-viewer"
+    cask "dropbox-capture"
+
+    # expiremental
+    cask "fig"
+    cask "tip"
+
+    # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
+    cask "qlmarkdown", args: { no_quarantine: true }
+    cask "qlimagesize"
+    cask "mdimagesizemdimporter"
+    cask "syntax-highlight", args: { no_quarantine: true }
+    cask "webpquicklook"
+    cask "apparency"
+
+    # == Fonts
+    cask "font-source-code-pro"
+    cask "font-hack"
+    cask "font-roboto-mono-nerd-font"
+
+    # == MacOS-only Shell Tooling
+    # some of these tools are strictly terminal related, but do not play well with linux/codespaces
+    brew "mysql"
+    brew "wp-cli", args: ["ignore-dependencies"]
+    brew "ffmpeg" # mainly for gif generation
+    brew "gifsicle"
+    brew "mackup"
+    brew "duti"
+    brew "spoof-mac"
+    brew "keith/formulae/zap"
+    brew "mas"
+    brew "webkit2png"
+    brew "siege" # load testing tool
+    brew "rga"
+    brew "cmake" # for ruby native extensions
+    brew "artginzburg/tap/sudo-touchid"
+    brew "java" # for elixir
+    brew "wxwidgets" # for elixir
+    # helpful dependencies for rga
+    %w(pandoc poppler tesseract ffmpeg).map {|p| brew p}
+    brew "saulpw/vd/visidata"
+    cask "ngrok"
+    # php-related packages for asdf install
+    %w(re2c bison bzip2 freetype gettext libiconv icu4c jpeg libedit libpng libxml2 libzip openssl readline webp zlib gmp libsodium imagemagick).map { |p| brew p }
+
+    # mongodb
+    tap "mongodb/brew"
+    brew "mongodb-community"
+    cask "mongodb-compass"
+
+    # == Mac App store
+
+    # personal account
+    mas "Todoist", id: 585829637
+    mas "Next Meeting", id: 1017470484
+    mas "ReadKit", id: 1615798039
+    mas "Streaks", id: 963034692
+    mas "Webcam Control", id: 1172053162
+    mas "Free Ruler", id: 1483172210
+    mas "Baby Monitor", id: 517602535
+
+    # xcode kept reinstalling for me, adding a extra gate here
+    if !File.directory?("/Applications/Xcode.app")
+        mas "Xcode", id: 497799835
+        system "sudo xcodebuild -license accept"
+    else
+        puts "Xcode already installed, skipping"
+    end
+
+    mas "AudioWrangler", id: 1565701763
+    mas "Streaks", id: 963034692
+    # TODO these are ios apps which do not seem to install well
+    # mas "blink-home-monitor", id: 1013961111
+    # mas "wyze-make-your-home-smarter", id: 1288415553
+
+    # safari extensions
+    mas "SmileAllDay", id: 1180442868
+    mas "Buffer", id: 1474298973
+    mas "Save to Matter", id: 1548677272
+
+    # business account
+    puts "Signing out of personal mas account..."
+    system "osascript -e 'quit app \"App Store\"'"
+    system "mas signout"
+    sleep 5
+
+    mas "Icon Slate", id: 439697913
+    mas "Mactracker", id: 430255202
+    mas "Trello", id: 1278508951
+    mas "Medis - GUI for Redis", id: 1063631769
+    mas "Drop - Color Picker", id: 1173932628
+    mas "Pixelmator Classic", id: 407963104
+    mas "Toolbox for Pages", id: 571654652
+
+    puts "Signing out of business account"
+    system "osascript -e 'quit app \"App Store\"'"
+    system "mas signout"
+end
