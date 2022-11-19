@@ -85,6 +85,7 @@ if OS.mac?
     brew "youtube-dl"
     brew "gpg"
     brew "pinentry-mac"
+    brew "iloveitaly/tap/opbookmarks"
 
     cask "google-chrome"
     cask "dropbox"

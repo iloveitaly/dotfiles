@@ -18,6 +18,10 @@ brew update && brew upgrade
 brew bundle -v || (echo "Brewfile failed, exiting early" && exit 1)
 brew cleanup
 
+# for 1password integration with raycast
+# all service data localed in ~/.config/op/bookmarks
+brew services start opbookmarks
+
 # shell
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 (cd ~/.config/ && curl -LO https://raw.githubusercontent.com/sindresorhus/iterm2-snazzy/master/Snazzy.itermcolors) && open ~/.config/Snazzy.itermcolors
