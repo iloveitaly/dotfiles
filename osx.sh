@@ -20,10 +20,15 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 echo "Enter a name for this computer"
 read COMPUTER_NAME
 
-sudo scutil --set ComputerName $COMPUTER_NAME
-sudo scutil --set HostName $COMPUTER_NAME
-sudo scutil --set LocalHostName $COMPUTER_NAME
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $COMPUTER_NAME
+# check if computer name is empty
+if [ -z "$COMPUTER_NAME" ]; then
+	echo "Computer is empty, not setting"
+else
+	sudo scutil --set ComputerName $COMPUTER_NAME
+	sudo scutil --set HostName $COMPUTER_NAME
+	sudo scutil --set LocalHostName $COMPUTER_NAME
+	sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $COMPUTER_NAME
+fi
 
 # Set standby delay to 24 hours (default is 1 hour)
 sudo pmset -a standbydelay 86400
@@ -34,6 +39,9 @@ sudo nvram SystemAudioVolume=" "
 # Disable transparency in the menu bar and elsewhere on Yosemite
 defaults write com.apple.universalaccess reduceTransparency -bool true
 
+# remove siri from the menu bar
+defaults write com.apple.Siri StatusMenuVisible -bool false
+
 # Menu bar: hide the Time Machine, Volume, and User icons
 for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
 	defaults write "${domain}" dontAutoLoad -array \
@@ -42,9 +50,6 @@ for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
 done
 
 defaults write com.apple.systemuiserver menuExtras -array \
-	"/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
-	"/System/Library/CoreServices/Menu Extras/AirPort.menu" \
-	"/System/Library/CoreServices/Menu Extras/Battery.menu" \
 	"/System/Library/CoreServices/Menu Extras/Clock.menu"
 
 # Menu bar: show remaining battery time (on pre-10.8); hide percentage
@@ -708,7 +713,12 @@ osascript -e 'tell application "System Events" to make login item at end with pr
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Karabiner-Elements.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Muzzle.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/MonitorControl.app", hidden:true}'
-osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/iStat Menus.app", hidden:true}'
+osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Stats.app", hidden:true}'
+osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Dozer.app", hidden:true}'
+osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/MonitorControl.app", hidden:true}'
+osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Texts.app"}'
+osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Obsidian.app"}'
+osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Streaks.app", hidden:true}'
 
 ###############################################################################
 # Kill affected applications                                                  #
