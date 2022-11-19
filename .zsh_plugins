@@ -10,6 +10,7 @@ fi
 
 # autopair must be loaded before syntax highlight
 zinit wait lucid for \
+  OMZ::lib/functions.zsh \
   OMZ::lib/termsupport.zsh \
   hlissner/zsh-autopair \
   OMZ::plugins/safe-paste
