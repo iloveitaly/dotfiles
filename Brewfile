@@ -112,19 +112,17 @@ if OS.mac?
     cask "base"
     cask "colorpicker-skalacolor"
     cask "homebrew/cask-versions/arq5"
-    cask "paparazzi"
     cask "messenger"
     cask "scrivener"
     cask "postico"
     cask "kindle"
     cask "wordpresscom"
-    cask "gpg-suite"
+    cask "gpg-suite" # required for passphrase entry
+    cask "pinentry-mac"
     cask "gimp"
     cask "grammarly"
     cask "launchcontrol"
     cask "hyper"
-    cask "typora"
-    cask "gitscout"
     cask "raycast"
     cask "google-chrome-canary"
     cask "another-redis-desktop-manager"
@@ -133,7 +131,6 @@ if OS.mac?
     cask "sketch"
     # cask "disk-sensei"
     cask "paw"
-    cask "webcatalog"
     cask "safari-technology-preview"
     cask "openrefine"
     cask "ngrok"
@@ -158,7 +155,6 @@ if OS.mac?
     cask "calibre"
     cask "send-to-kindle"
     cask "shortcutdetective"
-    cask "appcleaner"
     cask "logitech-options"
     cask "karabiner-elements"
     cask "insomnia"
@@ -167,11 +163,15 @@ if OS.mac?
     cask "vnc-viewer"
     cask "dropbox-capture"
 
-    # expiremental
+    # == Expiremental
+    cask "appcleaner"
     cask "fig"
     cask "tip"
+    cask "krisp"
+    cask "webcatalog"
 
-    # quicklook plugins https://github.com/sindresorhus/quick-look-plugins
+    # == Quicklook Plugins
+    # https://github.com/sindresorhus/quick-look-plugins
     cask "qlmarkdown", args: { no_quarantine: true }
     cask "qlimagesize"
     cask "mdimagesizemdimporter"
@@ -235,21 +235,18 @@ if OS.mac?
 
     mas "AudioWrangler", id: 1565701763
     mas "Streaks", id: 963034692
+    mas "EasyRes", id: 688211836
     # TODO these are ios apps which do not seem to install well
     # mas "blink-home-monitor", id: 1013961111
     # mas "wyze-make-your-home-smarter", id: 1288415553
+    # TODO Owlet, is there a way to force this to install?
 
     # safari extensions
     mas "SmileAllDay", id: 1180442868
     mas "Buffer", id: 1474298973
     mas "Save to Matter", id: 1548677272
 
-    # business account
-    puts "Signing out of personal mas account..."
-    system "osascript -e 'quit app \"App Store\"'"
-    system "mas signout"
-    sleep 5
-
+    # on business account
     mas "Icon Slate", id: 439697913
     mas "Mactracker", id: 430255202
     mas "Trello", id: 1278508951
@@ -257,8 +254,4 @@ if OS.mac?
     mas "Drop - Color Picker", id: 1173932628
     mas "Pixelmator Classic", id: 407963104
     mas "Toolbox for Pages", id: 571654652
-
-    puts "Signing out of business account"
-    system "osascript -e 'quit app \"App Store\"'"
-    system "mas signout"
 end
