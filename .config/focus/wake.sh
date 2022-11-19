@@ -19,8 +19,8 @@
 #   - `asdf which node`
 #   - `asdf which hostile`
 
-/Users/mike/.asdf/installs/nodejs/12.14.1/bin/npx hostile \
-  load /Users/mike/distracting_sites.txt
+source /Users/mike/.asdf/asdf.sh
+hostile  load /Users/mike/.config/distracting_sites.txt
 
 # https://apple.stackexchange.com/questions/303110/flush-cache-of-dns-on-macos-sierra-high-sierra/303119#303119
 sudo dscacheutil -flushcache
