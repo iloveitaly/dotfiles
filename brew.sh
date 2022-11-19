@@ -20,7 +20,6 @@ brew cleanup
 
 # shell
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
 (cd ~/.config/ && curl -LO https://raw.githubusercontent.com/sindresorhus/iterm2-snazzy/master/Snazzy.itermcolors) && open ~/.config/Snazzy.itermcolors
 
 # run after nanorc is copied, this modifies nanorc

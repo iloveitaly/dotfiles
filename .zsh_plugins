@@ -8,6 +8,13 @@ if type svn &> /dev/null; then
     OMZ::plugins/extract
 fi
 
+# NOTE the public iterm zsh integration is broken
+# https://github.com/decayofmind/zsh-iterm2-utilities
+zinit ice depth"1" \
+  pick"shell_integration/zsh" \
+  sbin"utilities/*" if"[[ $+ITERM_PROFILE ]]"
+zinit load gnachman/iTerm2-shell-integration
+
 # autopair must be loaded before syntax highlight
 zinit wait lucid for \
   OMZ::lib/functions.zsh \
