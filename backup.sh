@@ -18,13 +18,11 @@
 #       * Video > Always show participant name on the video
 #       * Audio > Mute my mic when joining a meeting
 #       * Show meeting duration
-# # TODO explode out videos from the primary area
-mackup backup
+#       TODO explode out videos from the primary area
+#   - Copy `jack` (texts) and raycast keychain items over to the new machine
+#   - Enter GPG passphase. This should be prompted automatically when making a commit
 
-# backup vscode config
-cp "$HOME/Library/Application Support/Code/User/settings.json" ./vscode-settings.json
-cp "$HOME/Library/Application Support/Code/User/keybindings.json" ./vscode-keybindings.json
-code --list-extensions | sort > ./vscode-extensions.txt
+mackup backup
 
 # manually copy files to the new machine
 pg_dumpall > ~/Desktop/postgres_backup
