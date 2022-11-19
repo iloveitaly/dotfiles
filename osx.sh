@@ -4,7 +4,7 @@
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
-osascript -e 'tell application "System Preferences" to quit'
+osascript -e 'tell application "System Settings" to quit'
 
 # Ask for the administrator password upfront
 sudo -v
@@ -22,7 +22,7 @@ read COMPUTER_NAME
 
 # check if computer name is empty
 if [ -z "$COMPUTER_NAME" ]; then
-	echo "Computer is empty, not setting"
+	echo "Computer name is empty, not setting"
 else
 	sudo scutil --set ComputerName $COMPUTER_NAME
 	sudo scutil --set HostName $COMPUTER_NAME
@@ -36,6 +36,9 @@ sudo pmset -a standbydelay 86400
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
 
+# faster dialogs
+defaults write com.apple.Accessibility ReduceMotionEnabled -bool true
+
 # Disable transparency in the menu bar and elsewhere on Yosemite
 defaults write com.apple.universalaccess reduceTransparency -bool true
 
@@ -43,11 +46,11 @@ defaults write com.apple.universalaccess reduceTransparency -bool true
 defaults write com.apple.Siri StatusMenuVisible -bool false
 
 # Menu bar: hide the Time Machine, Volume, and User icons
-for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
-	defaults write "${domain}" dontAutoLoad -array \
-		"/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
-		"/System/Library/CoreServices/Menu Extras/User.menu"
-done
+# for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
+# 	defaults write "${domain}" dontAutoLoad -array \
+# 		"/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
+# 		"/System/Library/CoreServices/Menu Extras/User.menu"
+# done
 
 defaults write com.apple.systemuiserver menuExtras -array \
 	"/System/Library/CoreServices/Menu Extras/Clock.menu"
@@ -132,10 +135,10 @@ defaults write com.apple.spaces spans-displays -bool true
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
 # Restart automatically if the computer freezes
-sudo systemsetup -setrestartfreeze on
+sudo systemsetup -setrestartfreeze On 2> /dev/null
 
 # Never go into computer sleep mode
-sudo systemsetup -setcomputersleep Off > /dev/null
+sudo systemsetup -setcomputersleep Off 2> /dev/null
 
 # Disable Notification Center and remove the menu bar icon
 # launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
@@ -156,18 +159,8 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 # SSD-specific tweaks                                                         #
 ###############################################################################
 
-# Disable local Time Machine snapshots
-sudo tmutil disablelocal
-
 # Disable hibernation (speeds up entering sleep mode)
 sudo pmset -a hibernatemode 0
-
-# Remove the sleep image file to save disk space
-sudo rm /private/var/vm/sleepimage
-# Create a zero-byte file instead…
-sudo touch /private/var/vm/sleepimage
-# …and make sure it can’t be rewritten
-sudo chflags uchg /private/var/vm/sleepimage
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
@@ -590,9 +583,6 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
-# Disable local Time Machine backups
-hash tmutil &> /dev/null && sudo tmutil disablelocal
-
 ###############################################################################
 # Activity Monitor                                                            #
 ###############################################################################
@@ -725,12 +715,10 @@ osascript -e 'tell application "System Events" to make login item at end with pr
 ###############################################################################
 
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
-	"Dock" "Finder" "Google Chrome" "Google Chrome Canary" "Messages" \
-	"Photos" "Safari" "SystemUIServer" "Terminal" "iCal" "NotificationCenter"; do
+	"Dock" "Finder" "Google Chrome" "Google Chrome Canary" "Messages" "App Store" \
+	"Photos" "Safari" "SystemUIServer" "" "Terminal" "iCal" "NotificationCenter" \
+	"Spotlight"; do
 	killall "${app}" &> /dev/null
 done
 
 echo "Done. Note that some of these changes require a logout/restart to take effect."
-
-# TODO enable TRIM on SSD
-# TODO reduce motion via accessibility
