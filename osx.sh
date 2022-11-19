@@ -235,9 +235,6 @@ systemsetup -settimezone "America/Denver" > /dev/null
 # Note that location services needs to be enabled manually
 sudo defaults write /Library/Preferences/com.apple.timezone.auto Active -bool true
 
-# Stop iTunes from responding to the keyboard media keys
-launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
-
 ###############################################################################
 # Screen                                                                      #
 ###############################################################################
