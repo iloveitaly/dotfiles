@@ -3,7 +3,10 @@
 ## What's special here?
 
 * zsh with turbo zinit
-* Lots of tidbits for ruby and elixir development
+* Lots of tidbits for ruby, elixir, and python development
+* Asdf for managing all language versions
+* Codespace/devcontainer support
+* Lots of interesting git shortcuts + tips
 * [Aggressively blocks distracting websites](http://mikebian.co/how-to-block-distracting-websites-on-your-laptop/)
 * Interesting apps and tools I've found over the years nicely organized
 
@@ -63,6 +66,8 @@ interesting_repos=(
   https://github.com/schickling/dotfiles
   https://github.com/jessfraz/dotfiles
   https://github.com/jschaf/dotfiles
+  https://github.com/lunchbag/dotfiles
+  https://github.com/peterhajas/dotfiles
 )
 
 cd ~/Projects/dotfiles-inspiration
@@ -74,7 +79,7 @@ for repo in $interesting_repos; do
   if [ ! -d "$target_directory" ]; then
     git clone $repo "$target_directory"
   else
-    $(cd "$target_directory" && git pull)
+    (cd "$target_directory" && git pull)
   fi
 done
 ```
