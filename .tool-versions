@@ -1,0 +1,11 @@
+php 8.0.25
+nodejs 19.1.0
+bun 0.2.2
+deno 1.28.1
+erlang 24.0.5
+elixir 1.12.2-otp-24
+python 3.10.4
+ruby  2.7.6
+direnv 2.32.1
+rust nightly
+poetry 1.1.14
