@@ -20,7 +20,9 @@
 #       * Show meeting duration
 #       TODO explode out videos from the primary area
 #   - Copy `jack` (texts) and raycast keychain items over to the new machine
+#   - Install texts application
 #   - Enter GPG passphase. This should be prompted automatically when making a commit
+#   - Todoist hotkey.
 
 mackup backup
 
