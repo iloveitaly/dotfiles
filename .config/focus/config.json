@@ -18,11 +18,14 @@
         "airbnb.com",
         "my.lunchmoney.app",
         "cigna.com",
-        "amazon.com",
-        "smile.amazon.com",
         "alliantcreditunion.com",
         "chase.com",
-        "costco.com"
+
+        "costco.com",
+        "walmart.com",
+        "slickdeals.net",
+        "amazon.com",
+        "smile.amazon.com"
       ],
       "block_urls": [
         "https://www.google.com/search?q=world+news",

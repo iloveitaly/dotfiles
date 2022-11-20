@@ -1,8 +1,4 @@
 rollingstone.com
-facebook.com
-twitter.com
-smile.amazon.com
-amazon.com
 tumblr.com
 instagram.com
 news.ycombinator.com
@@ -38,14 +34,8 @@ foxnews.com
 cnn.com
 msnbc.com
 vanguard.com
-slickdeals.net
 reuters.com
 dealnews.com
-walmart.com
-twitter.com
-linkedin.com
-costco.com
-youtube.com
 wealthfront.com
 robinhood.com
 investor.vanguard.com
