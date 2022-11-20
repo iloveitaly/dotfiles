@@ -162,6 +162,7 @@ if OS.mac?
     cask "stats"
     cask "vnc-viewer"
     cask "dropbox-capture"
+    cask "ngrok"
 
     # == Expiremental
     cask "appcleaner"
@@ -196,7 +197,6 @@ if OS.mac?
     brew "keith/formulae/zap"
     brew "mas"
     brew "webkit2png"
-    brew "siege" # load testing tool
     brew "rga"
     brew "cmake" # for ruby native extensions
     brew "artginzburg/tap/sudo-touchid"
@@ -205,9 +205,12 @@ if OS.mac?
     # helpful dependencies for rga
     %w(pandoc poppler tesseract ffmpeg).map {|p| brew p}
     brew "saulpw/vd/visidata"
-    cask "ngrok"
     # php-related packages for asdf install
     %w(re2c bison bzip2 freetype gettext libiconv icu4c jpeg libedit libpng libxml2 libzip openssl readline webp zlib gmp libsodium imagemagick).map { |p| brew p }
+
+    # == Expiremental
+    brew "atuin"
+    brew "siege" # load testing tool
 
     # mongodb
     tap "mongodb/brew"
