@@ -23,6 +23,9 @@
 #   - Install texts application
 #   - Enter GPG passphase. This should be prompted automatically when making a commit
 #   - Todoist hotkey.
+#   - ActivityWatch
+#       * If the host names do not match between machines, you'll need to manually edit the SQL
+#       * Manually import category mapping
 
 mackup backup
 
