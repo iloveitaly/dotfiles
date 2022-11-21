@@ -176,6 +176,7 @@ if OS.mac?
     cask "qlmarkdown", args: { no_quarantine: true }
     cask "qlimagesize"
     cask "mdimagesizemdimporter"
+    cask "iloveitaly/tap/qlzipinfo"
     cask "syntax-highlight", args: { no_quarantine: true }
     cask "webpquicklook"
     cask "apparency"
