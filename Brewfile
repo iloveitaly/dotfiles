@@ -170,6 +170,7 @@ if OS.mac?
     cask "tip"
     cask "krisp"
     cask "webcatalog"
+    cask "warp"
 
     # == Quicklook Plugins
     # https://github.com/sindresorhus/quick-look-plugins
