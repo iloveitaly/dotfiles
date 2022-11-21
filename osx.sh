@@ -566,6 +566,9 @@ defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 # Compact tab bar
 defaults write com.apple.Safari ShowStandaloneTabBar -bool false
 
+# Don't include a list of favorites when focusing on the search bar
+defaults write com.apple.Safari ShowFavoritesUnderSmartSearchField -bool false
+
 ###############################################################################
 # Terminal                                                                    #
 ###############################################################################
@@ -720,6 +723,7 @@ osascript -e 'tell application "System Events" to make login item at end with pr
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Texts.app"}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Obsidian.app"}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Streaks.app", hidden:true}'
+osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Todoist.app", hidden:true}'
 
 ###############################################################################
 # Kill affected applications                                                  #
