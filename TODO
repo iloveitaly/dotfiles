@@ -1,3 +1,5 @@
+- [ ] wordchars are just not working https://github.com/ohmyzsh/ohmyzsh/issues/8743
+- [ ] shortcuts for fzf to copy to clipboard https://github.com/junegunn/fzf/issues/2323
 - [ ] https://github.com/srirangav/qlZipInfo
 - [ ] https://github.com/asdf-community/asdf-poetry/issues/27 maybe do this statically https://python-poetry.org/docs/
 - [ ] multiple zsh plugins depend on python which causes where issues when a unsupported python version is included in tool-versions.
@@ -23,9 +25,9 @@
 - [ ] "Limit IP Address Tracking" defaults write https://cs.github.com/?scopeName=All+repos&scope=&q=lang%3Ashell+ip+tracking+%28path%3A*macos*+OR+path%3A*osx*%29
 - [ ] https://joeyh.name/code/moreutils/?utm_source=hackernewsletter&utm_medium=email&utm_term=code
 - [ ] https://news.ycombinator.com/item?id=31075608 diff3 style
-- [ ] https://github.com/lotabout/skim
+- [ ] https://github.com/lotabout/skim fuzzy finder in rust
 - [ ] ngrok alternative https://github.com/ekzhang/bore
-- [ ] https://www.commands.dev
+- [ ] https://www.commands.dev warp commands directory
 - [ ] https://jvns.ca/blog/2022/04/12/a-list-of-new-ish--command-line-tools/?utm_source=hackernewsletter&utm_medium=email&utm_term=fav
 - [ ] add shellcheck github workflows
 - [ ] tail-like utility https://www.kylheku.com/cgit/pw/tree/pw.1

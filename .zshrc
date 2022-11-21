@@ -102,12 +102,6 @@ bindkey "^s" push-input
 # https://til.hashrocket.com/posts/7evpdebn7g-remove-duplicates-in-zsh-path
 typeset -aU path
 
-# https://github.com/ohmyzsh/ohmyzsh/issues/8743
-# https://unix.stackexchange.com/questions/250690/how-to-configure-ctrlw-as-delete-word-in-zsh
-autoload -U select-word-style
-select-word-style bash
-WORDCHARS='.-'
-
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/misc.zsh
 autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
