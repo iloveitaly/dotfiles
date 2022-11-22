@@ -87,7 +87,7 @@ npm install -g yarn
 # note: for each python version installed, you'll need to do this
 # for the breakpoint() magic to work properly
 pip install --upgrade pip
-pip install ipython ipdb pdbr ipython-autoimport rich
+pip install ipython ipdb pdbr ipython-autoimport rich docrepr colorama
 
 # mysql setup
 # brew services start mysql
