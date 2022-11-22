@@ -26,9 +26,9 @@ source `brew --prefix asdf`/asdf.sh
 
 # cleanup browser tabs
 cd ~/Projects/clean-workspace
-poetry run python ./archive.py "$dialogResult"
+poetry run clean-workspace "$dialogResult"
 
 # organize todoist
 cd ~/Projects/todoist-scheduler
-poetry run python cli.py
+poetry run todoist-scheduler
 
