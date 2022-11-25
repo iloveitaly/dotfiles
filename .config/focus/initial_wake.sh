@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-apps=(Slack Discord Podcasts "Amazon Music" zoom.us ReadKit Texts Gmail)
+apps=(Slack Discord Podcasts "Amazon Music" zoom.us ReadKit Texts Messages Gmail "System Settings")
 for app in $apps; do
   echo "Quitting $app..."
 
