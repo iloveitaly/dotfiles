@@ -1,3 +1,8 @@
+- [ ] spotlight suggestions https://github.com/evanpurkhiser/dots-personal/blob/f24adb0ef4d8b96f684ac9c04c1d95a4fc3f0dad/common/platform-osx/macos/macos.sh#L19
+- [ ] 1p as ssh identity agent https://github.com/evanpurkhiser/dots-personal/blob/f24adb0ef4d8b96f684ac9c04c1d95a4fc3f0dad/common/platform-osx/ssh/config#LL2C3-L2C16
+- [ ] https://alt-tab-macos.netlify.app
+- [ ] tmux iterm integration https://iterm2.com/documentation-tmux-integration.html
+- [ ] commands.dev is there a zsh integration?
 - [ ] wordchars are just not working https://github.com/ohmyzsh/ohmyzsh/issues/8743
 - [ ] shortcuts for fzf to copy to clipboard https://github.com/junegunn/fzf/issues/2323
 - [ ] https://github.com/srirangav/qlZipInfo
