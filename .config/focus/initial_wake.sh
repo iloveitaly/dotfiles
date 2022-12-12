@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-apps=(Slack Discord Podcasts "Amazon Music" zoom.us ReadKit Texts Messages Gmail "System Settings")
+apps=(Slack Discord Podcasts "Amazon Music" zoom.us ReadKit Texts Messages Gmail "System Settings" Music)
 for app in $apps; do
   echo "Quitting $app..."
 
@@ -22,13 +22,17 @@ return text returned of dialogResult
 EOT
 )
 
-source `brew --prefix asdf`/asdf.sh
+# when executed as part of a sleepwatcher, the environment is not set up
+export HOME=/Users/mike
+source $HOME/.asdf/asdf.sh
 
 # cleanup browser tabs
+echo "Cleaning browser tabs..."
 cd ~/Projects/clean-workspace
 poetry run clean-workspace "$dialogResult"
 
 # organize todoist
+echo "Organizing todoist..."
 cd ~/Projects/todoist-scheduler
 poetry run todoist-scheduler
 
