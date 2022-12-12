@@ -1,3 +1,9 @@
+- [ ] look at `~/Library/Preferences/.GlobalPreferences.plist` this is what the `-g` flag does
+- [ ]  https://matthewpalmer.net/rocket/
+- [ ] try quitter https://marco.org/apps
+- [ ] browserfairy replacement https://apps.apple.com/us/app/velja/id1607635845?mt=12
+- [ ] another note taking tool https://www.dendron.so
+- [ ] web catalog doesn't handle links without interaction if sent through browser fairy
 - [ ] spotlight suggestions https://github.com/evanpurkhiser/dots-personal/blob/f24adb0ef4d8b96f684ac9c04c1d95a4fc3f0dad/common/platform-osx/macos/macos.sh#L19
 - [ ] 1p as ssh identity agent https://github.com/evanpurkhiser/dots-personal/blob/f24adb0ef4d8b96f684ac9c04c1d95a4fc3f0dad/common/platform-osx/ssh/config#LL2C3-L2C16
 - [ ] https://alt-tab-macos.netlify.app
