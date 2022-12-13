@@ -173,6 +173,7 @@ if OS.mac?
     cask "krisp"
     cask "webcatalog"
     cask "warp"
+    cask "wireshark"
 
     # == Quicklook Plugins
     # https://github.com/sindresorhus/quick-look-plugins
@@ -215,6 +216,7 @@ if OS.mac?
     # == Expiremental
     brew "atuin"
     brew "siege" # load testing tool
+    brew "ameshkov/tap/dnslookup"
 
     # mongodb
     tap "mongodb/brew"
