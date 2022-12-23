@@ -217,6 +217,7 @@ if OS.mac?
     brew "atuin"
     brew "siege" # load testing tool
     brew "ameshkov/tap/dnslookup"
+    brew "smudge/smudge/nightlight"
 
     # mongodb
     tap "mongodb/brew"
