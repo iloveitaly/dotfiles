@@ -131,3 +131,6 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 
 # https://github.com/zsh-users/zsh-autosuggestions/issues/351
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
+
+# https://stackoverflow.com/questions/444951/zsh-stop-backward-kill-word-on-directory-delimiter
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
