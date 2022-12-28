@@ -20,7 +20,7 @@
 #   - `asdf which hostile`
 
 source /Users/mike/.asdf/asdf.sh
-hostile  load /Users/mike/.config/distracting_sites.txt
+hostile load /Users/mike/.config/distracting_sites.txt
 
 # https://apple.stackexchange.com/questions/303110/flush-cache-of-dns-on-macos-sierra-high-sierra/303119#303119
 sudo dscacheutil -flushcache
