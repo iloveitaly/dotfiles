@@ -86,6 +86,7 @@ if OS.mac?
     brew "gpg"
     brew "pinentry-mac"
     brew "iloveitaly/tap/opbookmarks"
+    brew "iloveitaly/tap/hyper-focus"
 
     cask "google-chrome"
     cask "dropbox"
@@ -142,6 +143,7 @@ if OS.mac?
     cask "visual-studio-code"
     cask "cloudapp"
     cask "chromedriver"
+    # you must open up the docker macos app in order to symlink docker cli
     cask "docker"
     cask "monitorcontrol"
     cask "activitywatch"
@@ -232,6 +234,8 @@ if OS.mac?
     mas "ReadKit", id: 1615798039
     mas "Streaks", id: 963034692
     mas "Webcam Control", id: 1172053162
+    mas "Flow", id: 1423210932
+    mas "Harvest", id: 506189836
     mas "Free Ruler", id: 1483172210
     mas "Baby Monitor", id: 517602535
 
