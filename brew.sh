@@ -116,6 +116,7 @@ bundle config --global disable_local_branch_check true
 
 # allow touch id for sudo
 sudo-touchid
+sudo brew services start sudo-touchid
 
 # let programs that don't properly source the shell know where gpg is
 # https://github.com/denolehov/obsidian-git/issues/21
