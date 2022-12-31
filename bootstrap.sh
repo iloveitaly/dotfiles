@@ -32,6 +32,10 @@ sudo -E hostile load "$HOME/.config/distracting_sites.txt"
 # setup default extension handlers
 duti < ./duti
 
+# https://github.com/ttscoff/KeyBindings/blob/master/DefaultKeyBinding.dict#L58
+mkdir -p ~/Library/KeyBindings/
+cp ./DefaultKeyBinding.dict ~/Library/KeyBindings/
+
 # mackup restore
 
 exec zsh

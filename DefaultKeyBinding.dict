@@ -1,0 +1,21 @@
+// https://github.com/ttscoff/KeyBindings/blob/master/cheatset_keybindings.rb#L147-L149
+
+{
+  // copy paragraph
+  "~y" = (setMark:, moveToBeginningOfParagraph:, moveToEndOfParagraphAndModifySelection:, copy:, swapWithMark:);
+
+  // paste paragraph below
+  "~p" = (moveToEndOfParagraph:,moveRight:,insertNewline:,moveLeft:, paste:);
+
+  // duplicate paragraph, opt + shift + down
+  "~$\UF701" = (setMark:, moveToBeginningOfParagraph:, moveToEndOfParagraphAndModifySelection:, copy:, swapWithMark:, moveToEndOfParagraph:,moveRight:,insertNewline:,moveLeft:, paste:);
+
+  // delete line/paragraph, cmd + shift + k
+  "@K" = (selectParagraph:, delete:, moveToBeginningOfParagraph:);
+
+  // Move line up
+  "~\UF700" = (selectParagraph:, setMark:, deleteToMark:, moveLeft:, moveToBeginningOfParagraph:, yank:, moveLeft:, selectToMark:, moveLeft:);
+
+  // Move line down
+  "~\UF701" = (selectParagraph:, setMark:, deleteToMark:, moveToEndOfParagraph:, moveRight:, setMark:, yank:, moveLeft:, selectToMark:);
+}
