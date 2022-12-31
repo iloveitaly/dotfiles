@@ -151,7 +151,7 @@ if OS.mac?
     cask "keybase"
     cask "telegram"
     cask "sequel-ace"
-    cask "alacritty", no_quarantine: true
+    cask "alacritty", args: { no_quarantine: true }
     # helpful for phone-only applications that you want to run your mac without apple silicon
     cask "bluestacks"
     cask "cron"
@@ -176,6 +176,7 @@ if OS.mac?
     cask "webcatalog"
     cask "warp"
     cask "wireshark"
+    cask "cheatsheet"
 
     # == Quicklook Plugins
     # https://github.com/sindresorhus/quick-look-plugins
