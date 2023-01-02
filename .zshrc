@@ -85,15 +85,19 @@ bindkey "^[[B" history-substring-search-down # Down
 # match vscode's ^k functionality
 bindkey "^K" kill-line
 
-# open up current command in EDITOR
+# cmd+shift+k is not possible in the terminal without remapping cmd, which is not a good idea given it's lack of support
+bindkey "^[K" kill-whole-line
+
+# open up current command in EDITOR, ctrl+x then ctrl+e
 autoload -U edit-command-line
 zle -N edit-command-line
-bindkey '^x^e' edit-command-line
+bindkey '^X^E' edit-command-line
 
 # save current command in buffer & restore after next command is run
 # https://unix.stackexchange.com/a/74381
-# TODO what is the binding here? ctrl+s isn't working for me
-bindkey "^s" push-input
+autoload -U push-input
+# not sure why, but ^S is not getting passed to the terminal
+bindkey '^X^P' push-input
 
 # ===========
 # Misc Config
