@@ -149,3 +149,6 @@
   autoStash = true
 [feature]
 	manyfiles = true
+[gpg]
+  # this may change as time goes on, use $(which gpg) to update
+  program = /opt/homebrew/bin/gpg
