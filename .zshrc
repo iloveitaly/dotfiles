@@ -136,5 +136,12 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 # https://github.com/zsh-users/zsh-autosuggestions/issues/351
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
 
-# https://stackoverflow.com/questions/444951/zsh-stop-backward-kill-word-on-directory-delimiter
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+# ===========
+# Word Definition
+# ===========
+
+# http://mikebian.co/fixing-word-navigation-in-zsh/
+WORDCHARS=' *?_-.[]~=&;!#$%^(){}<>/'
+autoload -Uz select-word-style
+select-word-style normal
+zstyle ':zle:*' word-style unspecified
