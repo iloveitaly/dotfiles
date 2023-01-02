@@ -730,6 +730,16 @@ osascript -e 'tell application "System Events" to make login item at end with pr
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Todoist.app", hidden:true}'
 
 ###############################################################################
+# Keyboard Shortcuts                                                             #
+###############################################################################
+
+# remap cmd+q to cmd+opt+q so you cannot press it as easily
+defaults write -app Safari NSUserKeyEquivalents
+{
+    "Quit Safari" = "@~q";
+}
+
+###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
