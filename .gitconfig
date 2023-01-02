@@ -58,7 +58,10 @@
 
   showv = show --format=fuller
 
-  sha = !sh -c 'git rev-parse HEAD | tr -d "[:space:]" | pbcopy'
+  # `tee /dev/tty` allows us to output the result to stdout *and* pipe it to pbcopy
+  sha = !git rev-parse HEAD | tr -d "[:space:]" | tee /dev/tty | pbcopy
+  # `git sha` alias is not used to extract the current SHA because of the /dev/tty hack
+  sha-url = !echo $(git config --get remote.origin.url | sed -e 's/\\.git$//g')/commit/$(git rev-parse HEAD | tr -d "[:space:]") | tee /dev/tty | pbcopy
 
   # http://stackoverflow.com/questions/12373733/staging-deleted-files
   rm-deleted = !git rm $(git ls-files --deleted)
