@@ -1,3 +1,5 @@
+# plugin location: `~/.local/share/zinit/plugins`
+
 # oh-my-zsh plugins
 # gitfast workaround: https://github.com/zdharma/zinit/issues/477
 # gitfast is based on https://github.com/felipec/git-completion
@@ -42,6 +44,13 @@ zinit wait lucid for \
   Aloxaf/fzf-tab \
   sudosubin/zsh-github-cli
 
+# must be loaded after syntax completion
+# there's a bug in the standard distribution: https://github.com/zsh-users/zsh-history-substring-search/pull/135
+# although, after more investigation this wasn't causing the wordchar issue I was running into so we don't need
+# to use this fork
+zinit ice ver"redrawhook"
+zinit light jirutka/zsh-history-substring-search
+
 # experimental
 #   - zsh-256color: configures env for 256 color support
 #   - colors: sets aliases for some colors and most styles via '$c'
@@ -68,6 +77,3 @@ zinit wait'2' lucid for \
 # must load last
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
-
-# load sync for other zsh config reliant on these functions
-zinit light zsh-users/zsh-history-substring-search
