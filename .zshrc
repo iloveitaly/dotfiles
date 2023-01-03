@@ -56,14 +56,12 @@ setopt hist_save_no_dups        # Omit older commands in favor of newer ones.
 export PATH="/opt/homebrew/bin:$PATH"
 eval $(brew shellenv)
 
-# in some environments, the package may not be available in brew
-local possible_zinit_home=${HOME}/.local/share/zinit/zinit.git
-if [ -f $possible_zinit_home/zinit.zsh ]; then
-  ZINIT_HOME=$possible_zinit_home
-  source "${ZINIT_HOME}/zinit.zsh"
-else
-  source `brew --prefix zinit`/zinit.zsh
-fi
+# avoid installation via brew, this is not a supported installation method and breaks
+# some directory structure assumptions that exist across the plugin ecosystem.
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
 
 # TODO https://github.com/zdharma/zinit/issues/173#issuecomment-537325714
 # Load ~/.exports, ~/.aliases, ~/.functions and ~/.extra
@@ -141,7 +139,7 @@ ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
 # ===========
 
 # http://mikebian.co/fixing-word-navigation-in-zsh/
-WORDCHARS=':[space]*?_-.[]~=&;!#$%^(){}<>/'
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>/ \t\n'
 autoload -Uz select-word-style
 select-word-style normal
 zstyle ':zle:*' word-style space

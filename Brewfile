@@ -60,7 +60,6 @@ brew "reattach-to-user-namespace"
 brew "urlview"
 brew "tre-command"
 brew "terminal-notifier" # for `zsh-notify`
-brew "zinit"
 brew "procs" # ps
 brew "sd" # sed
 brew "svn" # for `zinit ice svn`
