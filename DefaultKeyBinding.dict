@@ -10,8 +10,8 @@
   // duplicate paragraph, opt + shift + down
   "~$\UF701" = (setMark:, moveToBeginningOfParagraph:, moveToEndOfParagraphAndModifySelection:, copy:, swapWithMark:, moveToEndOfParagraph:,moveRight:,insertNewline:,moveLeft:, paste:);
 
-  // delete line/paragraph, cmd + shift + k
-  "@K" = (selectParagraph:, delete:, moveToBeginningOfParagraph:);
+  // delete line/paragraph, opt + shift + k
+  "~K" = (selectParagraph:, delete:, moveToBeginningOfParagraph:);
 
   // Move line up
   "~\UF700" = (selectParagraph:, setMark:, deleteToMark:, moveLeft:, moveToBeginningOfParagraph:, yank:, moveLeft:, selectToMark:, moveLeft:);
