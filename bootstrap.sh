@@ -19,7 +19,7 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   rsync --exclude ".git/" \
         --exclude={"osx.sh","Brewfile","Brewfile.lock.json","brew.sh","server.sh","TODO","duti","backup.sh"} \
-        --exclude "distracting_websites.txt" \
+        --exclude={"distracting_websites.txt","DefaultKeyBinding.dict","aw-categories.json"} \
         --exclude ".DS_Store" --exclude "codespace.sh" --exclude "bootstrap.sh" --exclude "README.md" \
         -av . ~
 fi
@@ -32,7 +32,7 @@ sudo -E hostile load "$HOME/.config/distracting_sites.txt"
 # setup default extension handlers
 duti < ./duti
 
-# https://github.com/ttscoff/KeyBindings/blob/master/DefaultKeyBinding.dict#L58
+# http://mikebian.co/advanced-text-editing-using-karabiner-macos-keybindings/
 mkdir -p ~/Library/KeyBindings/
 cp ./DefaultKeyBinding.dict ~/Library/KeyBindings/
 
