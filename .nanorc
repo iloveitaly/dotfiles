@@ -1,7 +1,14 @@
 # ^G to display all bindings
+# inspiration
+#   - https://github.com/davidhcefx/Modern-Nano-Keybindings
 
-set wordbounds
 set linenumbers
+set autoindent
+set mouse
+set numbercolor yellow,normal
+set afterends       # `Ctrl+Right` move to word ends instead of word starts
+set historylog      # remember search history
+set wordchars "_"   # recognize '_' as part of a word
 
 # https://www.nano-editor.org/dist/latest/nanorc.5.html
 bind ^w chopwordleft main
@@ -9,8 +16,14 @@ bind ^w chopwordleft main
 # rebind search
 bind ^F whereis main
 
+# add/remove comment shortcut
+bind M-/  comment main
+
 # opt left/right word jump mapping
 bind M-B prevword main
 bind M-F nextword main
 
+set matchbrackets "(<[{)>]}"
+
 # https://github.com/scopatz/nanorc/ is included after this line
+include ~/.nano/*.nanorc
