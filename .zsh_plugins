@@ -63,7 +63,9 @@ zinit wait'1' lucid for \
   chrissicool/zsh-256color \
   zpm-zsh/colors \
   OMZ::lib/spectrum.zsh \
-  wfxr/forgit
+  wfxr/forgit \
+  RobSis/zsh-completion-generator \
+  seletskiy/zsh-fuzzy-search-and-edit
 
 # binaries installed via zinit
 #   - git-fuzzy: 'git fuzzy' for interactive git commit cli
