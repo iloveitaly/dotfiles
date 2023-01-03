@@ -10,6 +10,12 @@ set afterends       # `Ctrl+Right` move to word ends instead of word starts
 set historylog      # remember search history
 set wordchars "_"   # recognize '_' as part of a word
 
+bind M-1  help          all  # fix ^G been used
+
+# less-style page navigation bindings
+bind ^G   firstline     all
+bind M-G  lastline      all
+
 # https://www.nano-editor.org/dist/latest/nanorc.5.html
 bind ^w chopwordleft main
 
