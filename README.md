@@ -7,6 +7,7 @@
 * Asdf for managing all language versions
 * Codespace/devcontainer support
 * Lots of interesting git shortcuts + tips
+* Custom macOS keybinding & karabiner config
 * [Aggressively blocks distracting websites](http://mikebian.co/how-to-block-distracting-websites-on-your-laptop/)
 * Interesting apps and tools I've found over the years nicely organized
 
@@ -22,17 +23,10 @@ When setting up a new Mac, you may want to set some sensible OS X defaults:
 ./osx.sh
 ```
 
-Also, there is a very opinionated set of CLI tools:
+Setup CLI tooling and all brew installation (including MAS installs) using:
 
 ```bash
 ./brew.sh
-```
-
-And MacOS applications:
-
-```bash
-./cask.sh
-./mas.sh
 ```
 
 To update, `cd` into your local `dotfiles` repository and then:
