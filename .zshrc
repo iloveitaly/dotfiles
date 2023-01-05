@@ -142,4 +142,4 @@ ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>/ \t\n'
 autoload -Uz select-word-style
 select-word-style normal
-zstyle ':zle:*' word-style space
+zstyle ':zle:*' word-style unspecified
