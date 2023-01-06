@@ -176,7 +176,9 @@ if OS.mac?
     cask "warp"
     cask "wireshark"
     cask "cheatsheet"
-
+    cask "rocket"
+    cask "figma"
+    
     # == Quicklook Plugins
     # https://github.com/sindresorhus/quick-look-plugins
     cask "qlmarkdown", args: { no_quarantine: true }
