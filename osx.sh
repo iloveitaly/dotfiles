@@ -739,6 +739,15 @@ defaults write -app Safari NSUserKeyEquivalents
     "Quit Safari" = "@~q";
 }
 
+# TODO double cmd dictation key
+# ❯ defaults read ~/Library/Preferences/com.apple.speech.recognition.AppleSpeechRecognition.prefs.plist
+# {
+#     CustomizedDictationHotKey =     {
+#         keyChar = 113;
+#         modifiers = 262144;
+#         virtualKey = 12;
+#     };
+
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
