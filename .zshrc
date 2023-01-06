@@ -137,9 +137,8 @@ ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
 # ===========
 # Word Definition
 # ===========
-
 # http://mikebian.co/fixing-word-navigation-in-zsh/
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>/ \t\n'
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>/ '$'\n'
 autoload -Uz select-word-style
 select-word-style normal
 zstyle ':zle:*' word-style unspecified
