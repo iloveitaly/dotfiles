@@ -1,3 +1,4 @@
+# don't automatically setup atuin shell history bindkeys
 export ATUIN_NOBIND=1
 
 # Make nano the default editor for context-less editing in the terminal
@@ -18,14 +19,13 @@ export FZF_CTRL_R_OPTS="--preview-window up:3"
 # large shell history
 export HISTFILE=~/.zsh_history
 export SAVEHIST=10000
-export HISTSIZE=10000
+export HISTSIZE=11000
+
+# Make some commands not show up in history
+export HISTORY_IGNORE="(ls*|pwd|exit|cd*|gc*|* --help|history|j *|jj *|glo|gfu|g st|g ss)"
 
 # autocomplete on completions as well
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-export ZSH_AUTOSUGGEST_USE_ASYNC=1
-
-# Make some commands not show up in history
-export HISTORY_IGNORE="(ls*|pwd|exit|cd*|gc*|* --help|history)"
 
 # faster git status loading for large repos
 export PURE_GIT_UNTRACKED_DIRTY=1

@@ -30,6 +30,7 @@ zstyle ':fzf-tab:*' ignore false 4
 
 # =============
 # Shell Options
+# man: zshoptions
 # =============
 
 setopt interactive_comments
@@ -40,12 +41,12 @@ setopt auto_cd
 setopt menu_complete            # Auto pick a menu match
 
 # Set history behavior
-setopt append_history           # Dont overwrite history
+setopt share_history            # Share history across session
+setopt inc_append_history       # Dont overwrite history, add new entries immediately
 setopt extended_history         # Also record time and duration of commands.
 setopt hist_expire_dups_first   # Clear duplicates when trimming internal hist.
 setopt hist_find_no_dups        # Dont display duplicates during searches.
 setopt hist_ignore_dups         # Ignore consecutive duplicates.
-setopt hist_ignore_space        # Ignore items that start with a space
 setopt hist_reduce_blanks       # Remove superfluous blanks.
 setopt hist_save_no_dups        # Omit older commands in favor of newer ones.
 
