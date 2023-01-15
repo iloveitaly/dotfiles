@@ -57,6 +57,8 @@ setopt hist_save_no_dups        # Omit older commands in favor of newer ones.
 export PATH="/opt/homebrew/bin:$PATH"
 eval $(brew shellenv)
 
+export PATH="/Applications/Postgres.app/Contents/Versions/15/bin:$PATH"
+
 # avoid installation via brew, this is not a supported installation method and breaks
 # some directory structure assumptions that exist across the plugin ecosystem.
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
