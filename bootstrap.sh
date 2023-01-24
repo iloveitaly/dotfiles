@@ -26,7 +26,7 @@ fi
 
 # https://apple.stackexchange.com/questions/92710/why-is-safari-ignoring-my-etc-hosts-file
 # block distracting websites. More info: http://mikebian.co/how-to-block-distracting-websites-on-your-laptop/
-sed '/^$/d' ./distracting_websites.txt | sed -E 's/(.*)/127.0.0.1  \1\n127.0.0.1  www.\1/' > ~/.config/distracting_sites.txt
+cat ./distracting_websites.txt | sed -E 's/(.*)/127.0.0.1  \1\n127.0.0.1  www.\1/' > ~/.config/distracting_sites.txt
 sudo -E hostile load "$HOME/.config/distracting_sites.txt"
 
 # setup default extension handlers
