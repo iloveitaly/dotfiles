@@ -24,7 +24,7 @@ EOT
 
 # when executed as part of a sleepwatcher, the environment is not set up
 export HOME=/Users/mike
-source $HOME/.asdf/asdf.sh
+source $HOME/.zshrc
 
 # cleanup browser tabs
 echo "Cleaning browser tabs..."
