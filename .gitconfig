@@ -39,7 +39,7 @@
   undo-commit = reset --soft HEAD^
 
   # review changes exclusive to the current branch (right diff) using Kalidescope
-  ksreview = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool $BRANCH...$SHA; }; f"
+  ksreview = "!f() { local SHA=${1:-HEAD}; local default_branch=$(git branch -l master main | sed 's/^* //'); local BRANCH=${2:-$default_branch}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool $BRANCH...$SHA; }; f"
 
   # NOTE aliases don't seem to be able to execute sub commands and store the result in a variable
   # i.e. don't try `f() { local=$(git something $1); git something-else $local }`, use xargs instead
