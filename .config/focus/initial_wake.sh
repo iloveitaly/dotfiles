@@ -1,6 +1,12 @@
 #!/usr/bin/env zsh
 
-apps=(Slack Discord Podcasts "Amazon Music" zoom.us ReadKit Texts Messages Gmail "System Settings" Music)
+# close work related apps on sunday
+work_apps=()
+if [ $(date +%u) -eq 7 ]; then
+  work_apps=(TablePlus "Visual Studio Code" Postico Kaleidoscope)
+fi
+
+apps=($work_apps Slack Discord Podcasts "Amazon Music" zoom.us ReadKit Texts Messages Gmail "System Settings" Music)
 for app in $apps; do
   echo "Quitting $app..."
 
