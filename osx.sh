@@ -197,8 +197,8 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
 # Set trackpad & mouse speed
-defaults write -g com.apple.trackpad.scaling 1.5
-defaults write -g com.apple.mouse.scaling 1.5
+defaults write -g com.apple.trackpad.scaling 4
+defaults write -g com.apple.mouse.scaling 5
 
 # Enable right click on magic mouse
 # https://apple.stackexchange.com/questions/143221/enable-right-click-magic-mouse-in-terminal
@@ -741,13 +741,11 @@ defaults write -app Safari NSUserKeyEquivalents
 
 # TODO double cmd dictation key
 # ❯ defaults read ~/Library/Preferences/com.apple.speech.recognition.AppleSpeechRecognition.prefs.plist
-# {
-#     CustomizedDictationHotKey =     {
-#         keyChar = 113;
-#         modifiers = 262144;
-#         virtualKey = 12;
-#     };
-
+# CustomizedDictationHotKey =     {
+#     keyChar = 100;
+#     modifiers = 1179648;
+#     virtualKey = 2;
+# };
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
