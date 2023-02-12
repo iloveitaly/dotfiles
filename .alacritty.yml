@@ -15,8 +15,6 @@ cursor:
 
 font:
   size: 13
-  smoothing: false
-  use_thin_strokes: true
   normal:
     family: Hack
     style: Regular
