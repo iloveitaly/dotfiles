@@ -10,6 +10,9 @@ export GIT_FUZZY_STATUS_COMMIT_KEY='Ctrl-S'
 export GIT_FUZZY_STATUS_DISCARD_KEY='Ctrl-D'
 export GIT_FUZZY_STATUS_RESET_KEY='Ctrl-R'
 
+# I use a git rebase workflow, no graphs
+export FORGIT_LOG_GRAPH_ENABLE=false
+
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
 # always show a file preview on the right. cntrl-o opens the file in vscode
