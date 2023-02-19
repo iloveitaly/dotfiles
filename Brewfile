@@ -84,9 +84,9 @@ if OS.mac?
     brew "youtube-dl"
     brew "gpg"
     brew "pinentry-mac"
-    brew "iloveitaly/tap/opbookmarks"
     brew "iloveitaly/tap/hyper-focus"
 
+    cask "signal"
     cask "google-chrome"
     cask "dropbox"
     cask "dozer"
@@ -99,7 +99,6 @@ if OS.mac?
     # does not support silicon installation yet
     system "arch -x86_64 brew install amazon-music"
     cask "amazon-photos"
-    cask "github"
     cask "homebrew/cask-versions/soulver2"
     cask "kap"
     cask "stay"
@@ -127,7 +126,6 @@ if OS.mac?
     cask "hyper"
     cask "raycast"
     cask "google-chrome-canary"
-    cask "another-redis-desktop-manager"
     cask "zoom"
     cask "the-unarchiver"
     cask "sketch"
@@ -167,7 +165,7 @@ if OS.mac?
     cask "dropbox-capture"
     cask "ngrok"
 
-    # == Expiremental
+    # == Expermental
     cask "appcleaner"
     cask "fig"
     cask "tip"
@@ -217,7 +215,7 @@ if OS.mac?
     # php-related packages for asdf install
     %w(re2c bison bzip2 freetype gettext libiconv icu4c jpeg libedit libpng libxml2 libzip openssl readline webp zlib gmp libsodium imagemagick).map { |p| brew p }
 
-    # == Expiremental
+    # == Experimental
     brew "atuin"
     brew "siege" # load testing tool
     brew "ameshkov/tap/dnslookup"
@@ -227,6 +225,10 @@ if OS.mac?
     tap "mongodb/brew"
     brew "mongodb-community"
     cask "mongodb-compass"
+
+    # redis
+    brew "redis"
+    cask "another-redis-desktop-manager"
 
     # == Mac App store
 
@@ -256,6 +258,7 @@ if OS.mac?
     # mas "blink-home-monitor", id: 1013961111
     # mas "wyze-make-your-home-smarter", id: 1288415553
     # TODO Owlet, is there a way to force this to install?
+    # TODO wireguard
 
     # safari extensions
     mas "SmileAllDay", id: 1180442868
