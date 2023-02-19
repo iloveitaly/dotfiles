@@ -64,6 +64,7 @@ export PYTHONBREAKPOINT=ipdb.set_trace
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export PYTHONIOENCODING='UTF-8';
 # https://www.erdaltaskesen.com/blog/how-to-remove-pycache-folders-and-pyc-files/
-export PYTHONDONTWRITEBYTECODE=""
+# https://github.com/pytest-dev/pytest/issues/200
+export PYTHONDONTWRITEBYTECODE=1
 # https://github.com/python-poetry/poetry/issues/1853
 export VIRTUAL_ENV_DISABLE_PROMPT=1
