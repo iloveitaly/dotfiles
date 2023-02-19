@@ -18,9 +18,7 @@ brew update && brew upgrade
 brew bundle -v || (echo "Brewfile failed, exiting early" && exit 1)
 brew cleanup
 
-# for 1password integration with raycast
-# all service data localed in ~/.config/op/bookmarks
-brew services start opbookmarks
+brew services start redis
 
 # shell
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -41,6 +39,7 @@ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
 source ~/.asdf/asdf.sh
 
 # install all plugins in tool-versions
+# by adding ~/.tool-versions this sets the default for the whole system
 cat ~/.tool-versions | cut -d' ' -f1 | grep "^[^\#]" | xargs -I{} asdf plugin add {}
 
 # fail on subshell error when installing language versions
@@ -125,3 +124,4 @@ git config --global gpg.program $(which gpg)
 # easily create new codespaces for a repo
 gh alias set cs-create --shell 'gh cs create --repo $(gh repo view --json nameWithOwner | jq -r .nameWithOwner)'
 
+# gencomp trunk
