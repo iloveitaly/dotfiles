@@ -67,6 +67,7 @@ brew "dog" # dig replacement
 brew "moreutils" # sponge
 brew "xplr" # file management
 brew "dust" # du replacement
+brew "qpdf" # for decrypting pdf files
 
 # == Experimental
 tap "afnanenayet/tap"

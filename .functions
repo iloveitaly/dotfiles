@@ -97,3 +97,8 @@ rgo() {
 
   rg $@ $params --no-filename --no-column --no-line-number --color never --only-matching
 }
+
+decryptpdf() {
+  echo "Enter password followed by <enter> followed by <ctrl-D>"
+  qpdf --decrypt --password-file=- --replace-input "${1}"
+}
