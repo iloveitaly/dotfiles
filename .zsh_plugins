@@ -1,12 +1,9 @@
 # plugin location: `~/.local/share/zinit/plugins`
 
 # oh-my-zsh plugins
-# gitfast workaround: https://github.com/zdharma/zinit/issues/477
-# gitfast is based on https://github.com/felipec/git-completion
 # in some environments, we may not be able to install svn
 if type svn &> /dev/null; then
   zinit svn wait lucid for \
-    OMZ::plugins/gitfast atpull'zinit creinstall -q .' \
     OMZ::plugins/extract
 fi
 
@@ -29,7 +26,6 @@ zinit wait lucid for \
 # important to load suggestions *after* zsh-completions
 #   - fzf/key-bindings: sets up reverse-i via fzf
 #   - fzf-tab: load order is important, must go last
-# TODO should probably remove gitfast above with git-completion in place
 zinit wait lucid for \
   mafredri/zsh-async \
   felipec/git-completion \
