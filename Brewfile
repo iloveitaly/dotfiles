@@ -90,7 +90,6 @@ if OS.mac?
     cask "signal"
     cask "google-chrome"
     cask "dropbox"
-    cask "dozer"
     cask "1password"
     cask "1password-cli"
     cask "google-drive"
