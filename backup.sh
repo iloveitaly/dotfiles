@@ -7,7 +7,7 @@
 #   - 1Password. Support was never merged, sensitive application to muck with permissions. https://github.com/lra/mackup/pull/1080
 #   - Dash. Save preferences and snippets in-app.
 #   - SSH and GPG
-#   - Enable location services
+#   - Enable location services, useful for night shift
 #   - Add '~/Projects' to Spotlight exclusion to avoid matching against node_modules
 #   - Slack setup. Login under various emails.
 #   - Discord
