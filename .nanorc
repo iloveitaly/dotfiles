@@ -4,7 +4,6 @@
 
 set linenumbers
 set autoindent
-set mouse
 set numbercolor yellow,normal
 set afterends       # `Ctrl+Right` move to word ends instead of word starts
 set historylog      # remember search history
