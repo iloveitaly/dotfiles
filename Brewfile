@@ -87,6 +87,11 @@ if OS.mac?
     brew "pinentry-mac"
     brew "iloveitaly/tap/hyper-focus"
 
+    cask "spotify"
+    cask "bartender"
+    cask "microsoft-teams"
+    cask "arctype"
+    cask "arc"
     cask "signal"
     cask "google-chrome"
     cask "dropbox"
@@ -176,7 +181,8 @@ if OS.mac?
     cask "cheatsheet"
     cask "rocket"
     cask "figma"
-    
+    cask "tableplus"
+
     # == Quicklook Plugins
     # https://github.com/sindresorhus/quick-look-plugins
     cask "qlmarkdown", args: { no_quarantine: true }
