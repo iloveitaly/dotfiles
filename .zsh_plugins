@@ -40,6 +40,9 @@ zinit wait lucid for \
   Aloxaf/fzf-tab \
   sudosubin/zsh-github-cli
 
+# loads a plugin outside of a repo async, this needs to be loaded after `asdf`
+zinit ice wait lucid
+zinit snippet https://gist.githubusercontent.com/iloveitaly/a79ffc31ef5b4785da8950055763bf52/raw/4140dd8fa63011cdd30814f2fbfc5b52c2052245/github-copilot-cli.zsh
 # must be loaded after syntax completion
 zinit load zsh-users/zsh-history-substring-search
 
