@@ -3,6 +3,9 @@
 
 window:
   dynamic_padding: true
+  # remove title bar
+  # https://github.com/alacritty/alacritty/issues/168
+  decorations: none
   padding:
     x: 3
     y: 3
@@ -14,7 +17,7 @@ cursor:
   unfocused_hollow: false
 
 font:
-  size: 13
+  size: 14
   normal:
     family: Hack
     style: Regular
