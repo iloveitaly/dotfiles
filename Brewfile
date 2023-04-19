@@ -75,6 +75,10 @@ brew "afnanenayet/tap/diffsitter"
 tap "noahgorstein/tap"
 brew "noahgorstein/tap/jqp"
 brew "act"
+brew "atuin"
+brew "trunk-io"
+brew "pstree" # procs seem to have a tree view and is a bit better
+brew "broot" # better file finding
 
 if OS.mac?
     tap "homebrew/cask-drivers"
