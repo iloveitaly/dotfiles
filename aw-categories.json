@@ -1,0 +1,382 @@
+{
+  "categories": [
+    {
+      "name": [
+        "Work",
+        "Writing"
+      ],
+      "rule": {
+        "type": "regex",
+        "regex": "Google Docs|Google Sheets|LibreOffice"
+      },
+      "data": {
+        "color": "#96cd39"
+      },
+      "name_pretty": "Work>Writing",
+      "subname": "Writing",
+      "parent": [
+        "Work"
+      ],
+      "depth": 1,
+      "id": 0
+    },
+    {
+      "name": [
+        "Work",
+        "Writing"
+      ],
+      "rule": {
+        "type": "regex",
+        "select_keys": [
+          "app"
+        ],
+        "regex": "LibreOffice|TextEdit|MacDown|Obsidian|TextEdit"
+      },
+      "data": {
+        "color": "#96cd39"
+      },
+      "name_pretty": "Work>Writing",
+      "subname": "Writing",
+      "parent": [
+        "Work"
+      ],
+      "depth": 1,
+      "id": 1
+    },
+    {
+      "name": [
+        "Work",
+        "General"
+      ],
+      "rule": {
+        "type": "regex",
+        "regex": "Preview|Finder|Todoist|1Password|Soulver|System Preferences|VNC Viewer",
+        "select_keys": [
+          "app"
+        ]
+      },
+      "data": {
+        "color": "#f5ff65"
+      },
+      "name_pretty": "Work>General",
+      "subname": "General",
+      "parent": [
+        "Work"
+      ],
+      "depth": 1,
+      "id": 2
+    },
+    {
+      "name": [
+        "Work",
+        "Programming"
+      ],
+      "rule": {
+        "type": "regex",
+        "regex": "GitHub|Stack Overflow|BitBucket|Gitlab|vim|Spyder|kate|iTerm|Hyper|Alacritty|Script Editor|Ghidra|Scite|TablePlus|ChatGPT|Dash|Harvest|Docker Desktop|localhost:"
+      },
+      "data": {
+        "color": "#54e346"
+      },
+      "name_pretty": "Work>Programming",
+      "subname": "Programming",
+      "parent": [
+        "Work"
+      ],
+      "depth": 1,
+      "id": 3
+    },
+    {
+      "name": [
+        "Work",
+        "Programming"
+      ],
+      "rule": {
+        "type": "regex",
+        "select_keys": [
+          "url"
+        ],
+        "regex": "github.com|unix.stackexchange.com|superuser.com|sourceforge.io|docker.com|serverfault.com"
+      },
+      "data": {
+        "color": "#54e346"
+      },
+      "name_pretty": "Work>Programming",
+      "subname": "Programming",
+      "parent": [
+        "Work"
+      ],
+      "depth": 1,
+      "id": 4
+    },
+    {
+      "name": [
+        "Work",
+        "Programming"
+      ],
+      "rule": {
+        "type": "regex",
+        "select_keys": [
+          "app"
+        ],
+        "regex": "Code|Sublime Text|TextMate|iTerm|Script Editor|Base|Postico|Sequel Ace"
+      },
+      "data": {
+        "color": "#54e346"
+      },
+      "name_pretty": "Work>Programming",
+      "subname": "Programming",
+      "parent": [
+        "Work"
+      ],
+      "depth": 1,
+      "id": 5
+    },
+    {
+      "name": [
+        "Media",
+        "Video"
+      ],
+      "rule": {
+        "type": "regex",
+        "regex": "YouTube|Plex|VLC"
+      },
+      "data": {
+        "color": "#ff5b44"
+      },
+      "name_pretty": "Media>Video",
+      "subname": "Video",
+      "parent": [
+        "Media"
+      ],
+      "depth": 1,
+      "id": 12
+    },
+    {
+      "name": [
+        "Media",
+        "Social Media"
+      ],
+      "rule": {
+        "type": "regex",
+        "regex": "reddit|Facebook|Twitter|Instagram|devRant|LinkedIn|news.ycombinator.com",
+        "ignore_case": true
+      },
+      "data": {
+        "color": "#ff5b44"
+      },
+      "name_pretty": "Media>Social Media",
+      "subname": "Social Media",
+      "parent": [
+        "Media"
+      ],
+      "depth": 1,
+      "id": 13
+    },
+    {
+      "name": [
+        "Media",
+        "Podcasts"
+      ],
+      "rule": {
+        "type": "regex",
+        "regex": "Podcasts",
+        "select_keys": [
+          "app"
+        ]
+      },
+      "data": {
+        "color": "#A8FC00"
+      },
+      "name_pretty": "Media>Podcasts",
+      "subname": "Podcasts",
+      "parent": [
+        "Media"
+      ],
+      "depth": 1,
+      "id": 14
+    },
+    {
+      "name": [
+        "Media",
+        "Music"
+      ],
+      "rule": {
+        "type": "regex",
+        "regex": "Spotify|Deezer|Amazon Music",
+        "ignore_case": true
+      },
+      "data": {
+        "color": "#A8FC00"
+      },
+      "name_pretty": "Media>Music",
+      "subname": "Music",
+      "parent": [
+        "Media"
+      ],
+      "depth": 1,
+      "id": 15
+    },
+    {
+      "name": [
+        "Comms"
+      ],
+      "rule": {
+        "type": null
+      },
+      "data": {
+        "color": "#9FF"
+      },
+      "name_pretty": "Comms",
+      "subname": "Comms",
+      "parent": null,
+      "depth": 0,
+      "id": 16
+    },
+    {
+      "name": [
+        "Comms",
+        "IM"
+      ],
+      "rule": {
+        "type": "regex",
+        "regex": "Messenger|Messages|Discord|Telegram|Signal|WhatsApp|Rambox|Slack|Riot|Element|Discord|Textual|Nheko|Texts"
+      },
+      "data": {
+        "color": "#ffba47"
+      },
+      "name_pretty": "Comms>IM",
+      "subname": "IM",
+      "parent": [
+        "Comms"
+      ],
+      "depth": 1,
+      "id": 17
+    },
+    {
+      "name": [
+        "Comms",
+        "Email"
+      ],
+      "rule": {
+        "type": "regex",
+        "regex": "Gmail|Thunderbird|mutt|alpine"
+      },
+      "data": {
+        "color": "#ffba47"
+      },
+      "name_pretty": "Comms>Email",
+      "subname": "Email",
+      "parent": [
+        "Comms"
+      ],
+      "depth": 1,
+      "id": 18
+    },
+    {
+      "name": [
+        "Comms",
+        "Meetings"
+      ],
+      "rule": {
+        "type": "regex",
+        "regex": "Zoom|Calendar|Cron|zoom.us|Microsoft Teams|meet.google.com"
+      },
+      "data": {
+        "color": "#f5ff65"
+      },
+      "name_pretty": "Comms>Meetings",
+      "subname": "Meetings",
+      "parent": [
+        "Comms"
+      ],
+      "depth": 1,
+      "id": 19
+    },
+    {
+      "name": [
+        "Web Browsing"
+      ],
+      "rule": {
+        "type": "regex",
+        "regex": "Chrome|Safari|FireFox|Brave",
+        "select_keys": [
+          "app"
+        ]
+      },
+      "name_pretty": "Web Browsing",
+      "subname": "Web Browsing",
+      "parent": null,
+      "id": 20
+    },
+    {
+      "name": [
+        "Uncategorized"
+      ],
+      "rule": {
+        "type": null
+      },
+      "data": {
+        "color": "#CCC"
+      },
+      "name_pretty": "Uncategorized",
+      "subname": "Uncategorized",
+      "parent": null,
+      "id": 21
+    },
+    {
+      "name": [
+        "Work"
+      ],
+      "rule": {
+        "type": null
+      },
+      "name_pretty": "Work",
+      "subname": "Work",
+      "parent": null,
+      "depth": 0,
+      "id": 22
+    },
+    {
+      "name": [
+        "Media"
+      ],
+      "rule": {
+        "type": null
+      },
+      "name_pretty": "Media",
+      "subname": "Media",
+      "parent": null,
+      "depth": 0,
+      "id": 23
+    },
+    {
+      "name": [
+        "Finances"
+      ],
+      "rule": {
+        "type": "regex",
+        "select_keys": [
+          "url"
+        ],
+        "regex": "peerstreet.com|lunchmoney.com|robinhood.com|vanguard.com|wealthfront.com"
+      },
+      "id": 24,
+      "data": {}
+    },
+    {
+      "name": [
+        "Family Management"
+      ],
+      "rule": {
+        "type": "regex",
+        "select_keys": [
+          "url"
+        ],
+        "regex": "donotpay.com|Streaks"
+      },
+      "id": 25,
+      "data": {}
+    }
+  ]
+}
