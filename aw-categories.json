@@ -17,7 +17,6 @@
       "parent": [
         "Work"
       ],
-      "depth": 1,
       "id": 0
     },
     {
@@ -40,7 +39,6 @@
       "parent": [
         "Work"
       ],
-      "depth": 1,
       "id": 1
     },
     {
@@ -63,7 +61,6 @@
       "parent": [
         "Work"
       ],
-      "depth": 1,
       "id": 2
     },
     {
@@ -83,7 +80,6 @@
       "parent": [
         "Work"
       ],
-      "depth": 1,
       "id": 3
     },
     {
@@ -106,7 +102,6 @@
       "parent": [
         "Work"
       ],
-      "depth": 1,
       "id": 4
     },
     {
@@ -129,7 +124,6 @@
       "parent": [
         "Work"
       ],
-      "depth": 1,
       "id": 5
     },
     {
@@ -149,7 +143,6 @@
       "parent": [
         "Media"
       ],
-      "depth": 1,
       "id": 12
     },
     {
@@ -170,7 +163,6 @@
       "parent": [
         "Media"
       ],
-      "depth": 1,
       "id": 13
     },
     {
@@ -193,7 +185,6 @@
       "parent": [
         "Media"
       ],
-      "depth": 1,
       "id": 14
     },
     {
@@ -214,7 +205,6 @@
       "parent": [
         "Media"
       ],
-      "depth": 1,
       "id": 15
     },
     {
@@ -230,7 +220,6 @@
       "name_pretty": "Comms",
       "subname": "Comms",
       "parent": null,
-      "depth": 0,
       "id": 16
     },
     {
@@ -250,7 +239,6 @@
       "parent": [
         "Comms"
       ],
-      "depth": 1,
       "id": 17
     },
     {
@@ -270,7 +258,6 @@
       "parent": [
         "Comms"
       ],
-      "depth": 1,
       "id": 18
     },
     {
@@ -290,7 +277,6 @@
       "parent": [
         "Comms"
       ],
-      "depth": 1,
       "id": 19
     },
     {
@@ -334,7 +320,6 @@
       "name_pretty": "Work",
       "subname": "Work",
       "parent": null,
-      "depth": 0,
       "id": 22
     },
     {
@@ -347,7 +332,6 @@
       "name_pretty": "Media",
       "subname": "Media",
       "parent": null,
-      "depth": 0,
       "id": 23
     },
     {
