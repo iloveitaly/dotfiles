@@ -25,4 +25,5 @@ com.microsoft.VSCode com.netscape.javascript-source all
 com.microsoft.VSCode net.daringfireball.markdown all
 com.microsoft.VSCode public.comma-separated-values-text all
 com.microsoft.VSCode public.swift-source all
+com.apple.Preview public.heic all
 uk.co.menial.Base db all
