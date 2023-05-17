@@ -147,6 +147,7 @@ if OS.mac?
     cask "muzzle"
     # cask "https://raw.githubusercontent.com/Homebrew/homebrew-cask/00a37cb6ea00ca2820652b75ebd1f57ba160c3e5/Casks/screenflow.rb"
     cask "visual-studio-code"
+    cask "visual-studio-code-insiders"
     cask "cloudapp"
     cask "chromedriver"
     # you must open up the docker macos app in order to symlink docker cli
