@@ -102,3 +102,8 @@ decryptpdf() {
   echo "Enter password followed by <enter> followed by <ctrl-D>"
   qpdf --decrypt --password-file=- --replace-input "${1}"
 }
+
+# https://superuser.com/questions/55040/save-a-single-web-page-with-background-images-with-wget/136335#136335
+scrape-website() {
+  wget -E -H -k -K -p -e robots=off $@
+}
