@@ -28,6 +28,9 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 # don't show fzf unless there are more than 4 items
 zstyle ':fzf-tab:*' ignore false 4
 
+# force completion generation for more obscure commands
+zstyle :plugin:zsh-completion-generator programs ncdu
+
 # =============
 # Shell Options
 # man: zshoptions
