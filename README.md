@@ -35,6 +35,14 @@ To update, `cd` into your local `dotfiles` repository and then:
 ./bootstrap.sh
 ```
 
+## Development
+
+For easy development, you can automatically run the `rsync` command in `bootstrap.sh` each time a file changes:
+
+```shell
+fd --hidden -d 1 -t f "^\." | entr rsync ...
+```
+
 ## Clone Interesting Dotfiles Locally
 
 Clone all of these dotfiles into `dotfiles-inspiration` folder so you can easily `rg` for configuration keywords:
