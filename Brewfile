@@ -37,6 +37,9 @@ brew "htmlq"
 brew "xsv" # csv tooling
 brew "dust"
 brew "sqlite"
+brew "md5sha1sum"
+brew "git-lfs"
+brew "urlview"
 
 # == Shell productivity utilities
 brew "zsh"
