@@ -57,8 +57,7 @@ setopt hist_save_no_dups        # Omit older commands in favor of newer ones.
 # Evals
 # =============
 
-export PATH="/opt/homebrew/bin:$PATH"
-eval $(brew shellenv)
+eval $(/opt/homebrew/bin/brew shellenv)
 
 export PATH="/Applications/Postgres.app/Contents/Versions/15/bin:$PATH"
 
