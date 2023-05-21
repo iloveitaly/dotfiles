@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # you'll need to run this as root to modify the /etc/hosts file
 
@@ -19,8 +19,11 @@
 #   - `asdf which node`
 #   - `asdf which hostile`
 
-source /Users/mike/.asdf/asdf.sh
-hostile load /Users/mike/.config/distracting_sites.txt
+# HOME is required for asdf to properly source versions
+export HOME=/Users/mike
+source ~/.asdf/asdf.sh
+
+hostile load ~/.config/distracting_sites.txt
 
 # https://apple.stackexchange.com/questions/303110/flush-cache-of-dns-on-macos-sierra-high-sierra/303119#303119
 sudo dscacheutil -flushcache
