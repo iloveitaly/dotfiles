@@ -1,9 +1,6 @@
 #!/usr/bin/env zsh
 
-# initial session name
 session_name=${PWD:t}
-
-# session counter
 counter=0
 
 while [[ $counter -lt 10 ]]; do
