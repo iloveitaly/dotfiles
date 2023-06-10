@@ -7,6 +7,19 @@ alias jj='zi'
 alias ff="fzf --preview='bat --color=always {}' --bind='space:toggle-preview'"
 alias tree='tre'
 
+# livegrep-like local search
+rgg() {
+    local file_and_location=$(rg "$@" --color always | fzf --ansi --delimiter : --with-nth '1,4' --preview 'height=$(tput lines); start={2}; context=$((height / 2)); bat --color=always --paging=never --highlight-line {2} --line-range $((start > context ? start - context : 1)):$((start + context)) {1}')
+
+    # Extracting the file name from the selected line
+    local file=$(echo "$file_and_location" | awk -F: '{print $1}')
+
+    # Opening the file
+    if [[ ! -z "$file" ]]; then
+      open "$file"
+    fi
+}
+
 alias fixcamera="sudo killall VDCAssistant; sudo killall AppleCameraAssistant"
 
 alias asdf-install="cat .tool-versions | cut -d' ' -f1 | grep '^[^\#]' | xargs -I{} asdf plugin add {}; asdf install"
@@ -14,8 +27,8 @@ alias python-debugging-install="pip install rich ipython_autoimport docrepr"
 alias python-remove-pycache="fd --no-ignore-vcs __pycache__ | xargs rm -rf"
 
 # copy last shell command into the clipboard
-# fc -l == history builtin
-alias clast="fc -ln -1 | pbcopy"
+# fc -l == history builtin, awk command to remove trailing newline
+alias clast="fc -ln -1 | awk '{printf \"%s\", \$0}' | pbcopy"
 
 # TODO the username on this needs to be dynamic in some way
 alias pisync='rsync -avh --filter=":- .gitignore" --progress $PWD pi@raspberrypi.local:~'
@@ -64,9 +77,6 @@ alias gpb='g pull --rebase origin `git rev-parse --abbrev-ref HEAD`'
 alias gpf='g push --force origin HEAD'
 
 # rails
-alias rk="rake"
-alias tl='tail -f log/development.log'
-alias tts="touch tmp/restart.txt"
 alias rt="bundle exec rails test"
 alias be="b exec"
 alias b="bundle"
@@ -87,7 +97,3 @@ alias spoton="sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.met
 
 # PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
 alias plistbuddy="/usr/libexec/PlistBuddy"
-
-# Kill all the tabs in Chrome to free up memory
-# [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
-alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
