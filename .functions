@@ -107,3 +107,25 @@ decryptpdf() {
 scrape-website() {
   wget -E -H -k -K -p -e robots=off $@
 }
+
+###########################
+# File opening functions
+###########################
+
+# open "yank.tmux:56:109:" at the right line in your terminal
+open_in_nano() {
+  # Read the input string into variables, splitting by ':'
+  IFS=':' read file line column <<< "$1"
+  # Open the file at the specified line. Nano doesn't support specific column.
+  nano +$line "$file"
+}
+
+open_in_vscode() {
+  IFS=':' read file line column <<< "$1"
+  code --goto "$file:$line:$column"
+}
+
+open_in_cat() {
+  IFS=':' read file line column <<< "$1"
+  bat $file --highlight-line "$line"
+}
