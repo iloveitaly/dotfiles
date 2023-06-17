@@ -468,7 +468,7 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 # do not share focus status on multiple devices, this will prevent notifications from appearing
 # if you are a heavy DND user on ios
 defaults write com.apple.donotdisturbd disableCloudSync -bool true
-defaults write com.apple.notificationcenterui bannerTime 30
+# TODO bannerTime doesn't work, would love to extend banner time to 30s
 
 # TODO disable notifications https://cs.github.com/tiiiecherle/osx_install_config/blob/67f7d618ace45f39f51d96c685ed027a84f48e38/_config_file/shellscriptsrc.sh?q=APPLICATIONS_TO_SET_NOTIFICATIONS#L1155
 # TODO schedule shutdown energy saver
