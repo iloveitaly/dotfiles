@@ -78,7 +78,6 @@ brew "afnanenayet/tap/diffsitter"
 tap "noahgorstein/tap"
 brew "noahgorstein/tap/jqp"
 brew "act"
-brew "atuin"
 brew "trunk-io"
 brew "pstree" # procs seem to have a tree view and is a bit better
 brew "broot" # better file finding
@@ -230,7 +229,6 @@ if OS.mac?
     %w(re2c bison bzip2 freetype gettext libiconv icu4c jpeg libedit libpng libxml2 libzip openssl readline webp zlib gmp libsodium imagemagick).map { |p| brew p }
 
     # == Experimental
-    brew "atuin"
     brew "siege" # load testing tool
     brew "ameshkov/tap/dnslookup"
     brew "smudge/smudge/nightlight"

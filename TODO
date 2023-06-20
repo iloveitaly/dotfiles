@@ -9,13 +9,11 @@
 - [ ] https://alt-tab-macos.netlify.app
 - [ ] tmux iterm integration https://iterm2.com/documentation-tmux-integration.html
 - [ ] commands.dev is there a zsh integration?
-- [ ] wordchars are just not working https://github.com/ohmyzsh/ohmyzsh/issues/8743
 - [ ] shortcuts for fzf to copy to clipboard https://github.com/junegunn/fzf/issues/2323
 - [ ] https://github.com/srirangav/qlZipInfo
 - [ ] https://github.com/asdf-community/asdf-poetry/issues/27 maybe do this statically https://python-poetry.org/docs/
 - [ ] multiple zsh plugins depend on python which causes where issues when a unsupported python version is included in tool-versions.
 - [ ] after running osx "System Settings" will not work properly, need to restart the computer. This has something to do with something other than the killall at the end.
-- [ ] ellie/atuin needs to be added to zsh plugins and use fzf instead
 - [ ] https://getpingr.app
 - [ ] https://www.gnu.org/software/stow/manual/stow.html
 - [ ] cross platform clipboard https://github.com/atotto/clipboard maybe for tmux on codespace
@@ -42,7 +40,6 @@
 - [ ] https://jvns.ca/blog/2022/04/12/a-list-of-new-ish--command-line-tools/?utm_source=hackernewsletter&utm_medium=email&utm_term=fav
 - [ ] add shellcheck github workflows
 - [ ] tail-like utility https://www.kylheku.com/cgit/pw/tree/pw.1
-- [ ] integrate shell history with fzf https://github.com/ellie/atuin/issues/68#issuecomment-1110691288
 - [ ] https://c-command.com/toothfairy/
 - [ ] https://github.com/ttscoff/KeyBindings or something like https://ke-complex-modifications.pqrs.org/?q=delete%20line
 - [ ] neat sql lite tooling https://sqlite-utils.datasette.io/en/stable/index.html?utm_source=hackernewsletter&utm_medium=email&utm_term=data
@@ -53,7 +50,6 @@
 - [ ] neat rich text to md https://cs.github.com/raycast/script-commands/blob/a770b25bace6ff185d73735c18a1a70bc9345686/commands/conversions/rich-text-clipboard-to-markdown.sh
 - [ ] https://bunchapp.co
 - [ ] use python for shell scripts? https://github.com/CZ-NIC/pz
-- [ ] upgrade https://github.com/ellie/atuin
 - [ ] https://idiomdrottning.org/xj html to json
 - [ ] https://github.com/pqrs-org/Karabiner-Elements/issues/1241 for MX mouse
 - [ ] better VS code git diff integration; use that by default instead of kalediascope
@@ -61,7 +57,6 @@
 - [ ] indicate a venv is loaded https://stackoverflow.com/questions/10406926/how-do-i-change-the-default-virtualenv-prompt
 - [ ] learn about ncat https://blog.ikuamike.io/posts/2021/netcat/
 - [ ] google spelling via alfred https://github.com/noahcoad/google-spell-check/blob/3c36c0bcd698fd22cbeaa34885b7969e60def75f/google-spell-check.py
-- [ ] reverse-r with atuin https://github.com/ellie/atuin/issues/68
 - [ ] https://github.com/cantino/mcfly
 - [ ] https://gist.github.com/justin808/1fe1dfbecc00a18e7f2a nice pry config
 - [ ] pdfdiff https://apps.apple.com/us/app/pdf-diff/id1543607881?mt=12

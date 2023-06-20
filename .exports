@@ -1,6 +1,3 @@
-# don't automatically setup atuin shell history bindkeys
-export ATUIN_NOBIND=1
-
 # Make nano the default editor for context-less editing in the terminal
 export EDITOR=nano
 
