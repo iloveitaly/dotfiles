@@ -1,23 +1,137 @@
 {
   "$schema": "https://raw.githubusercontent.com/iloveitaly/hyper-focus/main/schema.json",
-  "initial_wake": "~/.config/focus/initial_wake.sh",
-  "wake": "~/.config/focus/wake.sh",
+  "initial_wake": "/Users/mike/.config/focus/initial_wake.sh",
+  "wake": "/Users/mike/.config/focus/wake.sh",
   "schedule": [
     {
       "start": 0,
       "end": 12,
       "name": "morning focus",
+      "schedule_only": true,
       "block_hosts": [
         "mail.google.com",
         "news.ycombinator.com",
         "twitter.com",
         "feedbin.com",
-        "linkedin.com",
+        "youtube.com",
+        "web.getmatter.com",
+
+        "airbnb.com",
+        "cigna.com",
+        "my.cigna.com",
+        "my.lunchmoney.app",
+        "investor.vanguard.com",
+        "alliantcreditunion.com",
+        "chase.com",
+
+        "instacart.com",
+        "aliexpress.us",
+        "costco.com",
+        "walmart.com",
+        "slickdeals.net",
+        "amazon.com",
+        "smile.amazon.com",
+        "groupon.com"
+      ],
+      "block_urls": [
+        "https://www.google.com/search?q=world+news",
+        "https://www.google.com/search?q=economic+news",
+        "https://www.google.com/search?q=colorado+news",
+        "https://www.google.com/search?tbm=nws",
+        "https://www.google.com/search?tbm=shop",
+        "https://www.google.com/search?q=vti",
+        "https://www.google.com/search?q=vxus",
+        "https://www.google.com/search?q=vteb",
+        "https://github.com/iloveitaly",
+        "https://github.com/iloveitaly/dotfiles",
+        "https://www.linkedin.com/feed/"
+      ],
+      "block_apps": [
+        "Texts",
+        "Messages",
+        "Discord",
+        "Gmail",
+        "Amazon Music",
+        "Spotify",
+        "Podcasts",
+        "Music",
+        "ReadKit",
+        "Readwise"
+      ]
+    },
+    {
+      "name": "daily comms",
+      "schedule_only": true,
+      "start": 12,
+      "end": 13,
+      "start_script": "/Users/mike/.config/focus/communication_start.sh",
+      "block_hosts": [
+        "twitter.com",
+        "feedbin.com",
+        "my.lunchmoney.com",
+        "news.ycombinator.com"
+      ],
+      "block_urls": [
+        "https://www.google.com/search?q=world+news",
+        "https://www.google.com/search?q=economic+news",
+        "https://www.google.com/search?q=colorado+news",
+        "https://www.google.com/search?tbm=nws",
+        "https://www.google.com/search?tbm=shop",
+        "https://www.google.com/search?q=vti",
+        "https://www.google.com/search?q=vxus",
+        "https://www.google.com/search?q=vteb",
+        "https://github.com/iloveitaly"
+      ],
+      "block_apps": []
+    },
+    {
+      "name": "standard focus",
+      "schedule_only": true,
+      "start": 13,
+      "end": 24,
+      "block_hosts": [
+        "twitter.com",
+        "feedbin.com",
+        "my.lunchmoney.com",
+        "mail.google.com",
+        "news.ycombinator.com",
+
+        "instacart.com",
+        "aliexpress.us",
+        "costco.com",
+        "walmart.com",
+        "slickdeals.net",
+        "amazon.com",
+        "smile.amazon.com",
+        "groupon.com"
+      ],
+      "block_urls": [
+        "https://www.google.com/search?q=world+news",
+        "https://www.google.com/search?q=economic+news",
+        "https://www.google.com/search?q=colorado+news",
+        "https://www.google.com/search?tbm=nws",
+        "https://www.google.com/search?tbm=shop",
+        "https://www.google.com/search?q=vti",
+        "https://www.google.com/search?q=vxus",
+        "https://www.google.com/search?q=vteb",
+        "https://github.com/iloveitaly"
+      ],
+      "block_apps": ["ReadKit"]
+    },
+    {
+      "name": "Communications",
+      "description": "emails, texts, etc",
+      "start_script": "/Users/mike/.config/focus/communication_session.sh",
+      "block_hosts": [
+        "news.ycombinator.com",
+        "twitter.com",
         "youtube.com",
 
         "airbnb.com",
-        "my.lunchmoney.app",
         "cigna.com",
+        "my.cigna.com",
+        "my.lunchmoney.app",
+        "investor.vanguard.com",
         "alliantcreditunion.com",
         "chase.com",
 
@@ -25,55 +139,104 @@
         "walmart.com",
         "slickdeals.net",
         "amazon.com",
-        "smile.amazon.com"
+        "smile.amazon.com",
+        "groupon.com"
+      ],
+      "block_apps": [
+        "Amazon Music",
+        "Podcasts",
+        "Music",
+        "ReadKit"
       ],
       "block_urls": [
         "https://www.google.com/search?q=world+news",
+        "https://www.google.com/search?q=economic+news",
+        "https://www.google.com/search?q=colorado+news",
         "https://www.google.com/search?tbm=nws",
         "https://www.google.com/search?tbm=shop",
         "https://www.google.com/search?q=vti",
         "https://www.google.com/search?q=vxus",
-        "https://www.google.com/search?q=vteb"
-      ],
-      "block_apps": [
-        "Slack",
-        "Texts",
-        "Messages",
-        "Discord",
-        "Podcasts",
-        "Zoom",
-        "Discord",
-        "Amazon Music",
-        "Cron",
-        "Gmail",
-        "ReadKit"
+        "https://www.google.com/search?q=vteb",
+        "https://github.com/iloveitaly"
+
       ]
     },
     {
-      "name": "scheduling",
-      "block_hosts": [],
-      "block_apps": [],
-      "block_urls": []
-    },
-    {
       "name": "family chores",
-      "block_hosts": [],
-      "block_apps": [],
-      "block_urls": []
+      "description": "email, finances, etc",
+      "block_hosts": [
+        "twitter.com",
+        "feedbin.com",
+        "youtube.com",
+        "news.ycombinator.com",
+
+        "web.getmatter.com"
+      ],
+      "block_apps": [
+        "Discord",
+        "Amazon Music",
+        "Podcasts",
+        "Music",
+        "ReadKit"
+      ],
+      "block_urls": [
+        "https://www.google.com/search?q=world+news",
+        "https://www.google.com/search?q=economic+news",
+        "https://www.google.com/search?q=colorado+news",
+        "https://www.google.com/search?tbm=nws",
+        "https://www.google.com/search?tbm=shop",
+        "https://www.google.com/search?q=vti",
+        "https://www.google.com/search?q=vxus",
+        "https://www.google.com/search?q=vteb",
+        "https://github.com/iloveitaly",
+        "https://www.linkedin.com/feed/"
+      ]
     },
     {
-      "name": "standard focus",
-      "start": 12,
-      "end": 24,
+      "name": "Research",
+      "description": "Reading blogs, listening to podcasts, etc.",
+      "block_hosts": [
+        "twitter.com",
+        "mail.google.com",
+
+        "airbnb.com",
+        "cigna.com",
+        "my.cigna.com",
+        "my.lunchmoney.app",
+        "investor.vanguard.com",
+        "alliantcreditunion.com",
+        "chase.com",
+
+        "instacart.com",
+        "costco.com",
+        "walmart.com",
+        "slickdeals.net",
+        "amazon.com",
+        "smile.amazon.com",
+        "groupon.com"
+      ],
+      "block_urls": [],
+      "block_apps": ["Texts", "Gmail", "Messages", "Slack", "Discord"]
+    },
+    {
+      "name": "meeting",
+      "block_apps": [],
+      "block_urls": [],
       "block_hosts": [
         "twitter.com",
         "feedbin.com",
         "my.lunchmoney.com",
-        "linkedin.com",
-        "mail.google.com"
-      ],
-      "block_urls": [],
-      "block_apps": ["ReadKit"]
+        "news.ycombinator.com",
+
+        "instacart.com",
+        "aliexpress.us",
+        "costco.com",
+        "walmart.com",
+        "slickdeals.net",
+        "amazon.com",
+        "smile.amazon.com",
+        "groupon.com"
+      ]
     }
-  ]
+ ]
 }
