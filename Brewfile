@@ -81,6 +81,7 @@ brew "act"
 brew "trunk-io"
 brew "pstree" # procs seem to have a tree view and is a bit better
 brew "broot" # better file finding
+brew "dolt"
 
 if OS.mac?
     tap "homebrew/cask-drivers"
