@@ -2,21 +2,33 @@
 export EDITOR=nano
 
 # https://github.com/bigH/git-fuzzy/pull/16/files
+# TODO disable default bindings https://github.com/bigH/git-fuzzy/blob/a9a030d18be0a01f576e6319f893938c75dfc868/lib/core.sh#L16-L17
+# TODO export GF_FZF_DEFAULTS_SET=yes
 export GIT_FUZZY_STATUS_ADD_KEY='Ctrl-A'
 export GIT_FUZZY_STATUS_COMMIT_KEY='Ctrl-S'
-export GIT_FUZZY_STATUS_DISCARD_KEY='Ctrl-D'
+# export GIT_FUZZY_STATUS_DISCARD_KEY='Ctrl-D'
 export GIT_FUZZY_STATUS_RESET_KEY='Ctrl-R'
 
 # https://github.com/wfxr/forgit/issues/287#issuecomment-1474824973
 export FORGIT_STASH_FZF_OPTS="--bind=\"ctrl-y:execute-silent(echo {} | cut -d: -f1 | tr -d '[:space:]' | pbcopy)\""
+export FORGIT_FZF_DEFAULT_OPTS="--preview-window=nohidden"
 
 # I use a git rebase workflow, no graphs
 export FORGIT_LOG_GRAPH_ENABLE=false
 
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
+# TODO use a shell alias to extract the file name from possibly messy input
 # always show a file preview on the right. cntrl-o opens the file in vscode
-export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort' --info=hidden"
+# TODO https://github.com/junegunn/fzf/issues/3358
+export FZF_DEFAULT_OPTS="\
+--bind='ctrl-u:preview-half-page-up' \
+--bind='ctrl-d:preview-half-page-down' \
+--bind='ctrl-o:execute(open_in_vscode {})+abort' \
+--bind=\"ctrl-y:execute-silent(pbcopy <<< {})\" \
+--preview-window 'down:3:hidden:wrap' \
+--bind='?:toggle-preview' \
+"
 export FZF_CTRL_R_OPTS="--preview-window up:3"
 
 # large shell history
