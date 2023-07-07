@@ -6,6 +6,9 @@ export USER=mike
 export HOME=/Users/$USER
 source ~/.asdf/asdf.sh
 
+# stop caffinating so the computer actually falls back to sleep
+/usr/bin/killall caffeinate
+
 # close work related apps on sunday
 work_apps=()
 if [ $(date +%u) -eq 7 ]; then
