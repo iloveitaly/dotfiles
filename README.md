@@ -72,6 +72,7 @@ interesting_repos=(
   https://github.com/peterhajas/dotfiles
   https://github.com/evanpurkhiser/dots-personal
   https://github.com/phillbaker/dotfiles
+  https://github.com/brucebentley/dotfiles
 )
 
 cd ~/Projects/dotfiles-inspiration
