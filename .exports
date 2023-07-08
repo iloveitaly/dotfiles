@@ -1,6 +1,9 @@
 # Make nano the default editor for context-less editing in the terminal
 export EDITOR=nano
 
+# support nvmrc lazy versions
+export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_available
+
 # https://github.com/bigH/git-fuzzy/pull/16/files
 # TODO disable default bindings https://github.com/bigH/git-fuzzy/blob/a9a030d18be0a01f576e6319f893938c75dfc868/lib/core.sh#L16-L17
 # TODO export GF_FZF_DEFAULTS_SET=yes
