@@ -1,5 +1,16 @@
 #!/usr/bin/env zsh
 
+copy_vscode_env_vars() {
+  local session=$1
+
+  # Copy VSCODE_ environment variables to the tmux session
+  for var in ${(k)parameters}; do
+    if [[ $var == VSCODE_* ]]; then
+      tmux set-environment -t "$session" "$var" "${(P)var}"
+    fi
+  done
+}
+
 session_name=${PWD:t}
 counter=0
 
@@ -13,12 +24,14 @@ while [[ $counter -lt 10 ]]; do
   # if the session doesn't exist, create it
   if ! tmux has-session -t "$session" 2>/dev/null; then
     tmux new -ADs "$session"
+    copy_vscode_env_vars "$session"
     break
   fi
 
   # if the session exists but isn't attached, attach it
   if [ -z "$(tmux list-sessions -F "#{session_name} #{session_attached}" | grep "^$session 1")" ]; then
     tmux attach -t "$session"
+    copy_vscode_env_vars "$session"
     break
   fi
 
