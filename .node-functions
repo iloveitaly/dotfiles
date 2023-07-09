@@ -1,0 +1,101 @@
+###########################
+# Node Helper Functions
+# node is just a terrible development environment by default
+# these helpers make using it more sane
+###########################
+
+# ts-node execution
+tsn() {
+  if ! npm list tsconfig-paths &>/dev/null; then
+    echo "adding tsconfig-paths"
+    npmi tsconfig-paths --save-dev
+  fi
+
+  node -r ts-node/register/transpile-only \
+     -r tsconfig-paths/register \
+     $@
+}
+
+# node debugger
+ndb() {
+  # `NODE_INSPECT_RESUME_ON_START` runs until first breakpoint when in `node inspect`
+
+  if [[ "$1" == *.ts ]]; then
+    echo "Using ts-node for typescript..."
+    NODE_INSPECT_RESUME_ON_START=1 node inspect \
+      --debug-port=0 \
+      --loader ts-node/esm  \
+      # -r ts-node/esm/transpile-only \
+      -r tsconfig-paths/register \
+      "$@"
+  else
+    # if not, assume basic JS
+    NODE_INSPECT_RESUME_ON_START=1 node inspect \
+      --debug-port=0 \
+      "$@"
+  fi
+}
+
+jest-debug() {
+  local TEST_TIMEOUT=""
+  if [ -n "$JEST_TEST_TIMEOUT" ]; then
+    TEST_TIMEOUT="--testTimeout=$JEST_TEST_TIMEOUT"
+  fi
+
+  NODE_INSPECT_RESUME_ON_START=1 node inspect --port=0 \
+    node_modules/.bin/jest --runInBand --no-cache $TEST_TIMEOUT "$@"
+}
+
+npm-upgrade-packages() {
+  if ! npm list npm-check-updates &>/dev/null; then
+    echo "adding npm-check-updates"
+    npm install -g npm-check-updates
+  fi
+
+  ncu --interactive --format group
+}
+
+npm-package-tree() {
+  npm list --omit dev --omit optional --depth 2
+}
+
+npm-reset() {
+  rm -rf node_modules && npm i
+}
+
+# TODO any `file:./` references, automatically remove and reinstall packages
+
+# update package.json engine configuration based on asdf + npm config
+node-package-version-sync() {
+  # Get NodeJS version from asdf
+  local NODE_VERSION=$(asdf current nodejs | awk '{print $2}')
+
+  # Get NPM version from the command line
+  local NPM_VERSION=$(npm -v)
+
+  # Define the part of the package.json file before the "engines" section
+  local JSON_HEAD=$(cat package.json | jq 'del(.engines)')
+
+  # Form the "engines" section with the latest NodeJS and NPM versions
+  local ENGINES=$(jq -n \
+                  --arg NODE_VERSION "$NODE_VERSION" \
+                  --arg NPM_VERSION "$NPM_VERSION" \
+                  '{
+                      "node": $NODE_VERSION,
+                      "npm": $NPM_VERSION
+                  }')
+
+  # Combine the two parts and write them back to package.json
+  echo $JSON_HEAD | jq --argjson engines "$ENGINES" '. + {engines: $engines}' > package.json
+}
+
+npmi() {
+  # if typesync is not installed in the local package.json, add it to the dev deps
+  if ! grep -q typesync package.json; then
+    npm i typesync --save-dev
+  fi
+
+  npm i $@ --save
+  npx typesync
+  npm i
+}

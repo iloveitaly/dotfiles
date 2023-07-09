@@ -129,3 +129,5 @@ open_in_cat() {
   IFS=':' read file line column <<< "$1"
   bat $file --highlight-line "$line"
 }
+
+source ~/.node-functions
