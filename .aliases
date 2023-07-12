@@ -4,21 +4,7 @@ alias find='fd'
 alias ls='exa -l --group-directories-first'
 alias j='z'
 alias jj='zi'
-alias ff="fzf --preview='bat --color=always {}' --bind='space:toggle-preview'"
 alias tree='tre'
-
-# livegrep-like local search
-rgg() {
-    local file_and_location=$(rg "$@" --color always | fzf --ansi --delimiter : --with-nth '1,4' --preview 'height=$(tput lines); start={2}; context=$((height / 2)); bat --color=always --paging=never --highlight-line {2} --line-range $((start > context ? start - context : 1)):$((start + context)) {1}')
-
-    # Extracting the file name from the selected line
-    local file=$(echo "$file_and_location" | awk -F: '{print $1}')
-
-    # Opening the file
-    if [[ ! -z "$file" ]]; then
-      open "$file"
-    fi
-}
 
 alias fixcamera="sudo killall VDCAssistant; sudo killall AppleCameraAssistant"
 
