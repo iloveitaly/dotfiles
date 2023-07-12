@@ -56,6 +56,7 @@
   # Like "git show myfile", but uses the last commit that changed "myfile".
   showlast = log -n 1 -p
 
+  # verbose single commit display
   showv = show --format=fuller
 
   # `tee /dev/tty` allows us to output the result to stdout *and* pipe it to pbcopy
@@ -83,8 +84,6 @@
 
   # http://urbanautomaton.com/blog/2014/09/22/tracking-method-history-in-git/
   lm = "!f(){ local method=$1; local file=$2; [[ -n \"$method\" && -n \"$file\" ]] || exit 1; git log -L :$method:$file;}; f"
-
-  myprs = "!f(){ local id=$(gh pr list -L100 -A $(git config github.user) | fzf | cut -f1); [ -n \"$id\" ] && gh pr view \"$id\" --web && echo \"$id\"; }; f"
 [color]
   ui = auto
 [color "branch"]

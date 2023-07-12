@@ -1,3 +1,4 @@
+# a touch command which creates folders too
 function touchp() {
   mkdir -p $(dirname $1) && touch "$1"
 }
@@ -7,8 +8,29 @@ function digga() {
   dig +nocmd "$1" any +multiline +noall +answer
 }
 
-# git functions
-# most pulled from https://github.com/ignu/dotfiles
+
+# livegrep-like local search
+# related: https://github.com/seletskiy/zsh-fuzzy-search-and-edit/blob/master/plugin.zsh
+rgg() {
+  local additional_args=""
+
+  # TODO should check search page in $@ as well
+  if [[ $(pwd) =~ node_modules$ ]]; then
+    # in this case, we want to search the contents of the node_modules directory
+    # this is a common case for me, trying to debug various package bugs in a project I'm working on
+    additional_args="--no-ignore-vcs --hidden"
+  fi
+
+  # TODO --bind=\"ctrl-y:execute-silent(echo {} | cut -d: -f1 | tr -d '[:space:]' | pbcopy)\" \
+  local file_and_location=$(rg $additional_args "$@" --color always | fzf --ansi --delimiter : --with-nth '1,4' --preview 'height=$(tput lines); start={2}; context=$((height / 2)); bat --color=always --paging=never --highlight-line {2} --line-range $((start > context ? start - context : 1)):$((start + context)) {1}')
+
+  # Extracting the file name from the selected line
+  local file=$(echo "$file_and_location" | awk -F: '{print $1}')
+
+  if [[ ! -z "$file" ]]; then
+    open "$file"
+  fi
+}
 
 function gc() {
   git commit -v -a -m "$*"
@@ -22,6 +44,13 @@ function gbt() {
   git checkout -b $1 --track origin/$1
 }
 
+function myprs() {
+  local id=$(set -e; gh pr list -L100 --author $(git config github.user) $@ | fzf | cut -f1)
+
+  [ -n "$id" ] && gh pr view "$id" --web && echo "$id"
+}
+
+# TODO should probably remove
 # https://blog.takanabe.tokyo/en/2020/04/remove-squash-merged-local-git-branches/
 function git-clean-squash-and-merge() (
   set -euo pipefail
