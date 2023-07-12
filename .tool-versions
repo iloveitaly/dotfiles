@@ -9,3 +9,4 @@ ruby  2.7.6
 direnv 2.32.1
 rust nightly
 poetry 1.5.1
+pnpm 8.6.7
