@@ -9,11 +9,12 @@ export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_available
 # TODO export GF_FZF_DEFAULTS_SET=yes
 export GIT_FUZZY_STATUS_ADD_KEY='Ctrl-A'
 export GIT_FUZZY_STATUS_COMMIT_KEY='Ctrl-S'
-# export GIT_FUZZY_STATUS_DISCARD_KEY='Ctrl-D'
 export GIT_FUZZY_STATUS_RESET_KEY='Ctrl-R'
 
 # https://github.com/wfxr/forgit/issues/287#issuecomment-1474824973
 export FORGIT_STASH_FZF_OPTS="--bind=\"ctrl-y:execute-silent(echo {} | cut -d: -f1 | tr -d '[:space:]' | pbcopy)\""
+# sort branches by commit date
+export FORGIT_CHECKOUT_BRANCH_BRANCH_GIT_OPTS="--sort=-committerdate"
 export FORGIT_FZF_DEFAULT_OPTS="--preview-window=nohidden"
 
 # I use a git rebase workflow, no graphs
