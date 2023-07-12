@@ -49,7 +49,7 @@ EOT
 # cleanup browser tabs
 echo "Cleaning browser tabs..."
 cd ~/Projects/clean-workspace
-sudo poetry run clean-workspace "$dialogResult"
+sudo poetry run clean-workspace --tab-description "$dialogResult"
 
 # organize todoist
 echo "Organizing todoist..."
