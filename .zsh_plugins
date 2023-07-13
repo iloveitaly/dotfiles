@@ -21,24 +21,36 @@ zinit wait lucid for \
   hlissner/zsh-autopair \
   OMZ::plugins/safe-paste
 
-# keeping
+###########################
+# Completion Setup
+# similar to copycat, but using the native search so it's fast (https://github.com/tmux-plugins/tmux-copycat/tree/master)
+###########################
+
 # zicompinit runs `compinit` to generate completions
 # important to load suggestions *after* zsh-completions
 #   - fzf/key-bindings: sets up reverse-i via fzf
 #   - fzf-tab: load order is important, must go last
+#   - forgit needs _git to be loaded in order for the additional src to work, which is why we zicompinit
+# TODO https://github.com/felipec/git-completion/issues/8
+# blockf ver"zinit-fixed" as"completion" nocompile mv'git-completion.zsh -> _git' iloveitaly/git-completion \
 zinit wait lucid for \
   mafredri/zsh-async \
-  felipec/git-completion \
   redxtech/zsh-asdf-direnv \
   zpm-zsh/zsh-better-npm-completion \
   'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh' \
   as'completion' blockf OMZ::plugins/ripgrep/_ripgrep \
-  blockf atpull'zinit creinstall -q .' zsh-users/zsh-completions \
+  atinit'zicompinit' atpull'zinit creinstall .' src'completions/git-forgit.zsh' wfxr/forgit \
+  blockf atpull'zinit creinstall  .' zsh-users/zsh-completions \
+  RobSis/zsh-completion-generator \
   atinit"zicompinit; zicdreplay" zdharma/fast-syntax-highlighting \
   atload'_zsh_autosuggest_start' zsh-users/zsh-autosuggestions \
   Aloxaf/fzf-tab \
-  sudosubin/zsh-github-cli
+  sudosubin/zsh-github-cli \
+  atload"zpcdreplay" atclone"./zplug.zsh" atpull"%atclone" g-plane/pnpm-shell-completion
+
+# zi ice lucid wait as'completion' blockf mv'git-completion.zsh -> _git'
+# zinit load felipec/git-completion
 
 # loads a plugin outside of a repo async, this needs to be loaded after `asdf`
 zinit ice wait lucid
@@ -55,15 +67,12 @@ zinit load zsh-users/zsh-history-substring-search
 #   - lib/spectrum.zsh: 'spectrum_ls' alias to visually inspect colors
 zinit wait'1' lucid for \
   marzocchi/zsh-notify \
-  MichaelAquilina/zsh-autoswitch-virtualenv \
   ajeetdsouza/zoxide \
   djui/alias-tips \
   chrissicool/zsh-256color \
   zpm-zsh/colors \
   OMZ::lib/spectrum.zsh \
-  wfxr/forgit \
-  RobSis/zsh-completion-generator \
-  seletskiy/zsh-fuzzy-search-and-edit
+  MichaelAquilina/zsh-autoswitch-virtualenv
 
 # binaries installed via zinit
 #   - git-fuzzy: 'git fuzzy' for interactive git commit cli
@@ -77,3 +86,9 @@ zinit wait'2' lucid for \
 # must load last
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
+
+rm /opt/homebrew/share/zsh/site-functions/_git 2> /dev/null
+
+# function don't get completions by default, aliases need to be manually assigned
+zicompdef fdd=fd
+zicompdef rgg=rg
