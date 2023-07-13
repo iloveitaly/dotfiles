@@ -19,6 +19,25 @@ zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
+# force completion generation for more obscure commands
+zstyle :plugin:zsh-completion-generator   programs ncdu tre
+
+# =============
+# fzf-tab config
+# =============
+
+# set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# preview directory's content with exa when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+
+# switch group using `,` and `.`
+zstyle ':fzf-tab:*' switch-group ',' '.'
+
 # menu if nb items > 2
 zstyle ':completion:*' menu select=2
 
@@ -26,10 +45,7 @@ zstyle ':completion:*' menu select=2
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 
 # don't show fzf unless there are more than 4 items
-zstyle ':fzf-tab:*' ignore false 4
-
-# force completion generation for more obscure commands
-zstyle :plugin:zsh-completion-generator programs ncdu
+# zstyle ':fzf-tab:*' ignore false 4
 
 # =============
 # Shell Options
@@ -53,7 +69,6 @@ setopt hist_ignore_dups         # Ignore consecutive duplicates.
 setopt hist_reduce_blanks       # Remove superfluous blanks.
 setopt hist_save_no_dups        # Omit older commands in favor of newer ones.
 
-# =============
 # Evals
 # =============
 
