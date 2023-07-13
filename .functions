@@ -1,3 +1,9 @@
+function zinit-update() {
+  zinit delete --clean
+  zinit update --all
+  zinit cclear
+}
+
 # a touch command which creates folders too
 function touchp() {
   mkdir -p $(dirname $1) && touch "$1"
