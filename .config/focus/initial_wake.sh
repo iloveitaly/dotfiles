@@ -6,6 +6,12 @@ export USER=mike
 export HOME=/Users/$USER
 source ~/.asdf/asdf.sh
 
+# do we have internet access?
+if ! ping -c 1 google.com &> /dev/null; then
+  echo "No internet access, waiting for 1 minute"
+  sleep 60
+fi
+
 # stop caffinating so the computer actually falls back to sleep
 /usr/bin/killall caffeinate
 
