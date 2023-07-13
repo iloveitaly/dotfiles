@@ -9,8 +9,6 @@ alias tree='tre'
 alias fixcamera="sudo killall VDCAssistant; sudo killall AppleCameraAssistant"
 
 alias asdf-install="cat .tool-versions | cut -d' ' -f1 | grep '^[^\#]' | xargs -I{} asdf plugin add {}; asdf install"
-alias python-debugging-install="pip install ipdb rich ipython_autoimport docrepr pyfzf"
-alias python-remove-pycache="fd --no-ignore-vcs __pycache__ | xargs rm -rf"
 
 # copy last shell command into the clipboard
 # fc -l == history builtin, awk command to remove trailing newline
@@ -73,6 +71,8 @@ alias imix="iex -S mix"
 
 # python
 alias poetry-pristine="poetry env remove python && poetry env use python && poetry install"
+alias python-debugging-install="pip install ipdb rich ipython_autoimport docrepr pyfzf"
+alias python-remove-pycache="fd --no-ignore-vcs __pycache__ | xargs rm -rf"
 
 # Hide/show all desktop icons (useful when presenting)
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
