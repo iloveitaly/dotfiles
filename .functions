@@ -14,6 +14,33 @@ function digga() {
   dig +nocmd "$1" any +multiline +noall +answer
 }
 
+# determine if we are in a node_modules folder or if a valid node_modules path was passed via any argument
+function _is_node_modules() {
+  local node_modules_path=$1
+
+  if [[ -z "$node_modules_path" ]]; then
+    node_modules_path=$(pwd)
+  fi
+
+  [[ "$node_modules_path" =~ node_modules$ ]]
+}
+
+alias ff="fzf --preview='bat --color=always {}'"
+
+# TODO this should use the `cd` thing and just overload there instead
+fdd() {
+  local additional_args=""
+  if _is_node_modules "$@"; then
+    additional_args="--no-ignore-vcs --hidden"
+  fi
+
+  local file_or_directory=$(fd $additional_args "$@" | fzf --preview 'exa -1 --color=always {}'
+)
+
+  if [[ ! -z "$file_or_directory" ]]; then
+    cd $file_or_directory
+  fi
+}
 
 # livegrep-like local search
 # related: https://github.com/seletskiy/zsh-fuzzy-search-and-edit/blob/master/plugin.zsh
@@ -157,6 +184,10 @@ open_in_nano() {
 
 open_in_vscode() {
   IFS=':' read file line column <<< "$1"
+
+  # Ensure the file path starts with a single slash
+  file=$(echo "$file" | sed 's|^/{2,}|/|')
+
   code --goto "$file:$line:$column"
 }
 
