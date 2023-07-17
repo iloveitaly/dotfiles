@@ -24,14 +24,18 @@ fi
 
 apps=(
   $work_apps
-  Slack Mattermost GitHub
+  Slack Mattermost GitHub Rewind
+  Dropbox "Google Drive"
   Discord
   Podcasts "Amazon Music" Spotify
   Dictionary Notes
   zoom.us ReadKit Readwise Texts Messages Gmail "System Settings" Music
+  "Google Software Update"
 )
 
-for app in $apps; do
+quit_app() {
+  local app=$1
+
   echo "Quitting $app..."
 
   osascript -e "with timeout of 30 seconds
@@ -42,6 +46,12 @@ for app in $apps; do
     # if the application did not quit on it's own, let's force it!
     killall "$app"
   fi
+
+  # TODO check if the application is still running and try the kill approach
+}
+
+for app in $apps; do
+  quit_app $app
 done
 
 # prompt user for context on what's left in the browser tabs
