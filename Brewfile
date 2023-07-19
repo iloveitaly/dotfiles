@@ -94,6 +94,7 @@ if OS.mac?
     brew "pinentry-mac"
     brew "iloveitaly/tap/hyper-focus"
 
+    cask "grammarly-desktop"
     cask "spotify"
     cask "bartender"
     cask "microsoft-teams"
