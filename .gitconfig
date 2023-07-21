@@ -38,6 +38,9 @@
   logv = log --pretty=fuller
   undo-commit = reset --soft HEAD^
 
+  # https://github.com/so-fancy/diff-so-fancy/issues/473
+  addp = -c 'interactive.diffFilter=less' add -p
+
   # review changes exclusive to the current branch (right diff) using Kalidescope
   ksreview = "!f() { local SHA=${1:-HEAD}; local default_branch=$(git branch -l master main | sed 's/^* //'); local BRANCH=${2:-$default_branch}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool $BRANCH...$SHA; }; f"
 
