@@ -15,6 +15,10 @@ bind M-1  help          all  # fix ^G been used
 bind ^G   firstline     all
 bind M-G  lastline      all
 
+# ^u & ^d to page up and down, like less
+bind ^U   pageup      all
+bind ^D   pagedown    all
+
 # https://www.nano-editor.org/dist/latest/nanorc.5.html
 bind ^w chopwordleft main
 
