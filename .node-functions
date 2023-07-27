@@ -4,6 +4,12 @@
 # these helpers make using it more sane
 ###########################
 
+# https://github.com/microsoft/vscode/issues/94679
+vscode-fix-typescript-truncation() {
+  local file="/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/node_modules/typescript/lib/tsserver.js"
+  sed -i '' 's/defaultMaximumTruncationLength = 160;/defaultMaximumTruncationLength = 800;/g' "$file"
+}
+
 # ts-node execution
 tsn() {
   if ! npm list tsconfig-paths &>/dev/null; then
