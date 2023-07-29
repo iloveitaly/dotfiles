@@ -187,10 +187,14 @@ open_in_nano() {
 }
 
 open_in_vscode() {
-  IFS=':' read file line column <<< "$1"
+  # git-fuzzy will pass a string that looks like `M  bin/run.js` or ` M bin/run.js`
+  local file=$(rg -oP '(?<=^\sM\s).*$' --no-config <<< "$1")
 
-  # Ensure the file path starts with a single slash
+  IFS=':' read file line column <<< "$file"
+
+  # remove multiple slashes that could have been passed from `file:///` references
   file=$(echo "$file" | sed 's|^/{2,}|/|')
+
 
   code --goto "$file:$line:$column"
 }
