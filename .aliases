@@ -8,6 +8,8 @@ alias tree='tre'
 
 alias fixcamera="sudo killall VDCAssistant; sudo killall AppleCameraAssistant"
 
+alias ...="cd ../.."
+
 alias asdf-install="cat .tool-versions | cut -d' ' -f1 | grep '^[^\#]' | xargs -I{} asdf plugin add {}; asdf install"
 
 # copy last shell command into the clipboard
