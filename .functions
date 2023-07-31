@@ -183,18 +183,24 @@ open_in_nano() {
   # Read the input string into variables, splitting by ':'
   IFS=':' read file line column <<< "$1"
   # Open the file at the specified line. Nano doesn't support specific column.
-  nano +$line "$file"
+  nano +$line "$file" < /dev/tty
 }
 
 open_in_vscode() {
   # git-fuzzy will pass a string that looks like `M  bin/run.js` or ` M bin/run.js`
-  local file=$(rg -oP '(?<=^\sM\s).*$' --no-config <<< "$1")
+
+  # write a ripgrep command which:
+  # * ` M bin/run.js` => `bin/run.js`
+  # * `test/scraper.test.js:25:40` => `test/scraper.test.js:25:40`
+  # * `test/scraper.test.js` => `test/scraper.test.js`
+  # assume each of inputs are passed on a single line and are only passed one at a time
+
+  local file=$(pcregrep -o2 "(^\s?M\s)?(.*)" <<< "$1")
 
   IFS=':' read file line column <<< "$file"
 
   # remove multiple slashes that could have been passed from `file:///` references
   file=$(echo "$file" | sed 's|^/{2,}|/|')
-
 
   code --goto "$file:$line:$column"
 }
