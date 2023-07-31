@@ -59,7 +59,7 @@ rgg() {
   fi
 
   # TODO --bind=\"ctrl-y:execute-silent(echo {} | cut -d: -f1 | tr -d '[:space:]' | pbcopy)\" \
-  local file_and_location=$(rg "$@" ${=additional_args} --color always | fzf --ansi --delimiter : --with-nth '1,4' --preview 'height=$(tput lines); start={2}; context=$((height / 2)); bat --color=always --paging=never --highlight-line {2} --line-range $((start > context ? start - context : 1)):$((start + context)) {1}')
+  local file_and_location=$(rg --color always --hidden "$@" ${=additional_args} | fzf --ansi --delimiter : --with-nth '1,4' --preview 'height=$(tput lines); start={2}; context=$((height / 2)); bat --color=always --paging=never --highlight-line {2} --line-range $((start > context ? start - context : 1)):$((start + context)) {1}')
 
   # Extracting the file name from the selected line
   local file=$(echo "$file_and_location" | awk -F: '{print $1}')
