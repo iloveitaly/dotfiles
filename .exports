@@ -26,17 +26,23 @@ export FORGIT_LOG_GRAPH_ENABLE=false
 
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
-# TODO use a shell alias to extract the file name from possibly messy input
-# always show a file preview on the right. cntrl-o opens the file in vscode
+# - always show peview on the right
+# - ctrl-o opens the file in vscode (or the default application)
+# - ctrl-y copies the file path to the clipboard
+# - ctrl-e opens the file in a CLI editor (nano)
 # TODO https://github.com/junegunn/fzf/issues/3358
 export FZF_DEFAULT_OPTS="\
 --bind='ctrl-u:preview-half-page-up' \
 --bind='ctrl-d:preview-half-page-down' \
---bind='ctrl-o:execute(open_in_vscode {})+abort' \
---bind=\"ctrl-y:execute-silent(pbcopy <<< {})\" \
---preview-window 'down:3:hidden:wrap' \
+--bind='ctrl-o:execute-silent(~/.open-file-path.sh {})' \
+--bind='ctrl-y:execute-silent(pbcopy <<< {})' \
+--bind='ctrl-e:execute(~/.open-file-path.sh EDITOR {})' \
+--preview-window 'right:70%' \
 --bind='?:toggle-preview' \
 "
+# TODO add +abort to quit on ctrl-o
+# TODO add once 43 is released; --bind='+:toggle-header' \
+# --preview-window 'down:3:hidden:wrap' \
 export FZF_CTRL_R_OPTS="--preview-window up:3"
 
 # large shell history
