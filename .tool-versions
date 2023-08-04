@@ -1,6 +1,6 @@
 php 8.0.25
 nodejs 19.1.0
-bun 0.5.6
+bun 0.7.2
 deno 1.28.1
 erlang 24.0.5
 elixir 1.12.2-otp-24
@@ -9,4 +9,4 @@ ruby  2.7.6
 direnv 2.32.1
 rust nightly
 poetry 1.5.1
-pnpm 8.6.7
+pnpm 8.6.11
