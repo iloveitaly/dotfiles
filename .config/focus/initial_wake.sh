@@ -62,6 +62,9 @@ return text returned of dialogResult
 EOT
 )
 
+# API keys are sourced via direnv
+eval "$(direnv hook zsh)"
+
 # cleanup browser tabs
 echo "Cleaning browser tabs..."
 cd ~/Projects/clean-workspace
