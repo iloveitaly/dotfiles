@@ -73,7 +73,7 @@ alias imix="iex -S mix"
 
 # python
 alias poetry-pristine="poetry env remove python && poetry env use python && poetry install"
-alias python-debugging-install="pip install ipdb rich ipython_autoimport docrepr pyfzf"
+alias python-debugging-install="pip install ipdb pdbr rich ipython_autoimport docrepr pyfzf"
 alias python-remove-pycache="fd --no-ignore-vcs __pycache__ | xargs rm -rf"
 
 # Hide/show all desktop icons (useful when presenting)
