@@ -81,6 +81,12 @@ function gbt() {
   git checkout -b $1 --track origin/$1
 }
 
+git-add-origin() {
+  local remote_name="${1:-origin}"
+  local repo_name=$(gh repo view --json name --jq '.name')
+  git remote add "$remote_name" "https://github.com/iloveitaly/$repo_name.git"
+}
+
 function myprs() {
   local id=$(set -e; gh pr list -L100 --author $(git config github.user) $@ | fzf | cut -f1)
 

@@ -61,7 +61,6 @@ alias g="hub"
 alias gp="g push origin HEAD"
 alias gpb='g pull --rebase origin `git rev-parse --abbrev-ref HEAD`'
 alias gpf='g push --force origin HEAD'
-alias git-add-origin="git remote add origin https://github.com/iloveitaly/$(basename $(pwd)).git"
 
 # rails
 alias rt="bundle exec rails test"
