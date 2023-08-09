@@ -40,7 +40,7 @@ To update, `cd` into your local `dotfiles` repository and then:
 For easy development, you can automatically run the `rsync` command in `bootstrap.sh` each time a file changes:
 
 ```shell
-fd --hidden -d 1 -t f "^\." | entr rsync ...
+fd --hidden --max-depth 4 -t f --exclude=.git | entr rsync ...
 ```
 
 ## Clone Interesting Dotfiles Locally
@@ -73,6 +73,7 @@ interesting_repos=(
   https://github.com/evanpurkhiser/dots-personal
   https://github.com/phillbaker/dotfiles
   https://github.com/brucebentley/dotfiles
+  https://github.com/mislav/dotfiles
 )
 
 cd ~/Projects/dotfiles-inspiration
