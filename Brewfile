@@ -234,6 +234,7 @@ if OS.mac?
     brew "siege" # load testing tool
     brew "ameshkov/tap/dnslookup"
     brew "smudge/smudge/nightlight"
+    # homerow
 
     # mongodb
     tap "mongodb/brew"
