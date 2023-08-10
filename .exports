@@ -58,6 +58,8 @@ export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # faster git status loading for large repos
 export PURE_GIT_UNTRACKED_DIRTY=1
+# pure respects `VIRTUAL_ENV_DISABLE_PROMPT` unlike in the past
+# https://github.com/python-poetry/poetry/issues/1853
 
 # env config for compatibility with omz
 export ZSH=${HOME}/.zsh
@@ -92,5 +94,3 @@ export PYTHONIOENCODING='UTF-8';
 # https://www.erdaltaskesen.com/blog/how-to-remove-pycache-folders-and-pyc-files/
 # https://github.com/pytest-dev/pytest/issues/200
 export PYTHONDONTWRITEBYTECODE=1
-# https://github.com/python-poetry/poetry/issues/1853
-export VIRTUAL_ENV_DISABLE_PROMPT=1
