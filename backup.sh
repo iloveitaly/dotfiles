@@ -26,6 +26,9 @@
 #   - ActivityWatch
 #       * If the host names do not match between machines, you'll need to manually edit the SQL
 #       * Manually import category mapping
+#   - Network Preferences
+#      * Safari > preferences > privacy > hide ip address: disable
+#      * Sys Preferences > network > limit ip address tracking: disable
 
 mackup backup
 
