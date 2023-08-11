@@ -73,6 +73,9 @@
   # http://stackoverflow.com/questions/2514172/listing-each-branch-and-its-last-revisions-date-in-git
   branchdate = !git for-each-ref --sort='-authordate' --format='%(refname)%09%(authordate)' refs/heads | sed -e 's-refs/heads/--' | less
 
+  # quickly copy current branch name, useful for updating package definitions to a locally modified copy
+  branch-copy = !git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy
+
   # TODO should look into removing this old cleanup
   # http://stackoverflow.com/questions/6127328/how-can-i-delete-all-git-branches-which-have-been-merged
   cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
