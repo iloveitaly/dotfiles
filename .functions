@@ -58,7 +58,8 @@ rgg() {
   local additional_args=""
 
   # TODO should check search page in $@ as well
-  if [[ $(pwd) =~ node_modules$ ]]; then
+  # TODO should check if in a .venv folder
+  if [[ $(pwd) =~ node_modules$ ]] || [[ $(pwd) == *"/.venv/"* ]]; then
     # in this case, we want to search the contents of the node_modules directory
     # this is a common case for me, trying to debug various package bugs in a project I'm working on
     additional_args="--no-ignore-vcs --hidden"
