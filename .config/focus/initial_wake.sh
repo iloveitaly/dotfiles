@@ -12,6 +12,8 @@ if ! ping -c 1 google.com &> /dev/null; then
   sleep 60
 fi
 
+# if we don't have internet after this, some of the operations will will fail, which is completely fine
+
 # stop caffinating so the computer actually falls back to sleep
 /usr/bin/killall caffeinate
 
@@ -26,11 +28,11 @@ apps=(
   $work_apps
   Slack Mattermost GitHub Rewind
   Dropbox "Google Drive"
-  Discord
+  Discord ChatGPT Buffer
   Podcasts "Amazon Music" Spotify
-  Dictionary Notes
+  Dictionary Notes Preview
   zoom.us ReadKit Readwise Texts Messages Gmail "System Settings" Music
-  "Google Software Update"
+  "Google Software Update" "Google Chrome Canary"
 )
 
 quit_app() {
@@ -68,10 +70,10 @@ eval "$(direnv hook zsh)"
 # cleanup browser tabs
 echo "Cleaning browser tabs..."
 cd ~/Projects/clean-workspace
-sudo poetry run clean-workspace --tab-description "$dialogResult"
+direnv exec . sudo poetry run clean-workspace --tab-description "$dialogResult"
 
 # organize todoist
 echo "Organizing todoist..."
 cd ~/Projects/todoist-scheduler
-poetry run todoist-scheduler
+direnv exec . poetry run todoist-scheduler
 
