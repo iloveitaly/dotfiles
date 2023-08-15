@@ -52,6 +52,7 @@ alias p="cd ~/Projects"
 
 # Edit current directory
 alias e="code ."
+alias o="open_in_nano ."
 
 # File size
 alias fs="stat -f \"%z bytes\""
