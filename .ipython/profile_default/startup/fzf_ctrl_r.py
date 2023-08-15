@@ -28,18 +28,32 @@ def fzf_i_search(event):
     history_set = set()
     history_strings = [i[2] for i in ipython.history_manager.get_tail(5000)][::-1]
 
-    history_strings = [s for s in history_strings if not (s in history_set or history_set.add(s))]
+    # we replace newlines as fzf can only work on single lines; in the preview and later
+    # we reverse this effect
+    history_strings = [
+        s.replace("\n", " @@ ")
+        for s in history_strings
+        if not (s in history_set or history_set.add(s))
+    ]
 
     # refresh prompt
     print("", end="\r", flush=True)
     try:
-        text = fzf.prompt(history_strings, fzf_options='--no-sort --multi --reverse')
+        text = fzf.prompt(
+            history_strings,
+            fzf_options="--no-sort --multi --border --height=80% --margin=1 --padding=1"
+            " --preview 'echo {} | sed \"s/ @@ /\\n/g\" | bat --color=always --style=numbers -l py -'",
+        )
+        # multiple returns get concatenated with an emtpy line in-between
+        text = "\n\n".join(text)
+        # reverse the replacement of newlines
+        text = text.replace(" @@ ", "\n")
     except:
         return
     buf = event.current_buffer
     if not is_in_empty_line(buf):
         buf.insert_line_below()
-    buf.insert_text('\n'.join(text))
+    buf.insert_text(text)
 
 # Register the shortcut if IPython is using prompt_toolkit
 if getattr(ipython, 'pt_app', None):
