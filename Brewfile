@@ -82,6 +82,9 @@ brew "trunk-io"
 brew "pstree" # procs seem to have a tree view and is a bit better
 brew "broot" # better file finding
 brew "dolt"
+brew "noborus/tap/ov" # pager replacement
+brew "ollama"
+brew "llm"
 
 if OS.mac?
     tap "homebrew/cask-drivers"
@@ -178,6 +181,7 @@ if OS.mac?
     cask "vnc-viewer"
     cask "dropbox-capture"
     cask "ngrok"
+    cask "firefox" # for debugging, not actual use
 
     # == Expermental
     cask "appcleaner"
