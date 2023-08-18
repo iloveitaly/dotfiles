@@ -30,7 +30,7 @@ apps=(
   Dropbox "Google Drive"
   Discord ChatGPT Buffer
   Podcasts "Amazon Music" Spotify
-  Dictionary Notes Preview
+  Dictionary Notes Preview Flow Streaks
   zoom.us ReadKit Readwise Texts Messages Gmail "System Settings" Music
   "Google Software Update" "Google Chrome Canary"
 )
@@ -64,13 +64,11 @@ return text returned of dialogResult
 EOT
 )
 
-# API keys are sourced via direnv
-eval "$(direnv hook zsh)"
-
 # cleanup browser tabs
 echo "Cleaning browser tabs..."
 cd ~/Projects/clean-workspace
-direnv exec . sudo poetry run clean-workspace --tab-description "$dialogResult"
+# sudo must come before direnv
+sudo direnv exec . poetry run clean-workspace --tab-description "$dialogResult"
 
 # organize todoist
 echo "Organizing todoist..."

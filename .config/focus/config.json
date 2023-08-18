@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/iloveitaly/hyper-focus/main/schema.json",
-  "initial_wake": "/Users/mike/.config/focus/initial_wake.sh",
-  "wake": "/Users/mike/.config/focus/wake.sh",
+  "initial_wake": "~/.config/focus/initial_wake.sh",
+  "wake": "~/.config/focus/wake.sh",
   "schedule": [
     {
       "start": 0,
@@ -63,8 +63,9 @@
       "name": "daily comms",
       "schedule_only": true,
       "start": 12,
-      "end": 13,
-      "start_script": "/Users/mike/.config/focus/communication_start.sh",
+      "end": 12,
+      "end_minute": 30,
+      "start_script": "~/.config/focus/communication_start.sh",
       "block_hosts": [
         "twitter.com",
         "feedbin.com",
@@ -87,7 +88,8 @@
     {
       "name": "standard focus",
       "schedule_only": true,
-      "start": 13,
+      "start": 12,
+      "start_minute": 30,
       "end": 24,
       "block_hosts": [
         "twitter.com",
@@ -121,7 +123,7 @@
     {
       "name": "Communications",
       "description": "emails, texts, etc",
-      "start_script": "/Users/mike/.config/focus/communication_session.sh",
+      "start_script": "~/.config/focus/communication_session.sh",
       "block_hosts": [
         "news.ycombinator.com",
         "twitter.com",
@@ -132,7 +134,6 @@
         "my.cigna.com",
         "my.lunchmoney.app",
         "investor.vanguard.com",
-        "alliantcreditunion.com",
         "chase.com",
 
         "costco.com",
