@@ -8,6 +8,15 @@ zinit-update() {
   zinit cclear
 }
 
+asdf-current-version() {
+  # if the version DNE then asdf will print an error to stderr
+  asdf current $@ 2>&1 | awk '{print $2}'
+}
+
+asdf-reinstall() {
+  asdf uninstall $@ $(asdf-current-version $@)
+}
+
 # add key to remove server
 ssh-add-key() {
   ssh-copy-id -i ~/.ssh/id_rsa.pub $1

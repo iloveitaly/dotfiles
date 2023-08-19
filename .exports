@@ -84,6 +84,8 @@ export LESS='--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --
 
 # elixir
 export ERL_AFLAGS="-kernel shell_history enabled"
+# https://stackoverflow.com/questions/74559444/how-to-fix-vscode-extension-elixirls-alert-otp-compiled-without-eep48-documenta
+export KERL_BUILD_DOCS=yes
 
 # python
 export IPDB_CONTEXT_SIZE=10
