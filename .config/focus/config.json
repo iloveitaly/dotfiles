@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/iloveitaly/hyper-focus/main/schema.json",
-  "initial_wake": "~/.config/focus/initial_wake.sh",
-  "wake": "~/.config/focus/wake.sh",
+  "initial_wake": "/Users/mike/.config/focus/initial_wake.sh",
+  "wake": "/Users/mike/.config/focus/wake.sh",
   "schedule": [
     {
       "start": 0,
@@ -14,7 +14,7 @@
         "twitter.com",
         "feedbin.com",
         "youtube.com",
-        "web.getmatter.com",
+        "reddit.com",
 
         "airbnb.com",
         "cigna.com",
@@ -65,7 +65,7 @@
       "start": 12,
       "end": 12,
       "end_minute": 30,
-      "start_script": "~/.config/focus/communication_start.sh",
+      "start_script": "/Users/mike/.config/focus/communication_start.sh",
       "block_hosts": [
         "twitter.com",
         "feedbin.com",
@@ -123,7 +123,7 @@
     {
       "name": "Communications",
       "description": "emails, texts, etc",
-      "start_script": "~/.config/focus/communication_session.sh",
+      "start_script": "/Users/mike/.config/focus/communication_session.sh",
       "block_hosts": [
         "news.ycombinator.com",
         "twitter.com",

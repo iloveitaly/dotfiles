@@ -6,6 +6,8 @@ source ~/.asdf/asdf.sh
 
 osascript -e 'display notification "Daily Communications" with title "Focus"'
 
+open -a Rewind
+
 # pause amazon music
 osascript << EOF
 if application "Amazon Music" is running then
