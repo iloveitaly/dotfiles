@@ -104,10 +104,8 @@ bindkey "^[[B" history-substring-search-down # Down
 bindkey "^K" kill-line
 
 # cmd+shift+k is not possible in the terminal without remapping cmd, which is not a good idea given it's lack of support
-bindkey "^[K" kill-whole-line
-
-# this shortcut is not great, we should align it to vs code if it stick
-bindkey "^L" backward-kill-line
+# opt+shift+k deletes backward, ctrl+U defaults to kill-whole-line
+bindkey "^[K" backward-kill-line
 
 # open up current command in EDITOR, ctrl+x then ctrl+e
 autoload -U edit-command-line
