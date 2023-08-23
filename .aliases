@@ -4,7 +4,7 @@ alias find='fd'
 alias ls='exa -l --group-directories-first'
 alias j='z'
 alias jj='zi'
-alias tree='tre'
+alias tree='tre --limit 3'
 
 alias fixcamera="sudo killall VDCAssistant; sudo killall AppleCameraAssistant"
 
