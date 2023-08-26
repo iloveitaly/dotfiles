@@ -109,6 +109,45 @@ function myprs() {
   [ -n "$id" ] && gh pr view "$id" --web && echo "$id"
 }
 
+function git-squash-custom-branch {
+  # Check if the .git-custom-branch file exists
+  if [[ ! -f ".git-custom-branch" ]]; then
+    echo "Error: .git-custom-branch file does not exist"
+    exit 1
+  fi
+
+  # Check for unstaged changes
+  if [[ -n "$(git diff --name-only)" ]]; then
+    echo "Error: You have unstaged changes. Please commit or stash them."
+    exit 1
+  fi
+
+  # Checkout to the master branch
+  git checkout master
+
+  # Pull the latest changes from the master branch
+  git pull origin master
+
+  # Check if the 'custom' branch already exists and delete it if it does
+  if git show-ref --verify --quiet refs/heads/custom; then
+    git branch -D custom
+  fi
+
+  # Read the branch names from the .git-custom-branch file
+  branches=($(< .git-custom-branch))
+
+  # is there more than one entry?
+  if [[ ${#branches[@]} -lt 2 ]]; then
+    echo "Error: .git-custom-branch file must contain at least two branches"
+    exit 1
+  fi
+
+  # Checkout to a new branch named 'custom' from the latest master
+  git checkout -b custom
+
+  git merge "${branches[@]}" --no-ff --message "Merged and squashed ${branches[@]}"
+}
+
 # TODO should probably remove
 # https://blog.takanabe.tokyo/en/2020/04/remove-squash-merged-local-git-branches/
 function git-clean-squash-and-merge() (
