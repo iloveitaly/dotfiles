@@ -62,6 +62,7 @@ brew "tmux"
 brew "reattach-to-user-namespace"
 brew "urlview"
 brew "tre-command"
+brew "htop"
 brew "terminal-notifier" # for `zsh-notify`
 brew "procs" # ps
 brew "sd" # sed
@@ -85,6 +86,8 @@ brew "dolt"
 brew "noborus/tap/ov" # pager replacement
 brew "ollama"
 brew "llm"
+brew "buildpacks/tap/pack"
+brew "dive" # docker inspection
 
 if OS.mac?
     tap "homebrew/cask-drivers"
