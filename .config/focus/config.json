@@ -5,7 +5,7 @@
   "schedule": [
     {
       "start": 0,
-      "end": 12,
+      "end": 11,
       "name": "morning focus",
       "schedule_only": true,
       "block_hosts": [
@@ -143,12 +143,7 @@
         "smile.amazon.com",
         "groupon.com"
       ],
-      "block_apps": [
-        "Amazon Music",
-        "Podcasts",
-        "Music",
-        "ReadKit"
-      ],
+      "block_apps": ["Amazon Music", "Podcasts", "Music", "ReadKit"],
       "block_urls": [
         "https://www.google.com/search?q=world+news",
         "https://www.google.com/search?q=economic+news",
@@ -159,7 +154,6 @@
         "https://www.google.com/search?q=vxus",
         "https://www.google.com/search?q=vteb",
         "https://github.com/iloveitaly"
-
       ]
     },
     {
@@ -173,13 +167,7 @@
 
         "web.getmatter.com"
       ],
-      "block_apps": [
-        "Discord",
-        "Amazon Music",
-        "Podcasts",
-        "Music",
-        "ReadKit"
-      ],
+      "block_apps": ["Discord", "Amazon Music", "Podcasts", "Music", "ReadKit"],
       "block_urls": [
         "https://www.google.com/search?q=world+news",
         "https://www.google.com/search?q=economic+news",
@@ -221,6 +209,7 @@
     },
     {
       "name": "meeting",
+      "description": "view more stuff when meeting",
       "block_apps": [],
       "block_urls": [],
       "block_hosts": [
@@ -239,5 +228,5 @@
         "groupon.com"
       ]
     }
- ]
+  ]
 }
