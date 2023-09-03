@@ -78,7 +78,7 @@ alias py=python
 alias pyd=ipdb3
 alias poetry-pristine="poetry env remove python && poetry env use python && poetry install"
 # poetry self add poetry-plugin-up
-alias python-debugging-install="pip install ipdb pdbr rich ipython_autoimport docrepr pyfzf jedi pretty-backtrace"
+alias python-debugging-install="pip install ipython ipdb pdbr rich ipython_autoimport docrepr pyfzf jedi pretty-traceback"
 alias python-remove-pycache="fd --no-ignore-vcs __pycache__ | xargs rm -rf"
 
 # Hide/show all desktop icons (useful when presenting)
