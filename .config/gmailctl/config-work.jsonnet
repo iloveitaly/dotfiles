@@ -17,13 +17,10 @@
   // this section of the config.
   labels: [
     {
-      name: "gcal"
-    },
-    {
-      name: "reply-soon"
-    },
-    {
       name: "Networking"
+    },
+    {
+      name: "Later"
     },
     {
       name: "Someday-Maybe",
@@ -62,25 +59,15 @@
         category: "personal"
       }
     },
+    // filter out all accepted/rejected calendar notifications
     {
       filter: {
         query: "subject:(\"invitation\" OR \"accepted\" OR \"rejected\" OR \"updated\" OR \"canceled event\" OR \"declined\" OR \"proposed\") when where calendar who organizer"
       },
       actions: {
         archive: true,
-        star: true,
         markImportant: false,
         category: "updates"
-      }
-    },
-    {
-      filter: {
-        query: "category:Updates OR category:promotions OR category:Social"
-      },
-      actions: {
-        archive: true,
-        star: true,
-        markImportant: false
       }
     }
   ]

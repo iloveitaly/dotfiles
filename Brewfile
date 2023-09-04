@@ -90,6 +90,7 @@ brew "buildpacks/tap/pack"
 brew "dive" # docker inspection
 brew "pgcli" # better psql, with autocompletion and DATABASE_URL connection support
 brew "kitty" # yet another terminal
+brew "gmailctl"
 
 if OS.mac?
     tap "homebrew/cask-drivers"

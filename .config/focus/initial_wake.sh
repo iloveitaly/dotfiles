@@ -31,7 +31,7 @@ apps=(
   Discord ChatGPT Buffer
   Podcasts "Amazon Music" Spotify
   Dictionary Notes Preview Flow Streaks "QuickTime Player"
-  zoom.us ReadKit Readwise Texts Messages Gmail "System Settings" Music
+  zoom.us ReadKit Readwise Texts Messages Gmail "System Settings" Music Superhuman
   "Google Software Update" "Google Chrome Canary"
 )
 
