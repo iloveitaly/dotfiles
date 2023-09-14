@@ -253,8 +253,8 @@ sudo defaults write /Library/Preferences/com.apple.timezone.auto Active -bool tr
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
-# Save screenshots to the desktop
-defaults write com.apple.screencapture location -string "$HOME/Desktop"
+# Save screenshots to a dedicated folder
+defaults write com.apple.screencapture location -string "$HOME/Screenshots"
 
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
 defaults write com.apple.screencapture type -string "png"
@@ -713,7 +713,6 @@ defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool t
 # Login Items                                                                 #
 ###############################################################################
 
-osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Dropbox.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Dash.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Stay.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Rectangle.app", hidden:true}'
@@ -723,7 +722,6 @@ osascript -e 'tell application "System Events" to make login item at end with pr
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/MonitorControl.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Stats.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Bartender 4.app", hidden:true}'
-osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/MonitorControl.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Texts.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Obsidian.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Streaks.app", hidden:true}'
