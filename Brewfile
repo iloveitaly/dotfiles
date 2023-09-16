@@ -72,6 +72,7 @@ brew "moreutils" # sponge
 brew "xplr" # file management
 brew "dust" # du replacement
 brew "qpdf" # for decrypting pdf files
+brew "rsync" # get the latest version for new features
 
 # == Experimental
 tap "afnanenayet/tap"
