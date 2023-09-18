@@ -73,6 +73,7 @@ brew "xplr" # file management
 brew "dust" # du replacement
 brew "qpdf" # for decrypting pdf files
 brew "rsync" # get the latest version for new features
+brew "watch" # execute program every X seconds
 
 # == Experimental
 tap "afnanenayet/tap"
