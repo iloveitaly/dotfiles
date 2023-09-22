@@ -20,7 +20,7 @@ brew "ncdu"
 brew "curl"
 brew "awk" # in codespaces, the default version is especially strange
 brew "awscli"
-brew "ansible"
+brew "aws-sam-cli"
 tap "heroku/brew"
 brew "heroku/brew/heroku"
 brew "cloc" # code analytics
@@ -92,7 +92,8 @@ brew "buildpacks/tap/pack"
 brew "dive" # docker inspection
 brew "pgcli" # better psql, with autocompletion and DATABASE_URL connection support
 brew "kitty" # yet another terminal
-brew "gmailctl"
+brew "gmailctl" # gmail filter configuration as code
+brew "cleanshot" # best email tool, not sure if it's better than dropbox capture
 
 if OS.mac?
     tap "homebrew/cask-drivers"
