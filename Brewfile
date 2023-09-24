@@ -59,11 +59,11 @@ brew "git-delta" # diff replacement
 brew "bat" # cat, can also do paging
 brew "exa" # ls
 brew "tmux"
-brew "reattach-to-user-namespace"
+brew "reattach-to-user-namespace" if OS.mac?
 brew "urlview"
 brew "tre-command"
 brew "htop"
-brew "terminal-notifier" # for `zsh-notify`
+brew "terminal-notifier" if OS.mac? # for `zsh-notify`
 brew "procs" # ps
 brew "sd" # sed
 brew "svn" # for `zinit ice svn`
