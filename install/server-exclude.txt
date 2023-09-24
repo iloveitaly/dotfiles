@@ -1,0 +1,11 @@
+.alacritty.yml
+.tmux.conf
+.tmux-shell.sh
+.tool-versions
+.asdfrc
+.ssh
+mackup.cfg
+.config/karabiner/
+.config/gmailctl/
+.config/focus/
+.config/extrakto/

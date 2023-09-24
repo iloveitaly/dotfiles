@@ -1,0 +1,17 @@
+.git/
+install/
+osx.sh
+Brewfile
+Brewfile.lock.json
+brew.sh
+server.sh
+TODO
+duti
+backup.sh
+codespace.sh
+server.sh
+bootstrap.sh
+distracting_websites.txt
+DefaultKeyBinding.dict
+aw-categories.json
+README.md

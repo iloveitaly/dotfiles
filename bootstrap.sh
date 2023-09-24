@@ -1,22 +1,22 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
-# TODO need to determine codespace-specific fingerprint
-# if [[ "$OSTYPE" == "linux-gnu" ]]; then
-# 	echo "Detected codespace linux environment, using codespace install"
-# 	./codespace.sh
-# 	exit 0
-# fi
-
-if [[ $(uname) == "Linux" ]]; then
+# NOTE this isn't perfect: we are trying to detect non-codespace servers
+if [["$OSTYPE" == "linux-gnu" && -n "$ANSIBLE_CONFIG" ]]; then
   echo "Detecting Linux environment, using server install"
-  ./server.sh
+  ./install/server.sh
   exit 0
 fi
 
-# TODO detect if non-codespace server, run server.sh
+# TODO need to determine codespace-specific fingerprint
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+	echo "Detected codespace linux environment, using codespace install"
+	./install/codespace.sh
+	exit 0
+fi
 
-git pull
+
+# if not, then we are on macos
 
 ./brew.sh
 
@@ -24,11 +24,7 @@ echo "Syncing dotfiles..."
 read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  rsync --exclude ".git/" \
-        --exclude={"osx.sh","Brewfile","Brewfile.lock.json","brew.sh","server.sh","TODO","duti","backup.sh"} \
-        --exclude={"distracting_websites.txt","DefaultKeyBinding.dict","aw-categories.json"} \
-        --exclude ".DS_Store" --exclude "codespace.sh" --exclude "bootstrap.sh" --exclude "README.md" \
-        -av . ~
+  rsync --exclude-from=install/standard-exclude.txt -av . ~
 fi
 
 # https://apple.stackexchange.com/questions/92710/why-is-safari-ignoring-my-etc-hosts-file

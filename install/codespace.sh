@@ -1,12 +1,9 @@
 #!/bin/bash
 
+cd "$(dirname "$0")/.."
+
 echo "Syncing dotfiles..."
-rsync --exclude ".git/" \
-      --exclude={'brew.sh','Brewfile','Brewfile.lock.json'} \
-      --exclude={'duti','distracting_websites.txt'} \
-      --exclude={"backup.sh","osx.sh"} \
-      --exclude={'bootstrap.sh','codespace.sh','README.md','TODO'} \
-      -av . ~
+rsync --exclude-from=install/standard-exclude.txt-av . ~
 
 brew bundle
 
