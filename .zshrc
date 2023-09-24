@@ -72,7 +72,12 @@ setopt hist_save_no_dups        # Omit older commands in favor of newer ones.
 # Evals
 # =============
 
-eval $(/opt/homebrew/bin/brew shellenv)
+for brew_path in "/home/linuxbrew/.linuxbrew/bin/brew" "/opt/homebrew/bin/brew"; do
+  if [[ -x "$brew_path" ]]; then
+    eval "$($brew_path shellenv)"
+    break
+  fi
+done
 
 export PATH="/Applications/Postgres.app/Contents/Versions/15/bin:$PATH"
 
