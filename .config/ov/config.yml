@@ -1,0 +1,220 @@
+# https://raw.githubusercontent.com/noborus/ov/master/ov-less.yaml
+
+# This is a file with less key bindings set.
+# Copy it to `$XDG_CONFIG_HOME/ov/config.yaml` or start it with `ov --config ov.yaml`.
+# Thanks to hupfdule (Marco Herrn) for the less keybinding information.
+#
+# CaseSensitive: false
+# RegexpSearch: false
+# Incsearch: true
+# MemoryLimit: 10000
+
+General:
+  TabWidth: 4
+  Header: 0
+  AlternateRows: false
+  ColumnMode: false
+  LineNumMode: false
+  WrapMode: true
+  ColumnDelimiter: ","
+  MarkStyleWidth: 1
+
+# Style
+# String of the color name: Foreground, Background
+# Boolean: Bold, Blink, Dim, Italic, Underline
+StyleAlternate:
+  Background: "gray"
+StyleHeader:
+  Bold: true
+StyleOverStrike:
+  Bold: true
+StyleOverLine:
+  Underline: true
+StyleSearchHighlight:
+  Reverse: true
+StyleColumnHighlight:
+  Reverse: true
+StyleMarkLine:
+  Background: "darkgoldenrod"
+StyleSectionLine:
+  Background: "green"
+StyleMultiColorHighlight:
+  - Foreground: "red"
+  - Foreground: "aqua"
+  - Foreground: "yellow"
+  - Foreground: "fuchsia"
+  - Foreground: "lime"
+  - Foreground: "blue"
+  - Foreground: "grey"
+StyleJumpTargetLine:
+  Underline: false
+
+# Keybind
+# Special key
+#   "Enter","Backspace","Tab","Backtab","Esc",
+#   "Delete", "Insert",
+#   "Up", "Down", "Left", "Right", "Home", "End",
+#   "F1...F64"
+# Modifier key
+#   "ctrl", "alt", "meta", "shift"
+# Connect with modifier key + key
+#   "ctrl+c"
+KeyBind:
+    exit:
+        - "Escape"
+        - "q"
+    cancel:
+        - "ctrl+c"
+    write_exit:
+        - "Q"
+    set_write_exit:
+        - "ctrl+q"
+    suspend:
+        - "ctrl+z"
+    sync:
+        - "r"
+        - "ctrl+l"
+    reload:
+        - "R"
+        - "ctrl+r"
+    watch:
+        - "T"
+        - "ctrl+alt+w"
+    watch_interval:
+        - "ctrl+w"
+    follow_mode:
+        - "F"
+    follow_all:
+        - "ctrl+a"
+    follow_section:
+        - "F2"
+    help:
+        - "h"
+        - "ctrl+alt+c"
+    logdoc:
+        - "ctrl+alt+e"
+    down:
+        - "e"
+        - "ctrl+e"
+        - "j"
+        - "J"
+        - "ctrl+j"
+        - "Enter"
+        - "Down"
+    up:
+        - "y"
+        - "Y"
+        - "ctrl+y"
+        - "k"
+        - "K"
+        - "ctrl+K"
+        - "Up"
+    top:
+        - "Home"
+        - "g"
+        - "<"
+    bottom:
+        - "End"
+        - ">"
+        - "G"
+    left:
+        - "left"
+    right:
+        - "right"
+    half_left:
+        - "ctrl+left"
+    half_right:
+        - "ctrl+right"
+    page_up:
+        - "PageUp"
+        - "b"
+        - "alt+v"
+    page_down:
+        - "PageDown"
+        - "ctrl+v"
+        - "alt+space"
+        - "f"
+        - "z"
+    page_half_up:
+        - "u"
+        - "ctrl+u"
+    page_half_down:
+        - "d"
+        - "ctrl+d"
+    section_delimiter:
+        - "alt+d"
+    section_start:
+        - "ctrl+F3"
+        - "alt+s"
+    next_section:
+        - "space"
+    last_section:
+        - "9"
+    previous_section:
+        - "^"
+    mark:
+        - "m"
+    remove_mark:
+        - "M"
+    remove_all_mark:
+        - "ctrl+delete"
+    next_mark:
+        - "alt+>"
+    previous_mark:
+        - "alt+<"
+    set_view_mode:
+        - "p"
+        - "P"
+    alter_rows_mode:
+        - "C"
+    line_number_mode:
+        - "alt+n"
+    search:
+        - "/"
+    wrap_mode:
+        - "w"
+        - "W"
+    column_mode:
+        - "c"
+    backsearch:
+        - "?"
+    delimiter:
+        - "d"
+    header:
+        - "H"
+    skip_lines:
+        - "ctrl+s"
+    tabwidth:
+        - "t"
+    goto:
+        - ":"
+    next_search:
+        - "n"
+    next_backsearch:
+        - "N"
+    next_doc:
+        - "]"
+    previous_doc:
+        - "["
+    toggle_mouse:
+        - "ctrl+alt+r"
+    multi_color:
+        - "."
+    jump_target:
+        - "alt+j"
+
+Mode:
+  psql:
+    Header: 2
+    AlternateRows: true
+    ColumnMode: true
+    LineNumMode: false
+    WrapMode: true
+    ColumnDelimiter: "|"
+  MySQL:
+    Header: 3
+    AlternateRows: true
+    ColumnMode: true
+    LineNumMode: false
+    WrapMode: true
+    ColumnDelimiter: "|"
