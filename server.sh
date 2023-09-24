@@ -11,6 +11,6 @@ rsync --exclude ".git/" \
 # for homebrew to actually work
 # sudo apt-get install build-essential procps curl file git gobjc++ glibc-source
 
-eval $(/home/linuxbrew/bin/brew shellenv)
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 brew bundle
