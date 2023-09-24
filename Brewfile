@@ -1,7 +1,6 @@
 # A subset of packages that are safe to install on both macos and linux and documented in this Brewfile
 # the goal is to provide a common of set of utilities that can be installed on a macos or linux (codespace) machine
 
-tap 'homebrew/cask'
 tap 'homebrew/bundle'
 
 # == General Utilities
@@ -21,6 +20,7 @@ brew "curl"
 brew "awk" # in codespaces, the default version is especially strange
 brew "awscli"
 brew "aws-sam-cli"
+brew "session-manager-plugin"
 tap "heroku/brew"
 brew "heroku/brew/heroku"
 brew "cloc" # code analytics
@@ -75,27 +75,30 @@ brew "qpdf" # for decrypting pdf files
 brew "rsync" # get the latest version for new features
 brew "watch" # execute program every X seconds
 
-# == Experimental
-tap "afnanenayet/tap"
-brew "afnanenayet/tap/diffsitter"
-tap "noahgorstein/tap"
-brew "noahgorstein/tap/jqp"
-brew "act"
-brew "trunk-io"
-brew "pstree" # procs seem to have a tree view and is a bit better
-brew "broot" # better file finding
-brew "dolt"
-brew "noborus/tap/ov" # pager replacement
-brew "ollama"
-brew "llm"
-brew "buildpacks/tap/pack"
-brew "dive" # docker inspection
-brew "pgcli" # better psql, with autocompletion and DATABASE_URL connection support
-brew "kitty" # yet another terminal
-brew "gmailctl" # gmail filter configuration as code
-brew "cleanshot" # best email tool, not sure if it's better than dropbox capture
+# == Experimental (don't install on server)
+if OS.mac?
+    tap "afnanenayet/tap"
+    brew "afnanenayet/tap/diffsitter"
+    tap "noahgorstein/tap"
+    brew "noahgorstein/tap/jqp"
+    brew "act"
+    brew "trunk-io"
+    brew "pstree" # procs seem to have a tree view and is a bit better
+    brew "broot" # better file finding
+    brew "dolt"
+    brew "noborus/tap/ov" # pager replacement
+    brew "ollama"
+    brew "llm"
+    brew "buildpacks/tap/pack"
+    brew "dive" # docker inspection
+    brew "pgcli" # better psql, with autocompletion and DATABASE_URL connection support
+    brew "kitty" # yet another terminal
+    brew "gmailctl" # gmail filter configuration as code
+    brew "cleanshot" # best email tool, not sure if it's better than dropbox capture
+end
 
 if OS.mac?
+    tap 'homebrew/cask'
     tap "homebrew/cask-drivers"
     tap 'homebrew/cask-fonts'
     tap 'homebrew/cask-versions'
