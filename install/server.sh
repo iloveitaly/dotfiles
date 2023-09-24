@@ -2,8 +2,8 @@
 
 cd "$(dirname "$0")/.."
 
-rsync --exclude-file="install/standard-exclude.txt" \
-      --exclude-file="install/server-exclude.txt" \
+rsync --exclude-from="install/standard-exclude.txt" \
+      --exclude-from="install/server-exclude.txt" \
       -av . ~
 
 # for homebrew to actually work
