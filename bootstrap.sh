@@ -1,10 +1,17 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
+# OSTYPE is set on codespaces
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-	echo "Detected linux environment, using codespace install"
+	echo "Detected codespace linux environment, using codespace install"
 	./codespace.sh
 	exit 0
+fi
+
+if [[ $(uname) == "Linux" ]]; then
+  echo "Detecting Linux environment, using server install"
+  ./server.sh
+  exit 1
 fi
 
 # TODO detect if non-codespace server, run server.sh
