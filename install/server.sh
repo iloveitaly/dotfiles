@@ -18,6 +18,11 @@ eval $("$homebrew_path" shellenv)
 
 brew bundle
 
+# if `python` doesn't exist, let's alias python3 to it if it exists
+if ! command -v python &> /dev/null && command -v python3 &> /dev/null; then
+  sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1
+fi
+
 sudo chsh -s "$(which zsh)" "$(whoami)"
 
 # cleaner output since this will be running inside ansible, or something similar
