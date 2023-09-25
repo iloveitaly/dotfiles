@@ -3,7 +3,7 @@
 cd "$(dirname "$0")"
 
 # NOTE this isn't perfect: we are trying to detect non-codespace servers
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
+if [[ $(uname) == "Linux" ]]; then
   echo "Detecting Linux environment, using server install"
   ./install/server.sh
   exit 0
