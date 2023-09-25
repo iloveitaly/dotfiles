@@ -6,7 +6,7 @@ rsync --exclude-from="install/standard-exclude.txt" \
       --exclude-from="install/server-exclude.txt" \
       -av . ~
 
-local homebrew_path="/home/linuxbrew/.linuxbrew/bin/brew"
+homebrew_path="/home/linuxbrew/.linuxbrew/bin/brew"
 
 if [ ! -f "$homebrew_path" ]; then
   echo "No homebrew installation detected"
@@ -15,6 +15,7 @@ if [ ! -f "$homebrew_path" ]; then
 fi
 
 eval $("$homebrew_path" shellenv)
+unset homebrew_path
 
 brew bundle
 
