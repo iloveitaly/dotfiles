@@ -20,12 +20,12 @@ brew "curl"
 brew "awk" # in codespaces, the default version is especially strange
 brew "awscli"
 brew "aws-sam-cli"
-brew "session-manager-plugin"
+brew "session-manager-plugin" if OS.mac?
 tap "heroku/brew"
 brew "heroku/brew/heroku"
 brew "cloc" # code analytics
 brew "jq" # json extraction
-brew "q" # sql on csv
+brew "q" if OS.mac? # sql on csv
 brew "dsq" # sql over json and other formats
 brew "yq" # yq for yaml and others
 brew "dasel" # consistent language for extracting data from XML, CSV, and others. No aggregates.

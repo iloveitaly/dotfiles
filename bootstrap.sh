@@ -5,18 +5,16 @@ cd "$(dirname "$0")"
 # NOTE this isn't perfect: we are trying to detect non-codespace servers
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   echo "Detecting Linux environment, using server install"
-  env
   ./install/server.sh
   exit 0
 fi
 
 # TODO need to determine codespace-specific fingerprint
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-	echo "Detected codespace linux environment, using codespace install"
-	./install/codespace.sh
-	exit 0
-fi
-
+# if [[ "$OSTYPE" == "linux-gnu" ]]; then
+# 	echo "Detected codespace linux environment, using codespace install"
+# 	./install/codespace.sh
+# 	exit 0
+# fi
 
 # if not, then we are on macos
 
