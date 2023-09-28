@@ -3,13 +3,15 @@
 ## What's special here?
 
 * zsh with turbo zinit
+* [Advanced tmux configuration](https://mikebian.co/tag/tmux/)
 * Lots of tidbits for ruby, elixir, and python development
 * Asdf for managing all language versions
-* Codespace/devcontainer support
+* [Codespace/devcontainer support](https://mikebian.co/my-experience-with-github-codespaces/)
 * Lots of interesting git shortcuts + tips
 * Custom macOS keybinding & karabiner config
-* [Aggressively blocks distracting websites](http://mikebian.co/how-to-block-distracting-websites-on-your-laptop/)
+* [Hyper Focus config](https://github.com/iloveitaly/hyper-focus) to [Aggressively blocks distracting websites](http://mikebian.co/how-to-block-distracting-websites-on-your-laptop/)
 * Interesting apps and tools I've found over the years nicely organized
+* macOS and linux installation support, so you can have the same dotfiles setup on your server.
 
 ## Installation
 
@@ -23,13 +25,7 @@ When setting up a new Mac, you may want to set some sensible OS X defaults:
 ./osx.sh
 ```
 
-Setup CLI tooling and all brew installation (including MAS installs) using:
-
-```bash
-./brew.sh
-```
-
-To update, `cd` into your local `dotfiles` repository and then:
+To run everything else (brew install, keybindings, zsh setup, etc):
 
 ```bash
 ./bootstrap.sh
@@ -40,7 +36,7 @@ To update, `cd` into your local `dotfiles` repository and then:
 For easy development, you can automatically run the `rsync` command in `bootstrap.sh` each time a file changes:
 
 ```shell
-fd --hidden --max-depth 4 -t f --exclude=.git | entr rsync ...
+fd --hidden --max-depth 4 -t f --exclude=.git | entr rsync --exclude-from=install/standard-exclude.txt -av . ~
 ```
 
 ## Clone Interesting Dotfiles Locally
