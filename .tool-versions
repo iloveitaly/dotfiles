@@ -8,3 +8,4 @@ direnv 2.32.1
 rust nightly
 poetry 1.6.1
 pnpm 8.8.0
+golang 1.21.1
