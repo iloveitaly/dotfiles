@@ -86,7 +86,8 @@ zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
 
 # avoid loading the builtin git completions
-rm /opt/homebrew/share/zsh/site-functions/_git 2> /dev/null
+# https://mikebian.co/git-completions-tooling-on-the-command-line/
+rm $(brew --prefix)/zsh/site-functions/_git 2> /dev/null
 
 # function don't get completions by default, aliases need to be manually assigned
 zicompdef fdd=fd
