@@ -710,6 +710,20 @@ defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
 
 ###############################################################################
+# Spotlight                                                                   #
+###############################################################################
+
+# TODO still untested
+# https://mattprice.me/2020/programmatically-modify-spotlight-ignore/
+# https://apple.stackexchange.com/questions/87090/how-to-programatically-add-folder-to-spotlight-do-not-index
+
+sudo /usr/libexec/PlistBuddy -c "Add :Exclusions: string ~/Projects" \
+    /System/Volumes/Data/.Spotlight-V100/VolumeConfiguration.plist
+
+sudo launchctl stop com.apple.metadata.mds
+sudo launchctl start com.apple.metadata.mds
+
+###############################################################################
 # Login Items                                                                 #
 ###############################################################################
 
@@ -731,26 +745,32 @@ osascript -e 'tell application "System Events" to make login item at end with pr
 # Keyboard Shortcuts                                                             #
 ###############################################################################
 
-# remap cmd+q to cmd+opt+q so you cannot press it as easily
+# remap cmd+q to cmd+opt+q so you cannot press it as easily on safari
+# https://apple.stackexchange.com/questions/151264/warn-before-quitting-in-safari
 defaults write -app Safari NSUserKeyEquivalents
 {
     "Quit Safari" = "@~q";
 }
 
-# TODO double cmd dictation key
+# TODO double cmd dictation key, cmd+cntrl+shift+d
 # ❯ defaults read ~/Library/Preferences/com.apple.speech.recognition.AppleSpeechRecognition.prefs.plist
-# CustomizedDictationHotKey =     {
-#     keyChar = 100;
-#     modifiers = 1179648;
-#     virtualKey = 2;
-# };
+    # CustomizedDictationHotKey =     {
+    #     keyChar = 100;
+    #     modifiers = 1441792;
+    #     virtualKey = 2;
+    # };
+
+# Set lock screen text
+sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText \
+  'Found this computer? Please contact Michael Bianco at mike@mikebian.co'
+
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
 	"Dock" "Finder" "Google Chrome" "Google Chrome Canary" "Messages" "App Store" \
-	"Photos" "Safari" "SystemUIServer" "" "Terminal" "iCal" "NotificationCenter" \
+	"Photos" "Safari" "SystemUIServer" "Terminal" "iCal" "NotificationCenter" \
 	"Spotlight"; do
 	killall "${app}" &> /dev/null
 done
