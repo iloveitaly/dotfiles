@@ -74,6 +74,7 @@ brew "dust" # du replacement
 brew "qpdf" # for decrypting pdf files
 brew "rsync" # get the latest version for new features
 brew "watch" # execute program every X seconds
+brew "docker-completion" if OS.linux?
 
 # == Experimental (don't install on server)
 if OS.mac?
