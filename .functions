@@ -1,4 +1,5 @@
 tmux-kill-detached-sessions() {
+  # TODO add `all` param and remove the digit grep to kill all unattached sessions
   tmux list-sessions | grep -v attached | grep -E '^\d{1,3}' | awk -F: '{print $1}' | xargs -I {} tmux kill-session -t {}
 }
 
@@ -8,11 +9,13 @@ zinit-update() {
   zinit cclear
 }
 
+# use plugin name as initial parameter
 asdf-current-version() {
   # if the version DNE then asdf will print an error to stderr
   asdf current $@ 2>&1 | awk '{print $2}'
 }
 
+# use plugin name as initial parameter
 asdf-reinstall() {
   asdf uninstall $@ $(asdf-current-version $@)
 }
@@ -67,7 +70,6 @@ rgg() {
   local additional_args=""
 
   # TODO should check search page in $@ as well
-  # TODO should check if in a .venv folder
   if [[ $(pwd) =~ node_modules$ ]] || [[ $(pwd) == *"/.venv/"* ]]; then
     # in this case, we want to search the contents of the node_modules directory
     # this is a common case for me, trying to debug various package bugs in a project I'm working on
@@ -257,7 +259,6 @@ open_in_vscode() {
   # assume each of inputs are passed on a single line and are only passed one at a time
 
   local file=$(pcregrep -o2 "(^\s?M\s)?(.*)" <<< "$1")
-
   IFS=':' read file line column <<< "$file"
 
   # remove multiple slashes that could have been passed from `file:///` references
