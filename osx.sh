@@ -471,9 +471,12 @@ defaults write com.apple.donotdisturbd disableCloudSync -bool true
 # TODO bannerTime doesn't work, would love to extend banner time to 30s
 
 # TODO disable notifications https://cs.github.com/tiiiecherle/osx_install_config/blob/67f7d618ace45f39f51d96c685ed027a84f48e38/_config_file/shellscriptsrc.sh?q=APPLICATIONS_TO_SET_NOTIFICATIONS#L1155
-# TODO schedule shutdown energy saver
 # open ~/Library/Preferences/com.apple.ncprefs.plist for noticiation center setup
 # Sys Prefs > Notification Center > Allow notifications: click all
+
+sudo pmset repeat sleep day_of_the_week 20:30:00
+
+defaults write -g AppleFontSmoothing -int 0
 
 ###############################################################################
 # Safari & WebKit                                                             #
