@@ -1,6 +1,9 @@
 # Make nano the default editor for context-less editing in the terminal
 export EDITOR=nano
 
+# not a go guy, but without this I get lots of deprecation notices
+export ASDF_GOLANG_MOD_VERSION_ENABLED=true
+
 # support nvmrc lazy versions
 export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_available
 
