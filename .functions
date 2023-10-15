@@ -1,6 +1,8 @@
 tmux-kill-detached-sessions() {
   # TODO add `all` param and remove the digit grep to kill all unattached sessions
-  tmux list-sessions | grep -v attached | grep -E '^\d{1,3}' | awk -F: '{print $1}' | xargs -I {} tmux kill-session -t {}
+  # `grep -v attached | grep -E '^\d{1,3}'` will only grab non-vs-code sessions
+
+  tmux list-sessions | grep -v attached | awk -F: '{print $1}' | xargs -I {} tmux kill-session -t {}
 }
 
 zinit-update() {
