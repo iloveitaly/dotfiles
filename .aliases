@@ -79,7 +79,7 @@ alias py=python
 alias pyd=ipdb3
 alias poetry-pristine="poetry env remove python && poetry env use python && poetry install"
 # poetry self add poetry-plugin-up
-alias python-debugging-install="pip install ipython ipdb pdbr rich ipython_autoimport docrepr pyfzf jedi pretty-traceback"
+alias python-debugging-install="pip install ipython ipdb pdbr rich ipython_autoimport docrepr pyfzf jedi pretty-traceback pre-commit"
 # TODO use --exec here instead
 alias python-remove-pycache="fd --no-ignore-vcs __pycache__ | xargs rm -rf"
 
