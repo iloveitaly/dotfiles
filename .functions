@@ -1,4 +1,6 @@
 tmux-kill-detached-sessions() {
+  sleep 10
+
   # TODO add `all` param and remove the digit grep to kill all unattached sessions
   # `grep -v attached | grep -E '^\d{1,3}'` will only grab non-vs-code sessions
 
@@ -17,6 +19,19 @@ asdf-current-version() {
   asdf current $@ 2>&1 | awk '{print $2}'
 }
 
+# Loop through all arguments (assumed to be asdf plugins)
+asdf-generate-tool-versions() {
+  for plugin in "$@"; do
+    version=$(asdf-current-version "$plugin")
+
+    if [ "$version" != "Not" ]; then
+      echo "$plugin $version" >> .tool-versions
+    else
+      echo "Error: Version for $plugin not found."
+    fi
+  done
+}
+
 # use plugin name as initial parameter
 asdf-reinstall() {
   asdf uninstall $@ $(asdf-current-version $@)
@@ -26,6 +41,12 @@ asdf-reinstall() {
 ssh-add-key() {
   ssh-copy-id -i ~/.ssh/id_rsa.pub $1
   ssh $1
+}
+
+# useful for cleaning up text from tmux
+# trims whitespace and removes quotes (single and double) if they are trailing + leading
+trim-and-unquote() {
+  sed -E 's/^[ \t]+//;s/[ \t]+$//;s/^['\''"](.*)['\''"]$/\1/'
 }
 
 # a touch command which creates folders too
