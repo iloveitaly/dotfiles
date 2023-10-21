@@ -30,7 +30,7 @@ apps=(
   Dropbox "Google Drive"
   Discord ChatGPT Buffer
   Podcasts "Amazon Music" Spotify
-  Dictionary Notes Preview Flow Streaks "QuickTime Player"
+  Dictionary Notes Preview Flow Streaks "QuickTime Player" Contacts
   zoom.us ReadKit Readwise Texts Messages Gmail "System Settings" Music Superhuman
   "Google Software Update" "Google Chrome Canary"
 )
