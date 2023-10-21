@@ -18,6 +18,7 @@ General:
   WrapMode: true
   ColumnDelimiter: ","
   MarkStyleWidth: 1
+  QuitSmall: true
 
 # Style
 # String of the color name: Foreground, Background
