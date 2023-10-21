@@ -197,7 +197,7 @@ if OS.mac?
     cask "ngrok"
     cask "firefox" # for debugging, not actual use
 
-    # == Expermental
+    # == Experimental
     cask "appcleaner"
     cask "fig"
     cask "tip"
@@ -209,13 +209,16 @@ if OS.mac?
     cask "rocket"
     cask "figma"
     cask "tableplus"
+    cask "keycastr"
 
     # == Quicklook Plugins
+    # these need to be manually enabled in macos preferences
     # https://github.com/sindresorhus/quick-look-plugins
     cask "qlmarkdown", args: { no_quarantine: true }
     cask "qlimagesize"
     cask "mdimagesizemdimporter"
     cask "iloveitaly/tap/qlzipinfo"
+    # remove the cached file if you run into weird rendering issues
     cask "syntax-highlight", args: { no_quarantine: true }
     cask "webpquicklook"
     cask "apparency"
@@ -267,14 +270,11 @@ if OS.mac?
 
     # personal account
     mas "Todoist", id: 585829637
-    mas "Next Meeting", id: 1017470484
-    mas "ReadKit", id: 1615798039
     mas "Streaks", id: 963034692
     mas "Webcam Control", id: 1172053162
     mas "Flow", id: 1423210932
     mas "Harvest", id: 506189836
     mas "Free Ruler", id: 1483172210
-    mas "Baby Monitor", id: 517602535
 
     # xcode kept reinstalling for me, adding a extra gate here
     if !File.directory?("/Applications/Xcode.app")
@@ -292,11 +292,6 @@ if OS.mac?
     # mas "wyze-make-your-home-smarter", id: 1288415553
     # TODO Owlet, is there a way to force this to install?
     # TODO wireguard
-
-    # safari extensions
-    mas "SmileAllDay", id: 1180442868
-    mas "Buffer", id: 1474298973
-    mas "Save to Matter", id: 1548677272
 
     # on business account
     mas "Icon Slate", id: 439697913
