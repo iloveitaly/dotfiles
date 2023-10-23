@@ -105,3 +105,6 @@ export PYTHONDEVMODE=1
 export PYTHONWARNINGS="ignore::DeprecationWarning"
 # not standard python, but used in many libraries
 export PY_COLORS=1
+export PYTHONFAULTHANDLER=1
+# ensures that code does not rely on dict order
+export PYTHONHASHSEED=random
