@@ -14,6 +14,7 @@ brew "optipng"
 brew "iftop"
 brew "lftp"
 brew "hub"
+# required fix for me: https://github.com/httpie/cli/issues/1535#issuecomment-1773774369
 brew "httpie"
 brew "ncdu"
 brew "curl"
