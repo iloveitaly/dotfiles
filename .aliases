@@ -5,7 +5,7 @@ alias ls='exa -l --group-directories-first'
 alias j='z'
 alias jj='zi'
 alias tree='tre --limit 3'
-
+alias pbcopy-html="pbpaste | hexdump -ve '1/1 \"%.2x\"' | xargs printf 'set the clipboard to {«class HTML»:«data HTML%s»}' | osascript -"
 alias fixcamera="sudo killall VDCAssistant; sudo killall AppleCameraAssistant"
 
 alias ...="cd ../.."
@@ -80,17 +80,10 @@ alias pyd=ipdb3
 alias poetry-pristine="poetry env remove python && poetry env use python && poetry install"
 alias poetry-tree="poetry show --tree"
 # TODO `poetry self add poetry-plugin-up` somewhere, or wrap in an alias
-alias python-debugging-install="pip install ipython ipdb pdbr rich ipython_autoimport docrepr pyfzf jedi pretty-traceback pre-commit"
+alias python-debugging-install="pip install --upgrade pip; pip install --upgrade ipython ipdb pdbr rich ipython_autoimport docrepr pyfzf jedi pretty-traceback pre-commit"
 # TODO use --exec here instead
 alias python-remove-pycache="fd --no-ignore-vcs __pycache__ | xargs rm -rf"
 
-# Hide/show all desktop icons (useful when presenting)
-alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
-
-# Toggle spotlight
-alias spotoff="sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist && sudo mdutil -a -i off"
-alias spoton="sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist && sudo mdutil -a -i on"
-
+# TODO why not just add /usr/libexec to the path?
 # PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
 alias plistbuddy="/usr/libexec/PlistBuddy"
