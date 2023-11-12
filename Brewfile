@@ -211,6 +211,7 @@ if OS.mac?
     cask "figma"
     cask "tableplus"
     cask "keycastr"
+    cask "tailscale"
 
     # == Quicklook Plugins
     # these need to be manually enabled in macos preferences

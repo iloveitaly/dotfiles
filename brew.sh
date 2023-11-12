@@ -123,5 +123,7 @@ git config --global gpg.program $(which gpg)
 
 # easily create new codespaces for a repo
 gh alias set cs-create --shell 'gh cs create --repo $(gh repo view --json nameWithOwner | jq -r .nameWithOwner)'
+# create a new public repo from the current directory
+gh alias set repo-create --shell 'gh repo create --public --source $PWD $(basename $PWD)'
 
 # gencomp trunk
