@@ -5,10 +5,12 @@ alias ls='exa -l --group-directories-first'
 alias j='z'
 alias jj='zi'
 alias tree='tre --limit 3'
-alias pbcopy-html="pbpaste | hexdump -ve '1/1 \"%.2x\"' | xargs printf 'set the clipboard to {«class HTML»:«data HTML%s»}' | osascript -"
 alias fixcamera="sudo killall VDCAssistant; sudo killall AppleCameraAssistant"
 
 alias ...="cd ../.."
+
+# pbcopy does not allow you to mutate public.html
+alias pbcopy-html="pbpaste | hexdump -ve '1/1 \"%.2x\"' | xargs printf 'set the clipboard to {«class HTML»:«data HTML%s»}' | osascript -"
 
 alias asdf-install="cat .tool-versions | cut -d' ' -f1 | grep '^[^\#]' | xargs -I{} asdf plugin add {}; asdf install"
 
@@ -80,7 +82,7 @@ alias pyd=ipdb3
 alias poetry-pristine="poetry env remove python && poetry env use python && poetry install"
 alias poetry-tree="poetry show --tree"
 # TODO `poetry self add poetry-plugin-up` somewhere, or wrap in an alias
-alias python-debugging-install="pip install --upgrade pip; pip install --upgrade ipython ipdb pdbr rich ipython_autoimport docrepr pyfzf jedi pretty-traceback pre-commit"
+alias python-debugging-install="pip install --upgrade pip; pip install --upgrade ipython ipdb pdbr[ipython] rich ipython_autoimport docrepr pyfzf jedi pretty-traceback pre-commit sqlparse"
 # TODO use --exec here instead
 alias python-remove-pycache="fd --no-ignore-vcs __pycache__ | xargs rm -rf"
 
