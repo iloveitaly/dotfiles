@@ -23,24 +23,45 @@
 export HOME=/Users/mike
 source ~/.asdf/asdf.sh
 
-hostile load ~/.config/distracting_sites.txt
-
 # https://apple.stackexchange.com/questions/303110/flush-cache-of-dns-on-macos-sierra-high-sierra/303119#303119
-sudo dscacheutil -flushcache
-sudo killall -HUP mDNSResponder
+flush-dns() {
+	sudo dscacheutil -flushcache
+	sudo killall -HUP mDNSResponder
 
-# Want to check what the system is resolving a host to?
-# 	dscacheutil -q host -a name www.thedomain.com
+	# safari will often cache DNS, lets clear it to ensure everything is blocked
+	osascript << EOF
+	tell application "Safari"
+		activate
+	end tell
 
-# safari will often cache DNS, lets clear it to ensure everything is blocked
+	tell application "System Events"
+		tell process "Safari"
+			tell menu bar 1 to tell menu bar item "Develop" to tell menu 1 to tell menu item "Empty Caches" to click
+		end tell
+	end tell
+EOF
+}
+
+# logout of twitter
+hostile remove twitter.com
+flush-dns
 osascript << EOF
 tell application "Safari"
 	activate
+	open location "https://twitter.com/logout"
 end tell
 
 tell application "System Events"
 	tell process "Safari"
-		tell menu bar 1 to tell menu bar item "Develop" to tell menu 1 to tell menu item "Empty Caches" to click
+		delay 0.5
+		click button "Log out" of group 1 of group 1 of group 1 of UI element 1 of scroll area 1 of group 1 of group 1 of tab group 1 of splitter group 1 of window 1
 	end tell
 end tell
 EOF
+
+hostile load ~/.config/distracting_sites.txt
+flush-dns
+
+# Want to check what the system is resolving a host to?
+# 	dscacheutil -q host -a name www.thedomain.com
+
