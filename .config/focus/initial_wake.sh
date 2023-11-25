@@ -32,9 +32,10 @@ apps=(
   Podcasts "Amazon Music" Spotify
   Dictionary Notes Preview Flow Streaks "QuickTime Player" Contacts
   zoom.us ReadKit Readwise Texts Messages Gmail "System Settings" Music Superhuman
-  "Google Software Update" "Google Chrome Canary"
+  "Google Software Update" "Google Chrome Canary" "Firefox"
 )
 
+# TODO WebCatalog SSB don't like this method of quitting
 quit_app() {
   local app=$1
 
@@ -64,14 +65,14 @@ return text returned of dialogResult
 EOT
 )
 
+
 # cleanup browser tabs
 echo "Cleaning browser tabs..."
-cd ~/Projects/clean-workspace
+cd ~/Projects/productivity/clean-workspace
 # sudo must come before direnv
 sudo direnv exec . poetry run clean-workspace --tab-description "$dialogResult"
 
 # organize todoist
 echo "Organizing todoist..."
-cd ~/Projects/todoist-scheduler
+cd ~/Projects/productivity/todoist-scheduler
 direnv exec . poetry run todoist-scheduler
-
