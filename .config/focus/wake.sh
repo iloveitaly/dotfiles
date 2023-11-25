@@ -43,17 +43,19 @@ EOF
 }
 
 # logout of twitter
+http POST http://localhost:9029/pause until=$(date -v+1M +%s)
 hostile remove twitter.com
 flush-dns
+
 osascript << EOF
 tell application "Safari"
 	activate
 	open location "https://twitter.com/logout"
+	delay 1
 end tell
 
 tell application "System Events"
 	tell process "Safari"
-		delay 0.5
 		click button "Log out" of group 1 of group 1 of group 1 of UI element 1 of scroll area 1 of group 1 of group 1 of tab group 1 of splitter group 1 of window 1
 	end tell
 end tell
