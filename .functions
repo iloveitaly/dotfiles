@@ -37,7 +37,33 @@ asdf-reinstall() {
   asdf uninstall $@ $(asdf-current-version $@)
 }
 
+# find the location of a pip package
+pip-show() {
+  # convert - => _
+  package_name=${1//-/_}
+
+  package_path=$(pip show $package_name | grep "Location:" | awk '{print $2}' | tr -d "\n")/$package_name
+  echo $package_path
+  cd $package_path
+}
+
+# docker-shell container_name user
+# run inside of existing container, use container name as first arg, user as second arg
+docker-shell() {
+  local container_id=$(docker ps -aqf "name=$1")
+  local user_option=""
+
+  if [ -n "${2-}" ]; then
+    user_option="-u $2"
+  fi
+
+  eval "docker exec -it $user_option $container_id bash"
+}
+
+# TODO docker-new-bash, run instead of exec
+
 # add key to remove server
+# ssh-add-key <server>
 ssh-add-key() {
   ssh-copy-id -i ~/.ssh/id_rsa.pub $1
   ssh $1
@@ -108,6 +134,44 @@ rgg() {
   if [[ ! -z "$file" ]]; then
     open "$file"
   fi
+}
+
+find_and_bundle() {
+  # $1 is the first argument to the function: the specific string to search for
+
+  # Ensure the search string is provided
+  if [[ -z "$1" ]]; then
+    echo "Usage: find_and_bundle <string>"
+    return 1
+  fi
+
+  # Use ripgrep to find files containing the specific string
+  local files_with_string=($(rg --files-with-matches --no-messages --fixed-strings "$1"))
+
+  # Check if any files were found
+  if [[ ${#files_with_string[@]} -eq 0 ]]; then
+    echo "No files found with string: $1"
+    return 1
+  fi
+
+  # Combine contents of the files, separated by "---"
+  for file in $files_with_string; do
+    cat "$file"
+    echo "\n---\n"
+  done | pbcopy  # Copy the combined content to the clipboard
+}
+
+
+function gits() {
+  # Check if a search string was passed
+  if [[ -z "$1" ]]; then
+    echo "Usage: git_search_and_diff <string-to-search-in-git-history>"
+    return 1
+  fi
+
+  local search_string=$1
+
+  git log --all --pickaxe-regex -S "$search_string" --pretty=format:"%C(yellow)%h%Creset -%C(auto)%d%Creset %s %C(green)(%cr) %C(bold blue)<%an>%Creset" | fzf --ansi --no-sort --preview="git show --color=always {1}" --preview-window=right:70%:wrap | awk '{print $1}'
 }
 
 function gc() {
@@ -192,6 +256,29 @@ function git-clean-squash-and-merge() (
   done
 )
 
+# convert a pdf to a jpeg for usage in gpt-v
+# ChatGPT cannot handle 3p documents
+# TODO try to group content into two-page pairs in the future: https://stackoverflow.com/questions/17025515/converting-a-multi-page-pdf-to-multiple-pages-using-a-single-command
+convert-pdf-to-jpeg() {
+  local filepath=$1
+  local outputpath="${filepath:r}"
+
+  # the position of `filepath` matters! Put this before the operators
+  magick -density 300 "${filepath}" -alpha remove -resize 1024x -quality 100 "${outputpath%.*}-%d.jpeg"
+
+  # select the first output
+  open -R "$outputpath-0.jpeg"
+}
+
+render-git-template() {
+  local GH_USERNAME=$(gh repo view --json owner --jq '.owner.login' | tr -d '[:space:]')
+  local GH_REPO=$(gh repo view --json name --jq '.name' | tr -d '[:space:]')
+  local TEMPLATE=$(pbpaste)
+
+  TEMPLATE=${TEMPLATE//USERNAME/$GH_USERNAME}
+  echo "${TEMPLATE//REPO/$GH_REPO}" | tr -d '\n' ' '
+}
+
 # make a gif out of the last recorded video
 function makegif() {
   # make sure to include trailing slash
@@ -250,11 +337,44 @@ rgo() {
   rg $@ $params --no-filename --no-column --no-line-number --color never --only-matching
 }
 
+# TODO extract to `.widgets`
+# https://github.com/fearphage/dotfiles-1/blob/9fe03f0fe891ab5e38423fb4b9e185526407fb02/.zsh/config/widgets.zsh#L16
+# function custom-fzf-execute-widget() {
+#     if (! hash fzf &>/dev/null) {
+#         return 1
+#     }
+
+#     local selected=$(
+#         zle -al \
+#             # | command grep --extended-regexp --invert-match '(^orig|^\.|^_)' \
+#             | fzf \
+#                 --tac \
+#                 --nth='2..,..' \
+#                 --tiebreak='index' \
+#                 --prompt=':'
+#     )
+
+#     local stat=$?
+
+#     if [[ "$selected" != '' ]] {
+#         echo $selected
+#         zle $selected
+#     }
+
+#     return $stat
+# }
+
 decryptpdf() {
   echo "Enter password followed by <enter> followed by <ctrl-D>"
   qpdf --decrypt --password-file=- --replace-input "${1}"
 }
 
+# even with a massive drive, these LLM models + git history can take up a lot of space
+inspect-space() {
+  cd / && ncdu --exclude /System/ --exclude /Applications
+}
+
+# an entire website to a folder
 # https://superuser.com/questions/55040/save-a-single-web-page-with-background-images-with-wget/136335#136335
 scrape-website() {
   wget -E -H -k -K -p -e robots=off $@
@@ -291,8 +411,18 @@ open_in_vscode() {
 }
 
 open_in_cat() {
+  # TODO jump to specific line number via less
+  # wrapping doesn't work the way you would think:
+  # bat Makefile --highlight-line 136 --paging=never --wrap=character --terminal-width=150
+  # TODO https://github.com/sharkdp/bat/issues/2527
+
   IFS=':' read file line column <<< "$1"
-  bat $file --highlight-line "$line"
+  # output command executed via local shopt
+
+
+  # setopt local_options xtrace
+
+    bat $file --highlight-line "$line"
 }
 
 source ~/.node-functions
