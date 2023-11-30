@@ -40,6 +40,7 @@ zinit wait lucid for \
   'https://gist.githubusercontent.com/iloveitaly/4eac0f4ddb3f8162f95fa3ed6f123a06/raw/91af07681dcb1bd863f1922526d6287debd10a80/1password.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/a79ffc31ef5b4785da8950055763bf52/raw/4140dd8fa63011cdd30814f2fbfc5b52c2052245/github-copilot-cli.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/043d91a2968597fe601673664b124dd3/raw/f79dd08a352f9dfde17ba22d345e8e1f87ac3c57/orbctl.zsh' \
+  'https://gist.githubusercontent.com/iloveitaly/ebd80140aaa4d8183b558adddb06b809/raw/fc23843bd07b3665233b8d74d0030b8ffff290dd/pack.plugin.zsh' \
   'https://github.com/iloveitaly/dolt/blob/zsh-plugin/dolt.plugin.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh' \
