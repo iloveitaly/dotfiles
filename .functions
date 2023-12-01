@@ -211,11 +211,14 @@ function git-squash-custom-branch {
     exit 1
   fi
 
+  # determine if master is main, or actually master
+  local master_branch=$(git branch -l master main | sed 's/^* //' | xargs)
+
   # Checkout to the master branch
-  git checkout master
+  git checkout $master_branch
 
   # Pull the latest changes from the master branch
-  git pull origin master
+  git pull origin $master_branch
 
   # Check if the 'custom' branch already exists and delete it if it does
   if git show-ref --verify --quiet refs/heads/custom; then
