@@ -4,12 +4,15 @@
 # additionally, since it's not executed in login mode, ~/.zshrc is not loaded
 export USER=mike
 export HOME=/Users/$USER
+
 source ~/.asdf/asdf.sh
+source ~/.config/focus/functions.sh
+source ~/.config/focus/twitter_logout.sh
 
 # do we have internet access?
 if ! ping -c 1 google.com &> /dev/null; then
   echo "No internet access, waiting for 1 minute"
-  sleep 60
+  sleep 120
 fi
 
 # if we don't have internet after this, some of the operations will will fail, which is completely fine
@@ -31,7 +34,7 @@ apps=(
   Discord ChatGPT Buffer
   Podcasts "Amazon Music" Spotify
   Dictionary Notes Preview Flow Streaks "QuickTime Player" Contacts
-  zoom.us ReadKit Readwise Texts Messages Gmail "System Settings" Music Superhuman
+  zoom.us ReadKit Readwise Texts Gmail "System Settings" Music Superhuman
   "Google Software Update" "Google Chrome Canary" "Firefox"
 )
 
@@ -56,6 +59,8 @@ quit_app() {
 for app in $apps; do
   quit_app $app
 done
+
+twitter_logout()
 
 # prompt user for context on what's left in the browser tabs
 dialogResult=$(
