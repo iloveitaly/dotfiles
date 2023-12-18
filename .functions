@@ -37,6 +37,12 @@ asdf-reinstall() {
   asdf uninstall $@ $(asdf-current-version $@)
 }
 
+pip-pristine() {
+  pip uninstall $1
+  pip cache remove $1
+  pip install $1
+}
+
 # find the location of a pip package
 pip-show() {
   # convert - => _
@@ -279,7 +285,8 @@ render-git-template() {
   local TEMPLATE=$(pbpaste)
 
   TEMPLATE=${TEMPLATE//USERNAME/$GH_USERNAME}
-  echo "${TEMPLATE//REPO/$GH_REPO}" | tr -d '\n' ' '
+  TEMPLATE=${TEMPLATE//REPO/$GH_REPO}
+  echo $TEMPLATE | tr -ds '\n' ' '
 }
 
 # make a gif out of the last recorded video
@@ -425,7 +432,7 @@ open_in_cat() {
 
   # setopt local_options xtrace
 
-    bat $file --highlight-line "$line"
+  bat $file --highlight-line "$line"
 }
 
 source ~/.node-functions

@@ -103,7 +103,7 @@ export PYTHONDONTWRITEBYTECODE=1
 # don't buffer stdout/stderr
 export PYTHONUNBUFFERED=1
 export PYTHONDEVMODE=1
-export PYTHONWARNINGS="ignore::DeprecationWarning"
+export PYTHONWARNINGS="ignore::DeprecationWarning,ignore:ResourceWarning"
 # not standard python, but used in many libraries
 export PY_COLORS=1
 export PYTHONFAULTHANDLER=1
