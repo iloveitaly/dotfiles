@@ -1,5 +1,3 @@
-# install: pip install rich ipython_autoimport docrepr
-
 # https://ipython.readthedocs.io/en/stable/config/options/terminal.html
 # examples:
 #  - https://github.com/YaBoiBurner/dotfiles/blob/dom/.config/ipython/profile_default/ipython_config.py
@@ -17,24 +15,29 @@ c.InteractiveShell.enable_html_pager = True
 # requires docrepr
 c.InteractiveShell.sphinxify_docstring = True
 
-# # https://github.com/willmcgugan/rich/pull/1274/files
-c.InteractiveShellApp.extensions.append('rich')
-
 # DO NOT use `append` here, it hangs ipython
-c.InteractiveShellApp.extensions = ['autoreload', 'ipython_autoimport']
+c.InteractiveShellApp.extensions = [
+    "autoreload",
+    "ipython_autoimport",
+    "ipython_ctrlr_fzf",
+    "ipython_clipboard",
+    # https://github.com/willmcgugan/rich/pull/1274/files
+    "rich",
+]
 
 # watch filesystem for changes and reload modules
 # https://stackoverflow.com/questions/1907993/autoreload-of-modules-in-ipython
 # https://ipython.readthedocs.io/en/stable/whatsnew/version8.html#autoreload-3-feature
-c.InteractiveShellApp.exec_lines.append('%autoreload 3')
+# https://ipython.readthedocs.io/en/stable/config/extensions/autoreload.html
+c.InteractiveShellApp.exec_lines.append("%autoreload 3")
 
 # https://stackoverflow.com/questions/50437791/ipython-magic-print-variables-on-assignment
-c.InteractiveShell.ast_node_interactivity = 'last_expr_or_assign'
+c.InteractiveShell.ast_node_interactivity = "last_expr_or_assign"
 
 c.InteractiveShell.auto_match = True
 
 # https://ipython.readthedocs.io/en/stable/interactive/magics.html?highlight=autocall#magic-autocall
-c.InteractiveShellApp.exec_lines.append('%autocall 1')
+c.InteractiveShellApp.exec_lines.append("%autocall 1")
 
 # Enable magic commands to be called without the leading %.
 # c.TerminalInteractiveShell.automagic = True
