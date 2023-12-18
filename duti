@@ -28,3 +28,5 @@ com.apple.Preview public.heic all
 com.apple.Numbers public.comma-separated-values-text all
 com.apple.Numbers public.tab-separated-values-text all
 com.tinyapp.TablePlus db all
+com.tinyapp.TablePlus sqlite all
+com.tinyapp.TablePlus sqlite3 all
