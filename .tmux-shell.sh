@@ -8,7 +8,7 @@ counter=0
 session_uid="${session_uid//./_}"
 
 sleep 1
-while [[ $counter -lt 10 ]]; do
+while [[ $counter -lt 20 ]]; do
   session="${session_uid}-${counter}"
 
   # if the session doesn't exist, create it
