@@ -211,7 +211,6 @@ if OS.mac?
     cask "figma"
     cask "tableplus"
     cask "keycastr"
-    cask "tailscale"
 
     # == Quicklook Plugins
     # these need to be manually enabled in macos preferences
@@ -277,6 +276,7 @@ if OS.mac?
     mas "Flow", id: 1423210932
     mas "Harvest", id: 506189836
     mas "Free Ruler", id: 1483172210
+    mas "Tailscale", id: 1475387142
 
     # xcode kept reinstalling for me, adding a extra gate here
     if !File.directory?("/Applications/Xcode.app")
