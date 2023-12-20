@@ -1,0 +1,34 @@
+#!/usr/bin/env zsh
+
+static_exclusions=(
+  "~/.cache/whisper"
+  "~/.ollama"
+  "~/.orbstack"
+  "~/.docker"
+  /var/lib/docker
+  /OrbStack
+)
+
+# https://apple.stackexchange.com/questions/384455/how-to-ignore-all-the-node-modules-folders-from-time-machine
+
+# exclude the above folders
+for exclusion in $static_exclusions; do
+  echo "Excluding $exclusion from time machine..."
+  sudo tmutil addexclusion -p $exclusion
+done
+
+pushd ~/Projects
+
+fd -uuu --type d --absolute-path --full-path 'node_modules$' | \
+  rg --pcre2 '^(?!.*\/node_modules\/.*\/node_modules\/).*\/node_modules\/$' --no-filename --no-column --no-line-number --color never \
+  | while read line; do
+    echo "Excluding $line from time machine..."
+    sudo tmutil addexclusion -p $line
+  done
+
+fd -uuu --type d --absolute-path --full-path '(\.venv|\.pnpm|vendor/bundle)$' | while read line; do
+  echo "Excluding $line from time machine..."
+  sudo tmutil addexclusion -p $line
+done
+
+popd
