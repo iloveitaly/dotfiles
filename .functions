@@ -119,6 +119,11 @@ fdd() {
   fi
 }
 
+# TODO add fzf support
+rgu() {
+  rg -uuu "$@"
+}
+
 # livegrep-like local search
 # related: https://github.com/seletskiy/zsh-fuzzy-search-and-edit/blob/master/plugin.zsh
 rgg() {
@@ -381,7 +386,7 @@ decryptpdf() {
 
 # even with a massive drive, these LLM models + git history can take up a lot of space
 inspect-space() {
-  cd / && ncdu --exclude /System/ --exclude /Applications
+  (cd / && sudo ncdu --exclude /System/ --exclude /Applications)
 }
 
 # an entire website to a folder
