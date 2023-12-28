@@ -58,6 +58,8 @@ alias o="open_in_nano ."
 
 # File size
 alias fs="stat -f \"%z bytes\""
+alias ds="du -sh"
+
 
 # git
 alias g="hub"
@@ -66,8 +68,6 @@ alias gpb='g pull --rebase origin `git rev-parse --abbrev-ref HEAD`'
 alias gpf='g push --force origin HEAD'
 
 # rails
-alias rt="bundle exec rails test"
-alias be="b exec"
 alias b="bundle"
 
 # elixir
@@ -75,6 +75,7 @@ alias imix="iex -S mix"
 
 # python
 # TODO maybe fail if not in a venv
+alias play="./playground.py"
 alias po="poetry"
 alias ipy=ipython
 alias py=python
