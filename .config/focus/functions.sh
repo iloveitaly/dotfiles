@@ -1,7 +1,11 @@
-# check active rules: ❯ sudo pfctl -s rules
+# check active rules: sudo pfctl -s rules
 # check active pipes: sudo dnctl list
 
+# https://github.com/sitespeedio/throttle
+
 throttle-internet() {
+	echo "Throttling internet..."
+
   sudo pfctl -E
   sudo dnctl pipe 1 config bw 1Mbit/s
   # echo "dummynet out quick on en7 pipe 1" | sudo pfctl -ef -
@@ -9,12 +13,16 @@ throttle-internet() {
 }
 
 unthrottle-internet() {
+	echo "Unthrottling internet..."
+
   sudo dnctl -q flush
   sudo pfctl -d
 }
 
 # https://apple.stackexchange.com/questions/303110/flush-cache-of-dns-on-macos-sierra-high-sierra/303119#303119
 flush-dns() {
+	echo "Flushing DNS..."
+
 	sudo dscacheutil -flushcache
 	sudo killall -HUP mDNSResponder
 

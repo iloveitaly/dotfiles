@@ -2,6 +2,8 @@
 
 # logout of twitter
 twitter_logout() {
+  echo "Logging out of twitter..."
+
   http --ignore-stdin POST http://localhost:9029/pause until=$(date -v+1M +%s)
 
   hostile remove twitter.com

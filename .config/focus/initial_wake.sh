@@ -9,6 +9,8 @@ source ~/.asdf/asdf.sh
 source ~/.config/focus/functions.sh
 source ~/.config/focus/twitter_logout.sh
 
+unthrottle-internet
+
 # do we have internet access?
 if ! ping -c 1 google.com &> /dev/null; then
   echo "No internet access, waiting for 1 minute"
@@ -24,7 +26,7 @@ fi
 work_apps=()
 if [ $(date +%u) -eq 7 ]; then
   echo "It's sunday, closing additional apps"
-  work_apps=(TablePlus "Visual Studio Code" Postico Kaleidoscope)
+  work_apps=(TablePlus "Visual Studio Code" Postico Kaleidoscope Zui)
 fi
 
 apps=(
@@ -34,8 +36,9 @@ apps=(
   Discord ChatGPT Buffer
   Podcasts "Amazon Music" Spotify
   Dictionary Notes Preview Flow Streaks "QuickTime Player" Contacts
-  zoom.us ReadKit Readwise Texts Gmail "System Settings" Music Superhuman
+  zoom.us ReadKit Readwise Reader Texts Gmail "System Settings" Music Superhuman
   "Google Software Update" "Google Chrome Canary" "Firefox"
+  "Activity Monitor" "System Preferences" "App Store" "Disk Utility" "System Information"
 )
 
 # TODO WebCatalog SSB don't like this method of quitting
@@ -60,7 +63,7 @@ for app in $apps; do
   quit_app $app
 done
 
-twitter_logout()
+twitter_logout
 
 # prompt user for context on what's left in the browser tabs
 dialogResult=$(

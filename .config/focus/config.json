@@ -2,23 +2,19 @@
   "$schema": "https://raw.githubusercontent.com/iloveitaly/hyper-focus/main/schema.json",
   "initial_wake": "/Users/mike/.config/focus/initial_wake.sh",
   "wake": "/Users/mike/.config/focus/wake.sh",
+  "blocked_redirect_url": "https://readwise.io/dailyreview",
   "schedule": [
     {
       "start": 0,
       "end": 11,
-      "name": "morning focus",
+      "name": "Morning Focus",
       "schedule_only": true,
       "block_hosts": [
-        "mail.google.com",
         "news.ycombinator.com",
         "twitter.com",
-        "feedbin.com",
         "youtube.com",
         "reddit.com",
 
-        "airbnb.com",
-        "cigna.com",
-        "my.cigna.com",
         "my.lunchmoney.app",
         "investor.vanguard.com",
         "alliantcreditunion.com",
@@ -30,7 +26,6 @@
         "walmart.com",
         "slickdeals.net",
         "amazon.com",
-        "smile.amazon.com",
         "groupon.com"
       ],
       "block_urls": [
@@ -46,54 +41,46 @@
         "https://github.com/iloveitaly/dotfiles",
         "https://www.linkedin.com/feed/"
       ],
-      "block_apps": [
-        "Texts",
-        "Messages",
-        "Discord",
-        "Gmail",
-        "Amazon Music",
-        "Spotify",
-        "Podcasts",
-        "Music",
-        "ReadKit",
-        "Readwise"
-      ]
+      // try allowing email + texts
+      "block_apps": ["Discord", "Spotify", "Podcasts", "Readwise"]
     },
+    // {
+    //   "name": "daily comms",
+    //   "schedule_only": true,
+    //   "start": 12,
+    //   "end": 12,
+    //   "end_minute": 30,
+    //   "start_script": "/Users/mike/.config/focus/communication_start.sh",
+    //   "block_hosts": [
+    //     "twitter.com",
+    //     "feedbin.com",
+    //     "my.lunchmoney.com",
+    //     "news.ycombinator.com"
+    //   ],
+    //   "block_urls": [
+    //     "https://www.google.com/search?q=world+news",
+    //     "https://www.google.com/search?q=economic+news",
+    //     "https://www.google.com/search?q=colorado+news",
+    //     "https://www.google.com/search?tbm=nws",
+    //     "https://www.google.com/search?tbm=shop",
+    //     "https://www.google.com/search?q=vti",
+    //     "https://www.google.com/search?q=vxus",
+    //     "https://www.google.com/search?q=vteb",
+    //     "https://github.com/iloveitaly",
+    //     "https://github.com/iloveitaly/dotfiles",
+    //     "https://www.linkedin.com/feed/"
+    //   ],
+    //   "block_apps": []
+    // },
     {
-      "name": "daily comms",
+      "name": "Standard Focus",
       "schedule_only": true,
       "start": 12,
-      "end": 12,
-      "end_minute": 30,
-      "start_script": "/Users/mike/.config/focus/communication_start.sh",
+      "end": 20,
       "block_hosts": [
         "twitter.com",
         "feedbin.com",
-        "my.lunchmoney.com",
-        "news.ycombinator.com"
-      ],
-      "block_urls": [
-        "https://www.google.com/search?q=world+news",
-        "https://www.google.com/search?q=economic+news",
-        "https://www.google.com/search?q=colorado+news",
-        "https://www.google.com/search?tbm=nws",
-        "https://www.google.com/search?tbm=shop",
-        "https://www.google.com/search?q=vti",
-        "https://www.google.com/search?q=vxus",
-        "https://www.google.com/search?q=vteb",
-        "https://github.com/iloveitaly"
-      ],
-      "block_apps": []
-    },
-    {
-      "name": "standard focus",
-      "schedule_only": true,
-      "start": 12,
-      "start_minute": 30,
-      "end": 24,
-      "block_hosts": [
-        "twitter.com",
-        "feedbin.com",
+        "youtube.com",
         "my.lunchmoney.com",
         "mail.google.com",
         "news.ycombinator.com",
@@ -118,7 +105,30 @@
         "https://www.google.com/search?q=vteb",
         "https://github.com/iloveitaly"
       ],
-      "block_apps": ["ReadKit"]
+      "block_apps": ["Discord", "Spotify", "Podcasts", "Readwise"]
+    },
+    {
+      "name": "Daily Shutdown",
+      "schedule_only": true,
+      // 9pm
+      "start": 21,
+      "end": 24,
+      "script": "/Users/mike/.config/focus/shutdown.sh",
+
+      // only allow 5, 1m pauses
+      "pause_options": [1],
+      "pause_limit": 5,
+
+      "allow_hosts": ["google.com"],
+      "allow_urls": ["https://google.com/"],
+      "allow_apps": [
+        "Superhuman",
+        "Cron",
+        "Texts",
+        "Messages",
+        "Readwise",
+        "iTerm"
+      ]
     },
     {
       "name": "Communications",
@@ -130,8 +140,6 @@
         "youtube.com",
 
         "airbnb.com",
-        "cigna.com",
-        "my.cigna.com",
         "my.lunchmoney.app",
         "investor.vanguard.com",
         "chase.com",
@@ -143,7 +151,7 @@
         "smile.amazon.com",
         "groupon.com"
       ],
-      "block_apps": ["Amazon Music", "Podcasts", "Music", "ReadKit"],
+      "block_apps": ["Podcasts", "ReadKit"],
       "block_urls": [
         "https://www.google.com/search?q=world+news",
         "https://www.google.com/search?q=economic+news",
@@ -167,7 +175,7 @@
 
         "web.getmatter.com"
       ],
-      "block_apps": ["Discord", "Amazon Music", "Podcasts", "Music", "ReadKit"],
+      "block_apps": ["Discord", "Podcasts", "ReadKit"],
       "block_urls": [
         "https://www.google.com/search?q=world+news",
         "https://www.google.com/search?q=economic+news",
@@ -189,8 +197,6 @@
         "mail.google.com",
 
         "airbnb.com",
-        "cigna.com",
-        "my.cigna.com",
         "my.lunchmoney.app",
         "investor.vanguard.com",
         "alliantcreditunion.com",
@@ -205,11 +211,18 @@
         "groupon.com"
       ],
       "block_urls": [],
-      "block_apps": ["Texts", "Gmail", "Messages", "Slack", "Discord"]
+      "block_apps": [
+        "Texts",
+        "Superhuman",
+        "Gmail",
+        "Messages",
+        "Slack",
+        "Discord"
+      ]
     },
     {
       "name": "meeting",
-      "description": "view more stuff when meeting",
+      "description": "view more stuff when on a meeting",
       "block_apps": [],
       "block_urls": [],
       "block_hosts": [
