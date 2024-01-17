@@ -124,7 +124,8 @@ git config --global gpg.program $(which gpg)
 # easily create new codespaces for a repo
 gh alias set cs-create --shell 'gh cs create --repo $(gh repo view --json nameWithOwner | jq -r .nameWithOwner)'
 # create a new public repo from the current directory and enable github actions
-gh alias set repo-create --shell 'repo=$(basename $PWD) && gh repo create --public --source $PWD $repo && owner=$(gh repo view --json owner -q .owner.login) && gh api -X PUT repos/$owner/$repo/actions/permissions -F enabled=true'
+gh alias set repo-create --clobber --shell 'repo=$(basename $PWD) && gh repo create --public --source $PWD $repo && owner=$(gh repo view --json owner -q .owner.login) && gh api -X PUT repos/$owner/$repo/actions/permissions -F enabled=true'
 gh alias set repo-url --clobber --shell 'url=$(gh repo view --json url --jq ".url" | tr -d " \n"); echo -n "$url" | pbcopy && echo "$url"'
+gh alias set repo-events --clobber --shell 'gh api repos/$(gh repo view --json owner -q ".owner.login")/$(gh repo view --json name -q ".name")/events'
 
 # gencomp trunk
