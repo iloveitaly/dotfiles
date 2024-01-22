@@ -82,8 +82,9 @@ alias py=python
 alias pyd=ipdb3
 alias poetry-pristine="poetry env remove --all && poetry install"
 alias poetry-tree="poetry show --tree"
+alias pipu="pip uninstall -y "
 # TODO `poetry self add poetry-plugin-up` somewhere, or wrap in an alias
-alias python-debugging-install='pip install --upgrade pip; pip install --upgrade ipython ipdb "pdbr[ipython]" rich ipython_autoimport IPythonClipboard ipython_ctrlr_fzf docrepr pyfzf jedi pretty-traceback pre-commit sqlparse debugpy'
+alias python-debugging-install='pip install --upgrade pip; pip install --upgrade ipython ipdb "pdbr[ipython]" rich ipython_autoimport IPythonClipboard ipython_ctrlr_fzf docrepr pyfzf jedi pretty-traceback pre-commit sqlparse debugpy git+https://github.com/iloveitaly/rpdb.git@multiple-continue'
 # TODO use --exec here instead
 alias python-remove-pycache="fd --no-ignore-vcs __pycache__ | xargs rm -rf"
 
