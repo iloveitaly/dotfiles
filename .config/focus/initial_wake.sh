@@ -27,6 +27,8 @@ work_apps=()
 if [ $(date +%u) -eq 7 ]; then
   echo "It's sunday, closing additional apps"
   work_apps=(TablePlus "Visual Studio Code" Postico Kaleidoscope Zui)
+  echo "Now, throttle the internet"
+  throttle-internet
 fi
 
 apps=(
