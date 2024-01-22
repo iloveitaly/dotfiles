@@ -443,6 +443,7 @@ find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -dele
 #defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}'
 
 # Disable keyboard shortcuts for Mission Control
+# TODO need to disable mission control shortcuts
 /usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:79:enabled NO" ~/Library/Preferences/com.apple.symbolichotkeys.plist
 /usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:80:enabled NO" ~/Library/Preferences/com.apple.symbolichotkeys.plist
 /usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:81:enabled NO" ~/Library/Preferences/com.apple.symbolichotkeys.plist
@@ -744,6 +745,8 @@ osascript -e 'tell application "System Events" to make login item at end with pr
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Streaks.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Todoist.app", hidden:true}'
 osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Tailscale.app", hidden:true}'
+osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/superwhisper.app", hidden:true}'
+osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/Notion Calendar.app", hidden:true}'
 
 ###############################################################################
 # Keyboard Shortcuts                                                             #
