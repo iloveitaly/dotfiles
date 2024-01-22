@@ -41,7 +41,7 @@
         "https://github.com/iloveitaly/dotfiles",
         "https://www.linkedin.com/feed/"
       ],
-      // try allowing email + texts
+      // TODO try allowing email + texts
       "block_apps": ["Discord", "Spotify", "Podcasts", "Readwise"]
     },
     // {
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "name": "meeting",
+      "name": "Meeting",
       "description": "view more stuff when on a meeting",
       "block_apps": [],
       "block_urls": [],
@@ -239,6 +239,48 @@
         "amazon.com",
         "smile.amazon.com",
         "groupon.com"
+      ]
+    },
+    {
+      "name": "Hardcore Focus",
+      "description": "Block all communication channels",
+      "block_hosts": [
+        "news.ycombinator.com",
+        "twitter.com",
+        "youtube.com",
+        "reddit.com",
+
+        "my.lunchmoney.app",
+        "investor.vanguard.com",
+
+        "aliexpress.us",
+        "costco.com",
+        "walmart.com",
+        "slickdeals.net",
+        "amazon.com",
+        "groupon.com"
+      ],
+      "block_urls": [
+        "https://www.google.com/search?q=world+news",
+        "https://www.google.com/search?q=economic+news",
+        "https://www.google.com/search?q=colorado+news",
+        "https://www.google.com/search?tbm=nws",
+        "https://www.google.com/search?tbm=shop",
+        "https://www.google.com/search?q=vti",
+        "https://www.google.com/search?q=vxus",
+        "https://www.google.com/search?q=vteb",
+        "https://github.com/iloveitaly",
+        "https://github.com/iloveitaly/dotfiles",
+        "https://www.linkedin.com/feed/"
+      ],
+      // TODO try allowing email + texts
+      "block_apps": [
+        "Discord",
+        "Spotify",
+        "Podcasts",
+        "Readwise",
+        "Texts",
+        "Superhuman"
       ]
     }
   ]
