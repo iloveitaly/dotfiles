@@ -1,22 +1,43 @@
 # check active rules: sudo pfctl -s rules
 # check active pipes: sudo dnctl list
 
-# https://github.com/sitespeedio/throttle
+# based on: https://github.com/sitespeedio/throttle
 
 throttle-internet() {
-	echo "Throttling internet..."
+	local DOWNLOAD_LIMIT="1000Kbit/s"
+	local UPLOAD_LIMIT="200Kbit/s"
 
-  sudo pfctl -E
-  sudo dnctl pipe 1 config bw 1Mbit/s
-  # echo "dummynet out quick on en7 pipe 1" | sudo pfctl -ef -
-  echo "dummynet in quick proto tcp from any to any pipe 1" | sudo pfctl -a throttleRule -ef -
+	# Configure pipe for incoming traffic (download)
+	(sudo dnctl pipe 1 config bw $DOWNLOAD_LIMIT && echo "Download pipe configured") || echo "Failed to configure download pipe"
+
+	# Configure pipe for outgoing traffic (upload)
+	(sudo dnctl pipe 2 config bw $UPLOAD_LIMIT && echo "Upload pipe configured") || echo "Failed to configure upload pipe"
+
+	# Apply the rules to all devices
+	sudo pfctl -f - <<-EOF
+dummynet-anchor "throttle"
+anchor "throttle"
+EOF
+
+	# Enable PF if not already enabled
+	sudo pfctl -e
+
+	sudo pfctl -a throttle -f - <<-EOF
+dummynet in all pipe 1
+dummynet out all pipe 2
+EOF
+
+	echo "Throttling applied to device en1"
 }
 
 unthrottle-internet() {
 	echo "Unthrottling internet..."
 
-  sudo dnctl -q flush
-  sudo pfctl -d
+	sudo dnctl -q flush
+	sudo pfctl -f /etc/pf.conf
+	sudo pfctl -d
+
+	echo "Throttling removed"
 }
 
 # https://apple.stackexchange.com/questions/303110/flush-cache-of-dns-on-macos-sierra-high-sierra/303119#303119
