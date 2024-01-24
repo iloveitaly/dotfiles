@@ -28,7 +28,7 @@ brew "cloc" # code analytics
 brew "jq" # json extraction
 brew "q" if OS.mac? # sql on csv
 brew "dsq" # sql over json and other formats
-brew "yq" # yq for yaml and others
+brew "yq" # yq for yaml and others, great for in place manipulating files
 brew "dasel" # consistent language for extracting data from XML, CSV, and others. No aggregates.
 tap "brimdata/tap"
 brew "brimdata/tap/zq" # faster/better jq, has aggregates
@@ -179,7 +179,6 @@ if OS.mac?
     cask "discord"
     cask "keybase"
     cask "telegram"
-    cask "sequel-ace"
     cask "alacritty", args: { no_quarantine: true }
     # helpful for phone-only applications that you want to run your mac without apple silicon
     cask "bluestacks"
@@ -210,6 +209,7 @@ if OS.mac?
     cask "rocket"
     cask "figma"
     cask "tableplus"
+    cask "openrefine", { args: { no_quarantine: true } }
     cask "keycastr"
 
     # == Quicklook Plugins
@@ -243,6 +243,8 @@ if OS.mac?
     brew "webkit2png"
     brew "rga"
     brew "cmake" # for ruby native extensions
+    brew "make" # to get the latest version (4.x vs 3.x)
+    brew "gnu-time" # much better than shell time builtin for performance tracking
     brew "artginzburg/tap/sudo-touchid"
     brew "java" # for elixir
     brew "wxwidgets" # for elixir
@@ -256,6 +258,7 @@ if OS.mac?
     brew "siege" # load testing tool
     brew "ameshkov/tap/dnslookup"
     brew "smudge/smudge/nightlight"
+    brew "hyperfine"
     # homerow
 
     # mongodb
@@ -272,11 +275,11 @@ if OS.mac?
     # personal account
     mas "Todoist", id: 585829637
     mas "Streaks", id: 963034692
-    mas "Webcam Control", id: 1172053162
     mas "Flow", id: 1423210932
     mas "Harvest", id: 506189836
     mas "Free Ruler", id: 1483172210
     mas "Tailscale", id: 1475387142
+    mas "Flighty" id: 1358823008
 
     # xcode kept reinstalling for me, adding a extra gate here
     if !File.directory?("/Applications/Xcode.app")
