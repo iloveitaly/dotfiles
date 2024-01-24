@@ -21,6 +21,7 @@ c.InteractiveShellApp.extensions = [
     "ipython_autoimport",
     "ipython_ctrlr_fzf",
     "ipython_clipboard",
+    "ipython_suggestions",
     # https://github.com/willmcgugan/rich/pull/1274/files
     "rich",
 ]
