@@ -64,7 +64,6 @@ alias o="open_in_nano ."
 alias fs="stat -f \"%z bytes\""
 alias ds="du -sh"
 
-
 # git
 alias g="hub"
 alias gp="g push origin HEAD"
@@ -77,6 +76,9 @@ alias b="bundle"
 # elixir
 alias imix="iex -S mix"
 
+# docker
+alias d="docker"
+
 # python
 # TODO maybe fail if not in a venv
 alias play="./playground.py"
@@ -86,7 +88,8 @@ alias py=python
 alias pyd=ipdb3
 alias poetry-pristine="poetry env remove --all && poetry install"
 alias poetry-tree="poetry show --tree"
-alias pipu="pip uninstall -y "
+alias pipu="pip uninstall -y"
+alias pipi="pip install -U"
 # TODO `poetry self add poetry-plugin-up` somewhere, or wrap in an alias
 alias python-debugging-install='pip install --upgrade pip; pip install --upgrade ipython ipdb "pdbr[ipython]" rich ipython_autoimport IPythonClipboard ipython_ctrlr_fzf docrepr pyfzf jedi pretty-traceback pre-commit sqlparse debugpy ipython-suggestions git+https://github.com/iloveitaly/rpdb.git@multiple-continue'
 # TODO use --exec here instead
