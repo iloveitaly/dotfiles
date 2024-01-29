@@ -35,6 +35,7 @@
   dc = diff --cached
   cm = commit
   cp = cherry-pick
+  r = rebase
   logv = log --pretty=fuller
   undo-commit = reset --soft HEAD^
 
@@ -87,6 +88,9 @@
   # helpful for large projects where you limit branches pulled via `fetch`
   remote-fetch = "!rf() { git config --add remote.origin.fetch +refs/heads/$1:refs/remotes/origin/$1 && git fetch origin +$1:refs/remotes/origin/$1 && git c -t origin/$1; }; rf"
   remote-purge = "!rp() { git config --unset remote.origin.fetch \".*$1.*\"; git update-ref -d refs/remotes/origin/$1; }; rp"
+
+  search-commits = "log --grep" # search log messages
+  search-log = "log -p -S" # search contents of the commit diffs
 
   # http://urbanautomaton.com/blog/2014/09/22/tracking-method-history-in-git/
   lm = "!f(){ local method=$1; local file=$2; [[ -n \"$method\" && -n \"$file\" ]] || exit 1; git log -L :$method:$file;}; f"
