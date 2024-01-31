@@ -44,6 +44,7 @@ zinit wait lucid for \
   'https://github.com/iloveitaly/dolt/blob/zsh-plugin/dolt.plugin.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh' \
+  'iloveitaly/cli-1' \
   as'completion' blockf OMZ::plugins/ripgrep/_ripgrep \
   atinit'zicompinit' atpull'zinit creinstall .' src'completions/git-forgit.zsh' wfxr/forgit \
   blockf atpull'zinit creinstall  .' zsh-users/zsh-completions \
