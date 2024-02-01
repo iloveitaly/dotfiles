@@ -121,7 +121,7 @@ fdd() {
 
 # TODO add fzf support
 rgu() {
-  rg -uuu "$@"
+  rg -uu --exclude '.git' "$@"
 }
 
 # livegrep-like local search
@@ -386,8 +386,33 @@ decryptpdf() {
 
 # even with a massive drive, these LLM models + git history can take up a lot of space
 inspect-space() {
-  (cd / && sudo ncdu --exclude /System/ --exclude /Applications --exclude "/Library/Application Support/ArqAgentAPFS.noindex")
+  (cd / && sudo ncdu --exclude /System/ --exclude /Applications --exclude "/Library/Application Support/ArqAgentAPFS.noindex" --confirm-quit)
 }
+
+function find-replace() {
+  if [ $# -lt 2 ]; then
+    echo "Usage: find-replace <find_string> <replace_string>"
+    return 1
+  fi
+
+  local find_string=$1
+  local replace_string=$2
+  local files=( $(rg -uu --glob '!.git/**' -l "$find_string") )
+
+  echo "${#files[@]} files found."
+
+  for file in "${files[@]}"; do
+    sd --preview "$find_string" "$replace_string" "$file"
+
+    read "confirmation?Confirm replace in '$file'. [y/n]:"
+
+    if [[ $confirmation =~ ^[Yy]$ ]]; then
+      sd "$find_string" "$replace_string" "$file"
+    fi
+  done
+}
+
+# SSH tunneling
 
 function find_random_open_port() {
   local start_port=${1:-1024}
