@@ -136,8 +136,6 @@
 
 [advice]
   statusHints = false
-[hub]
-  protocol = https
 [gist]
   private = true
 [fetch]
