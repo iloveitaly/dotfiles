@@ -121,7 +121,8 @@ fdd() {
 
 # TODO add fzf support
 rgu() {
-  rg -uu --exclude '.git' "$@"
+  # TODO use glob list from find-replace
+  rg -uu --glob '!.git/**' "$@"
 }
 
 # livegrep-like local search
@@ -397,17 +398,17 @@ function find-replace() {
 
   local find_string=$1
   local replace_string=$2
-  local files=( $(rg -uu --glob '!.git/**' -l "$find_string") )
+  local files=( $(rg -uu --glob '!.git/**' --glob '!.venv' --glob '!.pnpm' --glob '!node_modules' --glob '!.tox' --glob '!cdk.out' -l --fixed-strings "$find_string") )
 
   echo "${#files[@]} files found."
 
   for file in "${files[@]}"; do
-    sd --preview "$find_string" "$replace_string" "$file"
+    sd --preview --fixed-strings "$find_string" "$replace_string" "$file"
 
     read "confirmation?Confirm replace in '$file'. [y/n]:"
 
     if [[ $confirmation =~ ^[Yy]$ ]]; then
-      sd "$find_string" "$replace_string" "$file"
+      sd --fixed-strings "$find_string" "$replace_string" "$file"
     fi
   done
 }
