@@ -15,3 +15,4 @@ distracting_websites.txt
 DefaultKeyBinding.dict
 aw-categories.json
 README.md
+.mypy_cache
