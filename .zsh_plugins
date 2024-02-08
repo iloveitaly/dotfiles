@@ -89,7 +89,9 @@ zinit light sindresorhus/pure
 
 # avoid loading the builtin git completions
 # https://mikebian.co/git-completions-tooling-on-the-command-line/
-rm $(brew --prefix)/share/zsh/site-functions/_git 2> /dev/null
+if command -v brew &> /dev/null; then
+  rm $(brew --prefix)/share/zsh/site-functions/_git 2> /dev/null
+fi
 
 # function don't get completions by default, aliases need to be manually assigned
 zicompdef fdd=fd
