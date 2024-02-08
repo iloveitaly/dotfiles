@@ -11,6 +11,8 @@ alias fixcamera="sudo killall VDCAssistant; sudo killall AppleCameraAssistant"
 # most recently modified file
 alias recent-file="exa -s modified --reverse | head -n 1"
 
+alias bound-ports="sudo lsof -i -P -n | grep LISTEN"
+
 alias ...="cd ../.."
 
 # pbcopy does not allow you to mutate public.html
