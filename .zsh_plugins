@@ -41,6 +41,7 @@ zinit wait lucid for \
   'https://gist.githubusercontent.com/iloveitaly/a79ffc31ef5b4785da8950055763bf52/raw/4140dd8fa63011cdd30814f2fbfc5b52c2052245/github-copilot-cli.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/043d91a2968597fe601673664b124dd3/raw/f79dd08a352f9dfde17ba22d345e8e1f87ac3c57/orbctl.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/ebd80140aaa4d8183b558adddb06b809/raw/fc23843bd07b3665233b8d74d0030b8ffff290dd/pack.plugin.zsh' \
+  'https://gist.githubusercontent.com/iloveitaly/a3f5967aca46f10c8a6833393eb1d2e5/raw/236d4fffc0511ef59b3f4150c376a1eb359acd46/docker.plugin.zsh' \
   'https://github.com/iloveitaly/dolt/blob/zsh-plugin/dolt.plugin.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh' \
@@ -87,10 +88,11 @@ zinit wait'2' lucid for \
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
 
-# avoid loading the builtin git completions
+# avoid loading the builtin git and docker completions
 # https://mikebian.co/git-completions-tooling-on-the-command-line/
 if command -v brew &> /dev/null; then
   rm $(brew --prefix)/share/zsh/site-functions/_git 2> /dev/null
+  rm $(brew --prefix)/share/zsh/site-functions/_docker 2> /dev/null
 fi
 
 # function don't get completions by default, aliases need to be manually assigned
