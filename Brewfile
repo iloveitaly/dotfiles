@@ -11,9 +11,8 @@ brew "rename"
 brew "wget"
 brew "ngrep" # network grep
 brew "optipng"
-brew "iftop"
+brew "iftop" # network top
 brew "lftp"
-brew "hub"
 # required fix for me: https://github.com/httpie/cli/issues/1535#issuecomment-1773774369
 brew "httpie"
 brew "ncdu"
@@ -22,25 +21,25 @@ brew "awk" # in codespaces, the default version is especially strange
 brew "awscli"
 brew "aws-sam-cli"
 brew "session-manager-plugin" if OS.mac?
-tap "heroku/brew"
-brew "heroku/brew/heroku"
 brew "cloc" # code analytics
 brew "jq" # json extraction
+brew "hey"
+brew "gh"
+brew "dust"
+brew "sqlite"
+brew "md5sha1sum"
+brew "git-lfs"
+brew "vimcal"
+
+# == Data manipulation
 brew "q" if OS.mac? # sql on csv
 brew "dsq" # sql over json and other formats
 brew "yq" # yq for yaml and others, great for in place manipulating files
 brew "dasel" # consistent language for extracting data from XML, CSV, and others. No aggregates.
 tap "brimdata/tap"
 brew "brimdata/tap/zq" # faster/better jq, has aggregates
-brew "hey"
-brew "gh"
 brew "htmlq"
 brew "xsv" # csv tooling
-brew "dust"
-brew "sqlite"
-brew "md5sha1sum"
-brew "git-lfs"
-brew "urlview"
 
 # == Shell productivity utilities
 brew "zsh"
@@ -59,12 +58,8 @@ brew "diff-so-fancy" # diff replacement
 brew "git-delta" # diff replacement
 brew "bat" # cat, can also do paging
 brew "exa" # ls
-brew "tmux"
-brew "reattach-to-user-namespace" if OS.mac?
-brew "urlview"
 brew "tre-command"
 brew "htop"
-brew "terminal-notifier" if OS.mac? # for `zsh-notify`
 brew "procs" # ps
 brew "sd" # sed
 brew "svn" # for `zinit ice svn`
@@ -76,7 +71,14 @@ brew "qpdf" # for decrypting pdf files
 brew "rsync" # get the latest version for new features
 brew "watch" # execute program every X seconds
 brew "docker-completion" if OS.linux?
-brew "google-cloud-sdk" # cli tools for google cloud
+brew "shellcheck" # for vscode bash ide
+brew "iotop"
+
+# == tmux related tools
+brew "tmux"
+brew "reattach-to-user-namespace" if OS.mac?
+brew "urlview"
+brew "terminal-notifier" if OS.mac? # for `zsh-notify`
 
 # == Experimental (don't install on server)
 if OS.mac?
@@ -98,6 +100,11 @@ if OS.mac?
     brew "kitty" # yet another terminal
     brew "gmailctl" # gmail filter configuration as code
     brew "cleanshot" # best email tool, not sure if it's better than dropbox capture
+    tap "heroku/brew"
+    brew "heroku/brew/heroku"
+    tap "railwayapp/railway"
+    brew "railway"
+    brew "google-cloud-sdk" # cli tools for google cloud
 end
 
 if OS.mac?
