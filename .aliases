@@ -8,6 +8,9 @@ alias tree='tre --limit 3'
 
 alias fixcamera="sudo killall VDCAssistant; sudo killall AppleCameraAssistant"
 
+# logs out of all other users on the machine, which can cause issues with window control and other weird things
+alias terminate-other-users='who | grep -v "^$(whoami) " | cut -d ' ' -f1 | uniq | xargs -I {} sudo pkill -u {}'
+
 # most recently modified file
 alias recent-file="exa -s modified --reverse | head -n 1"
 
@@ -88,6 +91,7 @@ alias po="poetry"
 alias ipy=ipython
 alias py=python
 alias pyd=ipdb3
+alias pyt=pytest
 alias poetry-pristine="poetry env remove --all && poetry install"
 alias poetry-tree="poetry show --tree"
 alias pipu="pip uninstall -y"
