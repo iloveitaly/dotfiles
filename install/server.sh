@@ -27,6 +27,8 @@ EOF
 
   sudo chsh -s "$(which zsh)" "$(whoami)"
 
+  git config --global --unset commit.gpgsign
+
   exit 0
 fi
 
