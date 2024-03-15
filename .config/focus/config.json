@@ -76,7 +76,9 @@
       "name": "Standard Focus",
       "schedule_only": true,
       "start": 12,
+      // end 8:30pm
       "end": 20,
+      "end_minute": 30,
       "block_hosts": [
         "twitter.com",
         "feedbin.com",
@@ -110,10 +112,11 @@
     {
       "name": "Daily Shutdown",
       "schedule_only": true,
-      // 9pm
-      "start": 21,
+      // 8:30pm
+      "start": 20,
+      "start_minute": 30,
       "end": 24,
-      "script": "/Users/mike/.config/focus/shutdown.sh",
+      "start_script": "/Users/mike/.config/focus/shutdown.sh",
 
       // only allow 5, 1m pauses
       "pause_options": [1],
@@ -273,7 +276,6 @@
         "https://github.com/iloveitaly/dotfiles",
         "https://www.linkedin.com/feed/"
       ],
-      // TODO try allowing email + texts
       "block_apps": [
         "Discord",
         "Spotify",

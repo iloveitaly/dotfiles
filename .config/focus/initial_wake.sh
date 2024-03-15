@@ -19,28 +19,32 @@ fi
 
 # if we don't have internet after this, some of the operations will will fail, which is completely fine
 
-# stop caffinating so the computer actually falls back to sleep
-/usr/bin/killall caffeinate
-
 # close work related apps on sunday
 work_apps=()
 if [ $(date +%u) -eq 7 ]; then
   echo "It's sunday, closing additional apps"
   work_apps=(TablePlus "Visual Studio Code" Postico Kaleidoscope Zui)
-  echo "Now, throttle the internet"
+
+  # wait for 5 minutes to download some stuff, give the user time to clean up, etc
+  osascript -e 'display notification "Sunday Cleanup!" with title "Focus"'
+  sleep 300
+
+  # can we cause pause arq as well?
+
+  echo "Now, throttle the internet, since it's sunday"
   throttle-internet
 fi
 
 apps=(
   $work_apps
   Slack Mattermost GitHub Rewind
-  Dropbox "Google Drive"
-  Discord ChatGPT Buffer Signal
+  Dropbox "Dropbox Capture" "Google Drive" Numbers
+  Discord ChatGPT Buffer Signal Telegram
   Podcasts "Amazon Music" Spotify
   Dictionary Notes Preview Flow Streaks "QuickTime Player" Contacts
   zoom.us ReadKit Readwise Reader Texts Gmail "System Settings" Music Superhuman
   "Google Software Update" "Google Chrome Canary" "Firefox"
-  "Activity Monitor" "System Preferences" "App Store" "Disk Utility" "System Information"
+  "Activity Monitor" "System Preferences" "App Store" "Disk Utility" "System Information" Console "Find My"
 )
 
 # TODO WebCatalog SSB don't like this method of quitting
@@ -75,14 +79,8 @@ return text returned of dialogResult
 EOT
 )
 
-
 # cleanup browser tabs
 echo "Cleaning browser tabs..."
 cd ~/Projects/productivity/clean-workspace
 # sudo must come before direnv
 sudo direnv exec . poetry run clean-workspace --tab-description "$dialogResult"
-
-# organize todoist
-echo "Organizing todoist..."
-cd ~/Projects/productivity/todoist-scheduler
-direnv exec . poetry run todoist-scheduler
