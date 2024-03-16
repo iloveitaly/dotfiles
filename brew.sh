@@ -113,9 +113,13 @@ bundle config --global path vendor/bundle
 bundle config --global disable_shared_gems 1
 bundle config --global disable_local_branch_check true
 
-# allow touch id for sudo
-sudo-touchid
-sudo brew services start sudo-touchid
+# enable touchid sudo
+# https://github.com/guillaumegete/touchid-sudo-enabler/blob/main/touchid-sudo-enabler.sh
+if [ ! -f /etc/pam.d/sudo_local ] || ! grep -q '^#.*pam_tid.so' /etc/pam.d/sudo_local; then
+  sudo cp /etc/pam.d/sudo_local.template /etc/pam.d/sudo_local.template_backup
+  sudo cp /etc/pam.d/sudo_local.template /etc/pam.d/sudo_local
+  sudo sed -i '' '/pam_tid.so/ s/^#//' /etc/pam.d/sudo_local
+fi
 
 # let programs that don't properly source the shell know where gpg is
 # https://github.com/denolehov/obsidian-git/issues/21
