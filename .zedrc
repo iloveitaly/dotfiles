@@ -1,0 +1,3 @@
+func k(e): (e.key)
+op flatten_array(a): (over this | over this | collect(this))
+op keys(r): (flatten(this) | map(this, k) | flatten_array(this))
