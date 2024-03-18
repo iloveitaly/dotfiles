@@ -28,6 +28,7 @@
   amend = commit --amend --reuse-message=HEAD
   st = status -sb
   ss = status -uno
+  s = switch
   f = fuzzy status
   a = add
   b = branch
