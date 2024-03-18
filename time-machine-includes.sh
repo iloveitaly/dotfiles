@@ -5,6 +5,10 @@ static_exclusions=(
   "~/.ollama"
   "~/.orbstack"
   "~/.docker"
+  "~/.asdf"
+  "~/.Trash"
+  "~/.cache"
+
   /var/lib/docker
   /OrbStack
 )
@@ -26,7 +30,7 @@ fd -uuu --type d --absolute-path --full-path 'node_modules$' | \
     sudo tmutil addexclusion -p $line
   done
 
-fd -uuu --type d --absolute-path --full-path '(\.venv|\.pnpm|vendor/bundle)$' | while read line; do
+fd -uuu --type d --absolute-path --full-path '(\.venv|\.pnpm|vendor/bundle|target/aarch64-apple-darwin|target/debug|target/release|.elixir_ls)$' ~ | while read line; do
   echo "Excluding $line from time machine..."
   sudo tmutil addexclusion -p $line
 done
