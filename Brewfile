@@ -114,7 +114,7 @@ if OS.mac?
     tap 'homebrew/cask-versions'
 
     brew "lunchy"
-    brew "youtube-dl"
+    brew "yt-dlp"
     brew "gpg"
     brew "pinentry-mac"
     brew "iloveitaly/tap/hyper-focus"
