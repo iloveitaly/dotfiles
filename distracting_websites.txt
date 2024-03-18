@@ -37,4 +37,7 @@ denverpost.com
 nerdwallet.com
 cnn.com
 cnbc.com
+thecut.com
 youtube.com
+nypost.com
+newsweek.com
