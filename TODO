@@ -1,24 +1,36 @@
+- [ ] ksdiff / ~/.pdbrc
+- [ ] auitin for shell history, looks like it is going to get more attention
+- [ ] ??, git?, etc replacement via gh copilot
+- [ ] `com.tinyapp.TablePlus dyn.age81g6pqrf4gn` all does not map sqlite to tableplus
+- [ ] <https://github.com/brookhong/Surfingkeys> keyboard based js browsing
+- [ ] <https://github.com/santiagobasulto/ipython-gpt> understand how the context is passed to chatgpt
+- [ ] auto git fetch how can i set this up by default for repos
+- [ ] some interesting slack scripts for hammerspoon <https://github.com/dbalatero/dotfiles/tree/master/hammerspoon>
+  - [ ] more hammerspoon <https://github.com/nathanmsmith/.config/tree/main/hammerspoon>
+  - [ ] window management with hammerspoon https://thume.ca/2016/07/16/advanced-hackery-with-the-hammerspoon-window-manager/
+- [ ] <https://github.com/noborus/ov/issues/430#issuecomment-1729506103> section configuration for ov
+- [ ] auto correction on obsidian <https://forum.obsidian.md/t/autocorrect-text/5022/25>
+  - [ ] https://github.com/Lissy93/espanso-config/blob/master/alicia-auto-correct.yml nice auto correct list
+- [ ] cross platform text expander <https://espanso.org>
+- [ ] learn more about ov and integrate into terminal setup <https://github.com/noborus/ov>
 - [ ] best screenshot tool <https://cleanshot.com>
 - [ ] automatic git fixup <https://crates.io/crates/git-absorb>
 - [ ] https://jvns.ca/blog/2022/04/12/a-list-of-new-ish--command-line-tools/?utm_source=hackernewsletter&utm_medium=email&utm_term=fav
 - [ ] https://github.com/Svetlitski/fcp faster cp in rust
-- [ ] move ipy fzf into a package
 - [ ] procs doesn't work properly in tmux <https://github.com/dalance/procs/issues/330>
 - [ ] stop iterm from changing window title when resizing window, I tried looking through the prefs and there was nothing
 - [ ] config micro editor https://github.com/zyedidia/micro/blob/master/runtime/help/keybindings.md
   - [ ] big Q if it can do git diff editing and generate a git commit diff
 - [ ] fix bun completions https://github.com/oven-sh/bun/issues/1272
 - [ ] git-delta seems way better than diff-so-fancy
-- [ ] rendering issue on zsh https://github.com/dandavison/delta/issues/1492
-- [ ] wrong completion for delta https://github.com/dandavison/delta/issues/1022
-- [ ] https://wezfurlong.org/wezterm/index.html new terminal
-- [ ] https://www.nushell.sh
+  - [ ] rendering issue on zsh https://github.com/dandavison/delta/issues/1492, this is the main blocker
+  - [ ] wrong completion for delta https://github.com/dandavison/delta/issues/1022
+- [ ] https://www.nushell.sh zsh alternative
 - [ ] default npm packages on asdf https://github.com/asdf-vm/asdf-nodejs#default-npm-packages
 - [ ] change color of focused pane in tmux https://stackoverflow.com/questions/25532773/change-background-color-of-active-or-inactive-pane-in-tmux
   - [ ] maybe use this to change color of active pane and avoid mouse click when pane is just getting activated https://github.com/graemedavidson/tmux-pane-focus
 - [ ] npm completions are broken https://github.com/lukechilds/zsh-better-npm-completion/pull/12
   - [ ] need to get contributor access to really fix this
-- [ ] https://github.com/tymm/zsh-directory-history could be neat for navigating directories
 - [ ] global installs and npm https://github.com/asdf-vm/asdf-nodejs/issues/227
 - [ ] remove extracto word filters https://github.com/laktak/extrakto/blob/master/extrakto.conf
   - [ ] and remove number filters
@@ -27,19 +39,21 @@
 - [ ] advanced fzf https://github.com/junegunn/fzf/blob/d471067e3f46f64e6401d1c5717424535fe4c96c/ADVANCED.md?plain=1#L242-L248
 - [ ] https://devutils.com macos tool app, kind of like transform.tools
 - [ ] https://github.com/peterldowns/localias
-- [ ] vs code support https://github.com/marzocchi/zsh-notify/blob/master/applescript/resources/is-iterm2-active.applescript
+- [ ] Terminal notification
+  - [ ] vs code support https://github.com/marzocchi/zsh-notify/blob/master/applescript/resources/is-iterm2-active.applescript
+  - [ ] https://github.com/rickstaa/tmux-notify
 - [ ] https://www.dbpilot.io
 - [ ] https://github.com/chbrown/macos-pasteboard
-- [ ] ipython autocomplete as you type https://github.com/ipython/ipython/issues/12819
-- [ ] https://workspace.google.com/marketplace/app/power_tools/1058867473888
+- [ ] ipython autocomplete as you type https://github.com/ipython/ipython/issues/12819 I think this is partially working locally
+- [ ] https://workspace.google.com/marketplace/app/power_tools/1058867473888 google sheets add on
 - [ ] https://dbeaver.io SQL workspace manager
 - [ ] https://zed.dev another editor
-- [ ] <https://www.cursor.so>
+- [ ] <https://www.cursor.so> ai powered editor
 - [ ] brave browser https://brave.com
 - [ ] <https://sizzy.co/features> a better developer browser
 - [ ] reset privacy permissions via console, how is this possible? When testing an app this pane just doesn't work properly
 - [ ] pdm completion zsh > ~/.zfunc/_pdm; use this folder **instead**? /opt/homebrew/share/zsh/site-functions
-- [ ] https://www.zotero.org
+- [ ] https://www.zotero.org personal research tool, readwise is better for me
 - [ ] neat chrome command bar https://www.alyssax.com/omni
 - [ ] https://github.com/zsh-users/zsh-completions/issues/983#issuecomment-1381196013 fly.io conflict
 - [ ] global mute for google meet https://github.com/aezell/mutemeet/blob/master/MuteMeet.scpt and https://github.com/stffffn/muute
@@ -51,7 +65,7 @@
 - [ ] /zsh-fuzzy-search-and-edit strip out line number, output to terminal, and to pbcopy using `tee` trick
 - [ ] fzf file search with spotlight `mdfind 'node' -onlyin $PWD`
 - [ ] add defaults read ~/Library/Preferences/com.apple.symbolichotkeys.plist to mackup
-- [ ] https://xbarapp.com
+- [ ] https://xbarapp.com easily customized menu bar items
 - [ ] local dictionary https://github.com/awead/dotfiles/blob/f8e3e86417d0bcdd9a3dc4f16fae7a269f07df8f/scripts/osx.sh#L79-L81
 - [ ] look at `~/Library/Preferences/.GlobalPreferences.plist` this is what the `-g` flag does
 - [ ] https://matthewpalmer.net/rocket/ emoji picker, should probably just understand how the default emoji works
@@ -78,18 +92,17 @@
 - [ ] localhost named domains https://www.npmjs.com/package/chalet
 - [ ] "Limit IP Address Tracking" defaults write https://cs.github.com/?scopeName=All+repos&scope=&q=lang%3Ashell+ip+tracking+%28path%3A*macos*+OR+path%3A*osx*%29
 - [ ] https://joeyh.name/code/moreutils
-- [ ] https://news.ycombinator.com/item?id=31075608 diff3 style
 - [ ] ngrok alternative https://github.com/ekzhang/bore
 - [ ] https://www.commands.dev warp commands directory
 - [ ] add shellcheck github workflows
 - [ ] tail-like utility, but can monitor output https://www.kylheku.com/cgit/pw/tree/pw.1
 - [ ] https://c-command.com/toothfairy/ better bluetooth controller
 - [ ] https://github.com/ttscoff/KeyBindings or something like https://ke-complex-modifications.pqrs.org/?q=delete%20line
-- [ ] neat sql lite tooling https://sqlite-utils.datasette.io/en/stable/index.html?utm_source=hackernewsletter&utm_medium=email&utm_term=data
 - [ ] this fixed the weird scrolling issues with logitech mx https://www.laptopmag.com/articles/logitech-scroll-wheel-not-working-macos-mojave
 - [ ] https://www.scriptkit.com has an integration with raycast, kind of like a snippets higher-level macos control thing
 - [ ] pull python history into ipython https://github.com/ipython/ipython/pull/13485#event-6138294679
 - [ ] https://github.com/phmullins/awesome-macos/blob/master/readme.md
+  - [ ] https://manytricks.com/blog/
 - [ ] https://bunchapp.co - simple applescript
 - [ ] use python for shell scripts? https://github.com/CZ-NIC/pz
 - [ ] https://github.com/pqrs-org/Karabiner-Elements/issues/1241 for MX mouse
@@ -99,17 +112,22 @@
 - [ ] pdfdiff https://apps.apple.com/us/app/pdf-diff/id1543607881?mt=12
 - [ ] alacritty font smoothing https://github.com/alacritty/alacritty/issues/4616
 - [ ] monitor switching via hammerspoon https://balatero.com/writings/hammerspoon/create-a-quick-monitor-input-switcher/
-- [ ] word breaks in irb https://stackoverflow.com/questions/5097919/word-boundaries-in-irb?rq=1
 - [ ] look into https://github.com/unixorn/awesome-zsh-plugins#themes
 - [ ] https://wakatime.com/pricing they have a zsh plugin. Interesting programming productivity tool.
-- [ ] window management with hammerspoon https://thume.ca/2016/07/16/advanced-hackery-with-the-hammerspoon-window-manager/
 - [ ] only allow one vs code editor group to open up a given file
 - [ ] gpg-suite didn't work as well as pinentry for me, not sure if I was doing something wrong
+
+#### TMUX
+- [ ] select contents in quotes
 
 #### Better Terminals
 - [ ] https://github.com/ambiso/alacritty/commit/68994d6c1a4f8fac34e470cc2aa021bf1a81acae looks like alacritty has a fast search function
 - [ ] GPU powered terminal https://sw.kovidgoyal.net/kitty
+- [ ] <https://wezfurlong.org/wezterm/index.html> new terminal
 
 #### Better Shell History
 - [ ] https://github.com/cantino/mcfly - better command line history
 - [ ] give histdb https://github.com/m42e/zsh-histdb-fzf/blob/master/fzf-histdb.zsh
+- [ ] <> could be neat for navigating directories
+- [ ] <https://github.com/atuinsh/atuin/pull/1274>
+- [ ] https://github.com/atuinsh/atuin/issues/68#issuecomment-1902759809 fzf integration
