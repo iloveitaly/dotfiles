@@ -91,6 +91,41 @@ function digga() {
   dig +nocmd "$1" any +multiline +noall +answer
 }
 
+# for prompt generation
+files-to-markdown() {
+  for file in "$@"; do
+    if [[ -f "$file" ]]; then
+      echo "### File: $file"
+      echo '```'
+      cat "$file"
+      echo '```'
+      echo ''
+    else
+      echo "File $file does not exist." >&2
+    fi
+  done
+}
+
+# TODO add to remote-logout repo
+# https://github.com/iloveitaly/remote-logout
+# https://serverfault.com/questions/10404/log-out-graphical-user-from-command-line
+macos-logout() {
+  if [ -z "$1" ]; then
+    echo "Error: No user specified."
+    return 1
+  fi
+
+  if ! id -u "$1" > /dev/null 2>&1; then
+    echo "Error: User $1 does not exist."
+    return 1
+  fi
+
+  sudo launchctl bootout user/$(id -u "$1")
+  sudo pkill -u "$1"
+
+  # may need to kill WindowManager here too, looks like that is the one that gets tripped up
+}
+
 # determine if we are in a node_modules folder or if a valid node_modules path was passed via any argument
 function _is_node_modules() {
   local node_modules_path=$1
@@ -120,6 +155,7 @@ fdd() {
 }
 
 # TODO add fzf support
+# search all files in the current directory
 rgu() {
   # TODO use glob list from find-replace
   rg -uu --glob '!.git/**' "$@"
