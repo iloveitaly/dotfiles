@@ -127,7 +127,7 @@
   log = true
   ff = only
   # https://blog.nilbus.com/take-the-pain-out-of-git-conflict-resolution-use-diff3/
-  conflictstyle=diff3
+  conflictstyle = diff3
   tool = ksdiff
 
 [mergetool "vscode"]
@@ -153,7 +153,8 @@
 [gpg]
   # this may change as time goes on, use $(which gpg) to update
   program = /opt/homebrew/bin/gpg
-
+[init]
+  defaultBranch = main
 [color]
   ui = auto
 [color "branch"]
