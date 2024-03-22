@@ -16,10 +16,16 @@ if [ "$(uname -m)" = "aarch64" ]; then
     zsh ripgrep entr prettyping less nano fd-find tldr zoxide bc delta bat exa tree htop dnsutils moreutils qpdf \
     rsync watch iotop
 
-  # fzf is really outdated, must install via git `~/.fzf.zsh`
-  cat <<EOF > ~/.extra
+  cat <<EOF > ~/.tool-versions
+direnv 2.34.0
+rust 1.77.0
+EOF
+
+cat <<EOF > ~/.extra
 alias cat=batcat
 alias fd=fdfind
+alias dokku="docker exec dokku dokku"
+# fzf is really outdated, must install via git `~/.fzf.zsh`
 [ ! -d ~/.fzf ] && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
 [ ! -d ~/.asdf ] && git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 source ~/.fzf.zsh
