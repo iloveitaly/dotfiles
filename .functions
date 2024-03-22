@@ -66,6 +66,10 @@ docker-shell() {
   eval "docker exec -it $user_option $container_id bash"
 }
 
+dockerignore-test() {
+  rsync --dry-run -av --exclude-from='.dockerignore' ./ /tmp/
+}
+
 # TODO docker-new-bash, run instead of exec
 
 # add key to remove server
