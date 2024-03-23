@@ -24,7 +24,10 @@ EOF
 cat <<EOF > ~/.extra
 alias cat=batcat
 alias fd=fdfind
+
 alias dokku="docker exec dokku dokku"
+alias dokku-shell="docker exec -it dokku bash -l"
+
 # fzf is really outdated, must install via git `~/.fzf.zsh`
 [ ! -d ~/.fzf ] && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
 [ ! -d ~/.asdf ] && git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
