@@ -68,13 +68,12 @@ zinit load zsh-users/zsh-history-substring-search
 #   - colors: sets aliases for some colors and most styles via '$c'
 #   - lib/spectrum.zsh: 'spectrum_ls' alias to visually inspect colors
 zinit wait'1' lucid for \
-  marzocchi/zsh-notify \
+  MichaelAquilina/zsh-auto-notify \
   ajeetdsouza/zoxide \
   djui/alias-tips \
   chrissicool/zsh-256color \
   zpm-zsh/colors \
-  OMZ::lib/spectrum.zsh \
-  MichaelAquilina/zsh-autoswitch-virtualenv
+  OMZ::lib/spectrum.zsh
 
 # binaries installed via zinit
 #   - git-fuzzy: 'git fuzzy' for interactive git commit cli
