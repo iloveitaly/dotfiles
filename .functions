@@ -37,6 +37,17 @@ asdf-reinstall() {
   asdf uninstall $@ $(asdf-current-version $@)
 }
 
+pyd() {
+    local executable=$1
+
+  if ! [ -f "$executable" ]; then
+    executable=$(which "$executable")
+  fi
+
+  echo "$executable ${@:2}"
+  eval "ipdb3 -c continue -- $executable ${@:2}"
+}
+
 pip-pristine() {
   pip uninstall $1
   pip cache remove $1
