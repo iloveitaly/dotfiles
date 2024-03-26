@@ -13,6 +13,20 @@ zinit-update() {
   zinit cclear
 }
 
+# pass path to image to copy it to clipboard
+pbcopy-image() {
+  if [ -z "$1" ]; then
+    set -- "$(pbpaste)"
+  fi
+
+  if [ ! -f "$1" ]; then
+    echo "Error: File $1 does not exist."
+    return 1
+  fi
+
+  osascript -e "set the clipboard to (read (POSIX file \"$1\") as JPEG picture)"
+}
+
 # use plugin name as initial parameter
 asdf-current-version() {
   # if the version DNE then asdf will print an error to stderr
