@@ -1,3 +1,4 @@
+import os
 from IPython.core.magic import register_line_cell_magic
 import json
 import tempfile
@@ -6,17 +7,23 @@ import subprocess
 
 @register_line_cell_magic
 def generate_typeddict(line, cell=None):
-    "A line-cell magic that generates TypedDict from JSON."
+    "A line-cell magic that generates TypedDict from a Python dictionary."
 
-    # Use the cell content as JSON or the line content if cell is None
-    json_data = cell if cell is not None else line
+    # Evaluate the cell content or the line content as Python code to get the dictionary
+    dict_data = (
+        eval(cell.strip())
+        if cell is not None and cell.strip()
+        else eval(line.strip()) if line.strip() else None
+    )
+
+    if dict_data is None or not isinstance(dict_data, dict):
+        print("Error: No valid Python dictionary provided.")
+        return
+
     try:
-        # Parse to ensure it's valid JSON
-        parsed_json = json.loads(json_data)
-
-        # Create a temporary JSON file
+        # Create a temporary JSON file from the dictionary
         with tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=".json") as tmp:
-            json.dump(parsed_json, tmp)
+            json.dump(dict_data, tmp)
             tmp_path = tmp.name
 
         # Call datamodel-code-generator CLI to generate code
@@ -34,14 +41,20 @@ def generate_typeddict(line, cell=None):
             text=True,
         )
 
-        # Output the generated code
-        print(result.stdout)
+        # Check for errors in subprocess execution
+        if result.returncode != 0:
+            print("Error in code generation:")
+            print(result.stderr)
+        else:
+            print("Generated TypedDict code:")
+            # Output the generated code
+            print(result.stdout)
 
-    except json.JSONDecodeError as e:
-        print(f"Error parsing JSON: {e}")
+    except Exception as e:
+        print(f"Error: {e}")
     finally:
         # Clean up the temporary file
-        if tmp_path and os.path.exists(tmp_path):
+        if os.path.exists(tmp_path):
             os.remove(tmp_path)
 
 
