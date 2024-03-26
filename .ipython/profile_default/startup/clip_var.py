@@ -1,6 +1,3 @@
-# https://gist.github.com/bwagner/270da7c7d31af7ffaca32674557fc172
-# TODO maybe use: https://github.com/CarlosGTrejo/ipython_extensions/tree/master/ipython_clipboard
-
 """
 Add copy to clipboard from IPython!
 To install, just copy it to your profile/startup directory, typically:
@@ -42,34 +39,37 @@ from subprocess import Popen, PIPE
 
 from IPython.core.magic import register_line_cell_magic
 
+
 def _get_implementation():
+    platform = sys.platform if not sys.platform.startswith("linux") else "linux"
 
     try:
         _get_implementation.impls
     except AttributeError:
+        # clever! adds state to the function to avoid having to use a `global`
         _get_implementation.impls = {}
 
-        if sys.platform.startswith('linux'):
+        if platform == "linux":
+
             def _clip(arg):
-                p = Popen(['xsel', '-pi'], stdin=PIPE)
+                p = Popen(["xsel", "-pi"], stdin=PIPE)
                 p.communicate(arg)
-            _get_implementation.impls['linux'] = _clip
 
-        elif sys.platform == 'darwin':
+        elif platform == "darwin":
+
             def _clip(arg):
-                p = Popen('pbcopy', env={'LANG': 'en_US.UTF-8'}, stdin=PIPE)
-                p.communicate(arg.encode('utf-8'))
-            _get_implementation.impls[sys.platform] = _clip
-
-        # add further platforms below here:
+                p = Popen("pbcopy", env={"LANG": "en_US.UTF-8"}, stdin=PIPE)
+                p.communicate(arg.encode("utf-8"))
 
         else:
-            raise ImportError("Clip magic doesn't work on your platform: '{}'".format(sys.platform))
+            raise ImportError(
+                "Clip magic doesn't work on your platform: '{}'".format(sys.platform)
+            )
 
+        _get_implementation.impls[platform] = _clip
 
-    return _get_implementation['linux'] \
-            if sys.platform.startswith('linux') \
-        else _get_implementation.impls[sys.platform]
+    return _get_implementation[platform]
+
 
 # TODO how I can get this exposed to the ipython structure?
 def _copy_to_clipboard(arg):
@@ -77,15 +77,16 @@ def _copy_to_clipboard(arg):
 
     _get_implementation()(arg)
 
-    print('Copied to clipboard!')
+    print("Copied to clipboard!")
 
 
 @register_line_cell_magic
-def clip(line, cell=None):
+def clip_var(line, cell=None):
     if line and cell:
-        cell = '\n'.join((line, cell))
+        cell = "\n".join((line, cell))
 
     _copy_to_clipboard(cell or line)
 
+
 # We delete it to avoid name conflicts for automagic to work
-del clip
+del clip_var

@@ -20,7 +20,11 @@ c.InteractiveShellApp.extensions = [
     "autoreload",
     "ipython_autoimport",
     "ipython_ctrlr_fzf",
+    # https://pypi.org/project/IPythonClipboard/
     "ipython_clipboard",
+    # `%suggestion 0`
+    # TODO experimental, I don't find I actually use this much
+    # https://github.com/drorspei/ipython-suggestions
     "ipython_suggestions",
     # https://github.com/willmcgugan/rich/pull/1274/files
     "rich",
