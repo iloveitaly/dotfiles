@@ -78,11 +78,24 @@ pip-show() {
   cd $package_path
 }
 
-# docker-shell container_name user
-# run inside of existing container, use container name as first arg, user as second arg
+# Usage: docker-shell container_name user
+#   - container name (can be partial) as first arg
+#   - [optional] user as second arg
+#
+# Description: shell inside of existing container
 docker-shell() {
-  local container_id=$(docker ps -aqf "name=$1")
+  local container_ids=($(docker ps -aqf "name=$1"))
   local user_option=""
+
+  if [ ${#container_ids[@]} -gt 1 ]; then
+    echo "Error: Multiple containers match the name '$1'."
+    return 1
+  elif [ ${#container_ids[@]} -eq 0 ]; then
+    echo "Error: No containers found matching the name '$1'."
+    return 1
+  fi
+
+  local container_id=${container_ids[0]}
 
   if [ -n "${2-}" ]; then
     user_option="-u $2"
@@ -90,6 +103,7 @@ docker-shell() {
 
   eval "docker exec -it $user_option $container_id bash"
 }
+
 
 dockerignore-test() {
   rsync --dry-run -av --exclude-from='.dockerignore' ./ /tmp/

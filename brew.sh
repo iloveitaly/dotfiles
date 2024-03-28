@@ -132,4 +132,5 @@ gh alias set repo-create --clobber --shell 'repo=$(basename $PWD) && gh repo cre
 gh alias set repo-url --clobber --shell 'url=$(gh repo view --json url --jq ".url" | tr -d " \n"); echo -n "$url" | pbcopy && echo "$url"'
 gh alias set repo-events --clobber --shell 'gh api repos/$(gh repo view --json owner -q ".owner.login")/$(gh repo view --json name -q ".name")/events'
 
-# gencomp trunk
+# docker config
+yq -i '.psFormat = "table {{.ID}}\t{{.Image}}\t{{.Names}}"' ~/.docker/config.json

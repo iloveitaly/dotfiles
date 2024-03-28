@@ -80,6 +80,9 @@ alias imix="iex -S mix"
 
 # docker
 alias d="docker"
+alias dc='docker-compose'
+# containers, networks, and ports + truncation
+alias d-ps-network='docker ps --format "{{.ID}} {{.Names}} {{.Networks}} {{.Ports}}" | awk "{if(length(\$4) > 17) \$4 = substr(\$4, 1, 17) \"...\"; printf \"%s %s %s %s\n\", \$1, \$2, \$3, \$4}" | column -t'
 
 # python
 # TODO maybe fail if not in a venv
@@ -93,7 +96,7 @@ alias poetry-pristine="poetry env remove --all && poetry install"
 alias poetry-tree="poetry show --tree"
 alias pipu="pip uninstall -y"
 alias pipi="pip install -U"
-alias python-debugging-install='pip install --upgrade pip; pip install --upgrade ipython ipdb "pdbr[ipython]" rich ipython_autoimport IPythonClipboard ipython_ctrlr_fzf docrepr pyfzf jedi pretty-traceback pre-commit sqlparse debugpy ipython-suggestions git+https://github.com/iloveitaly/rpdb.git@multiple-continue; poetry self add poetry-plugin-up'
+alias python-debugging-install='pip install --upgrade pip; pip install --upgrade ipython ipdb "pdbr[ipython]" rich ipython_autoimport IPythonClipboard ipython_ctrlr_fzf docrepr pyfzf jedi pretty-traceback pre-commit sqlparse debugpy ipython-suggestions git+https://github.com/iloveitaly/rpdb.git@multiple-continue datamodel-code-generator; poetry self add poetry-plugin-up'
 # TODO use --exec here instead
 alias python-remove-pycache="fd --no-ignore-vcs __pycache__ | xargs rm -rf"
 
