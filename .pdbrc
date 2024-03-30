@@ -1,0 +1,1 @@
+alias ksdiff import importlib.util; __ksdiff_spec = importlib.util.spec_from_file_location("ksdiff", "/Users/mike/Library/Application Support/Kaleidoscope/pdb_ksdiff.py"); __ksdiff = importlib.util.module_from_spec(__ksdiff_spec); __ksdiff_spec.loader.exec_module(__ksdiff); __ksdiff.ksdiff(%*)
