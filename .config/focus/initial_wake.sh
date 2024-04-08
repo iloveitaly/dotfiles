@@ -26,8 +26,8 @@ if [ $(date +%u) -eq 7 ]; then
   work_apps=(TablePlus "Visual Studio Code" Postico Kaleidoscope Zui)
 
   # wait for 5 minutes to download some stuff, give the user time to clean up, etc
-  osascript -e 'display notification "Sunday Cleanup!" with title "Focus"'
-  sleep 300
+  osascript -e 'display notification "Sunday Cleanup! 30m Until Shutdown" with title "Focus"'
+  sleep 1800
 
   # can we cause pause arq as well?
 
@@ -35,10 +35,13 @@ if [ $(date +%u) -eq 7 ]; then
   throttle-internet
 fi
 
+# make sure it's up so it can be controlled remotely
+open /Applications/linked-helper.app
+
 apps=(
   $work_apps
   Slack Mattermost GitHub Rewind
-  Dropbox "Dropbox Capture" "Google Drive" Numbers
+  Dropbox "Dropbox Capture" "Google Drive" Numbers Stocks
   Discord ChatGPT Buffer Signal Telegram
   Podcasts "Amazon Music" Spotify
   Dictionary Notes Preview Flow Streaks "QuickTime Player" Contacts
