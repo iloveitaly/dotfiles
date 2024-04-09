@@ -62,9 +62,34 @@ pyd() {
   eval "ipdb3 -c continue -- $executable ${@:2}"
 }
 
+# when hacking on a package with `pip-show` this will properly wipe + reinstall the package
+# also allows installing a package from a git repo
 pip-pristine() {
-  pip uninstall $1
-  pip cache remove $1
+  if [[ $1 == http* ]]; then
+    # Fetch pyproject.toml from GitHub using Python's requests library
+    package_name=$(python -c "
+import requests
+import toml
+from io import StringIO
+
+try:
+    response = requests.get('$1/raw/main/pyproject.toml')
+    response.raise_for_status()
+except requests.exceptions.HTTPError:
+    # If fetching from the 'main' branch fails, try the 'master' branch
+    response = requests.get('$1/raw/master/pyproject.toml')
+
+data = StringIO(response.text)
+config = toml.load(data)
+print(config['tool']['poetry']['name'])
+")
+    pip uninstall -y $package_name
+    pip cache remove $package_name
+  else
+    pip uninstall -y $1
+    pip cache remove $1
+  fi
+
   pip install $1
 }
 
@@ -74,8 +99,10 @@ pip-show() {
   package_name=${1//-/_}
 
   package_path=$(pip show $package_name | grep "Location:" | awk '{print $2}' | tr -d "\n")/$package_name
+
   echo $package_path
   cd $package_path
+  code $package_path
 }
 
 # Usage: docker-shell container_name user
@@ -134,7 +161,7 @@ function digga() {
   dig +nocmd "$1" any +multiline +noall +answer
 }
 
-# for prompt generation
+# for quick gpt prompt generation
 files-to-markdown() {
   for file in "$@"; do
     if [[ -f "$file" ]]; then
@@ -180,28 +207,46 @@ function _is_node_modules() {
   [[ "$node_modules_path" =~ node_modules$ ]]
 }
 
+function _is_venv() {
+  local venv_path=$1
+
+  if [[ -z "$venv_path" ]]; then
+    venv_path=$(pwd)
+  fi
+
+  [[ "$venv_path" =~ \.venv$ ]]
+}
+
 alias ff="fzf --preview='bat --color=always {}'"
 
 # TODO this should use the `cd` thing and just overload there instead
+# fd + fzf, cd into the selected directory
 fdd() {
   local additional_args=""
-  if _is_node_modules "$@"; then
+
+  if _is_node_modules "$@" || _is_venv "$@"; then
     additional_args="--no-ignore-vcs --hidden"
   fi
 
-  local file_or_directory=$(fd ${=additional_args} "$@" | fzf --preview 'exa -1 --color=always {}'
-)
+  local file_or_directory=$(fd ${=additional_args} "$@" | fzf --preview 'if [ -d {} ]; then exa -1 --color=always {}; elif [ -f {} ]; then cat {}; fi')
 
-  if [[ ! -z "$file_or_directory" ]]; then
-    cd $file_or_directory
+  # cd into dir or view the file
+  if [[ -n "$file_or_directory" ]]; then
+    if [[ -d "$file_or_directory" ]]; then
+      cd "$file_or_directory"
+    elif [[ -f "$file_or_directory" ]]; then
+      cat "$file_or_directory"
+    fi
   fi
 }
+
+RIPGREP_LIVEGREP_EXCLUSIONS=("--glob=!.git/**" "--glob=!.venv" "--glob=!.pnpm" "--glob=!node_modules" "--glob=!.tox" "--glob=!cdk.out")
 
 # TODO add fzf support
 # search all files in the current directory
 rgu() {
   # TODO use glob list from find-replace
-  rg -uu --glob '!.git/**' "$@"
+  rg -uu "${RIPGREP_LIVEGREP_EXCLUSIONS[@]}" "$@"
 }
 
 # livegrep-like local search
@@ -482,6 +527,7 @@ function find-replace() {
   echo "${#files[@]} files found."
 
   for file in "${files[@]}"; do
+    # sd is modern replacement for sed
     sd --preview --fixed-strings "$find_string" "$replace_string" "$file"
 
     read "confirmation?Confirm replace in '$file'. [y/n]:"
