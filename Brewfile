@@ -105,6 +105,7 @@ if OS.mac?
     tap "railwayapp/railway"
     brew "railway"
     brew "google-cloud-sdk" # cli tools for google cloud
+    brew "azure-cli"
 end
 
 if OS.mac?
