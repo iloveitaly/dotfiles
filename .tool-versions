@@ -2,9 +2,9 @@ nodejs 19.9.0
 bun 1.1.0
 erlang 26.0.2
 elixir 1.15.5-otp-26
-python 3.12.2
+python 3.12.3
 poetry 1.8.2
-ruby  3.2.2
+ruby  3.2.3
 direnv 2.34.0
 rust nightly
 pnpm 8.8.0
