@@ -328,12 +328,6 @@ git-add-origin() {
   git remote add "$remote_name" "https://github.com/iloveitaly/$repo_name.git"
 }
 
-function myprs() {
-  local id=$(set -e; gh pr list -L100 --author $(git config github.user) $@ | fzf | cut -f1)
-
-  [ -n "$id" ] && gh pr view "$id" --web && echo "$id"
-}
-
 function git-squash-custom-branch {
   # Check if the .git-custom-branch file exists
   if [[ ! -f ".git-custom-branch" ]]; then

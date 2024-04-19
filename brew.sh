@@ -131,6 +131,7 @@ gh alias set cs-create --shell 'gh cs create --repo $(gh repo view --json nameWi
 gh alias set repo-create --clobber --shell 'repo=$(basename $PWD) && gh repo create --public --source $PWD $repo && owner=$(gh repo view --json owner -q .owner.login) && gh api -X PUT repos/$owner/$repo/actions/permissions -F enabled=true'
 gh alias set repo-url --clobber --shell 'url=$(gh repo view --json url --jq ".url" | tr -d " \n"); echo -n "$url" | pbcopy && echo "$url"'
 gh alias set repo-events --clobber --shell 'gh api repos/$(gh repo view --json owner -q ".owner.login")/$(gh repo view --json name -q ".name")/events'
+gh alias set myprs --clobber --shell 'id=$(set -e; gh pr list -L100 --author $(git config github.user) $@ | fzf | cut -f1); [ -n "$id" ] && gh pr view "$id" --web && echo "$id"'
 
 # docker config
 yq -i '.psFormat = "table {{.ID}}\t{{.Image}}\t{{.Names}}"' ~/.docker/config.json
