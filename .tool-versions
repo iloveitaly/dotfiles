@@ -6,6 +6,6 @@ python 3.12.3
 poetry 1.8.2
 ruby  3.2.3
 direnv 2.34.0
-rust nightly
+rust stable
 pnpm 8.8.0
 golang 1.21.1
