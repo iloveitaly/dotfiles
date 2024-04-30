@@ -36,6 +36,9 @@ alias la="exa -laF --group-directories-first"
 # List only directories
 alias lsd='exa -l -D'
 
+# page so we get the full command output
+alias pss="ps -eo user,pid,ppid,stat,etime,cmd --forest | less -S"
+
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en1"
@@ -96,9 +99,10 @@ alias po-pristine="poetry env remove --all -n && poetry install && py-debugging-
 alias po-tree="poetry show --tree"
 alias pipu="pip uninstall -y"
 alias pipi="pip install -U"
-alias py-debugging-install='pip install --upgrade pip; pip install --upgrade ipython ipdb "pdbr[ipython]" rich ipython_autoimport IPythonClipboard ipython_ctrlr_fzf docrepr pyfzf jedi pretty-traceback pre-commit sqlparse debugpy ipython-suggestions git+https://github.com/iloveitaly/rpdb.git@multiple-continue datamodel-code-generator; poetry self add poetry-plugin-up funcy-pipe'
+alias py-debugging-install='pip install --upgrade pip; pip install --upgrade --force-reinstall ipython ipdb "pdbr[ipython]" rich ipython_autoimport IPythonClipboard ipython_ctrlr_fzf docrepr pyfzf jedi pretty-traceback pre-commit sqlparse debugpy ipython-suggestions git+https://github.com/iloveitaly/rpdb.git@multiple-continue datamodel-code-generator; poetry self add poetry-plugin-up funcy-pipe'
 # TODO use --exec here instead
 alias py-remove-pycache="fd --no-ignore-vcs __pycache__ | xargs rm -rf"
+alias py-spy-all="ps aux | grep '[p]ython' | awk '{print \$2}' | xargs -I {} py-spy dump --pid {}"
 
 # TODO why not just add /usr/libexec to the path?
 # PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
