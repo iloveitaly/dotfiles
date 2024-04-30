@@ -202,6 +202,7 @@ if OS.mac?
     cask "stats"
     cask "vnc-viewer"
     cask "dropbox-capture"
+    cask "loom"
     cask "ngrok"
     cask "firefox" # for debugging, not actual use
 
