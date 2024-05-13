@@ -17,3 +17,4 @@ aw-categories.json
 README.md
 .mypy_cache
 time-machine-includes.sh
+.DS_Store
