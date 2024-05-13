@@ -18,6 +18,7 @@ c.InteractiveShell.sphinxify_docstring = True
 # DO NOT use `append` here, it hangs ipython
 c.InteractiveShellApp.extensions = [
     "autoreload",
+    # %autoimport -lodel
     "ipython_autoimport",
     "ipython_ctrlr_fzf",
     # https://pypi.org/project/IPythonClipboard/
@@ -26,6 +27,7 @@ c.InteractiveShellApp.extensions = [
     # TODO experimental, I don't find I actually use this much
     # https://github.com/drorspei/ipython-suggestions
     "ipython_suggestions",
+    # TODO https://github.com/Textualize/rich/issues/3317
     # https://github.com/willmcgugan/rich/pull/1274/files
     "rich",
 ]
@@ -35,6 +37,7 @@ c.InteractiveShellApp.extensions = [
 # https://ipython.readthedocs.io/en/stable/whatsnew/version8.html#autoreload-3-feature
 # https://ipython.readthedocs.io/en/stable/config/extensions/autoreload.html
 c.InteractiveShellApp.exec_lines.append("%autoreload 3")
+c.InteractiveShellApp.exec_lines.append("%alias_magic s suggestion")
 
 # https://stackoverflow.com/questions/50437791/ipython-magic-print-variables-on-assignment
 c.InteractiveShell.ast_node_interactivity = "last_expr_or_assign"
