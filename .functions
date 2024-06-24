@@ -161,6 +161,46 @@ function digga() {
   dig +nocmd "$1" any +multiline +noall +answer
 }
 
+# how to add a license to an existing project
+add_mit_license() {
+  # Check if the current folder is tied to a GitHub repository
+  if ! gh repo view > /dev/null 2>&1; then
+    echo "This folder is not tied to a GitHub repository. Aborting."
+    return 1
+  fi
+
+  # Check if any LICENSE file exists
+  if [[ -e LICENSE || -e LICENSE.md || -e LICENSE.txt ]]; then
+    echo "A LICENSE file already exists. Aborting."
+    return 1
+  fi
+
+  local license_template
+  local repo_info
+  local repo_name
+  local author
+  local year
+
+  # Fetch the MIT license template
+  license_template=$(gh api /licenses/MIT --jq '.body')
+
+  # Get repository details
+  repo_info=$(gh repo view --json nameWithOwner --jq '.nameWithOwner')
+  repo_name=$(basename "$repo_info")
+  author=$(git config user.name)
+  year=$(date +%Y)
+
+  # Replace placeholders in the license template
+  local license_content
+  license_content=${license_template//\[year\]/$year}
+  license_content=${license_content//\[fullname\]/$author}
+
+  # Write the license to LICENSE.md
+  echo "$license_content" > LICENSE.md
+
+  echo "MIT License added to the repository."
+}
+
 # for quick gpt prompt generation
 files-to-markdown() {
   for file in "$@"; do
