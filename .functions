@@ -201,6 +201,25 @@ add_mit_license() {
   echo "MIT License added to the repository."
 }
 
+# if a PR is closed when it shouldn't have been, reopen it with one click!
+github_reopen_pr() {
+  local PR_URL="$1"
+  local REPO PR_NUMBER PR_DETAILS TITLE BODY HEAD_REF
+
+  REPO=$(echo $PR_URL | awk -F '/pull/' '{print $1}' | sed 's|https://github.com/||')
+  PR_NUMBER=$(echo $PR_URL | awk -F '/pull/' '{print $2}')
+  PR_DETAILS=$(gh pr view $PR_NUMBER --repo $REPO --json title,body,headRefName,headRepositoryOwner)
+  BASE_BRANCH=$(gh repo view $REPO --json defaultBranchRef --jq '.defaultBranchRef.name')
+
+  TITLE=$(jq -r .title <<< "$PR_DETAILS")
+  BODY=$(jq -r .body <<< "$PR_DETAILS")
+  HEAD_REF=$(jq -r .headRefName <<< "$PR_DETAILS")
+  HEAD_REPO_OWNER=$(jq -r .headRepositoryOwner.login <<< "$PR_DETAILS")
+
+
+  gh pr create --repo "$REPO" --title "$TITLE" --body "$BODY" --head "$HEAD_REPO_OWNER:$HEAD_REF" --base "$BASE_BRANCH"
+}
+
 # for quick gpt prompt generation
 files-to-markdown() {
   for file in "$@"; do
