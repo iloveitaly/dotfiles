@@ -57,7 +57,7 @@ brew "bc" # used by git-fuzzy
 brew "diff-so-fancy" # diff replacement
 brew "git-delta" # diff replacement
 brew "bat" # cat, can also do paging
-brew "exa" # ls
+brew "eza" # ls
 brew "tre-command"
 brew "htop"
 brew "procs" # ps
