@@ -1,3 +1,7 @@
+"""
+%clip - only works on previous evaluated responses
+"""
+
 # https://ipython.readthedocs.io/en/stable/config/options/terminal.html
 # examples:
 #  - https://github.com/YaBoiBurner/dotfiles/blob/dom/.config/ipython/profile_default/ipython_config.py
@@ -30,6 +34,7 @@ c.InteractiveShellApp.extensions = [
     # TODO https://github.com/Textualize/rich/issues/3317
     # https://github.com/willmcgugan/rich/pull/1274/files
     "rich",
+    # https://github.com/mdmintz/pdbp possible better than other pdb drop-ins?
 ]
 
 # watch filesystem for changes and reload modules
@@ -60,3 +65,11 @@ c.InteractiveShellApp.exec_lines.append("%autocall 1")
 
 # TODO there's some sort of completion thing we can do https://github.com/infokiller/config-public/blob/1be3b0887b915a8527f063392afe5cb953c587bd/.config/ipython/profile_default/startup/ext/config.py#L328-L337
 # https://github.com/deshaw/pyflyby
+
+# you can add print line to ipython configuration
+# https://stackoverflow.com/questions/1907993/autoreload-of-modules-in-ipython
+
+import os
+
+# unique history file per directory
+c.HistoryManager.hist_file = os.path.join(os.getcwd(), ".ipython_history")
