@@ -30,19 +30,23 @@ export FORGIT_LOG_GRAPH_ENABLE=false
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
 # - always show peview on the right
+# - ctrl-{u,d} scroll the preview
 # - ctrl-o opens the file in vscode (or the default application)
 # - ctrl-y copies the file path to the clipboard
 # - ctrl-e opens the file in a CLI editor (nano)
-# TODO https://github.com/junegunn/fzf/issues/3358
+# TODO copy context to clipboard:
 export FZF_DEFAULT_OPTS="\
 --bind='ctrl-u:preview-half-page-up' \
 --bind='ctrl-d:preview-half-page-down' \
 --bind='ctrl-o:execute-silent(~/.open-file-path.sh {})' \
 --bind='ctrl-y:execute-silent(pbcopy <<< {})' \
 --bind='ctrl-e:execute(~/.open-file-path.sh EDITOR {})' \
+--bind='ctrl-b:execute-silent(~/.copy-with-context.sh {})' \
 --preview-window 'right:70%' \
 --bind='?:toggle-preview' \
+--bind='+:toggle-header'
 "
+
 # TODO add +abort to quit on ctrl-o
 # TODO add once 43 is released; --bind='+:toggle-header' \
 # --preview-window 'down:3:hidden:wrap' \
@@ -50,8 +54,8 @@ export FZF_CTRL_R_OPTS="--preview-window up:3"
 
 # large shell history
 export HISTFILE=~/.zsh_history
-export SAVEHIST=10000
-export HISTSIZE=11000
+export SAVEHIST=1000000
+export HISTSIZE=1000000
 
 # Make some commands not show up in history
 # remove commands from history: `LC_ALL=C sed -i '' '/sudo hostile.*/d' $HISTFILE`
@@ -96,7 +100,7 @@ export IPDB_CONTEXT_SIZE=10
 # command to use for `breakpoint()`
 export PYTHONBREAKPOINT=ipdb.set_trace
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
-export PYTHONIOENCODING='UTF-8';
+export PYTHONIOENCODING='UTF-8'
 # https://www.erdaltaskesen.com/blog/how-to-remove-pycache-folders-and-pyc-files/
 # https://github.com/pytest-dev/pytest/issues/200
 export PYTHONDONTWRITEBYTECODE=1
