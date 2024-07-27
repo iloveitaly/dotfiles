@@ -255,6 +255,76 @@ macos-logout() {
   # may need to kill WindowManager here too, looks like that is the one that gets tripped up
 }
 
+copy_with_context() {
+  local file=$1
+  local line=$2
+
+  if [[ -z "$file" ]]; then
+    echo "Usage: copy_with_context <file> <line> | <file-with-line>"
+    return 1
+  fi
+
+  # if line DNE, then it must be embedded in the first argument
+  if [[ -z "$line" ]]; then
+    IFS=':' read file line _other <<< "$file"
+  fi
+
+  # check if $line is a number
+  if ! [[ $line =~ ^[0-9]+$ ]]; then
+    echo "Error: Line number must be a number (extracted line: $line)."
+    return 1
+  fi
+
+  local context=10
+
+  local start=$((line - context > 0 ? line - context : 1))
+  local end=$((line + context))
+
+  sed -n "${start},${end}p" "$file" | pbcopy
+}
+
+##################################
+# Local Written-by-me Code Search
+##################################
+
+index_local_repositories() {
+  fd --hidden --type=directory "\.git$" ~/Projects -x sh -c '
+    repo=$(dirname "$0")
+    origin=$(git -C "$repo" remote get-url origin 2>/dev/null)
+    if [[ -z "$origin" ]] || [[ "$origin" == *"github.com/iloveitaly/"* ]]; then
+      if [[ -z "$origin" ]] || ! git -C "$repo" remote get-url upstream &>/dev/null; then
+        echo "$repo"
+      fi
+    fi
+  ' {} \; > ~/.local-git-repos
+}
+
+# ripgrep code search
+rgc() {
+  if [[ ! -f ~/.local-git-repos ]]; then
+    index_local_repositories
+  fi
+
+  if [[ $(find ~/.local-git-repos -mtime +7) ]]; then
+    # reindex async if it hasn't been done in awhile
+    index_local_repositories &
+  fi
+
+  rg "$@" $(cat ~/.local-git-repos) | \
+    # we don't want column, just file and line
+    cut -d: -f1-2 | \
+    # now that we only have file + line, we can remove duplicates
+    uniq | \
+    # nth will still display `:`, which is annoying
+    fzf --ansi --delimiter : --with-nth '1' \
+      --keep-right \
+      --preview 'height=$(tput lines); start={2}; context=$((height / 2)); bat --color=always --paging=never --highlight-line {2} --line-range $((start > context ? start - context : 1)):$((start + context)) {1}'
+}
+
+###########################
+# Local Filesystem Searches
+###########################
+
 # determine if we are in a node_modules folder or if a valid node_modules path was passed via any argument
 function _is_node_modules() {
   local node_modules_path=$1
@@ -331,6 +401,7 @@ rgg() {
   fi
 }
 
+# combine all matching files into a single string and copy to clipboard, helpful for AI stuff
 find_and_bundle() {
   # $1 is the first argument to the function: the specific string to search for
 
@@ -357,10 +428,11 @@ find_and_bundle() {
 }
 
 
+# gits: git history search
 function gits() {
   # Check if a search string was passed
   if [[ -z "$1" ]]; then
-    echo "Usage: git_search_and_diff <string-to-search-in-git-history>"
+    echo "Usage: gits <string-to-search-in-git-history>"
     return 1
   fi
 
@@ -557,6 +629,7 @@ rgo() {
 #     return $stat
 # }
 
+# password protected pdfs are such a pain, this removes the password protection
 decryptpdf() {
   echo "Enter password followed by <enter> followed by <ctrl-D>"
   qpdf --decrypt --password-file=- --replace-input "${1}"
@@ -567,6 +640,7 @@ inspect-space() {
   (cd / && sudo ncdu --exclude /System/ --exclude /Applications --exclude "/Library/Application Support/ArqAgentAPFS.noindex" --confirm-quit)
 }
 
+# find and replace across files in the current directory
 function find-replace() {
   if [ $# -lt 2 ]; then
     echo "Usage: find-replace <find_string> <replace_string>"
@@ -647,7 +721,7 @@ scrape-website() {
 # open "yank.tmux:56:109:" at the right line in your terminal
 open_in_nano() {
   # Read the input string into variables, splitting by ':'
-  IFS=':' read file line column <<< "$1"
+  IFS=':' read file line column _other <<< "$1"
   # Open the file at the specified line. Nano doesn't support specific column.
   nano +$line "$file" < /dev/tty
 }
@@ -659,10 +733,11 @@ open_in_vscode() {
   # * ` M bin/run.js` => `bin/run.js`
   # * `test/scraper.test.js:25:40` => `test/scraper.test.js:25:40`
   # * `test/scraper.test.js` => `test/scraper.test.js`
+  # * `test/scraper.test.js:25:40: something` => `test/scraper.test.js:25
   # assume each of inputs are passed on a single line and are only passed one at a time
 
   local file=$(pcregrep -o2 "(^\s?M\s)?(.*)" <<< "$1")
-  IFS=':' read file line column <<< "$file"
+  IFS=':' read file line column _other <<< "$file"
 
   # remove multiple slashes that could have been passed from `file:///` references
   file=$(echo "$file" | sed 's|^/{2,}|/|')
@@ -676,10 +751,9 @@ open_in_cat() {
   # bat Makefile --highlight-line 136 --paging=never --wrap=character --terminal-width=150
   # TODO https://github.com/sharkdp/bat/issues/2527
 
-  IFS=':' read file line column <<< "$1"
+  IFS=':' read file line column _other <<< "$1"
+
   # output command executed via local shopt
-
-
   # setopt local_options xtrace
 
   bat $file --highlight-line "$line"
