@@ -2,7 +2,7 @@
 
 # oh-my-zsh plugins
 # in some environments, we may not be able to install svn
-if type svn &> /dev/null; then
+if type svn &>/dev/null; then
   zinit svn wait lucid for \
     OMZ::plugins/extract
 fi
@@ -92,12 +92,13 @@ zinit light sindresorhus/pure
 
 # avoid loading the builtin git and docker completions
 # https://mikebian.co/git-completions-tooling-on-the-command-line/
-if command -v brew &> /dev/null; then
-  rm $(brew --prefix)/share/zsh/site-functions/_git 2> /dev/null
-  rm $(brew --prefix)/share/zsh/site-functions/_docker 2> /dev/null
+if command -v brew &>/dev/null; then
+  rm $(brew --prefix)/share/zsh/site-functions/_git 2>/dev/null
+  rm $(brew --prefix)/share/zsh/site-functions/_docker 2>/dev/null
 fi
 
 # function don't get completions by default, aliases need to be manually assigned
 zicompdef fdd=fd
 zicompdef rgg=rg
 zicompdef rgu=rg
+zicompdef rgc=rg
