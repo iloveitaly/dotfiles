@@ -8,8 +8,12 @@
   excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space
+
+  # customize pager with custom diff processor and pre-configured section delimiter
+  # https://github.com/noborus/ov/issues/430
   # https://github.com/so-fancy/diff-so-fancy/issues/364#issuecomment-652598381
-  pager = "diff-so-fancy | LESS= less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '"
+  # TODO cannot use delta https://github.com/dandavison/delta/issues/1492
+  pager = "diff-so-fancy | ov --section-delimiter '^(Date|added|deleted|modified): '"
 
   # nano `/dev/tty` is required for git-fuzzy otherwise nano will error out
   editor = nano < /dev/tty
@@ -41,7 +45,7 @@
   logv = log --pretty=fuller
   undo-commit = reset --soft HEAD^
 
-  # https://github.com/so-fancy/diff-so-fancy/issues/473
+  # TODO https://github.com/so-fancy/diff-so-fancy/issues/473
   addp = -c 'interactive.diffFilter=less' add -p
 
   # review changes exclusive to the current branch (right diff) using Kalidescope
@@ -154,7 +158,7 @@
   # this may change as time goes on, use $(which gpg) to update
   program = /opt/homebrew/bin/gpg
 [init]
-  defaultBranch = main
+  defaultBranch = master
 [color]
   ui = auto
 [color "branch"]
