@@ -58,6 +58,7 @@ brew "diff-so-fancy" # diff replacement
 brew "git-delta" # diff replacement
 brew "bat" # cat, can also do paging
 brew "eza" # ls
+brew "hck" # cut
 brew "tre-command"
 brew "htop"
 brew "procs" # ps
@@ -73,6 +74,8 @@ brew "watch" # execute program every X seconds
 brew "docker-completion" if OS.linux?
 brew "shellcheck" # for vscode bash ide
 brew "iotop"
+brew "mcfly" # better history
+brew "simonhammes/mcfly-fzf/mcfly-fzf"
 
 # == tmux related tools
 brew "tmux"
@@ -172,7 +175,6 @@ if OS.mac?
     cask "paw"
     cask "safari-technology-preview"
     cask "openrefine"
-    cask "ngrok"
     cask "lepton"
     cask "muzzle"
     # cask "https://raw.githubusercontent.com/Homebrew/homebrew-cask/00a37cb6ea00ca2820652b75ebd1f57ba160c3e5/Casks/screenflow.rb"
