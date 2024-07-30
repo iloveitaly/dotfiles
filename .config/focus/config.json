@@ -12,6 +12,7 @@
       "block_hosts": [
         "news.ycombinator.com",
         "twitter.com",
+        "x.com",
         "youtube.com",
 
         "my.lunchmoney.app",
@@ -80,6 +81,7 @@
       "end_minute": 30,
       "block_hosts": [
         "twitter.com",
+        "x.com",
         "feedbin.com",
         "youtube.com",
         "my.lunchmoney.com",
@@ -139,6 +141,7 @@
       "block_hosts": [
         "news.ycombinator.com",
         "twitter.com",
+        "x.com",
         "youtube.com",
 
         "airbnb.com",
@@ -171,6 +174,7 @@
       "description": "email, finances, etc",
       "block_hosts": [
         "twitter.com",
+        "x.com",
         "feedbin.com",
         "youtube.com",
         "news.ycombinator.com",
@@ -196,6 +200,7 @@
       "description": "Reading blogs, listening to podcasts, etc.",
       "block_hosts": [
         "twitter.com",
+        "x.com",
         "mail.google.com",
 
         "airbnb.com",
@@ -229,6 +234,7 @@
       "block_urls": [],
       "block_hosts": [
         "twitter.com",
+        "x.com",
         "feedbin.com",
         "my.lunchmoney.com",
         "news.ycombinator.com",
@@ -249,6 +255,7 @@
       "block_hosts": [
         "news.ycombinator.com",
         "twitter.com",
+        "x.com",
         "youtube.com",
 
         "my.lunchmoney.app",
