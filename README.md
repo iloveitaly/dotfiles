@@ -70,6 +70,7 @@ interesting_repos=(
   https://github.com/phillbaker/dotfiles
   https://github.com/brucebentley/dotfiles
   https://github.com/mislav/dotfiles
+  https://github.com/romkatv/dotfiles-public
 )
 
 cd ~/Projects/dotfiles-inspiration
