@@ -113,3 +113,5 @@ export PY_COLORS=1
 export PYTHONFAULTHANDLER=1
 # ensures that code does not rely on dict order
 export PYTHONHASHSEED=random
+export PYTHONFAULTHANDLER=1
+export PYTHONSAFEPATH=1
