@@ -51,6 +51,31 @@ asdf-reinstall() {
   asdf uninstall $@ $(asdf-current-version $@)
 }
 
+python-inject-startup() {
+  local target_file=$(python -c "import site; print(site.getsitepackages()[0])")/mbianco-injection.py
+
+  if [[ -f "$target_file" ]]; then
+    echo "python startup already exists: $target_file"
+    return 1
+  fi
+
+  cat << 'EOF' > "$target_file"
+def run_startup_script():
+    if not hasattr(run_startup_script, "executed"):
+        run_startup_script.executed = True
+
+        try:
+          import pretty_traceback
+          pretty_traceback.install()
+        except ImportError:
+          pass
+
+run_startup_script()
+EOF
+
+  echo "Python startup injection created: $target_file"
+}
+
 pyd() {
     local executable=$1
 
@@ -104,6 +129,48 @@ pip-show() {
   cd $package_path
   code $package_path
 }
+
+###########################
+# Network Sniffing
+###########################
+
+start_network_proxy() {
+    SERVICE="Ethernet"
+    PROXY_ADDRESS="localhost"
+    PROXY_PORT="8084"
+
+    disable_proxy() {
+        echo "Disabling proxies for $SERVICE..."
+        sudo networksetup -setsocksfirewallproxystate "$SERVICE" off
+        echo "Proxies disabled for $SERVICE"
+    }
+
+    # Check if the mitmproxy certificate is in the keychain
+    if [[ -z $(security find-certificate -a -c "mitmproxy" -p) ]]; then
+        echo "mitmproxy certificate not found in the system keychain. Adding it now..."
+        sudo security add-trusted-cert -d -p ssl -p basic -k /Library/Keychains/System.keychain ~/.mitmproxy/mitmproxy-ca-cert.pem
+    else
+        echo "mitmproxy certificate is already in the system keychain."
+    fi
+
+    echo "Starting mitmproxy on port $PROXY_PORT..."
+
+    # Set SOCKS5 proxy
+    sudo networksetup -setsocksfirewallproxy "$SERVICE" "$PROXY_ADDRESS" "$PROXY_PORT"
+    sudo networksetup -setsocksfirewallproxystate "$SERVICE" on
+
+    echo "SOCKS5 proxy set for $SERVICE"
+
+    # Start mitmproxy in SOCKS5 mode with TLS version adjustment
+    mitmproxy --mode socks5 --listen-port $PROXY_PORT --set tls_version_client_min=SSL3
+
+    # Clean up proxy settings after mitmproxy exits
+    disable_proxy
+}
+
+###########################
+# Docker Utilities
+###########################
 
 # Usage: docker-shell container_name user
 #   - container name (can be partial) as first arg
@@ -161,7 +228,7 @@ function digga() {
   dig +nocmd "$1" any +multiline +noall +answer
 }
 
-# how to add a license to an existing project
+# add a license to an existing project/repo
 add_mit_license() {
   # Check if the current folder is tied to a GitHub repository
   if ! gh repo view > /dev/null 2>&1; then
@@ -310,6 +377,8 @@ rgc() {
     index_local_repositories &
   fi
 
+  # an alternative to `cut` is using -r rg option to mutate the content output
+  # https://github.com/BurntSushi/ripgrep/issues/2860
   rg "$@" $(cat ~/.local-git-repos) | \
     # we don't want column, just file and line
     cut -d: -f1-2 | \
