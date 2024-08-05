@@ -51,6 +51,11 @@ asdf-reinstall() {
   asdf uninstall $@ $(asdf-current-version $@)
 }
 
+###########################
+# Python Utilities
+###########################
+
+# create a file to automatically run code on startup
 python-inject-startup() {
   local target_file=$(python -c "import site; print(site.getsitepackages()[0])")/mbianco-injection.py
 
@@ -61,14 +66,11 @@ python-inject-startup() {
 
   cat << 'EOF' > "$target_file"
 def run_startup_script():
-    if not hasattr(run_startup_script, "executed"):
-        run_startup_script.executed = True
-
-        try:
-          import pretty_traceback
-          pretty_traceback.install()
-        except ImportError:
-          pass
+  try:
+    import pretty_traceback
+    pretty_traceback.install()
+  except ImportError:
+    pass
 
 run_startup_script()
 EOF
@@ -199,8 +201,12 @@ docker-shell() {
 }
 
 
+# get files that would be included in a Dockerfile, with size in megabytes
 dockerignore-test() {
-  rsync --dry-run -av --exclude-from='.dockerignore' ./ /tmp/
+  rsync --dry-run -av --exclude-from='.dockerignore' --out-format="%l %n" ./ /tmp/ | \
+    awk '{size_mb = $1 / (1024 * 1024); printf "%.2f MB %s\n", size_mb, $2}' | \
+    sort -k1,1nr -k2,2 | \
+    less
 }
 
 # TODO docker-new-bash, run instead of exec
