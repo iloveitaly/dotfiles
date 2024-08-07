@@ -55,16 +55,19 @@ asdf-reinstall() {
 # Python Utilities
 ###########################
 
-# create a file to automatically run code on startup
+# create a file to automatically import pretty-traceback on startup
 python-inject-startup() {
-  local target_file=$(python -c "import site; print(site.getsitepackages()[0])")/mbianco-injection.py
+  local site_packages=$(python -c "import site; print(site.getsitepackages()[0])")
 
-  if [[ -f "$target_file" ]]; then
+  local pth_file=$site_packages/mbianco_injection.pth
+  local py_file=$site_packages/_mbianco_injection.py
+
+  if [[ -f "$pth_file" ]]; then
     echo "python startup already exists: $target_file"
     return 1
   fi
 
-  cat << 'EOF' > "$target_file"
+  cat << 'EOF' > "$py_file"
 def run_startup_script():
   try:
     import pretty_traceback
@@ -75,7 +78,10 @@ def run_startup_script():
 run_startup_script()
 EOF
 
-  echo "Python startup injection created: $target_file"
+  # the pth file must have a single line, so it's easier to import another file
+  echo "import _mbianco_injection" > "$pth_file"
+
+  echo "Python startup injection created: $pth_file"
 }
 
 pyd() {
