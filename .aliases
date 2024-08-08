@@ -75,6 +75,11 @@ alias gp="g push origin HEAD"
 alias gpb='g pull --rebase origin `git rev-parse --abbrev-ref HEAD`'
 alias gpf='g push --force origin HEAD'
 
+# github copilot
+alias "sh?"="gh copilot suggest --target shell"
+alias "gh?"="gh copilot suggest --target gh"
+alias "git?"="gh copilot suggest --target git"
+
 # rails
 alias b="bundle"
 
