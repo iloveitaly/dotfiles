@@ -1,3 +1,16 @@
+- [ ] https://github.com/github/gh-copilot/issues/32
+- [ ] mcfly does not support multiline history entries
+  - [ ] https://github.com/cantino/mcfly/issues/432
+  - [ ] https://github.com/bnprks/mcfly-fzf?tab=readme-ov-file
+  - [ ] needs custom zinit plugin
+- [ ] you can't export zsh functions to be available in fzf https://github.com/junegunn/fzf/issues/1337
+- [ ] https://github.com/sstadick/hck/issues/88 hck default issue
+- [ ] https://mitchellh.com new terminal emulator
+- [ ] tmux script in fzf https://github.com/junegunn/fzf/releases/tag/0.53.0
+- [ ] tmux replacement https://github.com/zellij-org/zellij
+- [ ] https://github.com/hongquan/CurliPie and https://github.com/ritajie/requests_to_curl/blob/master/requests_to_curl/requests_to_curl.py with ipython magic
+- [ ] .lessfilter https://superuser.com/questions/117841/when-reading-a-file-with-less-or-more-how-can-i-get-the-content-in-colors
+- [ ] ngrok alternative https://softwareengineeringstandard.com/2024/03/19/ngrok-alternative-open-source/
 - [ ] ksdiff / ~/.pdbrc
 - [ ] auitin for shell history, looks like it is going to get more attention
 - [ ] ??, git?, etc replacement via gh copilot
@@ -100,6 +113,8 @@
 - [ ] https://github.com/ttscoff/KeyBindings or something like https://ke-complex-modifications.pqrs.org/?q=delete%20line
 - [ ] this fixed the weird scrolling issues with logitech mx https://www.laptopmag.com/articles/logitech-scroll-wheel-not-working-macos-mojave
 - [ ] https://www.scriptkit.com has an integration with raycast, kind of like a snippets higher-level macos control thing
+  - [ ] https://github.com/johnlindquist/kit it's open source
+  - [ ] doesn't look super popular, but has some nice tooling around it
 - [ ] pull python history into ipython https://github.com/ipython/ipython/pull/13485#event-6138294679
 - [ ] https://github.com/phmullins/awesome-macos/blob/master/readme.md
   - [ ] https://manytricks.com/blog/
