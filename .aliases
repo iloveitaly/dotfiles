@@ -39,9 +39,11 @@ alias lsd='eza -l -D'
 # page so we get the full command output
 alias pss="ps -eo user,pid,ppid,stat,etime,cmd --forest | less -S"
 
-# IP addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en1"
+# IP addresses & network
+alias default-network-device="route get default | grep 'interface:' | awk '{print \$2}'"
+alias publicip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias dhcp-packet-info="ipconfig getpacket \$(default-network-device)"
+alias localip="ipconfig getifaddr \$(default-network-device)"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 alias whois="whois -h whois-servers.net"
 
