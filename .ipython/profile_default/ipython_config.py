@@ -42,7 +42,9 @@ c.InteractiveShellApp.extensions = [
 # https://ipython.readthedocs.io/en/stable/whatsnew/version8.html#autoreload-3-feature
 # https://ipython.readthedocs.io/en/stable/config/extensions/autoreload.html
 c.InteractiveShellApp.exec_lines.append("%autoreload 3")
-c.InteractiveShellApp.exec_lines.append("%alias_magic s suggestion")
+
+# quickly accept the top suggestion result
+c.InteractiveShellApp.exec_lines.append("%alias_magic s suggestion 0")
 
 # https://stackoverflow.com/questions/50437791/ipython-magic-print-variables-on-assignment
 c.InteractiveShell.ast_node_interactivity = "last_expr_or_assign"
