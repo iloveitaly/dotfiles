@@ -1,10 +1,11 @@
 #!/bin/bash
+# Description: installation entrypoint for servers (linux)
 
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")/.." || exit 1
 
 rsync --exclude-from="install/standard-exclude.txt" \
-      --exclude-from="install/server-exclude.txt" \
-      -av . ~
+  --exclude-from="install/server-exclude.txt" \
+  -av . ~
 
 # detect if ARM, homebrew does not work...
 if [ "$(uname -m)" = "aarch64" ]; then
@@ -20,21 +21,21 @@ if [ "$(uname -m)" = "aarch64" ]; then
   sudo apt install -y \
     git vim lynx rename wget ngrep iftop lftp httpie ncdu curl gawk jq gh sqlite3 \
     zsh ripgrep entr prettyping less fd-find tldr zoxide bc delta bat exa tree htop dnsutils moreutils qpdf \
-    rsync watch iotop
+    rsync watch iotop powertop
 
-  cat <<EOF > ~/.tool-versions
+  cat <<EOF >~/.tool-versions
 direnv 2.34.0
 rust 1.77.0
 EOF
 
-cat <<EOF > ~/.extra
+  cat <<EOF >~/.extra
 alias cat=batcat
 alias fd=fdfind
 
 alias dokku="docker exec dokku dokku"
 alias dokku-shell="docker exec -it dokku bash -l"
 
-# fzf is really outdated, must install via git `~/.fzf.zsh`
+# fzf is really outdated, must install via git $(~/.fzf.zsh)
 [ ! -d ~/.fzf ] && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
 [ ! -d ~/.asdf ] && git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 source ~/.fzf.zsh
@@ -61,7 +62,7 @@ unset homebrew_path
 brew bundle
 
 # if `python` doesn't exist, let's alias python3 to it if it exists
-if ! command -v python &> /dev/null && command -v python3 &> /dev/null; then
+if ! command -v python &>/dev/null && command -v python3 &>/dev/null; then
   sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 fi
 
