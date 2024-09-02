@@ -21,7 +21,7 @@ if [ "$(uname -m)" = "aarch64" ]; then
   sudo apt install -y \
     git vim lynx rename wget ngrep iftop lftp httpie ncdu curl gawk jq gh sqlite3 \
     zsh ripgrep entr prettyping less fd-find tldr zoxide bc delta bat exa tree htop dnsutils moreutils qpdf \
-    rsync watch iotop powertop eza
+    rsync watch iotop powertop
 
   cat <<EOF >~/.tool-versions
 direnv 2.34.0
