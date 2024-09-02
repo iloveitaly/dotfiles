@@ -21,7 +21,7 @@ if [ "$(uname -m)" = "aarch64" ]; then
   sudo apt install -y \
     git vim lynx rename wget ngrep iftop lftp httpie ncdu curl gawk jq gh sqlite3 \
     zsh ripgrep entr prettyping less fd-find tldr zoxide bc delta bat exa tree htop dnsutils moreutils qpdf \
-    rsync watch iotop powertop
+    rsync watch iotop powertop eza
 
   cat <<EOF >~/.tool-versions
 direnv 2.34.0
@@ -35,15 +35,28 @@ alias fd=fdfind
 alias dokku="docker exec dokku dokku"
 alias dokku-shell="docker exec -it dokku bash -l"
 
+# exa not available yet on ubuntu :/
+alias eza=exa
+
 # fzf is really outdated, must install via git $(~/.fzf.zsh)
 [ ! -d ~/.fzf ] && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
 [ ! -d ~/.asdf ] && git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 source ~/.fzf.zsh
 EOF
 
+  # delete some zsh_plugins that are macos specific
+  sed -i '/zicompdef/d' ~/.zsh_plugins
+  sed -i '/iTerm2-shell/d' ~/.zsh_plugins
+  sed -i '/zsh-auto-notify/d' ~/.zsh_plugins
+  sed -i '/fast-syntax-highlighting/d' ~/.zsh_plugins
+  sed -i '/zsh-autosuggestions/d' ~/.zsh_plugins
+
+  # TODO oxker
+
   sudo chsh -s "$(which zsh)" "$(whoami)"
 
   git config --global --unset commit.gpgsign
+  gh extension install github/gh-copilot
 
   exit 0
 fi
