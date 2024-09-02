@@ -48,7 +48,6 @@ zinit wait lucid for \
   'https://github.com/iloveitaly/dolt/blob/zsh-plugin/dolt.plugin.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh' \
-  'iloveitaly/cli-1' \
   as'completion' blockf OMZ::plugins/ripgrep/_ripgrep \
   wfxr/forgit \
   blockf atpull'zinit creinstall  .' zsh-users/zsh-completions \
@@ -56,7 +55,7 @@ zinit wait lucid for \
   atinit"zicompinit; zicdreplay" zdharma/fast-syntax-highlighting \
   atload'_zsh_autosuggest_start' zsh-users/zsh-autosuggestions \
   Aloxaf/fzf-tab \
-  iloveitaly/zsh-github-cli \
+  sudosubin/zsh-github-cli \
   atload"zpcdreplay" atclone"./zplug.zsh" atpull"%atclone" g-plane/pnpm-shell-completion
 
 # TODO conflicts with fzf-tab
