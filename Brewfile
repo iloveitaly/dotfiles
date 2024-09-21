@@ -12,7 +12,9 @@ brew "wget"
 brew "ngrep" # network grep
 brew "optipng"
 brew "iftop" # network top
+brew "trippy" # traceroute
 brew "lftp"
+brew "iproute2mac"
 # required fix for me: https://github.com/httpie/cli/issues/1535#issuecomment-1773774369
 brew "httpie"
 brew "ncdu"
@@ -40,6 +42,7 @@ tap "brimdata/tap"
 brew "brimdata/tap/zq" # faster/better jq, has aggregates
 brew "htmlq"
 brew "xsv" # csv tooling
+brew "tabiew" # tui for csv and data viewing
 
 # == Shell productivity utilities
 brew "zsh"
@@ -109,6 +112,7 @@ if OS.mac?
     brew "railway"
     brew "google-cloud-sdk" # cli tools for google cloud
     brew "azure-cli"
+    brew "certbot"
 end
 
 if OS.mac?
@@ -123,6 +127,7 @@ if OS.mac?
     brew "pinentry-mac"
     brew "iloveitaly/tap/hyper-focus"
 
+    cask "todoist"
     cask "grammarly-desktop"
     cask "spotify"
     cask "bartender"
@@ -224,8 +229,9 @@ if OS.mac?
     cask "keycastr"
 
     # == Quicklook Plugins
-    # these need to be manually enabled in macos preferences
-    # https://github.com/sindresorhus/quick-look-plugins
+    # These need to be manually enabled in macos preferences
+    #   - https://github.com/sindresorhus/quick-look-plugins
+    #   - https://github.com/haokaiyang/Mac-QuickLook
     cask "qlmarkdown", args: { no_quarantine: true }
     cask "qlimagesize"
     cask "mdimagesizemdimporter"
@@ -234,6 +240,8 @@ if OS.mac?
     cask "syntax-highlight", args: { no_quarantine: true }
     cask "webpquicklook"
     cask "apparency"
+    # TODO peek paid quicklook
+    # qlmanage -m
 
     # == Fonts
     cask "font-source-code-pro"
@@ -284,13 +292,15 @@ if OS.mac?
     # == Mac App store
 
     # personal account
-    mas "Todoist", id: 585829637
     mas "Streaks", id: 963034692
     mas "Flow", id: 1423210932
     mas "Harvest", id: 506189836
     mas "Free Ruler", id: 1483172210
     mas "Tailscale", id: 1475387142
     mas "Flighty" id: 1358823008
+    # shareful
+    # quicklook plugin
+
 
     # xcode kept reinstalling for me, adding a extra gate here
     if !File.directory?("/Applications/Xcode.app")
