@@ -23,6 +23,9 @@ sudo apt install -y \
   rsync watch iotop powertop mise \
   nmap
 
+cargo install eza
+go install github.com/noborus/ov@latest
+
 # maybe limit this list when using arm?
 #   cat <<EOF >~/.tool-versions
 # direnv 2.34.0
@@ -35,9 +38,6 @@ alias fd=fdfind
 
 alias dokku="docker exec dokku dokku"
 alias dokku-shell="docker exec -it dokku bash -l"
-
-# exa not available yet on ubuntu :/
-alias eza=exa
 
 # fzf is really outdated, must install via git $(~/.fzf.zsh)
 [ ! -d ~/.fzf ] && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --no-key-bindings --no-completion --no-update-rc
