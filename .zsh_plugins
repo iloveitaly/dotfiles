@@ -46,7 +46,8 @@ zinit wait lucid for \
   'https://gist.githubusercontent.com/iloveitaly/357a72f0f9e70f3a7d2aa6f8c40cf956/raw/795917afc433cd8897eba96fab3941791813a122/bun.plugin.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/b3c9fb69717d0d3f209cf682b3fa34b1/raw/e443d0a24691e3abb5415bcc877bfeb62a3f0d48/ov.plugin.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/c91b3e26d47f131badec7abb859b870a/raw/9bc3aabb7379cbc63c53aea600eca99e4e5cf803/azure.plugin.zsh' \
-  'https://gist.githubusercontent.com/iloveitaly/b342092217821c92e6d478ca501af342/raw/1f1852050e8de45800e302421239322f470b8572/rg.plugin.zsh' \
+  'https://gist.githubusercontent.com/iloveitaly/b342092217821c92e6d478ca501af342/raw/f79ec8bb362a02604c3d218acebd6299a5b3024d/rg.plugin.zsh' \
+  'https://gist.githubusercontent.com/iloveitaly/e0e099c243ddf7020c6e84d671703353/raw/bc7478a7958e3779ed2887fd49e3de8ffad05803/mise.plugin.zsh' \
   'https://github.com/iloveitaly/dolt/blob/zsh-plugin/dolt.plugin.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh' \
