@@ -4,7 +4,7 @@
 # based on: https://github.com/sitespeedio/throttle
 
 throttle-internet() {
-	local DOWNLOAD_LIMIT="1000Kbit/s"
+	local DOWNLOAD_LIMIT="5000Kbit/s"
 	local UPLOAD_LIMIT="200Kbit/s"
 
 	# Configure pipe for incoming traffic (download)
@@ -15,17 +15,17 @@ throttle-internet() {
 
 	# Apply the rules to all devices
 	sudo pfctl -f - <<-EOF
-dummynet-anchor "throttle"
-anchor "throttle"
-EOF
+		dummynet-anchor "throttle"
+		anchor "throttle"
+	EOF
 
 	# Enable PF if not already enabled
 	sudo pfctl -e
 
 	sudo pfctl -a throttle -f - <<-EOF
-dummynet in all pipe 1
-dummynet out all pipe 2
-EOF
+		dummynet in all pipe 1
+		dummynet out all pipe 2
+	EOF
 
 	echo "Throttling applied to device en1"
 }
@@ -50,7 +50,7 @@ flush-dns() {
 	# TODO maybe use this trick https://apple.stackexchange.com/questions/303110/flush-cache-of-dns-on-macos-sierra-high-sierra/303119#303119
 
 	# safari will often cache DNS, lets clear it to ensure everything is blocked
-	osascript << EOF
+	osascript <<EOF
 	tell application "Safari"
 		activate
 	end tell
