@@ -1,5 +1,7 @@
 #!/bin/bash
-# Description: installation entrypoint for servers (linux)
+# Description: installation entrypoint for servers (linux).
+#   - No GitHub tokens should be stored on server
+#
 
 cd "$(dirname "$0")/.." || exit 1
 
@@ -8,7 +10,7 @@ rsync --exclude-from="install/standard-exclude.txt" \
   -av . ~
 
 sudo apt install snapd
-sudo snap install yq diff-so-fancy
+sudo snap install yq diff-so-fancy speedtest
 sudo snap install --classic nano
 
 curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
@@ -18,7 +20,7 @@ curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/i
 sudo apt install -y \
   git vim lynx rename wget ngrep iftop lftp httpie ncdu curl gawk jq sqlite3 zsh \
   zsh ripgrep entr prettyping less fd-find tldr zoxide bc delta bat exa tree htop dnsutils moreutils qpdf \
-  rsync watch iotop powertop \
+  rsync watch iotop powertop mise \
   nmap
 
 # maybe limit this list when using arm?
@@ -39,10 +41,12 @@ alias eza=exa
 
 # fzf is really outdated, must install via git $(~/.fzf.zsh)
 [ ! -d ~/.fzf ] && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --no-key-bindings --no-completion --no-update-rc
-[ ! -d ~/.asdf ] && git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
-
 # only available after install is complete
 source ~/.fzf.zsh
+
+# let's try mise out for a little while
+# [ ! -d ~/.asdf ] && git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+eval "$(mise activate zsh)"
 EOF
 
 # delete some zsh_plugins that are macos specific
@@ -57,9 +61,9 @@ sudo chsh -s "$(which zsh)" "$(whoami)"
 git config --global --unset commit.gpgsign
 
 # if `python` doesn't exist, let's alias python3 to it if it exists
-# if ! command -v python &>/dev/null && command -v python3 &>/dev/null; then
-#   sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1
-# fi
+if ! command -v python &>/dev/null && command -v python3 &>/dev/null; then
+  sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1
+fi
 
 # cleaner output since this will be running inside ansible, or something similar
 export ZINIT_COLORIZE=false
