@@ -49,10 +49,9 @@ source ~/.fzf.zsh
 
 # let's try mise out for a little while
 # [ ! -d ~/.asdf ] && git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
-eval "$(mise activate zsh)"
 
 # since we are removing the plugin which handles this
-eval "$(direnv hook zsh)"
+eval "\$(mise exec -- direnv hook zsh)"
 EOF
 
 # delete some zsh_plugins that are macos specific

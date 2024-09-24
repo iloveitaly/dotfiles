@@ -36,6 +36,7 @@ zinit wait lucid for \
 # blockf ver"zinit-fixed" as"completion" nocompile mv'git-completion.zsh -> _git' iloveitaly/git-completion \
 zinit wait lucid for \
   mafredri/zsh-async \
+  wintermi/zsh-mise \
   redxtech/zsh-asdf-direnv \
   zpm-zsh/zsh-better-npm-completion \
   'https://gist.githubusercontent.com/iloveitaly/4eac0f4ddb3f8162f95fa3ed6f123a06/raw/91af07681dcb1bd863f1922526d6287debd10a80/1password.zsh' \
@@ -43,11 +44,10 @@ zinit wait lucid for \
   'https://gist.githubusercontent.com/iloveitaly/043d91a2968597fe601673664b124dd3/raw/f79dd08a352f9dfde17ba22d345e8e1f87ac3c57/orbctl.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/ebd80140aaa4d8183b558adddb06b809/raw/fc23843bd07b3665233b8d74d0030b8ffff290dd/pack.plugin.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/a3f5967aca46f10c8a6833393eb1d2e5/raw/236d4fffc0511ef59b3f4150c376a1eb359acd46/docker.plugin.zsh' \
-  'https://gist.githubusercontent.com/iloveitaly/357a72f0f9e70f3a7d2aa6f8c40cf956/raw/795917afc433cd8897eba96fab3941791813a122/bun.plugin.zsh' \
+  'https://gist.githubusercontent.com/iloveitaly/357a72f0f9e70f3a7d2aa6f8c40cf956/raw/d77f27f99b8fa58a13ab018322cc48440315d4e3/bun.plugin.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/b3c9fb69717d0d3f209cf682b3fa34b1/raw/e443d0a24691e3abb5415bcc877bfeb62a3f0d48/ov.plugin.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/c91b3e26d47f131badec7abb859b870a/raw/9bc3aabb7379cbc63c53aea600eca99e4e5cf803/azure.plugin.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/b342092217821c92e6d478ca501af342/raw/f79ec8bb362a02604c3d218acebd6299a5b3024d/rg.plugin.zsh' \
-  'https://gist.githubusercontent.com/iloveitaly/e0e099c243ddf7020c6e84d671703353/raw/bc7478a7958e3779ed2887fd49e3de8ffad05803/mise.plugin.zsh' \
   'https://github.com/iloveitaly/dolt/blob/zsh-plugin/dolt.plugin.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh' \
