@@ -31,6 +31,10 @@ go install github.com/noborus/ov@latest
 go install github.com/bcicen/ctop
 cargo install usage-cli # for mise
 
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/atuinsh/atuin/releases/latest/download/atuin-installer.sh | sh -s -- --no-modify-path
+# I don't want to add yet another binary to my path, especially since this is different than macOS
+ln -s ~/.atuin/bin/atuin ~/.local/bin
+
 # maybe limit this list when using arm?
 #   cat <<EOF >~/.tool-versions
 # direnv 2.34.0
