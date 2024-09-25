@@ -21,6 +21,7 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 
 # force completion generation for more obscure commands
 # TODO unsure if vitest + eslint will really work here automatically given it's installed via pnpm
+# TODO look at mise usage tool here, could be a bit better
 zstyle :plugin:zsh-completion-generator programs ncdu tre vitest eslint fastmod ipython fzf
 
 # =============
@@ -73,14 +74,23 @@ setopt hist_save_no_dups        # Omit older commands in favor of newer ones.
 # Evals
 # =============
 
-for brew_path in "/home/linuxbrew/.linuxbrew/bin/brew" "/opt/homebrew/bin/brew"; do
-  if [[ -x "$brew_path" ]]; then
-    eval "$($brew_path shellenv)"
-    break
-  fi
-done
+# we tried linux homebrew, but it's terrible :/
+brew_path="/opt/homebrew/bin/brew"
+if [[ -x "$brew_path" ]]; then
+  eval "$($brew_path shellenv)"
+fi
 
+# postgres utilities
 export PATH="/Applications/Postgres.app/Contents/Versions/15/bin:$PATH"
+
+# poetry, orb, etc
+export PATH="$HOME/.local/bin:$PATH"
+
+# for latest gnu make
+export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+
+# TODO I don't understand where this comes from, but it seems to be used by some completion libraries
+fpath+=~/.zfunc
 
 # avoid installation via brew, this is not a supported installation method and breaks
 # some directory structure assumptions that exist across the plugin ecosystem.
@@ -93,7 +103,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 # Load ~/.exports, ~/.aliases, ~/.functions and ~/.extra
 # ~/.extra can be used for settings you don’t want to commit
 for file in exports aliases functions extra; do
-  local file="$HOME/.$file"
+  file="$HOME/.$file"
   [ -e "$file" ] && source "$file"
 done
 
