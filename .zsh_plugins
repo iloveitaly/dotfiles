@@ -40,7 +40,6 @@ zinit wait lucid for \
   'https://gist.githubusercontent.com/iloveitaly/b3c9fb69717d0d3f209cf682b3fa34b1/raw/e443d0a24691e3abb5415bcc877bfeb62a3f0d48/ov.plugin.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/c91b3e26d47f131badec7abb859b870a/raw/9bc3aabb7379cbc63c53aea600eca99e4e5cf803/azure.plugin.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/b342092217821c92e6d478ca501af342/raw/f79ec8bb362a02604c3d218acebd6299a5b3024d/rg.plugin.zsh' \
-  'https://gist.githubusercontent.com/iloveitaly/e0e099c243ddf7020c6e84d671703353/raw/bc7478a7958e3779ed2887fd49e3de8ffad05803/mise.plugin.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/9103604f442e0474dd18b4acd596739a/raw/d13f218fefbd077da5b47a5ae0856232a412c3a5/just.plugin.zsh' \
   'https://github.com/iloveitaly/dolt/blob/zsh-plugin/dolt.plugin.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh' \
@@ -50,7 +49,7 @@ zinit wait lucid for \
   atload'_zsh_autosuggest_start' zsh-users/zsh-autosuggestions \
   ajeetdsouza/zoxide \
   Aloxaf/fzf-tab \
-  'https://gist.githubusercontent.com/iloveitaly/7569436744f46132cf742072fc8f4d58/raw/52f55a1dd6448da210ca3fd323043588884afc03/atuin.plugin.zsh' \
+  'https://gist.githubusercontent.com/iloveitaly/7569436744f46132cf742072fc8f4d58/raw/94f175abb75d11b5ee3045b2205232c9c5264ba9/atuin.plugin.zsh' \
   atload"zpcdreplay" atclone"./zplug.zsh" atpull"%atclone" g-plane/pnpm-shell-completion
 
 # TODO conflicts with fzf-tab
