@@ -28,6 +28,8 @@ eval "$(mise activate zsh)"
 
 cargo install eza
 go install github.com/noborus/ov@latest
+go install github.com/bcicen/ctop
+cargo install usage-cli # for mise
 
 # maybe limit this list when using arm?
 #   cat <<EOF >~/.tool-versions
