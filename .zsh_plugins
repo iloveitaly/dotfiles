@@ -29,7 +29,7 @@ zinit wait lucid for \
 # blockf ver"zinit-fixed" as"completion" nocompile mv'git-completion.zsh -> _git' iloveitaly/git-completion \
 zinit wait lucid for \
   mafredri/zsh-async \
-  wintermi/zsh-mise \
+  ver"no-error-message" iloveitaly/zsh-mise \
   redxtech/zsh-asdf-direnv \
   zpm-zsh/zsh-better-npm-completion \
   'https://gist.githubusercontent.com/iloveitaly/4eac0f4ddb3f8162f95fa3ed6f123a06/raw/91af07681dcb1bd863f1922526d6287debd10a80/1password.zsh' \
@@ -49,7 +49,7 @@ zinit wait lucid for \
   atload'_zsh_autosuggest_start' zsh-users/zsh-autosuggestions \
   ajeetdsouza/zoxide \
   Aloxaf/fzf-tab \
-  'https://gist.githubusercontent.com/iloveitaly/7569436744f46132cf742072fc8f4d58/raw/94f175abb75d11b5ee3045b2205232c9c5264ba9/atuin.plugin.zsh' \
+  'https://gist.github.com/iloveitaly/7569436744f46132cf742072fc8f4d58/raw/atuin.plugin.zsh' \
   atload"zpcdreplay" atclone"./zplug.zsh" atpull"%atclone" g-plane/pnpm-shell-completion
 
 # TODO conflicts with fzf-tab
@@ -62,16 +62,16 @@ zinit load zsh-users/zsh-history-substring-search
 #   - zsh-256color: configures env for 256 color support
 #   - colors: sets aliases for some colors and most styles via '$c'
 #   - lib/spectrum.zsh: 'spectrum_ls' alias to visually inspect colors
+#   - djui/alias-tips: it's cool, but it slows down the terminal experience
 zinit wait'1' lucid for \
   MichaelAquilina/zsh-auto-notify \
-  djui/alias-tips \
   chrissicool/zsh-256color \
   zpm-zsh/colors \
   OMZ::lib/spectrum.zsh
 
 # binaries installed via zinit
 #   - git-fuzzy: 'git fuzzy' for interactive git commit cli
-#   - ports: 'ports ls' to inspect what ports are open
+#   - ports: 'ports ls' to inspect what ports are o pen
 #   - universalarchive: 'ua' for easily unarchiving everything from the command line`
 # TODO `ports` seems like something that should be a CLI tool/alias
 zinit wait'2' lucid for \
@@ -79,15 +79,8 @@ zinit wait'2' lucid for \
   RobSis/zsh-completion-generator \
   as"program" pick"bin/git-fuzzy" bigH/git-fuzzy \
   caarlos0/ports \
+  OMZ::plugins/extract \
   OMZ::plugins/universalarchive
-
-# TODO this seems kind of silly and should be a shell alias or something
-# oh-my-zsh plugins
-# in some environments, we may not be able to install svn
-if type svn &>/dev/null; then
-  zinit svn wait'3' lucid for \
-    OMZ::plugins/extract
-fi
 
 # must load last
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
