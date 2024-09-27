@@ -45,8 +45,7 @@ eval "$(mise activate zsh)"
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 
 # recent versions of these packages are not available via apt
-cargo binstall -y ripgrep eza \
-  usage-cli # for mise
+cargo binstall -y ripgrep eza du-dust usage-cli # for mise
 
 # install some packages that are not available via apt
 go install github.com/noborus/ov@latest
@@ -78,13 +77,14 @@ EOF
 sed -i '/zicompdef/d' ~/.zsh_plugins
 sed -i '/iTerm2-shell/d' ~/.zsh_plugins
 sed -i '/zsh-auto-notify/d' ~/.zsh_plugins
-sed -i '/fast-syntax-highlighting/d' ~/.zsh_plugins
-sed -i '/zsh-autosuggestions/d' ~/.zsh_plugins
+# sed -i '/fast-syntax-highlighting/d' ~/.zsh_plugins
+# sed -i '/zsh-autosuggestions/d' ~/.zsh_plugins
 sed -i '/zsh-asdf-direnv/d' ~/.zsh_plugins
 
 sudo chsh -s "$(which zsh)" "$(whoami)"
 
 git config --global --unset commit.gpgsign
+git config --global credential.helper store
 
 # if `python` doesn't exist, let's alias python3 to it if it exists
 if ! command -v python &>/dev/null && command -v python3 &>/dev/null; then
