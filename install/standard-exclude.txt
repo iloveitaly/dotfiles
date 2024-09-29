@@ -18,3 +18,5 @@ README.md
 .mypy_cache
 time-machine-includes.sh
 .DS_Store
+.github
+metadata.json
