@@ -20,24 +20,30 @@ zinit wait lucid for \
 # similar to copycat, but using the native search so it's fast (https://github.com/tmux-plugins/tmux-copycat/tree/master)
 ###########################
 
+# IMPORTANT: load order is very important here!
 # zicompinit runs `compinit` to generate completions
 # important to load suggestions *after* zsh-completions
-#   - fzf/key-bindings: sets up reverse-i via fzf, ctrl+t, alt+c
+#   - load syntax highlighting first
+#   - fzf/key-bindings: sets up reverse-si via fzf, ctrl+t, alt+c
 #   - fzf-tab: load order is important, must go last
 #   - forgit needs _git to be loaded in order for the additional src to work, which is why we zicompinit
+#   - git-fuzzy: adds $PATH which will get drops by direnv if it modifies PATH, so important to include this in the same block as asdf
 # TODO https://github.com/felipec/git-completion/issues/8
 # blockf ver"zinit-fixed" as"completion" nocompile mv'git-completion.zsh -> _git' iloveitaly/git-completion \
 zinit wait lucid for \
+  atinit"zicompinit; zicdreplay" zdharma/fast-syntax-highlighting \
   mafredri/zsh-async \
   ver"no-error-message" iloveitaly/zsh-mise \
+  as"program" pick"bin/git-fuzzy" bigH/git-fuzzy \
   redxtech/zsh-asdf-direnv \
   zpm-zsh/zsh-better-npm-completion \
+  iloveitaly/zsh-ai-completions \
   'https://gist.githubusercontent.com/iloveitaly/4eac0f4ddb3f8162f95fa3ed6f123a06/raw/91af07681dcb1bd863f1922526d6287debd10a80/1password.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/b0748e2f9f6831f9b8781ed8790e3404/raw/5cd0fe7e517cbbf2cefaa95fa5ac37471cecdad4/gh-cli.plugin.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/043d91a2968597fe601673664b124dd3/raw/f79dd08a352f9dfde17ba22d345e8e1f87ac3c57/orbctl.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/a3f5967aca46f10c8a6833393eb1d2e5/raw/236d4fffc0511ef59b3f4150c376a1eb359acd46/docker.plugin.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/357a72f0f9e70f3a7d2aa6f8c40cf956/raw/d77f27f99b8fa58a13ab018322cc48440315d4e3/bun.plugin.zsh' \
-  'https://gist.githubusercontent.com/iloveitaly/b3c9fb69717d0d3f209cf682b3fa34b1/raw/e443d0a24691e3abb5415bcc877bfeb62a3f0d48/ov.plugin.zsh' \
+  'https://gist.github.com/iloveitaly/b3c9fb69717d0d3f209cf682b3fa34b1/raw/ov.plugin.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/c91b3e26d47f131badec7abb859b870a/raw/9bc3aabb7379cbc63c53aea600eca99e4e5cf803/azure.plugin.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/b342092217821c92e6d478ca501af342/raw/f79ec8bb362a02604c3d218acebd6299a5b3024d/rg.plugin.zsh' \
   'https://gist.githubusercontent.com/iloveitaly/9103604f442e0474dd18b4acd596739a/raw/d13f218fefbd077da5b47a5ae0856232a412c3a5/just.plugin.zsh' \
@@ -45,11 +51,11 @@ zinit wait lucid for \
   'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh' \
   blockf atpull'zinit creinstall .' zsh-users/zsh-completions \
-  atinit"zicompinit; zicdreplay" zdharma/fast-syntax-highlighting \
-  atload'_zsh_autosuggest_start' zsh-users/zsh-autosuggestions \
   ajeetdsouza/zoxide \
-  Aloxaf/fzf-tab \
+  wintermi/zsh-gcloud \
   'https://gist.github.com/iloveitaly/7569436744f46132cf742072fc8f4d58/raw/atuin.plugin.zsh' \
+  Aloxaf/fzf-tab \
+  atload'_zsh_autosuggest_start' zsh-users/zsh-autosuggestions \
   atload"zpcdreplay" atclone"./zplug.zsh" atpull"%atclone" g-plane/pnpm-shell-completion
 
 # TODO conflicts with fzf-tab
@@ -75,16 +81,15 @@ zinit wait'1' lucid for \
 #   - universalarchive: 'ua' for easily unarchiving everything from the command line`
 # TODO `ports` seems like something that should be a CLI tool/alias
 zinit wait'2' lucid for \
-  atinit"zicompinit" wfxr/forgit \
+  wfxr/forgit \
   RobSis/zsh-completion-generator \
-  as"program" pick"bin/git-fuzzy" bigH/git-fuzzy \
   caarlos0/ports \
   OMZ::plugins/extract \
   OMZ::plugins/universalarchive
 
 # must load last
-zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
-zinit light sindresorhus/pure
+zinit ice ver"non-breaking-space" compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+zinit light iloveitaly/pure
 
 # avoid loading the builtin git and docker completions
 # https://mikebian.co/git-completions-tooling-on-the-command-line/
