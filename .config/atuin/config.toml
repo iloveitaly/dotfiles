@@ -1,3 +1,4 @@
+
 ## where to store your database, default is your system data directory
 ## linux/mac: ~/.local/share/atuin/history.db
 ## windows: %USERPROFILE%/.local/share/atuin/history.db
@@ -93,15 +94,23 @@ update_check = true
 ## default history list format - can also be specified with the --format arg
 history_format = "{command}"
 
-## prevent commands matching any of these regexes from being written to history.
-## Note that these regular expressions are unanchored, i.e. if they don't start
-## with ^ or end with $, they'll match anywhere in the command.
-## For details on the supported regular expression syntax, see
-## https://docs.rs/regex/latest/regex/#syntax
-# history_filter = [
-#   "^secret-cmd",
-#   "^innocuous-cmd .*--secret=.+",
-# ]
+history_filter = [
+  "^ls ",
+  "^pwd$",
+  "^exit$",
+  "^cd ",
+  "^gc ",
+  "^.* --help$",
+  "^history$",
+  "^j ",
+  "^jj ",
+  "^glo$",
+  "^gfu$",
+  "^g st$",
+  "^g ss$",
+  "^sudo hostile.*$",
+  "throttle-internet",
+]
 
 ## prevent commands run with cwd matching any of these regexes from being written
 ## to history. Note that these regular expressions are unanchored, i.e. if they don't
@@ -213,7 +222,7 @@ records = true
 
 [daemon]
 ## Enables using the daemon to sync. Requires the daemon to be running in the background. Start it with `atuin daemon`
-# enabled = false
+# enabled = true
 
 ## How often the daemon should sync in seconds
 # sync_frequency = 300
@@ -230,3 +239,11 @@ records = true
 
 ## The port that should be used for TCP on non unix systems
 # tcp_port = 8889
+
+[dotfiles]
+## prevent commands matching any of these regexes from being written to history.
+## Note that these regular expressions are unanchored, i.e. if they don't start
+## with ^ or end with $, they'll match anywhere in the command.
+## For details on the supported regular expression syntax, see
+## https://docs.rs/regex/latest/regex/#syntax
+enabled = false
