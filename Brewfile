@@ -27,7 +27,6 @@ brew "cloc" # code analytics
 brew "jq" # json extraction
 brew "hey"
 brew "gh"
-brew "dust"
 brew "sqlite"
 brew "md5sha1sum"
 brew "git-lfs"
@@ -70,7 +69,7 @@ brew "svn" # for `zinit ice svn`
 brew "dog" # dig replacement
 brew "moreutils" # sponge
 brew "xplr" # file management
-brew "dust" # du replacement
+brew "dust" # du replacement, another option is duf
 brew "qpdf" # for decrypting pdf files
 brew "rsync" # get the latest version for new features
 brew "watch" # execute program every X seconds
@@ -98,6 +97,7 @@ if OS.mac?
     brew "broot" # better file finding
     brew "dolt"
     brew "noborus/tap/ov" # pager replacement
+    brew "lnav" # log viewer, partial pager replacement
     brew "ollama"
     brew "llm"
     brew "buildpacks/tap/pack"
