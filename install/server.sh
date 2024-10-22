@@ -68,7 +68,7 @@ eval "\$(mise exec -- direnv hook zsh)"
 EOF
 
 # delete some zsh_plugins that are macos specific
-# sed -i '/zicompdef/d' ~/.zsh_plugins
+sed -i '/zicompdef/d' ~/.zsh_plugins # assumes rg, etc which is not the same on servers :/
 sed -i '/iTerm2-shell/d' ~/.zsh_plugins
 sed -i '/zsh-auto-notify/d' ~/.zsh_plugins
 # sed -i '/fast-syntax-highlighting/d' ~/.zsh_plugins
