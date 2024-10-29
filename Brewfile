@@ -76,8 +76,6 @@ brew "watch" # execute program every X seconds
 brew "docker-completion" if OS.linux?
 brew "shellcheck" # for vscode bash ide
 brew "iotop"
-brew "mcfly" # better history
-brew "simonhammes/mcfly-fzf/mcfly-fzf"
 
 # == tmux related tools
 brew "tmux"
@@ -127,6 +125,7 @@ if OS.mac?
     brew "pinentry-mac"
     brew "iloveitaly/tap/hyper-focus"
 
+    cask "another-redis-desktop-manager"
     cask "todoist"
     cask "grammarly-desktop"
     cask "spotify"
@@ -165,7 +164,6 @@ if OS.mac?
     cask "messenger"
     cask "scrivener"
     cask "postico"
-    cask "kindle"
     cask "wordpresscom"
     cask "gimp"
     cask "grammarly"
@@ -200,7 +198,6 @@ if OS.mac?
     cask "cron"
     cask "obsidian"
     cask "calibre"
-    cask "send-to-kindle"
     cask "shortcutdetective"
     cask "logitech-options"
     cask "karabiner-elements"
@@ -264,7 +261,6 @@ if OS.mac?
     brew "cmake" # for ruby native extensions
     brew "make" # to get the latest version (4.x vs 3.x)
     brew "gnu-time" # much better than shell time builtin for performance tracking
-    brew "artginzburg/tap/sudo-touchid"
     brew "java" # for elixir
     brew "wxwidgets" # for elixir
     # helpful dependencies for rga
@@ -284,10 +280,6 @@ if OS.mac?
     tap "mongodb/brew"
     brew "mongodb-community"
     cask "mongodb-compass"
-
-    # redis
-    brew "redis"
-    cask "another-redis-desktop-manager"
 
     # == Mac App store
 
@@ -313,6 +305,7 @@ if OS.mac?
     mas "AudioWrangler", id: 1565701763
     mas "Streaks", id: 963034692
     mas "EasyRes", id: 688211836
+    # TODO kindle
     # TODO these are ios apps which do not seem to install well
     # mas "blink-home-monitor", id: 1013961111
     # mas "wyze-make-your-home-smarter", id: 1288415553
