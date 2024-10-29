@@ -34,17 +34,17 @@ zinit wait lucid for \
   as"program" pick"bin/git-fuzzy" bigH/git-fuzzy \
   wintermi/zsh-mise \
   iloveitaly/zsh-ai-completions \
-  'https://gist.githubusercontent.com/iloveitaly/4eac0f4ddb3f8162f95fa3ed6f123a06/raw/91af07681dcb1bd863f1922526d6287debd10a80/1password.zsh' \
-  'https://gist.githubusercontent.com/iloveitaly/b0748e2f9f6831f9b8781ed8790e3404/raw/5cd0fe7e517cbbf2cefaa95fa5ac37471cecdad4/gh-cli.plugin.zsh' \
-  'https://gist.githubusercontent.com/iloveitaly/043d91a2968597fe601673664b124dd3/raw/f79dd08a352f9dfde17ba22d345e8e1f87ac3c57/orbctl.zsh' \
-  'https://gist.githubusercontent.com/iloveitaly/a3f5967aca46f10c8a6833393eb1d2e5/raw/236d4fffc0511ef59b3f4150c376a1eb359acd46/docker.plugin.zsh' \
-  'https://gist.githubusercontent.com/iloveitaly/357a72f0f9e70f3a7d2aa6f8c40cf956/raw/d77f27f99b8fa58a13ab018322cc48440315d4e3/bun.plugin.zsh' \
+  'https://gist.github.com/iloveitaly/4eac0f4ddb3f8162f95fa3ed6f123a06/raw/1password.zsh' \
+  'https://gist.github.com/iloveitaly/b0748e2f9f6831f9b8781ed8790e3404/raw/gh-cli.plugin.zsh' \
+  'https://gist.github.com/iloveitaly/043d91a2968597fe601673664b124dd3/raw/orbctl.zsh' \
+  'https://gist.github.com/iloveitaly/a3f5967aca46f10c8a6833393eb1d2e5/raw/docker.plugin.zsh' \
+  'https://gist.github.com/iloveitaly/357a72f0f9e70f3a7d2aa6f8c40cf956/raw/bun.plugin.zsh' \
   'https://gist.github.com/iloveitaly/b3c9fb69717d0d3f209cf682b3fa34b1/raw/ov.plugin.zsh' \
   'https://gist.github.com/iloveitaly/bfca38b1ae8ff649f822cea704a49a5a/raw/uv.plugin.zsh' \
-  'https://gist.githubusercontent.com/iloveitaly/c91b3e26d47f131badec7abb859b870a/raw/9bc3aabb7379cbc63c53aea600eca99e4e5cf803/azure.plugin.zsh' \
-  'https://gist.githubusercontent.com/iloveitaly/b342092217821c92e6d478ca501af342/raw/f79ec8bb362a02604c3d218acebd6299a5b3024d/rg.plugin.zsh' \
+  'https://gist.github.com/iloveitaly/c91b3e26d47f131badec7abb859b870a/raw/azure.plugin.zsh' \
+  'https://gist.github.com/iloveitaly/b342092217821c92e6d478ca501af342/raw/rg.plugin.zsh' \
   'https://gist.github.com/iloveitaly/9103604f442e0474dd18b4acd596739a/raw/just.plugin.zsh' \
-  'https://github.com/iloveitaly/dolt/blob/zsh-plugin/dolt.plugin.zsh' \
+  'http://github.com/dolthub/dolt/blob/main/dolt.plugin.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh' \
   blockf atpull'zinit creinstall .' zsh-users/zsh-completions \
@@ -63,12 +63,12 @@ zinit wait lucid for \
 #   - zsh-256color: configures env for 256 color support
 #   - colors: sets aliases for some colors and most styles via '$c'
 #   - lib/spectrum.zsh: 'spectrum_ls' alias to visually inspect colors
-#   - djui/alias-tips: it's cool, but it slows down the terminal experience
 zinit wait'1' lucid for \
   MichaelAquilina/zsh-auto-notify \
   chrissicool/zsh-256color \
   zpm-zsh/colors \
-  OMZ::lib/spectrum.zsh
+  OMZ::lib/spectrum.zsh \
+  zpm-zsh/ssh
 
 # binaries installed via zinit
 #   - git-fuzzy: 'git fuzzy' for interactive git commit cli
