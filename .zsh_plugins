@@ -48,13 +48,13 @@ zinit wait lucid for \
   'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh' \
   blockf atpull'zinit creinstall .' zsh-users/zsh-completions \
-  ajeetdsouza/zoxide \
+  'https://github.com/ajeetdsouza/zoxide/blob/main/zoxide.plugin.zsh' \
   wintermi/zsh-gcloud \
   'https://gist.github.com/iloveitaly/7569436744f46132cf742072fc8f4d58/raw/atuin.plugin.zsh' \
   Aloxaf/fzf-tab \
   atload'_zsh_autosuggest_start' zsh-users/zsh-autosuggestions \
   zpm-zsh/zsh-better-npm-completion \
-  atinit'zicompinit; zicdreplay' atclone"./zplug.zsh" atpull"%atclone" g-plane/pnpm-shell-completion
+  atinit'ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay' atclone"./zplug.zsh" atpull"%atclone" g-plane/pnpm-shell-completion
 
 # TODO conflicts with fzf-tab
 # marlonrichert/zsh-autocomplete
