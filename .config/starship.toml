@@ -1,3 +1,4 @@
+
 format = """
 $username\
 $hostname\
@@ -7,6 +8,7 @@ $git_state\
 $git_status\
 $cmd_duration\
 $line_break\
+$direnv\
 $python\
 $character"""
 
@@ -17,6 +19,8 @@ style = "blue"
 success_symbol = "[❯](purple)"
 error_symbol = "[❯](red)"
 vimcmd_symbol = "[❮](green)"
+# https://github.com/iloveitaly/pure/commit/5b10ea778490ce1eeb215c49e00b44d5924d4e28#diff-40ce3705d282be66579b84dcb3daf96a192c8ea10f7fc5e6737a72979f010b1bR855
+format = "$symbol\u00A0"
 
 [git_branch]
 format = "[$branch]($style)"
@@ -25,12 +29,6 @@ style = "bright-black"
 [git_status]
 format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
 style = "cyan"
-conflicted = "​"
-untracked = "​"
-modified = "​"
-staged = "​"
-renamed = "​"
-deleted = "​"
 stashed = "≡"
 
 [git_state]
@@ -41,6 +39,10 @@ style = "bright-black"
 format = "[$duration]($style) "
 style = "yellow"
 
+# TODO would be cool to indicate when a venv is not in place https://github.com/starship/starship/issues/3251
 [python]
-format = "[$virtualenv]($style) "
+format = "${symbol}([$virtualenv ]($style))"
 style = "bright-black"
+
+[direnv]
+disabled = false
