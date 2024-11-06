@@ -1,7 +1,6 @@
 ###########################
 # Node Helper Functions
-# node is just a terrible development environment by default
-# these helpers make using it more sane
+# Let's make working with node easier.
 ###########################
 
 # https://github.com/microsoft/vscode/issues/94679
@@ -10,16 +9,22 @@ vscode-fix-typescript-truncation() {
   sed -i '' 's/defaultMaximumTruncationLength = 160;/defaultMaximumTruncationLength = 800;/g' "$file"
 }
 
+# TODO need to refactor for tsx, I don't think tsconfig-paths are required anymore
 # ts-node execution
 tsn() {
-  if ! npm list tsconfig-paths &>/dev/null; then
-    echo "adding tsconfig-paths"
-    npmi tsconfig-paths --save-dev
+  if [ -f pnpm-lock.yaml ]; then
+    if ! pnpm list tsconfig-paths &>/dev/null; then
+      echo "adding tsconfig-paths"
+      pnpm add -D tsconfig-paths
+    fi
+  else
+    if ! npm list tsconfig-paths &>/dev/null; then
+      echo "adding tsconfig-paths"
+      npmi tsconfig-paths --save-dev
+    fi
   fi
 
-  node -r ts-node/register/transpile-only \
-     -r tsconfig-paths/register \
-     $@
+  tsx "$@"
 }
 
 # node debugger
@@ -30,11 +35,11 @@ ndb() {
     echo "Using ts-node for typescript..."
     NODE_INSPECT_RESUME_ON_START=1 node inspect \
       --debug-port=0 \
-      --loader ts-node/esm  \
-      # -r ts-node/esm/transpile-only \
+      --loader ts-node/esm \
+      \
       -r tsconfig-paths/register \
-      "$@"
-  else
+      "$@" \
+      else # -r ts-node/esm/transpile-only \
     # if not, assume basic JS
     NODE_INSPECT_RESUME_ON_START=1 node inspect \
       --debug-port=0 \
@@ -53,20 +58,35 @@ jest-debug() {
 }
 
 npm-upgrade-packages() {
-  if ! npm list npm-check-updates &>/dev/null; then
+  # check if npm-check-updates is installed globally
+
+  if (! npm list npm-check-updates &>/dev/null) && (! npm list -g npm-check-updates &>/dev/null); then
     echo "adding npm-check-updates"
-    npm install -g npm-check-updates
+    _npx npm-check-updates
   fi
 
-  ncu --interactive --format group
+  _npx ncu --interactive --format group
 }
 
 npm-package-tree() {
-  npm list --omit dev --omit optional --depth 2
+  if [ -f pnpm-lock.yaml ]; then
+    pnpm list --prod --depth 2
+  else
+    npm list --omit dev --omit optional --depth 2
+  fi
 }
 
 npm-reset() {
-  rm -rf node_modules && npm i
+  rm -rf node_modules
+  if [ -f pnpm-lock.yaml ]; then
+    pnpm install
+  else
+    npm install
+  fi
+}
+
+npm-remove-node-modules() {
+  fd -td node_modules
 }
 
 # TODO any `file:./` references, automatically remove and reinstall packages
@@ -74,34 +94,85 @@ npm-reset() {
 # update package.json engine configuration based on asdf + npm config
 node-package-version-sync() {
   # Get NodeJS version from asdf
-  local NODE_VERSION=$(asdf current nodejs | awk '{print $2}')
+  local NODE_VERSION
+  NODE_VERSION=$(mise list --current --json | jq -r ".node[0].version // empty")
 
-  # Get NPM version from the command line
-  local NPM_VERSION=$(npm -v)
+  # Get NPM/PNPM version from the command line
+  local NPM_VERSION
+  if [ -f pnpm-lock.yaml ]; then
+    NPM_VERSION=$(pnpm -v)
+  else
+    NPM_VERSION=$(npm -v)
+  fi
 
   # Define the part of the package.json file before the "engines" section
-  local JSON_HEAD=$(cat package.json | jq 'del(.engines)')
+  local JSON_HEAD
+  JSON_HEAD=$(cat package.json | jq 'del(.engines)')
 
-  # Form the "engines" section with the latest NodeJS and NPM versions
-  local ENGINES=$(jq -n \
-                  --arg NODE_VERSION "$NODE_VERSION" \
-                  --arg NPM_VERSION "$NPM_VERSION" \
-                  '{
+  # Form the "engines" section with the latest NodeJS and package manager versions
+  local ENGINES
+  if [ -f pnpm-lock.yaml ]; then
+    ENGINES=$(jq -n \
+      --arg NODE_VERSION "$NODE_VERSION" \
+      --arg PNPM_VERSION "$NPM_VERSION" \
+      '{
+                      "node": $NODE_VERSION,
+                      "pnpm": $PNPM_VERSION
+                  }')
+  else
+    ENGINES=$(jq -n \
+      --arg NODE_VERSION "$NODE_VERSION" \
+      --arg NPM_VERSION "$NPM_VERSION" \
+      '{
                       "node": $NODE_VERSION,
                       "npm": $NPM_VERSION
                   }')
-
-  # Combine the two parts and write them back to package.json
-  echo $JSON_HEAD | jq --argjson engines "$ENGINES" '. + {engines: $engines}' > package.json
-}
-
-npmi() {
-  # if typesync is not installed in the local package.json, add it to the dev deps
-  if ! grep -q typesync package.json; then
-    npm i typesync --save-dev
   fi
 
-  npm i $@ --save
-  npx typesync
-  npm i
+  # Combine the two parts and write them back to package.json
+  echo $JSON_HEAD | jq --argjson engines "$ENGINES" '. + {engines: $engines}' >package.json
 }
+
+###########################
+# Package Management Help
+###########################
+
+# jump into an existing package folder
+npm-show() {
+  if [ -f pnpm-lock.yaml ]; then
+    cd "$(pnpm ls "$@" --long | rg --no-filename --no-column --no-line-number --color=never node_modules | uniq)" || return
+  else
+    cd "$(npm ls "$@" --long | grep node_modules | uniq)" || return
+  fi
+}
+
+# helper function to execute a command in npm or pnpm
+_npx() {
+  if [ -f pnpm-lock.yaml ]; then
+    pnpm "$@"
+  else
+    npx "$@"
+  fi
+}
+
+# install a package and run typesync, pnpm aware
+npmi() {
+  # if not a typescript project, just run normally
+  if [ ! -f tsconfig.json ]; then
+    _install_node_package "$@"
+    return $?
+  fi
+
+  # if typesync is not installed in the local package.json, add it to the dev deps
+  if ! grep -q typesync package.json; then
+    _install_node_package typesync --save-dev
+  fi
+
+  _install_node_package "$@"
+  _npx typesync
+
+  # now, after typesync has added it's packages, reinstall silently
+  _install_node_package --silent
+}
+
+# fd '.*(d.ts|js)$' --type f --no-ignore --exclude=node_modules --exclude=cdk.out --exclude=jest.config.js --exec rm {}
