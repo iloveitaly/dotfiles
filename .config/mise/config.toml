@@ -1,0 +1,8 @@
+[settings]
+
+[settings.cargo]
+binstall = true
+
+
+[settings.pipx]
+uvx = true
