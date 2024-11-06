@@ -9,7 +9,7 @@ $git_status\
 $cmd_duration\
 $line_break\
 $direnv\
-$python\
+${custom.venv}\
 $character"""
 
 [directory]
@@ -39,10 +39,25 @@ style = "bright-black"
 format = "[$duration]($style) "
 style = "yellow"
 
+# https://github.com/starship/starship/issues/5889#issuecomment-2023788992
+[custom.venv]
+description = "show simple 'venv' indicator instead of full name"
+command = """
+print "venv"
+"""
+when = '''[[ -n "$VIRTUAL_ENV" ]]'''
+format = '[$output ](blue)'
+
 # TODO would be cool to indicate when a venv is not in place https://github.com/starship/starship/issues/3251
 [python]
-format = "${symbol}([$virtualenv ]($style))"
-style = "bright-black"
+disabled = true
 
 [direnv]
+format = '[$symbol($loaded/)($allowed)]($style) '
+symbol = "D"
 disabled = false
+allowed_msg = ''
+loaded_msg = ''
+not_allowed_msg = '🚫 not allowed'
+denied_msg = '❌ denied'
+unloaded_msg = '📤 not loaded'
