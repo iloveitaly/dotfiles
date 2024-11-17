@@ -29,7 +29,7 @@
 ## enable or disable automatic update checks
 update_check = true
 
-## address of the sync server
+## address of the sync server#
 # sync_address = "https://api.atuin.sh"
 
 ## how often to sync history. note that this is only triggered when a command
@@ -102,8 +102,8 @@ history_filter = [
   "^gc ",
   "^.* --help$",
   "^history$",
-  "^j ",
-  "^jj ",
+  "^z",
+  "^zi",
   "^glo$",
   "^gfu$",
   "^g st$",
@@ -206,6 +206,9 @@ prefers_reduced_motion = true
 [keys]
 # Defaults to true. If disabled, using the up/down key won't exit the TUI when scrolled past the first/last entry.
 # scroll_exits = false
+
+# https://github.com/atuinsh/atuin/issues/2397#issuecomment-2480807986
+prefix = "h"
 
 [sync]
 # Enable sync v2 by default
