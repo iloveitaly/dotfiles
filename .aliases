@@ -89,20 +89,22 @@ alias d-ps-network='docker ps --format "{{.ID}} {{.Names}} {{.Networks}} {{.Port
 
 # python
 # TODO maybe fail if not in a venv
+alias ipdb="ipdb3"
 alias play="./playground.py"
 alias po="poetry"
-alias ipy=ipython
 alias py=python
 alias pyt=pytest
 alias pytd="pytest --pdb -s"
-alias po-pristine="poetry env remove --all -n && poetry install && py-debugging-install"
+alias po-pristine="poetry env remove --all -n && poetry install && (poetry shell && py-debugging-install)"
 # g add poetry.lock && g checkout --theirs poetry.lock && po lock && git add poetry.lock && git rebase --continue
 alias po-tree="poetry show --tree"
 alias pipu="pip uninstall -y"
+# TODO maybe make this accept URLs and convert to git reference?
 alias pipi="pip install -U"
-alias py-debugging-install='pip install --upgrade pip; pip install --upgrade --force-reinstall ipython ipdb "pdbr[ipython]" rich ipython_autoimport IPythonClipboard ipython_ctrlr_fzf docrepr pyfzf jedi pretty-traceback pre-commit sqlparse debugpy ipython-suggestions git+https://github.com/iloveitaly/rpdb.git@multiple-continue datamodel-code-generator funcy-pipe; poetry self add poetry-plugin-up'
 # TODO use --exec here instead
 alias py-remove-pycache="fd --no-ignore-vcs __pycache__ | xargs rm -rf"
+alias py-venv-path="python -c 'import site; print(site.getsitepackages()[0])'"
+# alias py-venv="cd $(py-venv-path)"
 alias py-spy-all="ps aux | grep '[p]ython' | awk '{print \$2}' | xargs -I {} py-spy dump --pid {}"
 
 # TODO why not just add /usr/libexec to the path?

@@ -1,0 +1,33 @@
+alias py-paths="python -c 'import sys; print(sys.path)'"
+
+# # TODO https://github.com/anntzer/ipython-autoimport/issues/11
+function py-debugging-install() {
+  if [ ! -f "uv.lock" ]; then
+    pip install --upgrade pip
+  fi
+
+  local PACKAGES
+  PACKAGES="ipython git+https://github.com/iloveitaly/ipdb@support-executables \"pdbr[ipython]\" rich git+https://github.com/anntzer/ipython-autoimport.git IPythonClipboard ipython_ctrlr_fzf docrepr pyfzf jedi pretty-traceback pre-commit sqlparse debugpy ipython-suggestions git+https://github.com/iloveitaly/rpdb.git@multiple-continue datamodel-code-generator funcy-pipe colorama"
+
+  if [ -f "uv.lock" ]; then
+    uv pip install --upgrade --force-reinstall $PACKAGES
+  else
+    pip install --upgrade --force-reinstall $PACKAGES
+  fi
+
+  python-inject-startup
+
+  if command -v poetry &>/dev/null; then
+    poetry self add poetry-plugin-up
+  fi
+}
+
+function ipy() {
+  if [ -f "uv.lock" ]; then
+    uv tool run ipython
+  else
+    ipython
+  fi
+}
+
+# pbpaste | python3 -c 'import sys, re; print(re.sub(r"^[\"]|[\"]$", "", sys.stdin.read().replace("\\n", "\n")).strip())'
