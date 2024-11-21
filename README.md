@@ -5,7 +5,7 @@
 * zsh with turbo zinit
 * [Advanced tmux configuration](https://mikebian.co/tag/tmux/)
 * Lots of tidbits for ruby, elixir, and python development
-* Asdf for managing all language versions
+* Mise for managing all language versions
 * [Codespace/devcontainer support](https://mikebian.co/my-experience-with-github-codespaces/)
 * Lots of interesting git shortcuts + tips
 * Custom macOS keybinding & karabiner config
@@ -16,7 +16,7 @@
 ## Installation
 
 ```bash
-git clone https://github.com/mathiasbynens/dotfiles.git && cd dotfiles && ./bootstrap.sh
+git clone https://github.com/iloveitaly/dotfiles.git && cd dotfiles && ./bootstrap.sh
 ```
 
 When setting up a new Mac, you may want to set some sensible OS X defaults:
@@ -71,6 +71,7 @@ interesting_repos=(
   https://github.com/brucebentley/dotfiles
   https://github.com/mislav/dotfiles
   https://github.com/romkatv/dotfiles-public
+  https://github.com/pnodet/zsh-config
 )
 
 cd ~/Projects/dotfiles-inspiration
