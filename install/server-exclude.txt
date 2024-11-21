@@ -1,7 +1,6 @@
 .alacritty.yml
 .tmux.conf
 .tmux-shell.sh
-.asdfrc
 .ssh
 mackup.cfg
 .config/karabiner/

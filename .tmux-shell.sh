@@ -7,12 +7,14 @@ counter=0
 # tmux converts periods to _
 session_uid="${session_uid//./_}"
 
-sleep 1
+# prevent conflicts when multiple shell sessions are opening at the same time
+sleep 0.2
+
 while [[ $counter -lt 20 ]]; do
   session="${session_uid}-${counter}"
 
   # if the session doesn't exist, create it
-  if ! tmux has-session -t "$session" 2> /dev/null; then
+  if ! tmux has-session -t "$session" 2>/dev/null; then
     tmux new -ADs "$session"
     break
   fi
