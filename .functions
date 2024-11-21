@@ -27,18 +27,22 @@ pbcopy-image() {
   osascript -e "set the clipboard to (read (POSIX file \"$1\") as JPEG picture)"
 }
 
-# use plugin name as initial parameter
-asdf-current-version() {
-  # if the version DNE then asdf will print an error to stderr
-  asdf current $@ 2>&1 | awk '{print $2}'
+# use plugin name as only parameter
+mise-current-version() {
+  if [ $# -gt 1 ]; then
+    echo "Error: Only one plugin name is allowed"
+    return 1
+  fi
+
+  mise list --current --json | jq -r ".$1[0].version // empty"
 }
 
-# Loop through all arguments (assumed to be asdf plugins)
-asdf-generate-tool-versions() {
+# Loop through all arguments (assumed to be mise plugins)
+mise-generate-tool-versions() {
   for plugin in "$@"; do
-    version=$(asdf-current-version "$plugin")
+    version=$(mise-current-version "$plugin")
 
-    if [ "$version" != "Not" ]; then
+    if [ -n "$version" ]; then
       echo "$plugin $version" >> .tool-versions
     else
       echo "Error: Version for $plugin not found."
@@ -47,8 +51,21 @@ asdf-generate-tool-versions() {
 }
 
 # use plugin name as initial parameter
-asdf-reinstall() {
-  asdf uninstall $@ $(asdf-current-version $@)
+mise-reinstall() {
+  if [ $# -gt 1 ]; then
+    echo "Error: Only one plugin name is allowed"
+    return 1
+  fi
+
+  version=$(mise-current-version $1)
+
+  if [ -z "$version" ]; then
+    echo "Error: Version not found for $1"
+    return 1
+  fi
+
+  mise uninstall $1@$version
+  mise install $1@$version
 }
 
 ###########################
