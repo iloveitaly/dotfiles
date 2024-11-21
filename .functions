@@ -7,10 +7,39 @@ tmux-kill-detached-sessions() {
   tmux list-sessions | grep -v attached | awk -F: '{print $1}' | xargs -I {} tmux kill-session -t {}
 }
 
+# delete all unused, update all plugins, reset completions
 zinit-update() {
+  zinit self-update
   zinit delete --clean
-  zinit update --all
+  zinit update --all --parallel
   zinit cclear
+}
+
+# destroy your entire zinit setup, helpful when something seems off but you aren't sure why...
+zinit-nuke() {
+  rm -f ~/.zcompdump*
+  rm -rf ~/.zsh/cache
+  rm -rf ~zinit
+
+  echo "Open up a new terminal window to reload zinit"
+}
+
+# TODO this does not work as cleanly as you'd expect... needs some work.
+# TODO export ZSH_XTRACEFD=5 isn't a thing yet :/ https://www.zsh.org/mla/workers//2020/msg01177.html
+zsh-trace() {
+  exec 2>> /tmp/zsh-debug.log
+  set -x
+  echo "Tracing enabled. Log file: /tmp/zsh-debug.log"
+}
+
+# https://yazi-rs.github.io/docs/quick-start
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
 }
 
 # pass path to image to copy it to clipboard
