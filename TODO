@@ -1,8 +1,25 @@
+- [ ] https://www.localcan.com/#pricing
+- [ ] https://github.com/matryer/xbar-plugins and https://swiftbar.app
+  - [ ] https://github.com/paulononaka/bitactions
+- [ ] why are there two locations for orbstack bins?
+- [ ] zoxide completion does not work https://github.com/ajeetdsouza/zoxide/issues/471
+  - [ ] https://github.com/ajeetdsouza/zoxide/discussions/897
+- [ ] https://github.com/artginzburg/sudo-touchid/issues fix touchid
+- [ ] https://starship.rs/config/
+- [ ] https://programmabletooltip.com
+- [ ] https://github.com/clarketm/zsh-completions/issues/7
+- [ ] logfile navigator https://lnav.org
+- [ ] https://plocate.sesse.net maybe use locate with fdd?
+- [ ] greppable json https://github.com/tomnomnom/gron
+- [ ] https://github.com/bcicen/ctop
+- [ ] TODO oxker, maybe as a replacement for lazydocker?
+- [ ] https://github.com/dbcli/litecli
+- [ ] https://developer-friendly.blog/blog/2024/09/02/how-to-deploy-nodejs-to-aws-lambda-with-opentofu--github-actions/
+- [ ] notification management system https://github.com/universal-inbox/universal-inbox
+- [ ] better window management tool? https://spacesformac.xyz
+- [ ] better tmux https://zellij.dev/screencasts/
+- [ ] interesting set of ipython extensions https://github.com/deshaw/pyflyby
 - [ ] https://github.com/github/gh-copilot/issues/32
-- [ ] mcfly does not support multiline history entries
-  - [ ] https://github.com/cantino/mcfly/issues/432
-  - [ ] https://github.com/bnprks/mcfly-fzf?tab=readme-ov-file
-  - [ ] needs custom zinit plugin
 - [ ] you can't export zsh functions to be available in fzf https://github.com/junegunn/fzf/issues/1337
 - [ ] https://github.com/sstadick/hck/issues/88 hck default issue
 - [ ] https://mitchellh.com new terminal emulator
@@ -11,9 +28,6 @@
 - [ ] https://github.com/hongquan/CurliPie and https://github.com/ritajie/requests_to_curl/blob/master/requests_to_curl/requests_to_curl.py with ipython magic
 - [ ] .lessfilter https://superuser.com/questions/117841/when-reading-a-file-with-less-or-more-how-can-i-get-the-content-in-colors
 - [ ] ngrok alternative https://softwareengineeringstandard.com/2024/03/19/ngrok-alternative-open-source/
-- [ ] ksdiff / ~/.pdbrc
-- [ ] auitin for shell history, looks like it is going to get more attention
-- [ ] ??, git?, etc replacement via gh copilot
 - [ ] `com.tinyapp.TablePlus dyn.age81g6pqrf4gn` all does not map sqlite to tableplus
 - [ ] <https://github.com/brookhong/Surfingkeys> keyboard based js browsing
 - [ ] <https://github.com/santiagobasulto/ipython-gpt> understand how the context is passed to chatgpt
@@ -21,11 +35,11 @@
 - [ ] some interesting slack scripts for hammerspoon <https://github.com/dbalatero/dotfiles/tree/master/hammerspoon>
   - [ ] more hammerspoon <https://github.com/nathanmsmith/.config/tree/main/hammerspoon>
   - [ ] window management with hammerspoon https://thume.ca/2016/07/16/advanced-hackery-with-the-hammerspoon-window-manager/
-- [ ] <https://github.com/noborus/ov/issues/430#issuecomment-1729506103> section configuration for ov
+- [ ] paging
+  - [ ] <https://github.com/noborus/ov/issues/430#issuecomment-1729506103> section configuration for ov
 - [ ] auto correction on obsidian <https://forum.obsidian.md/t/autocorrect-text/5022/25>
   - [ ] https://github.com/Lissy93/espanso-config/blob/master/alicia-auto-correct.yml nice auto correct list
-- [ ] cross platform text expander <https://espanso.org>
-- [ ] learn more about ov and integrate into terminal setup <https://github.com/noborus/ov>
+- [ ] cross platform text expander <https://espanso.org>, some neat cross platform programming stuff
 - [ ] best screenshot tool <https://cleanshot.com>
 - [ ] automatic git fixup <https://crates.io/crates/git-absorb>
 - [ ] https://jvns.ca/blog/2022/04/12/a-list-of-new-ish--command-line-tools/?utm_source=hackernewsletter&utm_medium=email&utm_term=fav
@@ -55,13 +69,10 @@
 - [ ] Terminal notification
   - [ ] vs code support https://github.com/marzocchi/zsh-notify/blob/master/applescript/resources/is-iterm2-active.applescript
   - [ ] https://github.com/rickstaa/tmux-notify
-- [ ] https://www.dbpilot.io
 - [ ] https://github.com/chbrown/macos-pasteboard
 - [ ] ipython autocomplete as you type https://github.com/ipython/ipython/issues/12819 I think this is partially working locally
 - [ ] https://workspace.google.com/marketplace/app/power_tools/1058867473888 google sheets add on
-- [ ] https://dbeaver.io SQL workspace manager
 - [ ] https://zed.dev another editor
-- [ ] <https://www.cursor.so> ai powered editor
 - [ ] brave browser https://brave.com
 - [ ] <https://sizzy.co/features> a better developer browser
 - [ ] reset privacy permissions via console, how is this possible? When testing an app this pane just doesn't work properly
@@ -71,6 +82,7 @@
 - [ ] https://github.com/zsh-users/zsh-completions/issues/983#issuecomment-1381196013 fly.io conflict
 - [ ] global mute for google meet https://github.com/aezell/mutemeet/blob/master/MuteMeet.scpt and https://github.com/stffffn/muute
 - [ ] neat window space thing https://github.com/koekeishiya/yabai
+  - [ ] There's a keyboard shortcut tool as well
 - [ ] https://github.com/asdf-community/asdf-poetry/issues/27 poetry completions maybe do this statically https://python-poetry.org/docs/
   - [ ] poetry completions zsh > ~/.asdf/completions/_poetry (I think there's an ASDF issue for this?)
 - [ ] nano pbcopy integration, use mark and emacs-style bindings; or maybe just setup a basic vimrc
@@ -92,7 +104,7 @@
 - [ ] after running osx "System Settings" will not work properly, need to restart the computer. This has something to do with something other than the killall at the end.
 - [ ] https://getpingr.app nice menu bar ping utility, got to get the source code
 - [ ] https://www.gnu.org/software/stow/manual/stow.html
-- [ ] https://www.thunderclient.com postman vs code plugin
+- [ ] https://www.thunderclient.com man vs code plugin
 - [ ] https://hoppscotch.io another postman alternative
 - [ ] zle clipboard integration https://github.com/kutsan/zsh-system-clipboard
 - [ ] faster docker https://notes.alexkehayias.com/mutagen-greatly-speeds-up-docker-on-macos/
@@ -139,10 +151,3 @@
 - [ ] https://github.com/ambiso/alacritty/commit/68994d6c1a4f8fac34e470cc2aa021bf1a81acae looks like alacritty has a fast search function
 - [ ] GPU powered terminal https://sw.kovidgoyal.net/kitty
 - [ ] <https://wezfurlong.org/wezterm/index.html> new terminal
-
-#### Better Shell History
-- [ ] https://github.com/cantino/mcfly - better command line history
-- [ ] give histdb https://github.com/m42e/zsh-histdb-fzf/blob/master/fzf-histdb.zsh
-- [ ] <> could be neat for navigating directories
-- [ ] <https://github.com/atuinsh/atuin/pull/1274>
-- [ ] https://github.com/atuinsh/atuin/issues/68#issuecomment-1902759809 fzf integration
