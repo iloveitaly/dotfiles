@@ -9,6 +9,7 @@ $git_status\
 $cmd_duration\
 $line_break\
 $direnv\
+${custom.novenv}\
 ${custom.venv}\
 $character"""
 
@@ -47,6 +48,15 @@ print "venv"
 """
 when = '''[[ -n "$VIRTUAL_ENV" ]]'''
 format = '[$output ](blue)'
+
+# https://github.com/starship/starship/issues/5889
+[custom.novenv]
+description = "show indicator when venv is missing"
+command = """
+print "no-venv"
+"""
+when = '''[[ -f "requirements.txt" || -f "pyproject.toml" || -f "poetry.lock" || -f "Pipfile" ]] && [[ -z "$VIRTUAL_ENV" ]]'''
+format = '[$output ](red)'
 
 # TODO would be cool to indicate when a venv is not in place https://github.com/starship/starship/issues/3251
 [python]
