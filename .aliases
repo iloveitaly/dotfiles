@@ -2,9 +2,9 @@
 alias cat='bat --wrap=never'
 alias find='fd'
 alias ls='eza -l --group-directories-first'
-alias j='z'
-alias jj='zi'
 alias tree='tre --limit 3'
+
+alias j='just'
 
 alias fixcamera="sudo killall VDCAssistant; sudo killall AppleCameraAssistant"
 
@@ -42,7 +42,8 @@ alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 alias whois="whois -h whois-servers.net"
 
 # Flush Directory Service cache
-alias flushdns="sudo killall -HUP mDNSResponder"
+alias flushdns="sudo killall -HUP mDNSResponder && sudo dscacheutil -flushcache && sudo killall -HUP configd && echo 'All caches flushed.'"
+alias flushdns="sudo killall -HUP mDNSResponder; sudo dscacheutil -flushcache"
 
 # View HTTP traffic
 alias sniff="sudo ngrep -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
