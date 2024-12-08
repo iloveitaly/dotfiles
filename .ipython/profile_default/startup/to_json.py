@@ -1,3 +1,7 @@
+"""
+Return a json string from an input object
+"""
+
 import json
 
 

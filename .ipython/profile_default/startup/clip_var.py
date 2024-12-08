@@ -27,11 +27,9 @@ If you don't have a variable named 'clip' you can rely on automagic:
     clip a
 
 
-# This version removes the dependency of AppKit, but maintains compatibility with linux and osx.
-# using ideas from: https://gist.github.com/vpontis/46e5d3154cda92ce3e0f
-# It also provides infrastructure to easily add further platforms (function _get_implementation).
-
-
+This version removes the dependency of AppKit, but maintains compatibility with linux and osx.
+using ideas from: https://gist.github.com/vpontis/46e5d3154cda92ce3e0f
+It also provides infrastructure to easily add further platforms (function _get_implementation).
 """
 
 import sys

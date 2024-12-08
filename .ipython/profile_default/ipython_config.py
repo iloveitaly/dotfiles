@@ -33,6 +33,8 @@ c.InteractiveShellApp.extensions = [
     "ipython_suggestions",
     # TODO https://github.com/Textualize/rich/issues/3317
     # https://github.com/willmcgugan/rich/pull/1274/files
+    # TODO consider removing this, it's slowing down large object display
+    # https://github.com/Textualize/rich/blob/e1e6d745f670ff3df6b8f47377c0a4006cb74066/rich/pretty.py#L167
     "rich",
     # https://github.com/mdmintz/pdbp possible better than other pdb drop-ins?
 ]
