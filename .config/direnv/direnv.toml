@@ -1,0 +1,5 @@
+[global]
+disable_stdin = true
+strict_env = true
+# because of 1p validation
+warn_timeout = "10s"
