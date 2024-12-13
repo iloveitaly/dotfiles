@@ -20,12 +20,16 @@ zinit load gnachman/iTerm2-shell-integration
 #   - fzf/key-bindings: sets up reverse-si via fzf, ctrl+t, alt+c
 #   - fzf-tab: load order is important, must go last
 #   - forgit needs _git to be loaded in order for the additional src to work, which is why we zicompinit
-#   - git-fuzzy: adds $PATH which will get drops by direnv if it modifies PATH, so important to include this in the same block as asdf
+#   - git-fuzzy: adds $PATH which will get drops by direnv if it modifies PATH, so important to include this in the same block as mise
 #   - zsh-history-substring-search claims that it must be loaded after syntax completion, but this is not
 #   - zinit and one of the zsh syntax highlighting plugins claim that it must be loaded last
 #   - git completions were tricky as well: https://mikebian.co/git-completions-tooling-on-the-command-line/
+#   - putting zdharma-continuum/fast-syntax-highlighting outside the async loader seems to break WORDCHARS
+#   - https://github.com/zpm-zsh/zsh-better-npm-completion is more maintained than the lukechilds fork
+#   - zoxide: adds z and zi utilities
 
-zinit wait lucid for \
+zinit wait'0a' lucid for \
+  zdharma-continuum/fast-syntax-highlighting \
   OMZ::lib/functions.zsh \
   OMZ::lib/termsupport.zsh \
   hlissner/zsh-autopair \
@@ -41,9 +45,10 @@ zinit wait lucid for \
   'https://gist.github.com/iloveitaly/357a72f0f9e70f3a7d2aa6f8c40cf956/raw/bun.plugin.zsh' \
   'https://gist.github.com/iloveitaly/b3c9fb69717d0d3f209cf682b3fa34b1/raw/ov.plugin.zsh' \
   'https://gist.github.com/iloveitaly/bfca38b1ae8ff649f822cea704a49a5a/raw/uv.plugin.zsh' \
-  'https://gist.github.com/iloveitaly/c91b3e26d47f131badec7abb859b870a/raw/azure.plugin.zsh' \
   'https://gist.github.com/iloveitaly/b342092217821c92e6d478ca501af342/raw/rg.plugin.zsh' \
   'https://gist.github.com/iloveitaly/9103604f442e0474dd18b4acd596739a/raw/just.plugin.zsh' \
+  'https://gist.github.com/iloveitaly/ebf69624c7b4cbd2f63b3e1e9f7846f9/raw/starship.plugin.zsh' \
+  'https://gist.github.com/iloveitaly/64b3ebdb50b90057ac820b25b4072970/raw/direnv.plugin.zsh' \
   'http://github.com/dolthub/dolt/blob/main/dolt.plugin.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh' \
   'https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh' \
@@ -51,10 +56,14 @@ zinit wait lucid for \
   'https://github.com/ajeetdsouza/zoxide/blob/main/zoxide.plugin.zsh' \
   wintermi/zsh-gcloud \
   'https://gist.github.com/iloveitaly/7569436744f46132cf742072fc8f4d58/raw/atuin.plugin.zsh' \
-  Aloxaf/fzf-tab \
   atload'_zsh_autosuggest_start' zsh-users/zsh-autosuggestions \
-  zpm-zsh/zsh-better-npm-completion \
-  atinit'ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay' atclone"./zplug.zsh" atpull"%atclone" g-plane/pnpm-shell-completion
+  atinit'zicompdef zbnc_zsh_better_npm_completion pnpm; zicompinit; zicdreplay' zpm-zsh/zsh-better-npm-completion \
+  Aloxaf/fzf-tab
+
+# TODO pnpm is just working off of npm completions for now :/
+# https://github.com/pnpm/pnpm/issues/5426
+# 'https://gist.github.com/iloveitaly/6a9df13db3884b77c58a26807a3d2500/raw/pnpm.plugin.zsh'
+#  atload"zpcdreplay" atclone"./zplug.zsh" atpull"%atclone" g-plane/pnpm-shell-completion
 
 # TODO conflicts with fzf-tab
 # marlonrichert/zsh-autocomplete
@@ -63,27 +72,32 @@ zinit wait lucid for \
 #   - zsh-256color: configures env for 256 color support
 #   - colors: sets aliases for some colors and most styles via '$c'
 #   - lib/spectrum.zsh: 'spectrum_ls' alias to visually inspect colors
+#   - git-open: gh browse doesn't always work for repos I did not clone from my user
+#   - azure: uses bashinit, which seems to need to run after the wait 0a above, which is why it's included here
 zinit wait'1' lucid for \
   MichaelAquilina/zsh-auto-notify \
   chrissicool/zsh-256color \
   zpm-zsh/colors \
   OMZ::lib/spectrum.zsh \
-  zpm-zsh/ssh
+  zpm-zsh/ssh \
+  'https://gist.github.com/iloveitaly/c91b3e26d47f131badec7abb859b870a/raw/azure.plugin.zsh' \
+  paulirish/git-open \
+  toku-sa-n/zsh-dot-up
 
-# binaries installed via zinit
+# binaries installed via zinit. No rush to install these, which is why we are `wait'2'`
 #   - git-fuzzy: 'git fuzzy' for interactive git commit cli
 #   - ports: 'ports ls' to inspect what ports are o pen
 #   - universalarchive: 'ua' for easily unarchiving everything from the command line`
-# TODO `ports` seems like something that should be a CLI tool/alias
+
 zinit wait'2' lucid for \
   wfxr/forgit \
   caarlos0/ports \
   OMZ::plugins/extract \
   OMZ::plugins/universalarchive
 
-# must load last
-zinit ice ver"non-breaking-space" compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
-zinit light iloveitaly/pure
+# Prompt : https://github.com/starship/starship
+zinit ice from"gh-r" as"command" atload'eval "$(starship init zsh)"'
+zinit load starship/starship
 
 # avoid loading the builtin git and docker completions
 # https://mikebian.co/git-completions-tooling-on-the-command-line/
@@ -98,5 +112,9 @@ zicompdef rgg=rg
 zicompdef rgu=rg
 zicompdef rgc=rg
 
+# zoxide needs to override this zinit alias
+unalias zi
+
 zinit load zsh-users/zsh-history-substring-search
-zinit load zsh-users/zsh-syntax-highlighting
+# zinit load zdharma-continuum/fast-syntax-highlighting
+# zinit load zsh-users/zsh-syntax-highlighting

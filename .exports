@@ -1,11 +1,12 @@
 # Make nano the default editor for context-less editing in the terminal
 export EDITOR=nano
 
-# not a go guy, but without this I get lots of deprecation notices
-export ASDF_GOLANG_MOD_VERSION_ENABLED=true
+# mise will manage our py versions
+export UV_PYTHON_DOWNLOADS=never
 
+# TODO port to mise?
 # support nvmrc lazy versions
-export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_available
+# export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_available
 
 # customize fzf defaults (so we can keep page up/down) + some keybindings
 export GIT_FUZZY_FZF_DEFAULT_OPTS="\
@@ -66,8 +67,6 @@ export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # faster git status loading for large repos
 export PURE_GIT_UNTRACKED_DIRTY=1
-# pure respects `VIRTUAL_ENV_DISABLE_PROMPT` unlike in the past
-# https://github.com/python-poetry/poetry/issues/1853
 
 # env config for compatibility with omz
 export ZSH=${HOME}/.zsh

@@ -86,6 +86,9 @@ export PATH="/Applications/Postgres.app/Contents/Versions/15/bin:$PATH"
 # poetry, orb, etc
 export PATH="$HOME/.local/bin:$PATH"
 
+# TODO really? shouldn't we do this in the bun plugin? Or can we redirect installs?
+export PATH="$HOME/.bun/bin:$PATH"
+
 # for latest gnu make
 export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 
@@ -99,7 +102,6 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
-# TODO https://github.com/zdharma/zinit/issues/173#issuecomment-537325714
 # Load ~/.exports, ~/.aliases, ~/.functions and ~/.extra
 # ~/.extra can be used for settings you don’t want to commit
 for file in exports aliases functions extra; do
