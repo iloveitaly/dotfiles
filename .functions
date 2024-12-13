@@ -360,6 +360,29 @@ files-to-markdown() {
   done
 }
 
+ask_llm() {
+  local files=()
+  local message=""
+  local system_prompt="Be very concise. I am an expert programmer."
+
+  for arg in "$@"; do
+    if [[ -f "$arg" ]]; then
+      files+=("--context-file" "$arg")
+    else
+      message="$arg"
+    fi
+  done
+
+  # if no message, exit
+  if [[ -z "$message" ]]; then
+    echo "No message provided."
+    return 1
+  fi
+
+  cody chat --stdin "${files[@]}" --message "$system_prompt\n$message"
+}
+alias "llm?"="ask_llm"
+
 # TODO add to remote-logout repo
 # https://github.com/iloveitaly/remote-logout
 # https://serverfault.com/questions/10404/log-out-graphical-user-from-command-line
