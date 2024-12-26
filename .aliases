@@ -14,6 +14,8 @@ alias recent-file="exa -s modified --reverse | head -n 1"
 # pbcopy does not allow you to mutate public.html
 alias pbcopy-html="pbpaste | hexdump -ve '1/1 \"%.2x\"' | xargs printf 'set the clipboard to {«class HTML»:«data HTML%s»}' | osascript -"
 
+alias pbpaste-html="pbpaste -Prefer public.html"
+
 # copy last shell command into the clipboard
 # fc -l == history builtin, awk command to remove trailing newline
 alias clast="fc -ln -1 | awk '{printf \"%s\", \$0}' | pbcopy"

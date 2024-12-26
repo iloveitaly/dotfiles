@@ -1,0 +1,160 @@
+# gits: git history search
+function gits() {
+  # Check if a search string was passed
+  if [[ -z "$1" ]]; then
+    echo "Usage: gits <string-to-search-in-git-history>"
+    return 1
+  fi
+
+  local search_string=$1
+
+  git log --all --pickaxe-regex -S "$search_string" --pretty=format:"%C(yellow)%h%Creset -%C(auto)%d%Creset %s %C(green)(%cr) %C(bold blue)<%an>%Creset" | fzf --ansi --no-sort --preview="git show --color=always {1}" --preview-window=right:70%:wrap | awk '{print $1}'
+}
+
+function gc() {
+  git commit -v -a -m "$*"
+}
+
+function gd() {
+  git difftool $1 -t Kaleidoscope -y
+}
+
+function gbt() {
+  git checkout -b $1 --track origin/$1
+}
+
+git-add-origin() {
+  local remote_name="${1:-origin}"
+  local repo_name=$(gh repo view --json name --jq '.name')
+  git remote add "$remote_name" "https://github.com/iloveitaly/$repo_name.git"
+}
+
+function git-squash-custom-branch {
+  # Check if the .git-custom-branch file exists
+  if [[ ! -f ".git-custom-branch" ]]; then
+    echo "Error: .git-custom-branch file does not exist"
+    exit 1
+  fi
+
+  # Check for unstaged changes
+  if [[ -n "$(git diff --name-only)" ]]; then
+    echo "Error: You have unstaged changes. Please commit or stash them."
+    exit 1
+  fi
+
+  # determine if master is main, or actually master
+  local master_branch=$(git branch -l master main | sed 's/^* //' | xargs)
+
+  # Checkout to the master branch
+  git checkout $master_branch
+
+  # Pull the latest changes from the master branch
+  git pull origin $master_branch
+
+  # Check if the 'custom' branch already exists and delete it if it does
+  if git show-ref --verify --quiet refs/heads/custom; then
+    git branch -D custom
+  fi
+
+  # Read the branch names from the .git-custom-branch file
+  branches=($(<.git-custom-branch))
+
+  # is there more than one entry?
+  if [[ ${#branches[@]} -lt 2 ]]; then
+    echo "Error: .git-custom-branch file must contain at least two branches"
+    exit 1
+  fi
+
+  # Checkout to a new branch named 'custom' from the latest master
+  git checkout -b custom
+
+  git merge "${branches[@]}" --no-ff --message "Merged and squashed ${branches[@]}"
+}
+
+# TODO should probably remove
+# https://blog.takanabe.tokyo/en/2020/04/remove-squash-merged-local-git-branches/
+function git-clean-squash-and-merge() (
+  set -euo pipefail
+
+  # xargs to trim whitespace https://stackoverflow.com/questions/369758/how-to-trim-whitespace-from-a-bash-variable
+  local master_branch=$(git branch -l master main | sed 's/^* //' | xargs)
+  echo "Using $master_branch as master"
+
+  git checkout -q $master_branch
+  git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do
+    local ancestor=$(git merge-base $master_branch $branch)
+
+    if [[ $(git cherry main $(git commit-tree $(git rev-parse $branch'^{tree}') -p $ancestor -m _)) == "-"* ]]; then
+      git branch -D $branch
+    fi
+  done
+)
+# if a PR is closed when it shouldn't have been, reopen it with one click!
+# commonly happens with the annoying stale bots
+github_reopen_pr() {
+  local PR_URL="$1"
+  local REPO PR_NUMBER PR_DETAILS TITLE BODY HEAD_REF
+
+  REPO=$(echo $PR_URL | awk -F '/pull/' '{print $1}' | sed 's|https://github.com/||')
+  PR_NUMBER=$(echo $PR_URL | awk -F '/pull/' '{print $2}')
+  PR_DETAILS=$(gh pr view $PR_NUMBER --repo $REPO --json title,body,headRefName,headRepositoryOwner)
+  BASE_BRANCH=$(gh repo view $REPO --json defaultBranchRef --jq '.defaultBranchRef.name')
+
+  TITLE=$(jq -r .title <<<"$PR_DETAILS")
+  BODY=$(jq -r .body <<<"$PR_DETAILS")
+  HEAD_REF=$(jq -r .headRefName <<<"$PR_DETAILS")
+  HEAD_REPO_OWNER=$(jq -r .headRepositoryOwner.login <<<"$PR_DETAILS")
+
+  gh pr create --web --repo "$REPO" --title "$TITLE" --body "$BODY" --head "$HEAD_REPO_OWNER:$HEAD_REF" --base "$BASE_BRANCH"
+}
+
+# add a license to an existing project/repo
+add_mit_license() {
+  # Check if the current folder is tied to a GitHub repository
+  if ! gh repo view >/dev/null 2>&1; then
+    echo "This folder is not tied to a GitHub repository. Aborting."
+    return 1
+  fi
+
+  # Check if any LICENSE file exists
+  if [[ -e LICENSE || -e LICENSE.md || -e LICENSE.txt ]]; then
+    echo "A LICENSE file already exists. Aborting."
+    return 1
+  fi
+
+  local license_template
+  local repo_info
+  local repo_name
+  local author
+  local year
+
+  # Fetch the MIT license template
+  license_template=$(gh api /licenses/MIT --jq '.body')
+
+  # Get repository details
+  repo_info=$(gh repo view --json nameWithOwner --jq '.nameWithOwner')
+  repo_name=$(basename "$repo_info")
+  author=$(git config user.name)
+  year=$(date +%Y)
+
+  # Replace placeholders in the license template
+  local license_content
+  license_content=${license_template//\[year\]/$year}
+  license_content=${license_content//\[fullname\]/$author}
+
+  # Write the license to LICENSE.md
+  echo "$license_content" >LICENSE.md
+
+  echo "MIT License added to the repository."
+}
+
+# render readme content on clipboard and replace username and password
+render-git-template() {
+  local GH_USERNAME=$(gh repo view --json owner --jq '.owner.login' | tr -d '[:space:]')
+  local GH_REPO=$(gh repo view --json name --jq '.name' | tr -d '[:space:]')
+  local TEMPLATE=$(pbpaste)
+
+  TEMPLATE=${TEMPLATE//USERNAME/$GH_USERNAME}
+  TEMPLATE=${TEMPLATE//REPO/$GH_REPO}
+  echo $TEMPLATE | tr -ds '\n' ' '
+}
