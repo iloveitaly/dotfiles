@@ -1,11 +1,12 @@
 #!/usr/bin/env zsh
-
 # Description: exclude node_modules and other noisy directories from time machine
 
 if [[ $EUID -eq 0 ]]; then
   echo "This script should not be run as root" 1>&2
   exit 1
 fi
+
+# TODO make sure home is not the root user
 
 # clear out any existing exclusions:
 # sudo defaults write /Library/Preferences/com.apple.TimeMachine.plist SkipPaths -array
@@ -18,12 +19,13 @@ static_exclusions=(
   "$HOME/.asdf"
   "$HOME/.Trash"
   "$HOME/.cache"
+  "$HOME/.npm"
+  "$HOME/.pnpm-state"
   "$HOME/.vscode/extensions"
   "$HOME/.cursor/extensions"
   "$HOME/Library/Caches/mix"
   "$HOME/Library/Caches/Yarn"
   "$HOME/Library/Application Support/superwhisper"
-
 
   /Library/Developer
   /Users/assistant
