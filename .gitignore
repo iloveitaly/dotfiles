@@ -1,2 +1,5 @@
 .DS_Store
 .ipython_history
+
+# only for dotfiles repo
+/.extra

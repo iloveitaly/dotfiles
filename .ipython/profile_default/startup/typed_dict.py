@@ -1,19 +1,27 @@
 import os
-from IPython.core.magic import register_line_cell_magic
 import json
 import tempfile
 import subprocess
+from IPython.core.magic import register_line_cell_magic
 
 
 @register_line_cell_magic
 def generate_typeddict(line, cell=None):
     "A line-cell magic that generates TypedDict from a Python dictionary."
 
-    # Evaluate the cell content or the line content as Python code to get the dictionary
+    # Determine if debug mode is on based on the environment variable
+    debug_mode = os.getenv("IPYTHON_TYPEDDICT_DEBUG", "False").lower() in (
+        "true",
+        "1",
+        "t",
+    )
+
+    breakpoint()
+    # Evaluate the Python dictionary from the input
     dict_data = (
-        eval(cell.strip())
-        if cell is not None and cell.strip()
-        else eval(line.strip()) if line.strip() else None
+        eval(cell)
+        if cell is not None and isinstance(cell, str)
+        else eval(line) if line is not None and isinstance(line, str) else None
     )
 
     if dict_data is None or not isinstance(dict_data, dict):
@@ -21,34 +29,35 @@ def generate_typeddict(line, cell=None):
         return
 
     try:
-        # Create a temporary JSON file from the dictionary
+        # Serialize the dictionary to a temporary JSON file
         with tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=".json") as tmp:
             json.dump(dict_data, tmp)
             tmp_path = tmp.name
 
-        # Call datamodel-code-generator CLI to generate code
-        result = subprocess.run(
-            [
-                "datamodel-codegen",
-                "--input",
-                tmp_path,
-                "--input-file-type",
-                "json",
-                "--output",
-                "-",
-            ],
-            capture_output=True,
-            text=True,
-        )
+        # Prepare the command for datamodel-codegen
+        command = [
+            "datamodel-codegen",
+            "--input",
+            tmp_path,
+            "--input-file-type",
+            "json",
+            "--output",
+            "-",
+        ]
 
-        # Check for errors in subprocess execution
-        if result.returncode != 0:
+        if debug_mode:
+            print(f"Debug: Running command: {' '.join(command)}")
+
+        # Execute the command
+        result = subprocess.run(command, capture_output=True, text=True)
+
+        # Check for errors
+        if result.returncode != 0 or result.stderr:
             print("Error in code generation:")
-            print(result.stderr)
+            print(result.stderr.strip())
         else:
-            print("Generated TypedDict code:")
             # Output the generated code
-            print(result.stdout)
+            print(result.stdout.strip())
 
     except Exception as e:
         print(f"Error: {e}")
