@@ -22,8 +22,6 @@ brew update && brew upgrade
 brew bundle -v || (echo "Brewfile failed, exiting early" && exit 1)
 brew cleanup
 
-brew services start redis
-
 # shell
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 (cd ~/.config/ && curl -LO https://raw.githubusercontent.com/sindresorhus/iterm2-snazzy/master/Snazzy.itermcolors) && open ~/.config/Snazzy.itermcolors
@@ -39,18 +37,13 @@ curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | bash -
 # https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
 sudo dscl . -create $HOME UserShell /opt/homebrew/bin/zsh
 
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
-source ~/.asdf/asdf.sh
+curl https://mise.run | sh
 
-# install all plugins in tool-versions
-# by adding ~/.tool-versions this sets the default for the whole system
-cat ~/.tool-versions | cut -d' ' -f1 | grep "^[^\#]" | xargs -I{} asdf plugin add {}
+eval "$(mise activate zsh)"
+mise install -y
 
-# fail on subshell error when installing language versions
-set -e
-asdf install
-asdf reshim
-set +e
+curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+cargo binstall -y usage-cli
 
 # php / WordPress
 # https://github.com/asdf-community/asdf-php/blob/248e9c6e2a7824510788f05e8cee848a62200b65/bin/install#L22
@@ -78,52 +71,15 @@ memory_limit=1024M
 # xdebug.mode = debug
 # xdebug.start_with_request = yes
 # xdebug.client_port = 9000
-" > $(asdf where php)/conf.d/php.ini
+" >$(asdf where php)/conf.d/php.ini
 
 # node
 # remember to use `npx npkill` to remove unneeded `node_modules` folders
+# tried bun + pnpm, but they do not have as good support by mise, it's easier to use npm for tooling
 npm install -g npm
 npm install -g hostile
 npm install -g yarn
-
-# python
-# note: for each python version installed, you'll need to do this
-# for the breakpoint() magic to work properly
-pip install --upgrade pip
-pip install ipython ipdb pdbr ipython-autoimport rich docrepr colorama
-
-# mysql setup
-# brew services start mysql
-# make sure you run `mysql_secure_installation` and set password to root
-
-# ruby configuration
-gem install notes
-gem install bundle
-gem install method_log
-gem install bundler-patch
-gem install bundler-audit
-
-# irb / rails console additions
-gem install awesome_print
-gem install brice
-gem install added_methods
-gem install looksee
-gem install solargraph
-
-# parallel bundler job processing
-# https://gist.github.com/cbrunsdon/f9cfe01d7278e2bbc0d4
-bundle config --global jobs 4
-bundle config --global path vendor/bundle
-bundle config --global disable_shared_gems 1
-bundle config --global disable_local_branch_check true
-
-# enable touchid sudo
-# https://github.com/guillaumegete/touchid-sudo-enabler/blob/main/touchid-sudo-enabler.sh
-if [ ! -f /etc/pam.d/sudo_local ] || ! grep -q '^#.*pam_tid.so' /etc/pam.d/sudo_local; then
-  sudo cp /etc/pam.d/sudo_local.template /etc/pam.d/sudo_local.template_backup
-  sudo cp /etc/pam.d/sudo_local.template /etc/pam.d/sudo_local
-  sudo sed -i '' '/pam_tid.so/ s/^#//' /etc/pam.d/sudo_local
-fi
+npm install -g @sourcegraph/cody
 
 # let programs that don't properly source the shell know where gpg is
 # https://github.com/denolehov/obsidian-git/issues/21
@@ -135,7 +91,4 @@ gh alias set cs-create --shell 'gh cs create --repo $(gh repo view --json nameWi
 gh alias set repo-create --clobber --shell 'repo=$(basename $PWD) && gh repo create --public --source $PWD $repo && owner=$(gh repo view --json owner -q .owner.login) && gh api -X PUT repos/$owner/$repo/actions/permissions -F enabled=true'
 gh alias set repo-url --clobber --shell 'url=$(gh repo view --json url --jq ".url" | tr -d " \n"); echo -n "$url" | pbcopy && echo "$url"'
 gh alias set repo-events --clobber --shell 'gh api repos/$(gh repo view --json owner -q ".owner.login")/$(gh repo view --json name -q ".name")/events'
-gh alias set myprs --clobber --shell 'id=$(set -e; gh pr list -L100 --author $(git config github.user) $@ | fzf | cut -f1); [ -n "$id" ] && gh pr view "$id" --web && echo "$id"'
-
-# docker config
-yq -i '.psFormat = "table {{.ID}}\t{{.Image}}\t{{.Names}}"' ~/.docker/config.json
+gh alias set myprs --clobber --shell 'id=$(set -e; gh pr list --state=all -L100 --author $(git config github.user) $@ | fzf | cut -f1); [ -n "$id" ] && gh pr view "$id" --web && echo "$id"'

@@ -230,6 +230,16 @@ start_network_proxy() {
 # Docker Utilities
 ###########################
 
+set_docker_config() {
+  # set default `ps` format to be much shorter
+  touch ~/.docker/config.json
+  yq -i '.psFormat = "table {{.ID}}\t{{.Image}}\t{{.Names}}"' ~/.docker/config.json
+
+  # set default log size to be a reasonable, but not unbounded, size
+  touch ~/.docker/daemon.json
+  yq -i '.log-driver = "json-file" | .log-opts.max-size = "10m" | .log-opts.max-file = "3"' ~/.docker/daemon.json
+}
+
 # Usage: docker-shell container_name user
 #   - container name (can be partial) as first arg
 #   - [optional] user as second arg
@@ -255,7 +265,6 @@ docker-shell() {
 
   eval "docker exec -it $user_option $container_id bash"
 }
-
 
 # get files that would be included in a Dockerfile, with size in megabytes
 dockerignore-test() {
@@ -639,7 +648,7 @@ images_to_pdf() {
 
 # even with a massive drive, these LLM models + git history can take up a lot of space
 inspect-space() {
-  (cd / && sudo ncdu --exclude /Library/Developer --exclude /System/ --exclude /Applications --exclude "/Library/Application Support/ArqAgentAPFS.noindex" --confirm-quit)
+  (cd / && sudo ncdu --exclude '/Volumes/Backups of BiancoBook' --exclude /Library/Developer --exclude /System/ --exclude /Applications --exclude "/Library/Application Support/ArqAgentAPFS.noindex" --confirm-quit)
 }
 
 # find and replace across files in the current directory
