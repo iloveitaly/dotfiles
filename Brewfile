@@ -31,6 +31,10 @@ brew "sqlite"
 brew "md5sha1sum"
 brew "git-lfs"
 brew "vimcal"
+brew "caddy"
+brew "yazi"
+brew "fx" # json tui
+brew "setapp"
 
 # == Data manipulation
 brew "q" if OS.mac? # sql on csv
@@ -238,7 +242,6 @@ if OS.mac?
     cask "webpquicklook"
     cask "apparency"
     # TODO peek paid quicklook
-    # qlmanage -m
 
     # == Fonts
     cask "font-source-code-pro"
@@ -247,7 +250,6 @@ if OS.mac?
 
     # == MacOS-only Shell Tooling
     # some of these tools are strictly terminal related, but do not play well with linux/codespaces
-    brew "mysql"
     brew "wp-cli", args: ["ignore-dependencies"]
     brew "ffmpeg" # mainly for gif generation
     brew "gifsicle"
@@ -275,11 +277,6 @@ if OS.mac?
     brew "smudge/smudge/nightlight"
     brew "hyperfine"
     # homerow
-
-    # mongodb
-    tap "mongodb/brew"
-    brew "mongodb-community"
-    cask "mongodb-compass"
 
     # == Mac App store
 
