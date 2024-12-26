@@ -3,3 +3,4 @@
 
 # only for dotfiles repo
 /.extra
+/.ssh/config_extra
