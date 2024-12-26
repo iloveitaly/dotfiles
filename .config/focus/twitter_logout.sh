@@ -2,19 +2,19 @@
 
 # TODO should write up a blog post about this one
 twitter_logout() {
-  echo "Logging out of twitter..."
+  echo "Logging out of X..."
 
-  # pause hyper-focus blocking so we can logout of twitter
+  # pause hyper-focus blocking so we can logout of X
   http --ignore-stdin POST http://localhost:9029/pause until=$(date -v+1M +%s)
 
-  hostile remove x.com
-  hostile remove www.x.com
+  $(mise which hostile) remove x.com
+  $(mise which hostile) remove www.x.com
 
   flush-dns
 
   osascript <<EOF
   tell application "Safari"
-    log "Opening Twitter"
+    log "Opening X"
     activate
     open location "https://x.com/logout"
   end tell
@@ -27,10 +27,8 @@ twitter_logout() {
       delay 1
     end tell
   end tell
-
-  tell application "Safari"
-    log "Closing twitter page"
-    close current tab of front window
-  end tell
 EOF
+
+  # separate script even if the first one fails
+  osascript -e 'tell application "Safari" to if (URL of current tab of front window contains "x.com") then close current tab of front window'
 }

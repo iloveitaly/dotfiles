@@ -1,11 +1,21 @@
 #!/usr/bin/env zsh
 
+# test with `❯ sudo env -i .config/focus/initial_wake.sh`
+
 # assume the script is executed without common environment variables
 # additionally, since it's not executed in login mode, ~/.zshrc is not loaded
 export USER=mike
 export HOME=/Users/$USER
 
-source ~/.asdf/asdf.sh
+# add `mise` bin to path
+export PATH="$HOME/.local/bin:/sbin:/usr/sbin:/opt/homebrew/bin:$PATH"
+
+# for macos-logout, and other functions
+source ~/.functions
+
+# for api keys
+source ~/.extra
+
 source ~/.config/focus/functions.sh
 source ~/.config/focus/twitter_logout.sh
 
@@ -30,7 +40,7 @@ if [ $(date +%u) -eq 7 ]; then
   # sleep 1800
 
   echo "It's sunday, closing additional apps..."
-  work_apps=(TablePlus "Visual Studio Code" Postico Kaleidoscope Zui)
+  work_apps=(TablePlus "Visual Studio Code" Zui)
 
   # can we cause pause arq as well?
 
@@ -38,18 +48,14 @@ if [ $(date +%u) -eq 7 ]; then
   throttle-internet
 fi
 
-# distractions :/
-killall wine64-preloader
-rm -rf "~/Applications/Age of Empires 2 Definitive Ed.app"
-
 apps=(
   $work_apps
-  Slack Mattermost GitHub Rewind
+  Slack GitHub
   Dropbox "Dropbox Capture" "Google Drive" Numbers Stocks
-  Discord ChatGPT Buffer Signal Telegram
+  Discord Buffer Signal Telegram
   Podcasts "Amazon Music" Spotify
-  Dictionary Notes Preview Flow Streaks "QuickTime Player" Contacts
-  zoom.us ReadKit Readwise Reader Texts Gmail "System Settings" Music Superhuman
+  Dictionary Notes Preview "QuickTime Player" Contacts
+  zoom.us Reader Texts Gmail "System Settings" Music Superhuman
   "Google Software Update" "Google Chrome Canary" "Firefox"
   "Activity Monitor" "System Preferences" "App Store" "Disk Utility" "System Information" Console "Find My"
 )
@@ -88,14 +94,13 @@ EOT
 
 # cleanup browser tabs
 echo "Cleaning browser tabs..."
-cd ~/Projects/productivity/clean-workspace
-# sudo must come before direnv
-sudo direnv exec . poetry run clean-workspace --tab-description "$dialogResult"
+$(mise which clean-workspace) --tab-description "$dialogResult"
 
 # TODO the script below is not properly running as root
 
 # must run as non-root user!
-su - mike -c "~/.time-machine-includes.sh"
+# su - mike -c "~/.time-machine-includes.sh"
 
 # aliases for this are not properly sourced
+echo "Quitting other users..."
 macos-logout assistant
