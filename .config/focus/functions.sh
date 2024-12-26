@@ -4,8 +4,8 @@
 # based on: https://github.com/sitespeedio/throttle
 
 throttle-internet() {
-	local DOWNLOAD_LIMIT="5000Kbit/s"
-	local UPLOAD_LIMIT="200Kbit/s"
+	local DOWNLOAD_LIMIT="20Mbit/s"
+	local UPLOAD_LIMIT="10Mbit/s"
 
 	# Configure pipe for incoming traffic (download)
 	(sudo dnctl pipe 1 config bw $DOWNLOAD_LIMIT && echo "Download pipe configured") || echo "Failed to configure download pipe"

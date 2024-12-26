@@ -12,22 +12,25 @@ source ~/.config/focus/twitter_logout.sh
 unthrottle-internet
 
 # do we have internet access?
-if ! ping -c 1 google.com &> /dev/null; then
+if ! ping -c 1 google.com &>/dev/null; then
   echo "No internet access, waiting for 1 minute"
   sleep 120
 fi
 
 # if we don't have internet after this, some of the operations will will fail, which is completely fine
 
-# close work related apps on sunday
 work_apps=()
+
+# close work related apps on sunday
 if [ $(date +%u) -eq 7 ]; then
-  echo "It's sunday, closing additional apps"
-  work_apps=(TablePlus "Visual Studio Code" Postico Kaleidoscope Zui)
+  # TODO maybe turn on DND too? via raycast status?
 
   # wait for 5 minutes to download some stuff, give the user time to clean up, etc
   osascript -e 'display notification "Sunday Cleanup! 30m Until Shutdown" with title "Focus"'
-  sleep 1800
+  # sleep 1800
+
+  echo "It's sunday, closing additional apps..."
+  work_apps=(TablePlus "Visual Studio Code" Postico Kaleidoscope Zui)
 
   # can we cause pause arq as well?
 
@@ -35,8 +38,9 @@ if [ $(date +%u) -eq 7 ]; then
   throttle-internet
 fi
 
-# make sure it's up so it can be controlled remotely
-open /Applications/linked-helper.app
+# distractions :/
+killall wine64-preloader
+rm -rf "~/Applications/Age of Empires 2 Definitive Ed.app"
 
 apps=(
   $work_apps
@@ -76,7 +80,7 @@ twitter_logout
 
 # prompt user for context on what's left in the browser tabs
 dialogResult=$(
-osascript <<EOT
+  osascript <<EOT
 set dialogResult to display dialog "What were you working on yesterday?" buttons {"OK"} default button "OK" giving up after 300 default answer ""
 return text returned of dialogResult
 EOT
@@ -87,3 +91,11 @@ echo "Cleaning browser tabs..."
 cd ~/Projects/productivity/clean-workspace
 # sudo must come before direnv
 sudo direnv exec . poetry run clean-workspace --tab-description "$dialogResult"
+
+# TODO the script below is not properly running as root
+
+# must run as non-root user!
+su - mike -c "~/.time-machine-includes.sh"
+
+# aliases for this are not properly sourced
+macos-logout assistant

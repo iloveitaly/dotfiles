@@ -7,16 +7,16 @@ twitter_logout() {
   # pause hyper-focus blocking so we can logout of twitter
   http --ignore-stdin POST http://localhost:9029/pause until=$(date -v+1M +%s)
 
-  hostile remove twitter.com
-  hostile remove www.twitter.com
+  hostile remove x.com
+  hostile remove www.x.com
 
   flush-dns
 
-  osascript << EOF
+  osascript <<EOF
   tell application "Safari"
     log "Opening Twitter"
     activate
-    open location "https://twitter.com/logout"
+    open location "https://x.com/logout"
   end tell
 
   tell application "System Events"

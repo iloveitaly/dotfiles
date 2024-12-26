@@ -42,7 +42,13 @@
         "https://www.linkedin.com/feed/"
       ],
       // TODO try allowing email + texts
-      "block_apps": ["Discord", "Spotify", "Podcasts", "Readwise"]
+      "block_apps": [
+        "Discord",
+        "Spotify",
+        "Podcasts",
+        "Readwise",
+        "wine64-preloader"
+      ]
     },
     // {
     //   "name": "daily comms",
@@ -127,11 +133,11 @@
       "allow_urls": ["https://google.com/"],
       "allow_apps": [
         "Superhuman",
-        "Cron",
+        "Notion Calendar",
         "Texts",
         "Messages",
-        "Readwise",
-        "iTerm"
+        "iTerm",
+        "Reader"
       ]
     },
     {
@@ -181,7 +187,7 @@
 
         "web.getmatter.com"
       ],
-      "block_apps": ["Discord", "Podcasts", "ReadKit"],
+      "block_apps": ["Discord", "Reader"],
       "block_urls": [
         "https://www.google.com/search?q=world+news",
         "https://www.google.com/search?q=economic+news",
@@ -199,8 +205,6 @@
       "name": "Research",
       "description": "Reading blogs, listening to podcasts, etc.",
       "block_hosts": [
-        "twitter.com",
-        "x.com",
         "mail.google.com",
 
         "airbnb.com",
