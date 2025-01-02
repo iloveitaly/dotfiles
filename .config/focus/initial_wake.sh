@@ -51,7 +51,7 @@ fi
 apps=(
   $work_apps
   Slack GitHub
-  Dropbox "Dropbox Capture" "Google Drive" Numbers Stocks
+  Dropbox "Dropbox Capture" "Google Drive" Numbers Stocks SoundPaste
   Discord Buffer Signal Telegram
   Podcasts "Amazon Music" Spotify
   Dictionary Notes Preview "QuickTime Player" Contacts
@@ -104,3 +104,9 @@ $(mise which clean-workspace) --tab-description "$dialogResult"
 # aliases for this are not properly sourced
 echo "Quitting other users..."
 macos-logout assistant
+
+# it seems to get junked up after a while
+echo "Restarting Raycast..."
+quit_app "Raycast"
+while pgrep -q "Raycast"; do sleep 0.1; done
+open -a "Raycast"
