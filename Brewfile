@@ -35,6 +35,8 @@ brew "caddy"
 brew "yazi"
 brew "fx" # json tui
 brew "setapp"
+brew "gitx" # visual git tool, kaleidoscope alternative
+brew "kdiff3"
 
 # == Data manipulation
 brew "q" if OS.mac? # sql on csv
