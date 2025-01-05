@@ -5,28 +5,32 @@
 set linenumbers
 set autoindent
 set numbercolor yellow,normal
-set afterends       # `Ctrl+Right` move to word ends instead of word starts
-set historylog      # remember search history
-set wordchars "_"   # recognize '_' as part of a word
+set afterends     # `Ctrl+Right` move to word ends instead of word starts
+set historylog    # remember search history
+set wordchars "_" # recognize '_' as part of a word
+set constantshow  # show line and column information at the bottom
 
-bind M-1  help          all  # fix ^G been used
+bind M-1 help all # fix ^G been used
 
 # less-style page navigation bindings
-bind ^G   firstline     all
-bind M-G  lastline      all
+bind ^G firstline all
+bind M-G lastline all
 
 # ^u & ^d to page up and down, like less
-bind ^U   pageup      all
-bind ^D   pagedown    all
+bind ^U pageup all
+bind ^D pagedown all
 
 # https://www.nano-editor.org/dist/latest/nanorc.5.html
 bind ^w chopwordleft main
+
+# ^K like ZLE and VS Code
+bind ^K cut main
 
 # rebind search
 bind ^F whereis main
 
 # add/remove comment shortcut
-bind M-/  comment main
+bind M-/ comment main
 
 # opt left/right word jump mapping
 bind M-B prevword main
