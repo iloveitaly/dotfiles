@@ -1,6 +1,7 @@
 .git/
 install/
 osx.sh
+Justfile
 Brewfile
 Brewfile.lock.json
 brew.sh

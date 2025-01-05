@@ -1,3 +1,10 @@
+- [ ] https://github.com/rayking99/cqd
+- [ ] merge tooling: gitx, https://apps.apple.com/us/app/comparemerge2/id1459748650?mt=12, https://naarakstudio.com/direqual/, vs code https://marketplace.visualstudio.com/items?itemName=moshfeu.compare-folders, file merge, ksdiff3, gitx
+  - [ ] good list https://www.reddit.com/r/macapps/comments/12yp1bw/best_visual_diff_and_merge_tool_on_macos/
+- [ ] https://github.com/ghostty-org/ghostty/issues/1935 can't use ghosty until this is done
+- [ ] https://pgtune.leopard.in.ua
+- [ ] `git fuzzy log` for pickax + commit contents search
+- [ ] opentofu zsh completion, -install-autocomplete mutates the zshrc which i don't want
 - [ ] https://www.localcan.com/#pricing
 - [ ] https://github.com/matryer/xbar-plugins and https://swiftbar.app
   - [ ] https://github.com/paulononaka/bitactions
@@ -5,10 +12,8 @@
 - [ ] zoxide completion does not work https://github.com/ajeetdsouza/zoxide/issues/471
   - [ ] https://github.com/ajeetdsouza/zoxide/discussions/897
 - [ ] https://github.com/artginzburg/sudo-touchid/issues fix touchid
-- [ ] https://starship.rs/config/
 - [ ] https://programmabletooltip.com
 - [ ] https://github.com/clarketm/zsh-completions/issues/7
-- [ ] logfile navigator https://lnav.org
 - [ ] https://plocate.sesse.net maybe use locate with fdd?
 - [ ] greppable json https://github.com/tomnomnom/gron
 - [ ] https://github.com/bcicen/ctop
@@ -144,7 +149,8 @@
 - [ ] only allow one vs code editor group to open up a given file
 - [ ] gpg-suite didn't work as well as pinentry for me, not sure if I was doing something wrong
 
-#### TMUX
+#### Tmux
+
 - [ ] select contents in quotes
 
 #### Better Terminals
