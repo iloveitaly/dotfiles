@@ -6,7 +6,7 @@ set script-interpreter := ["zsh", "-euBh", "-o", "pipefail"]
 set unstable := true
 
 upgrade:
-	brew upgrade fzf atuin nixpacks awscli git rg fd gh zsh
+	brew upgrade fzf atuin nixpacks awscli git rg fd gh zsh nano
 	gh extension upgrade --all
 	
 	# TODO can't figure out why this is not working

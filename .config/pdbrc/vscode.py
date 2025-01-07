@@ -1,5 +1,7 @@
-# vscode.py
-import sys
+"""
+https://stackoverflow.com/questions/77515931/python-debugger-pdb-open-currently-active-python-file-in-editor
+"""
+
 import os
 
 
