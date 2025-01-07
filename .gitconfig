@@ -45,6 +45,9 @@
   logv = log --pretty=fuller
   undo-commit = reset --soft HEAD^
 
+  # full dump of last commit message
+  last-message = log -1 --pretty=format:%B
+
   # TODO https://github.com/so-fancy/diff-so-fancy/issues/473
   addp = -c 'interactive.diffFilter=less' add -p
 
