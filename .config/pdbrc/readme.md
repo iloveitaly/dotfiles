@@ -1,0 +1,1 @@
+This file is not `pdbr-c` but `pdb-rc`, it's a custom directory to store py scripts to be loaded by the standard `pdb` debugger.

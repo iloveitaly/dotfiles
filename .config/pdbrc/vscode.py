@@ -1,4 +1,6 @@
 """
+Open the current location in the stack in vscode
+
 https://stackoverflow.com/questions/77515931/python-debugger-pdb-open-currently-active-python-file-in-editor
 """
 
@@ -18,4 +20,5 @@ def vscode():
     frame = (
         inspect.currentframe().f_back
     )  # Go back one frame to where the function was called
+    
     open_in_vscode_from_frame(frame)

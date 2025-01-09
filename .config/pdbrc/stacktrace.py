@@ -1,4 +1,7 @@
-# stacktrace.py
+"""
+The default stack trace formatting drives me nuts. Let's create a nice stack trace format.
+"""
+
 import inspect
 
 

@@ -1,7 +1,8 @@
-alias ksdiff import importlib.util; __ksdiff_spec = importlib.util.spec_from_file_location("ksdiff", "/Users/mike/Library/Application Support/Kaleidoscope/pdb_ksdiff.py"); __ksdiff = importlib.util.module_from_spec(__ksdiff_spec); __ksdiff_spec.loader.exec_module(__ksdiff); __ksdiff.ksdiff(%*)
+# TODO I should simplify the loading structure here so it's an easy 'alias print_stack do_the_thing('print')
+
 # alias print_stack !import inspect; current_frame = $_frame; exec('for i, frame in enumerate(reversed(inspect.getouterframes(current_frame))): print(f"{"=> " if frame.frame is current_frame else "   "}#{i} {frame.frame.f_code.co_filename}:{frame.frame.f_lineno} in {frame.frame.f_code.co_name}")')
 alias vscode import os, importlib.util; __vscode_spec = importlib.util.spec_from_file_location("vscode", os.path.expanduser("~/.config/pdbrc/vscode.py")); __vscode = importlib.util.module_from_spec(__vscode_spec); __vscode_spec.loader.exec_module(__vscode); __vscode.open_in_vscode_from_frame($_frame)
 alias print_stack import importlib.util; __stacktrace_spec = importlib.util.spec_from_file_location("stacktrace", "/Users/mike/.config/pdbrc/stacktrace.py"); __stacktrace = importlib.util.module_from_spec(__stacktrace_spec); __stacktrace_spec.loader.exec_module(__stacktrace); __stacktrace.print_stack()
 
 # !!import funcy_pipe as fp
- !import funcy_pipe as fp
+# !import funcy_pipe as fp
