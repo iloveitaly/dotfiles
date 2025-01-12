@@ -1,0 +1,6 @@
+customCommands:
+  - key: "<c-s>"
+    description: "Stash a specific file"
+    context: "files"
+    command: "git stash push {{.SelectedFile.Name}}"
+    loadingText: "Stashing the selected file..."
