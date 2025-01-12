@@ -14,8 +14,8 @@ while [[ $counter -lt 20 ]]; do
   session="${session_uid}-${counter}"
 
   # if the session doesn't exist, create it
-  if ! tmux has-session -t "$session" 2>/dev/null; then
-    tmux new -ADs "$session"
+  if ! /opt/homebrew/bin/tmux has-session -t "$session" 2>/dev/null; then
+    /opt/homebrew/bin/tmux new -ADs "$session"
     break
   fi
 
