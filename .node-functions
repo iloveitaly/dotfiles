@@ -85,6 +85,7 @@ npm-reset() {
   fi
 }
 
+# remove all node_modules folders from a heirarchy
 npm-remove-node-modules() {
   fd -td node_modules
 }
