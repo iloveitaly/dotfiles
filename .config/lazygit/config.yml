@@ -1,5 +1,10 @@
+# Enter puts you into staging hunk mode: https://github.com/jesseduffield/lazygit/pull/338
+
+gui:
+  showFileTree: false
+  
 customCommands:
-  - key: "<c-s>"
+  - key: "<c-u>"
     description: "Stash a specific file"
     context: "files"
     command: "git stash push {{.SelectedFile.Name}}"
