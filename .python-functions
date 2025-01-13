@@ -1,6 +1,6 @@
 alias py-paths="python -c 'import sys; print(sys.path)'"
 
-PYTHON_DEBUGGING_PACKAGES="ipython git+https://github.com/iloveitaly/ipdb@support-executables \"pdbr[ipython]\" rich git+https://github.com/anntzer/ipython-autoimport.git IPythonClipboard ipython_ctrlr_fzf docrepr pyfzf jedi pretty-traceback pre-commit sqlparse debugpy ipython-suggestions git+https://github.com/iloveitaly/rpdb.git@multiple-continue datamodel-code-generator funcy-pipe colorama pudb pipdeptree"
+PYTHON_DEBUGGING_PACKAGES="ipython pudb debugpy git+https://github.com/iloveitaly/ipdb@support-executables \"pdbr[ipython]\" rich git+https://github.com/anntzer/ipython-autoimport.git IPythonClipboard ipython_ctrlr_fzf docrepr pyfzf jedi pretty-traceback pre-commit sqlparse ipython-suggestions rpdb datamodel-code-generator funcy-pipe colorama pipdeptree"
 
 # # TODO https://github.com/anntzer/ipython-autoimport/issues/11
 function py-debugging-install() {
