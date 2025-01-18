@@ -5,6 +5,9 @@ export EDITOR=nano
 # by default, they'll store config in '~/Library/Application Support' instead
 export XDG_CONFIG_HOME="$HOME/.config"
 
+# https://github.com/iloveitaly/uv-development-toggle
+export PYTHON_DEVELOPMENT_TOGGLE="$HOME/Projects/python"
+
 # mise will manage our py versions
 export UV_PYTHON_DOWNLOADS=never
 
