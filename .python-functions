@@ -1,6 +1,7 @@
+# what are the system paths?
 alias py-paths="python -c 'import sys; print(sys.path)'"
 
-PYTHON_DEBUGGING_PACKAGES="ipython pudb debugpy git+https://github.com/iloveitaly/ipdb@support-executables \"pdbr[ipython]\" rich git+https://github.com/anntzer/ipython-autoimport.git IPythonClipboard ipython_ctrlr_fzf docrepr pyfzf jedi pretty-traceback pre-commit sqlparse ipython-suggestions rpdb datamodel-code-generator funcy-pipe colorama pipdeptree"
+PYTHON_DEBUGGING_PACKAGES="ipython pudb debugpy git+https://github.com/iloveitaly/ipdb@support-executables pdbr[ipython] rich git+https://github.com/anntzer/ipython-autoimport.git IPythonClipboard ipython_ctrlr_fzf docrepr pyfzf jedi pretty-traceback pre-commit sqlparse ipython-suggestions rpdb datamodel-code-generator funcy-pipe colorama pipdeptree"
 
 # # TODO https://github.com/anntzer/ipython-autoimport/issues/11
 function py-debugging-install() {
@@ -22,10 +23,19 @@ function py-debugging-install() {
 }
 
 function ipy() {
-  if [ -f "uv.lock" ]; then
-    uv tool run $(echo "$PYTHON_DEBUGGING_PACKAGES" | sed 's/[^ ][^ ]*/--with &/g') ipython
+  if [ -f "playground.py" ]; then
+    if [ -f "uv.lock" ]; then
+      uv tool run $(echo "$PYTHON_DEBUGGING_PACKAGES" | sed 's/[^ ][^ ]*/--with &/g') ipython -i playground.py
+    else
+      python playground.py
+    fi
   else
-    ipython
+    if [ -f "uv.lock" ]; then
+      uv tool run $(echo "$PYTHON_DEBUGGING_PACKAGES" | sed 's/[^ ][^ ]*/--with &/g') ipython
+    else
+      pip install --upgrade ${=PYTHON_DEBUGGING_PACKAGES}
+      ipython
+    fi
   fi
 }
 

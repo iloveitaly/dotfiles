@@ -93,7 +93,6 @@ alias d-ps-network='docker ps --format "{{.ID}} {{.Names}} {{.Networks}} {{.Port
 # python
 # TODO maybe fail if not in a venv
 alias ipdb="ipdb3"
-alias play="./playground.py"
 alias po="poetry"
 alias py=python
 alias pyt=pytest
