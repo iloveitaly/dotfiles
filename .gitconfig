@@ -83,6 +83,9 @@
   # http://stackoverflow.com/questions/2514172/listing-each-branch-and-its-last-revisions-date-in-git
   branchdate = !git for-each-ref --sort='-authordate' --format='%(refname)%09%(authordate)' refs/heads | sed -e 's-refs/heads/--' | less
 
+  # generate a diff from a commit, useful for copy/apply into another related repo
+  diff-from-commit = "!dc() { git diff --ignore-space-change $1^...$1;}; dc"
+
   # quickly copy current branch name, useful for updating package definitions to a locally modified copy
   branch-copy = !git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy
 
