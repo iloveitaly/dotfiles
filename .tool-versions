@@ -1,5 +1,5 @@
 nodejs 22.6.0
-bun 1.1.33
+bun 1.1.43
 erlang 26.0.2
 elixir 1.15.5-otp-26
 python 3.12.7
@@ -9,5 +9,5 @@ direnv 2.35.0
 rust 1.82.0
 pnpm 9.12.3
 golang 1.23.1
-just 1.36.0
-uv 0.5.3
+just 1.38.0
+uv 0.5.22
