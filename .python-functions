@@ -25,9 +25,10 @@ function py-debugging-install() {
 function ipy() {
   if [ -f "playground.py" ]; then
     if [ -f "uv.lock" ]; then
-      uv tool run $(echo "$PYTHON_DEBUGGING_PACKAGES" | sed 's/[^ ][^ ]*/--with &/g') ipython -i playground.py
+      uv run $(echo "$PYTHON_DEBUGGING_PACKAGES" | sed 's/[^ ][^ ]*/--with &/g') ipython -i playground.py
     else
-      python playground.py
+      chmod +x playground.py
+      ./playground.py
     fi
   else
     if [ -f "uv.lock" ]; then
