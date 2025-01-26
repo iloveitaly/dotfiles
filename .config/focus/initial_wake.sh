@@ -37,7 +37,10 @@ if [ $(date +%u) -eq 7 ]; then
 
   # wait for 5 minutes to download some stuff, give the user time to clean up, etc
   osascript -e 'display notification "Sunday Cleanup! 30m Until Shutdown" with title "Focus"'
-  # sleep 1800
+
+  # the most we can wait is 10m
+  # https://github.com/iloveitaly/hyper-focus/blob/0d23d022a3bd2fe914c38ff859275d845dd71d52/Sources/hyper-focus/taskrunner.swift#L13
+  sleep 540
 
   echo "It's sunday, closing additional apps..."
   work_apps=(TablePlus "Visual Studio Code" Zui)
