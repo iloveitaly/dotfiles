@@ -24,15 +24,15 @@ set_docker_config() {
 # from within a container, scan to see what it has access to
 docker-container-scan() {
   # 1. Identify your container's network and subnet:
-ip addr show
+  ip addr show
 
-# 2. Scan for active IPs:
-nmap -sn 172.17.0.0/16 -oG scan.txt
+  # 2. Scan for active IPs:
+  nmap -sn 172.17.0.0/16 -oG scan.txt
 
-# 3. For each detected IP, do a reverse lookup:
-for ip in $(awk '/Up$/{print $2}' scan.txt); do
-  dig -x $ip +short
-done
+  # 3. For each detected IP, do a reverse lookup:
+  for ip in $(awk '/Up$/{print $2}' scan.txt); do
+    dig -x $ip +short
+  done
 }
 
 # Usage: docker-shell container_name user
@@ -41,31 +41,78 @@ done
 #
 # Description: shell inside of existing container
 docker-shell() {
-  local container_ids=($(docker ps -aqf "name=$1"))
-  local user_option=""
+  local container_list=""
 
-  if [ ${#container_ids[@]} -gt 1 ]; then
-    echo "Error: Multiple containers match the name '$1'."
-    return 1
-  elif [ ${#container_ids[@]} -eq 0 ]; then
-    echo "Error: No containers found matching the name '$1'."
+  # Read contexts and build a list of lines with headers
+  while IFS= read -r context; do
+    # Retrieve container info for this context
+    local containers
+    containers=$(docker --context "$context" ps --format '{{.ID}} {{.Names}}')
+    if [ -n "$containers" ]; then
+      container_list+=$'\n'"[${context}]"$'\n'
+      while IFS= read -r line; do
+        # line: "ID NAME"
+        local container_id
+        container_id="$(awk '{print $1}' <<<"$line")"
+        local container_name
+        container_name="$(awk '{print $2}' <<<"$line")"
+        container_list+="${context} ${container_id} ${container_name}"$'\n'
+      done <<<"$containers"
+    fi
+  done < <(docker context ls --format '{{.Name}}')
+
+  # If no containers found (empty container_list), exit
+  if [ -z "$container_list" ]; then
+    echo "No running containers across any contexts."
     return 1
   fi
 
-  local container_id=${container_ids[0]}
+  # FZF transformer logic
+  local transformer
+  transformer='
+    if [[ $FZF_NTH = $FZF_CLICK_HEADER_NTH ]]; then
+      echo "change-nth()+change-prompt(> )"
+    else
+      echo "change-nth($FZF_CLICK_HEADER_NTH)+change-prompt($FZF_CLICK_HEADER_WORD> )"
+    fi
+  '
 
-  if [ -n "${2-}" ]; then
-    user_option="-u $2"
+  # Present the list in fzf with context cycling
+  local selected
+  selected=$(printf "%s" "$container_list" | fzf --height 40% \
+    --header-lines=1 \
+    --no-preview \
+    --bind "click-header:transform:$transformer" \
+    --color fg:dim,nth:regular \
+    --prompt="Select Docker container: ")
+
+  # If nothing selected, exit
+  if [ -z "$selected" ]; then
+    echo "No container selected."
+    return 1
   fi
 
-  eval "docker exec -it $user_option $container_id bash"
+  # Parse the selection
+  local selected_context
+  selected_context=$(awk '{print $1}' <<<"$selected")
+  local selected_container_id
+  selected_container_id=$(awk '{print $2}' <<<"$selected")
+
+  # Check if a header was clicked
+  if [[ $selected_context =~ ^\[.*\]$ ]]; then
+    echo "You clicked a header (${selected_context}). Restart the selection process to choose a container."
+    return 1
+  fi
+
+  # Run docker exec on the chosen context + container
+  docker --context "$selected_context" exec -it "$selected_container_id" bash -l
 }
 
 # get files that would be included in a Dockerfile, with size in megabytes
 dockerignore-test() {
-  rsync --dry-run -av --exclude-from='.dockerignore' --out-format="%l %n" ./ /tmp/ | \
-    awk '{size_mb = $1 / (1024 * 1024); printf "%.2f MB %s\n", size_mb, $2}' | \
-    sort -k1,1nr -k2,2 | \
+  rsync --dry-run -av --exclude-from='.dockerignore' --out-format="%l %n" ./ /tmp/ |
+    awk '{size_mb = $1 / (1024 * 1024); printf "%.2f MB %s\n", size_mb, $2}' |
+    sort -k1,1nr -k2,2 |
     less
 }
 
