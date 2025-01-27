@@ -94,10 +94,8 @@ alias d-ps-network='docker ps --format "{{.ID}} {{.Names}} {{.Networks}} {{.Port
 # TODO maybe fail if not in a venv
 alias ipdb="ipdb3"
 alias po="poetry"
-alias py=python
 alias pyt=pytest
 alias pytd="pytest --pdb -s"
-alias po-pristine="poetry env remove --all -n && poetry install && (poetry shell && py-debugging-install)"
 # g add poetry.lock && g checkout --theirs poetry.lock && po lock && git add poetry.lock && git rebase --continue
 alias po-tree="poetry show --tree"
 alias pipu="pip uninstall -y"

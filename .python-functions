@@ -40,6 +40,25 @@ function ipy() {
   fi
 }
 
+# run python, inside of uv if it exists
+function py() {
+  if  [ -f "uv.lock" ]; then
+    uv run python "$@"
+  else
+    python "$@"
+  fi
+}
+
+function venv-pristine() {
+  if  [ -f "uv.lock" ]; then
+    rm -rf .venv
+    uv sync
+  else
+    poetry env remove --all -n && poetry install && (poetry shell && py-debugging-install)
+  fi
+}
+
+# what does this do?
 # pbpaste | python3 -c 'import sys, re; print(re.sub(r"^[\"]|[\"]$", "", sys.stdin.read().replace("\\n", "\n")).strip())'
 
 # find the location of a pip package
