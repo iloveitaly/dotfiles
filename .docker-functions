@@ -1,0 +1,79 @@
+###########################
+# Docker Utilities
+###########################
+
+set_docker_config() {
+  mkdir ~/.docker
+
+  # set default `ps` format to be much shorter
+  touch ~/.docker/config.json
+
+  # the default ps format is way too large. Shorten it up and then
+  yq -i '.psFormat = "table {{.ID}}\t{{.Image}}\t{{.Names}}"' ~/.docker/config.json
+
+  # set default log size to be a reasonable, but not unbounded, size
+  touch ~/.docker/daemon.json
+  yq -i '.log-driver = "json-file" | .log-opts.max-size = "10m" | .log-opts.max-file = "3"' ~/.docker/daemon.json
+
+  # https://docs.orbstack.dev/features/debug
+  # `docker context ls` to get a list of contexts
+  # TODO maybe only do this on macos environment?
+  docker context create biancobox --docker host=ssh://biancobox@biancobox.lan
+}
+
+# from within a container, scan to see what it has access to
+docker-container-scan() {
+  # 1. Identify your container's network and subnet:
+ip addr show
+
+# 2. Scan for active IPs:
+nmap -sn 172.17.0.0/16 -oG scan.txt
+
+# 3. For each detected IP, do a reverse lookup:
+for ip in $(awk '/Up$/{print $2}' scan.txt); do
+  dig -x $ip +short
+done
+}
+
+# Usage: docker-shell container_name user
+#   - container name (can be partial) as first arg
+#   - [optional] user as second arg
+#
+# Description: shell inside of existing container
+docker-shell() {
+  local container_ids=($(docker ps -aqf "name=$1"))
+  local user_option=""
+
+  if [ ${#container_ids[@]} -gt 1 ]; then
+    echo "Error: Multiple containers match the name '$1'."
+    return 1
+  elif [ ${#container_ids[@]} -eq 0 ]; then
+    echo "Error: No containers found matching the name '$1'."
+    return 1
+  fi
+
+  local container_id=${container_ids[0]}
+
+  if [ -n "${2-}" ]; then
+    user_option="-u $2"
+  fi
+
+  eval "docker exec -it $user_option $container_id bash"
+}
+
+# get files that would be included in a Dockerfile, with size in megabytes
+dockerignore-test() {
+  rsync --dry-run -av --exclude-from='.dockerignore' --out-format="%l %n" ./ /tmp/ | \
+    awk '{size_mb = $1 / (1024 * 1024); printf "%.2f MB %s\n", size_mb, $2}' | \
+    sort -k1,1nr -k2,2 | \
+    less
+}
+
+# TODO docker-new-bash, run instead of exec
+
+# add key to remove server
+# ssh-add-key <server>
+ssh-add-key() {
+  ssh-copy-id -i ~/.ssh/id_rsa.pub $1
+  ssh $1
+}
