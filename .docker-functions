@@ -38,12 +38,13 @@ docker-container-scan() {
   done
 }
 
-# Usage: docker-shell container_name user
-#   - container name (can be partial) as first arg
-#   - [optional] user as second arg
-#
-# Description: shell inside of existing container
-docker-shell() {
+# Usage: docker-push-image <image> <host>
+docker-push-image() {
+  docker save $1 | ssh -C $2 docker load
+}
+
+# docker shell: open up an interactive shell in a container, across all of your docker contexts
+dsh() {
   # Turn off any shell debugging/tracing (uncomment if still seeing debug output)
   # set +x
   # unsetopt xtrace
@@ -81,7 +82,9 @@ docker-shell() {
       --height=40% \
       --layout=reverse \
       --no-preview \
-      --prompt="Select Docker container: "
+      --prompt="Select Docker container: " \
+      --bind="ctrl-o:abort+execute(orb debug -c {1} {2})" \
+      --bind="ctrl-l:abort+execute(docker --context {1} logs -f {2})"
   )"
 
   # 5) If user cancels or no result, exit
@@ -94,6 +97,10 @@ docker-shell() {
   local chosen_context chosen_id
   chosen_context="$(awk '{print $1}' <<<"$selected")"
   chosen_id="$(awk '{print $2}' <<<"$selected")"
+
+  echo "Chosen context: $chosen_context"
+  echo "Chosen container ID: $chosen_id"
+  echo "--------------------------------\n\n"
 
   # 7) Exec bash shell in the chosen container
   docker --context "$chosen_context" exec -it "$chosen_id" bash -l
