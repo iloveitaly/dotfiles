@@ -18,7 +18,10 @@ set_docker_config() {
   # https://docs.orbstack.dev/features/debug
   # `docker context ls` to get a list of contexts
   # TODO maybe only do this on macos environment?
-  docker context create biancobox --docker host=ssh://biancobox@biancobox.lan
+
+  for host in $DOCKER_HOSTS; do
+    docker context create $host --docker host=ssh://$host@$host.lan
+  done
 }
 
 # from within a container, scan to see what it has access to
@@ -41,71 +44,59 @@ docker-container-scan() {
 #
 # Description: shell inside of existing container
 docker-shell() {
-  local container_list=""
+  # Turn off any shell debugging/tracing (uncomment if still seeing debug output)
+  # set +x
+  # unsetopt xtrace
 
-  # Read contexts and build a list of lines with headers
-  while IFS= read -r context; do
-    # Retrieve container info for this context
-    local containers
-    containers=$(docker --context "$context" ps --format '{{.ID}} {{.Names}}')
-    if [ -n "$containers" ]; then
-      container_list+=$'\n'"[${context}]"$'\n'
-      while IFS= read -r line; do
-        # line: "ID NAME"
-        local container_id
-        container_id="$(awk '{print $1}' <<<"$line")"
-        local container_name
-        container_name="$(awk '{print $2}' <<<"$line")"
-        container_list+="${context} ${container_id} ${container_name}"$'\n'
-      done <<<"$containers"
-    fi
-  done < <(docker context ls --format '{{.Name}}')
+  local list=""
+  local contexts
 
-  # If no containers found (empty container_list), exit
-  if [ -z "$container_list" ]; then
+  # 1) Collect all Docker context names quietly
+  contexts="$(docker context ls --format '{{.Name}}' 2>/dev/null)"
+  if [ -z "$contexts" ]; then
+    echo "No Docker contexts found."
+    return 1
+  fi
+
+  # 2) For each context, gather containers and append them to "list"
+  while IFS= read -r ctx; do
+    # Use a process-substitution with ps output, reading ID & Name directly
+    while read -r cid cname; do
+      # If the line was empty or something was off, skip
+      [ -z "$cid" ] && continue
+      list+="${ctx} ${cid} ${cname}"$'\n'
+    done < <(docker --context "$ctx" ps --format '{{.ID}} {{.Names}}' 2>/dev/null)
+  done <<<"$contexts"
+
+  # 3) If no containers found, exit
+  if [ -z "$list" ]; then
     echo "No running containers across any contexts."
     return 1
   fi
 
-  # FZF transformer logic
-  local transformer
-  transformer='
-    if [[ $FZF_NTH = $FZF_CLICK_HEADER_NTH ]]; then
-      echo "change-nth()+change-prompt(> )"
-    else
-      echo "change-nth($FZF_CLICK_HEADER_NTH)+change-prompt($FZF_CLICK_HEADER_WORD> )"
-    fi
-  '
-
-  # Present the list in fzf with context cycling
+  # 4) Send the container list into fzf (prompt at top with --layout=reverse)
   local selected
-  selected=$(printf "%s" "$container_list" | fzf --height 40% \
-    --header-lines=1 \
-    --no-preview \
-    --bind "click-header:transform:$transformer" \
-    --color fg:dim,nth:regular \
-    --prompt="Select Docker container: ")
+  selected="$(
+    printf "%s" "$list" | fzf \
+      --height=40% \
+      --layout=reverse \
+      --no-preview \
+      --prompt="Select Docker container: "
+  )"
 
-  # If nothing selected, exit
+  # 5) If user cancels or no result, exit
   if [ -z "$selected" ]; then
     echo "No container selected."
     return 1
   fi
 
-  # Parse the selection
-  local selected_context
-  selected_context=$(awk '{print $1}' <<<"$selected")
-  local selected_container_id
-  selected_container_id=$(awk '{print $2}' <<<"$selected")
+  # 6) Extract the chosen context and container ID from the selected line
+  local chosen_context chosen_id
+  chosen_context="$(awk '{print $1}' <<<"$selected")"
+  chosen_id="$(awk '{print $2}' <<<"$selected")"
 
-  # Check if a header was clicked
-  if [[ $selected_context =~ ^\[.*\]$ ]]; then
-    echo "You clicked a header (${selected_context}). Restart the selection process to choose a container."
-    return 1
-  fi
-
-  # Run docker exec on the chosen context + container
-  docker --context "$selected_context" exec -it "$selected_container_id" bash -l
+  # 7) Exec bash shell in the chosen container
+  docker --context "$chosen_context" exec -it "$chosen_id" bash -l
 }
 
 # get files that would be included in a Dockerfile, with size in megabytes
