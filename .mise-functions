@@ -44,8 +44,15 @@ mise-reinstall() {
 }
 
 function mise-upgrade() {
-  	# Get current tools and versions from local .tool-versions only
+  if [[ ! -f .tool-versions ]]; then
+    echo "Error: .tool-versions file not found in current directory"
+    return 1
+  fi
+
+  # Get current tools and versions from local .tool-versions only
 	TOOLS=("${(@f)$(mise list --current --json | jq -r --arg PWD "$PWD" 'to_entries | map(select(.value[0].source.path == $PWD + "/.tool-versions")) | from_entries | keys[]')}")
+
+  echo "Found tools to upgrade: $TOOLS"
 
 	for TOOL in $TOOLS; do
 	    # Get current version
@@ -76,7 +83,4 @@ function mise-upgrade() {
 
 	# TODO https://discord.com/channels/1066429325269794907/1314301006992900117/1316773799688933406
 	mise install
-
-	just _mise_version_sync
-	git add .tool-versions
 }
