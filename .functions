@@ -102,86 +102,51 @@ mise-reinstall() {
 }
 
 ###########################
-# Python Utilities
+# Network Configuration
+# https://apple.stackexchange.com/questions/379657/remove-custom-dns-server-setting-via-command-line
 ###########################
 
-# create a file to automatically import pretty-traceback on startup
-python-inject-startup() {
-  local site_packages=$(python -c "import site; print(site.getsitepackages()[0])")
+# get dns servers for active network devices
+get-dns-servers() {
+  echo "Wi-fi:"
+  sudo networksetup -getdnsservers "Wi-Fi"
 
-  local pth_file=$site_packages/mbianco_injection.pth
-  local py_file=$site_packages/_mbianco_injection.py
-
-  if [[ -f "$pth_file" ]]; then
-    echo "python startup already exists: $target_file"
-    return 1
-  fi
-
-  cat << 'EOF' > "$py_file"
-def run_startup_script():
-  try:
-    import pretty_traceback
-    pretty_traceback.install()
-  except ImportError:
-    pass
-
-run_startup_script()
-EOF
-
-  # the pth file must have a single line, so it's easier to import another file
-  echo "import _mbianco_injection" > "$pth_file"
-
-  echo "Python startup injection created: $pth_file"
+  echo "\nEthernet"
+  sudo networksetup -getdnsservers "Ethernet"
 }
 
-pyd() {
-    local executable=$1
+set-dns-servers() {
+  # PIHOLE_TAILSCALE_IP PIHOLE_LOCAL_IP defined elsewhere
 
-  if ! [ -f "$executable" ]; then
-    executable=$(which "$executable")
-  fi
+  # TODO this doesn't seem to work
+  TAILSCALE_SEARCH_DOMAIN=$(tailscale status --json | jq -r '.CurrentTailnet.MagicDNSSuffix')
 
-  echo "$executable ${@:2}"
-  eval "ipdb3 -c continue -- $executable ${@:2}"
+  # sudo networksetup -setdnsservers "Wi-Fi" 100.84.131.117 192.168.7.32 9.9.9.9 100.84.131.117
+  # sudo networksetup -setdnsservers "Ethernet" 100.84.131.117 192.168.7.32 9.9.9.9 100.84.131.117
+
+  sudo networksetup -setdnsservers "Wi-Fi" $PIHOLE_TAILSCALE_IP $PIHOLE_LOCAL_IP
+  sudo networksetup -setdnsservers "Ethernet" $PIHOLE_TAILSCALE_IP $PIHOLE_LOCAL_IP
+
+  sudo networksetup -setsearchdomains "Wi-Fi" $TAILSCALE_SEARCH_DOMAIN
+  sudo networksetup -setsearchdomains "Ethernet" $TAILSCALE_SEARCH_DOMAIN
+
+  flushdns
 }
 
-# when hacking on a package with `pip-show` this will properly wipe + reinstall the package
-# also allows installing a package from a git repo
-pip-pristine() {
-  if [[ $1 == http* ]]; then
-    # Fetch pyproject.toml from GitHub using Python's requests library
-    package_name=$(python -c "
-import requests
-import toml
-from io import StringIO
-
-try:
-    response = requests.get('$1/raw/main/pyproject.toml')
-    response.raise_for_status()
-except requests.exceptions.HTTPError:
-    # If fetching from the 'main' branch fails, try the 'master' branch
-    response = requests.get('$1/raw/master/pyproject.toml')
-
-data = StringIO(response.text)
-config = toml.load(data)
-print(config['tool']['poetry']['name'])
-")
-    pip uninstall -y $package_name
-    pip cache remove $package_name
-  else
-    pip uninstall -y $1
-    pip cache remove $1
-  fi
-
-  pip install $1
+# `dig` does not represent an actual macos core DNS query! This includes mdns.
+macos-dns-query() {
+  dscacheutil -q host -a name $@
 }
 
-# find the location of a pip package
-pip-show() {
-  # convert - => _
-  package_name=${1//-/_}
+# updates and consumes stdin
+macos-dns-query-live() {
+  dns-sd -Q $@
+}
 
-  package_path=$(pip show $package_name | grep "Location:" | awk '{print $2}' | tr -d "\n")/$package_name
+# when you are traveling overloading the DHCP DNS servers will cause you issues
+clear-dns-servers() {
+  sudo networksetup -setdnsservers "Wi-Fi" empty
+  sudo networksetup -setdnsservers "Ethernet" empty
 
   echo $package_path
   cd $package_path
@@ -191,6 +156,10 @@ pip-show() {
 ###########################
 # Network Sniffing
 ###########################
+
+active_nework_device() {
+  networksetup -listnetworkserviceorder | grep -B1 "$(route -n get default | grep interface | awk '{print $2}')" | head -n1 | sed 's/^(.*) //'
+}
 
 start_network_proxy() {
     SERVICE="Ethernet"
@@ -803,3 +772,5 @@ open_in_cat() {
 source ~/.node-functions
 source ~/.python-functions
 source ~/.git-functions
+source ~/.docker-functions
+source ~/.mise-functions
