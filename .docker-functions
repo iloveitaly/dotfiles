@@ -82,11 +82,13 @@ dsh() {
       --height=40% \
       --layout=reverse \
       --no-preview \
+      --header="ctrl-o: orb debug | ctrl-l: logs | ctrl-i: inspect | ctrl-e: exec" \
       --prompt="Select Docker container: " \
-      --bind="ctrl-o:abort+execute(orb debug -c {1} {2})" \
-      --bind="ctrl-l:abort+execute(docker --context {1} logs -f {2})"
+      --bind="ctrl-o:execute(orb debug -c {1} {2})" \
+      --bind="ctrl-l:execute(docker --context {1} logs -f {2} | ov)" \
+      --bind="ctrl-i:execute(docker --context {1} inspect {2} | ov)" \
+      --bind="ctrl-e:execute(docker --context {1} exec -it {2} bash -l)"
   )"
-
   # 5) If user cancels or no result, exit
   if [ -z "$selected" ]; then
     echo "No container selected."
@@ -100,10 +102,7 @@ dsh() {
 
   echo "Chosen context: $chosen_context"
   echo "Chosen container ID: $chosen_id"
-  echo "--------------------------------\n\n"
-
-  # 7) Exec bash shell in the chosen container
-  docker --context "$chosen_context" exec -it "$chosen_id" bash -l
+  echo "docker --context $chosen_context $chosen_id"
 }
 
 # get files that would be included in a Dockerfile, with size in megabytes
