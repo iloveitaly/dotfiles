@@ -1,0 +1,82 @@
+###########################
+# Mise Utilities
+###########################
+
+# use plugin name as only parameter
+mise-current-version() {
+  if [ $# -gt 1 ]; then
+    echo "Error: Only one plugin name is allowed"
+    return 1
+  fi
+
+  mise list --current --json | jq -r ".$1[0].version // empty"
+}
+
+# Loop through all arguments (assumed to be mise plugins)
+mise-generate-tool-versions() {
+  for plugin in "$@"; do
+    version=$(mise-current-version "$plugin")
+
+    if [ -n "$version" ]; then
+      echo "$plugin $version" >> .tool-versions
+    else
+      echo "Error: Version for $plugin not found."
+    fi
+  done
+}
+
+# use plugin name as initial parameter
+mise-reinstall() {
+  if [ $# -gt 1 ]; then
+    echo "Error: Only one plugin name is allowed"
+    return 1
+  fi
+
+  version=$(mise-current-version $1)
+
+  if [ -z "$version" ]; then
+    echo "Error: Version not found for $1"
+    return 1
+  fi
+
+  mise uninstall $1@$version
+  mise install $1@$version
+}
+
+function mise-upgrade() {
+  	# Get current tools and versions from local .tool-versions only
+	TOOLS=("${(@f)$(mise list --current --json | jq -r --arg PWD "$PWD" 'to_entries | map(select(.value[0].source.path == $PWD + "/.tool-versions")) | from_entries | keys[]')}")
+
+	for TOOL in $TOOLS; do
+	    # Get current version
+			CURRENT=$(mise list --current --json | jq -r --arg TOOL "$TOOL" --arg PWD "$PWD" 'to_entries | map(select(.value[0].source.path == $PWD + "/.tool-versions")) | from_entries | .[$TOOL][0].version')
+			echo "Current version of $TOOL: $CURRENT"
+
+			if [[ "$TOOL" == "node" || "$TOOL" == "python" ]]; then
+					# Extract major.minor version
+					CURRENT_BASE=$(echo "$CURRENT" | cut -d. -f1,2)
+					echo "Current base version of $TOOL: $CURRENT_BASE"
+
+					# Get latest version matching current major.minor
+					LATEST=$(mise ls-remote "$TOOL" | grep -E "^${CURRENT_BASE}\.[0-9]+$" | sort -V | tail -n1)
+			else
+					# Extract major version
+					CURRENT_BASE=$(echo "$CURRENT" | cut -d. -f1)
+					echo "Current base version of $TOOL: $CURRENT_BASE"
+
+					# Get latest version matching current major version
+					LATEST=$(mise ls-remote "$TOOL" | grep -E "^${CURRENT_BASE}\.[0-9.]+$" | sort -V | tail -n1)
+			fi
+
+			if [[ -n $LATEST && $CURRENT != $LATEST ]]; then
+					sed -i '' "s/^$TOOL .*/$TOOL $LATEST/" .tool-versions
+					echo "Updated $TOOL: $CURRENT -> $LATEST"
+			fi
+	done
+
+	# TODO https://discord.com/channels/1066429325269794907/1314301006992900117/1316773799688933406
+	mise install
+
+	just _mise_version_sync
+	git add .tool-versions
+}
