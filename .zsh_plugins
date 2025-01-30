@@ -17,7 +17,9 @@ zinit load gnachman/iTerm2-shell-integration
 # important to load suggestions *after* zsh-completions
 #   - zicompinit runs `compinit` to generate completions, this must be loaded before other completions
 #   - load syntax highlighting first
-#   - fzf/key-bindings: sets up reverse-si via fzf, ctrl+t, alt+c
+#   - fzf/key-bindings: sets up reverse-si via fzf, ctrl+t, alt+c. Must be tied to specific fzf version otherwise
+#     a newer version of the completions could be used which uses options that aren't available yet
+#   - fzf/completion: sets up ctrl+r, ctrl+t (file), alt+c (dir search)
 #   - fzf-tab: load order is important, must go last
 #   - forgit needs _git to be loaded in order for the additional src to work, which is why we zicompinit
 #   - git-fuzzy: adds $PATH which will get drops by direnv if it modifies PATH, so important to include this in the same block as mise
@@ -50,8 +52,8 @@ zinit wait'0a' lucid for \
   'https://gist.github.com/iloveitaly/ebf69624c7b4cbd2f63b3e1e9f7846f9/raw/starship.plugin.zsh' \
   'https://gist.github.com/iloveitaly/64b3ebdb50b90057ac820b25b4072970/raw/direnv.plugin.zsh' \
   'http://github.com/dolthub/dolt/blob/main/dolt.plugin.zsh' \
-  'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh' \
-  'https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh' \
+  'https://github.com/junegunn/fzf/blob/v0.58.0/shell/completion.zsh' \
+  'https://github.com/junegunn/fzf/blob/v0.58.0/shell/key-bindings.zsh' \
   blockf atpull'zinit creinstall .' zsh-users/zsh-completions \
   'https://github.com/ajeetdsouza/zoxide/blob/main/zoxide.plugin.zsh' \
   wintermi/zsh-gcloud \
