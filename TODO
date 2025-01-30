@@ -1,3 +1,16 @@
+- [ ] https://github.com/charmbracelet/mods/
+  - [ ] https://gist.github.com/peterldowns/5c013c5fe76facb9e8ff8ccd3905fe0b
+- [ ] https://github.com/dloss/klp log viewer
+- [ ] csv parsing
+  - [ ] https://github.com/harelba/q/issues/339
+- [ ] tmux stuff
+  - [ ] https://github.com/ofirgall/tmux-window-name
+  - [ ] https://github.com/alexwforsythe/tmux-which-key
+  - [ ] https://github.com/rickstaa/tmux-notify
+  - [ ] https://github.com/jaclu/tmux-menus
+  - [ ] https://github.com/noscript/tmux-mighty-scroll
+- [ ] look into lazygit further
+  - [ ] https://github.com/jesseduffield/lazygit/issues/4155
 - [ ] https://github.com/rayking99/cqd
 - [ ] merge tooling: gitx, https://apps.apple.com/us/app/comparemerge2/id1459748650?mt=12, https://naarakstudio.com/direqual/, vs code https://marketplace.visualstudio.com/items?itemName=moshfeu.compare-folders, file merge, ksdiff3, gitx
   - [ ] good list https://www.reddit.com/r/macapps/comments/12yp1bw/best_visual_diff_and_merge_tool_on_macos/
