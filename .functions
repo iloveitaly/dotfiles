@@ -24,6 +24,11 @@ zinit-nuke() {
   echo "Open up a new terminal window to reload zinit"
 }
 
+function completion-where {
+    echo $^fpath/$_comps[$1](N)
+    whence -v $_comps[$1]
+}
+
 # TODO this does not work as cleanly as you'd expect... needs some work.
 # TODO export ZSH_XTRACEFD=5 isn't a thing yet :/ https://www.zsh.org/mla/workers//2020/msg01177.html
 zsh-trace() {

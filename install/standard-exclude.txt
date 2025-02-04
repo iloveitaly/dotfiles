@@ -21,3 +21,4 @@ time-machine-includes.sh
 .DS_Store
 .github
 metadata.json
+/zsh_plugins
