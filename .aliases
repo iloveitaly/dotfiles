@@ -92,6 +92,7 @@ alias d-ps-network='docker ps --format "{{.ID}} {{.Names}} {{.Networks}} {{.Port
 
 # python
 # TODO maybe fail if not in a venv
+alias typeid="py -m typeid.cli decode"
 alias ipdb="ipdb3"
 alias po="poetry"
 alias pyt=pytest
