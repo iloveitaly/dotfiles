@@ -191,3 +191,34 @@ zstyle ':zle:*' word-style unspecified
 # TODO couldn't get the async piece of this working
 # async_start_worker kill_detached_sessions -n
 # async_job kill_detached_sessions tmux list-sessions \| grep -v attached \| grep -E '^\d{1,3}' \| awk -F: '{print $1}' \| xargs -I {} tmux kill-session -t {}
+
+# ======================
+# Custom Word Navigation
+# ======================
+
+custom-backward-word() {
+  local delimiters=' ,'  # Customize delimiters here
+  while (( CURSOR > 0 )) && [[ $delimiters = *${BUFFER[$CURSOR]}* ]]; do
+    (( CURSOR-- ))
+  done
+  while (( CURSOR > 0 )) && [[ $delimiters != *${BUFFER[$CURSOR]}* ]]; do
+    (( CURSOR-- ))
+  done
+}
+
+custom-forward-word() {
+  local delimiters=' ,'  # Same delimiters
+  local len=${#BUFFER}
+  while (( CURSOR < len )) && [[ $delimiters != *${BUFFER[$CURSOR+1]}* ]]; do
+    (( CURSOR++ ))
+  done
+  while (( CURSOR < len )) && [[ $delimiters = *${BUFFER[$CURSOR+1]}* ]]; do
+    (( CURSOR++ ))
+  done
+}
+
+zle -N custom-backward-word
+zle -N custom-forward-word
+
+bindkey '^[[1;7D' custom-backward-word  # Opt+Ctrl+Left
+bindkey '^[[1;7C' custom-forward-word   # Opt+Ctrl+Right
