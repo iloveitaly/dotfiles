@@ -173,11 +173,21 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 # https://github.com/zsh-users/zsh-autosuggestions/issues/351
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
 
-# ===========
+# since we can't use the default kill detached in tmux, we need to do it ourselves
+setopt localoptions nomonitor
+(tmux-kill-detached-sessions &> /dev/null &) & disown
+setopt localoptions monitor
+
+# ===============
 # Word Definition
-# ===========
+# ===============
+
 # http://mikebian.co/fixing-word-navigation-in-zsh/
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>/ '$'\n'
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>/ '$'\n'$'\u00A0'
 autoload -Uz select-word-style
 select-word-style normal
 zstyle ':zle:*' word-style unspecified
+
+# TODO couldn't get the async piece of this working
+# async_start_worker kill_detached_sessions -n
+# async_job kill_detached_sessions tmux list-sessions \| grep -v attached \| grep -E '^\d{1,3}' \| awk -F: '{print $1}' \| xargs -I {} tmux kill-session -t {}
