@@ -222,3 +222,47 @@ zle -N custom-forward-word
 
 bindkey '^[[1;7D' custom-backward-word  # Opt+Ctrl+Left
 bindkey '^[[1;7C' custom-forward-word   # Opt+Ctrl+Right
+
+# ======================
+# Custom Backward Kill Word
+# Enables a different set of stop characters for backward-kill-word
+# ======================
+
+custom-backward-kill-word() {
+  # Define stop characters
+  local MY_STOP_CHARS=' '
+
+  # Exit if LBUFFER is empty
+  [[ -z $LBUFFER ]] && return 0
+
+  # Split LBUFFER into an array of characters
+  local -a buffer_array
+  buffer_array=(${(s::)LBUFFER})
+
+  # Start from the end
+  local pos=$#buffer_array
+
+  # Skip trailing stop characters
+  while (( pos > 0 )) && [[ $MY_STOP_CHARS == *$buffer_array[$pos]* ]]; do
+    (( pos-- ))
+  done
+
+  # Find the next stop character backward
+  while (( pos > 0 )); do
+    local char=$buffer_array[$pos]
+    if [[ $MY_STOP_CHARS == *$char* ]]; then
+      break
+    fi
+    (( pos-- ))
+  done
+
+  # Adjust LBUFFER
+  if (( pos > 0 )); then
+    LBUFFER="${LBUFFER:0:$pos}"
+  else
+    LBUFFER=""
+  fi
+}
+
+zle -N custom-backward-kill-word
+bindkey '\e^W' custom-backward-kill-word
