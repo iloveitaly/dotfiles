@@ -178,3 +178,40 @@ git-extract() {
   # Extract just the specified path
   curl -L $tarball | tar xz --strip=1 "$foldername/$filepath"
 }
+
+# request review on a PR
+gh-set-reviewer() {
+    # Check if there is a PR for the current branch
+    PR_NUMBER=$(gh pr view --json number --jq '.number' 2>/dev/null)
+    if [ -z "$PR_NUMBER" ]; then
+        echo "Error: No PR found for the current branch."
+        return 1
+    fi
+
+    # Get the PR API URL
+    PR_URL=$(gh pr view --json url --jq '.url')
+
+    # Get the list of possible assignees
+    POSSIBLE_ASSIGNEES=$(gh api repos/:owner/:repo/assignees --jq '.[].login' | tr ' ' '\n')
+
+    # Prepare the header for fzf with PR URL and instruction
+    FZF_HEADER="PR: $PR_URL"$'\n'"Select reviewers to assign (Tab to multi-select, Enter to confirm)"
+
+    # Use fzf with header at the top, minimal height
+    SELECTED_REVIEWERS=$(echo "$POSSIBLE_ASSIGNEES" | fzf -m \
+        --height 20% \
+        --layout=reverse \
+        --inline-info \
+        --header-first \
+        --header "$FZF_HEADER")
+
+    # If reviewers are selected, update the PR and output success message
+    if [ -n "$SELECTED_REVIEWERS" ]; then
+        # Convert selected reviewers to comma-separated string
+        REVIEWERS_CSV=$(echo "$SELECTED_REVIEWERS" | tr '\n' ',' | sed 's/,$//')
+        gh pr edit "$PR_NUMBER" --add-reviewer "$REVIEWERS_CSV"
+        echo "Requested review from: $REVIEWERS_CSV"
+    else
+        echo "No reviewers selected."
+    fi
+}
