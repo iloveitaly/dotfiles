@@ -1,27 +1,46 @@
 # what are the system paths?
 alias py-paths="python -c 'import sys; print(sys.path)'"
 
-PYTHON_DEBUGGING_PACKAGES="ipython pudb debugpy git+https://github.com/iloveitaly/ipdb@support-executables pdbr[ipython] rich git+https://github.com/anntzer/ipython-autoimport.git IPythonClipboard ipython_ctrlr_fzf docrepr pyfzf jedi pretty-traceback pre-commit sqlparse ipython-suggestions rpdb datamodel-code-generator funcy-pipe colorama pipdeptree"
+PYTHON_DEBUGGING_PACKAGES="ipython \
+  pudb \
+  debugpy \
+  git+https://github.com/iloveitaly/ipdb@support-executables \
+  pdbr[ipython] \
+  rich \
+  ipython-autoimport \
+  IPythonClipboard \
+  ipython_ctrlr_fzf \
+  docrepr \
+  pyfzf \
+  jedi \
+  pretty-traceback \
+  pre-commit \
+  sqlparse \
+  git+https://github.com/iloveitaly/ipython-suggestions.git@py-13 \
+  rpdb \
+  datamodel-code-generator \
+  funcy-pipe \
+  colorama \
+  pipdeptree \
+  icecream \
+  httpdbg"
 
-# # TODO https://github.com/anntzer/ipython-autoimport/issues/11
+# install my favorite list of helpful py development packages in a custom group
 function py-debugging-install() {
   if [ ! -f "uv.lock" ]; then
     pip install --upgrade pip
   fi
 
   if [ -f "uv.lock" ]; then
-    uv pip install --upgrade --force-reinstall "$PYTHON_DEBUGGING_PACKAGES"
+    uv add --group debugging-extras ${(s: :)PYTHON_DEBUGGING_PACKAGES}
   else
     pip install --upgrade --force-reinstall "$PYTHON_DEBUGGING_PACKAGES"
   fi
 
   python-inject-startup
-
-  if command -v poetry &>/dev/null; then
-    poetry self add poetry-plugin-up
-  fi
 }
 
+# start an ipython session, with `playground.py` if it exists
 function ipy() {
   if [ -f "playground.py" ]; then
     if [ -f "uv.lock" ]; then
@@ -125,11 +144,6 @@ python-inject-startup() {
   local pth_file=$site_packages/mbianco_injection.pth
   local py_file=$site_packages/_mbianco_injection.py
 
-  if [[ -f "$pth_file" ]]; then
-    echo "python startup already exists: $target_file"
-    return 1
-  fi
-
   cat <<'EOF' >"$py_file"
 def run_startup_script():
   try:
@@ -138,11 +152,16 @@ def run_startup_script():
   except ImportError:
     pass
 
+  try:
+    from icecream import install
+    install()
+  except ImportError:
+    pass
+
 run_startup_script()
 EOF
 
   # the pth file must have a single line, so it's easier to import another file
   echo "import _mbianco_injection" >"$pth_file"
-
   echo "Python startup injection created: $pth_file"
 }
