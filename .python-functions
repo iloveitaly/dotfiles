@@ -16,7 +16,7 @@ PYTHON_DEBUGGING_PACKAGES="ipython \
   pretty-traceback \
   pre-commit \
   sqlparse \
-  git+https://github.com/iloveitaly/ipython-suggestions.git@py-13 \
+  git+https://github.com/iloveitaly/ipython-suggestions.git@ipython-9.x \
   rpdb \
   datamodel-code-generator \
   funcy-pipe \
@@ -24,6 +24,8 @@ PYTHON_DEBUGGING_PACKAGES="ipython \
   pipdeptree \
   icecream \
   httpdbg"
+
+# TODO can reference local versions of the plugin via: $HOME/Projects/python/ipython-suggestions \
 
 # install my favorite list of helpful py development packages in a custom group
 function py-debugging-install() {
@@ -85,8 +87,12 @@ pip-show() {
   package_name=${1//-/_}
   package_path=$(find --no-ignore-vcs -t d --glob "*${package_name}*" -E "*dist-info*" .venv)
   echo $package_path
-  cd $package_path
-  code $package_path
+  if [[ -n "$package_path" ]]; then
+    cd $package_path
+    code $package_path
+  else
+    echo "Package not found: $1"
+  fi
 }
 
 # TODO should make it more flexible: check for venv and different py versions
