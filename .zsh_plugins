@@ -52,6 +52,7 @@ zinit wait'0a' lucid for \
   'https://gist.github.com/iloveitaly/ebf69624c7b4cbd2f63b3e1e9f7846f9/raw/starship.plugin.zsh' \
   'https://gist.github.com/iloveitaly/64b3ebdb50b90057ac820b25b4072970/raw/direnv.plugin.zsh' \
   'https://github.com/iloveitaly/dotfiles/blob/master/zsh_plugins/swift.plugin.zsh' \
+  'https://github.com/iloveitaly/dotfiles/blob/master/zsh_plugins/ngrok.plugin.zsh' \
   'http://github.com/dolthub/dolt/blob/main/dolt.plugin.zsh' \
   'https://github.com/junegunn/fzf/blob/v0.58.0/shell/completion.zsh' \
   'https://github.com/junegunn/fzf/blob/v0.58.0/shell/key-bindings.zsh' \
@@ -107,7 +108,7 @@ zinit load starship/starship
 if command -v brew &>/dev/null; then
   rm $(brew --prefix)/share/zsh/site-functions/_git 2>/dev/null
   rm $(brew --prefix)/share/zsh/site-functions/_docker 2>/dev/null
-  
+
   rm $(brew --prefix)/share/zsh/functions/_swift 2>/dev/null
   # TODO does the above also remove? /opt/homebrew/Cellar/zsh/5.9/share/zsh/functions
 fi
