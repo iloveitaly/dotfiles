@@ -44,20 +44,33 @@ function py-debugging-install() {
 
 # start an ipython session, with `playground.py` if it exists
 function ipy() {
-  if [ -f "playground.py" ]; then
-    if [ -f "uv.lock" ]; then
-      uv run $(echo "$PYTHON_DEBUGGING_PACKAGES" | sed 's/[^ ][^ ]*/--with &/g') ipython -i playground.py
+  # If uv.lock exists, we're in a uv-managed project
+  if [ -f "uv.lock" ]; then
+    # Check if debugging-extras is in pyproject.toml
+    if grep -q '^\s*debugging-extras\s*=' pyproject.toml; then
+      # If it exists, no additional --with options needed
+      WITH_OPTIONS=""
     else
-      chmod +x playground.py
-      ./playground.py
+      # If it doesn’t, construct --with options from PYTHON_DEBUGGING_PACKAGES
+      WITH_OPTIONS=$(echo "$PYTHON_DEBUGGING_PACKAGES" | sed 's/[^ ][^ ]*/--with &/g')
     fi
+    # Decide command based on playground.py
+    if [ -f "playground.py" ]; then
+      # Run ipython with the script in the project environment
+      uv run $WITH_OPTIONS ipython -i playground.py
+    else
+      # Run ipython interactively, possibly as a tool
+      uv tool run $WITH_OPTIONS ipython
+    fi
+  # If uv.lock doesn’t exist, no uv management
+  elif [ -f "playground.py" ]; then
+    # Make the script executable and run it
+    chmod +x playground.py
+    ./playground.py
   else
-    if [ -f "uv.lock" ]; then
-      uv tool run $(echo "$PYTHON_DEBUGGING_PACKAGES" | sed 's/[^ ][^ ]*/--with &/g') ipython
-    else
-      pip install --upgrade ${=PYTHON_DEBUGGING_PACKAGES}
-      ipython
-    fi
+    # Install debugging packages globally and run ipython
+    pip install --upgrade ${=PYTHON_DEBUGGING_PACKAGES}
+    ipython
   fi
 }
 
