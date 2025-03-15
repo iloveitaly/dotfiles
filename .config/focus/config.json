@@ -3,6 +3,14 @@
   "initial_wake": "/Users/mike/.config/focus/initial_wake.sh",
   "wake": "/Users/mike/.config/focus/wake.sh",
   // "blocked_redirect_url": "https://readwise.io/dailyreview",
+  "recurring_tasks": [
+    {
+      // block urls every 15 minutes
+      "task": "/Users/mike/.config/focus/block_urls.sh",
+      "schedule": "0 */15 * * * *"
+    }
+  ],
+  "pause_limit": 5,
   "schedule": [
     {
       "start": 0,
@@ -12,7 +20,7 @@
       "block_hosts": [
         "news.ycombinator.com",
         "twitter.com",
-        "x.com",
+        "/^x.com/",
         "youtube.com",
 
         "my.lunchmoney.app",
@@ -24,6 +32,7 @@
         "aliexpress.us",
         "costco.com",
         "walmart.com",
+        "ebay.com",
         "slickdeals.net",
         "amazon.com",
         "groupon.com"
@@ -79,7 +88,7 @@
       "end_minute": 30,
       "block_hosts": [
         "twitter.com",
-        "x.com",
+        "/^x.com/",
         "feedbin.com",
         "youtube.com",
         "my.lunchmoney.com",
@@ -170,7 +179,7 @@
     {
       "name": "Family Chores",
       "description": "email, finances, etc",
-      "block_hosts": ["twitter.com", "x.com", "news.ycombinator.com"],
+      "block_hosts": ["twitter.com", "/^x.com/", "news.ycombinator.com"],
       "block_apps": ["Discord"],
       "block_urls": [
         "https://www.google.com/search?q=world+news",
@@ -243,7 +252,7 @@
       "block_hosts": [
         "news.ycombinator.com",
         "twitter.com",
-        "x.com",
+        "/^x.com/",
         "youtube.com",
 
         "my.lunchmoney.app",
