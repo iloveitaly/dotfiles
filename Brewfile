@@ -24,7 +24,6 @@ brew "awscli"
 brew "aws-sam-cli"
 brew "session-manager-plugin" if OS.mac?
 brew "cloc" # code analytics
-brew "jq" # json extraction
 brew "hey"
 brew "gh"
 brew "sqlite"
@@ -33,19 +32,20 @@ brew "git-lfs"
 brew "vimcal"
 brew "caddy"
 brew "yazi"
-brew "fx" # json tui
 brew "setapp"
 brew "gitx" # visual git tool, kaleidoscope alternative
 brew "kdiff3"
 
 # == Data manipulation
-brew "q" if OS.mac? # sql on csv
+brew "jq" # json extraction
+brew "fx" # json tui
+brew "q", link_name: "qsql" if OS.mac? # sql on csv
 brew "dsq" # sql over json and other formats
 brew "yq" # yq for yaml and others, great for in place manipulating files
 brew "dasel" # consistent language for extracting data from XML, CSV, and others. No aggregates.
 tap "brimdata/tap"
 brew "brimdata/tap/zq" # faster/better jq, has aggregates
-brew "htmlq"
+brew "htmlq" # jq for html
 brew "xsv" # csv tooling
 brew "tabiew" # tui for csv and data viewing
 
@@ -94,8 +94,8 @@ if OS.mac?
     tap "afnanenayet/tap"
     brew "afnanenayet/tap/diffsitter"
     tap "noahgorstein/tap"
-    brew "noahgorstein/tap/jqp"
-    brew "act"
+    brew "noahgorstein/tap/jqp" # jq playground
+    brew "act" # gha local runner
     brew "trunk-io"
     brew "pstree" # procs seem to have a tree view and is a bit better
     brew "broot" # better file finding
@@ -110,8 +110,6 @@ if OS.mac?
     brew "kitty" # yet another terminal
     brew "gmailctl" # gmail filter configuration as code
     brew "cleanshot" # best email tool, not sure if it's better than dropbox capture
-    tap "heroku/brew"
-    brew "heroku/brew/heroku"
     tap "railwayapp/railway"
     brew "railway"
     brew "google-cloud-sdk" # cli tools for google cloud
@@ -131,6 +129,7 @@ if OS.mac?
     brew "pinentry-mac"
     brew "iloveitaly/tap/hyper-focus"
 
+    cask "ghostty"
     cask "another-redis-desktop-manager"
     cask "todoist"
     cask "grammarly-desktop"
@@ -151,7 +150,6 @@ if OS.mac?
     # does not support silicon installation yet
     system "arch -x86_64 brew install amazon-music"
     cask "amazon-photos"
-    cask "homebrew/cask-versions/soulver2"
     cask "kap"
     cask "stay"
     cask "homebrew/cask-versions/kaleidoscope2"
@@ -166,15 +164,11 @@ if OS.mac?
     cask "skyfonts"
     cask "base"
     cask "colorpicker-skalacolor"
-    cask "homebrew/cask-versions/arq5"
     cask "messenger"
-    cask "scrivener"
-    cask "postico"
     cask "wordpresscom"
     cask "gimp"
     cask "grammarly"
     cask "launchcontrol"
-    cask "hyper"
     cask "raycast"
     cask "google-chrome-canary"
     cask "zoom"
@@ -211,7 +205,6 @@ if OS.mac?
     cask "mysteriumvpn"
     cask "stats"
     cask "vnc-viewer"
-    cask "dropbox-capture"
     cask "loom"
     cask "ngrok"
     cask "firefox" # for debugging, not actual use
