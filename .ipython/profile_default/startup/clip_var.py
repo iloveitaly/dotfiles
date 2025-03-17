@@ -1,5 +1,6 @@
 """
 Add copy to clipboard from IPython!
+
 To install, just copy it to your profile/startup directory, typically:
 
     ~/.ipython/profile_default/startup/
@@ -30,6 +31,9 @@ If you don't have a variable named 'clip' you can rely on automagic:
 This version removes the dependency of AppKit, but maintains compatibility with linux and osx.
 using ideas from: https://gist.github.com/vpontis/46e5d3154cda92ce3e0f
 It also provides infrastructure to easily add further platforms (function _get_implementation).
+
+different from this, copies content in front of the cursor
+https://pypi.org/project/IPythonClipboard/#usage
 """
 
 import sys
@@ -66,7 +70,7 @@ def _get_implementation():
 
         _get_implementation.impls[platform] = _clip
 
-    return _get_implementation[platform]
+    return _get_implementation.impls[platform]
 
 
 # TODO how I can get this exposed to the ipython structure?
@@ -79,7 +83,7 @@ def _copy_to_clipboard(arg):
 
 
 @register_line_cell_magic
-def clip_var(line, cell=None):
+def copy(line, cell=None):
     if line and cell:
         cell = "\n".join((line, cell))
 
@@ -87,4 +91,4 @@ def clip_var(line, cell=None):
 
 
 # We delete it to avoid name conflicts for automagic to work
-del clip_var
+del copy
