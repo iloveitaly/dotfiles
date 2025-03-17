@@ -118,7 +118,7 @@
 [rerere]
   enabled = 0
 [credential]
-  helper = osxkeychain
+  helper = /usr/local/bin/git-credential-manager
 
 [diff]
   tool = ksdiff

@@ -115,6 +115,7 @@ if OS.mac?
     brew "google-cloud-sdk" # cli tools for google cloud
     brew "azure-cli"
     brew "certbot"
+    brew "git-credential-manager"
 end
 
 if OS.mac?
