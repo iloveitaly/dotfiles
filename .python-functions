@@ -13,7 +13,7 @@ PYTHON_DEBUGGING_PACKAGES="ipython \
   docrepr \
   pyfzf \
   jedi \
-  pretty-traceback \
+  git+https://github.com/iloveitaly/pretty-traceback.git@custom \
   pre-commit \
   sqlparse \
   git+https://github.com/iloveitaly/ipython-suggestions.git@ipython-9.x \
@@ -42,34 +42,29 @@ function py-debugging-install() {
   python-inject-startup
 }
 
-# start an ipython session, with `playground.py` if it exists
 function ipy() {
-  # If uv.lock exists, we're in a uv-managed project
   if [ -f "uv.lock" ]; then
-    # Check if debugging-extras is in pyproject.toml
+    # Initialize WITH_OPTIONS as an empty array
+    typeset -a WITH_OPTIONS
     if grep -q '^\s*debugging-extras\s*=' pyproject.toml; then
-      # If it exists, no additional --with options needed
-      WITH_OPTIONS=""
+      : # WITH_OPTIONS remains empty
     else
-      # If it doesn’t, construct --with options from PYTHON_DEBUGGING_PACKAGES
-      WITH_OPTIONS=$(echo "$PYTHON_DEBUGGING_PACKAGES" | sed 's/[^ ][^ ]*/--with &/g')
+      # Build the array explicitly
+      for pkg in ${(z)PYTHON_DEBUGGING_PACKAGES}; do
+        WITH_OPTIONS+=("--with" "$pkg")
+      done
     fi
-    # Decide command based on playground.py
     if [ -f "playground.py" ]; then
-      # Run ipython with the script in the project environment
-      uv run $WITH_OPTIONS ipython -i playground.py
+      # Explicitly pass the array elements
+      uv run "${WITH_OPTIONS[@]}" ipython -i playground.py
     else
-      # Run ipython interactively, possibly as a tool
-      uv tool run $WITH_OPTIONS ipython
+      uv tool run "${WITH_OPTIONS[@]}" ipython
     fi
-  # If uv.lock doesn’t exist, no uv management
   elif [ -f "playground.py" ]; then
-    # Make the script executable and run it
     chmod +x playground.py
     ./playground.py
   else
-    # Install debugging packages globally and run ipython
-    pip install --upgrade ${=PYTHON_DEBUGGING_PACKAGES}
+    pip install --upgrade ${(z)PYTHON_DEBUGGING_PACKAGES}
     ipython
   fi
 }
