@@ -8,6 +8,7 @@ PYTHON_DEBUGGING_PACKAGES="ipython \
   pdbr[ipython] \
   rich \
   ipython-autoimport \
+  ipython-playground \
   IPythonClipboard \
   ipython_ctrlr_fzf \
   docrepr \
@@ -23,6 +24,7 @@ PYTHON_DEBUGGING_PACKAGES="ipython \
   colorama \
   pipdeptree \
   icecream \
+  pytest-fzf \
   httpdbg"
 
 # TODO can reference local versions of the plugin via: $HOME/Projects/python/ipython-suggestions \
