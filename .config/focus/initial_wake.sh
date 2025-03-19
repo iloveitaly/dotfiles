@@ -40,7 +40,9 @@ if [ $(date +%u) -eq 7 ]; then
 
   # the most we can wait is 10m
   # https://github.com/iloveitaly/hyper-focus/blob/0d23d022a3bd2fe914c38ff859275d845dd71d52/Sources/hyper-focus/taskrunner.swift#L13
-  sleep 540
+  sleep 500
+
+  # TODO we can use the DND raycast script here
 
   echo "It's sunday, closing additional apps..."
   work_apps=(TablePlus "Visual Studio Code" Zui)
@@ -103,10 +105,6 @@ $(mise which clean-workspace) --tab-description "$dialogResult"
 
 # must run as non-root user!
 # su - mike -c "~/.time-machine-includes.sh"
-
-# aliases for this are not properly sourced
-echo "Quitting other users..."
-macos-logout assistant
 
 # it seems to get junked up after a while
 echo "Restarting Raycast..."
