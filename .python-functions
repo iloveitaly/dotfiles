@@ -25,6 +25,7 @@ PYTHON_DEBUGGING_PACKAGES="ipython \
   pipdeptree \
   icecream \
   pytest-fzf \
+  uv-development-toggle \
   httpdbg"
 
 # TODO can reference local versions of the plugin via: $HOME/Projects/python/ipython-suggestions \
