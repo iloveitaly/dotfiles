@@ -6,6 +6,9 @@ alias tree='tre --limit 3'
 
 alias j='just'
 
+# tabiew is a terrible name but awesome tool to inspect tabular data on the cli
+alias data-tui="tw"
+
 alias fixcamera="sudo killall VDCAssistant; sudo killall AppleCameraAssistant"
 
 # most recently modified file
@@ -19,6 +22,9 @@ alias pbpaste-html="pbpaste -Prefer public.html"
 # copy last shell command into the clipboard
 # fc -l == history builtin, awk command to remove trailing newline
 alias clast="fc -ln -1 | awk '{printf \"%s\", \$0}' | pbcopy"
+
+# brew does not default to using the new sqlite3 version
+alias sqlite-new="/opt/homebrew/opt/sqlite/bin/sqlite3"
 
 # TODO the username on this needs to be dynamic in some way
 alias pisync='rsync -avh --filter=":- .gitignore" --progress $PWD pi@raspberrypi.local:~'
