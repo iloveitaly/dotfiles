@@ -296,6 +296,17 @@ function diga() {
   dig +nocmd "$1" any +multiline +noall +answer
 }
 
+# kick the services tied to hotspot management, my iphone hotspot will often fail with a generic message
+restart_network() {
+  # Restart Wi-Fi (assuming en0 is the Wi-Fi interface)
+  networksetup -setairportpower en0 off
+  networksetup -setairportpower en0 on
+
+  # Restart Bluetooth
+  sudo launchctl stop com.apple.bluetoothd
+  sudo launchctl start com.apple.bluetoothd
+}
+
 # for quick gpt prompt generation
 files-to-markdown() {
   for file in "$@"; do
@@ -645,7 +656,7 @@ images_to_pdf() {
 
 # even with a massive drive, these LLM models + git history can take up a lot of space
 inspect-space() {
-  (cd / && sudo ncdu --exclude '/Volumes/Backups of BiancoBook' --exclude /Library/Developer --exclude /System/ --exclude /Applications --exclude "/Library/Application Support/ArqAgentAPFS.noindex" --confirm-quit)
+  (cd / && sudo ncdu --exclude "$HOME/OrbStack" --exclude '/Volumes/Backups of BiancoBook' --exclude /Library/Developer --exclude /System/ --exclude /Applications --exclude "/Library/Application Support/ArqAgentAPFS.noindex" --confirm-quit)
 }
 
 # find and replace across files in the current directory
