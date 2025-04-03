@@ -167,20 +167,20 @@ git-extract() {
   # Extract owner/repo/branch/path from GitHub URL
   local parts=(${(s:/:)${url/https:\/\/github.com\//}})
   local owner=$parts[1]
-  local repo=$parts[2] 
+  local repo=$parts[2]
   local branch=$parts[4]
   local filepath=${(j:/:)parts[5,-1]}
-  
+
   # Build tarball URL and folder name
   local tarball="https://github.com/$owner/$repo/archive/refs/heads/$branch.tar.gz"
   local foldername="$repo-$branch"
-  
+
   # Extract just the specified path
   curl -L $tarball | tar xz --strip=1 "$foldername/$filepath"
 }
 
 # request review on a PR
-gh-set-reviewer() {
+gh-assign-reviewer() {
     # Check if there is a PR for the current branch
     PR_NUMBER=$(gh pr view --json number --jq '.number' 2>/dev/null)
     if [ -z "$PR_NUMBER" ]; then
@@ -214,4 +214,14 @@ gh-set-reviewer() {
     else
         echo "No reviewers selected."
     fi
+}
+
+# git-cherry-pick: https://github.com/CosmaNeura/cosmaneura/pull/19/commits/4e4c350ddb655acefdfbaad460faeeedb607e941
+git-cherry-pick() {
+  local url=$1
+  local commit=$(basename $url)
+  local repo=$(echo $url | sed 's|https://github.com/\([^/]*\)/\([^/]*\)/pull/[0-9]*/commits/.*|\1/\2|')
+  local pr_num=$(echo $url | sed 's|https://github.com/[^/]*/[^/]*/pull/\([0-9]*\)/commits/.*|\1|')
+  git fetch https://github.com/$repo.git refs/pull/$pr_num/head
+  git cherry-pick $commit
 }
