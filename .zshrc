@@ -81,7 +81,7 @@ if [[ -x "$brew_path" ]]; then
 fi
 
 # postgres utilities
-export PATH="/Applications/Postgres.app/Contents/Versions/15/bin:$PATH"
+export PATH="/Applications/Postgres.app/Contents/Versions/16/bin:$PATH"
 
 # poetry, orb, etc
 export PATH="$HOME/.local/bin:$PATH"
@@ -266,3 +266,21 @@ custom-backward-kill-word() {
 
 zle -N custom-backward-kill-word
 bindkey '\e^W' custom-backward-kill-word
+
+# ===============================
+# Directory-aware Autocomplete History
+# https://github.com/atuinsh/atuin/issues/1618
+# ===============================
+
+# Add --cwd flag to have auto-workspace-detection active
+_zsh_autosuggest_strategy_atuin_auto() {
+    suggestion=$(atuin search --cwd . --cmd-only --limit 1 --search-mode prefix -- "$1")
+}
+
+_zsh_autosuggest_strategy_atuin_global() {
+    suggestion=$(atuin search --cmd-only --limit 1 --search-mode prefix -- "$1")
+}
+
+export ZSH_AUTOSUGGEST_STRATEGY=(atuin_auto atuin_global)
+# autocomplete on completions as well
+# export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
