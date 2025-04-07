@@ -5,7 +5,7 @@ PYTHON_DEBUGGING_PACKAGES="ipython \
   pudb \
   debugpy \
   git+https://github.com/iloveitaly/ipdb@support-executables \
-  pdbr[ipython] \
+  git+https://github.com/iloveitaly/pdbr@ipython-9.x#egg=pdbr[ipython] \
   rich \
   ipython-autoimport \
   ipython-playground \
@@ -26,6 +26,7 @@ PYTHON_DEBUGGING_PACKAGES="ipython \
   icecream \
   pytest-fzf \
   uv-development-toggle \
+  llm-sql-prompt \
   py-spy \
   httpdbg"
 
