@@ -48,6 +48,9 @@
   # full dump of last commit message
   last-message = log -1 --pretty=format:%B
 
+  # git reset and restore the file, useful when dealing with merge conflicts
+  rr = "!f() { [ -z \"$1\" ] && { echo 'Error: No file specified.' >&2; exit 1; }; git reset \"$1\" && git restore \"$1\"; }; f"
+
   # TODO https://github.com/so-fancy/diff-so-fancy/issues/473
   addp = -c 'interactive.diffFilter=less' add -p
 
