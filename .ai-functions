@@ -74,3 +74,29 @@ EOF
   rm /tmp/general_section.md /tmp/python_section.md /tmp/react_section.md /tmp/shell_section.md
   echo "Created Cursor rules in .cursor/rules/"
 }
+
+# combine all matching files into a single string and copy to clipboard, helpful for AI stuff
+find_and_bundle() {
+  # $1 is the first argument to the function: the specific string to search for
+
+  # Ensure the search string is provided
+  if [[ -z "$1" ]]; then
+    echo "Usage: find_and_bundle <string>"
+    return 1
+  fi
+
+  # Use ripgrep to find files containing the specific string
+  local files_with_string=($(rg --files-with-matches --no-messages --fixed-strings "$1"))
+
+  # Check if any files were found
+  if [[ ${#files_with_string[@]} -eq 0 ]]; then
+    echo "No files found with string: $1"
+    return 1
+  fi
+
+  # Combine contents of the files, separated by "---"
+  for file in $files_with_string; do
+    cat "$file"
+    echo "\n---\n"
+  done | pbcopy  # Copy the combined content to the clipboard
+}
