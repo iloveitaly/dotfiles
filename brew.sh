@@ -43,7 +43,8 @@ eval "$(mise activate zsh)"
 mise install -y
 
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
-cargo binstall -y usage-cli
+# cargo-only packages
+cargo binstall -y usage-cli markdown-extract-cli
 
 # php / WordPress
 # https://github.com/asdf-community/asdf-php/blob/248e9c6e2a7824510788f05e8cee848a62200b65/bin/install#L22

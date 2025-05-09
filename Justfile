@@ -6,10 +6,12 @@ set script-interpreter := ["zsh", "-euBh", "-o", "pipefail"]
 set unstable := true
 
 upgrade:
-	brew upgrade fzf atuin nixpacks awscli git rg fd gh zsh nano
+	brew upgrade fzf atuin nixpacks awscli git rg fd gh zsh nano gmailctl dolt 1password-cli yazi
+
 	gh extension upgrade --all
-	
+
 	# TODO can't figure out why this is not working
+	# this will update starship as well
 	# zsh -cl "zinit-update"
 
 sync:

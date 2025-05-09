@@ -1,3 +1,14 @@
+- [ ] need this mapping if ipv6
+127.0.0.1 localhost
+::1 localhost
+- [ ] https://github.com/luckman212/pingthing
+- [ ] ipython tmux integration https://grok.com/share/bGVnYWN5_5f2d877f-c107-40d4-a766-abc33bf87aaf
+  - [ ] https://code.visualstudio.com/docs/terminal/shell-integration
+- [ ] https://github.com/lkubb/dooti
+- [ ] https://github.com/schasse/tmux-jump
+- [ ] https://github.com/yshavit/mdq may be useful for job markdown
+- [ ] https://marceloborges.dev/posts/3/ terminal sequence for pbcopy
+- [ ] https://github.com/ipython/ipython/issues/14015
 - [ ] https://github.com/charmbracelet/mods/
   - [ ] https://gist.github.com/peterldowns/5c013c5fe76facb9e8ff8ccd3905fe0b
 - [ ] https://github.com/dloss/klp log viewer
