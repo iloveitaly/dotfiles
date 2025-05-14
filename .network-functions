@@ -1,0 +1,34 @@
+# Add to ~/.zshrc
+randomize_mac() {
+  interface=${1:-en0}
+  # Get current MAC
+  current_mac=$(ifconfig "$interface" | grep ether | awk '{print $2}')
+  # Check if backup exists
+  if [ -f ~/.mac_address_backup ]; then
+    stored_mac=$(cat ~/.mac_address_backup)
+    if [ "$current_mac" != "$stored_mac" ]; then
+      echo "MAC already randomized. Generating new random MAC."
+    fi
+  else
+    # Store original MAC if no backup exists
+    echo "$current_mac" > ~/.mac_address_backup
+  fi
+  # Generate random MAC (ensure valid unicast)
+  new_mac=$(openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//; s/^./2/')
+  # Set new MAC
+  sudo ifconfig "$interface" lladdr "$new_mac"
+  echo "Original MAC saved. New MAC: $new_mac"
+}
+
+restore_mac() {
+  interface=${1:-en0}
+  # Check if backup file exists
+  if [ -f ~/.mac_address_backup ]; then
+    original_mac=$(cat ~/.mac_address_backup)
+    sudo ifconfig "$interface" lladdr "$original_mac"
+    echo "Restored MAC: $original_mac"
+    # Remove backup file
+    rm ~/.mac_address_backup
+  else
+    echo "No MAC backup found. Reboot to reset to hardware default."
+  fi}
