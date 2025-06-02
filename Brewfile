@@ -117,6 +117,7 @@ if OS.mac?
     brew "azure-cli"
     brew "certbot"
     brew "git-credential-manager"
+    brew "blueutil"
 end
 
 if OS.mac?
