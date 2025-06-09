@@ -1,3 +1,72 @@
+###########################
+# Proxy Helpers
+###########################
+
+# all webshare proxies are socks5
+# https://help.webshare.io/en/articles/8370540-are-your-proxies-socks-or-http
+
+
+get-socks-proxy() {
+  local webshare_token;
+
+  webshare_token=$(op read "op://Assistant/WEBSHARE Scraping Proxy Login/API doc key")
+
+  local proxy_auth=$(
+    http "https://proxy.webshare.io/api/v2/proxy/list/?mode=direct" "Authorization: Token $webshare_token" | \
+      jq -r '.results | map(select(.country_code == "US")) | .[0] | "socks5://\(.username):\(.password)@\(.proxy_address):\(.port)"'
+  )
+
+  for id in $(curl -s -H "Authorization: Token $webshare_token" \
+    "https://proxy.webshare.io/api/v2/proxy/ipauthorization/" | \
+    jq -r '.results[].id'); do
+    curl -s -X DELETE -H "Authorization: Token $webshare_token" \
+      "https://proxy.webshare.io/api/v2/proxy/ipauthorization/$id/"
+    echo "Deleted IP authorization ID: $id"
+  done
+
+
+  # authorize the ip to avoid having to pass the correct username and password, which canary does not support
+  http POST https://proxy.webshare.io/api/v2/proxy/ipauthorization/ \
+    ip_address="$(http -b GET https://ifconfig.me/ip)" \
+    Authorization:"$webshare_token" \
+    Content-Type:application/json
+
+  echo $proxy_auth
+}
+
+proxy-chrome-canary() {
+  local proxy_auth
+  proxy_auth=$(get-socks-proxy)
+  # Extract protocol, IP, and port (remove username and password)
+  local proxy_url
+  proxy_url=$(echo "$proxy_auth" | sed -E 's#(socks5)://[^@]+@([^:]+):([0-9]+)#\1://\2:\3#')
+  open -a "Google Chrome Canary" --args --proxy-server="$proxy_url"
+}
+
+# set ethernet to use the socks proxy
+set-socks-proxy() {
+  # from webshare
+      # jq -r '.results | map(select(.country_code == "US")) | .[0] | "\(.proxy_address) \(.port) On \(.username) \(.password)"'
+  # expected format: networksetup -setsocksfirewallproxy <networkservice> <domain> <port number> <authenticated> <username> <password>
+
+  # eval "networksetup -setsocksfirewallproxy "Wi-Fi" $proxy_auth"
+
+  networksetup -setsocksfirewallproxystate "Ethernet" On
+  eval "networksetup -setsocksfirewallproxy "Ethernet" $(get-socks-proxy)"
+}
+
+clear-socks-proxy() {
+  networksetup -setsocksfirewallproxy "Wi-Fi" Empty
+  networksetup -setsocksfirewallproxystate "Wi-Fi" Off
+
+  networksetup -setsocksfirewallproxy "Ethernet" Empty
+  networksetup -setsocksfirewallproxystate "Ethernet" Off
+}
+
+###########################
+# Randomize Mac Address
+###########################
+
 # Add to ~/.zshrc
 randomize_mac() {
   interface=${1:-en0}
