@@ -62,51 +62,6 @@ pbcopy-image() {
 }
 
 ###########################
-# Mise Utilities
-###########################
-
-# use plugin name as only parameter
-mise-current-version() {
-  if [ $# -gt 1 ]; then
-    echo "Error: Only one plugin name is allowed"
-    return 1
-  fi
-
-  mise list --current --json | jq -r ".$1[0].version // empty"
-}
-
-# Loop through all arguments (assumed to be mise plugins)
-mise-generate-tool-versions() {
-  for plugin in "$@"; do
-    version=$(mise-current-version "$plugin")
-
-    if [ -n "$version" ]; then
-      echo "$plugin $version" >> .tool-versions
-    else
-      echo "Error: Version for $plugin not found."
-    fi
-  done
-}
-
-# use plugin name as initial parameter
-mise-reinstall() {
-  if [ $# -gt 1 ]; then
-    echo "Error: Only one plugin name is allowed"
-    return 1
-  fi
-
-  version=$(mise-current-version $1)
-
-  if [ -z "$version" ]; then
-    echo "Error: Version not found for $1"
-    return 1
-  fi
-
-  mise uninstall $1@$version
-  mise install $1@$version
-}
-
-###########################
 # Network Configuration
 # https://apple.stackexchange.com/questions/379657/remove-custom-dns-server-setting-via-command-line
 ###########################
@@ -124,7 +79,7 @@ set-dns-servers() {
   # PIHOLE_TAILSCALE_IP PIHOLE_LOCAL_IP defined elsewhere
 
   # TODO this doesn't seem to work
-  TAILSCALE_SEARCH_DOMAIN=$(tailscale status --json | jq -r '.CurrentTailnet.MagicDNSSuffix')
+  TAILSCALE_SEARCH_DOMAIN=$(tailscale status --json |  jq -r '.CurrentTailnet.MagicDNSSuffix')
 
   # sudo networksetup -setdnsservers "Wi-Fi" 100.84.131.117 192.168.7.32 9.9.9.9 100.84.131.117
   # sudo networksetup -setdnsservers "Ethernet" 100.84.131.117 192.168.7.32 9.9.9.9 100.84.131.117
@@ -153,10 +108,15 @@ clear-dns-servers() {
   sudo networksetup -setdnsservers "Wi-Fi" empty
   sudo networksetup -setdnsservers "Ethernet" empty
 
-  echo $package_path
-  cd $package_path
-  code $package_path
+  sudo networksetup -setsearchdomains "Wi-Fi" empty
+  sudo networksetup -setsearchdomains "Ethernet" empty
+
+  flushdns
 }
+
+# TODO need to restart and test; I think I corrupted something
+
+
 
 ###########################
 # Network Sniffing
@@ -167,117 +127,37 @@ active_nework_device() {
 }
 
 start_network_proxy() {
-    SERVICE="Ethernet"
-    PROXY_ADDRESS="localhost"
-    PROXY_PORT="8084"
+  SERVICE=$(active_nework_device)
+  PROXY_ADDRESS="localhost"
+  PROXY_PORT="8084"
 
-    disable_proxy() {
-        echo "Disabling proxies for $SERVICE..."
-        sudo networksetup -setsocksfirewallproxystate "$SERVICE" off
-        echo "Proxies disabled for $SERVICE"
-    }
+  disable_proxy() {
+      echo "Disabling proxies for $SERVICE..."
+      sudo networksetup -setsocksfirewallproxystate "$SERVICE" off
+      echo "Proxies disabled for $SERVICE"
+  }
 
-    # Check if the mitmproxy certificate is in the keychain
-    if [[ -z $(security find-certificate -a -c "mitmproxy" -p) ]]; then
-        echo "mitmproxy certificate not found in the system keychain. Adding it now..."
-        sudo security add-trusted-cert -d -p ssl -p basic -k /Library/Keychains/System.keychain ~/.mitmproxy/mitmproxy-ca-cert.pem
-    else
-        echo "mitmproxy certificate is already in the system keychain."
-    fi
-
-    echo "Starting mitmproxy on port $PROXY_PORT..."
-
-    # Set SOCKS5 proxy
-    sudo networksetup -setsocksfirewallproxy "$SERVICE" "$PROXY_ADDRESS" "$PROXY_PORT"
-    sudo networksetup -setsocksfirewallproxystate "$SERVICE" on
-
-    echo "SOCKS5 proxy set for $SERVICE"
-
-    # Start mitmproxy in SOCKS5 mode with TLS version adjustment
-    mitmproxy --mode socks5 --listen-port $PROXY_PORT --set tls_version_client_min=SSL3
-
-    # Clean up proxy settings after mitmproxy exits
-    disable_proxy
-}
-
-###########################
-# Docker Utilities
-###########################
-
-set_docker_config() {
-  mkdir ~/.docker
-
-  # set default `ps` format to be much shorter
-  touch ~/.docker/config.json
-
-  # the default ps format is way too large. Shorten it up and then
-  yq -i '.psFormat = "table {{.ID}}\t{{.Image}}\t{{.Names}}"' ~/.docker/config.json
-
-  # set default log size to be a reasonable, but not unbounded, size
-  touch ~/.docker/daemon.json
-  yq -i '.log-driver = "json-file" | .log-opts.max-size = "10m" | .log-opts.max-file = "3"' ~/.docker/daemon.json
-
-  # https://docs.orbstack.dev/features/debug
-  # `docker context ls` to get a list of contexts
-  # TODO maybe only do this on macos environment?
-  docker context create biancobox --docker host=ssh://biancobox@biancobox.lan
-}
-
-# from within a container, scan to see what it has access to
-docker-container-scan() {
-  # 1. Identify your container's network and subnet:
-ip addr show
-
-# 2. Scan for active IPs:
-nmap -sn 172.17.0.0/16 -oG scan.txt
-
-# 3. For each detected IP, do a reverse lookup:
-for ip in $(awk '/Up$/{print $2}' scan.txt); do
-  dig -x $ip +short
-done
-}
-
-# Usage: docker-shell container_name user
-#   - container name (can be partial) as first arg
-#   - [optional] user as second arg
-#
-# Description: shell inside of existing container
-docker-shell() {
-  local container_ids=($(docker ps -aqf "name=$1"))
-  local user_option=""
-
-  if [ ${#container_ids[@]} -gt 1 ]; then
-    echo "Error: Multiple containers match the name '$1'."
-    return 1
-  elif [ ${#container_ids[@]} -eq 0 ]; then
-    echo "Error: No containers found matching the name '$1'."
-    return 1
+  # Check if the mitmproxy certificate is in the keychain
+  if [[ -z $(security find-certificate -a -c "mitmproxy" -p) ]]; then
+      echo "mitmproxy certificate not found in the system keychain. Adding it now..."
+      sudo security add-trusted-cert -d -p ssl -p basic -k /Library/Keychains/System.keychain ~/.mitmproxy/mitmproxy-ca-cert.pem
+  else
+      echo "mitmproxy certificate is already in the system keychain."
   fi
 
-  local container_id=${container_ids[0]}
+  echo "Starting mitmproxy on port $PROXY_PORT..."
 
-  if [ -n "${2-}" ]; then
-    user_option="-u $2"
-  fi
+  # Set SOCKS5 proxy
+  sudo networksetup -setsocksfirewallproxy "$SERVICE" "$PROXY_ADDRESS" "$PROXY_PORT"
+  sudo networksetup -setsocksfirewallproxystate "$SERVICE" on
 
-  eval "docker exec -it $user_option $container_id bash"
-}
+  echo "SOCKS5 proxy set for $SERVICE"
 
-# get files that would be included in a Dockerfile, with size in megabytes
-dockerignore-test() {
-  rsync --dry-run -av --exclude-from='.dockerignore' --out-format="%l %n" ./ /tmp/ | \
-    awk '{size_mb = $1 / (1024 * 1024); printf "%.2f MB %s\n", size_mb, $2}' | \
-    sort -k1,1nr -k2,2 | \
-    less
-}
+  # Start mitmproxy in SOCKS5 mode with TLS version adjustment
+  mitmproxy --mode socks5 --listen-port $PROXY_PORT --set tls_version_client_min=SSL3
 
-# TODO docker-new-bash, run instead of exec
-
-# add key to remove server
-# ssh-add-key <server>
-ssh-add-key() {
-  ssh-copy-id -i ~/.ssh/id_rsa.pub $1
-  ssh $1
+  # Clean up proxy settings after mitmproxy exits
+  disable_proxy
 }
 
 # useful for cleaning up text from tmux
@@ -302,9 +182,16 @@ restart_network() {
   networksetup -setairportpower en0 off
   networksetup -setairportpower en0 on
 
+  restart_bluetooth
+}
+
+restart_bluetooth() {
   # Restart Bluetooth
   sudo launchctl stop com.apple.bluetoothd
   sudo launchctl start com.apple.bluetoothd
+
+  # TODO maybe use blueutil to restart bluetooth?
+  # blueutil -p 0 && sleep 1 && blueutil -p 1
 }
 
 # for quick gpt prompt generation
@@ -516,31 +403,11 @@ rgg() {
   fi
 }
 
-# combine all matching files into a single string and copy to clipboard, helpful for AI stuff
-find_and_bundle() {
-  # $1 is the first argument to the function: the specific string to search for
-
-  # Ensure the search string is provided
-  if [[ -z "$1" ]]; then
-    echo "Usage: find_and_bundle <string>"
-    return 1
-  fi
-
-  # Use ripgrep to find files containing the specific string
-  local files_with_string=($(rg --files-with-matches --no-messages --fixed-strings "$1"))
-
-  # Check if any files were found
-  if [[ ${#files_with_string[@]} -eq 0 ]]; then
-    echo "No files found with string: $1"
-    return 1
-  fi
-
-  # Combine contents of the files, separated by "---"
-  for file in $files_with_string; do
-    cat "$file"
-    echo "\n---\n"
-  done | pbcopy  # Copy the combined content to the clipboard
+# ripgrep file
+rgf() {
+  rg "$@" --files-with-matches | sort -u
 }
+
 
 # convert a pdf to a jpeg for usage in gpt-v
 # ChatGPT cannot handle 3p documents
@@ -644,6 +511,10 @@ rgo() {
 
 # password protected pdfs are such a pain, this removes the password protection
 decryptpdf() {
+  if [ -z "$1" ]; then
+    echo "Usage: decryptpdf <pdf-file>"
+    return 1
+  fi
   echo "Enter password followed by <enter> followed by <ctrl-D>"
   qpdf --decrypt --password-file=- --replace-input "${1}"
 }
@@ -790,3 +661,4 @@ source ~/.python-functions
 source ~/.git-functions
 source ~/.docker-functions
 source ~/.mise-functions
+source ~/.ai-functions
