@@ -106,8 +106,9 @@ $(mise which clean-workspace) --tab-description "$dialogResult"
 # must run as non-root user!
 # su - mike -c "~/.time-machine-includes.sh"
 
-# it seems to get junked up after a while
+# it seems to get junked up after a while and slow down
+# a daily restart keeps it operating quickly
 echo "Restarting Raycast..."
 quit_app "Raycast"
-while pgrep -q "Raycast"; do sleep 0.1; done
+while pgrep -q -x "Raycast"; do sleep 0.1; done
 open -a "Raycast"
