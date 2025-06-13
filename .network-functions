@@ -36,8 +36,21 @@ get-socks-proxy() {
   echo $proxy_auth
 }
 
-proxy_socks() {
+# run a local unauthenticated socks proxy which reverse connects to the webshare proxy
+run_local_unauthenticated_proxy() {
   local token api_response proxy_url username password proxy_address port
+  local pid_file="/tmp/pproxy.pid"
+
+  # Check if proxy is already running and kill it
+  if [[ -f "$pid_file" ]]; then
+    local old_pid=$(cat "$pid_file")
+    if kill -0 "$old_pid" 2>/dev/null; then
+      echo "Killing existing proxy process (PID: $old_pid)" >&2
+      kill "$old_pid"
+      sleep 1
+    fi
+    rm -f "$pid_file"
+  fi
 
   token=$(op read "op://Assistant/WEBSHARE Scraping Proxy Login/API doc key")
 
@@ -52,8 +65,36 @@ proxy_socks() {
     return 1
   fi
 
-  # Output the command in the requested format
-  echo "uv tool run pproxy -l socks5://:1080 -r 'socks5://$proxy_address:$port#$username:$password'"
+  # Start the proxy in the background
+  echo "Starting local SOCKS5 proxy on :1080 -> $proxy_address:$port" >&2
+  uv tool run pproxy -l socks5://:1080 -r "socks5://$proxy_address:$port#$username:$password" >/dev/null 2>&1 &
+  
+  # Store the PID
+  local pid=$!
+  echo "$pid" > "$pid_file"
+  
+  echo "Proxy started with PID: $pid" >&2
+  echo "Local proxy available at: socks5://127.0.0.1:1080" >&2
+}
+
+# stop the local socks proxy
+stop_proxy_socks() {
+  local pid_file="/tmp/pproxy.pid"
+  
+  if [[ -f "$pid_file" ]]; then
+    local pid=$(cat "$pid_file")
+    if kill -0 "$pid" 2>/dev/null; then
+      echo "Stopping proxy process (PID: $pid)" >&2
+      kill "$pid"
+      rm -f "$pid_file"
+      echo "Proxy stopped" >&2
+    else
+      echo "Proxy process not running" >&2
+      rm -f "$pid_file"
+    fi
+  else
+    echo "No proxy PID file found" >&2
+  fi
 }
 
 proxy-chrome-canary() {
@@ -122,4 +163,5 @@ restore_mac() {
     rm ~/.mac_address_backup
   else
     echo "No MAC backup found. Reboot to reset to hardware default."
-  fi}
+  fi
+}
