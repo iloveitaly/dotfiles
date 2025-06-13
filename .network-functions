@@ -37,51 +37,23 @@ get-socks-proxy() {
 }
 
 proxy_socks() {
-  # Use local variables to avoid polluting the global shell environment
-  local cmd api_response config_command token
+  local token api_response proxy_url username password proxy_address port
 
   token=$(op read "op://Assistant/WEBSHARE Scraping Proxy Login/API doc key")
 
-  echo "Fetching proxy list and filtering for US proxies..." >&2
+  # Fetch the first US proxy details
+  read -r proxy_address port username password < <(
+    http --ignore-stdin "https://proxy.webshare.io/api/v2/proxy/list/?mode=direct" "Authorization: Token $token" |
+      jq -r '.results | map(select(.country_code == "US")) | .[0] | "\(.proxy_address) \(.port) \(.username) \(.password)"'
+  )
 
-  # 1. Call the Webshare API to get the list of proxies
-  api_response=$(http --ignore-stdin "https://proxy.webshare.io/api/v2/proxy/list/?mode=direct" "Authorization: Token $token")
-
-  # Check if the API call was successful
-  if [[ $? -ne 0 ]]; then
-    echo "Error: Failed to fetch proxy list from the Webshare API." >&2
+  if [[ -z "$proxy_address" || -z "$port" || -z "$username" || -z "$password" ]]; then
+    echo "Error: Could not retrieve US proxy details." >&2
     return 1
   fi
 
-  # 2. Use jq to filter for US proxies and format the nanoproxy command
-  config_command=$(echo "$api_response" | jq -r '
-    # Assign the filtered array of US-based proxies to a variable using "as"
-    ([.results[] | select(.country_code == "US")]) as $us_proxies
-    |
-    if ($us_proxies | length) > 0 then
-      # Select the first proxy from the filtered US list
-      $us_proxies[0] |
-      "ADDR=\":1080\" \\\n" +
-      "NETWORK=\"tcp\" \\\n" +
-      "UPSTREAM_TYPE=\"socks5\" \\\n" +
-      "TZ=\"America/New_York\" \\\n" +
-      "UPSTREAM_ADDRESS=\"\(.proxy_address):\(.port)\" \\\n" +
-      "CREDENTIALS=\"\(.username):\(.password)\" \\\n" +
-      "nanoproxy"
-    else
-      # Return a specific error string if no US proxies are found
-      "ERROR_NO_US_PROXIES_FOUND"
-    end
-  ')
-
-  # 3. Check for errors from the jq parsing step
-  if [[ "$config_command" == "ERROR_NO_US_PROXIES_FOUND" ]]; then
-    echo "Error: No US proxies were found in the API response." >&2
-    return 1
-  fi
-
-  # 4. Print the final, formatted command to standard output
-  echo "$config_command"
+  # Output the command in the requested format
+  echo "uv tool run pproxy -l socks5://:1080 -r 'socks5://$proxy_address:$port#$username:$password'"
 }
 
 proxy-chrome-canary() {
