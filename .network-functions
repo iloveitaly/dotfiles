@@ -7,6 +7,7 @@
 
 
 get-socks-proxy() {
+  set -e
   local webshare_token;
 
   webshare_token=$(op read "op://Assistant/WEBSHARE Scraping Proxy Login/API doc key")
@@ -20,18 +21,67 @@ get-socks-proxy() {
     "https://proxy.webshare.io/api/v2/proxy/ipauthorization/" | \
     jq -r '.results[].id'); do
     curl -s -X DELETE -H "Authorization: Token $webshare_token" \
-      "https://proxy.webshare.io/api/v2/proxy/ipauthorization/$id/"
-    echo "Deleted IP authorization ID: $id"
+      "https://proxy.webshare.io/api/v2/proxy/ipauthorization/$id/" 1>/dev/null
+    echo "Deleted IP authorization ID: $id" >&2
   done
 
-
   # authorize the ip to avoid having to pass the correct username and password, which canary does not support
+  local my_ip
+  my_ip=$(curl -s https://ifconfig.me/ip | tr -d '\n')
   http POST https://proxy.webshare.io/api/v2/proxy/ipauthorization/ \
-    ip_address="$(http -b GET https://ifconfig.me/ip)" \
+    ip_address="$my_ip" \
     Authorization:"$webshare_token" \
     Content-Type:application/json
 
   echo $proxy_auth
+}
+
+proxy_socks() {
+  # Use local variables to avoid polluting the global shell environment
+  local cmd api_response config_command token
+
+  token=$(op read "op://Assistant/WEBSHARE Scraping Proxy Login/API doc key")
+
+  echo "Fetching proxy list and filtering for US proxies..." >&2
+
+  # 1. Call the Webshare API to get the list of proxies
+  api_response=$(http --ignore-stdin "https://proxy.webshare.io/api/v2/proxy/list/?mode=direct" "Authorization: Token $token")
+
+  # Check if the API call was successful
+  if [[ $? -ne 0 ]]; then
+    echo "Error: Failed to fetch proxy list from the Webshare API." >&2
+    return 1
+  fi
+
+  # 2. Use jq to filter for US proxies and format the nanoproxy command
+  config_command=$(echo "$api_response" | jq -r '
+    # Assign the filtered array of US-based proxies to a variable using "as"
+    ([.results[] | select(.country_code == "US")]) as $us_proxies
+    |
+    if ($us_proxies | length) > 0 then
+      # Select the first proxy from the filtered US list
+      $us_proxies[0] |
+      "ADDR=\":1080\" \\\n" +
+      "NETWORK=\"tcp\" \\\n" +
+      "UPSTREAM_TYPE=\"socks5\" \\\n" +
+      "TZ=\"America/New_York\" \\\n" +
+      "UPSTREAM_ADDRESS=\"\(.proxy_address):\(.port)\" \\\n" +
+      "CREDENTIALS=\"\(.username):\(.password)\" \\\n" +
+      "nanoproxy"
+    else
+      # Return a specific error string if no US proxies are found
+      "ERROR_NO_US_PROXIES_FOUND"
+    end
+  ')
+
+  # 3. Check for errors from the jq parsing step
+  if [[ "$config_command" == "ERROR_NO_US_PROXIES_FOUND" ]]; then
+    echo "Error: No US proxies were found in the API response." >&2
+    return 1
+  fi
+
+  # 4. Print the final, formatted command to standard output
+  echo "$config_command"
 }
 
 proxy-chrome-canary() {
