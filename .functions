@@ -67,12 +67,51 @@ pbcopy-image() {
 ###########################
 
 # get dns servers for active network devices
-get-dns-servers() {
-  echo "Wi-fi:"
-  sudo networksetup -getdnsservers "Wi-Fi"
 
-  echo "\nEthernet"
-  sudo networksetup -getdnsservers "Ethernet"
+get-dns-servers() {
+  for service in "Wi-Fi" "Ethernet"; do
+    echo "$service:"
+    dns_servers=$(networksetup -getdnsservers "$service" 2>&1)
+    if [[ "$dns_servers" == *"There aren't any DNS Servers set on"* ]]; then
+      echo "No explicit DNS servers set. Attempting to get inherited DNS servers..."
+      
+      # Get the IP address for this service to identify the interface
+      service_ip=$(networksetup -getinfo "$service" 2>/dev/null | grep "^IP address:" | awk '{print $3}')
+      
+      if [[ -z "$service_ip" || "$service_ip" == "none" ]]; then
+        echo "No IP address found for $service (service may be inactive)"
+      else
+        # Find interface by IP address
+        iface=$(ifconfig | grep -B10 "inet $service_ip " | grep "^en[0-9]*:" | tail -1 | cut -d: -f1)
+        
+        if [[ -z "$iface" ]]; then
+          echo "Could not determine interface for $service (IP: $service_ip)"
+        else
+          echo "Found interface $iface for $service (IP: $service_ip)"
+          # Extract nameservers for this interface from scutil
+          # The pattern is: nameserver line, then if_index line with our interface
+          nameservers=$(scutil --dns | awk -v iface="$iface" '
+            /nameserver\[.*\] : / { 
+              nameserver = $NF; 
+              getline; 
+              if ($0 ~ "if_index.*\\("iface"\\)") {
+                print nameserver
+              }
+            }
+          ' | sort -u)
+          
+          if [[ -n "$nameservers" ]]; then
+            echo "$nameservers"
+          else
+            echo "No DNS servers found for interface $iface"
+          fi
+        fi
+      fi
+    else
+      echo "$dns_servers"
+    fi
+    echo
+  done
 }
 
 set-dns-servers() {
