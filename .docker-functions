@@ -2,6 +2,7 @@
 # Docker Utilities
 ###########################
 
+# there are some docker options that must be set manually using config.json
 set_docker_config() {
   mkdir ~/.docker
 
@@ -24,7 +25,9 @@ set_docker_config() {
   done
 }
 
-# from within a container, scan to see what it has access to
+# from within a container, scan to see what other hosts it has access to
+# this is helpful for debugging intra-container networking issues
+# Usage: docker-container-scan
 docker-container-scan() {
   # 1. Identify your container's network and subnet:
   ip addr show
@@ -38,12 +41,14 @@ docker-container-scan() {
   done
 }
 
+# Push a Docker image to a remote host using SSH. Push an image to a host without hosting a registry.
 # Usage: docker-push-image <image> <host>
 docker-push-image() {
   docker save $1 | ssh -C $2 docker load
 }
 
-# docker shell: open up an interactive shell in a container, across all of your docker contexts
+# dsh = docker shell: open up an interactive shell in a container, across all of your docker contexts
+# easily "jump" into a particular container, even on a remote host!
 dsh() {
   # Turn off any shell debugging/tracing (uncomment if still seeing debug output)
   # set +x
@@ -113,9 +118,7 @@ dockerignore-test() {
     less
 }
 
-# TODO docker-new-bash, run instead of exec
-
-# add key to remove server
+# add your local public key to remote server
 # ssh-add-key <server>
 ssh-add-key() {
   ssh-copy-id -i ~/.ssh/id_rsa.pub $1
