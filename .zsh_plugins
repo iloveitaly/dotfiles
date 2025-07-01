@@ -53,6 +53,7 @@ zinit wait'0a' lucid for \
   'https://gist.github.com/iloveitaly/64b3ebdb50b90057ac820b25b4072970/raw/direnv.plugin.zsh' \
   'https://github.com/iloveitaly/dotfiles/blob/master/zsh_plugins/swift.plugin.zsh' \
   'https://github.com/iloveitaly/dotfiles/blob/master/zsh_plugins/ngrok.plugin.zsh' \
+  'https://github.com/iloveitaly/dotfiles/blob/master/zsh_plugins/ultraman.plugin.zsh' \
   'http://github.com/dolthub/dolt/blob/main/dolt.plugin.zsh' \
   'https://github.com/junegunn/fzf/blob/v0.58.0/shell/completion.zsh' \
   'https://github.com/junegunn/fzf/blob/v0.58.0/shell/key-bindings.zsh' \
