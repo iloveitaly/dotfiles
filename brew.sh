@@ -42,7 +42,9 @@ curl https://mise.run | sh
 eval "$(mise activate zsh)"
 mise install -y
 
+# add binstall to the current rust installation
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+
 # cargo-only packages
 cargo binstall -y usage-cli markdown-extract-cli
 
@@ -80,7 +82,8 @@ memory_limit=1024M
 npm install -g npm
 npm install -g hostile
 npm install -g yarn
-npm install -g @sourcegraph/cody
+npm install -g wrangler@latest
+npm add -g @sourcegraph/amp
 
 # let programs that don't properly source the shell know where gpg is
 # https://github.com/denolehov/obsidian-git/issues/21
