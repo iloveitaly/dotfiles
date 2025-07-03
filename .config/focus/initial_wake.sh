@@ -6,7 +6,6 @@
 # additionally, since it's not executed in login mode, ~/.zshrc is not loaded
 export USER=mike
 export HOME=/Users/$USER
-
 # add `mise` bin to path
 export PATH="$HOME/.local/bin:/sbin:/usr/sbin:/opt/homebrew/bin:$PATH"
 
@@ -99,7 +98,7 @@ EOT
 
 # cleanup browser tabs
 echo "Cleaning browser tabs..."
-$(mise which clean-workspace) --tab-description "$dialogResult"
+uvx clean-workspace --tab-description "$dialogResult"
 
 # TODO the script below is not properly running as root
 
