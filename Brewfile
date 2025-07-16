@@ -213,7 +213,6 @@ if OS.mac?
     cask "firefox" # for debugging, not actual use
 
     # == Experimental
-    cask "appcleaner"
     cask "fig"
     cask "tip"
     cask "krisp"
