@@ -183,7 +183,7 @@ setopt localoptions monitor
 # ===============
 
 # http://mikebian.co/fixing-word-navigation-in-zsh/
-WORDCHARS='@*?_-.[]~=&;!#$%^(){}<>/ '$'\n'$'\u00A0'
+WORDCHARS=':@*?_-.[]~=&;!#$%^(){}<>/ '$'\n'$'\u00A0'
 autoload -Uz select-word-style
 select-word-style normal
 zstyle ':zle:*' word-style unspecified
