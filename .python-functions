@@ -28,6 +28,7 @@ PYTHON_DEBUGGING_PACKAGES="ipython \
   uv-development-toggle \
   llm-sql-prompt \
   py-spy \
+  pytest-watcher \
   httpdbg"
 
 # TODO can reference local versions of the plugin via: $HOME/Projects/python/ipython-suggestions \
