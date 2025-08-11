@@ -1,0 +1,8 @@
+# https://github.com/nateberkopec/dotfiles/blob/main/ghostty/config
+# theme = matrix
+font-size = 18
+macos-titlebar-style = transparent
+macos-titlebar-proxy-icon = hidden
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
