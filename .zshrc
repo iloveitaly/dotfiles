@@ -74,16 +74,17 @@ setopt hist_save_no_dups        # Omit older commands in favor of newer ones.
 # Evals
 # =============
 
-# we tried linux homebrew, but it's terrible :/
+# we tried linux homebrew, but it's terrible, so we conditionally load brew
 brew_path="/opt/homebrew/bin/brew"
 if [[ -x "$brew_path" ]]; then
   eval "$($brew_path shellenv)"
 fi
 
+# TODO I wonder if there is a binary-only postgres installation we can use instead here...
 # postgres utilities
 export PATH="/Applications/Postgres.app/Contents/Versions/16/bin:$PATH"
 
-# poetry, orb, etc
+# poetry, orb, mise, etc
 export PATH="$HOME/.local/bin:$PATH"
 
 # TODO really? shouldn't we do this in the bun plugin? Or can we redirect installs?
@@ -101,6 +102,22 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
+
+# ================
+# Agent Detection
+# Don't load complex autocompletions, aliases, or run anything async, when
+# running in an agent like cursor or copilot.
+# ================
+
+if [[ -n "${CURSOR_AGENT:-}" ]]; then
+  zinit load wintermi/zsh-mise
+  zinit snippet 'https://gist.github.com/iloveitaly/64b3ebdb50b90057ac820b25b4072970/raw/direnv.plugin.zsh'
+  return
+fi
+
+# ======================
+# Load Config & Plugins
+# ======================
 
 # Load ~/.exports, ~/.aliases, ~/.functions and ~/.extra
 # ~/.extra can be used for settings you don’t want to commit
@@ -172,11 +189,6 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 
 # https://github.com/zsh-users/zsh-autosuggestions/issues/351
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
-
-# since we can't use the default kill detached in tmux, we need to do it ourselves
-setopt localoptions nomonitor
-(tmux-kill-detached-sessions &> /dev/null &) & disown
-setopt localoptions monitor
 
 # ===============
 # Word Definition
@@ -284,3 +296,8 @@ _zsh_autosuggest_strategy_atuin_global() {
 export ZSH_AUTOSUGGEST_STRATEGY=(atuin_auto atuin_global)
 # autocomplete on completions as well
 # export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+# since we can't use the default kill detached in tmux, we need to do it ourselves
+setopt localoptions nomonitor
+(tmux-kill-detached-sessions &> /dev/null &) & disown
+setopt localoptions monitor
