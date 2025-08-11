@@ -6,5 +6,8 @@ alias print_stack import importlib.util; __stacktrace_spec = importlib.util.spec
 # open current file we are breaked on in vscode
 alias o import os, importlib.util; __vscode_spec = importlib.util.spec_from_file_location("vscode", os.path.expanduser("~/.config/pdbrc/vscode.py")); __vscode = importlib.util.module_from_spec(__vscode_spec); __vscode_spec.loader.exec_module(__vscode); __vscode.open_in_vscode_from_frame($_frame)
 
+# when in a pytest session, you need to run quit AND quit
+alias q import sys; "pytest" in sys.modules and __import__("pytest").exit("stop all") or quit()
+
 # !!import funcy_pipe as fp
 # !import funcy_pipe as fp
