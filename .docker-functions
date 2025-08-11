@@ -13,8 +13,15 @@ set_docker_config() {
   yq -i '.psFormat = "table {{.ID}}\t{{.Image}}\t{{.Names}}"' ~/.docker/config.json
 
   # set default log size to be a reasonable, but not unbounded, size
-  touch ~/.docker/daemon.json
-  yq -i '.log-driver = "json-file" | .log-opts.max-size = "10m" | .log-opts.max-file = "3"' ~/.docker/daemon.json
+  # snapshotter feature is required for railpack
+  # `docker info -f '{{ .DriverStatus }}'` to verify results
+  touch ~/.orbstack/config/docker.json
+  yq -i '
+  .log-driver = "json-file" | 
+  .log-opts.max-size = "10m" |
+  .log-opts.max-file = "3" |
+  .features."containerd-snapshotter" = true
+  ' ~/.orbstack/config/docker.json
 
   # https://docs.orbstack.dev/features/debug
   # `docker context ls` to get a list of contexts
@@ -23,6 +30,11 @@ set_docker_config() {
   for host in $DOCKER_HOSTS; do
     docker context create $host --docker host=ssh://$host@$host.lan
   done
+
+  orb restart docker
+
+  # create a container-based buildkit instance for railpack
+  docker run --rm --privileged -d --name buildkit moby/buildkit
 }
 
 # from within a container, scan to see what other hosts it has access to
