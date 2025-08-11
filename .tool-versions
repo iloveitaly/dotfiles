@@ -1,8 +1,8 @@
 nodejs 22.17.0
-bun 1.2.15
+bun 1.2.19
 erlang 26.2.5.12
 elixir 1.18.4
-python 3.13.4
+python 3.13.5
 poetry 1.8.5
 ruby 3.4.4
 direnv 2.36.0
@@ -10,4 +10,4 @@ rust 1.87.0
 pnpm 9.15.9
 golang 1.23.1
 just 1.40.0
-uv 0.7.12
+uv 0.8.8
