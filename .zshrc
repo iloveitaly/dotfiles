@@ -112,6 +112,8 @@ source "${ZINIT_HOME}/zinit.zsh"
 if [[ -n "${CURSOR_AGENT:-}" ]]; then
   zinit load wintermi/zsh-mise
   zinit snippet 'https://gist.github.com/iloveitaly/64b3ebdb50b90057ac820b25b4072970/raw/direnv.plugin.zsh'
+  # simple prompt with pwd and $
+  PS1='%~ $ '
   return
 fi
 
