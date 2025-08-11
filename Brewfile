@@ -118,6 +118,12 @@ if OS.mac?
     brew "certbot"
     brew "git-credential-manager"
     brew "blueutil"
+    brew "proxychains-ng"
+    brew "mcpm"
+    brew "soulver-cli"
+
+    tap "ryanbekhen/nanoproxy"
+    brew "nanoproxy"
 end
 
 if OS.mac?
@@ -213,7 +219,6 @@ if OS.mac?
     cask "firefox" # for debugging, not actual use
 
     # == Experimental
-    cask "fig"
     cask "tip"
     cask "krisp"
     cask "webcatalog"
@@ -273,6 +278,9 @@ if OS.mac?
     brew "ameshkov/tap/dnslookup"
     brew "smudge/smudge/nightlight"
     brew "hyperfine"
+    brew "zrok"
+    brew "btop"
+    brew "px"
     # homerow
 
     # == Mac App store
