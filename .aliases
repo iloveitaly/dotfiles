@@ -14,6 +14,9 @@ alias fixcamera="sudo killall VDCAssistant; sudo killall AppleCameraAssistant"
 # most recently modified file
 alias recent-file="exa -s modified --reverse | head -n 1"
 
+# list all paths in $PATH
+alias list-paths=" echo $PATH | tr ':' '\n' | fzf"
+
 # pbcopy does not allow you to mutate public.html
 alias pbcopy-html="pbpaste | hexdump -ve '1/1 \"%.2x\"' | xargs printf 'set the clipboard to {«class HTML»:«data HTML%s»}' | osascript -"
 
@@ -50,7 +53,7 @@ alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 alias whois="whois -h whois-servers.net"
 
 # Flush Directory Service cache
-alias flushdns="sudo killall -HUP mDNSResponder && sudo dscacheutil -flushcache && sudo killall -HUP configd && echo 'All caches flushed.'"
+alias flushdns="sudo killall -HUP mDNSResponder; sudo dscacheutil -flushcache; sudo killall -HUP configd; && echo 'All caches flushed.'"
 alias flushdns="sudo killall -HUP mDNSResponder; sudo dscacheutil -flushcache"
 
 # View HTTP traffic
@@ -58,7 +61,7 @@ alias sniff="sudo ngrep -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # Start an HTTP server from a directory
-alias server="(sleep 0.1 && open http://localhost:8080/) & python -m http.server 8080"
+alias http-server="(sleep 0.1 && open http://localhost:8080/) & python -m http.server 8080"
 
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | pbcopy"
@@ -102,6 +105,7 @@ alias typeid="py -m typeid.cli decode"
 alias ipdb="ipdb3"
 alias po="poetry"
 alias pyt=pytest
+alias py-kill="killall python; killall python3; killall python 3.13"
 alias pytd="pytest --pdb -s"
 # g add poetry.lock && g checkout --theirs poetry.lock && po lock && git add poetry.lock && git rebase --continue
 alias po-tree="poetry show --tree"
@@ -113,6 +117,7 @@ alias py-remove-pycache="fd --no-ignore-vcs __pycache__ | xargs rm -rf"
 alias py-venv-path="python -c 'import site; print(site.getsitepackages()[0])'"
 # alias py-venv="cd $(py-venv-path)"
 alias py-spy-all="ps aux | grep '[p]ython' | awk '{print \$2}' | xargs -I {} py-spy dump --pid {}"
+alias pyl="pytest --pdb -s --lf"
 
 # TODO why not just add /usr/libexec to the path?
 # PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
