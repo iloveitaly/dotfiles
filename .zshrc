@@ -80,9 +80,8 @@ if [[ -x "$brew_path" ]]; then
   eval "$($brew_path shellenv)"
 fi
 
-# TODO I wonder if there is a binary-only postgres installation we can use instead here...
 # postgres utilities
-export PATH="/Applications/Postgres.app/Contents/Versions/16/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 
 # poetry, orb, mise, etc
 export PATH="$HOME/.local/bin:$PATH"
@@ -109,7 +108,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 # running in an agent like cursor or copilot.
 # ================
 
-if [[ -n "${CURSOR_AGENT:-}" ]]; then
+if [[ -n "${CURSOR_AGENT:-}" || "${CLAUDECODE:-}" == "1" || "${GEMINI_CLI:-}" == "1" ]]; then
   zinit load wintermi/zsh-mise
   zinit snippet 'https://gist.github.com/iloveitaly/64b3ebdb50b90057ac820b25b4072970/raw/direnv.plugin.zsh'
   # simple prompt with pwd and $
