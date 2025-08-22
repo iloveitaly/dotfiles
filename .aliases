@@ -4,10 +4,13 @@ alias find='fd'
 alias ls='eza -l --group-directories-first'
 alias tree='tre --limit 3'
 
+# shortcuts for commonly used utilities
 alias j='just'
 
+# names I can never remember
 # tabiew is a terrible name but awesome tool to inspect tabular data on the cli
 alias data-tui="tw"
+alias json-view="fx"
 
 alias fixcamera="sudo killall VDCAssistant; sudo killall AppleCameraAssistant"
 
