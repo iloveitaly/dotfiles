@@ -29,6 +29,9 @@ zinit load gnachman/iTerm2-shell-integration
 #   - putting zdharma-continuum/fast-syntax-highlighting outside the async loader seems to break WORDCHARS
 #   - https://github.com/zpm-zsh/zsh-better-npm-completion is more maintained than the lukechilds fork
 #   - zoxide: adds z and zi utilities
+#   - running direnv async may result in terminal mutation after the prompt appears, which is annoying, but what's worse
+#     is direnv not knowing the correct default PATH and causing unexpected mutations (and therefore missing binaries),
+#     so we are ok with this tradeoff given we are forcing direnv + mise sync when a agent is running the terminal.
 
 zinit wait'0a' lucid for \
   zdharma-continuum/fast-syntax-highlighting \
