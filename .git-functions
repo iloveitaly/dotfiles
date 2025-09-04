@@ -239,15 +239,11 @@ git-cherry-pick() {
 # Debug: Echoes steps for troubleshooting
 
 gwt() {
-  echo "[DEBUG] Starting gwt in $PWD"
-
   local git_path=$(command -v git)
   if [[ -z "$git_path" ]]; then
     echo "git not found in PATH" >&2
     return 1
   fi
-  echo "[DEBUG] Using git at $git_path"
-
   if ! "$git_path" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
     echo "Not in a git repo" >&2
     return 1
@@ -258,39 +254,29 @@ gwt() {
     echo "Failed to get main worktree dir" >&2
     return 1
   fi
-  echo "[DEBUG] Main dir: $main_dir"
   local project_name=${main_dir:t}
-  echo "[DEBUG] Project name: $project_name"
 
   local base_dir=${GWT_BASE:-~/Projects/worktrees}
-  echo "[DEBUG] Base dir: $base_dir"
 
   if (( $# == 0 )); then
-    echo "[DEBUG] Listing worktrees"
     local worktrees=($("$git_path" worktree list | awk '{print $1}'))
     local selected=$(printf '%s\n' "${worktrees[@]}" | fzf --height 40% --border)
     if [[ -n "$selected" ]]; then
-      echo "[DEBUG] Switching to $selected"
       cd "$selected" || return 1
     fi
   else
     local branch=$1
     local path=$base_dir/"$project_name"/"$branch"
-    echo "[DEBUG] Target path: $path"
 
-    echo "[DEBUG] Creating parent dir: /bin/mkdir -p ${path:h}"
     /bin/mkdir -p ${path:h}
     if [[ $? -ne 0 ]]; then
       echo "Failed to create parent dir" >&2
       return 1
     fi
 
-    echo "[DEBUG] Checking branch: $git_path rev-parse --verify $branch"
     if "$git_path" rev-parse --verify "$branch" >/dev/null 2>&1; then
-      echo "[DEBUG] Adding existing branch worktree"
       "$git_path" worktree add "$path" "$branch"
     else
-      echo "[DEBUG] Creating new branch worktree"
       "$git_path" worktree add -b "$branch" "$path"
     fi
     if [[ $? -ne 0 ]]; then
@@ -298,7 +284,6 @@ gwt() {
       return 1
     fi
 
-    echo "[DEBUG] Switching to $path"
     cd "$path" || return 1
   fi
 }
