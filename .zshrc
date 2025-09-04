@@ -92,6 +92,10 @@ export PATH="$HOME/.bun/bin:$PATH"
 # for latest gnu make
 export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 
+# PNPM (for global bins)
+export PNPM_HOME="$HOME/.pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
 # TODO I don't understand where this comes from, but it seems to be used by some completion libraries
 fpath+=~/.zfunc
 

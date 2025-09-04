@@ -79,18 +79,16 @@ memory_limit=1024M
 # node
 # remember to use `npx npkill` to remove unneeded `node_modules` folders
 # tried bun + pnpm, but they do not have as good support by mise, it's easier to use npm for tooling
-npm install -g npm
-npm install -g hostile
-npm install -g yarn
-npm install -g wrangler@latest
-npm install yalc -g
+pnpm install -g hostile
+pnpm install -g wrangler@latest
+pnpm install -g yalc
 
 # all of the cli coding tools
-npm add -g @sourcegraph/amp
-npm install -g @google/gemini-cli
-npm install -g @anthropic-ai/claude-code
-npm install -g @openai/codex
-
+pnpm install -g @sourcegraph/amp
+pnpm install -g @google/gemini-cli
+pnpm install -g @anthropic-ai/claude-code
+pnpm install -g @openai/codex
+pnpm approve-builds -g
 
 # let programs that don't properly source the shell know where gpg is
 # https://github.com/denolehov/obsidian-git/issues/21
