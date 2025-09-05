@@ -30,3 +30,22 @@ def pytest_quit():
 
         pytest.exit("stop all")
     raise bdb.BdbQuit
+
+def find_first_project_frame(frame):
+    cwd = os.path.abspath(os.getcwd())
+    venv_path = os.environ.get('VIRTUAL_ENV')
+    if venv_path:
+        venv_path = os.path.abspath(venv_path)
+
+    frames = inspect.getouterframes(frame)
+    for frame_info in reversed(frames):  # Start from innermost to outermost
+        filename = frame_info.filename
+        if filename.startswith('<'):  # Skip non-file frames like <string> or <module>
+            continue
+        abs_filename = os.path.abspath(filename)
+        if venv_path and abs_filename.startswith(venv_path):
+            continue
+        if abs_filename.startswith(cwd):
+            return frame_info.frame
+    # If no matching frame found, return the original frame
+    return frame
