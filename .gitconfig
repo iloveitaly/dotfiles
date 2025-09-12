@@ -133,7 +133,7 @@
   prompt = false
 [difftool "ksdiff"]
   cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[difftool "vscode"]
+[difftool "code"]
   cmd = code --wait --diff $LOCAL $REMOTE
 
 [merge]
@@ -143,8 +143,8 @@
   conflictstyle = diff3
   tool = ksdiff
 
-[mergetool "vscode"]
-  cmd = code --wait --new-window $MERGED
+[mergetool "code"]
+  cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
 [mergetool "ksdiff"]
   cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
   trustExitCode = true
