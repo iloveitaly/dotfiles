@@ -1,0 +1,9 @@
+[[manager.prepend_keymap]]
+on = "Y"
+run = '''shell --confirm "cat '$1' | pbcopy && echo 'Copied to clipboard!'"'''
+desc = "Copy file contents to clipboard"
+
+[[manager.prepend_keymap]]
+on = "P"
+run = '''shell --confirm "echo -n '$1' | pbcopy && echo 'Path copied to clipboard!'"'''
+desc = "Copy file path to clipboard"
