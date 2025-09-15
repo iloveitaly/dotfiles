@@ -75,6 +75,9 @@
   # verbose single commit display
   showv = show --format=fuller
 
+  # TODO should accept a commit sha instead of locking to head 
+  commit-patch = "format-patch -k --stdout HEAD~1"
+
   # `tee /dev/tty` allows us to output the result to stdout *and* pipe it to pbcopy
   sha = !git rev-parse HEAD | tr -d "[:space:]" | tee /dev/tty | pbcopy
   # `git sha` alias is not used to extract the current SHA because of the /dev/tty hack
@@ -94,7 +97,7 @@
 
   # TODO should look into removing this old cleanup
   # http://stackoverflow.com/questions/6127328/how-can-i-delete-all-git-branches-which-have-been-merged
-  cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
+  cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop\\|main' | xargs -n 1 git branch -d"
 
   # deletes all local branches that have no differences with master (i.e. have been squashed into master)
   rm-merged = "! bash -c 'git checkout -q master && git for-each-ref refs/heads/ \"--format=%(refname:short)\" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == \"-\"* ]] && git branch -D $branch; done; true'"
