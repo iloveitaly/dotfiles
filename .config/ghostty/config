@@ -1,8 +1,20 @@
-# https://github.com/nateberkopec/dotfiles/blob/main/ghostty/config
-# theme = matrix
-font-size = 18
+# https://github.com/nateberkopec/dotfiles/blob/main/files/ghostty/config
+# https://ghostty.zerebos.com/
+
+theme = Builtin Solarized Dark
+theme = Atom One Dark
+theme = Snazzy
+
+command = /opt/homebrew/bin/tmux
+# font-family = "Menlo"
+# font-size = 13
 macos-titlebar-style = transparent
 macos-titlebar-proxy-icon = hidden
+
+cursor-style-blink = true
+
 font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
+
+split-divider-color = #FFFFFF
