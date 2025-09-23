@@ -8,6 +8,8 @@ ruby 3.4.5
 direnv 2.37.1
 rust 1.89.0
 pnpm 10.15.1
-golang 1.23.1
+go 1.25.1
 just 1.42.4
 uv 0.8.14
+ubi:railwayapp/railpack latest
+usage latest
