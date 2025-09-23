@@ -78,7 +78,8 @@ c.InteractiveShellApp.exec_lines.append("%autocall 1")
 # unique history file per directory
 c.HistoryManager.hist_file = os.path.join(os.getcwd(), ".ipython_history")
 
-no_color = os.environ.get('NO_COLOR', '').lower()
+# respect NO_COLOR environment variable, helpful for debugging
+no_color = os.environ.get("NO_COLOR", "").lower()
 
-if no_color in ('1', 'true'):
-    c.InteractiveShell.colors = 'NoColor'
+if no_color in ("1", "true"):
+    c.InteractiveShell.colors = "NoColor"
