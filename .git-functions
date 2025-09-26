@@ -255,35 +255,85 @@ gwt() {
     return 1
   fi
   local project_name=${main_dir:t}
+  local common_git_dir=$("$git_path" rev-parse --git-common-dir)
 
   local base_dir=${GWT_BASE:-~/Projects/worktrees}
 
+  get_worktree_for_branch() {
+    local target_branch=$1
+    local current_path
+    while IFS= read -r line; do
+      if [[ $line == "worktree "* ]]; then
+        current_path=${line#worktree }
+      elif [[ $line == "branch refs/heads/$target_branch" ]]; then
+        echo "$current_path"
+        return 0
+      elif [[ -z $line ]]; then
+        current_path=
+      fi
+    done < <("$git_path" worktree list --porcelain)
+    return 1
+  }
+
   if (( $# == 0 )); then
-    local worktrees=($("$git_path" worktree list | awk '{print $1}'))
-    local selected=$(printf '%s\n' "${worktrees[@]}" | fzf --height 40% --border)
+    local lines=()
+    local current_path current_branch ts date_str
+    while IFS= read -r line; do
+      if [[ $line == "worktree "* ]]; then
+        current_path=${line#worktree }
+      elif [[ $line == "branch "* ]]; then
+        current_branch=${line#branch refs/heads/}
+      elif [[ $line == "detached" ]]; then
+        current_branch="detached"
+      elif [[ $line == "bare" ]]; then
+        current_branch="bare"
+      elif [[ -z $line && -n $current_path ]]; then
+        if [[ -z $current_branch ]]; then
+          current_branch="unknown"
+        fi
+        if [[ $current_path == $main_dir ]]; then
+          ts=$(stat -c %Y "$common_git_dir/HEAD" 2>/dev/null) || ts=0
+        else
+          local wt_name=${current_path:t}
+          ts=$(stat -c %Y "$common_git_dir/worktrees/$wt_name/gitdir" 2>/dev/null) || ts=0
+        fi
+        if [[ $ts -eq 0 ]]; then
+          date_str="unknown"
+        else
+          date_str=$(date -d @$ts +%Y-%m-%d)
+        fi
+        lines+=("$current_path \033[90m($current_branch)\033[0m \033[32m[$date_str]\033[0m")
+        current_path= current_branch=
+      fi
+    done < <("$git_path" worktree list --porcelain)
+
+    local selected=$(printf '%s\n' "${lines[@]}" | fzf --ansi --height 40% --border)
     if [[ -n "$selected" ]]; then
-      cd "$selected" || return 1
+      local path="${selected%% *}"
+      cd "$path" || return 1
     fi
   else
     local branch=$1
-    local path=$base_dir/"$project_name"/"$branch"
-
-    /bin/mkdir -p ${path:h}
-    if [[ $? -ne 0 ]]; then
-      echo "Failed to create parent dir" >&2
-      return 1
-    fi
-
-    if "$git_path" rev-parse --verify "$branch" >/dev/null 2>&1; then
-      "$git_path" worktree add "$path" "$branch"
+    local existing_path=$(get_worktree_for_branch "$branch")
+    if [[ -n "$existing_path" ]]; then
+      cd "$existing_path" || return 1
     else
-      "$git_path" worktree add -b "$branch" "$path"
+      local path=$base_dir/"$project_name"/"$branch"
+      /bin/mkdir -p ${path:h}
+      if [[ $? -ne 0 ]]; then
+        echo "Failed to create parent dir" >&2
+        return 1
+      fi
+      if "$git_path" rev-parse --verify "$branch" >/dev/null 2>&1; then
+        "$git_path" worktree add "$path" "$branch"
+      else
+        "$git_path" worktree add -b "$branch" "$path"
+      fi
+      if [[ $? -ne 0 ]]; then
+        echo "Failed to add worktree" >&2
+        return 1
+      fi
+      cd "$path" || return 1
     fi
-    if [[ $? -ne 0 ]]; then
-      echo "Failed to add worktree" >&2
-      return 1
-    fi
-
-    cd "$path" || return 1
   fi
 }
