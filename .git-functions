@@ -259,6 +259,18 @@ gwt() {
 
   local base_dir=${GWT_BASE:-~/Projects/worktrees}
 
+  local uname=$(uname)
+  local stat_cmd date_cmd mod_stat_cmd
+  if [[ $uname == Darwin ]]; then
+    stat_cmd="stat -f %B"
+    mod_stat_cmd="stat -f %m"
+    date_cmd="date -r"
+  else
+    stat_cmd="stat -c %W"
+    mod_stat_cmd="stat -c %Y"
+    date_cmd="date -d @"
+  fi
+
   get_worktree_for_branch() {
     local target_branch=$1
     local current_path
@@ -276,8 +288,11 @@ gwt() {
   }
 
   if (( $# == 0 )); then
+    local gray=$'\033[90m'
+    local reset=$'\033[0m'
+    local green=$'\033[32m'
     local lines=()
-    local current_path current_branch ts date_str
+    local current_path current_branch ts date_str file wt_name
     while IFS= read -r line; do
       if [[ $line == "worktree "* ]]; then
         current_path=${line#worktree }
@@ -292,17 +307,21 @@ gwt() {
           current_branch="unknown"
         fi
         if [[ $current_path == $main_dir ]]; then
-          ts=$(stat -c %Y "$common_git_dir/HEAD" 2>/dev/null) || ts=0
+          file="$common_git_dir"
         else
-          local wt_name=${current_path:t}
-          ts=$(stat -c %Y "$common_git_dir/worktrees/$wt_name/gitdir" 2>/dev/null) || ts=0
+          wt_name=${current_path:t}
+          file="$common_git_dir/worktrees/$wt_name/gitdir"
+        fi
+        ts=$($stat_cmd "$file" 2>/dev/null) || ts=-1
+        if [[ $ts -le 0 ]]; then
+          ts=$($mod_stat_cmd "$file" 2>/dev/null) || ts=0
         fi
         if [[ $ts -eq 0 ]]; then
           date_str="unknown"
         else
-          date_str=$(date -d @$ts +%Y-%m-%d)
+          date_str=$($date_cmd $ts +%Y-%m-%d)
         fi
-        lines+=("$current_path \033[90m($current_branch)\033[0m \033[32m[$date_str]\033[0m")
+        lines+=("${current_path} ${gray}(${current_branch})${reset} ${green}[${date_str}]${reset}")
         current_path= current_branch=
       fi
     done < <("$git_path" worktree list --porcelain)
