@@ -17,7 +17,7 @@ set_docker_config() {
   # `docker info -f '{{ .DriverStatus }}'` to verify results
   touch ~/.orbstack/config/docker.json
   yq -i '
-  .log-driver = "json-file" | 
+  .log-driver = "json-file" |
   .log-opts.max-size = "10m" |
   .log-opts.max-file = "3" |
   .features."containerd-snapshotter" = true
@@ -135,4 +135,28 @@ dockerignore-test() {
 ssh-add-key() {
   ssh-copy-id -i ~/.ssh/id_rsa.pub $1
   ssh $1
+}
+
+# backup a Docker volume to a tar.gz file. Usage: backup-docker-volume <volume_name>
+function backup-docker-volume() {
+    if [[ $# -ne 1 ]]; then
+        print -u2 "Usage: backup-docker-volume <volume_name>"
+        return 1
+    fi
+
+    local volume_name=$1
+    local mountpoint=$(docker volume inspect $volume_name --format '{{ .Mountpoint }}' 2>/dev/null)
+
+    if [[ -z $mountpoint ]]; then
+        print -u2 "Volume '$volume_name' not found"
+        return 1
+    fi
+
+    local backup_file="${volume_name}_backup_$(date +%Y-%m-%d).tar.gz"
+    sudo tar czf $backup_file -C $mountpoint . || {
+        print -u2 "Backup failed"
+        return 1
+    }
+
+    print "Backup created: $backup_file"
 }
