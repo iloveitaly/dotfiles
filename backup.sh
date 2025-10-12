@@ -32,6 +32,4 @@
 
 mackup backup
 
-# manually copy files to the new machine
-pg_dumpall >~/Desktop/postgres_backup
-mysqldump -u root -p --all-databases >~/Desktop/mysql_backup.sql
+# mysql + postgres should be managed in containers
