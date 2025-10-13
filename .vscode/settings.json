@@ -1,0 +1,290 @@
+{
+  "files.autoSave": "onFocusChange",
+  "editor.accessibilitySupport": "off",
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.stickyScroll.enabled": true,
+  "editor.scrollBeyondLastLine": false,
+  "editor.rulers": [120],
+  "editor.tabSize": 2,
+  "editor.tabCompletion": "on",
+  "editor.formatOnPaste": true,
+  "editor.fontFamily": "Hack, Menlo, Monaco, 'Courier New', monospace",
+  "editor.minimap.enabled": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "workbench.tree.indent": 10,
+  "testExplorer.useNativeTesting": true,
+  "explorer.autoReveal": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": true,
+    "markdown": true,
+    "scminput": false,
+    "yaml": true
+  },
+  "security.workspace.trust.untrustedFiles": "open",
+  "eslint.format.enable": true,
+  "eslint.debug": true,
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "redhat.telemetry.enabled": true,
+  "window.commandCenter": true,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+
+  "git.mergeEditor": true,
+  "settingsSync.ignoredSettings": [],
+  "lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true,
+    "**/.venv/**": true
+  },
+  "files.associations": {
+    ".tool-versions": "plaintext",
+    ".envrc": "shellscript",
+    "*.mdc": "markdown"
+  },
+  "githubPullRequests.pullBranch": "never",
+  "debug.javascript.autoAttachFilter": "disabled",
+  "editor.linkedEditing": true,
+  "[sql]": {
+    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
+  },
+  "elixirLS.fetchDeps": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "workbench.editor.pinnedTabsOnSeparateRow": true,
+  "trunk.showPreexistingIssues": false,
+  "window.density.editorTabHeight": "compact",
+  // doesn't look like there is a sizing option for this...
+  "workbench.activityBar.location": "hidden",
+  "lldb.launch.expressions": "native",
+  // select entire function/method when navigating, super helpful for copy/paste
+  // https://github.com/mishkinf/vscode-goto-next-previous-member/issues/26
+  "gotoNextPreviousMember.selectEntireSymbol": true,
+  "gotoNextPreviousMember.symbolPosition": "bottom",
+  "gotoNextPreviousMember.symbolKinds": [
+    "array",
+    // "boolean",
+    "class",
+    "constant",
+    "constructor",
+    "enum",
+    "enummember",
+    "event",
+    "field",
+    "file",
+    "function",
+    "interface",
+    "key",
+    "method",
+    "module",
+    "namespace",
+    // "null",
+    "number",
+    "object",
+    "operator",
+    "package",
+    "property",
+    "string",
+    "struct",
+    "typeparameter"
+    // "variable"
+  ],
+  "tailwind-fold.autoFold": false,
+  "bashIde.enableSourceErrorDiagnostics": true,
+  "window.zoomLevel": 1,
+  // when formatting is disabled, don't mutate the file at all!
+  "formattingToggle.affects": [
+    "editor.formatOnPaste",
+    "editor.formatOnSave",
+    "editor.formatOnType",
+    "files.trimTrailingWhitespace"
+  ],
+  "files.trimTrailingWhitespace": true,
+  "window.confirmBeforeClose": "always",
+  "prisma.showPrismaDataPlatformNotification": false,
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "remote.SSH.configFile": "~/.ssh/vscode_config",
+  "editor.inlineSuggest.suppressSuggestions": true,
+  "security.promptForRemoteFileProtocolHandling": false,
+  "todohighlight.isEnable": true,
+  "workbench.editor.closeOnFileDelete": true,
+  "files.saveConflictResolution": "overwriteFileOnDisk",
+  "git.blame.editorDecoration.enabled": true,
+  "cody.edit.preInstruction": "Keep comments. If writing react, do not use a separate interface for component types.",
+  "typescript.experimental.expandableHover": true,
+
+  // my sense is this doesn't actually do anything...
+  // "python.analysis.packageIndexDepths": [
+  //   {
+  //     "name": "sqlmodel",
+  //     "depth": 3
+  //   },
+  //   {
+  //     "name": "sqlalchemy",
+  //     "depth": 3
+  //   },
+  //   {
+  //     "name": "sklearn",
+  //     "depth": 2
+  //   },
+  //   {
+  //     "name": "sklearn",
+  //     "depth": 2
+  //   },
+  //   {
+  //     "name": "matplotlib",
+  //     "depth": 2
+  //   },
+  //   {
+  //     "name": "scipy",
+  //     "depth": 2
+  //   },
+  //   {
+  //     "name": "django",
+  //     "depth": 2
+  //   },
+  //   {
+  //     "name": "flask",
+  //     "depth": 2
+  //   },
+  //   {
+  //     "name": "fastapi",
+  //     "depth": 2
+  //   }
+  // ],
+
+  "python.analysis.userFileIndexingLimit": -1,
+  // "python.analysis.extraPaths": ["${workspaceFolder}/.venv"],
+  // "python.analysis.inlayHints.callArgumentNames": "all",
+  "python.analysis.typeEvaluation.enableReachabilityAnalysis": true,
+  "python.analysis.typeCheckingMode": "standard",
+  // direnv sets up my environment for me
+  "python.terminal.activateEnvironment": false,
+  "python.analysis.completeFunctionParens": true,
+  "python.testing.pytestEnabled": true,
+  // until ipython integration is around
+  "python.REPL.sendToNativeREPL": false,
+  "python.REPL.enableREPLSmartSend": false,
+  "python.REPL.provideVariables": false,
+  // to debug what is going on when pylance stops working...
+  // "python.analysis.logLevel": "Trace",
+  "python.analysis.autoFormatStrings": true,
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.generateWithTypeAnnotation": true,
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[opentofu]": {
+    "editor.defaultFormatter": "opentofu.vscode-opentofu",
+    "editor.formatOnSave": true
+  },
+  "github.copilot.selectedCompletionModel": "",
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.chat.scopeSelection": true,
+  "github.copilot.nextEditSuggestions.fixes": true,
+  "docker.extension.enableComposeLanguageServer": false,
+  "makefile.configureOnOpen": false,
+  "python.analysis.addHoverSummaries": true,
+  "python.analysis.aiCodeActions": {
+    "generateDocstring": true,
+    "convertLambdaToNamedFunction": true,
+    "implementAbstractClasses": true,
+    "generateSymbol": true,
+    "convertFormatString": true
+  },
+  "python.analysis.cacheLSPData": true,
+  "python.analysis.enableTroubleshootMissingImports": true,
+  "python.defaultInterpreterPath": "/Users/mike/.local/share/mise/installs/python/3.13.7/bin/python",
+  // extension is helpful for getting some extensions, especially in languages I don't work with often, to work well with VSC
+  // but it's obnoxious for common environments that I use all the time
+  "mise.configureExtensionsAutomatically": false,
+  "mise.checkForNewMiseVersion": false,
+  // this caused issues with mucking with my direnv configuration
+  "python.useEnvironmentsExtension": false,
+  "chat.tools.terminal.autoApprove": {
+    "/^git (status|show\b.*)$/": true,
+    "/^(pytest|python|poetry|uv)\b.*$/": true,
+    "/^go\b.*$/": true,
+    "rm": false,
+    "rmdir": false,
+    "del": false,
+    "kill": false,
+    "curl": false,
+    "wget": false,
+    "eval": false,
+    "chmod": false,
+    "chown": false,
+    "/^Remove-Item\\b/i": false,
+    "uv": true,
+    "pytest": true,
+    "/Users/mike/Projects/python/sqlalchemy-postgres-point/.venv/bin/python": true,
+    "python": true,
+    "sys.exit(pytest.main(['-q']))\"": true,
+    "env": true,
+    "sed": true,
+    "jq": true,
+    ".name'": true
+  },
+  "chat.useAgentsMdFile": true,
+  "github.copilot.chat.agent.thinkingTool": true,
+  "github.copilot.chat.languageContext.fix.typescript.enabled": true,
+  "github.copilot.chat.languageContext.typescript.enabled": true,
+
+  // https://github.com/microsoft/vscode/issues/253945
+  // https://github.com/microsoft/vscode-copilot-release/issues/12409
+  "terminal.integrated.shellIntegration.enabled": false,
+  "terminal.integrated.macOptionClickForcesSelection": true,
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "chat.tools.terminal.terminalProfile.osx": {
+    "path": "zsh",
+    "args": [],
+    "env": {
+      // very important! check out ~/.zshenv
+      "VSCODE_AGENT": "1"
+    }
+  },
+  // when dev creates a new terminal, use tmux, not plain zsh!
+  "terminal.integrated.defaultProfile.osx": "tmux",
+  "terminal.integrated.profiles.osx": {
+    "tmux": {
+      "path": "/Users/mike/.tmux-shell.sh",
+      "icon": "terminal-tmux"
+    }
+  },
+  "terminal.integrated.scrollback": 10000,
+  "terminal.external.osxExec": "iTerm.app",
+  "terminal.integrated.macOptionIsMeta": true,
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+}
