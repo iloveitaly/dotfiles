@@ -33,3 +33,5 @@
 mackup backup
 
 # mysql + postgres should be managed in containers
+
+cp ~/Library/Application\ Support/Code/User/{settings,keybindings}.json .vscode/
