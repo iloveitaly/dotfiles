@@ -5,7 +5,7 @@ PYTHON_DEBUGGING_PACKAGES="ipython \
   pudb \
   debugpy \
   git+https://github.com/iloveitaly/ipdb@support-executables \
-  git+https://github.com/iloveitaly/pdbr@ipython-9.x#egg=pdbr[ipython] \
+  pdbr \
   rich \
   ipython-autoimport \
   ipython-playground \
@@ -17,7 +17,7 @@ PYTHON_DEBUGGING_PACKAGES="ipython \
   git+https://github.com/iloveitaly/pretty-traceback.git@custom \
   pre-commit \
   sqlparse \
-  git+https://github.com/iloveitaly/ipython-suggestions.git@ipython-9.x \
+  ipython-suggestions \
   rpdb \
   datamodel-code-generator \
   funcy-pipe \
@@ -96,17 +96,68 @@ function venv-pristine() {
 # what does this do?
 # pbpaste | python3 -c 'import sys, re; print(re.sub(r"^[\"]|[\"]$", "", sys.stdin.read().replace("\\n", "\n")).strip())'
 
-# find the location of a pip package
+# find the location of a pip package: echo the path and cd into it
 pip-show() {
-  package_name=${1//-/_}
-  package_path=$(find --no-ignore-vcs -t d --glob "*${package_name}*" -E "*dist-info*" .venv)
-  echo $package_path
-  if [[ -n "$package_path" ]]; then
-    cd $package_path
-    code $package_path
-  else
-    echo "Package not found: $1"
+  # Function to locate and open a pip package's source directory in the local .venv.
+  # Handles both standard (wheel/source) installs via .dist-info and editable installs via .egg-link.
+  local package=$1
+  if [[ -z "$package" ]]; then
+    echo "Usage: pip-show <package>"
+    return 1
   fi
+  local venv_path=".venv"
+  if [[ ! -d "$venv_path" ]]; then
+    echo "No .venv found"
+    return 1
+  fi
+  # Find site-packages dir within .venv (handles variations like lib/pythonX.Y/site-packages).
+  local site_packages=$(find "$venv_path" -type d -name site-packages | head -n1)
+  if [[ -z "$site_packages" ]]; then
+    echo "No site-packages found"
+    return 1
+  fi
+  # Normalize package name for .dist-info (lowercase, hyphens).
+  local dist_norm=$(echo "${package,,}" | tr '_' '-')
+  local dist_info=$(find "$site_packages" -maxdepth 1 -type d -name "${dist_norm}*.dist-info" 2>/dev/null | head -n1)
+  if [[ -n "$dist_info" ]]; then
+    # Standard install: Use RECORD file to identify top-level package dir.
+    local record="$dist_info/RECORD"
+    if [[ ! -f "$record" ]]; then
+      echo "No RECORD file found for $package"
+      return 1
+    fi
+    # Extract unique top-level dirs from RECORD, excluding metadata.
+    # RECORD lists all installed files relative to site-packages (e.g., requests/__init__.py).
+    # Parsing the first path component identifies the package root dir (e.g., 'requests').
+    # This reliably pinpoints the directory even if package name differs slightly from dist-info.
+    local top_levels=$(awk -F, '{print $1}' "$record" | grep '/' | awk -F/ '{print $1}' | sort -u | grep -vE '\.(dist|egg)-info$')
+    local num_levels=$(echo "$top_levels" | wc -l | sed 's/ //g')
+    if [[ $num_levels -ne 1 ]]; then
+      echo "Unexpected number of top-level dirs ($num_levels) for $package"
+      return 1
+    fi
+    local package_path="$site_packages/$top_levels"
+    echo "$package_path"
+    cd "$package_path" || return 1
+    code "$package_path"
+    return 0
+  fi
+  # Normalize package name for .egg-link (lowercase, underscores).
+  local egg_norm=$(echo "${package,,}" | tr '-' '_')
+  local egg_link=$(find "$site_packages" -maxdepth 1 -type f -name "${egg_norm}.egg-link" 2>/dev/null | head -n1)
+  if [[ -z "$egg_link" ]]; then
+    echo "Package not found: $package"
+    return 1
+  fi
+  # Editable install: Read source path from first line of .egg-link file.
+  local package_path=$(head -n1 "$egg_link" | tr -d '\r')
+  if [[ ! -d "$package_path" ]]; then
+    echo "Source path not found: $package_path"
+    return 1
+  fi
+  echo "$package_path"
+  cd "$package_path" || return 1
+  code "$package_path"
 }
 
 # TODO should make it more flexible: check for venv and different py versions
@@ -184,4 +235,82 @@ EOF
   # the pth file must have a single line, so it's easier to import another file
   echo "import _mbianco_injection" >"$pth_file"
   echo "Python startup injection created: $pth_file"
+}
+
+
+# https://grok.com/share/bGVnYWN5_7acda2af-1956-484d-a9fa-adec18731dac
+# py-copy-for-ipython
+# Description:
+#   Copies the contents of a given file to the system clipboard, prefixed with a
+#   single comment line indicating its path relative to the current working directory:
+#       # file: relative/path/to/file.py
+#   This is useful for pasting code snippets into IPython or Jupyter while retaining
+#   lightweight provenance of the source file.
+#
+# Platform Support:
+#   - macOS: uses `pbcopy`
+#   - Linux / *nix: uses `xclip` (must be installed and accessible in PATH)
+#   - Other / missing tools: function fails with a warning
+#
+# Usage:
+#   py-copy-for-ipython <path-to-file>
+#
+# Arguments:
+#   <path-to-file>
+#       Path to the file whose contents you want to copy. Can be relative or absolute.
+#       Shell expansion (e.g., ~, ./, ../) is supported. The path is normalized to an
+#       absolute path internally, and the prefixed path is made relative to $PWD if possible.
+#
+# Behavior:
+#   1. Resolves the provided path to an absolute path.
+#   2. Derives a relative path by stripping the current working directory prefix.
+#   3. Reads the file content verbatim (no transformation).
+#   4. Prepends a single line: "# file: <relative-path>"
+#   5. Writes the combined text to the clipboard.
+#   6. Prints a confirmation message upon success.
+#
+# Exit Codes:
+#   0  Success
+#   1  Clipboard tool not found or other failure (e.g., unreadable file)
+#
+# Requirements:
+#   - Read permissions on the target file.
+#   - `pbcopy` (macOS) or `xclip` (Linux). For Linux, ensure an X session or proper
+#     clipboard environment; otherwise xclip may fail silently.
+#
+# Examples:
+#   py-copy-for-ipython script.py
+#       Copies script.py with prefix "# file: script.py"
+#
+#   py-copy-for-ipython src/utils/helpers.py
+#       Copies the helpers.py file with prefix "# file: src/utils/helpers.py"
+#
+#   py-copy-for-ipython ~/projects/pkg/module.py
+#       If run from ~/projects, prefix becomes "# file: pkg/module.py"
+#
+# Notes:
+#   - The function does not modify line endings or trim trailing whitespace.
+#   - If the file resides outside the current working directory tree, the absolute
+#     path is used after the "# file:" prefix (because relative stripping fails).
+#   - Safe to bind to a shell alias for faster interactive use.
+#
+# Troubleshooting:
+#   - "Clipboard tool not found": Install xclip (Linux) via your package manager or
+#     ensure macOS environment provides pbcopy.
+#   - If xclip appears to succeed but nothing is in the clipboard, verify DISPLAY or
+#     X11/Wayland clipboard integration.
+py-copy-for-ipython() {
+  local filepath="${1:a}"  # Absolute path for consistency
+  local relpath="${filepath#${PWD}/}"  # Relative to cwd
+  local content=$(<"$filepath")
+  local prefixed="# file: $relpath\n$content"
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo -n "$prefixed" | pbcopy
+  elif command -v xclip >/dev/null; then
+    echo -n "$prefixed" | xclip -sel clip
+  else
+    echo "Clipboard tool not found (pbcopy or xclip)."
+    return 1
+  fi
+  echo "Copied $relpath with prefix."
 }
