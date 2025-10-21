@@ -17,7 +17,7 @@ PYTHON_DEBUGGING_PACKAGES="ipython \
   git+https://github.com/iloveitaly/pretty-traceback.git@custom \
   pre-commit \
   sqlparse \
-  ipython-suggestions \
+  git+https://github.com/iloveitaly/ipython-suggestions.git@ipython-9.x \
   rpdb \
   datamodel-code-generator \
   funcy-pipe \
@@ -60,6 +60,7 @@ function ipy() {
         WITH_OPTIONS+=("--with" "$pkg")
       done
     fi
+
     if [ -f "playground.py" ]; then
       # Explicitly pass the array elements
       uv run "${WITH_OPTIONS[@]}" ipython -i playground.py
