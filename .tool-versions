@@ -1,15 +1,17 @@
 nodejs 22.17.0
-bun 1.2.21
-erlang 26.2.5.14
-elixir 1.18.4
+bun 1.3.0
+erlang 28.1.1
+elixir 1.19.1
 python 3.13.7
 poetry 1.8.5
 ruby 3.4.5
-direnv 2.37.1
+\direnv 2.37.1
 rust 1.89.0
 pnpm 10.15.1
 go 1.25.1
 just 1.42.4
-uv 0.8.14
+uv 0.9.5
+
 ubi:railwayapp/railpack latest
 usage latest
+dive latest
