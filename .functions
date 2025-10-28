@@ -74,16 +74,16 @@ get-dns-servers() {
     dns_servers=$(networksetup -getdnsservers "$service" 2>&1)
     if [[ "$dns_servers" == *"There aren't any DNS Servers set on"* ]]; then
       echo "No explicit DNS servers set. Attempting to get inherited DNS servers..."
-      
+
       # Get the IP address for this service to identify the interface
       service_ip=$(networksetup -getinfo "$service" 2>/dev/null | grep "^IP address:" | awk '{print $3}')
-      
+
       if [[ -z "$service_ip" || "$service_ip" == "none" ]]; then
         echo "No IP address found for $service (service may be inactive)"
       else
         # Find interface by IP address
         iface=$(ifconfig | grep -B10 "inet $service_ip " | grep "^en[0-9]*:" | tail -1 | cut -d: -f1)
-        
+
         if [[ -z "$iface" ]]; then
           echo "Could not determine interface for $service (IP: $service_ip)"
         else
@@ -91,15 +91,15 @@ get-dns-servers() {
           # Extract nameservers for this interface from scutil
           # The pattern is: nameserver line, then if_index line with our interface
           nameservers=$(scutil --dns | awk -v iface="$iface" '
-            /nameserver\[.*\] : / { 
-              nameserver = $NF; 
-              getline; 
+            /nameserver\[.*\] : / {
+              nameserver = $NF;
+              getline;
               if ($0 ~ "if_index.*\\("iface"\\)") {
                 print nameserver
               }
             }
           ' | sort -u)
-          
+
           if [[ -n "$nameservers" ]]; then
             echo "$nameservers"
           else
@@ -130,6 +130,12 @@ set-dns-servers() {
   sudo networksetup -setsearchdomains "Ethernet" $TAILSCALE_SEARCH_DOMAIN
 
   flushdns
+}
+
+set-public-dns-servers() {
+  # quad9 and cloudflare
+  sudo networksetup -setdnsservers "Wi-Fi" 9.9.9.9 1.0.0.1
+  sudo networksetup -setdnsservers "Ethernet" 9.9.9.9 1.0.0.1
 }
 
 # `dig` does not represent an actual macos core DNS query! This includes mdns.
@@ -267,7 +273,7 @@ ask_llm() {
     return 1
   fi
 
-  cody chat --stdin "${files[@]}" --message "$system_prompt\n$message"
+  claude -p "${files[@]}" --message "$system_prompt\n$message"
 }
 # can't use a `?` in a function name, only an alias
 alias "llm?"="ask_llm"
@@ -640,6 +646,44 @@ function ssh-tunnel() {
   ssh $remote_host -L ${local_port}:localhost:${remote_port}
 }
 
+# TODO probably better to use `op` to create the SSH key
+function generate-ssh-key() {
+  # Prompt for 1Password entry name
+  read "entry_name?Enter 1Password entry name: "
+
+  # Trim whitespace and sanitize entry_name: replace spaces with underscores, remove special characters
+  trimmed_entry_name=${entry_name##+([[:space:]])}
+  trimmed_entry_name=${trimmed_entry_name%%+([[:space:]])}
+  sanitized_entry_name=${trimmed_entry_name// /_}
+  sanitized_entry_name=${sanitized_entry_name//[^a-zA-Z0-9_-]/}
+
+  # Check if sanitized_entry_name is empty
+  if [[ -z "$sanitized_entry_name" ]]; then
+    echo "Error: Entry name cannot be empty after sanitization."
+    return 1
+  fi
+
+  # Generate Ed25519 SSH key in current directory using sanitized entry name
+  ssh-keygen -t ed25519 -C "$sanitized_entry_name" -f "./$sanitized_entry_name" -N "" >/dev/null
+
+  # Output generated file names
+  echo "Generated files: $sanitized_entry_name, $sanitized_entry_name.pub"
+
+  # Encode private key to base64
+  private_key=$(base64 < "./$sanitized_entry_name")
+
+  # Get public key
+  public_key=$(cat "./$sanitized_entry_name.pub")
+
+  # Create 1Password SSH key entry
+  op item create --category sshkey --title "$sanitized_entry_name" \
+    "private key=$private_key" \
+    "public key=$public_key" \
+    --vault Personal
+
+  echo "1Password entry '$sanitized_entry_name' created."
+}
+
 # an entire website to a folder
 # https://superuser.com/questions/55040/save-a-single-web-page-with-background-images-with-wget/136335#136335
 scrape-website() {
@@ -693,6 +737,18 @@ open_in_cat() {
   local context=$((height / 2))
 
   bat --color=always $file --highlight-line "$line" --line-range $((start > context ? start - context : 1)):$((start + context))
+}
+
+# Usage: cp-into-template file1 [file2 ...]
+# Copies each file to the Python starter template, preserving relative paths.
+# Files are placed relative to the template root based on their dirname.
+function cp-into-template() {
+  local template_dir="$HOME/Projects/python/python-starter-template"
+  for file in "$@"; do
+    local target_dir="$template_dir/$(dirname "$file")"
+    mkdir -p "$target_dir"
+    cp "$file" "$target_dir/$(basename "$file")"
+  done
 }
 
 source ~/.node-functions
