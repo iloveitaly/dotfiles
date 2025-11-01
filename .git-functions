@@ -59,9 +59,15 @@ function git-squash-custom-branch {
   # Read the branch names from the .git-custom-branch file
   branches=($(<.git-custom-branch))
 
-  # is there more than one entry?
-  if [[ ${#branches[@]} -lt 2 ]]; then
-    echo "Error: .git-custom-branch file must contain at least two branches"
+  # Check if there's at least one branch
+  if [[ ${#branches[@]} -eq 0 ]]; then
+    echo "Error: .git-custom-branch file is empty"
+    exit 1
+  fi
+
+  # Check if there's more than one branch
+  if [[ ${#branches[@]} -eq 1 ]]; then
+    echo "Error: .git-custom-branch file contains only one branch (${branches[1]}). At least two branches are required for merging."
     exit 1
   fi
 
@@ -228,13 +234,13 @@ git-cherry-pick() {
 
 # Usage:
 # Source this in .zshrc or run as a function.
-# 
+#
 # gwt                # List and switch to existing worktree via fzf
 # gwt <branch>       # Create new worktree for <branch> (creates branch if not exists) in $GWT_BASE/<project>/<branch>, then cd to it
-# 
+#
 # Environment variables:
 # - GWT_BASE: Customize base dir for worktrees (default: ~/Projects/worktrees)
-# 
+#
 # Requires: git, fzf, awk, head
 # Debug: Echoes steps for troubleshooting
 
@@ -256,6 +262,7 @@ gwt() {
   fi
   local project_name=${main_dir:t}
   local common_git_dir=$("$git_path" rev-parse --git-common-dir)
+  common_git_dir=${common_git_dir:A}
 
   local base_dir=${GWT_BASE:-~/Projects/worktrees}
 
@@ -307,7 +314,7 @@ gwt() {
           current_branch="unknown"
         fi
         if [[ $current_path == $main_dir ]]; then
-          file="$common_git_dir"
+          file="$current_path/.git"
         else
           wt_name=${current_path:t}
           file="$common_git_dir/worktrees/$wt_name/gitdir"
@@ -355,4 +362,119 @@ gwt() {
       cd "$path" || return 1
     fi
   fi
+}
+
+github-create-release() {
+  # Creates a new GitHub release for the repository of the current directory.
+  # It automatically determines the next patch version from git tags.
+  # If no version tags (e.g., v1.2.3) exist, it starts at v0.1.0.
+  # Release notes are read from standard input.
+  #
+  # Usage:
+  #   echo "My release notes" | github-create-release
+  #
+  # Dry Run Usage:
+  #   github-create-release --dry-run
+  #
+
+  # Exit immediately if a command exits with a non-zero status.
+  # Treat unset variables as an error.
+  # Causes a pipeline to return the exit status of the last command in the pipe that returned a non-zero status.
+  set -euo pipefail
+
+  # --- Argument Parsing ---
+  local DRY_RUN=false
+  # Check if the first argument is the --dry-run flag
+  if [[ "$1" == "--dry-run" ]]; then
+    DRY_RUN=true
+  fi
+
+  # --- Dependency Checks ---
+
+  if ! command -v gh &> /dev/null; then
+    echo "Error: 'gh' (GitHub CLI) is not installed. Please install it to proceed." >&2
+    return 1
+  fi
+
+  if ! git rev-parse --is-inside-work-tree &> /dev/null; then
+    echo "Error: This is not a git repository." >&2
+    return 1
+  fi
+
+  # --- Version Calculation ---
+
+  echo "Determining next version..."
+
+  # Fetch tags from remote to ensure we have the latest versions
+  git fetch --tags
+
+  # Find the latest semantic version tag (e.g., v1.2.3)
+  # It handles an optional 'v' prefix.
+  local LATEST_TAG=$(git tag --list '[vV][0-9]*.[0-9]*.[0-9]*' | sort -V | tail -n 1)
+  local NEW_VERSION
+  local LATEST_VERSION
+  local MAJOR MINOR PATCH NEW_PATCH
+  local VERSION TAG TITLE
+
+  if [[ -z "$LATEST_TAG" ]]; then
+    # No tags found, start at 0.1.0
+    echo "No previous version tags found. Starting with 0.1.0."
+    NEW_VERSION="0.1.0"
+  else
+    echo "Latest tag found: $LATEST_TAG"
+    # Remove 'v' or 'V' prefix
+    LATEST_VERSION=${LATEST_TAG#[vV]}
+
+    # Split version into parts using Zsh parameter expansion
+    local parts=(${(s:.:)LATEST_VERSION})
+    MAJOR=${parts[1]}
+    MINOR=${parts[2]}
+    PATCH=${parts[3]}
+
+    # Increment the patch number
+    NEW_PATCH=$((PATCH + 1))
+    NEW_VERSION="$MAJOR.$MINOR.$NEW_PATCH"
+  fi
+
+  VERSION=$NEW_VERSION
+  TAG="v$VERSION"
+  TITLE="Release $VERSION"
+
+  echo "Calculated next version: $VERSION"
+  echo # Blank line for readability
+
+  # --- Dry Run Execution ---
+
+  if [ "$DRY_RUN" = true ]; then
+    echo "--- Dry Run Mode ---"
+    echo "No release will be created."
+    echo
+    echo "Release Tag:   $TAG"
+    echo "Release Title: $TITLE"
+    echo "Command that would be executed:"
+    echo "  gh release create \"$TAG\" --title \"$TITLE\" --notes-file -"
+    echo
+    echo "(Release notes would be read from stdin)"
+    return 0
+  fi
+
+  # --- Release Creation ---
+
+  # Check if stdin is being piped (and not in a dry run)
+  if [ -t 0 ]; then
+    echo "Error: Release notes must be provided via stdin." >&2
+    echo "Example: echo 'My release notes' | github-create-release" >&2
+    return 1
+  fi
+
+  echo "Creating release for tag '$TAG'..."
+
+  # Create the GitHub release
+  # The '--notes-file -' flag tells gh to read the release notes from stdin
+  gh release create "$TAG" \
+    --title "$TITLE" \
+    --notes-file -
+
+  echo "Successfully created GitHub release for $TAG."
+  return 0
 }
