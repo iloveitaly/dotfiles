@@ -160,3 +160,31 @@ function backup-docker-volume() {
 
     print "Backup created: $backup_file"
 }
+
+# Function to stop Dokku 'run' zombie containers (running but not connected to TTY).
+# Usage: dokku_clean_run
+# Targets containers with '.run.' in name, running without TTY allocation.
+# These are typically lingering one-off Dokku run containers.
+dokku_clean_run() {
+  containers=$(docker ps -q --filter "name=.run.")
+  if [ -n "$containers" ]; then
+    zombie_ids=()
+    zombie_names=()
+    for id in $containers; do
+      if [ "$(docker inspect -f '{{.Config.Tty}}' $id)" = "false" ]; then
+        zombie_ids+=("$id")
+        name=$(docker inspect -f '{{.Name}}' $id | sed 's/^\///')
+        zombie_names+=("$name")
+      fi
+    done
+    if [ ${#zombie_ids[@]} -gt 0 ]; then
+      names_str=$(IFS=' '; echo "${zombie_names[*]}")
+      echo "Stopping zombie containers: $names_str"
+      docker stop "${zombie_ids[@]}"
+    else
+      echo "No zombie containers to stop."
+    fi
+  else
+    echo "No running containers with '.run.' in name."
+  fi
+}
