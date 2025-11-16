@@ -357,10 +357,17 @@ github-create-release() {
   # Causes a pipeline to return the exit status of the last command in the pipe that returned a non-zero status.
   set -euo pipefail
 
+  # Read stdin first to avoid race conditions in the pipeline.
+  # Store in a variable.
+  local notes
+  if ! [ -t 0 ]; then
+    notes=$(cat)
+  fi
+
   # --- Argument Parsing ---
   local DRY_RUN=false
   # Check if the first argument is the --dry-run flag
-  if [[ "$1" == "--dry-run" ]]; then
+  if [[ "${1-}" == "--dry-run" ]]; then
     DRY_RUN=true
   fi
 
@@ -429,14 +436,20 @@ github-create-release() {
     echo "Command that would be executed:"
     echo "  gh release create \"$TAG\" --title \"$TITLE\" --notes-file -"
     echo
-    echo "(Release notes would be read from stdin)"
+    if [[ -n "${notes-}" ]]; then
+      echo "--- Release Notes (from stdin) ---"
+      echo "$notes"
+      echo "--- End of Release Notes ---"
+    else
+      echo "(Release notes would be read from stdin)"
+    fi
     return 0
   fi
 
   # --- Release Creation ---
 
-  # Check if stdin is being piped (and not in a dry run)
-  if [ -t 0 ]; then
+  # Check if stdin was provided
+  if [[ -z "${notes-}" ]]; then
     echo "Error: Release notes must be provided via stdin." >&2
     echo "Example: echo 'My release notes' | github-create-release" >&2
     return 1
@@ -444,9 +457,8 @@ github-create-release() {
 
   echo "Creating release for tag '$TAG'..."
 
-  # Create the GitHub release
-  # The '--notes-file -' flag tells gh to read the release notes from stdin
-  gh release create "$TAG" \
+  # Create the GitHub release, piping the stored notes to it.
+  echo "$notes" | gh release create "$TAG" \
     --title "$TITLE" \
     --notes-file -
 
