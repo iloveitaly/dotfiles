@@ -266,18 +266,6 @@ gwt() {
 
   local base_dir=${GWT_BASE:-~/Projects/worktrees}
 
-  local uname=$(uname)
-  local stat_cmd date_cmd mod_stat_cmd
-  if [[ $uname == Darwin ]]; then
-    stat_cmd="stat -f %B"
-    mod_stat_cmd="stat -f %m"
-    date_cmd="date -r"
-  else
-    stat_cmd="stat -c %W"
-    mod_stat_cmd="stat -c %Y"
-    date_cmd="date -d @"
-  fi
-
   get_worktree_for_branch() {
     local target_branch=$1
     local current_path
@@ -313,21 +301,8 @@ gwt() {
         if [[ -z $current_branch ]]; then
           current_branch="unknown"
         fi
-        if [[ $current_path == $main_dir ]]; then
-          file="$current_path/.git"
-        else
-          wt_name=${current_path:t}
-          file="$common_git_dir/worktrees/$wt_name/gitdir"
-        fi
-        ts=$($stat_cmd "$file" 2>/dev/null) || ts=-1
-        if [[ $ts -le 0 ]]; then
-          ts=$($mod_stat_cmd "$file" 2>/dev/null) || ts=0
-        fi
-        if [[ $ts -eq 0 ]]; then
-          date_str="unknown"
-        else
-          date_str=$($date_cmd $ts +%Y-%m-%d)
-        fi
+        # Get the last commit date from git log
+        date_str=$("$git_path" -C "$current_path" log -1 --format=%cd --date=format:%Y-%m-%d 2>/dev/null) || date_str="unknown"
         lines+=("${current_path} ${gray}(${current_branch})${reset} ${green}[${date_str}]${reset}")
         current_path= current_branch=
       fi
