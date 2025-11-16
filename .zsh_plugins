@@ -32,8 +32,11 @@ zinit load gnachman/iTerm2-shell-integration
 #   - running direnv async may result in terminal mutation after the prompt appears, which is annoying, but what's worse
 #     is direnv not knowing the correct default PATH and causing unexpected mutations (and therefore missing binaries),
 #     so we are ok with this tradeoff given we are forcing direnv + mise sync when a agent is running the terminal.
+#   - toku-sa-n/zsh-dot-up hooks into the ZLE line rendering, so it's important that it is loaded at the same time as
+#     other ZLE modifying plugins like zsh-autosuggestions, otherwise it will crash your terminal.
 
 zinit wait'0a' lucid for \
+  toku-sa-n/zsh-dot-up \
   zdharma-continuum/fast-syntax-highlighting \
   OMZ::lib/functions.zsh \
   OMZ::lib/termsupport.zsh \
@@ -91,8 +94,7 @@ zinit wait'1' lucid for \
   OMZ::lib/spectrum.zsh \
   zpm-zsh/ssh \
   'https://gist.github.com/iloveitaly/c91b3e26d47f131badec7abb859b870a/raw/azure.plugin.zsh' \
-  paulirish/git-open \
-  toku-sa-n/zsh-dot-up
+  paulirish/git-open
 
 # binaries installed via zinit. No rush to install these, which is why we are `wait'2'`
 #   - git-fuzzy: 'git fuzzy' for interactive git commit cli
