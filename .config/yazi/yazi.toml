@@ -12,3 +12,8 @@ run = "git"
 id = "git"
 name = "*/"
 run = "git"
+
+[[manager.prepend_keymap]]
+on = ["Y"]
+run = "shell 'cat $0 | pbcopy' --confirm"
+desc = "Copy file content to clipboard"
