@@ -91,23 +91,9 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export KERL_BUILD_DOCS=yes
 
 # python
-export IPDB_CONTEXT_SIZE=10
-# command to use for `breakpoint()`
-# export PYTHONBREAKPOINT=pdbr.set_trace
-export PYTHONBREAKPOINT=pudb.set_trace
-# export PYTEST_ADDOPTS="--pdbcls=pdbr:RichPdb"
-# Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
-export PYTHONIOENCODING='UTF-8'
-# https://www.erdaltaskesen.com/blog/how-to-remove-pycache-folders-and-pyc-files/
-# https://github.com/pytest-dev/pytest/issues/200
 export PYTHONDONTWRITEBYTECODE=1
-# don't buffer stdout/stderr
-export PYTHONUNBUFFERED=1
-# export PYTHONDEVMODE=1
-export PYTHONWARNINGS="ignore::DeprecationWarning,ignore:ResourceWarning"
-# not standard python, but used in many libraries
-export PY_COLORS=1
-export PYTHONFAULTHANDLER=1
-# ensures that code does not rely on dict order
-export PYTHONHASHSEED=random
-export PYTHONSAFEPATH=1
+export IPDB_CONTEXT_SIZE=10
+
+# go stuff in the home is annoying, hide it please
+export GOPATH="$HOME/.local/share/go"
+export PATH="$PATH:$GOPATH/bin"
