@@ -32,7 +32,7 @@ zstyle :plugin:zsh-completion-generator programs ncdu tre vitest eslint fastmod 
 zstyle ':completion:*:descriptions' format '[%d]'
 
 # set list-colors to enable filename colorizing
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS:-''}
 
 # preview directory's content with exa when completing cd
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
@@ -112,7 +112,10 @@ source "${ZINIT_HOME}/zinit.zsh"
 # running in an agent like cursor or copilot.
 # ================
 
-if [[ -n "${CURSOR_AGENT:-}" || "${CLAUDECODE:-}" == "1" || "${GEMINI_CLI:-}" == "1" ]]; then
+# TODO we should probably just remove this
+# test with: env -u $(whoami) CURSOR_AGENT=1 /bin/zsh
+if [[ -n "${VSCODE_AGENT:-}" || -n "${CURSOR_AGENT:-}" || "${CLAUDECODE:-}" == "1" || "${GEMINI_CLI:-}" == "1" ]]; then
+  # mise first, since it installs direnv
   zinit load wintermi/zsh-mise
   zinit snippet 'https://gist.github.com/iloveitaly/64b3ebdb50b90057ac820b25b4072970/raw/direnv.plugin.zsh'
   # simple prompt with pwd and $
