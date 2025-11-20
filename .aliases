@@ -1,6 +1,6 @@
 # replace common utilities with some improved replacements
+# be careful about doing this with utilities that are piped (find, cat, etc) since agents assume these are default
 alias cat='bat --wrap=never'
-alias find='fd'
 alias ls='eza -l --group-directories-first'
 alias tree='tre --limit 3'
 
@@ -22,7 +22,6 @@ alias list-paths=" echo $PATH | tr ':' '\n' | fzf"
 
 # pbcopy does not allow you to mutate public.html
 alias pbcopy-html="pbpaste | hexdump -ve '1/1 \"%.2x\"' | xargs printf 'set the clipboard to {«class HTML»:«data HTML%s»}' | osascript -"
-
 alias pbpaste-html="pbpaste -Prefer public.html"
 
 # copy last shell command into the clipboard
@@ -101,6 +100,9 @@ alias d="docker"
 alias dc='docker-compose'
 # containers, networks, and ports + truncation
 alias d-ps-network='docker ps --format "{{.ID}} {{.Names}} {{.Networks}} {{.Ports}}" | awk "{if(length(\$4) > 17) \$4 = substr(\$4, 1, 17) \"...\"; printf \"%s %s %s %s\n\", \$1, \$2, \$3, \$4}" | column -t'
+
+# js
+alias npr="pnpm run"
 
 # python
 # TODO maybe fail if not in a venv
