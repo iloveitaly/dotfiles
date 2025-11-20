@@ -28,7 +28,6 @@ static_exclusions=(
   "$HOME/Library/Application Support/superwhisper"
 
   /Library/Developer
-  /Users/assistant
 
   "$HOME/OrbStack"
 )
