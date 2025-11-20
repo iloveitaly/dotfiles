@@ -114,7 +114,7 @@
         "https://www.google.com/search?q=vxus",
         "https://www.google.com/search?q=vteb"
       ],
-      "block_apps": ["Discord", "Spotify", "Podcasts", "Readwise"]
+      "block_apps": ["Spotify", "Podcasts", "Readwise"]
     },
     {
       "name": "Daily Shutdown",
