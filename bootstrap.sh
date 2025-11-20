@@ -41,7 +41,8 @@ cp ./DefaultKeyBinding.dict ~/Library/KeyBindings/
 
 # TODO link to blog post
 cp ./tmux.plist ~/Library/LaunchAgents/mikebianco.tmux.plist
-launchctl load ~/Library/LaunchAgents/mikebianco.tmux.plist
+tmux kill-server
+launchctl bootstrap ~/Library/LaunchAgents/mikebianco.tmux.plist
 
 # mackup restore
 
