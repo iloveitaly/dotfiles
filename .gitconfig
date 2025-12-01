@@ -13,7 +13,7 @@
   # https://github.com/noborus/ov/issues/430
   # https://github.com/so-fancy/diff-so-fancy/issues/364#issuecomment-652598381
   # TODO cannot use delta https://github.com/dandavison/delta/issues/1492
-  pager = "diff-so-fancy | ov --section-delimiter '^(Date|added|deleted|modified): '"
+  pager = ~/.git-pager.sh
 
   # nano `/dev/tty` is required for git-fuzzy otherwise nano will error out
   editor = nano < /dev/tty
