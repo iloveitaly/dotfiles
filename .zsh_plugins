@@ -14,7 +14,10 @@ zinit load gnachman/iTerm2-shell-integration
 ###########################
 
 # IMPORTANT: load order is very important here!
-# important to load suggestions *after* zsh-completions
+#            use `print -l $precmd_functions` to debug execution order
+#
+# Some notes:
+#   - important to load suggestions *after* zsh-completions
 #   - zicompinit runs `compinit` to generate completions, this must be loaded before other completions
 #   - load syntax highlighting first
 #   - fzf/key-bindings: sets up reverse-si via fzf, ctrl+t, alt+c. Must be tied to specific fzf version otherwise
@@ -32,6 +35,7 @@ zinit load gnachman/iTerm2-shell-integration
 #   - running direnv async may result in terminal mutation after the prompt appears, which is annoying, but what's worse
 #     is direnv not knowing the correct default PATH and causing unexpected mutations (and therefore missing binaries),
 #     so we are ok with this tradeoff given we are forcing direnv + mise sync when a agent is running the terminal.
+#     if direnv is managed via mise, mise must go first, but this means that its hooks will *not* run first.
 #   - toku-sa-n/zsh-dot-up hooks into the ZLE line rendering, so it's important that it is loaded at the same time as
 #     other ZLE modifying plugins like zsh-autosuggestions, otherwise it will crash your terminal.
 
@@ -44,6 +48,7 @@ zinit wait'0a' lucid for \
   OMZ::plugins/safe-paste \
   mafredri/zsh-async \
   as"program" pick"bin/git-fuzzy" bigH/git-fuzzy \
+  'https://gist.github.com/iloveitaly/64b3ebdb50b90057ac820b25b4072970/raw/direnv.plugin.zsh' \
   wintermi/zsh-mise \
   iloveitaly/zsh-ai-completions \
   'https://gist.github.com/iloveitaly/4eac0f4ddb3f8162f95fa3ed6f123a06/raw/1password.zsh' \
@@ -56,7 +61,6 @@ zinit wait'0a' lucid for \
   'https://gist.github.com/iloveitaly/b342092217821c92e6d478ca501af342/raw/rg.plugin.zsh' \
   'https://gist.github.com/iloveitaly/9103604f442e0474dd18b4acd596739a/raw/just.plugin.zsh' \
   'https://gist.github.com/iloveitaly/ebf69624c7b4cbd2f63b3e1e9f7846f9/raw/starship.plugin.zsh' \
-  'https://gist.github.com/iloveitaly/64b3ebdb50b90057ac820b25b4072970/raw/direnv.plugin.zsh' \
   'https://github.com/iloveitaly/dotfiles/blob/master/zsh_plugins/swift.plugin.zsh' \
   'https://github.com/iloveitaly/dotfiles/blob/master/zsh_plugins/ngrok.plugin.zsh' \
   'https://github.com/iloveitaly/dotfiles/blob/master/zsh_plugins/ultraman.plugin.zsh' \
