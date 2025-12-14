@@ -3,4 +3,7 @@
 
 # only for dotfiles repo
 /.extra
+
+# personal ssh config
 /.ssh/config_extra
+/.ssh/vscode_config
