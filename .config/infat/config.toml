@@ -1,0 +1,41 @@
+[types]
+# Broad defaults inferred from `duti` UTIs
+plain-text = "/Applications/Visual Studio Code.app"
+text = "/Applications/Visual Studio Code.app"
+sourcecode = "/Applications/Visual Studio Code.app"
+shell = "/Applications/Visual Studio Code.app"
+
+# Prefer Numbers for tabular text formats
+csv = "Numbers"
+
+[extensions]
+# VSCode
+md = "/Applications/Visual Studio Code.app"
+xml = "/Applications/Visual Studio Code.app"
+xhtml = "/Applications/Visual Studio Code.app"
+json = "/Applications/Visual Studio Code.app"
+yaml = "/Applications/Visual Studio Code.app"
+yml = "/Applications/Visual Studio Code.app"
+js = "/Applications/Visual Studio Code.app"
+ts = "/Applications/Visual Studio Code.app"
+py = "/Applications/Visual Studio Code.app"
+rb = "/Applications/Visual Studio Code.app"
+php = "/Applications/Visual Studio Code.app"
+swift = "/Applications/Visual Studio Code.app"
+
+# Preview
+heic = "Preview"
+
+# Numbers
+csv = "Numbers"
+tsv = "Numbers"
+# TablePlus
+db = "/Applications/Setapp/TablePlus.app"
+sqlite = "/Applications/Setapp/TablePlus.app"
+sqlite3 = "/Applications/Setapp/TablePlus.app"
+
+# Chrome
+webm = "/Applications/Google Chrome.app"
+
+[schemes]
+mailto = "/Applications/Superhuman.app"

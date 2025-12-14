@@ -49,6 +49,8 @@ brew "brimdata/tap/zq" # faster/better jq, has aggregates
 brew "htmlq" # jq for html
 brew "xsv" # csv tooling
 brew "tabiew" # tui for csv and data viewing
+# https://github.com/forensicmatt/datatui
+
 
 # == Shell productivity utilities
 brew "zsh"
@@ -83,6 +85,7 @@ brew "watch" # execute program every X seconds
 brew "docker-completion" if OS.linux?
 brew "shellcheck" # for vscode bash ide
 brew "iotop"
+brew "eget" # get binaries right from github releases
 
 # == tmux related tools
 brew "tmux"
@@ -121,6 +124,7 @@ if OS.mac?
     brew "proxychains-ng"
     brew "mcpm"
     brew "soulver-cli"
+    brew "postgres@11"
 
     tap "ryanbekhen/nanoproxy"
     brew "nanoproxy"
@@ -137,6 +141,7 @@ if OS.mac?
     brew "gpg"
     brew "pinentry-mac"
     brew "iloveitaly/tap/hyper-focus"
+    brew "cursor"
 
     cask "ghostty"
     cask "another-redis-desktop-manager"
@@ -163,7 +168,6 @@ if OS.mac?
     cask "stay"
     cask "homebrew/cask-versions/kaleidoscope2"
     cask "skype"
-    cask "postgres-unofficial"
     cask "rectangle"
     cask "valentina-studio"
     cask "libreoffice"
@@ -256,7 +260,7 @@ if OS.mac?
     brew "ffmpeg" # mainly for gif generation
     brew "gifsicle"
     brew "mackup"
-    brew "duti"
+    brew "infat"
     brew "spoof-mac"
     brew "keith/formulae/zap"
     brew "mas"
