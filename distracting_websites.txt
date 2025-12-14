@@ -41,3 +41,5 @@ thecut.com
 nypost.com
 newsweek.com
 x.com
+ndtv.com
+gizmodo.com
