@@ -163,7 +163,6 @@ if OS.mac?
     cask "slack-beta"
     # does not support silicon installation yet
     system "arch -x86_64 brew install amazon-music"
-    cask "amazon-photos"
     cask "kap"
     cask "stay"
     cask "homebrew/cask-versions/kaleidoscope2"
