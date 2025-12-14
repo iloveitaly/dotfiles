@@ -6,9 +6,11 @@ set script-interpreter := ["zsh", "-euBh", "-o", "pipefail"]
 set unstable := true
 
 upgrade:
-	brew upgrade fzf atuin nixpacks awscli git rg fd gh zsh nano gmailctl dolt 1password-cli yazi
+	brew upgrade fzf atuin awscli git rg fd gh zsh nano gmailctl dolt 1password-cli yazi dolt bat
 
 	gh extension upgrade --all
+
+	eget --tag nightly zyedidia/micro --to=~/.local/bin/
 
 	# TODO can't figure out why this is not working
 	# this will update starship as well
