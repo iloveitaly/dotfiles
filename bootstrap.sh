@@ -33,7 +33,9 @@ cat ./distracting_websites.txt | sed -E 's/(.*)/127.0.0.1  \1\n127.0.0.1  www.\1
 sudo -E $(mise which hostile) load "$HOME/.config/distracting_sites.txt"
 
 # setup default extension handlers
-duti <./duti
+# User-defined values can be defined here: ~/Library/Preferences/com.apple.LaunchServices/com.apple.launchservices.secure.plist
+# remove this file if you run into strange issues.
+infat
 
 # http://mikebian.co/advanced-text-editing-using-karabiner-macos-keybindings/
 mkdir -p ~/Library/KeyBindings/
