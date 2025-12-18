@@ -241,7 +241,8 @@
     "env": true,
     "sed": true,
     "jq": true,
-    ".name'": true
+    ".name'": true,
+    "pnpm": true
   },
   "chat.useAgentsMdFile": true,
   "github.copilot.chat.agent.thinkingTool": true,
@@ -258,7 +259,7 @@
     "path": "zsh",
     "args": [],
     "env": {
-      // very important! check out ~/.zshenv
+      // very important! check out ~/.zshenv to understand where this variable is used
       "VSCODE_AGENT": "1"
     }
   },
@@ -268,10 +269,16 @@
     "tmux": {
       "path": "/Users/mike/.tmux-shell.sh",
       "icon": "terminal-tmux"
+    },
+    "plain bash": {
+      "path": "bash",
+      "args": ["--noprofile", "--norc"]
     }
   },
+  // env vars become very important with direnv and mise, let's force users to set them during shell setup
+  "terminal.integrated.inheritEnv": false,
   "terminal.integrated.scrollback": 10000,
-  "terminal.external.osxExec": "iTerm.app",
+  "terminal.external.osxExec": "Ghostty.app",
   "terminal.integrated.macOptionIsMeta": true,
   "[dockercompose]": {
     "editor.insertSpaces": true,
@@ -287,4 +294,8 @@
   "[github-actions-workflow]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
+
+  // cursor settings
+  "cursorpyright.analysis.autoImportCompletions": true,
+  "claudeCode.preferredLocation": "panel"
 }
