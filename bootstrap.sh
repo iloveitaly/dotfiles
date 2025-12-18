@@ -46,6 +46,10 @@ cp ./tmux.plist ~/Library/LaunchAgents/mikebianco.tmux.plist
 tmux kill-server
 launchctl bootstrap ~/Library/LaunchAgents/mikebianco.tmux.plist
 
+# some tools can setup bashrc and other files that we don't want
+# for instance, homebrew will setup a bashrc file. In order to provide a completely clean bash environment, we remove it.
+rm ~/.bashrc
+
 # mackup restore
 
 exec zsh
