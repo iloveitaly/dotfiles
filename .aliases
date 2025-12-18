@@ -18,7 +18,7 @@ alias fixcamera="sudo killall VDCAssistant; sudo killall AppleCameraAssistant"
 alias recent-file="exa -s modified --reverse | head -n 1"
 
 # list all paths in $PATH
-alias list-paths=" echo $PATH | tr ':' '\n' | fzf"
+alias list-paths='echo "$PATH" | tr ":" "\n" | fzf'
 
 # pbcopy does not allow you to mutate public.html
 alias pbcopy-html="pbpaste | hexdump -ve '1/1 \"%.2x\"' | xargs printf 'set the clipboard to {«class HTML»:«data HTML%s»}' | osascript -"
