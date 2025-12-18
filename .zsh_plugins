@@ -1,13 +1,5 @@
 # plugin location: `~/.local/share/zinit/plugins`
 
-# NOTE the public iterm zsh integration is broken
-# TODO the `pick` command may not be working properly
-# https://github.com/decayofmind/zsh-iterm2-utilities
-zinit ice depth"1" \
-  pick"shell_integration/zsh" \
-  sbin"utilities/*" if"[[ $+ITERM_PROFILE ]]"
-zinit load gnachman/iTerm2-shell-integration
-
 ###########################
 # Completion Setup
 # This is extremely finnicky and largely undocumented.
