@@ -34,8 +34,8 @@ zinit load gnachman/iTerm2-shell-integration
 #   - zoxide: adds z and zi utilities
 #   - running direnv async may result in terminal mutation after the prompt appears, which is annoying, but what's worse
 #     is direnv not knowing the correct default PATH and causing unexpected mutations (and therefore missing binaries),
-#     so we are ok with this tradeoff given we are forcing direnv + mise sync when a agent is running the terminal.
-#     if direnv is managed via mise, mise must go first, but this means that its hooks will *not* run first.
+#     so we are ok with this tradeoff given we are forcing direnv + mise sync when a agent is running the terminal (via ~/.zshenv).
+#     If direnv is managed via mise, mise must go first, but this means that its hooks will *not* run first.
 #   - toku-sa-n/zsh-dot-up hooks into the ZLE line rendering, so it's important that it is loaded at the same time as
 #     other ZLE modifying plugins like zsh-autosuggestions, otherwise it will crash your terminal.
 

@@ -30,6 +30,7 @@ if [[ -n "${CURSOR_AGENT:-}" || "${CLAUDECODE:-}" == "1" || "${GEMINI_CLI:-}" ==
   # mise first, since it manages/install direnv
   source <(mise activate)
   source <(direnv hook zsh)
+  # https://code.visualstudio.com/docs/terminal/shell-integration
   source "$(code --locate-shell-integration-path zsh)"
 else
   echo -e "\033[33mNot in agent, and not interactive. We may be missing a new agent type?\033[0m"
