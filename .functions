@@ -254,7 +254,7 @@ files-to-markdown() {
   done
 }
 
-ask_llm() {
+ask_llm_claude() {
   local files=()
   local message=""
   local system_prompt="Be very concise. I am an expert programmer."
@@ -276,7 +276,7 @@ ask_llm() {
   claude -p "${files[@]}" --message "$system_prompt\n$message"
 }
 # can't use a `?` in a function name, only an alias
-alias "llm?"="ask_llm"
+alias "llm?"="ask_llm_claude"
 
 # TODO add to remote-logout repo
 # https://github.com/iloveitaly/remote-logout
