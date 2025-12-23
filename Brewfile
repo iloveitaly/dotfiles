@@ -284,6 +284,7 @@ if OS.mac?
     brew "zrok"
     brew "btop"
     brew "px"
+    brew "sslscan"
     # homerow
 
     # == Mac App store
