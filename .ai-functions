@@ -1,5 +1,5 @@
 # combine all matching files into a single string and copy to clipboard, helpful for AI stuff
-find_and_bundle() {
+ai-find-and-copy() {
   # $1 is the first argument to the function: the specific string to search for
 
   # Ensure the search string is provided
@@ -25,12 +25,12 @@ find_and_bundle() {
 }
 
 # for quick gpt prompt generation
-files-to-markdown() {
+ai-cat() {
   for file in "$@"; do
     if [[ -f "$file" ]]; then
       echo "### File: $file"
       echo '```'
-      cat "$file"
+      /bin/cat "$file"
       echo '```'
       echo ''
     else
