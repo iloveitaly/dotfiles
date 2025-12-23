@@ -74,7 +74,7 @@ setopt hist_save_no_dups        # Omit older commands in favor of newer ones.
 # Evals
 # =============
 
-# we tried linux homebrew, but it's terrible, so we conditionally load brew
+# we tried linux homebrew, but it's terrible, so we conditionally load brew so these dotfiles support a linux environment
 brew_path="/opt/homebrew/bin/brew"
 if [[ -x "$brew_path" ]]; then
   eval "$($brew_path shellenv)"
@@ -112,12 +112,12 @@ source "${ZINIT_HOME}/zinit.zsh"
 # running in an agent like cursor or copilot.
 # ================
 
-# TODO we should probably just remove this
+# TODO we should remove once we pull all of the path config into a ~/.path file
 # test with: env -u $(whoami) CURSOR_AGENT=1 /bin/zsh
-if [[ -n "${VSCODE_AGENT:-}" || -n "${CURSOR_AGENT:-}" || "${CLAUDECODE:-}" == "1" || "${GEMINI_CLI:-}" == "1" ]]; then
+if [[ "${VSCODE_AGENT:-}" == "1" || -n "${CURSOR_AGENT:-}" || "${CLAUDECODE:-}" == "1" || "${GEMINI_CLI:-}" == "1" ]]; then
   # mise first, since it installs direnv
-  zinit load wintermi/zsh-mise
-  zinit snippet 'https://gist.github.com/iloveitaly/64b3ebdb50b90057ac820b25b4072970/raw/direnv.plugin.zsh'
+  # zinit load wintermi/zsh-mise
+  # zinit snippet 'https://gist.github.com/iloveitaly/64b3ebdb50b90057ac820b25b4072970/raw/direnv.plugin.zsh'
   # simple prompt with pwd and $
   PS1='%~ $ '
   return
