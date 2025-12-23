@@ -1,3 +1,21 @@
+# first, setup PATH mutations to access mise, direnv, etc
+# shellcheck source=./.config/mbianco/path
+source "${HOME}/.config/mbianco/path"
+
+# now, let's check early for a agent-driven shell
+# shellcheck source=./.config/mbianco/agent-bootstrap
+source "${HOME}/.config/mbianco/agent-bootstrap"
+
+# if an agent is running the terminal, we can assume the necessary config has been setup
+# and we can exit early to avoid loading unnecessary plugins and completions.
+if ai_is_agent_terminal; then
+  ai_load_agent_configuration
+
+  # simple prompt with pwd and $
+  PS1='%~ $ '
+  return 0
+fi
+
 # =============
 # Completion
 # =============
@@ -74,28 +92,6 @@ setopt hist_save_no_dups        # Omit older commands in favor of newer ones.
 # Evals
 # =============
 
-# we tried linux homebrew, but it's terrible, so we conditionally load brew so these dotfiles support a linux environment
-brew_path="/opt/homebrew/bin/brew"
-if [[ -x "$brew_path" ]]; then
-  eval "$($brew_path shellenv)"
-fi
-
-# postgres utilities
-export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
-
-# poetry, orb, mise, etc
-export PATH="$HOME/.local/bin:$PATH"
-
-# TODO really? shouldn't we do this in the bun plugin? Or can we redirect installs?
-export PATH="$HOME/.bun/bin:$PATH"
-
-# for latest gnu make
-export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
-
-# PNPM (for global bins)
-export PNPM_HOME="$HOME/.pnpm"
-export PATH="$PNPM_HOME:$PATH"
-
 # TODO I don't understand where this comes from, but it seems to be used by some completion libraries
 fpath+=~/.zfunc
 
@@ -106,22 +102,6 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
-# ================
-# Agent Detection
-# Don't load complex autocompletions, aliases, or run anything async, when
-# running in an agent like cursor or copilot.
-# ================
-
-# TODO we should remove once we pull all of the path config into a ~/.path file
-# test with: env -u $(whoami) CURSOR_AGENT=1 /bin/zsh
-if [[ "${VSCODE_AGENT:-}" == "1" || -n "${CURSOR_AGENT:-}" || "${CLAUDECODE:-}" == "1" || "${GEMINI_CLI:-}" == "1" ]]; then
-  # mise first, since it installs direnv
-  # zinit load wintermi/zsh-mise
-  # zinit snippet 'https://gist.github.com/iloveitaly/64b3ebdb50b90057ac820b25b4072970/raw/direnv.plugin.zsh'
-  # simple prompt with pwd and $
-  PS1='%~ $ '
-  return
-fi
 
 # ======================
 # Load Config & Plugins

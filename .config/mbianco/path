@@ -1,0 +1,27 @@
+# ===============================
+# PATH mutations
+# Important to separate into a separate file so it can be sourced in ~/.zshenv for agents
+# ===============================
+
+# we tried linux homebrew, but it's terrible, so we conditionally load brew so these dotfiles support a linux environment
+brew_path="/opt/homebrew/bin/brew"
+if [[ -x "$brew_path" ]]; then
+  eval "$($brew_path shellenv)"
+fi
+
+# postgres utilities
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+
+# poetry, orb, mise, etc
+export PATH="$HOME/.local/bin:$PATH"
+
+# TODO really? shouldn't we do this in the bun plugin? Or can we redirect installs?
+export PATH="$HOME/.bun/bin:$PATH"
+
+# for latest gnu make
+export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+
+# PNPM (for global bins)
+export PNPM_HOME="$HOME/.pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
