@@ -239,42 +239,6 @@ restart_bluetooth() {
   # blueutil -p 0 && sleep 1 && blueutil -p 1
 }
 
-# for quick gpt prompt generation
-files-to-markdown() {
-  for file in "$@"; do
-    if [[ -f "$file" ]]; then
-      echo "### File: $file"
-      echo '```'
-      cat "$file"
-      echo '```'
-      echo ''
-    else
-      echo "File $file does not exist." >&2
-    fi
-  done
-}
-
-ask_llm_claude() {
-  if (( $# == 0 )); then
-    echo "Usage: ask_llm_claude [claude args...]" >&2
-    return 1
-  fi
-
-  claude -p "$@"
-}
-
-ask_llm_gemini() {
-  if (( $# == 0 )); then
-    echo "Usage: ask_llm_gemini [gemini args...]" >&2
-    return 1
-  fi
-
-  # gemini dumps a bunch of junk into stderr by default
-  gemini -p "$@" 2>/dev/null
-}
-# can't use a `?` in a function name, only an alias
-alias "llm?"="ask_llm_gemini"
-
 # TODO add to remote-logout repo
 # https://github.com/iloveitaly/remote-logout
 # https://serverfault.com/questions/10404/log-out-graphical-user-from-command-line
