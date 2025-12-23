@@ -1,9 +1,12 @@
+[tools]
+"go:github.com/standardbeagle/mcp-clip" = "latest"
+"go:github.com/karol-broda/snitch" = "latest"
+
 [settings]
 experimental = true
 
 [settings.cargo]
 binstall = true
-
 
 [settings.pipx]
 uvx = true
