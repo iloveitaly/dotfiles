@@ -1,3 +1,7 @@
+# ================================
+# Functions to make working with AI easier on the command line
+# ================================
+
 # combine all matching files into a single string and copy to clipboard, helpful for AI stuff
 ai-find-and-copy() {
   # $1 is the first argument to the function: the specific string to search for
