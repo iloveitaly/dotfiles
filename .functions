@@ -13,6 +13,40 @@ zinit-update() {
   zinit delete --clean
   zinit update --all --parallel
   zinit cclear
+
+  echo "Remember to update tmux plugins"
+}
+
+zsh-pretty-options() {
+  local on_color='%F{green}' off_color='%F{red}' reset='%f'
+  local value   # renamed from 'status'
+
+  for opt in ${(ko)options}; do
+    if [[ $options[$opt] == on ]]; then
+      value="${on_color}on${reset}"
+    else
+      value="${off_color}off${reset}"
+    fi
+    printf '%-35s %s\n' "$opt" "${(%)value}"
+  done
+}
+
+# zshenv - always executed
+# zprofile - executed on login shells
+# zshrc - login and interactive shells
+# zlogin - after zshrc, executed on login shells
+zsh-shell-type() {
+  if [[ -o interactive ]]; then
+    echo "Interactive shell"
+  else
+    echo "Non-interactive shell"
+  fi
+
+  if [[ -o login ]]; then
+    echo "Login shell"
+  else
+    echo "Non-login shell"
+  fi
 }
 
 # destroy your entire zinit setup, helpful when something seems off but you aren't sure why...
