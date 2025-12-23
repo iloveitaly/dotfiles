@@ -1,0 +1,172 @@
+{
+  "files.autoSave": "onFocusChange",
+  "editor.accessibilitySupport": "off",
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.stickyScroll.enabled": true,
+  "editor.scrollBeyondLastLine": false,
+  "editor.rulers": [120],
+  "editor.tabSize": 2,
+  "editor.tabCompletion": "on",
+  "editor.formatOnPaste": true,
+  "editor.fontFamily": "Hack, Menlo, Monaco, 'Courier New', monospace",
+  "editor.minimap.enabled": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "workbench.tree.indent": 10,
+  "testExplorer.useNativeTesting": true,
+  "explorer.autoReveal": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "editor.inlineSuggest.enabled": true,
+  "security.workspace.trust.untrustedFiles": "open",
+  "eslint.format.enable": true,
+  "eslint.debug": true,
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "redhat.telemetry.enabled": true,
+  "window.commandCenter": true,
+  "npm.keybindingsChangedWarningShown": true,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.macOptionClickForcesSelection": true,
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "terminal.integrated.shellIntegration.enabled": true,
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.automationProfile.osx": "zsh",
+  "terminal.integrated.profiles.osx": {
+    "tmux": {
+      "path": "/Users/mike/.tmux-shell.sh",
+      "icon": "terminal-tmux"
+    }
+  },
+  "git.mergeEditor": true,
+  "lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
+  "terminal.external.osxExec": "iTerm.app",
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true,
+    "**/.venv/**": true
+  },
+  "files.associations": {
+    ".tool-versions": "plaintext",
+    ".envrc": "shellscript"
+  },
+  "githubPullRequests.pullBranch": "never",
+  "debug.javascript.autoAttachFilter": "disabled",
+  "editor.linkedEditing": true,
+  "terminal.integrated.macOptionIsMeta": true,
+  "[sql]": {
+    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
+  },
+  "elixirLS.fetchDeps": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "workbench.editor.pinnedTabsOnSeparateRow": true,
+  "window.density.editorTabHeight": "compact",
+  // causing tabs to dissapear
+  // "workbench.activityBar.location": "hidden",
+  "lldb.launch.expressions": "native",
+  "gotoNextPreviousMember.selectEntireSymbol": true,
+  "gotoNextPreviousMember.symbolPosition": "bottom",
+  "gotoNextPreviousMember.symbolKinds": [
+    "array",
+    "class",
+    "constant",
+    "constructor",
+    "enum",
+    "enummember",
+    "event",
+    "field",
+    "file",
+    "function",
+    "interface",
+    "key",
+    "method",
+    "module",
+    "namespace",
+    "number",
+    "object",
+    "operator",
+    "package",
+    "property",
+    "string",
+    "struct",
+    "typeparameter"
+  ],
+  "tailwind-fold.autoFold": false,
+  "bashIde.enableSourceErrorDiagnostics": true,
+  "window.zoomLevel": 1,
+  "formattingToggle.affects": [
+    "editor.formatOnPaste",
+    "editor.formatOnSave",
+    "editor.formatOnType",
+    "files.trimTrailingWhitespace"
+  ],
+  "files.trimTrailingWhitespace": true,
+  "window.confirmBeforeClose": "always",
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "remote.SSH.configFile": "~/.ssh/vscode_config",
+  "editor.inlineSuggest.suppressSuggestions": true,
+  "security.promptForRemoteFileProtocolHandling": false,
+  "todohighlight.isEnable": true,
+  "workbench.editor.closeOnFileDelete": true,
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "files.saveConflictResolution": "overwriteFileOnDisk",
+  "git.blame.editorDecoration.enabled": true,
+  "typescript.experimental.expandableHover": true,
+
+  "python.analysis.typeEvaluation.enableReachabilityAnalysis": true,
+  "python.analysis.typeCheckingMode": "standard",
+  "python.terminal.activateEnvironment": false,
+  "python.analysis.completeFunctionParens": true,
+  "python.testing.pytestEnabled": true,
+  "python.REPL.sendToNativeREPL": false,
+  "python.REPL.enableREPLSmartSend": false,
+  "python.analysis.logLevel": "Trace",
+  "python.analysis.autoFormatStrings": true,
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.generateWithTypeAnnotation": true,
+  "go.toolsManagement.autoUpdate": true,
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "docker.extension.enableComposeLanguageServer": false,
+  "cursor.composer.shouldChimeAfterChatFinishes": true,
+  "workbench.colorTheme": "Default Dark Modern",
+  // "terminal.integrated.tabs.enabled": false,
+  "python.analysis.cacheLSPData": true,
+  "cursorpyright.analysis.autoImportCompletions": true,
+  "cursorpyright.analysis.logLevel": "Trace",
+  "cursorpyright.analysis.typeCheckingMode": "standard",
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  }
+}
