@@ -7,7 +7,6 @@ Brewfile.lock.json
 brew.sh
 server.sh
 TODO
-duti
 backup.sh
 codespace.sh
 server.sh
