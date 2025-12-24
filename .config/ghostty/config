@@ -1,3 +1,4 @@
+# https://ghostty.org/docs/config
 # https://github.com/nateberkopec/dotfiles/blob/main/files/ghostty/config
 # https://ghostty.zerebos.com/
 
@@ -10,6 +11,11 @@ command = /opt/homebrew/bin/tmux
 # font-size = 13
 macos-titlebar-style = transparent
 macos-titlebar-proxy-icon = hidden
+
+window-inherit-working-directory = true
+window-padding-x = 4
+window-padding-y = 4
+window-padding-balance = true
 
 cursor-style-blink = true
 
