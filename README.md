@@ -74,6 +74,7 @@ interesting_repos=(
   https://github.com/pnodet/zsh-config
   https://github.com/nateberkopec/dotfiles
   https://github.com/melchoy/dotfiles
+  https://github.com/jmduke/dotfiles
 )
 
 cd ~/Projects/dotfiles-inspiration
