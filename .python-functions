@@ -315,3 +315,8 @@ py-copy-for-ipython() {
   fi
   echo "Copied $relpath with prefix."
 }
+
+# inspect the requirements for a specific package
+py-inspect-requirements() {
+  uv pip compile --universal --emit-index-url <(echo "$1")
+}
