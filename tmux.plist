@@ -13,10 +13,7 @@
     <key>ProgramArguments</key>
     <array>
         <string>/opt/homebrew/bin/tmux</string>
-        <string>-D</string>
-        <string>-v</string>
+        <string>start-server</string>
     </array>
-    <key>KeepAlive</key>
-    <true/>
 </dict>
 </plist>
