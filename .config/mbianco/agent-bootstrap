@@ -39,6 +39,11 @@ ai_load_agent_configuration() {
     [[ ${AGENT_DEBUG:-} -eq 1 ]] && echo "In agent shell, sourced configuration"
 
     export AGENT_CONFIGURED=1
+
+    # without this, the git config which uses fancy pagers, etc will be used
+    export GIT_CONFIG_NOSYSTEM=1
+    export GIT_CONFIG_GLOBAL=/dev/null
+
     return 0
   else
     echo -e "\033[33mNot in agent, and not interactive. We may be missing a new agent type?\033[0m"
