@@ -1,5 +1,5 @@
 # Make nano the default editor for context-less editing in the terminal
-export EDITOR=nano
+export EDITOR=micro
 
 # some tools, like lazygit, pull from this to determine where to put configuration files
 # by default, they'll store config in '~/Library/Application Support' instead
