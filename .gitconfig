@@ -17,7 +17,7 @@
 
   # nano `/dev/tty` is required for git-fuzzy otherwise nano will error out
   # editor = nano < /dev/tty
-  editor = micro
+  editor = micro < /dev/tty
 
   # http://stackoverflow.com/questions/18257622/why-is-git-core-preloadindex-default-value-false
   preloadindex = true
