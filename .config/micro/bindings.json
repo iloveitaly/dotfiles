@@ -1,3 +1,6 @@
+// https://github.com/zyedidia/micro/blob/master/runtime/help/keybindings.md
+// https://github.com/zyedidia/micro/issues/3849
+// https://github.com/zyedidia/micro/blob/6a62575bcfdf4965f187eedafceb3400316e612b/internal/action/defaults_other.go
 {
   "Ctrl-Left": "WordLeft",
   "Ctrl-Right": "WordRight",
