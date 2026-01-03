@@ -10,6 +10,7 @@ upgrade:
 
 	gh extension upgrade --all
 
+	# micro is rarely updated on github, so we use the nightly build
 	eget --tag nightly zyedidia/micro --to=~/.local/bin/
 
 	# TODO can't figure out why this is not working
@@ -22,3 +23,8 @@ sync:
 # what quicklook plugins are installed?
 list-quicklook:
 	qlmanage -m plugins
+
+# vscode and cursor integration
+patch-ide-integration:
+	cp "$(code --locate-shell-integration-path zsh)" .vscode/zsh-integration-original.zsh
+	patch -o .vscode/zsh-integration.zsh .vscode/zsh-integration-original.zsh .vscode/zsh-integration.patch

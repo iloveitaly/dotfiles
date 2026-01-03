@@ -14,7 +14,7 @@ PYTHON_DEBUGGING_PACKAGES="ipython \
   docrepr \
   pyfzf \
   jedi \
-  git+https://github.com/iloveitaly/pretty-traceback.git@custom \
+  beautiful-traceback \
   pre-commit \
   sqlparse \
   git+https://github.com/iloveitaly/ipython-suggestions.git@ipython-9.x \

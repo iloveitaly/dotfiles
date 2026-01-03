@@ -108,6 +108,19 @@ uvx clean-workspace --tab-description "$dialogResult"
 # it seems to get junked up after a while and slow down
 # a daily restart keeps it operating quickly
 echo "Restarting Raycast..."
-quit_app "Raycast"
+quit_app "Raycast" || true
+# wait until Raycast is completely closed
 while pgrep -q -x "Raycast"; do sleep 0.1; done
 open -a "Raycast"
+
+claude update
+amp update
+bun update -g @github/copilot
+pnpm install -g @google/gemini-cli
+code --update-extensions
+cursor --update-extensions
+
+uv cache clean
+
+# in case you overrode them for some testing
+clear-dns-servers

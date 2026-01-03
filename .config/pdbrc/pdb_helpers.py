@@ -31,21 +31,45 @@ def pytest_quit():
         pytest.exit("stop all")
     raise bdb.BdbQuit
 
-def find_first_project_frame(frame):
+def find_first_project_frame(frame, debug=False):
     cwd = os.path.abspath(os.getcwd())
     venv_path = os.environ.get('VIRTUAL_ENV')
     if venv_path:
         venv_path = os.path.abspath(venv_path)
 
+    if debug:
+        print(f"DEBUG: cwd = {cwd}")
+        print(f"DEBUG: venv_path = {venv_path}")
+
     frames = inspect.getouterframes(frame)
-    for frame_info in reversed(frames):  # Start from innermost to outermost
+    if debug:
+        print(f"DEBUG: Found {len(frames)} frames")
+    
+    for i, frame_info in enumerate(reversed(frames)):  # Start from innermost to outermost
         filename = frame_info.filename
+        if debug:
+            print(f"DEBUG: Frame {i}: {filename}")
+        
         if filename.startswith('<'):  # Skip non-file frames like <string> or <module>
+            if debug:
+                print(f"DEBUG: Skipping non-file frame: {filename}")
             continue
+        
         abs_filename = os.path.abspath(filename)
+        if debug:
+            print(f"DEBUG: abs_filename = {abs_filename}")
+        
         if venv_path and abs_filename.startswith(venv_path):
+            if debug:
+                print(f"DEBUG: Skipping venv frame: {abs_filename}")
             continue
+        
         if abs_filename.startswith(cwd):
+            if debug:
+                print(f"DEBUG: Found project frame: {abs_filename}")
             return frame_info.frame
+    
     # If no matching frame found, return the original frame
+    if debug:
+        print("DEBUG: No matching frame found, returning original frame")
     return frame

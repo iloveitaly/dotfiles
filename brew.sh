@@ -38,15 +38,17 @@ curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | bash -
 sudo dscl . -create $HOME UserShell /opt/homebrew/bin/zsh
 
 curl https://mise.run | sh
-
 eval "$(mise activate zsh)"
 mise install -y
 
-# add binstall to the current rust installation
-curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+mise use -g cargo-binstall
 
+# TODO can we move these to mise?
 # cargo-only packages
 cargo binstall -y usage-cli markdown-extract-cli
+
+# TODO is this the best place? Maybe in zsh plugins or something?
+ya pkg add yazi-rs/plugins:git
 
 # php / WordPress
 # https://github.com/asdf-community/asdf-php/blob/248e9c6e2a7824510788f05e8cee848a62200b65/bin/install#L22
@@ -89,6 +91,7 @@ pnpm install -g @google/gemini-cli
 pnpm install -g @anthropic-ai/claude-code
 pnpm install -g @openai/codex
 pnpm approve-builds -g
+bun install -g @github/copilot@latest
 
 # let programs that don't properly source the shell know where gpg is
 # https://github.com/denolehov/obsidian-git/issues/21
@@ -102,3 +105,19 @@ gh alias set repo-create-private --clobber --shell 'repo=$(basename $PWD) && gh 
 gh alias set repo-url --clobber --shell 'url=$(gh repo view --json url --jq ".url" | tr -d " \n"); echo -n "$url" | pbcopy && echo "$url"'
 gh alias set repo-events --clobber --shell 'gh api repos/$(gh repo view --json owner -q ".owner.login")/$(gh repo view --json name -q ".name")/events'
 gh alias set myprs --clobber --shell 'id=$(set -e; gh pr list --state=all -L100 --author $(git config github.user) $@ | fzf | cut -f1); [ -n "$id" ] && gh pr view "$id" --web && echo "$id"'
+
+# mcp setup
+# mcpm profile add dev
+# mcpm target set %dev
+# npm install -g mcp-chrome-bridge
+# mcpm import remote mcp-chrome-bridge --url http://127.0.0.1:12306/mcp
+# mcpm target set @cursor
+
+# claude doesn't support dynamic ENV vars?
+claude mcp add --transport http github https://api.githubcopilot.com/mcp -H "Authorization: Bearer $(gh auth token)"
+# install via mise
+claude mcp add clipboard -- mcp-clip
+
+micro --plugin install clip
+micro -plugin install editorconfig
+micro --plugin install urlopen

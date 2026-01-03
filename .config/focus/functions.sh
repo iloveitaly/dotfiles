@@ -40,6 +40,7 @@ unthrottle-internet() {
 	echo "Throttling removed"
 }
 
+# TODO i should use the same helper i have in my core dotfiles for this
 # https://apple.stackexchange.com/questions/303110/flush-cache-of-dns-on-macos-sierra-high-sierra/303119#303119
 flush-dns() {
 	echo "Flushing DNS..."
@@ -61,4 +62,20 @@ flush-dns() {
 		end tell
 	end tell
 EOF
+}
+
+# Not used yet because of the task timeout in hyper focus
+# Example usage: sleep until noon (12:00)
+sleep_until_hour() {
+	target_hour=$1
+	current_time=$(date +%s)
+	target_time=$(date -j -f "%H:%M" "$target_hour:00" +%s)
+	seconds_until_target=$((target_time - current_time))
+
+	# If the current time is past the target hour, calculate the seconds until the target hour the next day
+	if [ $seconds_until_target -lt 0 ]; then
+		seconds_until_target=$((seconds_until_target + 86400))
+	fi
+
+	sleep $seconds_until_target
 }

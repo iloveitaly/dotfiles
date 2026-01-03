@@ -33,7 +33,7 @@ sudo apt install -y \
   git vim lynx rename wget ngrep iftop lftp httpie ncdu curl gawk jq sqlite3 zsh tre-command \
   zsh entr prettyping less fd-find tldr zoxide bc delta bat tree htop dnsutils moreutils qpdf \
   rsync watch iotop powertop mise libreadline-dev libffi-dev libyaml-dev \
-  btop docker-ctop ov \
+  btop docker-ctop ov python3-q-text-as-data \
   nmap
 
 mise install -y

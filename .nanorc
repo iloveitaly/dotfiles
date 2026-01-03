@@ -13,7 +13,7 @@ set constantshow  # show line and column information at the bottom
 bind M-1 help all # fix ^G been used
 
 # less-style page navigation bindings
-bind ^G firstline all
+# bind ^G firstline all
 bind M-G lastline all
 
 # ^u & ^d to page up and down, like less
@@ -24,7 +24,10 @@ bind ^D pagedown all
 bind ^w chopwordleft main
 
 # ^K like ZLE and VS Code
-bind ^K cut main
+# bind ^K cuttextend main
+
+# kill entire line with opt+shif+k
+# bind M-K cutline main
 
 # rebind search
 bind ^F whereis main

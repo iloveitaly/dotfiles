@@ -65,7 +65,7 @@ npm-upgrade-packages() {
     _npx npm-check-updates
   fi
 
-  _npx ncu --interactive --format group
+  _npx npm-check-updates --interactive --format group
 }
 
 npm-package-tree() {

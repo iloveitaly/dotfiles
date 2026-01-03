@@ -13,5 +13,5 @@ npx hostile load ~/.config/distracting_sites.txt
 npx hostile set 127.0.0.1 localhost
 npx hostile set ::1 localhost
 
-source ~/.config/focus/functions.sh
-flush-dns
+# source ~/.config/focus/functions.sh
+# flush-dns
