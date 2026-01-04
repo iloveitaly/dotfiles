@@ -17,6 +17,8 @@ zinit-update() {
   echo "Remember to update tmux plugins"
 }
 
+# output all zsh options with pretty colors
+# helpful for debugging zsh option states
 zsh-pretty-options() {
   local on_color='%F{green}' off_color='%F{red}' reset='%f'
   local value   # renamed from 'status'
