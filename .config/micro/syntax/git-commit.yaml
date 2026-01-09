@@ -1,0 +1,30 @@
+filetype: git-commit
+
+detect:
+    filename: "(COMMIT_EDITMSG|MERGE_MSG)$"
+
+rules:
+    # Semantic Types (Blue/Cyan)
+    - identifier: "^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)"
+
+    # Scopes (Purple)
+    - constant: "\\([a-z0-9A-Z_\\-]+\\)"
+
+    # Breaking Change Indicators (Red)
+    - error: "!:"
+    - error: "^BREAKING CHANGE:"
+
+    # Comments (Grey)
+    - comment:
+        start: "^#"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME):?"
+
+    # Git Diff Highlighting (Standard Colors)
+    - diff-added: "^\\+.*"
+    - diff-modified: "^\\!.*"
+    - diff-deleted: "^\\-.*"
+    - header: "^diff --git.*"
+    - header: "^index.*"
+    - header: "^@@.*@@"
