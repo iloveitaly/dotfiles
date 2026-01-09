@@ -748,6 +748,44 @@ function cp-into-template() {
   done
 }
 
+# list all URL schemes and their handlers on macOS
+macos-list-schemes() {
+  local LSREGISTER="/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister"
+
+  print "=== LaunchServices database (URLSchemeBinding) ==="
+  "$LSREGISTER" -dump URLSchemeBinding |
+    grep '^[a-zA-Z0-9+-]*:' |
+    sed 's/^[ \t]*//; s/:[ \t]*/: /' |
+    sort
+
+  local PLIST=~/Library/Preferences/com.apple.LaunchServices/com.apple.launchservices.secure.plist
+
+  if [[ -f $PLIST ]]; then
+    print "\n=== User overrides: URL schemes ==="
+    /usr/libexec/PlistBuddy -c "Print LSHandlers" "$PLIST" 2>/dev/null |
+      awk '
+        /\bLSHandlerURLScheme =/ { scheme = $NF; sub(/;$/, "", scheme) }
+        /\bLSHandlerRoleAll =/ { handler = $NF; sub(/;$/, "", handler) }
+        scheme && handler { print scheme ": " handler; scheme = handler = "" }
+      ' | sort
+
+    print "\n=== User overrides: Other handlers (UTIs, extensions) ==="
+    /usr/libexec/PlistBuddy -c "Print LSHandlers" "$PLIST" 2>/dev/null |
+      awk '
+        /\bLSHandlerURLScheme =/ { skip = 1; next }
+        /\bLSHandlerContentType =/ { type = $NF; sub(/;$/, "", type); skip = 0 }
+        /\bLSHandlerContentTag =/ { tag = $NF; sub(/;$/, "", tag); skip = 0 }
+        /\bLSHandlerRoleViewer =/ && !skip { handler = $NF; sub(/;$/, "", handler);
+          if (type) print "UTI " type ": " handler;
+          if (tag) print "ext ." tag ": " handler;
+          type = tag = ""
+        }
+      ' | sort
+  else
+    print "\n=== User plist not found ==="
+  fi
+}
+
 source ~/.node-functions
 source ~/.python-functions
 source ~/.git-functions
