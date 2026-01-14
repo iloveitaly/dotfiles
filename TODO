@@ -1,3 +1,9 @@
+- [ ] we should use exec in tmux wrapper https://gemini.google.com/app/771b089d656309b1
+- [ ] micro improvements
+  - [ ] https://github.com/nazya/micro-opener
+- [ ] https://github.com/ck3mp3r/laio-cli tmux plugin for layout management
+- [ ] https://github.com/jeffkaufman/icdiff i swear there was a different one
+- [ ] https://github.com/alexpasmantier/snob
 - [ ] https://github.com/Maxteabag/sqlit
 - [ ] https://github.com/woodstok/tmux-butler
 - [ ] https://github.com/pvolok/mprocs
@@ -111,7 +117,6 @@
 - [ ] https://github.com/Svetlitski/fcp faster cp in rust
 - [ ] procs doesn't work properly in tmux <https://github.com/dalance/procs/issues/330>
 - [ ] stop iterm from changing window title when resizing window, I tried looking through the prefs and there was nothing
-- [ ] config micro editor https://github.com/zyedidia/micro/blob/master/runtime/help/keybindings.md
   - [ ] big Q if it can do git diff editing and generate a git commit diff
 - [ ] fix bun completions https://github.com/oven-sh/bun/issues/1272
 - [ ] git-delta seems way better than diff-so-fancy
@@ -212,6 +217,7 @@
 #### Tmux
 
 - [ ] select contents in quotes
+- [ ] improve title contents https://github.com/intrntbrn/awesomewm-vim-tmux-navigator/blob/fc2b46896fe9daf1b1b1a6a0af5ae6fcfefa7511/README.md?plain=1#L146
 
 #### Better Terminals
 - [ ] https://github.com/ambiso/alacritty/commit/68994d6c1a4f8fac34e470cc2aa021bf1a81acae looks like alacritty has a fast search function
