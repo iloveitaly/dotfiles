@@ -1,6 +1,9 @@
 [tools]
 "go:github.com/standardbeagle/mcp-clip" = "latest"
 "go:github.com/karol-broda/snitch" = "latest"
+cargo-binstall = "latest"
+"cargo:usage-cli" = "2.12.0"
+"cargo:markdown-extract-cli" = "latest"
 
 [settings]
 experimental = true
