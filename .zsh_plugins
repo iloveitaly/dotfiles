@@ -35,7 +35,7 @@ zinit wait'0a' lucid for \
   toku-sa-n/zsh-dot-up \
   zdharma-continuum/fast-syntax-highlighting \
   OMZ::lib/functions.zsh \
-  OMZ::lib/termsupport.zsh \
+  trystan2k/zsh-tab-title \
   hlissner/zsh-autopair \
   OMZ::plugins/safe-paste \
   mafredri/zsh-async \
