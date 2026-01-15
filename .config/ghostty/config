@@ -12,7 +12,6 @@ command = /opt/homebrew/bin/tmux
 macos-titlebar-style = transparent
 macos-titlebar-proxy-icon = hidden
 
-window-inherit-working-directory = true
 window-padding-x = 4
 window-padding-y = 4
 window-padding-balance = true
