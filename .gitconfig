@@ -100,9 +100,6 @@
   # http://stackoverflow.com/questions/6127328/how-can-i-delete-all-git-branches-which-have-been-merged
   cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop\\|main' | xargs -n 1 git branch -d"
 
-  # deletes all local branches that have no differences with master (i.e. have been squashed into master)
-  rm-merged = "! bash -c 'git checkout -q master && git for-each-ref refs/heads/ \"--format=%(refname:short)\" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == \"-\"* ]] && git branch -D $branch; done; true'"
-
   # get remote branches that aren't pulled by default via the repo's config
   # helpful for large projects where you limit branches pulled via `fetch`
   remote-fetch = "!rf() { git config --add remote.origin.fetch +refs/heads/$1:refs/remotes/origin/$1 && git fetch origin +$1:refs/remotes/origin/$1 && git c -t origin/$1; }; rf"

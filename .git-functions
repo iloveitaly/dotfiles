@@ -465,3 +465,91 @@ github-create-release() {
   echo "Successfully created GitHub release for $TAG."
   return 0
 }
+
+# deletes all local branches that have no differences with master (i.e. have been squashed into master)
+# Usage:
+#  git-rm-merged [--dry-run|-n] [target-branch]
+git-rm-merged() {
+  emulate -L zsh
+  local dry_run=0
+  local target_branch="master"
+  local current_branch
+
+  # Parse arguments
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --dry-run|-n) dry_run=1 ;;
+      -*) print -P "%F{red}Unknown option: $1%f"; return 1 ;;
+      *) target_branch="$1" ;;
+    esac
+    shift
+  done
+
+  # Validation
+  if ! git rev-parse --git-dir > /dev/null 2>&1; then
+    print -P "%F{red}Error: Not a git repository.%f"
+    return 1
+  fi
+
+  if ! git show-ref --verify --quiet "refs/heads/$target_branch"; then
+    print -P "%F{red}Error: Target branch '$target_branch' does not exist.%f"
+    return 1
+  fi
+
+  current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+  # 1. PRE-CALCULATE LOCKED BRANCHES
+  # We do this BEFORE switching branches. This captures the branch you are currently
+  # standing on, plus any branches checked out in other folders.
+  local -A locked_branches
+
+  # Parse `git worktree list --porcelain` to find lines starting with "branch refs/heads/"
+  while read -r line; do
+    # Strip the "branch refs/heads/" prefix to get the short name
+    local branch_name=${line#branch refs/heads/}
+    locked_branches[$branch_name]=1
+  done < <(git worktree list --porcelain | grep "^branch refs/heads/")
+
+  {
+    if [[ "$current_branch" != "$target_branch" ]]; then
+      print -P "%F{blue}Checking out '$target_branch' to analyze merge states...%f"
+      git checkout -q "$target_branch" || return 1
+    fi
+
+    while read -r branch; do
+      [[ "$branch" == "$target_branch" ]] && continue
+
+      # 2. CHECK WORKTREE LOCK
+      if (( ${locked_branches[$branch]} )); then
+        # Optional: Print a message if in dry-run or verbose mode so you know why it wasn't deleted
+        if (( dry_run )); then
+           print -P "%F{cyan}[SKIP] '$branch' is currently checked out in a worktree.%f"
+        fi
+        continue
+      fi
+
+      local merge_base=$(git merge-base "$target_branch" "$branch")
+      local tree_hash=$(git rev-parse "$branch^{tree}")
+      local synthetic_commit=$(git commit-tree "$tree_hash" -p "$merge_base" -m "synthetic-check")
+
+      if [[ $(git cherry "$target_branch" "$synthetic_commit") == "-"* ]]; then
+        if (( dry_run )); then
+          print -P "%F{yellow}[DRY RUN] Would delete:%f $branch"
+        else
+          print -P "%F{red}Deleting merged branch:%f $branch"
+          git branch -D "$branch"
+        fi
+      fi
+    done < <(git for-each-ref refs/heads/ "--format=%(refname:short)")
+
+  } always {
+    if [[ -n "$current_branch" && "$current_branch" != "$target_branch" ]]; then
+       if git show-ref --verify --quiet "refs/heads/$current_branch"; then
+          print -P "%F{blue}Returning to '$current_branch'...%f"
+          git checkout -q "$current_branch"
+       else
+          print -P "%F{yellow}Original branch '$current_branch' was deleted or not found. Staying on '$target_branch'.%f"
+       fi
+    fi
+  }
+}
