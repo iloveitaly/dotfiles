@@ -473,6 +473,7 @@ git-rm-merged() {
   emulate -L zsh
   local dry_run=0
   local target_branch="master"
+  local target_branch_set=0
   local current_branch
 
   # Parse arguments
@@ -480,7 +481,7 @@ git-rm-merged() {
     case "$1" in
       --dry-run|-n) dry_run=1 ;;
       -*) print -P "%F{red}Unknown option: $1%f"; return 1 ;;
-      *) target_branch="$1" ;;
+      *) target_branch="$1"; target_branch_set=1 ;;
     esac
     shift
   done
@@ -489,6 +490,14 @@ git-rm-merged() {
   if ! git rev-parse --git-dir > /dev/null 2>&1; then
     print -P "%F{red}Error: Not a git repository.%f"
     return 1
+  fi
+
+  if (( ! target_branch_set )); then
+    if ! git show-ref --verify --quiet "refs/heads/$target_branch"; then
+      if git show-ref --verify --quiet "refs/heads/main"; then
+        target_branch="main"
+      fi
+    fi
   fi
 
   if ! git show-ref --verify --quiet "refs/heads/$target_branch"; then
