@@ -1,4 +1,3 @@
-# Make nano the default editor for context-less editing in the terminal
 export EDITOR=micro
 
 # some tools, like lazygit, pull from this to determine where to put configuration files
@@ -37,7 +36,7 @@ export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 # - ctrl-{u,d} scroll the preview
 # - ctrl-o opens the file in vscode (or the default application)
 # - ctrl-y copies the file path to the clipboard
-# - ctrl-e opens the file in a CLI editor (nano)
+# - ctrl-e opens the file in a CLI editor
 # - ctrl-b copies the contents of the file path, at the specified line, with context, to the clipboard
 export FZF_DEFAULT_OPTS="\
 --bind='ctrl-u:preview-half-page-up' \

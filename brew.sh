@@ -26,9 +26,6 @@ brew cleanup
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 (cd ~/.config/ && curl -LO https://raw.githubusercontent.com/sindresorhus/iterm2-snazzy/master/Snazzy.itermcolors) && open ~/.config/Snazzy.itermcolors
 
-# run after nanorc is copied, this modifies nanorc
-curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | bash -s -- --lite
-
 # iTerm copy mode conflicted with a previous shortcut that I have seared into my memory
 # however, I can remap this via macos config. TODO would be great to move this over to `osx.sh`
 # https://www.intego.com/mac-security-blog/how-to-make-custom-keyboard-shortcuts-for-any-macos-menu-items-and-to-launch-your-favorite-apps/

@@ -6,7 +6,7 @@ alias tree='tre --limit 3'
 
 # shortcuts for commonly used utilities
 alias j='just'
-alias m="mise"
+alias m="micro"
 
 # names I can never remember
 # tabiew is a terrible name but awesome tool to inspect tabular data on the cli
@@ -73,7 +73,6 @@ alias p="cd ~/Projects"
 
 # Edit current directory
 alias e="code ."
-alias o="open_in_nano ."
 
 # File size
 alias fs="stat -f \"%z bytes\""

@@ -155,8 +155,6 @@
   - [ ] There's a keyboard shortcut tool as well
 - [ ] https://github.com/asdf-community/asdf-poetry/issues/27 poetry completions maybe do this statically https://python-poetry.org/docs/
   - [ ] poetry completions zsh > ~/.asdf/completions/_poetry (I think there's an ASDF issue for this?)
-- [ ] nano pbcopy integration, use mark and emacs-style bindings; or maybe just setup a basic vimrc
-- [ ] nano doesn't work in sudo mode https://askubuntu.com/questions/927213/getting-nano-nanorc-settings-to-work-with-sudo-nano-command
 - [ ] /zsh-fuzzy-search-and-edit strip out line number, output to terminal, and to pbcopy using `tee` trick
 - [ ] fzf file search with spotlight `mdfind 'node' -onlyin $PWD`
 - [ ] add defaults read ~/Library/Preferences/com.apple.symbolichotkeys.plist to mackup

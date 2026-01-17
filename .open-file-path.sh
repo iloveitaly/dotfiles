@@ -6,7 +6,7 @@ source ~/.functions
 # if first argument is EDITOR, remove it from $@
 if [[ $1 == "EDITOR" ]]; then
   shift
-  open_in_nano $@
+  micro $@
 else
   open_in_vscode $@
 fi
