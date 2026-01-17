@@ -562,3 +562,11 @@ git-rm-merged() {
     fi
   }
 }
+
+# mergetool does *not* open the actual files, which means the AI tools for the project won't work
+# this attempts to open all merge files in the project folder in vs code
+git-open-conflicts-in-vscode() {
+  repo=$(git rev-parse --show-toplevel)
+  files=($(git diff --name-only --diff-filter=U))
+  code --reuse-window "$repo" "${files[@]}"
+}
