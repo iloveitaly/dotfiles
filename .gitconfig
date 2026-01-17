@@ -144,10 +144,11 @@
   ff = only
   # https://blog.nilbus.com/take-the-pain-out-of-git-conflict-resolution-use-diff3/
   conflictstyle = zdiff3
-  tool = ksdiff
+  tool = code
 
 [mergetool "code"]
-  cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+  cmd = code --wait --merge \"$REMOTE\" \"$LOCAL\" \"$BASE\" \"$MERGED\"
+
 [mergetool "ksdiff"]
   cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
   trustExitCode = true
