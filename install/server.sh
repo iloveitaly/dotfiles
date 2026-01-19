@@ -11,9 +11,7 @@ rsync --exclude-from="install/standard-exclude.txt" \
 
 sudo apt install snapd
 sudo snap install yq diff-so-fancy speedtest
-sudo snap install --classic nano
 
-curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
 curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 
 if [ ! -f /etc/apt/sources.list.d/mise.list ]; then
