@@ -1,4 +1,5 @@
 {
   "diffgutter": true,
-  "clipboard": "external"
+  "clipboard": "external",
+  "parsecursor": true
 }
