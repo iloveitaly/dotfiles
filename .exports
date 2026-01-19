@@ -93,7 +93,3 @@ export KERL_BUILD_DOCS=yes
 # python
 export PYTHONDONTWRITEBYTECODE=1
 export IPDB_CONTEXT_SIZE=10
-
-# go stuff in the home is annoying, hide it please
-export GOPATH="$HOME/.local/share/go"
-export PATH="$PATH:$GOPATH/bin"
