@@ -565,8 +565,27 @@ git-rm-merged() {
 
 # mergetool does *not* open the actual files, which means the AI tools for the project won't work
 # this attempts to open all merge files in the project folder in vs code
-git-open-conflicts-in-vscode() {
+git-mergetool-vscode() {
   repo=$(git rev-parse --show-toplevel)
   files=($(git diff --name-only --diff-filter=U))
   code --reuse-window "$repo" "${files[@]}"
+}
+
+# rebase on the current branch's upstream, preferring 'upstream' remote if it exists
+gpb() {
+  local branch
+  local remote
+
+  branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || return 1
+
+  if git remote get-url upstream >/dev/null 2>&1; then
+    remote="upstream"
+  elif git remote get-url origin >/dev/null 2>&1; then
+    remote="origin"
+  else
+    print -P "%F{red}Error: Neither 'upstream' nor 'origin' remotes exist.%f" >&2
+    return 1
+  fi
+
+  g pull --rebase "$remote" "$branch"
 }
