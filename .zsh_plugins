@@ -31,7 +31,12 @@
 #   - toku-sa-n/zsh-dot-up hooks into the ZLE line rendering, so it's important that it is loaded at the same time as
 #     other ZLE modifying plugins like zsh-autosuggestions, otherwise it will crash your terminal.
 
+# tools we need right away
 zinit wait'0a' lucid for \
+  'https://github.com/ajeetdsouza/zoxide/blob/main/zoxide.plugin.zsh'
+
+# completions and helpful utilities that need to be loaded early, but fine if ~500ms del[ay]
+zinit wait'0b' lucid for \
   toku-sa-n/zsh-dot-up \
   zdharma-continuum/fast-syntax-highlighting \
   OMZ::lib/functions.zsh \
@@ -43,6 +48,7 @@ zinit wait'0a' lucid for \
   'https://gist.github.com/iloveitaly/64b3ebdb50b90057ac820b25b4072970/raw/direnv.plugin.zsh' \
   wintermi/zsh-mise \
   iloveitaly/zsh-ai-completions \
+  multisrc"${HOME}/.config/mbianco/zsh_plugins/*.zsh" nocompile \
   'https://gist.github.com/iloveitaly/4eac0f4ddb3f8162f95fa3ed6f123a06/raw/1password.zsh' \
   'https://gist.github.com/iloveitaly/b0748e2f9f6831f9b8781ed8790e3404/raw/gh-cli.plugin.zsh' \
   'https://gist.github.com/iloveitaly/043d91a2968597fe601673664b124dd3/raw/orbctl.zsh' \
@@ -62,7 +68,6 @@ zinit wait'0a' lucid for \
   'https://github.com/junegunn/fzf/blob/v0.58.0/shell/key-bindings.zsh' \
   'https://raw.githubusercontent.com/vykluong/claude-code-completion/main/src/_claude' \
   blockf atpull'zinit creinstall .' zsh-users/zsh-completions \
-  'https://github.com/ajeetdsouza/zoxide/blob/main/zoxide.plugin.zsh' \
   wintermi/zsh-gcloud \
   'https://gist.github.com/iloveitaly/7569436744f46132cf742072fc8f4d58/raw/atuin.plugin.zsh' \
   atload'_zsh_autosuggest_start' zsh-users/zsh-autosuggestions \
@@ -94,7 +99,7 @@ zinit wait'1' lucid for \
 
 # binaries installed via zinit. No rush to install these, which is why we are `wait'2'`
 #   - git-fuzzy: 'git fuzzy' for interactive git commit cli
-#   - ports: 'ports ls' to inspect what ports are o pen
+#   - ports: 'ports ls' to inspect what ports are open
 #   - universalarchive: 'ua' for easily unarchiving everything from the command line`
 
 zinit wait'2' lucid for \
