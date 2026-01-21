@@ -113,8 +113,6 @@ if OS.mac?
     brew "kitty" # yet another terminal
     brew "gmailctl" # gmail filter configuration as code
     brew "cleanshot" # best email tool, not sure if it's better than dropbox capture
-    tap "railwayapp/railway"
-    brew "railway"
     brew "google-cloud-sdk" # cli tools for google cloud
     brew "azure-cli"
     brew "certbot"
