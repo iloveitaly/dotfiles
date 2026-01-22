@@ -16,7 +16,9 @@ export GIT_FUZZY_FZF_DEFAULT_OPTS="\
   --layout=reverse \
   --bind 'ctrl-s:toggle-sort' \
   --bind 'change:top' \
-  --no-height"
+  --no-height \
+  "
+export GF_HORIZONTAL_PREVIEW_PERCENT_CALCULATION="70"
 export GIT_FUZZY_STATUS_ADD_KEY='Ctrl-A'
 export GIT_FUZZY_STATUS_COMMIT_KEY='Ctrl-S'
 export GIT_FUZZY_STATUS_RESET_KEY='Ctrl-R'
