@@ -97,6 +97,11 @@ function venv-pristine() {
 # what does this do?
 # pbpaste | python3 -c 'import sys, re; print(re.sub(r"^[\"]|[\"]$", "", sys.stdin.read().replace("\\n", "\n")).strip())'
 
+# path to where a module was loaded from
+py-module-where() {
+  python -c "import $1; print($1.__file__)"
+}
+
 # find the location of a pip package: echo the path and cd into it
 pip-show() {
   # Function to locate and open a pip package's source directory in the local .venv.
@@ -163,7 +168,7 @@ pip-show() {
 
 # TODO should make it more flexible: check for venv and different py versions
 py-site-packages() {
-  cd .venv/lib/python3.13/site-packages/
+  cd .venv/lib/python3*/site-packages/
 }
 
 # launch a py executable with ipdb3 to launch a debugger automatically
