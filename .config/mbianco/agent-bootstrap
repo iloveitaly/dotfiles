@@ -21,11 +21,24 @@ ai_load_agent_configuration() {
   #   return 0
   # fi
 
-  # Return early if not the first shell level
-  # if (( ${SHLVL:-0} != 1 )); then
-  #   [[ ${AGENT_DEBUG:-} -eq 1 ]] && echo "Not first shell level, returning"
-  #   return 1
-  # fi
+  # Check expected SHLVL for each agent type, we want to know if the logic here changes
+  local shlvl="${SHLVL:-0}"
+  if [[ -n "${CURSOR_AGENT:-}" ]]; then
+    # Cursor should use SHLVL=3
+    if [[ "$shlvl" != "3" ]]; then
+      echo -e "\033[33mWarning: Cursor agent with unexpected SHLVL=$shlvl (expected 3)\033[0m"
+    fi
+  elif [[ "${VSCODE_AGENT:-}" == "1" ]]; then
+    # VS Code should use SHLVL=1
+    if [[ "$shlvl" != "1" ]]; then
+      echo -e "\033[33mWarning: VS Code agent with unexpected SHLVL=$shlvl (expected 1)\033[0m"
+    fi
+  else
+    # Other agents should use SHLVL=1
+    if [[ "$shlvl" != "1" ]]; then
+      echo -e "\033[33mWarning: Agent with unexpected SHLVL=$shlvl (expected 1)\033[0m"
+    fi
+  fi
 
   # VS Code does not operate the same as Cursor: terminals are interactive, not dumb, and no ENV var is set to indicate
   # it's being managed by an agent. We manually set a variable in our VCS config to indicate this.
