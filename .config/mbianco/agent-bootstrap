@@ -22,10 +22,10 @@ ai_load_agent_configuration() {
   # fi
 
   # Return early if not the first shell level
-  if (( ${SHLVL:-0} != 1 )); then
-    [[ ${AGENT_DEBUG:-} -eq 1 ]] && echo "Not first shell level, returning"
-    return 1
-  fi
+  # if (( ${SHLVL:-0} != 1 )); then
+  #   [[ ${AGENT_DEBUG:-} -eq 1 ]] && echo "Not first shell level, returning"
+  #   return 1
+  # fi
 
   # VS Code does not operate the same as Cursor: terminals are interactive, not dumb, and no ENV var is set to indicate
   # it's being managed by an agent. We manually set a variable in our VCS config to indicate this.
