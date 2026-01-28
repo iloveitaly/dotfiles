@@ -4,9 +4,8 @@
 
 * zsh with turbo zinit
 * [Advanced tmux configuration](https://mikebian.co/tag/tmux/)
-* Lots of tidbits for ruby, elixir, and python development
+* Lots of tidbits for typescript, elixir, and python development
 * Mise for managing all language versions
-* [Codespace/devcontainer support](https://mikebian.co/my-experience-with-github-codespaces/)
 * Lots of interesting git shortcuts + tips
 * Custom macOS keybinding & karabiner config
 * [Hyper Focus config](https://github.com/iloveitaly/hyper-focus) to [Aggressively blocks distracting websites](http://mikebian.co/how-to-block-distracting-websites-on-your-laptop/)
