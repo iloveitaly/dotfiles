@@ -2,7 +2,7 @@
 # Set AGENT_DEBUG=1 to enable debug mode
 
 # shellcheck source=./.path
-source "${HOME}/.path"
+source "${HOME}/.config/mbianco/path"
 
 # Returns 0 (true) when running under an AI-agent managed terminal.
 ai_is_agent_terminal() {
