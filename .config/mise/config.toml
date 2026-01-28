@@ -11,6 +11,9 @@ cargo-binstall = "latest"
 "dive" = "latest"
 # micro is rarely updated on github, so we use the nightly build
 "github:zyedidia/micro" = "nightly"
+"fd" = "latest"
+
+# "pipx:llm-ide-prompts" = "latest"
 
 [settings]
 experimental = true

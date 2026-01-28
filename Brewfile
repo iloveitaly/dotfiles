@@ -58,7 +58,6 @@ brew "ripgrep"
 brew "entr"
 brew "prettyping"
 brew "less"
-brew "fd" # find
 brew "yank"
 brew "tldr"
 brew "zoxide"
