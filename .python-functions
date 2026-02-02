@@ -325,3 +325,7 @@ py-copy-for-ipython() {
 py-inspect-requirements() {
   uv pip compile --universal --emit-index-url <(echo "$1")
 }
+
+py-remove-old-venv() {
+  fd --hidden --no-ignore-vcs -td --changed-before 30d --prune .venv -x sh -c 'echo "Removing $0" && rm -rf "$0"'
+}
