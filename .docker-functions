@@ -188,3 +188,12 @@ dokku_clean_run() {
     echo "No running containers with '.run.' in name."
   fi
 }
+
+docker-clean-images() {
+  # railpack builder cache
+  docker exec buildkit buildctl prune
+
+  # aggressive remove, make sure you don't have any important data in stopped containers
+  docker system prune --all
+  docker volume prune --all
+}

@@ -65,7 +65,7 @@ npm-upgrade-packages() {
     _npx npm-check-updates
   fi
 
-  _npx ncu --interactive --format group
+  _npx npm-check-updates --interactive --format group
 }
 
 npm-package-tree() {
@@ -88,6 +88,10 @@ npm-reset() {
 # remove all node_modules folders from a heirarchy
 npm-remove-node-modules() {
   fd -td node_modules
+}
+
+node-remove-old-node-modules() {
+  fd --no-ignore-vcs -td --changed-before 30d --prune node_modules -x sh -c 'echo "Removing $0" && rm -rfv "$0"'
 }
 
 # TODO any `file:./` references, automatically remove and reinstall packages

@@ -2,6 +2,13 @@
 # Mise Utilities
 ###########################
 
+mise-clean() {
+  # clean out python and node references first
+
+  # removes unreferenced mise installations
+  mise prune --yes
+}
+
 # use plugin name as only parameter
 mise-current-version() {
   if [ $# -gt 1 ]; then
