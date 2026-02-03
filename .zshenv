@@ -1,4 +1,5 @@
 # Only run in non-interactive, non-login shells.
+
 # This file exists only because Cursor runs terminals in this limited mode,
 # so we need a minimal early gate here.
 if [[ -o interactive || -o login ]]; then

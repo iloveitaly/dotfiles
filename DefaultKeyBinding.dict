@@ -18,4 +18,8 @@
 
   // Move line down
   "~\UF701" = (selectParagraph:, setMark:, deleteToMark:, moveToEndOfParagraph:, moveRight:, setMark:, yank:, moveLeft:, selectToMark:);
+
+  // half page up & down
+  // "~u" = (scrollPageUp:, moveToPreviousLine:);
+  // "~d" = (scrollPageDown:, moveToNextLine:);
 }

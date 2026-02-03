@@ -79,19 +79,42 @@ pnpm install -g yalc
 # all of the cli coding tools
 pnpm install -g @sourcegraph/amp
 pnpm install -g @google/gemini-cli
-pnpm install -g @anthropic-ai/claude-code
+# TODO claude has some sort of native installer that we need to support
 pnpm install -g @openai/codex
 pnpm approve-builds -g
+bun install -g @github/copilot@latest
+bun add -g opencode-ai
+
+pnpx skills add ast-grep/agent-skill
+pnpx skills add https://github.com/iloveitaly/ai-skills --skill justfile
+pnpx skills add https://github.com/railwayapp/railway-skills --skill railway-docs --agent claude-code,gemini-cli,codex,cursor,github-copilot,opencode
 
 # let programs that don't properly source the shell know where gpg is
 # https://github.com/denolehov/obsidian-git/issues/21
 git config --global gpg.program $(which gpg)
 
-# easily create new codespaces for a repo
-gh alias set cs-create --shell 'gh cs create --repo $(gh repo view --json nameWithOwner | jq -r .nameWithOwner)'
 # create a new public repo from the current directory and enable github actions
 gh alias set repo-create --clobber --shell 'repo=$(basename $PWD) && gh repo create --public --source $PWD $repo && owner=$(gh repo view --json owner -q .owner.login) && gh api -X PUT repos/$owner/$repo/actions/permissions -F enabled=true'
 gh alias set repo-create-private --clobber --shell 'repo=$(basename $PWD) && gh repo create --private --source $PWD $repo && owner=$(gh repo view --json owner -q .owner.login) && gh api -X PUT repos/$owner/$repo/actions/permissions -F enabled=true'
 gh alias set repo-url --clobber --shell 'url=$(gh repo view --json url --jq ".url" | tr -d " \n"); echo -n "$url" | pbcopy && echo "$url"'
 gh alias set repo-events --clobber --shell 'gh api repos/$(gh repo view --json owner -q ".owner.login")/$(gh repo view --json name -q ".name")/events'
 gh alias set myprs --clobber --shell 'id=$(set -e; gh pr list --state=all -L100 --author $(git config github.user) $@ | fzf | cut -f1); [ -n "$id" ] && gh pr view "$id" --web && echo "$id"'
+
+# mcp setup
+# mcpm profile add dev
+# mcpm target set %dev
+# npm install -g mcp-chrome-bridge
+# mcpm import remote mcp-chrome-bridge --url http://127.0.0.1:12306/mcp
+# mcpm target set @cursor
+
+# claude doesn't support dynamic ENV vars?
+claude mcp add --transport http github https://api.githubcopilot.com/mcp -H "Authorization: Bearer $(gh auth token)"
+# install via mise
+claude mcp add clipboard -- mcp-clip
+
+micro --plugin install clip
+micro -plugin install editorconfig
+micro --plugin install urlopen
+micro --plugin install jump
+micro -plugin install fzf
+micro -plugin install palettero

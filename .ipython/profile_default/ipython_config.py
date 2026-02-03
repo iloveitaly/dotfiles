@@ -23,7 +23,7 @@ c.InteractiveShell.enable_html_pager = True
 c.InteractiveShell.sphinxify_docstring = True
 
 # DO NOT use `append` here, it hangs ipython
-c.InteractiveShellApp.extensions = [
+_EXTENSIONS = (
     "autoreload",
     # %autoimport -lodel
     "ipython_autoimport",
@@ -39,25 +39,55 @@ c.InteractiveShellApp.extensions = [
     # https://github.com/Textualize/rich/blob/e1e6d745f670ff3df6b8f47377c0a4006cb74066/rich/pretty.py#L167
     # "rich",
     # https://github.com/mdmintz/pdbp possible better than other pdb drop-ins?
-]
+)
+
+# Load extensions manually so failures only emit a single warning.
+c.InteractiveShellApp.extensions = []
+
+_SAFE_EXTENSION_LOADER = """
+from IPython import get_ipython
+
+def _safe_load_extension(name):
+    ip = get_ipython()
+    if not ip:
+        return
+    try:
+        ip.extension_manager.load_extension(name)
+    except ModuleNotFoundError:
+        _log = getattr(ip, "log", None)
+        msg = f"IPython extension '{name}' is not installed; skipping"
+        (_log.warning if _log else print)(msg)
+    except Exception as exc:
+        _log = getattr(ip, "log", None)
+        msg = f"IPython extension '{name}' failed to load: {exc}"
+        (_log.warning if _log else print)(msg)
+
+for _ext in {extensions}:
+    _safe_load_extension(_ext)
+del _ext, _safe_load_extension
+""".strip()
+
+_SAFE_EXTENSION_LOADER = _SAFE_EXTENSION_LOADER.replace("{extensions}", repr(_EXTENSIONS))
 
 # watch filesystem for changes and reload modules
 # https://stackoverflow.com/questions/1907993/autoreload-of-modules-in-ipython
 # https://ipython.readthedocs.io/en/stable/whatsnew/version8.html#autoreload-3-feature
 # https://ipython.readthedocs.io/en/stable/config/extensions/autoreload.html
-c.InteractiveShellApp.exec_lines.append("%autoreload 3")
 
-# quickly accept the top suggestion result vis `%s`
-c.InteractiveShellApp.exec_lines.append('%alias_magic s suggestion -p "0"')
+c.InteractiveShellApp.exec_lines = [
+    _SAFE_EXTENSION_LOADER,
+    "%autoreload 3",
+    # quickly accept the top suggestion result via `%s`
+    '%alias_magic s suggestion -p "0"',
+    # https://ipython.readthedocs.io/en/stable/interactive/magics.html?highlight=autocall#magic-autocall
+    "%autocall 1",
+]
 
 # https://stackoverflow.com/questions/50437791/ipython-magic-print-variables-on-assignment
 c.InteractiveShell.ast_node_interactivity = "last_expr_or_assign"
 
 # add parentheses around a function
 c.InteractiveShell.auto_match = True
-
-# https://ipython.readthedocs.io/en/stable/interactive/magics.html?highlight=autocall#magic-autocall
-c.InteractiveShellApp.exec_lines.append("%autocall 1")
 
 # Enable magic commands to be called without the leading %.
 # c.TerminalInteractiveShell.automagic = True

@@ -9,6 +9,8 @@ cargo-binstall = "latest"
 "github:railwayapp/railpack" = "latest"
 "github:railwayapp/cli" = "latest"
 "dive" = "latest"
+# not sure why, but these verifications are not working right now
+# "github:moby/buildkit" = "latest"
 # micro is rarely updated on github, so we use the nightly build
 "github:zyedidia/micro" = "nightly"
 "fd" = "latest"

@@ -36,6 +36,7 @@ brew "setapp"
 brew "gitx" # visual git tool, kaleidoscope alternative
 brew "kdiff3"
 brew "gpatch" # update the builtin tool to the latest
+brew "buildkit"
 
 # == Data manipulation
 brew "jq" # json extraction

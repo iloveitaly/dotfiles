@@ -9,5 +9,8 @@ alias o import os, importlib.util; __vscode_spec = importlib.util.spec_from_file
 # when in a pytest session, you need to run quit AND quit
 alias q import sys; "pytest" in sys.modules and __import__("pytest").exit("stop all") or quit()
 
+# forcefully kill the process and all children, very helpful for integration tests (chrome process, fastapi server)
+alias kill !import os, signal; os.killpg(0, signal.SIGKILL)
+
 # !!import funcy_pipe as fp
 # !import funcy_pipe as fp

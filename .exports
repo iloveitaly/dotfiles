@@ -94,4 +94,6 @@ export KERL_BUILD_DOCS=yes
 
 # python
 export PYTHONDONTWRITEBYTECODE=1
+# this does not override the above, but makes sure packages are precompiled and run more quickly
+export UV_COMPILE_BYTECODE=1
 export IPDB_CONTEXT_SIZE=10

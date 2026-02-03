@@ -91,7 +91,6 @@ KeyBind:
         - "F2"
     help:
         - "h"
-        - "ctrl+alt+c"
     logdoc:
         - "ctrl+alt+e"
     down:
@@ -149,10 +148,10 @@ KeyBind:
         - "alt+s"
     next_section:
         - "space"
+    previous_section:
+        - "ctrl+space"
     last_section:
         - "9"
-    previous_section:
-        - "^"
     mark:
         - "m"
     remove_mark:
@@ -205,6 +204,9 @@ KeyBind:
         - "alt+j"
 
 Mode:
+    # add def
+  py:
+
   psql:
     Header: 2
     AlternateRows: true

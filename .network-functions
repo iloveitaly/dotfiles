@@ -40,6 +40,7 @@ get-socks-proxy() {
 run_local_unauthenticated_proxy() {
   local token api_response proxy_url username password proxy_address port
   local pid_file="/tmp/pproxy.pid"
+  local log_file="/tmp/pproxy.log"
 
   # Check if proxy is already running and kill it
   if [[ -f "$pid_file" ]]; then
@@ -65,20 +66,21 @@ run_local_unauthenticated_proxy() {
     return 1
   fi
 
-  # Start the proxy in the background
-  echo "Starting local SOCKS5 proxy on :1080 -> $proxy_address:$port" >&2
-  uv tool run pproxy -l socks5://:1080 -r "socks5://$proxy_address:$port#$username:$password" >/dev/null 2>&1 &
-  
+  # Start the proxy in the background, logging output
+  echo "Starting local SOCKS5 proxy on :1080 -> $proxy_address:$port#$username:$password" >&2
+  uv tool run pproxy -l socks5://:1080 -r "socks5://$proxy_address:$port#$username:$password" >"$log_file" 2>&1 &
+
   # Store the PID
   local pid=$!
   echo "$pid" > "$pid_file"
-  
+
   echo "Proxy started with PID: $pid" >&2
   echo "Local proxy available at: socks5://127.0.0.1:1080" >&2
+  echo "pproxy log: $log_file" >&2
 }
 
 # stop the local socks proxy
-stop_proxy_socks() {
+stop_local_unauthenticated_proxy() {
   local pid_file="/tmp/pproxy.pid"
   
   if [[ -f "$pid_file" ]]; then
@@ -100,9 +102,13 @@ stop_proxy_socks() {
 proxy-chrome-canary() {
   local proxy_auth
   proxy_auth=$(get-socks-proxy)
+
   # Extract protocol, IP, and port (remove username and password)
   local proxy_url
   proxy_url=$(echo "$proxy_auth" | sed -E 's#(socks5)://[^@]+@([^:]+):([0-9]+)#\1://\2:\3#')
+
+  echo "Proxying with authentication: $proxy_url"
+
   open -a "Google Chrome Canary" --args --proxy-server="$proxy_url"
 }
 
