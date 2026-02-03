@@ -52,9 +52,11 @@ ai_load_agent_configuration() {
     source <(mise activate)
     source <(direnv hook zsh)
 
-    # TODO we only want to run this when using VSC or Cursor
+    # Only load shell integration for VS Code or Cursor
     # https://code.visualstudio.com/docs/terminal/shell-integration
-    source "$(code --locate-shell-integration-path zsh)"
+    if [[ "${VSCODE_AGENT:-}" == "1" || -n "${CURSOR_AGENT:-}" ]]; then
+      source "$(code --locate-shell-integration-path zsh)"
+    fi
 
     [[ ${AGENT_DEBUG:-} -eq 1 ]] && echo "In agent shell, sourced configuration"
 
