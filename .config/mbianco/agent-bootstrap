@@ -33,6 +33,11 @@ ai_load_agent_configuration() {
     if [[ "$shlvl" != "1" ]]; then
       echo -e "\033[33mWarning: VS Code agent with unexpected SHLVL=$shlvl (expected 1)\033[0m"
     fi
+  elif [[ "${GEMINI_CLI:-}" == "1" ]]; then
+    # Gemini CLI should use SHLVL=4
+    if [[ "$shlvl" != "4" ]]; then
+      echo -e "\033[33mWarning: Gemini CLI agent with unexpected SHLVL=$shlvl (expected 4)\033[0m"
+    fi
   else
     # Other agents should use SHLVL=1
     if [[ "$shlvl" != "1" ]]; then
@@ -46,6 +51,8 @@ ai_load_agent_configuration() {
     # mise first, since it manages/install direnv
     source <(mise activate)
     source <(direnv hook zsh)
+
+    # TODO we only want to run this when using VSC or Cursor
     # https://code.visualstudio.com/docs/terminal/shell-integration
     source "$(code --locate-shell-integration-path zsh)"
 
