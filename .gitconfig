@@ -44,6 +44,13 @@
   logv = log --pretty=fuller
   undo-commit = reset --soft HEAD^
 
+  # reset and restore multiple files, requiring an explicit file reference
+  unconflict = "!f() { \
+    if [ $# -eq 0 ]; then echo 'Error: No files specified'; exit 1; fi; \
+    for arg in \"$@\"; do [ \"$arg\" = \".\" ] && { echo 'Error: Use specific files (not .)'; exit 1; }; done; \
+    git reset -- \"$@\" && git restore -- \"${@}\"; \
+  }; f"
+
   # full dump of last commit message
   last-message = log -1 --pretty=format:%B
 
