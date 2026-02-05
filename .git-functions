@@ -222,6 +222,7 @@ gh-assign-reviewer() {
     fi
 }
 
+# pull a remote commit into the local repo, like we used to do with hub
 # git-cherry-pick: https://github.com/CosmaNeura/cosmaneura/pull/19/commits/4e4c350ddb655acefdfbaad460faeeedb607e941
 git-cherry-pick() {
   local url=$1
@@ -335,6 +336,16 @@ gwt() {
         return 1
       fi
       cd "$path" || return 1
+      # Run bootstrap_worktree.sh from main repo if available and executable
+      if [[ -x "$main_dir/bootstrap_worktree.sh" ]]; then
+        echo "Running bootstrap_worktree.sh..."
+        "$main_dir/bootstrap_worktree.sh"
+      fi
+      # Run bootstrap_worktree if available in justfile
+      if just --dry-run bootstrap_worktree >/dev/null 2>&1; then
+        echo "Running bootstrap_worktree..."
+        just bootstrap_worktree
+      fi
     fi
   fi
 }
