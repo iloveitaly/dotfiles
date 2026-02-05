@@ -254,6 +254,7 @@
   "terminal.integrated.shellIntegration.enabled": false,
   "terminal.integrated.macOptionClickForcesSelection": true,
   "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "terminal.integrated.enablePersistentSessions": false,
   "terminal.integrated.defaultProfile.linux": "zsh",
   "chat.tools.terminal.terminalProfile.osx": {
     "path": "zsh",
@@ -270,6 +271,7 @@
       "path": "/Users/mike/.tmux-shell.sh",
       "icon": "terminal-tmux"
     },
+    // for testing what environment is leaking out into your terminal, this should be plain!
     "plain bash": {
       "path": "bash",
       "args": ["--noprofile", "--norc"]
