@@ -21,33 +21,15 @@ ai_load_agent_configuration() {
   #   return 0
   # fi
 
-  # Check expected SHLVL for each agent type, we want to know if the logic here changes
+  # Warn if shell nesting is excessive
   local shlvl="${SHLVL:-0}"
-  if [[ -n "${CURSOR_AGENT:-}" ]]; then
-    # Cursor should use SHLVL=3
-    if [[ "$shlvl" != "3" ]]; then
-      echo -e "\033[33mWarning: Cursor agent with unexpected SHLVL=$shlvl (expected 3)\033[0m"
-    fi
-  elif [[ "${VSCODE_AGENT:-}" == "1" ]]; then
-    # VS Code should use SHLVL=1
-    if [[ "$shlvl" != "1" ]]; then
-      echo -e "\033[33mWarning: VS Code agent with unexpected SHLVL=$shlvl (expected 1)\033[0m"
-    fi
-  elif [[ "${CLAUDECODE:-}" == "1" ]]; then
-    # Claude Code should use SHLVL=4
-    if [[ "$shlvl" != "4" ]]; then
-      echo -e "\033[33mWarning: Claude Code agent with unexpected SHLVL=$shlvl (expected 4)\033[0m"
-    fi
-  elif [[ "${GEMINI_CLI:-}" == "1" ]]; then
-    # Gemini CLI should use SHLVL=4
-    if [[ "$shlvl" != "4" ]]; then
-      echo -e "\033[33mWarning: Gemini CLI agent with unexpected SHLVL=$shlvl (expected 4)\033[0m"
-    fi
-  else
-    # Other agents should use SHLVL=1
-    if [[ "$shlvl" != "1" ]]; then
-      echo -e "\033[33mWarning: Agent with unexpected SHLVL=$shlvl (expected 1)\033[0m"
-    fi
+  if [[ "$shlvl" -gt 5 ]]; then
+    echo -e "\033[33mWarning: Excessive shell nesting detected (SHLVL=$shlvl)\033[0m"
+  fi
+
+  # Debug: Log if shell level is greater than 1
+  if [[ "$shlvl" -gt 1 && ${AGENT_DEBUG:-} -eq 1 ]]; then
+    echo -e "\033[36mDebug: Shell nesting level is $shlvl\033[0m"
   fi
 
   # VS Code does not operate the same as Cursor: terminals are interactive, not dumb, and no ENV var is set to indicate
