@@ -6,6 +6,14 @@ source "${HOME}/.config/mbianco/path"
 # shellcheck source=./.config/mbianco/agent-bootstrap
 source "${HOME}/.config/mbianco/agent-bootstrap"
 
+if [ -v VSCODE_TASK_RUNNING ]; then
+    # mise first, since it manages/install direnv
+  source <(mise activate)
+  source <(direnv hook zsh)
+
+  source "$(code --locate-shell-integration-path zsh)"
+fi
+
 # if an agent is running the terminal, we can assume the necessary config has been setup
 # and we can exit early to avoid loading unnecessary plugins and completions.
 if ai_is_agent_terminal; then
