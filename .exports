@@ -1,5 +1,8 @@
 export EDITOR=micro
 
+# Some agents (gemini, cough) create a bash subshell, so we need to set custom config to run when they launch
+export BASH_ENV="${HOME}/.config/mbianco/bash-agent-bootstrap"
+
 # some tools, like lazygit, pull from this to determine where to put configuration files
 # by default, they'll store config in '~/Library/Application Support' instead
 export XDG_CONFIG_HOME="$HOME/.config"
