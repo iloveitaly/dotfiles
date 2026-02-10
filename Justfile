@@ -21,6 +21,10 @@ sync:
 list-quicklook:
 	qlmanage -m plugins
 
+pull-ide-integration:
+  cp ~/Library/Application\ Support/Code/User/{settings,keybindings}.json .vscode/
+  cp ~/Library/Application\ Support/Cursor/User/{settings,keybindings}.json .cursor/
+
 # vscode and cursor integration
 patch-ide-integration:
 	cp "$(code --locate-shell-integration-path zsh)" .vscode/zsh-integration-original.zsh
