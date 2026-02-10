@@ -1,14 +1,14 @@
 {
   "files.autoSave": "onFocusChange",
   "editor.accessibilitySupport": "off",
-  "editor.formatOnSave": true,
-  "editor.formatOnType": true,
+  "editor.formatOnSave": false,
+  "editor.formatOnType": false,
   "editor.stickyScroll.enabled": true,
   "editor.scrollBeyondLastLine": false,
   "editor.rulers": [120],
   "editor.tabSize": 2,
   "editor.tabCompletion": "on",
-  "editor.formatOnPaste": true,
+  "editor.formatOnPaste": false,
   "editor.fontFamily": "Hack, Menlo, Monaco, 'Courier New', monospace",
   "editor.minimap.enabled": false,
   "diffEditor.ignoreTrimWhitespace": false,
@@ -19,14 +19,14 @@
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "workbench.editorAssociations": {
-    "*.ipynb": "jupyter-notebook"
+    "*.ipynb": "jupyter-notebook",
   },
   "notebook.cellToolbarLocation": {
     "default": "right",
-    "jupyter-notebook": "left"
+    "jupyter-notebook": "left",
   },
   "editor.inlineSuggest.enabled": true,
   "github.copilot.enable": {
@@ -34,7 +34,7 @@
     "plaintext": true,
     "markdown": true,
     "scminput": false,
-    "yaml": true
+    "yaml": true,
   },
   "security.workspace.trust.untrustedFiles": "open",
   "eslint.format.enable": true,
@@ -44,7 +44,6 @@
   "window.commandCenter": true,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
-
   "git.mergeEditor": true,
   "settingsSync.ignoredSettings": [],
   "lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
@@ -52,18 +51,18 @@
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
     "**/node_modules/*/**": true,
-    "**/.venv/**": true
+    "**/.venv/**": true,
   },
   "files.associations": {
     ".tool-versions": "plaintext",
     ".envrc": "shellscript",
-    "*.mdc": "markdown"
+    "*.mdc": "markdown",
   },
   "githubPullRequests.pullBranch": "never",
   "debug.javascript.autoAttachFilter": "disabled",
   "editor.linkedEditing": true,
   "[sql]": {
-    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
+    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode",
   },
   "elixirLS.fetchDeps": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
@@ -102,7 +101,7 @@
     "property",
     "string",
     "struct",
-    "typeparameter"
+    "typeparameter",
     // "variable"
   ],
   "tailwind-fold.autoFold": false,
@@ -113,13 +112,13 @@
     "editor.formatOnPaste",
     "editor.formatOnSave",
     "editor.formatOnType",
-    "files.trimTrailingWhitespace"
+    "files.trimTrailingWhitespace",
   ],
-  "files.trimTrailingWhitespace": true,
+  "files.trimTrailingWhitespace": false,
   "window.confirmBeforeClose": "always",
   "prisma.showPrismaDataPlatformNotification": false,
   "[shellscript]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
+    "editor.defaultFormatter": "foxundermoon.shell-format",
   },
   "remote.SSH.configFile": "~/.ssh/vscode_config",
   "editor.inlineSuggest.suppressSuggestions": true,
@@ -130,7 +129,6 @@
   "git.blame.editorDecoration.enabled": true,
   "cody.edit.preInstruction": "Keep comments. If writing react, do not use a separate interface for component types.",
   "typescript.experimental.expandableHover": true,
-
   // my sense is this doesn't actually do anything...
   // "python.analysis.packageIndexDepths": [
   //   {
@@ -170,7 +168,6 @@
   //     "depth": 2
   //   }
   // ],
-
   "python.analysis.userFileIndexingLimit": -1,
   // "python.analysis.extraPaths": ["${workspaceFolder}/.venv"],
   // "python.analysis.inlayHints.callArgumentNames": "all",
@@ -190,11 +187,11 @@
   "python.analysis.autoImportCompletions": true,
   "python.analysis.generateWithTypeAnnotation": true,
   "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[opentofu]": {
     "editor.defaultFormatter": "opentofu.vscode-opentofu",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
   },
   "github.copilot.selectedCompletionModel": "",
   "github.copilot.nextEditSuggestions.enabled": true,
@@ -208,7 +205,7 @@
     "convertLambdaToNamedFunction": true,
     "implementAbstractClasses": true,
     "generateSymbol": true,
-    "convertFormatString": true
+    "convertFormatString": true,
   },
   "python.analysis.cacheLSPData": true,
   "python.analysis.enableTroubleshootMissingImports": true,
@@ -242,13 +239,12 @@
     "sed": true,
     "jq": true,
     ".name'": true,
-    "pnpm": true
+    "pnpm": true,
   },
   "chat.useAgentsMdFile": true,
   "github.copilot.chat.agent.thinkingTool": true,
   "github.copilot.chat.languageContext.fix.typescript.enabled": true,
   "github.copilot.chat.languageContext.typescript.enabled": true,
-
   // https://github.com/microsoft/vscode/issues/253945
   // https://github.com/microsoft/vscode-copilot-release/issues/12409
   "terminal.integrated.shellIntegration.enabled": false,
@@ -261,21 +257,30 @@
     "args": [],
     "env": {
       // very important! check out ~/.zshenv to understand where this variable is used
-      "VSCODE_AGENT": "1"
-    }
+      "VSCODE_AGENT": "1",
+    },
+  },
+  // don't use tmux for tasks and add a custom ENV to simplify the stuff loaded into the terminal
+  "terminal.integrated.automationProfile.osx": {
+    "path": "zsh",
+    "args": [],
+    "env": {
+      // simplifies the terminal setup to avoid agent issues
+      "VSCODE_TASK_RUNNING": "1",
+    },
   },
   // when dev creates a new terminal, use tmux, not plain zsh!
   "terminal.integrated.defaultProfile.osx": "tmux",
   "terminal.integrated.profiles.osx": {
     "tmux": {
       "path": "/Users/mike/.tmux-shell.sh",
-      "icon": "terminal-tmux"
+      "icon": "terminal-tmux",
     },
     // for testing what environment is leaking out into your terminal, this should be plain!
     "plain bash": {
       "path": "bash",
-      "args": ["--noprofile", "--norc"]
-    }
+      "args": ["--noprofile", "--norc"],
+    },
   },
   // env vars become very important with direnv and mise, let's force users to set them during shell setup
   "terminal.integrated.inheritEnv": false,
@@ -289,15 +294,34 @@
     "editor.quickSuggestions": {
       "other": true,
       "comments": false,
-      "strings": true
+      "strings": true,
     },
-    "editor.defaultFormatter": "redhat.vscode-yaml"
+    "editor.defaultFormatter": "redhat.vscode-yaml",
   },
   "[github-actions-workflow]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml"
+    "editor.defaultFormatter": "redhat.vscode-yaml",
   },
-
   // cursor settings
   "cursorpyright.analysis.autoImportCompletions": true,
-  "claudeCode.preferredLocation": "panel"
+  "claudeCode.preferredLocation": "panel",
+  "mise.binPath": "/Users/mike/.local/bin/mise",
+  "chat.tools.urls.autoApprove": {
+    "https://railpack.com": true,
+    "https://*.todoist.com": true,
+    "https://github.com": {
+      "approveRequest": false,
+      "approveResponse": true,
+    },
+  },
+  "chat.useAgentSkills": true,
+  "chat.viewSessions.orientation": "stacked",
+  "editor.detectIndentation": false,
+  "githubPullRequests.codingAgent.codeLens": false,
+  "chatgpt.commentCodeLensEnabled": false,
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+  },
+  "[just]": {
+    "editor.defaultFormatter": "nefrob.vscode-just-syntax",
+  },
 }

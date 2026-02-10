@@ -2,81 +2,109 @@
 [
   {
     "key": "cmd+j",
-    "command": "-editor.action.joinLines"
+    "command": "-editor.action.joinLines",
   },
   {
     "key": "cmd+9",
-    "command": "-workbench.action.lastEditorInGroup"
+    "command": "-workbench.action.lastEditorInGroup",
   },
   {
     "key": "cmd+9",
-    "command": "workbench.action.terminal.focus"
+    "command": "workbench.action.terminal.focus",
   },
   {
     "key": "cmd+d",
     "command": "workbench.action.terminal.split",
-    "when": "terminalFocus"
+    "when": "terminalFocus",
   },
   {
     "key": "cmd+\\",
     "command": "-workbench.action.terminal.split",
-    "when": "terminalFocus"
+    "when": "terminalFocus",
   },
   {
     "key": "ctrl+pageup",
     "command": "-scrollLineUp",
-    "when": "textInputFocus"
+    "when": "textInputFocus",
   },
   {
     "key": "ctrl+pagedown",
     "command": "workbench.action.editor.nextChange",
-    "when": "editorTextFocus && !textCompareEditorActive"
+    "when": "editorTextFocus && !textCompareEditorActive",
   },
   {
     "key": "alt+f5",
     "command": "-workbench.action.editor.nextChange",
-    "when": "editorTextFocus && !textCompareEditorActive"
+    "when": "editorTextFocus && !textCompareEditorActive",
   },
   {
     "key": "ctrl+pageup",
     "command": "workbench.action.editor.previousChange",
-    "when": "editorTextFocus && !textCompareEditorActive"
+    "when": "editorTextFocus && !textCompareEditorActive",
   },
   {
     "key": "shift+alt+f5",
     "command": "-workbench.action.editor.previousChange",
-    "when": "editorTextFocus && !textCompareEditorActive"
+    "when": "editorTextFocus && !textCompareEditorActive",
   },
   {
     "key": "ctrl+shift+space",
     "command": "-issue.suggestRefresh",
-    "when": "suggestWidgetVisible"
+    "when": "suggestWidgetVisible",
   },
   {
     "key": "ctrl+shift+space",
     "command": "editor.action.triggerSuggest",
-    "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
+    "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible",
   },
   {
     "key": "ctrl+space",
     "command": "-editor.action.triggerSuggest",
-    "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
+    "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible",
   },
   {
     "key": "alt+z",
-    "command": "-editor.action.toggleWordWrap"
+    "command": "-editor.action.toggleWordWrap",
   },
   {
     "key": "ctrl+w",
-    "command": "workbench.action.quickSwitchWindow"
+    "command": "workbench.action.quickSwitchWindow",
   },
   {
     "key": "ctrl+shift+alt+cmd+p",
-    "command": "workbench.action.switchWindow"
+    "command": "workbench.action.switchWindow",
   },
   {
     "key": "shift+cmd+k",
     "command": "-aipopup.action.modal.generate",
-    "when": "editorFocus && !composerBarIsVisible"
-  }
+    "when": "editorFocus && !composerBarIsVisible",
+  },
+  // {
+  //   "key": "shift+cmd+]",
+  //   "command": "workbench.action.nextEditor",
+  //   "when": "!terminalFocus",
+  // },
+  // Remove editor navigation bindings that use shift+cmd+[ in Cursor
+  {
+    "key": "shift+cmd+[",
+    "command": "-workbench.action.openPreviousEditor",
+  },
+  {
+    "key": "shift+cmd+[",
+    "command": "-workbench.action.openPreviousEditorFromHistory",
+  },
+  {
+    "key": "shift+cmd+[",
+    "command": "-workbench.action.previousEditor",
+  },
+  {
+    "key": "shift+cmd+[",
+    "command": "-workbench.action.previousEditorInGroup",
+  },
+
+  // Optional: also remove if it's bound to debug console (sometimes overlaps)
+  {
+    "key": "shift+cmd+[",
+    "command": "-debug.console.focusPrevious",
+  },
 ]
