@@ -21,6 +21,16 @@ sync:
 list-quicklook:
 	qlmanage -m plugins
 
+configure-launchagents:
+  # tmux first
+  # TODO link to blog post
+  cp ./tmux.plist ~/Library/LaunchAgents/mikebianco.tmux.plist
+  tmux kill-server
+  launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/mikebianco.tmux.plist
+
+  sudo cp ./pty.plist /Library/LaunchDaemons/mikebianco.pty.plist
+  sudo launchctl bootstrap system /Library/LaunchDaemons/mikebianco.pty.plist
+
 pull-ide-integration:
   cp ~/Library/Application\ Support/Code/User/{settings,keybindings}.json .vscode/
   cp ~/Library/Application\ Support/Cursor/User/{settings,keybindings}.json .cursor/
