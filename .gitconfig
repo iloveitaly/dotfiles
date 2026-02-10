@@ -2,8 +2,10 @@
   name = Michael Bianco
   email = mike@mikebian.co
   signingkey = F8C4375D734A914F075A607AE5E32D3B0D0B4261
+
 [github]
   user = iloveitaly
+
 [core]
   excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
