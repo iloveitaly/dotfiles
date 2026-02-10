@@ -39,3 +39,9 @@ pull-ide-integration:
 patch-ide-integration:
 	cp "$(code --locate-shell-integration-path zsh)" .vscode/zsh-integration-original.zsh
 	patch -o .vscode/zsh-integration.zsh .vscode/zsh-integration-original.zsh .vscode/zsh-integration.patch
+
+# Extract user and core.whitespace config to .gitconfig-agent, the default gitconfig assumes an interactive TUI, so we have a simplified config
+# to avoid weird agent problems.
+sync-gitconfig-agent:
+    yq -p ini -o ini '{"user": .user, "core": {"whitespace": .core.whitespace}}' .gitconfig > .gitconfig-agent
+    @echo "✓ .gitconfig-agent updated via yq"
