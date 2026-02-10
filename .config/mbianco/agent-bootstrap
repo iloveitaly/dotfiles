@@ -21,6 +21,12 @@ ai_load_agent_configuration() {
   #   return 0
   # fi
 
+  # if agent is alread configured, do nothing
+  if [[ -n "${AGENT_CONFIGURED:-}" ]]; then
+    [[ ${AGENT_DEBUG:-} -eq 1 ]] && echo "Agent already configured, skipping"
+    return 0
+  fi
+
   # Warn if shell nesting is excessive
   local shlvl="${SHLVL:-0}"
   if [[ "$shlvl" -gt 5 ]]; then
