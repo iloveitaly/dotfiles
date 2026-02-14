@@ -29,6 +29,7 @@ git-add-origin() {
   git remote add "$remote_name" "https://github.com/iloveitaly/$repo_name.git"
 }
 
+# consumes .git-custom-branch and generates a new `custom` branch
 function git-squash-custom-branch {
   # Check if the .git-custom-branch file exists
   if [[ ! -f ".git-custom-branch" ]]; then
@@ -222,17 +223,31 @@ gh-assign-reviewer() {
     fi
 }
 
-# pull a remote commit into the local repo, like we used to do with hub
-# git-cherry-pick: https://github.com/CosmaNeura/cosmaneura/pull/19/commits/4e4c350ddb655acefdfbaad460faeeedb607e941
-git-cherry-pick() {
-  local url=$1
-  local commit=$(basename $url)
-  local repo=$(echo $url | sed 's|https://github.com/\([^/]*\)/\([^/]*\)/pull/[0-9]*/commits/.*|\1/\2|')
-  local pr_num=$(echo $url | sed 's|https://github.com/[^/]*/[^/]*/pull/\([0-9]*\)/commits/.*|\1|')
-  git fetch https://github.com/$repo.git refs/pull/$pr_num/head
-  git cherry-pick $commit
-}
+# Usage: git-cherry-pick <github-pr-commit-url>
+#
+# Downloads a raw commit patch via the GitHub CLI (gh) and natively 
+# applies it to your current branch using a 3-way merge.
+#
+# Example: 
+#   git-cherry-pick https://github.com/iloveitaly/movie-tickets/pull/44/changes/c1856554d577fd405d9ce6adab1024e9b1f1f2dc
+git-cherry-pick () {
+	local url="$1"
+	
+	# Parse the repo and commit hash using GNU sed.
+	# If the regex fails to find a match, sed will return the unmodified URL.
+	local repo=$(echo "$url" | sed -E 's|^https://github\.com/([^/]+/[^/]+)/pull/[0-9]+/(commits|changes)/[a-f0-9]+.*|\1|')
+	local commit=$(echo "$url" | sed -E 's|^https://github\.com/[^/]+/[^/]+/pull/[0-9]+/(commits|changes)/([a-f0-9]+).*|\2|')
 
+	# If the output equals the original URL, parsing failed. Print a red error.
+	if [[ "$repo" == "$url" || "$commit" == "$url" ]]; then
+		printf '\033[1;31mError: Could not detect repo or commit hash from the input.\033[0m\n' >&2
+		printf '\033[1;31mExpected format: https://github.com/owner/repo/pull/123/changes/hash\033[0m\n' >&2
+		return 1
+	fi
+
+	echo "Applying commit $commit from $repo via GitHub API..."
+	gh api "repos/$repo/commits/$commit" -H "Accept: application/vnd.github.v3.patch" | git am -3
+}
 # Usage:
 # Source this in .zshrc or run as a function.
 #
