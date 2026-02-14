@@ -80,7 +80,7 @@ export LANG=en_US.UTF-8
 # without this some CLI tools (gh cli, for instance) do not page contents
 export PAGER=less
 
-# Don’t clear the screen after quitting a manual page
+# Don't clear the screen after quitting a manual page
 export MANPAGER="less -FX"
 
 # more powerful less config
@@ -96,7 +96,10 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export KERL_BUILD_DOCS=yes
 
 # python
-export PYTHONDONTWRITEBYTECODE=1
+# caching bytecode saves ~1.5s in load time on a m2 max
+# as long as we can throw all of the cached file in another dir, it's worth it!
+export PYTHONPYCACHEPREFIX=$HOME/.cache/pycache
+export PYTHONDONTWRITEBYTECODE=0
 # this does not override the above, but makes sure packages are precompiled and run more quickly
 export UV_COMPILE_BYTECODE=1
 export IPDB_CONTEXT_SIZE=10
