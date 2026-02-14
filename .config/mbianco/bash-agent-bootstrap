@@ -10,17 +10,25 @@ if ai_is_agent_terminal; then
   # in the case of a bash terminal, mise + direnv should be setup already
   # so all we really need to do is REMOVE stuff that was loaded because we thought it was an interactive shell
 
-  unset PAGER
+    # if agent is already configured, do nothing
+  if [[ -n "${AGENT_BASH_CONFIGURED:-}" ]]; then
+    [[ ${AGENT_DEBUG:-} -eq 1 ]] && echo "Agent already configured, skipping"
+    return 0
+  fi
+
+  # TODO unclear if all of this is needed
+  unset precmd_functions
+  unset PROMPT
 
   # without this, the git config which uses fancy pagers, etc will be used
   export GIT_CONFIG_NOSYSTEM=1
-  export GIT_CONFIG_GLOBAL=/dev/null
+  export GIT_CONFIG_GLOBAL=$HOME/.gitconfig-agent
   export GIT_PAGER=""
+  export PAGER=cat
 
   # Simple prompt for bash if it happens to be interactive (though BASH_ENV is mostly for non-interactive)
-  if [[ $- == *i* ]]; then
-      PS1='\w $ '
-  fi
+  export PS1='\w $ '
 
   export AGENT_CONFIGURED=1
+  export AGENT_BASH_CONFIGURED=1
 fi
