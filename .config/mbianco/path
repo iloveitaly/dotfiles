@@ -28,3 +28,11 @@ export PATH="$PNPM_HOME:$PATH"
 # go stuff in the home is annoying, hide it please
 export GOPATH="$HOME/.local/share/go"
 export PATH="$PATH:$GOPATH/bin"
+
+# https://specifications.freedesktop.org/basedir/latest/
+# not exactly a path mutation, but similar in spirit
+# without this many utilities will use ~/Library/Application Support, which I hate
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_STATE_HOME="$HOME/.local/state"
