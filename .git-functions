@@ -96,6 +96,7 @@ function git-clean-squash-and-merge() (
     fi
   done
 )
+
 # if a PR is closed when it shouldn't have been, reopen it with one click!
 # commonly happens with the annoying stale bots
 github_reopen_pr() {
@@ -233,10 +234,10 @@ gh-assign-reviewer() {
 git-cherry-pick () {
 	local url="$1"
 	
-	# Parse the repo and commit hash using GNU sed.
-	# If the regex fails to find a match, sed will return the unmodified URL.
-	local repo=$(echo "$url" | sed -E 's|^https://github\.com/([^/]+/[^/]+)/pull/[0-9]+/(commits|changes)/[a-f0-9]+.*|\1|')
-	local commit=$(echo "$url" | sed -E 's|^https://github\.com/[^/]+/[^/]+/pull/[0-9]+/(commits|changes)/([a-f0-9]+).*|\2|')
+	# Parse the repo and commit hash explicitly using gsed.
+	# We use '@' as the delimiter so it doesn't conflict with '/' in the URL or '|' in the regex.
+	local repo=$(echo "$url" | gsed -E 's@^https://github\.com/([^/]+/[^/]+)/pull/[0-9]+/(commits|changes)/[a-f0-9]+.*@\1@')
+	local commit=$(echo "$url" | gsed -E 's@^https://github\.com/[^/]+/[^/]+/pull/[0-9]+/(commits|changes)/([a-f0-9]+).*@\2@')
 
 	# If the output equals the original URL, parsing failed. Print a red error.
 	if [[ "$repo" == "$url" || "$commit" == "$url" ]]; then
@@ -248,6 +249,7 @@ git-cherry-pick () {
 	echo "Applying commit $commit from $repo via GitHub API..."
 	gh api "repos/$repo/commits/$commit" -H "Accept: application/vnd.github.v3.patch" | git am -3
 }
+
 # Usage:
 # Source this in .zshrc or run as a function.
 #
@@ -614,4 +616,76 @@ gpb() {
   fi
 
   g pull --rebase "$remote" "$branch"
+}
+
+# Usage: git-squash-branch
+#
+# Description:
+#   Squashes all unique commits on the current feature branch into a single commit.
+#   It automatically detects the base branch ('main' or 'master'), finds the 
+#   divergence point, and prompts for confirmation before performing a soft reset.
+#
+# Requirements:
+#   - Must be run from inside a git repository.
+#   - You must be checked out on the branch you wish to squash.
+#   - Fails safely if you are currently on 'main' or 'master'.
+function git-squash-branch() {
+  # 1. Get current branch name
+  local current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+  # 2. Check if we are incorrectly on main or master
+  if [[ "$current_branch" == "main" || "$current_branch" == "master" ]]; then
+    echo "[ERROR] You are currently on '$current_branch'."
+    echo "        Please checkout the feature branch you wish to squash."
+    return 1
+  fi
+
+  # 3. Determine the base branch (prefer main, fallback to master)
+  local base_branch="main"
+  if ! git show-ref --verify --quiet refs/heads/main; then
+    if git show-ref --verify --quiet refs/heads/master; then
+      base_branch="master"
+    else
+      echo "[ERROR] Could not locate a local 'main' or 'master' branch to compare against."
+      return 1
+    fi
+  fi
+
+  # 4. Find the common ancestor (merge-base)
+  local split_point=$(git merge-base "$base_branch" HEAD)
+  
+  # 5. Count commits between split point and HEAD
+  local commit_count=$(git rev-list --count "${split_point}..HEAD")
+
+  if [[ "$commit_count" -eq 0 ]]; then
+    echo "[INFO] No unique commits found on '$current_branch' relative to '$base_branch'."
+    return 0
+  fi
+
+  # 6. User Confirmation
+  echo "------------------------------------------------"
+  echo "Current Branch:    $current_branch"
+  echo "Base Branch:       $base_branch"
+  echo "Commits to Squash: $commit_count"
+  echo "------------------------------------------------"
+  
+  read -q "REPLY?Are you sure you want to squash these $commit_count commits into one? (y/n) "
+  echo "" # Move to new line
+
+  if [[ "$REPLY" =~ ^[Yy]$ ]]; then
+    # 7. Perform the Squash
+    # Soft reset moves HEAD back but keeps changes staged in the index
+    git reset --soft "$split_point"
+    
+    echo "Reset complete. Opening editor for commit message..."
+    
+    # 8. Commit (User provides message via their default editor)
+    if git commit; then
+        echo "[SUCCESS] Successfully squashed $commit_count commits on '$current_branch'."
+    else
+        echo "[WARNING] Commit aborted. Changes are still staged."
+    fi
+  else
+    echo "[ABORTED] Operation canceled."
+  fi
 }
