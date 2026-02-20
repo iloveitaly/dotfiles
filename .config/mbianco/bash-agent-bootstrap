@@ -1,6 +1,11 @@
 # bash-agent-bootstrap
 # This file is loaded by BASH_ENV for non-interactive bash shells in the agent environment.
 
+# direnv launches a bash subshell, which would pickup on the BASH_ENV config, but we do NOT want to set additional config!
+# DIRENV_IN_ENVRC=1 indicates that we are in the direnv-managed subshell. However, this variable is NOT set during BASH_ENV
+# loading, so we can't detect it here. For this reason, we need to be very careful about any PATH, shell, etc mutations
+# while detecting if we are in an agent terminal.
+
 # Load shared agent logic (path, detection function)
 # shellcheck source=./agent-bootstrap
 source "${HOME}/.config/mbianco/agent-bootstrap"
@@ -17,14 +22,14 @@ if ai_is_agent_terminal; then
   fi
 
   # TODO unclear if all of this is needed
-  unset precmd_functions
   unset PROMPT
 
   # without this, the git config which uses fancy pagers, etc will be used
   export GIT_CONFIG_NOSYSTEM=1
   export GIT_CONFIG_GLOBAL=$HOME/.gitconfig-agent
-  export GIT_PAGER=""
   export PAGER=cat
+  export GIT_PAGER=$PAGER
+  export MANPAGER=$PAGER
 
   # Simple prompt for bash if it happens to be interactive (though BASH_ENV is mostly for non-interactive)
   export PS1='\w $ '
