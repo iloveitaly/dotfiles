@@ -32,7 +32,8 @@ export PATH="$PATH:$GOPATH/bin"
 # https://specifications.freedesktop.org/basedir/latest/
 # not exactly a path mutation, but similar in spirit
 # without this many utilities will use ~/Library/Application Support, which I hate
+# do we need all of these? It's unclear, but rather safe than sorry.
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
