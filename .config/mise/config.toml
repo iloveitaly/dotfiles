@@ -1,6 +1,7 @@
 [tools]
 "go:github.com/standardbeagle/mcp-clip" = "latest"
 "go:github.com/karol-broda/snitch" = "latest"
+"github:nnnkkk7/lazyactions" = "latest"
 cargo-binstall = "latest"
 "cargo:usage-cli" = "2.12.0"
 "cargo:ast-grep" = "latest"
@@ -9,9 +10,12 @@ cargo-binstall = "latest"
 "github:railwayapp/railpack" = "latest"
 "github:railwayapp/cli" = "latest"
 "dive" = "latest"
+# not sure why, but these verifications are not working right now
+# "github:moby/buildkit" = "latest"
 # micro is rarely updated on github, so we use the nightly build
 "github:zyedidia/micro" = "nightly"
 "fd" = "latest"
+"github:gitleaks/gitleaks" = "latest"
 
 # "pipx:llm-ide-prompts" = "latest"
 
