@@ -375,8 +375,6 @@ nq() {
 
 # ripgrep "only": only display the matching text in the first capture group
 # this is helpful for selecting and transforming
-# (moved to navigation)
-
 # TODO extract to `.widgets`
 # https://github.com/fearphage/dotfiles-1/blob/9fe03f0fe891ab5e38423fb4b9e185526407fb02/.zsh/config/widgets.zsh#L16
 # function custom-fzf-execute-widget() {
@@ -426,8 +424,6 @@ inspect-space() {
 }
 
 # find and replace across files in the current directory
-# (moved to navigation)
-
 ###########################
 # SSH tunneling
 ###########################
