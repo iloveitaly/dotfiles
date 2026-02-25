@@ -1,9 +1,6 @@
 # Should be loaded very soon in zshrc
 # Set AGENT_DEBUG=1 to enable debug mode
 
-# shellcheck source=./.path
-source "${HOME}/.config/mbianco/path"
-
 # Returns 0 (true) when running under an AI-agent managed terminal.
 ai_is_agent_terminal() {
   [[ "${VSCODE_AGENT:-}" == "1" || -n "${CURSOR_AGENT:-}" || "${CLAUDECODE:-}" == "1" || "${GEMINI_CLI:-}" == "1" ]]
@@ -21,7 +18,12 @@ ai_load_agent_configuration() {
   #   return 0
   # fi
 
-  # if agent is alread configured, do nothing
+
+  # TODO document exactly why we need this
+  # shellcheck source=./.path
+  source "${HOME}/.config/mbianco/path"
+
+  # if agent is already configured, do nothing
   if [[ -n "${AGENT_CONFIGURED:-}" ]]; then
     [[ ${AGENT_DEBUG:-} -eq 1 ]] && echo "Agent already configured, skipping"
     return 0
@@ -57,7 +59,7 @@ ai_load_agent_configuration() {
 
     # without this, the git config which uses fancy pagers, etc will be used
     export GIT_CONFIG_NOSYSTEM=1
-    export GIT_CONFIG_GLOBAL=/dev/null
+    export GIT_CONFIG_GLOBAL=$HOME/.gitconfig-agent
 
     return 0
   else
