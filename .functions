@@ -73,16 +73,6 @@ zsh-trace() {
   echo "Tracing enabled. Log file: /tmp/zsh-debug.log"
 }
 
-# https://yazi-rs.github.io/docs/quick-start
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
-}
-
 # pass path to image to copy it to clipboard
 pbcopy-image() {
   if [ -z "$1" ]; then
@@ -323,134 +313,6 @@ copy_with_context() {
   sed -n "${start},${end}p" "$file" | pbcopy
 }
 
-##################################
-# Local Written-by-me Code Search
-# https://mikebian.co/fast-local-written-by-you-code-search/
-##################################
-
-# create a local index of all git repos
-index_local_repositories() {
-  fd --hidden --type=directory "\.git$" ~/Projects -x sh -c '
-    repo=$(dirname "$0")
-    origin=$(git -C "$repo" remote get-url origin 2>/dev/null)
-    if [[ -z "$origin" ]] || [[ "$origin" == *"github.com/iloveitaly/"* ]]; then
-      if [[ -z "$origin" ]] || ! git -C "$repo" remote get-url upstream &>/dev/null; then
-        echo "$repo"
-      fi
-    fi
-  ' {} \; > ~/.local-git-repos
-}
-
-# ripgrep code search
-rgc() {
-  if [[ ! -f ~/.local-git-repos ]]; then
-    index_local_repositories
-  fi
-
-  if [[ $(/usr/bin/find ~/.local-git-repos -mtime +7) ]]; then
-    # reindex async if it hasn't been done in awhile
-    index_local_repositories &
-  fi
-
-  # an alternative to `cut` is using -r rg option to mutate the content output
-  # https://github.com/BurntSushi/ripgrep/issues/2860
-  rg --hidden --glob '!**/.git/**' "$@" $(cat ~/.local-git-repos) | \
-    # we don't want column, just file and line
-    cut -d: -f1-2 | \
-    # now that we only have file + line, we can remove duplicates
-    uniq | \
-    # nth will still display `:`, which is annoying
-    fzf --ansi --delimiter : --with-nth '1' \
-      --keep-right \
-      --preview 'height=$(tput lines); start={2}; context=$((height / 2)); bat --color=always --paging=never --highlight-line {2} --line-range $((start > context ? start - context : 1)):$((start + context)) {1}'
-}
-
-###########################
-# Local Filesystem Searches
-###########################
-
-# determine if we are in a node_modules folder or if a valid node_modules path was passed via any argument
-function _is_node_modules() {
-  local node_modules_path=$1
-
-  if [[ -z "$node_modules_path" ]]; then
-    node_modules_path=$(pwd)
-  fi
-
-  [[ "$node_modules_path" =~ node_modules$ ]]
-}
-
-function _is_venv() {
-  local venv_path=$1
-
-  if [[ -z "$venv_path" ]]; then
-    venv_path=$(pwd)
-  fi
-
-  [[ "$venv_path" =~ \.venv$ ]]
-}
-
-alias ff="fzf --preview='bat --color=always {}'"
-
-# TODO this should use the `cd` thing and just overload there instead
-# fd + fzf, cd into the selected directory
-fdd() {
-  local additional_args=""
-
-  if _is_node_modules "$@" || _is_venv "$@"; then
-    additional_args="--no-ignore-vcs --hidden"
-  fi
-
-  local file_or_directory=$(fd ${=additional_args} "$@" | fzf --preview 'if [ -d {} ]; then exa -1 --color=always {}; elif [ -f {} ]; then cat {}; fi')
-
-  # cd into dir or view the file
-  if [[ -n "$file_or_directory" ]]; then
-    if [[ -d "$file_or_directory" ]]; then
-      cd "$file_or_directory"
-    elif [[ -f "$file_or_directory" ]]; then
-      cat "$file_or_directory"
-    fi
-  fi
-}
-
-RIPGREP_LIVEGREP_EXCLUSIONS=("--glob=!.git/**" "--glob=!.venv" "--glob=!.pnpm" "--glob=!node_modules" "--glob=!.tox" "--glob=!cdk.out")
-
-# TODO add fzf support
-# search all files in the current directory
-rgu() {
-  # TODO use glob list from find-replace
-  rg -uu "${RIPGREP_LIVEGREP_EXCLUSIONS[@]}" "$@"
-}
-
-# livegrep-like local search
-# related: https://github.com/seletskiy/zsh-fuzzy-search-and-edit/blob/master/plugin.zsh
-rgg() {
-  local additional_args=""
-
-  # TODO should check search page in $@ as well
-  if [[ $(pwd) =~ node_modules$ ]] || [[ $(pwd) == *"/.venv/"* ]]; then
-    # in this case, we want to search the contents of the node_modules directory
-    # this is a common case for me, trying to debug various package bugs in a project I'm working on
-    additional_args="--no-ignore-vcs --hidden"
-  fi
-
-  # TODO --bind=\"ctrl-y:execute-silent(echo {} | cut -d: -f1 | tr -d '[:space:]' | pbcopy)\" \
-  local file_and_location=$(rg --color always --hidden "$@" ${=additional_args} | fzf --ansi --delimiter : --with-nth '1,4' --preview 'height=$(tput lines); start={2}; context=$((height / 2)); bat --color=always --paging=never --highlight-line {2} --line-range $((start > context ? start - context : 1)):$((start + context)) {1}')
-
-  # Extracting the file name from the selected line
-  local file=$(echo "$file_and_location" | awk -F: '{print $1}')
-
-  if [[ ! -z "$file" ]]; then
-    open "$file"
-  fi
-}
-
-# ripgrep file
-rgf() {
-  rg "$@" --files-with-matches | sort -u
-}
-
-
 # convert a pdf to a jpeg for usage in gpt-v
 # ChatGPT cannot handle 3p documents
 # TODO try to group content into two-page pairs in the future: https://stackoverflow.com/questions/17025515/converting-a-multi-page-pdf-to-multiple-pages-using-a-single-command
@@ -513,16 +375,7 @@ nq() {
 
 # ripgrep "only": only display the matching text in the first capture group
 # this is helpful for selecting and transforming
-rgo() {
-  params=()
-
-  # check if the user is passing in `-r`, if not, then default to a basic option
-  if ((${@[(I)*-r*]} == 0)); then
-    params+=("-r \$1")
-  fi
-
-  rg $@ $params --no-filename --no-column --no-line-number --color never --only-matching
-}
+# (moved to navigation)
 
 # TODO extract to `.widgets`
 # https://github.com/fearphage/dotfiles-1/blob/9fe03f0fe891ab5e38423fb4b9e185526407fb02/.zsh/config/widgets.zsh#L16
@@ -573,29 +426,7 @@ inspect-space() {
 }
 
 # find and replace across files in the current directory
-function find-replace() {
-  if [ $# -lt 2 ]; then
-    echo "Usage: find-replace <find_string> <replace_string>"
-    return 1
-  fi
-
-  local find_string=$1
-  local replace_string=$2
-  local files=( $(rg -uu --glob '!.git/**' --glob '!.venv' --glob '!.pnpm' --glob '!node_modules' --glob '!.tox' --glob '!cdk.out' -l --fixed-strings "$find_string") )
-
-  echo "${#files[@]} files found."
-
-  for file in "${files[@]}"; do
-    # sd is modern replacement for sed
-    sd --preview --fixed-strings "$find_string" "$replace_string" "$file"
-
-    read "confirmation?Confirm replace in '$file'. [y/n]:"
-
-    if [[ $confirmation =~ ^[Yy]$ ]]; then
-      sd --fixed-strings "$find_string" "$replace_string" "$file"
-    fi
-  done
-}
+# (moved to navigation)
 
 ###########################
 # SSH tunneling
@@ -685,55 +516,6 @@ function generate-ssh-key() {
 # https://superuser.com/questions/55040/save-a-single-web-page-with-background-images-with-wget/136335#136335
 scrape-website() {
   wget -E -H -k -K -p -e robots=off $@
-}
-
-###########################
-# File opening functions
-###########################
-
-# open "yank.tmux:56:109:" at the right line in your terminal
-open_in_nano() {
-  # Read the input string into variables, splitting by ':'
-  IFS=':' read file line column _other <<< "$1"
-  # Open the file at the specified line. Nano doesn't support specific column.
-  nano +$line "$file" < /dev/tty
-}
-
-open_in_vscode() {
-  # git-fuzzy will pass a string that looks like `M  bin/run.js` or ` M bin/run.js`
-
-  # write a ripgrep command which:
-  # * ` M bin/run.js` => `bin/run.js`
-  # * `test/scraper.test.js:25:40` => `test/scraper.test.js:25:40`
-  # * `test/scraper.test.js` => `test/scraper.test.js`
-  # * `test/scraper.test.js:25:40: something` => `test/scraper.test.js:25
-  # assume each of inputs are passed on a single line and are only passed one at a time
-
-  local file=$(pcregrep -o2 "(^\s?M\s)?(.*)" <<< "$1")
-  IFS=':' read file line column _other <<< "$file"
-
-  # remove multiple slashes that could have been passed from `file:///` references
-  file=$(echo "$file" | sed 's|^/{2,}|/|')
-
-  code --goto "$file:$line:$column"
-}
-
-open_in_cat() {
-  # TODO jump to specific line number via less
-  # wrapping doesn't work the way you would think:
-  # bat Makefile --highlight-line 136 --paging=never --wrap=character --terminal-width=150
-  # TODO https://github.com/sharkdp/bat/issues/2527
-
-  IFS=':' read file line column _other <<< "$1"
-
-  # output command executed via local shopt
-  # setopt local_options xtrace
-
-  local height=$(tput lines)
-  local start=$line
-  local context=$((height / 2))
-
-  bat --color=always $file --highlight-line "$line" --line-range $((start > context ? start - context : 1)):$((start + context))
 }
 
 # Usage: cp-into-template file1 [file2 ...]

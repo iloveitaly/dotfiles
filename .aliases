@@ -1,8 +1,6 @@
 # replace common utilities with some improved replacements
 # be careful about doing this with utilities that are piped (find, cat, etc) since agents assume these are default
 alias cat='bat --wrap=never'
-alias ls='eza -l --group-directories-first'
-alias tree='tre --limit 3'
 
 # shortcuts for commonly used utilities
 alias j='just'
@@ -16,7 +14,6 @@ alias json-view="fx"
 alias fixcamera="sudo killall VDCAssistant; sudo killall AppleCameraAssistant"
 
 # most recently modified file
-alias recent-file="exa -s modified --reverse | head -n 1"
 
 # list all paths in $PATH
 alias list-paths='echo "$PATH" | tr ":" "\n" | fzf'
@@ -37,12 +34,6 @@ alias pisync='rsync -avh --filter=":- .gitignore" --progress $PWD pi@raspberrypi
 
 # fancier ping
 alias ping='prettyping --nolegend'
-
-# List all files colorized in long format, including dot files
-alias la="eza -laF --group-directories-first"
-
-# List only directories
-alias lsd='eza -l -D'
 
 # page so we get the full command output
 alias pss="ps -eo user,pid,ppid,stat,etime,cmd --forest | less -S"
@@ -68,15 +59,6 @@ alias http-server="(sleep 0.1 && open http://localhost:8080/) & python -m http.s
 
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | pbcopy"
-
-alias p="cd ~/Projects"
-
-# Edit current directory
-alias e="code ."
-
-# File size
-alias fs="stat -f \"%z bytes\""
-alias ds="du -sh"
 
 # git
 alias g="git"
