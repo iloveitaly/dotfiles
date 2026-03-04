@@ -78,25 +78,6 @@ function git-squash-custom-branch {
   git merge "${branches[@]}" --no-ff --message "Merged and squashed ${branches[@]}"
 }
 
-# TODO should probably remove
-# https://blog.takanabe.tokyo/en/2020/04/remove-squash-merged-local-git-branches/
-function git-clean-squash-and-merge() (
-  set -euo pipefail
-
-  # xargs to trim whitespace https://stackoverflow.com/questions/369758/how-to-trim-whitespace-from-a-bash-variable
-  local master_branch=$(git branch -l master main | sed 's/^* //' | xargs)
-  echo "Using $master_branch as master"
-
-  git checkout -q $master_branch
-  git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do
-    local ancestor=$(git merge-base $master_branch $branch)
-
-    if [[ $(git cherry main $(git commit-tree $(git rev-parse $branch'^{tree}') -p $ancestor -m _)) == "-"* ]]; then
-      git branch -D $branch
-    fi
-  done
-)
-
 # if a PR is closed when it shouldn't have been, reopen it with one click!
 # commonly happens with the annoying stale bots
 github_reopen_pr() {
@@ -156,18 +137,6 @@ add_mit_license() {
   echo "MIT License added to the repository."
 }
 
-# render readme content on clipboard and replace username and repo
-# useful for custom templates I have in my notes
-render-git-template() {
-  local GH_USERNAME=$(gh repo view --json owner --jq '.owner.login' | tr -d '[:space:]')
-  local GH_REPO=$(gh repo view --json name --jq '.name' | tr -d '[:space:]')
-  local TEMPLATE=$(pbpaste)
-
-  TEMPLATE=${TEMPLATE//USERNAME/$GH_USERNAME}
-  TEMPLATE=${TEMPLATE//REPO/$GH_REPO}
-  echo $TEMPLATE | tr -ds '\n' ' '
-}
-
 # extracts all file(s) in a git repo path into PWD. Helpful for lifting source from an existing open source project.
 # usage: git-extract https://github.com/vantezzen/shadcn-registry-template/blob/main/scripts/
 git-extract() {
@@ -224,31 +193,57 @@ gh-assign-reviewer() {
     fi
 }
 
-# Usage: git-cherry-pick <github-pr-commit-url>
+# Usage: git-cherry-pick <url>
 #
-# Downloads a raw commit patch via the GitHub CLI (gh) and natively 
-# applies it to your current branch using a 3-way merge.
-#
-# Example: 
-#   git-cherry-pick https://github.com/iloveitaly/movie-tickets/pull/44/changes/c1856554d577fd405d9ce6adab1024e9b1f1f2dc
+# Supports:
+# 1. PR URLs: https://github.com/owner/repo/pull/123
+# 2. PR Commit URLs: https://github.com/owner/repo/pull/123/commits/hash
+# 3. Standard Commit URLs: https://github.com/owner/repo/commit/hash
 git-cherry-pick () {
-	local url="$1"
-	
-	# Parse the repo and commit hash explicitly using gsed.
-	# We use '@' as the delimiter so it doesn't conflict with '/' in the URL or '|' in the regex.
-	local repo=$(echo "$url" | gsed -E 's@^https://github\.com/([^/]+/[^/]+)/pull/[0-9]+/(commits|changes)/[a-f0-9]+.*@\1@')
-	local commit=$(echo "$url" | gsed -E 's@^https://github\.com/[^/]+/[^/]+/pull/[0-9]+/(commits|changes)/([a-f0-9]+).*@\2@')
+    local url="$1"
+    local repo
+    local id
 
-	# If the output equals the original URL, parsing failed. Print a red error.
-	if [[ "$repo" == "$url" || "$commit" == "$url" ]]; then
-		printf '\033[1;31mError: Could not detect repo or commit hash from the input.\033[0m\n' >&2
-		printf '\033[1;31mExpected format: https://github.com/owner/repo/pull/123/changes/hash\033[0m\n' >&2
-		return 1
-	fi
+    # Extract Repo (captured from the first two path segments after github.com)
+    repo=$(echo "$url" | gsed -E 's@^https://github\.com/([^/]+/[^/]+)/.*@\1@')
+    local remote_url="https://github.com/$repo.git"
 
-	echo "Applying commit $commit from $repo via GitHub API..."
-	gh api "repos/$repo/commits/$commit" -H "Accept: application/vnd.github.v3.patch" | git am -3
+    # Logic: Determine URL type and construct the raw .patch URL
+    if [[ "$url" =~ "/(commits|changes)/([a-f0-9]+)" ]]; then
+        # Case A: Specific Commit in a PR
+        id=$(echo "$url" | gsed -E 's@.*/(commits|changes)/([a-f0-9]+).*@\2@')
+        echo "🔍 Detected Commit $id in $repo"
+        echo "⬇️  Fetching commit from GitHub..."
+        git fetch "$remote_url" "$id"
+        git format-patch -1 FETCH_HEAD --stdout | git am -3
+
+    elif [[ "$url" =~ "/pull/([0-9]+)" ]]; then
+        # Case B: Whole PR
+        id=$(echo "$url" | gsed -E 's@.*/pull/([0-9]+).*@\1@')
+        echo "🔍 Detected PR #$id in $repo"
+        echo "⬇️  Fetching PR from GitHub..."
+        local base_sha
+        local base_ref
+        base_sha=$(gh api "/repos/$repo/pulls/$id" --jq .base.sha)
+        base_ref=$(gh api "/repos/$repo/pulls/$id" --jq .base.ref)
+        git fetch "$remote_url" "$base_ref"
+        git fetch "$remote_url" "pull/$id/head"
+        git format-patch "$base_sha..FETCH_HEAD" --stdout | git am -3
+    
+    elif [[ "$url" =~ "/commit/([a-f0-9]+)" ]]; then
+        # Case C: Standard Commit
+        id=$(echo "$url" | gsed -E 's@.*/commit/([a-f0-9]+).*@\1@')
+        echo "🔍 Detected Standalone Commit $id in $repo"
+        echo "⬇️  Fetching commit from GitHub..."
+        git fetch "$remote_url" "$id"
+        git format-patch -1 FETCH_HEAD --stdout | git am -3
+
+    else
+        printf '\033[1;31mError: Could not parse URL.\033[0m\n' >&2
+        return 1
+    fi
 }
+
 
 # Usage:
 # Source this in .zshrc or run as a function.
