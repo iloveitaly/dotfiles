@@ -1,0 +1,40 @@
+{
+    "github_actions_log": {
+        "title": "GitHub Actions Log",
+        "description": "Parses GitHub Actions logs.",
+        "url": "https://github.com/actions",
+        "regex": {
+            "std": {
+                "pattern": "^(?<job>[^\\t]+)\\t(?<step>[^\\t]+)\\t(?<timestamp>\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d+Z)\\s+(?<body>.*)$"
+            }
+        },
+        "value": {
+            "job": { "kind": "string", "identifier": true },
+            "step": { "kind": "string", "identifier": true },
+            "timestamp": { "kind": "string" },
+            "body": { "kind": "string" }
+        },
+        "line-format": [
+            { "field": "body" }
+        ],
+        "highlights": {
+            "group_header": {
+                "pattern": "##\\[group\\].*",
+                "style": "bold",
+                "color": "#61afef"
+            },
+            "group_end": {
+                "pattern": "##\\[endgroup\\]",
+                "color": "#5c6370"
+            }
+        },
+        "sample": [
+            {
+                "line": "Check and Test\tUNKNOWN STEP\t2026-03-03T02:46:51.6849193Z Current runner version: '2.331.0'"
+            },
+            {
+                "line": "Check and Test\tUNKNOWN STEP\t2026-03-03T02:46:51.6874521Z ##[group]Runner Image Provisioner"
+            }
+        ]
+    }
+}
