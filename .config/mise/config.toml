@@ -16,7 +16,8 @@ cargo-binstall = "latest"
 "github:zyedidia/micro" = "nightly"
 "fd" = "latest"
 "github:gitleaks/gitleaks" = "latest"
-
+"github:iloveitaly/richclip" = "latest"
+fzf = "latest"
 # "pipx:llm-ide-prompts" = "latest"
 
 [settings]
