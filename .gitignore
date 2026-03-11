@@ -6,5 +6,5 @@
 
 # personal ssh config
 /.ssh/config_extra
-/.ssh/vscode
+/.ssh/vscode_config
 /.ssh/op
