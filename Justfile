@@ -6,8 +6,14 @@ set script-interpreter := ["zsh", "-euBh", "-o", "pipefail"]
 set unstable := true
 
 upgrade:
-	brew upgrade fzf atuin awscli git rg fd gh zsh gmailctl dolt 1password-cli yazi dolt bat ov
+	brew upgrade atuin awscli git rg fd gh zsh gmailctl dolt 1password-cli yazi dolt bat ov
 	gh extension upgrade --all
+
+  mise upgrade
+
+  # this ensures that mise binaries, like fzf, are picked up system wide
+  # without this, raycast, tmux, etc will have trouble
+  sudo sh -c 'echo "$HOME/.local/share/mise/shims" > /etc/paths.d/mise'
 
 	# TODO can't figure out why this is not working
 	# this will update starship as well
