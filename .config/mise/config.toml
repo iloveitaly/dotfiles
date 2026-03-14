@@ -19,6 +19,10 @@ cargo-binstall = "latest"
 "github:iloveitaly/richclip" = "latest"
 fzf = "latest"
 # "pipx:llm-ide-prompts" = "latest"
+direnv = "latest"
+bun = "latest"
+just = "latest"
+uv = "latest"
 
 [settings]
 experimental = true
