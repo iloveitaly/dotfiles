@@ -13,10 +13,19 @@ export PYTHON_DEVELOPMENT_TOGGLE="$HOME/Projects/python"
 # mise will manage our py versions
 export UV_PYTHON_DOWNLOADS=never
 
+# customize `fzf-file-widget`
+# TODO explore using fd instead of `find`
+# export FZF_DEFAULT_COMMAND='fd --type f --type d --hidden --strip-cwd-prefix --exclude .git'
+export FZF_CTRL_T_OPTS="
+  --preview 'if [ -d {} ]; then eza --tree --color=always --icons=always {} | head -200; else bat --color=always --style=numbers --line-range :500 {}; fi'
+  --preview-window right:60%:wrap
+  --bind 'ctrl-/:change-preview-window(down|hidden|right)'
+  --walker-skip .git,node_modules,target,__pycache__,venv,.venv,dist,build
+"
 # customize fzf defaults (so we can keep page up/down) + some keybindings
 export GIT_FUZZY_FZF_DEFAULT_OPTS="\
-  --border \
   --layout=reverse \
+  --style=minimal \
   --bind 'ctrl-s:toggle-sort' \
   --bind 'change:top' \
   --no-height \
@@ -42,9 +51,11 @@ export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 # - ctrl-{u,d} scroll the preview
 # - ctrl-o opens the file in vscode (or the default application)
 # - ctrl-y copies the file path to the clipboard
-# - ctrl-e opens the file in a CLI editor
+# - ctrl-e opens the file in a CLI editorb
 # - ctrl-b copies the contents of the file path, at the specified line, with context, to the clipboard
+# - ctrl+Y selects all results, copies them to the clipboard, and deselects them (so you can still open files, etc)
 export FZF_DEFAULT_OPTS="\
+--bind 'ctrl-Y:select-all+execute-silent(printf \"%s\n\" {+} | pbcopy)+deselect-all' \
 --bind='ctrl-u:preview-half-page-up' \
 --bind='ctrl-d:preview-half-page-down' \
 --bind='ctrl-o:execute-silent(~/.open-file-path.sh {})' \
@@ -55,7 +66,6 @@ export FZF_DEFAULT_OPTS="\
 --bind='?:toggle-preview' \
 --bind='+:toggle-header'
 "
-
 # TODO add +abort to quit on ctrl-o
 # TODO add once 43 is released; --bind='+:toggle-header' \
 # --preview-window 'down:3:hidden:wrap' \
