@@ -20,3 +20,4 @@ time-machine-includes.sh
 .github
 metadata.json
 /zsh_plugins
+/templates
