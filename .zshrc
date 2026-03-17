@@ -122,6 +122,10 @@ for file in exports aliases functions extra; do
   [ -e "$file" ] && source "$file"
 done
 
+# load file searching and navigation utilities
+# shellcheck source=./.config/mbianco/navigation
+source "${HOME}/.config/mbianco/navigation"
+
 source ~/.zsh_plugins
 
 # ===========
