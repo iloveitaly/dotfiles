@@ -82,6 +82,18 @@ quit_app() {
   # TODO check if the application is still running and try the kill approach
 }
 
+quit_and_reopen_app() {
+  local app=$1
+
+  quit_app "$app"
+
+  # wait until the app is completely closed
+  while pgrep -q -x "$app"; do sleep 0.1; done
+
+  quit_and_wait_app "$app"
+  open -a "$app"
+}
+
 for app in $apps; do
   quit_app $app
 done
@@ -107,12 +119,12 @@ uvx clean-workspace --tab-description "$dialogResult"
 
 # it seems to get junked up after a while and slow down
 # a daily restart keeps it operating quickly
-echo "Restarting Raycast..."
-quit_app "Raycast" || true
-# wait until Raycast is completely closed
-while pgrep -q -x "Raycast"; do sleep 0.1; done
-open -a "Raycast"
+quit_and_reopen_app "Raycast" || true
 
+# superwhisper also seems to consume a ton of resources over time
+quit_and_reopen_app "Superwhisper" || true
+
+# update all of the llms!
 claude update
 amp update
 bun update -g @github/copilot
@@ -120,6 +132,7 @@ pnpm install -g @google/gemini-cli
 code --update-extensions
 cursor --update-extensions
 opencode upgrade
+gemini extension update --all
 
 uv cache clean
 

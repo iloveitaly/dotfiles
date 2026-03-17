@@ -51,34 +51,6 @@
       ],
       "block_apps": ["Spotify", "Podcasts"]
     },
-    // {
-    //   "name": "daily comms",
-    //   "schedule_only": true,
-    //   "start": 12,
-    //   "end": 12,
-    //   "end_minute": 30,
-    //   "start_script": "/Users/mike/.config/focus/communication_start.sh",
-    //   "block_hosts": [
-    //     "twitter.com",
-    //     "feedbin.com",
-    //     "my.lunchmoney.com",
-    //     "news.ycombinator.com"
-    //   ],
-    //   "block_urls": [
-    //     "https://www.google.com/search?q=world+news",
-    //     "https://www.google.com/search?q=economic+news",
-    //     "https://www.google.com/search?q=colorado+news",
-    //     "https://www.google.com/search?tbm=nws",
-    //     "https://www.google.com/search?tbm=shop",
-    //     "https://www.google.com/search?q=vti",
-    //     "https://www.google.com/search?q=vxus",
-    //     "https://www.google.com/search?q=vteb",
-    //     "https://github.com/iloveitaly",
-    //     "https://github.com/iloveitaly/dotfiles",
-    //     "https://www.linkedin.com/feed/"
-    //   ],
-    //   "block_apps": []
-    // },
     {
       "name": "Standard Focus",
       "schedule_only": true,
