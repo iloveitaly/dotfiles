@@ -51,7 +51,8 @@ function py-debugging-install() {
 function ipy() {
   local should_add_with_options=1
   typeset -a WITH_OPTIONS
-  if [ -f "uv.lock" ] && grep -q '^\s*debugging-extras\s*=' pyproject.toml; then
+  
+  if [ -f "uv.lock" ]; then
     should_add_with_options=0
   fi
 
