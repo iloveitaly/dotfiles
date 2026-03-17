@@ -30,9 +30,6 @@ _EXTENSIONS = (
     "ipython_autoimport",
     "ipython_ctrlr_fzf",
     "ipython_copy",
-    # `%suggestion 0`
-    # https://github.com/drorspei/ipython-suggestions
-    "ipython_suggestions",
     # TODO https://github.com/Textualize/rich/issues/3317
     # https://github.com/willmcgugan/rich/pull/1274/files
     # TODO consider removing this, it's slowing down large object display
@@ -89,8 +86,6 @@ _SAFE_EXTENSION_LOADER = _build_safe_extension_loader(_EXTENSIONS)
 c.InteractiveShellApp.exec_lines = [
     _SAFE_EXTENSION_LOADER,
     "%autoreload 3",
-    # quickly accept the top suggestion result via `%s`
-    '%alias_magic s suggestion -p "0"',
     # https://ipython.readthedocs.io/en/stable/interactive/magics.html?highlight=autocall#magic-autocall
     "%autocall 1",
 ]
@@ -114,11 +109,14 @@ c.InteractiveShell.auto_match = True
 
 # TODO there's some sort of completion thing we can do https://github.com/infokiller/config-public/blob/1be3b0887b915a8527f063392afe5cb953c587bd/.config/ipython/profile_default/startup/ext/config.py#L328-L337
 
-# TODO maybe use automatic imports
-# https://github.com/deshaw/pyflyby
-
 # unique history file per directory
 c.HistoryManager.hist_file = os.path.join(os.getcwd(), ".ipython_history")
+
+# Now !some_command that fails will actually raise a CalledProcessError instead of silently returning a non-zero code. Perfect for scripting inside IPython.
+c.InteractiveShell.system_raise_on_error = True
+
+# built-in autosuggest
+c.Completer.policy_overrides = {"allow_auto_import": True}
 
 # respect NO_COLOR environment variable, helpful for debugging
 no_color = os.environ.get("NO_COLOR", "").lower()
