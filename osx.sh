@@ -475,7 +475,9 @@ defaults write com.apple.donotdisturbd disableCloudSync -bool true
 # open ~/Library/Preferences/com.apple.ncprefs.plist for noticiation center setup
 # Sys Prefs > Notification Center > Allow notifications: click all
 
+# go to sleep at 8:30pm every day, you can't configure this in system prefs anymore!
 sudo pmset repeat sleep day_of_the_week 20:30:00
+# clear with `sudo pmset repeat cancel`
 
 defaults write -g AppleFontSmoothing -int 0
 
