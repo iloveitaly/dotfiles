@@ -19,19 +19,6 @@ mise-current-version() {
   mise list --current --json | jq -r ".$1[0].version // empty"
 }
 
-# Loop through all arguments (assumed to be mise plugins)
-mise-generate-tool-versions() {
-  for plugin in "$@"; do
-    version=$(mise-current-version "$plugin")
-
-    if [ -n "$version" ]; then
-      echo "$plugin $version" >> .tool-versions
-    else
-      echo "Error: Version for $plugin not found."
-    fi
-  done
-}
-
 # use plugin name as initial parameter
 mise-reinstall() {
   if [ $# -gt 1 ]; then
