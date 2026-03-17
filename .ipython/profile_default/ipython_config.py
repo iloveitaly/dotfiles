@@ -9,6 +9,7 @@ Some example configurations:
 """
 
 import os
+from textwrap import dedent
 
 # https://ipython.readthedocs.io/en/stable/config/options/terminal.html
 
@@ -23,13 +24,12 @@ c.InteractiveShell.enable_html_pager = True
 c.InteractiveShell.sphinxify_docstring = True
 
 # DO NOT use `append` here, it hangs ipython
-c.InteractiveShellApp.extensions = [
+_EXTENSIONS = (
     "autoreload",
     # %autoimport -lodel
     "ipython_autoimport",
     "ipython_ctrlr_fzf",
-    # https://pypi.org/project/IPythonClipboard/
-    "ipython_clipboard",
+    "ipython_copy",
     # `%suggestion 0`
     # https://github.com/drorspei/ipython-suggestions
     "ipython_suggestions",
@@ -39,25 +39,67 @@ c.InteractiveShellApp.extensions = [
     # https://github.com/Textualize/rich/blob/e1e6d745f670ff3df6b8f47377c0a4006cb74066/rich/pretty.py#L167
     # "rich",
     # https://github.com/mdmintz/pdbp possible better than other pdb drop-ins?
-]
+)
 
+# Load extensions manually so failures only emit a single warning.
+c.InteractiveShellApp.extensions = []
+
+# exec_lines only accepts Python source strings, not callables, so build the
+# loader as code and let IPython execute it during shell startup.
+def _build_safe_extension_loader(extensions):
+    return dedent(
+        f"""
+        from IPython import get_ipython
+        import sys
+
+        def __load_extensions():
+            ip = get_ipython()
+            if ip is None:
+                return
+
+            for name in {tuple(extensions)!r}:
+                try:
+                    ip.extension_manager.load_extension(name)
+                except ModuleNotFoundError:
+                    print(
+                        f"warning: skipping missing IPython extension {{name!r}}",
+                        file=sys.stderr,
+                    )
+                except Exception as exc:
+                    print(
+                        f"warning: failed to load IPython extension {{name!r}}: {{exc}}",
+                        file=sys.stderr,
+                    )
+
+        __load_extensions()
+        del __load_extensions
+        """
+    ).strip()
+
+
+_SAFE_EXTENSION_LOADER = _build_safe_extension_loader(_EXTENSIONS)
+
+# Load optional extensions one-by-one so a missing package only produces a
+# short warning instead of aborting startup with a traceback.
 # watch filesystem for changes and reload modules
 # https://stackoverflow.com/questions/1907993/autoreload-of-modules-in-ipython
 # https://ipython.readthedocs.io/en/stable/whatsnew/version8.html#autoreload-3-feature
 # https://ipython.readthedocs.io/en/stable/config/extensions/autoreload.html
-c.InteractiveShellApp.exec_lines.append("%autoreload 3")
 
-# quickly accept the top suggestion result vis `%s`
-c.InteractiveShellApp.exec_lines.append('%alias_magic s suggestion -p "0"')
+c.InteractiveShellApp.exec_lines = [
+    _SAFE_EXTENSION_LOADER,
+    "%autoreload 3",
+    # quickly accept the top suggestion result via `%s`
+    '%alias_magic s suggestion -p "0"',
+    # https://ipython.readthedocs.io/en/stable/interactive/magics.html?highlight=autocall#magic-autocall
+    "%autocall 1",
+]
 
 # https://stackoverflow.com/questions/50437791/ipython-magic-print-variables-on-assignment
 c.InteractiveShell.ast_node_interactivity = "last_expr_or_assign"
 
 # add parentheses around a function
 c.InteractiveShell.auto_match = True
-
-# https://ipython.readthedocs.io/en/stable/interactive/magics.html?highlight=autocall#magic-autocall
-c.InteractiveShellApp.exec_lines.append("%autocall 1")
 
 # Enable magic commands to be called without the leading %.
 # c.TerminalInteractiveShell.automagic = True
