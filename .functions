@@ -14,7 +14,7 @@ zinit-update() {
   zinit update --all --parallel
   zinit cclear
 
-  echo "Remember to update tmux plugins"
+  echo "Remember to update tmux plugins: prefix+U, enter"
 }
 
 # output all zsh options with pretty colors
