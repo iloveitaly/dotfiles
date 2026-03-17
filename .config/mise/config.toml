@@ -20,10 +20,20 @@ cargo-binstall = "latest"
 "github:googleworkspace/cli" = "latest"
 fzf = "latest"
 # "pipx:llm-ide-prompts" = "latest"
+
+# language and language tooling
 direnv = "latest"
-bun = "latest"
 just = "latest"
+bun = "latest"
 uv = "latest"
+nodejs     = "22"
+erlang     = "28"
+elixir     = "1"
+python     = "latest"
+ruby       = "3"
+rust       = "latest"
+pnpm       = "latest"
+golang     = "latest"
 
 [settings]
 experimental = true
