@@ -9,7 +9,7 @@ PYTHON_DEBUGGING_PACKAGES="ipython \
   rich \
   ipython-autoimport \
   ipython-playground \
-  IPythonClipboard \
+  ipython-copy \
   ipython_ctrlr_fzf \
   docrepr \
   pyfzf \
@@ -49,18 +49,19 @@ function py-debugging-install() {
 }
 
 function ipy() {
-  if [ -f "uv.lock" ]; then
-    # Initialize WITH_OPTIONS as an empty array
-    typeset -a WITH_OPTIONS
-    if grep -q '^\s*debugging-extras\s*=' pyproject.toml; then
-      : # WITH_OPTIONS remains empty
-    else
-      # Build the array explicitly
-      for pkg in ${(z)PYTHON_DEBUGGING_PACKAGES}; do
-        WITH_OPTIONS+=("--with" "$pkg")
-      done
-    fi
+  local should_add_with_options=1
+  typeset -a WITH_OPTIONS
+  if [ -f "uv.lock" ] && grep -q '^\s*debugging-extras\s*=' pyproject.toml; then
+    should_add_with_options=0
+  fi
 
+  if [ "$should_add_with_options" -eq 1 ]; then
+    for pkg in ${(z)PYTHON_DEBUGGING_PACKAGES}; do
+      WITH_OPTIONS+=("--with" "$pkg")
+    done
+  fi
+
+  if [ -f "uv.lock" ]; then
     if [ -f "playground.py" ]; then
       # Explicitly pass the array elements
       uv run "${WITH_OPTIONS[@]}" ipython -i playground.py
@@ -71,8 +72,7 @@ function ipy() {
     chmod +x playground.py
     ./playground.py
   else
-    pip install --upgrade ${(z)PYTHON_DEBUGGING_PACKAGES}
-    ipython
+    uv tool run "${WITH_OPTIONS[@]}" ipython
   fi
 }
 
@@ -224,12 +224,6 @@ python-inject-startup() {
   cat <<'EOF' >"$py_file"
 def run_startup_script():
   try:
-    import pretty_traceback
-    pretty_traceback.install()
-  except ImportError:
-    pass
-
-  try:
     from icecream import install
     install()
   except ImportError:
@@ -326,6 +320,7 @@ py-inspect-requirements() {
   uv pip compile --universal --emit-index-url <(echo "$1")
 }
 
+# remove all old (untouched) .venvs in a parent directory
 py-remove-old-venv() {
   fd --hidden --no-ignore-vcs -td --changed-before 30d --prune .venv -x sh -c 'echo "Removing $0" && rm -rf "$0"'
 }
