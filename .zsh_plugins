@@ -35,7 +35,7 @@
 zinit wait'0a' lucid for \
   'https://github.com/ajeetdsouza/zoxide/blob/main/zoxide.plugin.zsh'
 
-# completions and helpful utilities that need to be loaded early, but fine if ~500ms del[ay]
+# completions and helpful utilities that need to be loaded early, but fine if ~500ms delay
 zinit wait'0b' lucid for \
   toku-sa-n/zsh-dot-up \
   zdharma-continuum/fast-syntax-highlighting \
@@ -48,7 +48,7 @@ zinit wait'0b' lucid for \
   'https://gist.github.com/iloveitaly/64b3ebdb50b90057ac820b25b4072970/raw/direnv.plugin.zsh' \
   wintermi/zsh-mise \
   iloveitaly/zsh-ai-completions \
-  multisrc"${HOME}/.config/mbianco/zsh_plugins/*.zsh" nocompile \
+  multisrc"${HOME}/.config/mbianco/zsh_plugins/0b/*.zsh" nocompile \
   'https://gist.github.com/iloveitaly/4eac0f4ddb3f8162f95fa3ed6f123a06/raw/1password.zsh' \
   'https://gist.github.com/iloveitaly/b0748e2f9f6831f9b8781ed8790e3404/raw/gh-cli.plugin.zsh' \
   'https://gist.github.com/iloveitaly/043d91a2968597fe601673664b124dd3/raw/orbctl.zsh' \
@@ -89,6 +89,7 @@ zinit wait'0b' lucid for \
 #   - git-open: gh browse doesn't always work for repos I did not clone from my user
 #   - azure: uses bashinit, which seems to need to run after the wait 0a above, which is why it's included here
 zinit wait'1' lucid for \
+  multisrc"${HOME}/.config/mbianco/zsh_plugins/1/*.zsh" nocompile \
   MichaelAquilina/zsh-auto-notify \
   chrissicool/zsh-256color \
   zpm-zsh/colors \
