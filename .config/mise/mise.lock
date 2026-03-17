@@ -81,7 +81,7 @@ checksum = "sha256:c5cb2444ee04480502a8ac73d96abd9f97af8300ec04ea1c1f2a9e959c02e
 url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.17.7/cargo-binstall-x86_64-pc-windows-msvc.zip"
 
 [[tools."cargo:ast-grep"]]
-version = "0.41.1"
+version = "0.42.0"
 backend = "cargo:ast-grep"
 
 [[tools."cargo:fastmod"]]
@@ -143,6 +143,76 @@ backend = "aqua:junegunn/fzf"
 [[tools."github:gitleaks/gitleaks"]]
 version = "8.30.0"
 backend = "github:gitleaks/gitleaks"
+
+[[tools."github:googleworkspace/cli"]]
+version = "0.16.0"
+backend = "github:googleworkspace/cli"
+
+[tools."github:googleworkspace/cli"."platforms.linux-arm64"]
+checksum = "sha256:2a74ffa1826ce5cc3405f23f0cdbbbbedecffb7fd0ca2c74981296ad2f43505d"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.16.0/gws-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/373440261"
+provenance = "github-attestations"
+
+[tools."github:googleworkspace/cli"."platforms.linux-arm64-musl"]
+checksum = "sha256:bf5983a0c3578608e3d58800ccc60a8b1a7d7a83c7d9ff9ddbeb9bf251bb0424"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.16.0/gws-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/373440266"
+provenance = "github-attestations"
+
+[tools."github:googleworkspace/cli"."platforms.linux-x64"]
+checksum = "sha256:ac4b6967f104ac3213115c3052beea2a9b3507a10f8ebbacb3b717f183cd03f6"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.16.0/gws-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/373440281"
+provenance = "github-attestations"
+
+[tools."github:googleworkspace/cli"."platforms.linux-x64-baseline"]
+checksum = "sha256:ac4b6967f104ac3213115c3052beea2a9b3507a10f8ebbacb3b717f183cd03f6"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.16.0/gws-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/373440281"
+provenance = "github-attestations"
+
+[tools."github:googleworkspace/cli"."platforms.linux-x64-musl"]
+checksum = "sha256:29fc4c61a2cd5831508d391e40cccc4ad9afe3e83f4e94fddda0b51ac67af766"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.16.0/gws-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/373440285"
+provenance = "github-attestations"
+
+[tools."github:googleworkspace/cli"."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:ac4b6967f104ac3213115c3052beea2a9b3507a10f8ebbacb3b717f183cd03f6"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.16.0/gws-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/373440281"
+provenance = "github-attestations"
+
+[tools."github:googleworkspace/cli"."platforms.macos-arm64"]
+checksum = "sha256:602bdd94d20f06ffb7dc4b8d96afd620c973b0785b60522073855b72b75c6d7c"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.16.0/gws-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/373440258"
+provenance = "github-attestations"
+
+[tools."github:googleworkspace/cli"."platforms.macos-x64"]
+checksum = "sha256:0f1b089f6104994984a83955ce04c6eca08ffca1284c9bf636eed7956e21761e"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.16.0/gws-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/373440276"
+provenance = "github-attestations"
+
+[tools."github:googleworkspace/cli"."platforms.macos-x64-baseline"]
+checksum = "sha256:0f1b089f6104994984a83955ce04c6eca08ffca1284c9bf636eed7956e21761e"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.16.0/gws-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/373440276"
+provenance = "github-attestations"
+
+[tools."github:googleworkspace/cli"."platforms.windows-x64"]
+checksum = "sha256:a7f4a8d98560e5cf2cfed4b3569f5b37d10d955049f9a709384ec5e8ff6fda30"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.16.0/gws-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/373440279"
+provenance = "github-attestations"
+
+[tools."github:googleworkspace/cli"."platforms.windows-x64-baseline"]
+checksum = "sha256:a7f4a8d98560e5cf2cfed4b3569f5b37d10d955049f9a709384ec5e8ff6fda30"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.16.0/gws-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/373440279"
+provenance = "github-attestations"
 
 [[tools."github:iloveitaly/richclip"]]
 version = "1.2.1"
@@ -313,7 +383,7 @@ version = "1.0.0"
 backend = "go:github.com/standardbeagle/mcp-clip"
 
 [[tools.just]]
-version = "1.46.0"
+version = "1.47.0"
 backend = "ubi:casey/just"
 
 [[tools.uv]]
