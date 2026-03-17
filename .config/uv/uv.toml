@@ -1,0 +1,5 @@
+# let's let mise manage python
+# `uv python uninstall --all`
+
+python-preference = "only-system"
+python-downloads = "never"
