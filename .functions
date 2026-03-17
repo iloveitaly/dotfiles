@@ -60,6 +60,8 @@ zinit-nuke() {
   echo "Open up a new terminal window to reload zinit"
 }
 
+# where is a completion function actually defined?
+# example: `completion-where git`
 function completion-where {
     echo $^fpath/$_comps[$1](N)
     whence -v $_comps[$1]
@@ -71,20 +73,6 @@ zsh-trace() {
   exec 2>> /tmp/zsh-debug.log
   set -x
   echo "Tracing enabled. Log file: /tmp/zsh-debug.log"
-}
-
-# pass path to image to copy it to clipboard
-pbcopy-image() {
-  if [ -z "$1" ]; then
-    set -- "$(pbpaste)"
-  fi
-
-  if [ ! -f "$1" ]; then
-    echo "Error: File $1 does not exist."
-    return 1
-  fi
-
-  osascript -e "set the clipboard to (read (POSIX file \"$1\") as JPEG picture)"
 }
 
 ###########################
@@ -186,8 +174,6 @@ clear-dns-servers() {
 }
 
 # TODO need to restart and test; I think I corrupted something
-
-
 
 ###########################
 # Network Sniffing
@@ -373,35 +359,6 @@ nq() {
   fi
 }
 
-# ripgrep "only": only display the matching text in the first capture group
-# this is helpful for selecting and transforming
-# TODO extract to `.widgets`
-# https://github.com/fearphage/dotfiles-1/blob/9fe03f0fe891ab5e38423fb4b9e185526407fb02/.zsh/config/widgets.zsh#L16
-# function custom-fzf-execute-widget() {
-#     if (! hash fzf &>/dev/null) {
-#         return 1
-#     }
-
-#     local selected=$(
-#         zle -al \
-#             # | command grep --extended-regexp --invert-match '(^orig|^\.|^_)' \
-#             | fzf \
-#                 --tac \
-#                 --nth='2..,..' \
-#                 --tiebreak='index' \
-#                 --prompt=':'
-#     )
-
-#     local stat=$?
-
-#     if [[ "$selected" != '' ]] {
-#         echo $selected
-#         zle $selected
-#     }
-
-#     return $stat
-# }
-
 # password protected pdfs are such a pain, this removes the password protection
 decryptpdf() {
   if [ -z "$1" ]; then
@@ -423,7 +380,6 @@ inspect-space() {
   (cd / && sudo ncdu --exclude "$HOME/OrbStack" --exclude '/Volumes/Backups of BiancoBook' --exclude /Library/Developer --exclude /System/ --exclude /Applications --exclude "/Library/Application Support/ArqAgentAPFS.noindex" --confirm-quit)
 }
 
-# find and replace across files in the current directory
 ###########################
 # SSH tunneling
 ###########################
@@ -512,18 +468,6 @@ function generate-ssh-key() {
 # https://superuser.com/questions/55040/save-a-single-web-page-with-background-images-with-wget/136335#136335
 scrape-website() {
   wget -E -H -k -K -p -e robots=off $@
-}
-
-# Usage: cp-into-template file1 [file2 ...]
-# Copies each file to the Python starter template, preserving relative paths.
-# Files are placed relative to the template root based on their dirname.
-function cp-into-template() {
-  local template_dir="$HOME/Projects/python/python-starter-template"
-  for file in "$@"; do
-    local target_dir="$template_dir/$(dirname "$file")"
-    mkdir -p "$target_dir"
-    cp "$file" "$target_dir/$(basename "$file")"
-  done
 }
 
 # list all URL schemes and their handlers on macOS
