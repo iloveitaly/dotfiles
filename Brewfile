@@ -6,7 +6,6 @@ tap 'homebrew/bundle'
 # == General Utilities
 brew "git"
 brew "vim"
-brew "lynx"
 brew "rename"
 brew "wget"
 brew "ngrep" # network grep
@@ -20,8 +19,6 @@ brew "httpie"
 brew "ncdu"
 brew "curl"
 brew "awk" # in codespaces, the default version is especially strange
-brew "awscli"
-brew "aws-sam-cli"
 brew "session-manager-plugin" if OS.mac?
 brew "cloc" # code analytics
 brew "hey"
@@ -32,11 +29,15 @@ brew "git-lfs"
 brew "vimcal"
 brew "caddy"
 brew "yazi"
-brew "setapp"
 brew "gitx" # visual git tool, kaleidoscope alternative
 brew "kdiff3"
 brew "gpatch" # update the builtin tool to the latest
+brew "gnu-sed"
 brew "buildkit"
+
+brew "setapp"
+brew "awscli"
+brew "aws-sam-cli"
 
 # == Data manipulation
 brew "jq" # json extraction
@@ -51,7 +52,6 @@ brew "htmlq" # jq for html
 brew "xsv" # csv tooling
 brew "tabiew" # tui for csv and data viewing
 # https://github.com/forensicmatt/datatui
-
 
 # == Shell productivity utilities
 brew "zsh"
@@ -96,23 +96,23 @@ brew "terminal-notifier" if OS.mac? # for `zsh-notify`
 if OS.mac?
     tap "afnanenayet/tap"
     brew "afnanenayet/tap/diffsitter"
+
     tap "noahgorstein/tap"
     brew "noahgorstein/tap/jqp" # jq playground
+
     brew "act" # gha local runner
-    brew "trunk-io"
     brew "pstree" # procs seem to have a tree view and is a bit better
     brew "broot" # better file finding
     brew "dolt"
     brew "noborus/tap/ov" # pager replacement
     brew "lnav" # log viewer, partial pager replacement
     brew "ollama"
-    brew "llm"
     brew "buildpacks/tap/pack"
     brew "dive" # docker inspection
     brew "pgcli" # better psql, with autocompletion and DATABASE_URL connection support
     brew "kitty" # yet another terminal
     brew "gmailctl" # gmail filter configuration as code
-    brew "cleanshot" # best email tool, not sure if it's better than dropbox capture
+    brew "cleanshot" # best screenshot tool, not sure if it's better than dropbox capture
     brew "google-cloud-sdk" # cli tools for google cloud
     brew "azure-cli"
     brew "certbot"
@@ -121,7 +121,6 @@ if OS.mac?
     brew "proxychains-ng"
     brew "mcpm"
     brew "soulver-cli"
-    brew "postgres@11"
 
     tap "ryanbekhen/nanoproxy"
     brew "nanoproxy"
@@ -139,7 +138,8 @@ if OS.mac?
     brew "pinentry-mac"
     brew "iloveitaly/tap/hyper-focus"
     brew "cursor"
-
+    
+    cask "mattt/tap/iMCP"
     cask "ghostty"
     cask "another-redis-desktop-manager"
     cask "todoist"
@@ -156,10 +156,7 @@ if OS.mac?
     cask "1password-cli"
     cask "google-drive"
     cask "iterm2"
-    # cask "slack"
-    cask "slack-beta"
-    # does not support silicon installation yet
-    system "arch -x86_64 brew install amazon-music"
+    cask "slack"
     cask "kap"
     cask "stay"
     cask "homebrew/cask-versions/kaleidoscope2"
@@ -191,27 +188,22 @@ if OS.mac?
     cask "muzzle"
     # cask "https://raw.githubusercontent.com/Homebrew/homebrew-cask/00a37cb6ea00ca2820652b75ebd1f57ba160c3e5/Casks/screenflow.rb"
     cask "visual-studio-code"
-    cask "visual-studio-code-insiders"
     cask "cloudapp"
     cask "chromedriver"
     # you must open up the docker macos app in order to symlink docker cli
-    cask "docker"
     cask "monitorcontrol"
     cask "activitywatch"
     cask "discord"
     cask "keybase"
     cask "telegram"
-    cask "alacritty", args: { no_quarantine: true }
     # helpful for phone-only applications that you want to run your mac without apple silicon
-    cask "bluestacks"
-    cask "cron"
+    cask "notion-calendar"
     cask "obsidian"
     cask "calibre"
     cask "shortcutdetective"
     cask "logitech-options"
     cask "karabiner-elements"
     cask "insomnia"
-    cask "mysteriumvpn"
     cask "stats"
     cask "vnc-viewer"
     cask "loom"
@@ -249,6 +241,7 @@ if OS.mac?
     cask "font-source-code-pro"
     cask "font-hack"
     cask "font-roboto-mono-nerd-font"
+    cask "font-fira-code-nerd-font"
 
     # == MacOS-only Shell Tooling
     # some of these tools are strictly terminal related, but do not play well with linux/codespaces
