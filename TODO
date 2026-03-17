@@ -3,6 +3,8 @@
   - [ ] https://github.com/nazya/micro-opener
 - [ ] https://github.com/ck3mp3r/laio-cli tmux plugin for layout management
 - [ ] https://github.com/jeffkaufman/icdiff i swear there was a different one
+  - [ ] https://github.com/homeport/dyff yaml specific diff tgool 
+  - [ ] https://gemini.google.com/app/ca50f375efc0814a maybe some other tools?
 - [ ] https://github.com/alexpasmantier/snob
 - [ ] https://github.com/Maxteabag/sqlit
 - [ ] https://github.com/woodstok/tmux-butler
@@ -53,7 +55,6 @@
 - [ ] https://github.com/ipython/ipython/issues/14015
 - [ ] https://github.com/charmbracelet/mods/
   - [ ] https://gist.github.com/peterldowns/5c013c5fe76facb9e8ff8ccd3905fe0b
-- [ ] https://github.com/dloss/klp log viewer
 - [ ] csv parsing
   - [ ] https://github.com/harelba/q/issues/339
 - [ ] tmux stuff
@@ -209,15 +210,21 @@
 - [ ] monitor switching via hammerspoon https://balatero.com/writings/hammerspoon/create-a-quick-monitor-input-switcher/
 - [ ] look into https://github.com/unixorn/awesome-zsh-plugins#themes
 - [ ] https://wakatime.com/pricing they have a zsh plugin. Interesting programming productivity tool.
-- [ ] only allow one vs code editor group to open up a given file
 - [ ] gpg-suite didn't work as well as pinentry for me, not sure if I was doing something wrong
 
-#### Tmux
+## Tools
+
+### Logging
+
+- [ ] https://www.kelora.dev/latest/
+- [ ] https://lnav.org
+- [ ] https://superdb.org
+
+## VSC
+
+- [ ] only allow one vs code editor group to open up a given file
+
+## Tmux
 
 - [ ] select contents in quotes
 - [ ] improve title contents https://github.com/intrntbrn/awesomewm-vim-tmux-navigator/blob/fc2b46896fe9daf1b1b1a6a0af5ae6fcfefa7511/README.md?plain=1#L146
-
-#### Better Terminals
-- [ ] https://github.com/ambiso/alacritty/commit/68994d6c1a4f8fac34e470cc2aa021bf1a81acae looks like alacritty has a fast search function
-- [ ] GPU powered terminal https://sw.kovidgoyal.net/kitty
-- [ ] <https://wezfurlong.org/wezterm/index.html> new terminal
