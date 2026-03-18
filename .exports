@@ -13,15 +13,20 @@ export PYTHON_DEVELOPMENT_TOGGLE="$HOME/Projects/python"
 # mise will manage our py versions
 export UV_PYTHON_DOWNLOADS=never
 
-# customize `fzf-file-widget`
 # TODO explore using fd instead of `find`
 # export FZF_DEFAULT_COMMAND='fd --type f --type d --hidden --strip-cwd-prefix --exclude .git'
+
+# customize `fzf-file-widget`
+# TODO unclear why we need height 100% here; need to look into:
+# > fzf-tab is designed primarily to replace TAB completion menus with fzf (that's its main purpose), but when loaded, it also affects / wraps / influences the standard fzf widgets like fzf-cd-widget (Alt+C) and fzf-file-widget (Ctrl+T) in many setups.
 export FZF_CTRL_T_OPTS="
+  --height 100%
   --preview 'if [ -d {} ]; then eza --tree --color=always --icons=always {} | head -200; else bat --color=always --style=numbers --line-range :500 {}; fi'
   --preview-window right:60%:wrap
   --bind 'ctrl-/:change-preview-window(down|hidden|right)'
   --walker-skip .git,node_modules,target,__pycache__,venv,.venv,dist,build
 "
+
 # customize fzf defaults (so we can keep page up/down) + some keybindings
 export GIT_FUZZY_FZF_DEFAULT_OPTS="\
   --layout=reverse \
