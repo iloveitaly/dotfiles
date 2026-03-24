@@ -153,7 +153,6 @@ if OS.mac?
     cask "google-chrome"
     cask "dropbox"
     cask "1password"
-    cask "1password-cli"
     cask "google-drive"
     cask "iterm2"
     cask "slack"
