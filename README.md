@@ -32,10 +32,10 @@ To run everything else (brew install, keybindings, zsh setup, etc):
 
 ## Development
 
-For easy development, you can automatically run the `rsync` command in `bootstrap.sh` each time a file changes:
+This command will sync your config files each time you make a change:
 
 ```shell
-fd --hidden --max-depth 4 -t f --exclude=.git | entr rsync --exclude-from=install/standard-exclude.txt -av . ~
+just sync
 ```
 
 ## Clone Interesting Dotfiles Locally
