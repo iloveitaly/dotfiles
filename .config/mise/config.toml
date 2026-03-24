@@ -18,6 +18,7 @@ cargo-binstall = "latest"
 "github:gitleaks/gitleaks" = "latest"
 "github:iloveitaly/richclip" = "latest"
 "github:googleworkspace/cli" = "latest"
+"1password-cli" = "latest"
 fzf = "latest"
 # "pipx:llm-ide-prompts" = "latest"
 
