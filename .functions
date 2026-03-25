@@ -271,6 +271,11 @@ macos-logout() {
   # may need to kill WindowManager here too, looks like that is the one that gets tripped up
 }
 
+# copy file to clipboard
+pbcat() {
+  cat "$@" | pbcopy
+}
+
 copy_with_context() {
   local file=$1
   local line=$2
