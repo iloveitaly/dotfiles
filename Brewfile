@@ -34,6 +34,7 @@ brew "kdiff3"
 brew "gpatch" # update the builtin tool to the latest
 brew "gnu-sed"
 brew "buildkit"
+brew "boxes"
 
 brew "setapp"
 brew "awscli"
@@ -64,7 +65,6 @@ brew "tldr"
 brew "zoxide"
 brew "fzf"
 brew "bc" # used by git-fuzzy
-brew "diff-so-fancy" # diff replacement
 brew "git-delta" # diff replacement
 brew "bat" # cat, can also do paging
 brew "eza" # ls
@@ -117,7 +117,6 @@ if OS.mac?
     brew "azure-cli"
     brew "certbot"
     brew "git-credential-manager"
-    brew "blueutil"
     brew "proxychains-ng"
     brew "mcpm"
     brew "soulver-cli"
