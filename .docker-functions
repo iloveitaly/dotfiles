@@ -197,3 +197,31 @@ docker-clean-images() {
   docker system prune --all
   docker volume prune --all
 }
+
+# container-shell: Run a temporary dev shell for the current project
+# 
+# Mounts current directory read-only at /app, sets it as working dir,
+# runs `mise trust && mise install`, then drops into bash.
+# Container name is based on basename of PWD.
+# If container already exists, prompts to kill & restart.
+
+container-shell() {
+  local name="container-shell-$(basename "$PWD")"
+
+  if docker ps -a --format '{{.Names}}' | grep -q "^${name}$"; then
+    echo -n "Container $name already exists. Kill and restart? (y/N) "
+    read confirm
+    if [[ $confirm =~ ^[Yy]$ ]]; then
+      docker rm -f "$name" >/dev/null
+    else
+      echo "Aborted."
+      return 1
+    fi
+  fi
+
+  docker run -it --name "$name" \
+    -v "$(pwd):/app:ro" \
+    -w /app \
+    ghcr.io/railwayapp/railpack-builder:latest \
+    sh -c "mise trust && mise install && bash"
+}
