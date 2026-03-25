@@ -64,6 +64,8 @@ alias c="tr -d '\n' | pbcopy"
 alias g="git"
 alias gp="g push origin HEAD"
 alias gpf='g push --force origin HEAD'
+alias gha='g fuzzy actions'
+alias gpr='g fuzzy pr'
 
 # rails
 alias b="bundle"
