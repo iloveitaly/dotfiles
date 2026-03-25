@@ -9,9 +9,9 @@
 
   # customize pager with custom diff processor and pre-configured section delimiter
   # https://github.com/noborus/ov/issues/430
-  # https://github.com/so-fancy/diff-so-fancy/issues/364#issuecomment-652598381
   # TODO cannot use delta https://github.com/dandavison/delta/issues/1492
-  pager = "diff-so-fancy | ov --section-delimiter '^(Date|added|deleted|modified): '"
+  # pager = "delta | ov --section-delimiter '^(Date|added|deleted|modified): '"
+  pager = delta
 
   editor = micro
 
@@ -55,9 +55,6 @@
   # git reset and restore the file, useful when dealing with merge conflicts
   rr = "!f() { [ -z \"$1\" ] && { echo 'Error: No file specified.' >&2; exit 1; }; git reset \"$1\" && git restore \"$1\"; }; f"
 
-  # TODO https://github.com/so-fancy/diff-so-fancy/issues/473
-  addp = -c 'interactive.diffFilter=less' add -p
-
   # review changes exclusive to the current branch (right diff) using Kalidescope
   ksreview = "!f() { local SHA=${1:-HEAD}; local default_branch=$(git branch -l master main | sed 's/^* //'); local BRANCH=${2:-$default_branch}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool $BRANCH...$SHA; }; f"
 
@@ -84,8 +81,6 @@
 
   # `tee /dev/tty` allows us to output the result to stdout *and* pipe it to pbcopy
   sha = !git rev-parse HEAD | tr -d "[:space:]" | tee /dev/tty | pbcopy
-  # `git sha` alias is not used to extract the current SHA because of the /dev/tty hack
-  sha-url = !echo $(git config --get remote.origin.url | sed -e 's/\\.git$//g')/commit/$(git rev-parse HEAD | tr -d "[:space:]") | tee /dev/tty | pbcopy
 
   # http://stackoverflow.com/questions/12373733/staging-deleted-files
   rm-deleted = !git rm $(git ls-files --deleted)
@@ -113,8 +108,13 @@
 
   # http://urbanautomaton.com/blog/2014/09/22/tracking-method-history-in-git/
   lm = "!f(){ local method=$1; local file=$2; [[ -n \"$method\" && -n \"$file\" ]] || exit 1; git log -L :$method:$file;}; f"
+
 [interactive]
-  diffFilter = diff-so-fancy --patch
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+
 [pretty]
   # TODO if there's no body, an extra newline is added :/
   compressed-oneline="%Cred%h%Creset %Cgreen(%cr)%Creset %s %C(bold blue)<%an>%Creset%n%b"
@@ -124,6 +124,8 @@
   pretty=compressed-oneline
 [rerere]
   enabled = 0
+
+# on macos, the keychain is used by default, but using this enables the same auth method to be used on linux too
 [credential]
   helper = /usr/local/bin/git-credential-manager
 
@@ -175,6 +177,11 @@
   program = /opt/homebrew/bin/gpg
 [init]
   defaultBranch = master
+
+################
+# Color Config #
+################
+
 [color]
   ui = auto
 [color "branch"]
