@@ -123,9 +123,22 @@ pip-show() {
     echo "No site-packages found"
     return 1
   fi
-  # Normalize package name for .dist-info (lowercase, hyphens).
-  local dist_norm=$(echo "${package,,}" | tr '_' '-')
-  local dist_info=$(find "$site_packages" -maxdepth 1 -type d -name "${dist_norm}*.dist-info" 2>/dev/null | head -n1)
+  local package_lower=${(L)package}
+  local dist_info=""
+  local normalized_name=""
+  typeset -a dist_candidates egg_candidates
+  # Dist-info names are normalized inconsistently in the wild, so try both variants.
+  dist_candidates=(
+    "${package_lower//_/-}"
+    "${package_lower//-/_}"
+    "$package_lower"
+  )
+  for normalized_name in "${dist_candidates[@]}"; do
+    dist_info=$(find "$site_packages" -maxdepth 1 -type d -name "${normalized_name}*.dist-info" 2>/dev/null | head -n1)
+    if [[ -n "$dist_info" ]]; then
+      break
+    fi
+  done
   if [[ -n "$dist_info" ]]; then
     # Standard install: Use RECORD file to identify top-level package dir.
     local record="$dist_info/RECORD"
@@ -138,26 +151,37 @@ pip-show() {
     # Parsing the first path component identifies the package root dir (e.g., 'requests').
     # This reliably pinpoints the directory even if package name differs slightly from dist-info.
     local top_levels=$(awk -F, '{print $1}' "$record" | grep '/' | awk -F/ '{print $1}' | sort -u | grep -vE '\.(dist|egg)-info$')
-    local num_levels=$(echo "$top_levels" | wc -l | sed 's/ //g')
+    local num_levels=$(printf '%s\n' "$top_levels" | sed '/^$/d' | wc -l | tr -d ' ')
     if [[ $num_levels -ne 1 ]]; then
       echo "Unexpected number of top-level dirs ($num_levels) for $package"
       return 1
     fi
     local package_path="$site_packages/$top_levels"
+    package_path="${package_path:A}"
     echo "$package_path"
     cd "$package_path" || return 1
     code "$package_path"
     return 0
   fi
-  # Normalize package name for .egg-link (lowercase, underscores).
-  local egg_norm=$(echo "${package,,}" | tr '-' '_')
-  local egg_link=$(find "$site_packages" -maxdepth 1 -type f -name "${egg_norm}.egg-link" 2>/dev/null | head -n1)
+  egg_candidates=(
+    "${package_lower//-/_}"
+    "${package_lower//_/-}"
+    "$package_lower"
+  )
+  local egg_link=""
+  for normalized_name in "${egg_candidates[@]}"; do
+    egg_link=$(find "$site_packages" -maxdepth 1 -type f -name "${normalized_name}.egg-link" 2>/dev/null | head -n1)
+    if [[ -n "$egg_link" ]]; then
+      break
+    fi
+  done
   if [[ -z "$egg_link" ]]; then
     echo "Package not found: $package"
     return 1
   fi
   # Editable install: Read source path from first line of .egg-link file.
   local package_path=$(head -n1 "$egg_link" | tr -d '\r')
+  package_path="${package_path:A}"
   if [[ ! -d "$package_path" ]]; then
     echo "Source path not found: $package_path"
     return 1
