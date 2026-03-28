@@ -9,6 +9,7 @@ upgrade:
 	brew upgrade atuin awscli git rg fd gh zsh gmailctl dolt 1password-cli yazi dolt bat ov
 	gh extension upgrade --all
 	
+	mise self-update
 	mise upgrade
 
 	# TODO can't figure out why this is not working
@@ -24,18 +25,18 @@ list-quicklook:
 	qlmanage -m plugins
 
 configure-launchagents:
-  # tmux first
-  # TODO link to blog post
-  cp ./tmux.plist ~/Library/LaunchAgents/mikebianco.tmux.plist
-  tmux kill-server
-  launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/mikebianco.tmux.plist
+	# tmux first
+	# TODO link to blog post
+	cp ./tmux.plist ~/Library/LaunchAgents/mikebianco.tmux.plist
+	tmux kill-server
+	launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/mikebianco.tmux.plist
 
-  sudo cp ./pty.plist /Library/LaunchDaemons/mikebianco.pty.plist
-  sudo launchctl bootstrap system /Library/LaunchDaemons/mikebianco.pty.plist
+	sudo cp ./pty.plist /Library/LaunchDaemons/mikebianco.pty.plist
+	sudo launchctl bootstrap system /Library/LaunchDaemons/mikebianco.pty.plist
 
 pull-ide-integration:
-  cp ~/Library/Application\ Support/Code/User/{settings,keybindings}.json .vscode/
-  cp ~/Library/Application\ Support/Cursor/User/{settings,keybindings}.json .cursor/
+	cp ~/Library/Application\ Support/Code/User/{settings,keybindings}.json .vscode/
+	cp ~/Library/Application\ Support/Cursor/User/{settings,keybindings}.json .cursor/
 
 # vscode and cursor integration
 patch-ide-integration:
@@ -45,5 +46,5 @@ patch-ide-integration:
 # Extract user and core.whitespace config to .gitconfig-agent, the default gitconfig assumes an interactive TUI, so we have a simplified config
 # to avoid weird agent problems.
 sync-gitconfig-agent:
-    yq -p ini -o ini '{"user": .user, "core": {"whitespace": .core.whitespace}}' .gitconfig > .gitconfig-agent
-    @echo "✓ .gitconfig-agent updated via yq"
+		yq -p ini -o ini '{"user": .user, "core": {"whitespace": .core.whitespace}}' .gitconfig > .gitconfig-agent
+		@echo "✓ .gitconfig-agent updated via yq"
