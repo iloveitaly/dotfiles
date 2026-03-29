@@ -11,7 +11,8 @@
   # https://github.com/noborus/ov/issues/430
   # TODO cannot use delta https://github.com/dandavison/delta/issues/1492
   # pager = "delta | ov --section-delimiter '^(Date|added|deleted|modified): '"
-  pager = delta
+  # pager = delta
+  pager = ov
 
   editor = micro
 
@@ -112,6 +113,10 @@
 [interactive]
     diffFilter = delta --color-only
 
+    # https://github.com/Wilfred/difftastic/issues/280
+    # TODO can we use difftastic for this?
+    # diffFilter = difft
+
 [delta]
     navigate = true  # use n and N to move between diff sections
 
@@ -129,7 +134,13 @@
 [credential]
   helper = /usr/local/bin/git-credential-manager
 
+[pager]
+    # Use a pager if the difftool output is larger than one screenful,
+    # consistent with the behaviour of `git diff`.
+    difftool = true
+
 [diff]
+  external = difft
   tool = ksdiff
   renames = copies                    # identify renames and copies
   mnemonicprefix = true               # use better symbols than A and B
@@ -137,6 +148,7 @@
 
 [difftool]
   prompt = false
+
 [difftool "ksdiff"]
   prompt = false
   cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
@@ -153,7 +165,6 @@
 
 [mergetool "code"]
   cmd = code --wait --merge \"$REMOTE\" \"$LOCAL\" \"$BASE\" \"$MERGED\"
-
 [mergetool "ksdiff"]
   cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
   trustExitCode = true
