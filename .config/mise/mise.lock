@@ -53,52 +53,8 @@ checksum = "sha256:9d0e0f923e9626f3bc6044fc32e0d3ab29039aea753f5678ef8801cf26f75
 url = "https://github.com/oven-sh/bun/releases/download/bun-v1.3.11/bun-windows-x64-baseline.zip"
 
 [[tools.cargo-binstall]]
-version = "1.17.8"
+version = "1.17.9"
 backend = "aqua:cargo-bins/cargo-binstall"
-
-[tools.cargo-binstall."platforms.linux-arm64"]
-checksum = "sha256:81d6245bd1a7a89e914d29af81d82280540e94927e61492a0fc359820cd97abb"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.17.8/cargo-binstall-aarch64-unknown-linux-musl.tgz"
-
-[tools.cargo-binstall."platforms.linux-arm64-musl"]
-checksum = "sha256:81d6245bd1a7a89e914d29af81d82280540e94927e61492a0fc359820cd97abb"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.17.8/cargo-binstall-aarch64-unknown-linux-musl.tgz"
-
-[tools.cargo-binstall."platforms.linux-x64"]
-checksum = "sha256:1da1ef72448db667cc4ae6d48e37451087602c8c07dc61782a4a5e538303e015"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.17.8/cargo-binstall-x86_64-unknown-linux-musl.tgz"
-
-[tools.cargo-binstall."platforms.linux-x64-baseline"]
-checksum = "sha256:1da1ef72448db667cc4ae6d48e37451087602c8c07dc61782a4a5e538303e015"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.17.8/cargo-binstall-x86_64-unknown-linux-musl.tgz"
-
-[tools.cargo-binstall."platforms.linux-x64-musl"]
-checksum = "sha256:1da1ef72448db667cc4ae6d48e37451087602c8c07dc61782a4a5e538303e015"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.17.8/cargo-binstall-x86_64-unknown-linux-musl.tgz"
-
-[tools.cargo-binstall."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:1da1ef72448db667cc4ae6d48e37451087602c8c07dc61782a4a5e538303e015"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.17.8/cargo-binstall-x86_64-unknown-linux-musl.tgz"
-
-[tools.cargo-binstall."platforms.macos-arm64"]
-checksum = "sha256:af87346fdb186f0a2333bc0a30cfddd6faa98b31145ef1bb19c284aedea65972"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.17.8/cargo-binstall-aarch64-apple-darwin.zip"
-
-[tools.cargo-binstall."platforms.macos-x64"]
-checksum = "sha256:db353e01b582c97382178db9b4dfe22d81109782e480a38f3db953e62f569952"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.17.8/cargo-binstall-x86_64-apple-darwin.zip"
-
-[tools.cargo-binstall."platforms.macos-x64-baseline"]
-checksum = "sha256:db353e01b582c97382178db9b4dfe22d81109782e480a38f3db953e62f569952"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.17.8/cargo-binstall-x86_64-apple-darwin.zip"
-
-[tools.cargo-binstall."platforms.windows-x64"]
-checksum = "sha256:fef07560d4e391812091bb30c6ed1bd5289f74403a0c947b47b8a8c7a597b51b"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.17.8/cargo-binstall-x86_64-pc-windows-msvc.zip"
-
-[tools.cargo-binstall."platforms.windows-x64-baseline"]
-checksum = "sha256:fef07560d4e391812091bb30c6ed1bd5289f74403a0c947b47b8a8c7a597b51b"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.17.8/cargo-binstall-x86_64-pc-windows-msvc.zip"
 
 [[tools."cargo:ast-grep"]]
 version = "0.42.0"
@@ -399,6 +355,15 @@ url = "https://github.com/googleworkspace/cli/releases/download/v0.18.1/gws-x86_
 url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/376691051"
 provenance = "github-attestations"
 
+[[tools."github:harehare/mq"]]
+version = "0.5.24"
+backend = "github:harehare/mq"
+
+[tools."github:harehare/mq"."platforms.macos-arm64"]
+checksum = "sha256:a21b0e55231e54e606c64e8a83f2bc8be36313167652a181d387ad342a12af3d"
+url = "https://github.com/harehare/mq/releases/download/v0.5.24/mq-aarch64-apple-darwin"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/383534353"
+
 [[tools."github:iloveitaly/richclip"]]
 version = "1.3.0"
 backend = "github:iloveitaly/richclip"
@@ -518,66 +483,11 @@ url = "https://github.com/nnnkkk7/lazyactions/releases/download/v0.0.13/lazyacti
 url_api = "https://api.github.com/repos/nnnkkk7/lazyactions/releases/assets/374567697"
 
 [[tools."github:railwayapp/cli"]]
-version = "4.33.0"
+version = "4.35.0"
 backend = "github:railwayapp/cli"
 
-[tools."github:railwayapp/cli"."platforms.linux-arm64"]
-checksum = "sha256:46f71d4eba5cf988e4d71b08077908fe110d71e3fe944bc789764e5b983ae875"
-url = "https://github.com/railwayapp/cli/releases/download/v4.33.0/railway-v4.33.0-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/376575992"
-
-[tools."github:railwayapp/cli"."platforms.linux-arm64-musl"]
-checksum = "sha256:46f71d4eba5cf988e4d71b08077908fe110d71e3fe944bc789764e5b983ae875"
-url = "https://github.com/railwayapp/cli/releases/download/v4.33.0/railway-v4.33.0-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/376575992"
-
-[tools."github:railwayapp/cli"."platforms.linux-x64"]
-checksum = "sha256:807bac2d2b530d4696102b19e1352f0258cf8ba2e7251d7d519d074270ed320e"
-url = "https://github.com/railwayapp/cli/releases/download/v4.33.0/railway-v4.33.0-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/376575816"
-
-[tools."github:railwayapp/cli"."platforms.linux-x64-baseline"]
-checksum = "sha256:807bac2d2b530d4696102b19e1352f0258cf8ba2e7251d7d519d074270ed320e"
-url = "https://github.com/railwayapp/cli/releases/download/v4.33.0/railway-v4.33.0-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/376575816"
-
-[tools."github:railwayapp/cli"."platforms.linux-x64-musl"]
-checksum = "sha256:bc9153ab225dc7a8224de6d471bb2efeb1005c5820813b8f57bacc2d82ce7166"
-url = "https://github.com/railwayapp/cli/releases/download/v4.33.0/railway-v4.33.0-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/376575963"
-
-[tools."github:railwayapp/cli"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:807bac2d2b530d4696102b19e1352f0258cf8ba2e7251d7d519d074270ed320e"
-url = "https://github.com/railwayapp/cli/releases/download/v4.33.0/railway-v4.33.0-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/376575816"
-
-[tools."github:railwayapp/cli"."platforms.macos-arm64"]
-checksum = "sha256:74b420f8a220e94ff935dc7dc49dcc521a69d77d5e2eac9e5d87fae2187f14e6"
-url = "https://github.com/railwayapp/cli/releases/download/v4.33.0/railway-v4.33.0-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/376576016"
-
-[tools."github:railwayapp/cli"."platforms.macos-x64"]
-checksum = "sha256:a64d78dda8a3ff30828f8788fd1477e84c14a95ef207d9bd4b118d3446ad72b5"
-url = "https://github.com/railwayapp/cli/releases/download/v4.33.0/railway-v4.33.0-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/376575894"
-
-[tools."github:railwayapp/cli"."platforms.macos-x64-baseline"]
-checksum = "sha256:a64d78dda8a3ff30828f8788fd1477e84c14a95ef207d9bd4b118d3446ad72b5"
-url = "https://github.com/railwayapp/cli/releases/download/v4.33.0/railway-v4.33.0-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/376575894"
-
-[tools."github:railwayapp/cli"."platforms.windows-x64"]
-checksum = "sha256:c748eb7deed9a9978893210414249f83265f1802b219cb3e1c0fb4bf0ecf2a2e"
-url = "https://github.com/railwayapp/cli/releases/download/v4.33.0/railway-v4.33.0-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/376576860"
-
-[tools."github:railwayapp/cli"."platforms.windows-x64-baseline"]
-checksum = "sha256:736cf5d0fc9278cacf53288e1b109e1ba089058b10f072d4dcff1c8283baf63b"
-url = "https://github.com/railwayapp/cli/releases/download/v4.33.0/railway-v4.33.0-x86_64-pc-windows-gnu.zip"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/376577423"
-
 [[tools."github:railwayapp/railpack"]]
-version = "0.22.1"
+version = "0.22.2"
 backend = "github:railwayapp/railpack"
 
 [[tools."github:zyedidia/micro"]]
@@ -696,7 +606,7 @@ version = "1.0.0"
 backend = "go:github.com/standardbeagle/mcp-clip"
 
 [[tools.just]]
-version = "1.48.0"
+version = "1.48.1"
 backend = "ubi:casey/just"
 
 [[tools.node]]
@@ -808,9 +718,9 @@ checksum = "sha256:4375268618b61dadf53bf8e54beaca74ea30580c90d3c47ea9f2a134bd3e4
 url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.4.9-1/rubyinstaller-3.4.9-1-x64.7z"
 
 [[tools.rust]]
-version = "1.94.0"
+version = "1.94.1"
 backend = "core:rust"
 
 [[tools.uv]]
-version = "0.11.1"
+version = "0.11.2"
 backend = "asdf:uv"

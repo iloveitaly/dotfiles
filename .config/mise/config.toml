@@ -20,7 +20,7 @@ cargo-binstall = "latest"
 "github:googleworkspace/cli" = "latest"
 "1password-cli" = "latest"
 fzf = "latest"
-# "pipx:llm-ide-prompts" = "latest"
+"github:harehare/mq" = "latest"
 
 # language and language tooling
 direnv = "latest"
