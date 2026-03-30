@@ -66,6 +66,7 @@ alias gp="g push origin HEAD"
 alias gpf='g push --force origin HEAD'
 alias gha='g fuzzy actions'
 alias gpr='g fuzzy pr'
+alias dnav="git diff --no-ext-diff | diffnav"
 
 # rails
 alias b="bundle"
