@@ -1,0 +1,88 @@
+{
+"context": {
+    "fileName": ["AGENTS.md", "GEMINI.md"]
+  },
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    },
+    "enablePermanentToolApproval": true
+  },
+  "general": {
+    "previewFeatures": true,
+    "sessionRetention": {
+      "warningAcknowledged": true,
+      "enabled": true,
+      "maxAge": "120d"
+    },
+    "preferredEditor": "vscode"
+  },
+  "mcpServers": {
+    "chrome-devtools": {
+      "command": "bunx",
+      "args": [
+        "chrome-devtools-mcp@latest",
+        "--isolated"
+      ]
+    },
+    "google-workspace": {
+      "command": "node",
+      "args": [
+        "/Users/mike/.gemini/extensions/google-workspace/dist/index.js",
+        "--use-dot-names"
+      ],
+      "excludeTools": [
+        "slides.getText",
+        "slides.find",
+        "slides.getMetadata",
+        "slides.getImages",
+        "slides.getSlideThumbnail",
+        "chat.listSpaces",
+        "chat.findSpaceByName",
+        "chat.sendMessage",
+        "chat.getMessages",
+        "chat.sendDm",
+        "chat.findDmByEmail",
+        "chat.listThreads",
+        "chat.setUpSpace"
+      ]
+    }
+  },
+  "tools": {
+    "useRipgrep": true,
+    "autoAccept": true,
+    "shell": {
+      "showColor": true
+    }
+  },
+  "experimental": {
+    "modelSteering": true,
+    "useModelRouter": true,
+    "skills": true,
+    "plan": true,
+    "extensionReloading": true
+  },
+  "ui": {
+    "footer": {
+      "hideContextPercentage": false
+    },
+    "showModelInfoInChat": true,
+    "hideBanner": true
+  },
+  "agents": {
+    "overrides": {
+      "codebase_investigator": {
+        "enabled": true,
+        "runConfig": {
+          "maxTurns": 20
+        }
+      }
+    }
+  },
+  "model": {
+    "name": "auto-gemini-3"
+  },
+  "ide": {
+    "hasSeenNudge": true
+  }
+}
