@@ -1,4 +1,3 @@
-.alacritty.yml
 .tmux.conf
 .tmux-shell.sh
 .ssh
@@ -7,4 +6,5 @@ mackup.cfg
 .config/gmailctl/
 .config/focus/
 .config/extrakto/
+.config/docker/
 time-machine-includes.sh
