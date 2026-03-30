@@ -21,6 +21,7 @@ cargo-binstall = "latest"
 "1password-cli" = "latest"
 fzf = "latest"
 "github:harehare/mq" = "latest"
+"github:dlvhdr/diffnav" = "latest"
 
 # language and language tooling
 direnv = "latest"

@@ -226,6 +226,65 @@ url = "https://github.com/junegunn/fzf/releases/download/v0.70.0/fzf-0.70.0-wind
 checksum = "sha256:7465a6738e2c844742df973459c7509aed2d10d7a72bfd6de201b867b4eda4cd"
 url = "https://github.com/junegunn/fzf/releases/download/v0.70.0/fzf-0.70.0-windows_amd64.zip"
 
+[[tools."github:dlvhdr/diffnav"]]
+version = "0.11.0"
+backend = "github:dlvhdr/diffnav"
+
+[tools."github:dlvhdr/diffnav"."platforms.linux-arm64"]
+checksum = "sha256:902b88c34d3e0c26c2f2f0cef2f3550d4f12b8e8e72323f36a86b668a009b0d8"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589421"
+
+[tools."github:dlvhdr/diffnav"."platforms.linux-arm64-musl"]
+checksum = "sha256:902b88c34d3e0c26c2f2f0cef2f3550d4f12b8e8e72323f36a86b668a009b0d8"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589421"
+
+[tools."github:dlvhdr/diffnav"."platforms.linux-x64"]
+checksum = "sha256:35b0c3afb84f14b7e0aed411fbb9fd352b67a90885448f94a38829ebf74275e4"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589420"
+
+[tools."github:dlvhdr/diffnav"."platforms.linux-x64-baseline"]
+checksum = "sha256:35b0c3afb84f14b7e0aed411fbb9fd352b67a90885448f94a38829ebf74275e4"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589420"
+
+[tools."github:dlvhdr/diffnav"."platforms.linux-x64-musl"]
+checksum = "sha256:35b0c3afb84f14b7e0aed411fbb9fd352b67a90885448f94a38829ebf74275e4"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589420"
+
+[tools."github:dlvhdr/diffnav"."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:35b0c3afb84f14b7e0aed411fbb9fd352b67a90885448f94a38829ebf74275e4"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589420"
+
+[tools."github:dlvhdr/diffnav"."platforms.macos-arm64"]
+checksum = "sha256:a4cbb3222708fc5662877d3b0a01f5b7625363f6e83c498cb746bf6b3058588e"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589428"
+
+[tools."github:dlvhdr/diffnav"."platforms.macos-x64"]
+checksum = "sha256:33a3911292dcf013953e3678aaa85fbc4aab50af5946002c8ff25e84c1b75cc2"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Darwin_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589427"
+
+[tools."github:dlvhdr/diffnav"."platforms.macos-x64-baseline"]
+checksum = "sha256:33a3911292dcf013953e3678aaa85fbc4aab50af5946002c8ff25e84c1b75cc2"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Darwin_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589427"
+
+[tools."github:dlvhdr/diffnav"."platforms.windows-x64"]
+checksum = "sha256:cd246c70f90e1346ec363f5819b9d9259112ce13c216f2aeebe7795f66288732"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Windows_x86_64.zip"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589423"
+
+[tools."github:dlvhdr/diffnav"."platforms.windows-x64-baseline"]
+checksum = "sha256:cd246c70f90e1346ec363f5819b9d9259112ce13c216f2aeebe7795f66288732"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Windows_x86_64.zip"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589423"
+
 [[tools."github:gitleaks/gitleaks"]]
 version = "8.30.1"
 backend = "github:gitleaks/gitleaks"
