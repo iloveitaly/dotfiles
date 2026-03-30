@@ -13,3 +13,5 @@
 /.ssh/config_extra
 /.ssh/vscode_config
 /.ssh/op
+
+/.claude/settings.local.json
