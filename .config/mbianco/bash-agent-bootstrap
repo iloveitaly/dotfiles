@@ -1,4 +1,3 @@
-# bash-agent-bootstrap
 # This file is loaded by BASH_ENV for non-interactive bash shells in the agent environment.
 
 # direnv launches a bash subshell, which would pickup on the BASH_ENV config, but we do NOT want to set additional config!
@@ -30,6 +29,7 @@ if ai_is_agent_terminal; then
   export GIT_EDITOR=true
   export PAGER=cat
   export GIT_PAGER=$PAGER
+  export GH_PAGER=$PAGER
   export MANPAGER=$PAGER
 
   # Simple prompt for bash if it happens to be interactive (though BASH_ENV is mostly for non-interactive)
