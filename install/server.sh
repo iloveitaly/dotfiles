@@ -10,7 +10,7 @@ rsync --exclude-from="install/standard-exclude.txt" \
   -av . ~
 
 sudo apt install snapd
-sudo snap install yq diff-so-fancy speedtest
+sudo snap install yq speedtest
 
 curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 
@@ -68,7 +68,6 @@ EOF
 
 # delete some zsh_plugins that are macos specific
 sed -i '/zicompdef/d' ~/.zsh_plugins # assumes rg, etc which is not the same on servers :/
-sed -i '/iTerm2-shell/d' ~/.zsh_plugins
 sed -i '/zsh-auto-notify/d' ~/.zsh_plugins
 # sed -i '/fast-syntax-highlighting/d' ~/.zsh_plugins
 # sed -i '/zsh-autosuggestions/d' ~/.zsh_plugins
