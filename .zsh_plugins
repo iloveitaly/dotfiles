@@ -110,7 +110,8 @@ zinit wait'2' lucid for \
   wfxr/forgit \
   caarlos0/ports \
   OMZ::plugins/extract \
-  OMZ::plugins/universalarchive
+  OMZ::plugins/universalarchive \
+  OMZP::git-auto-fetch
 
 # Prompt : https://github.com/starship/starship
 zinit ice from"gh-r" as"command" atload'eval "$(starship init zsh)"'
