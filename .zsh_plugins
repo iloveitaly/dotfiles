@@ -27,12 +27,16 @@
 #   - running direnv async may result in terminal mutation after the prompt appears, which is annoying, but what's worse
 #     is direnv not knowing the correct default PATH and causing unexpected mutations (and therefore missing binaries),
 #     so we are ok with this tradeoff given we are forcing direnv + mise sync when a agent is running the terminal (via ~/.zshenv).
-#     If direnv is managed via mise, mise must go first, but this means that its hooks will *not* run first.
+#     If direnv is managed via mise, mise must go first, but this means that direnv hooks will *not* run first. This becomes
+#     tricky if direnv is managing PATH since (a) direnv will mutate path (b) mise will mutate path and (c) on next .envrc
+#     edit direnv will overwrite whatever changes mise made to PATH. To avoid this we ensure that PATH mutations only occur
+#     in mise and not in direnv.
 #   - toku-sa-n/zsh-dot-up hooks into the ZLE line rendering, so it's important that it is loaded at the same time as
 #     other ZLE modifying plugins like zsh-autosuggestions, otherwise it will crash your terminal.
 
 # tools we need right away
 zinit wait'0a' lucid for \
+  wintermi/zsh-mise \
   'https://github.com/ajeetdsouza/zoxide/blob/main/zoxide.plugin.zsh'
 
 # completions and helpful utilities that need to be loaded early, but fine if ~500ms delay
@@ -46,7 +50,6 @@ zinit wait'0b' lucid for \
   mafredri/zsh-async \
   as"program" pick"bin/git-fuzzy" bigH/git-fuzzy \
   'https://gist.github.com/iloveitaly/64b3ebdb50b90057ac820b25b4072970/raw/direnv.plugin.zsh' \
-  wintermi/zsh-mise \
   iloveitaly/zsh-ai-completions \
   multisrc"${HOME}/.config/mbianco/zsh_plugins/0b/*.zsh" nocompile \
   'https://gist.github.com/iloveitaly/4eac0f4ddb3f8162f95fa3ed6f123a06/raw/1password.zsh' \
