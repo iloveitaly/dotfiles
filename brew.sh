@@ -24,7 +24,6 @@ brew cleanup
 
 # shell
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-(cd ~/.config/ && curl -LO https://raw.githubusercontent.com/sindresorhus/iterm2-snazzy/master/Snazzy.itermcolors) && open ~/.config/Snazzy.itermcolors
 
 # iTerm copy mode conflicted with a previous shortcut that I have seared into my memory
 # however, I can remap this via macos config. TODO would be great to move this over to `osx.sh`
