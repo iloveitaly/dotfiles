@@ -63,3 +63,41 @@ ask_llm_gemini() {
 }
 # can't use a `?` in a function name, only an alias
 alias "ai?"="ask_llm_gemini"
+
+mcp-inspect() {
+  local SERVER=$1
+  # Defaults to your settings file if a second argument isn't provided
+  local CONFIG=${2:-.gemini/settings.json}
+
+  # Ensure the config file exists first
+  if [[ ! -f "$CONFIG" ]]; then
+    echo "Error: File not found -> $CONFIG"
+    return 1
+  fi
+
+  # If no server is provided, print usage and list available servers
+  if [[ -z "$SERVER" ]]; then
+    echo "Usage: mcp-inspect <server_key> [path/to/settings.json]"
+    echo "\nAvailable servers in $CONFIG:"
+    pnpx json5 "$CONFIG" | jq -r '.mcpServers | keys[] | "  - \(.)"'
+    return 1
+  fi
+
+  # 1. Parse JSON5 with pnpx, substitute env vars, extract array with jq, escape for shell
+  local CMD
+  CMD=$(pnpx json5 "$CONFIG" | envsubst | jq -r ".mcpServers[\"$SERVER\"] | select(. != null) | [.command] + (.args // []) | @sh")
+
+  if [[ -z "$CMD" ]]; then
+    echo "Error: Server '$SERVER' not found in $CONFIG (or has no command)"
+    return 1
+  fi
+
+  # Build the final execution string using pnpx
+  local EXEC_CMD="pnpx @modelcontextprotocol/inspector $CMD"
+
+  # Print the command in bold cyan (\e[1;36m) and reset (\e[0m)
+  printf "\n\e[1;36m🚀 Executing: %s\e[0m\n\n" "$EXEC_CMD"
+  
+  # 2. Execute the inspector
+  eval "$EXEC_CMD"
+}
