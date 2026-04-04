@@ -1,5 +1,7 @@
 {
   "diffgutter": true,
   "clipboard": "external",
-  "parsecursor": true
+  "parsecursor": true,
+  "lsp.server": "markdown=marksman,python=pylsp,typescript=typescript-language-server"
+  
 }

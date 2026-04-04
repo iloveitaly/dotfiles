@@ -11,6 +11,7 @@
   "AltShift-Left": "SelectToStartOfLine",
   "AltShift-Right": "SelectToEndOfLine",
   "Ctrl-a": "StartOfLine",
+  "Ctrl-A": "SelectAll",
   "Ctrl-e": "EndOfLine",
   "Alt-b": "WordLeft",
   "Alt-f": "WordRight",
@@ -21,5 +22,8 @@
   "CtrlSpace": "SelectToStartOfLine",
   "Alt-x": "CommandMode",
   "Ctrl-w": "DeleteWordLeft",
-  "Ctrl-c": "Quit"
+  "Ctrl-c": "Quit",
+  "y": "Copy|CopyLine",
+  "CtrlY": "CopyLine",
+  "Ctrl-o": "command:lsp goto-definition"
 }
