@@ -126,12 +126,15 @@ claude mcp add --transport http github https://api.githubcopilot.com/mcp -H "Aut
 claude mcp add clipboard -- mcp-clip
 
 ##############################
-# Micro Editor Configuration #
+# Micro Editor Configuration
+# ~/.config/micro/plug
 ##############################
 
 micro --plugin install clip
-micro -plugin install editorconfig
+micro --plugin install editorconfig
+micro --plugin install filemanager
+micro --plugin install lsp
 micro --plugin install urlopen
 micro --plugin install jump
-micro -plugin install fzf
-micro -plugin install palettero
+micro --plugin install fzf
+micro --plugin install palettero
