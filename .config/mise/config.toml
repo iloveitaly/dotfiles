@@ -13,15 +13,16 @@ cargo-binstall = "latest"
 # not sure why, but these verifications are not working right now
 # "github:moby/buildkit" = "latest"
 # micro is rarely updated on github, so we use the nightly build
-"github:zyedidia/micro" = "nightly"
+"aqua:micro-editor/micro" = "nightly"
 "fd" = "latest"
 "github:gitleaks/gitleaks" = "latest"
 "github:iloveitaly/richclip" = "latest"
-"github:googleworkspace/cli" = "latest"
+"github:googleworkspace/cli" = "latest" # gws
 "1password-cli" = "latest"
 fzf = "latest"
 "github:harehare/mq" = "latest"
 "github:dlvhdr/diffnav" = "latest"
+"github:eza-community/eza" = "latest"
 
 # language and language tooling
 direnv = "latest"
