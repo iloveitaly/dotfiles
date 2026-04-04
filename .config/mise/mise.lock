@@ -37,6 +37,46 @@ url = "https://cache.agilebits.com/dist/1P/op2/pkg/v2.33.1/op_windows_amd64_v2.3
 [tools.1password-cli."platforms.windows-x64-baseline"]
 url = "https://cache.agilebits.com/dist/1P/op2/pkg/v2.33.1/op_windows_amd64_v2.33.1.zip"
 
+[[tools."aqua:micro-editor/micro"]]
+version = "nightly"
+backend = "aqua:micro-editor/micro"
+
+[tools."aqua:micro-editor/micro"."platforms.linux-x64"]
+checksum = "sha256:9ef6145ac0b5ba38f6b867b57be9549ce934aeed11ae058bd93349c3a810f3cf"
+url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux64.tar.gz"
+
+[tools."aqua:micro-editor/micro"."platforms.linux-x64-baseline"]
+checksum = "sha256:9ef6145ac0b5ba38f6b867b57be9549ce934aeed11ae058bd93349c3a810f3cf"
+url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux64.tar.gz"
+
+[tools."aqua:micro-editor/micro"."platforms.linux-x64-musl"]
+checksum = "sha256:9ef6145ac0b5ba38f6b867b57be9549ce934aeed11ae058bd93349c3a810f3cf"
+url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux64.tar.gz"
+
+[tools."aqua:micro-editor/micro"."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:9ef6145ac0b5ba38f6b867b57be9549ce934aeed11ae058bd93349c3a810f3cf"
+url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux64.tar.gz"
+
+[tools."aqua:micro-editor/micro"."platforms.macos-arm64"]
+checksum = "sha256:b4df5eb7b0c515ca5acc15358515026bfcf2d079a224277704fa8dbb787518f1"
+url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-osx.tar.gz"
+
+[tools."aqua:micro-editor/micro"."platforms.macos-x64"]
+checksum = "sha256:b4df5eb7b0c515ca5acc15358515026bfcf2d079a224277704fa8dbb787518f1"
+url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-osx.tar.gz"
+
+[tools."aqua:micro-editor/micro"."platforms.macos-x64-baseline"]
+checksum = "sha256:b4df5eb7b0c515ca5acc15358515026bfcf2d079a224277704fa8dbb787518f1"
+url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-osx.tar.gz"
+
+[tools."aqua:micro-editor/micro"."platforms.windows-x64"]
+checksum = "sha256:c71d7f61c98114d33f269ebb77a6a7bd0ca23705f839ad4326196b8e860e34f0"
+url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-win64.zip"
+
+[tools."aqua:micro-editor/micro"."platforms.windows-x64-baseline"]
+checksum = "sha256:c71d7f61c98114d33f269ebb77a6a7bd0ca23705f839ad4326196b8e860e34f0"
+url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-win64.zip"
+
 [[tools.bun]]
 version = "1.3.11"
 backend = "core:bun"
@@ -481,73 +521,73 @@ url = "https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8
 url_api = "https://api.github.com/repos/gitleaks/gitleaks/releases/assets/378333178"
 
 [[tools."github:googleworkspace/cli"]]
-version = "0.22.3"
+version = "0.22.5"
 backend = "github:googleworkspace/cli"
 
 [tools."github:googleworkspace/cli"."platforms.linux-arm64"]
-checksum = "sha256:4cddeb0dff1e0b45023c63915a2d46affe3689b7332a862f913b395e604d4ce1"
-url = "https://github.com/googleworkspace/cli/releases/download/v0.22.3/google-workspace-cli-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/382321489"
+checksum = "sha256:94490295d9580e1e88574e715a0a162991747d12d62f8c7b8dcc8268b6c1cea0"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.22.5/google-workspace-cli-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/385726970"
 provenance = "github-attestations"
 
 [tools."github:googleworkspace/cli"."platforms.linux-arm64-musl"]
-checksum = "sha256:32a614990b03d254abb126b9fc9bd2b4985b661d25c5778e85ee9d6556c4c09c"
-url = "https://github.com/googleworkspace/cli/releases/download/v0.22.3/google-workspace-cli-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/382321493"
+checksum = "sha256:e700fe63524932b10ec2130b47ece90aa850e66005fe52ccfc4cf8767bf9919a"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.22.5/google-workspace-cli-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/385726968"
 provenance = "github-attestations"
 
 [tools."github:googleworkspace/cli"."platforms.linux-x64"]
-checksum = "sha256:b951ef847b38dd41a23d31a3aeaf3cb650421aac607bbfe63727bf4f4213ce44"
-url = "https://github.com/googleworkspace/cli/releases/download/v0.22.3/google-workspace-cli-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/382321505"
+checksum = "sha256:de78ecdbd2f1a84cca0063a7ecbc440240fc14b6ebccbb17f4646b792a8c5c1f"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.22.5/google-workspace-cli-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/385726985"
 provenance = "github-attestations"
 
 [tools."github:googleworkspace/cli"."platforms.linux-x64-baseline"]
-checksum = "sha256:b951ef847b38dd41a23d31a3aeaf3cb650421aac607bbfe63727bf4f4213ce44"
-url = "https://github.com/googleworkspace/cli/releases/download/v0.22.3/google-workspace-cli-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/382321505"
+checksum = "sha256:de78ecdbd2f1a84cca0063a7ecbc440240fc14b6ebccbb17f4646b792a8c5c1f"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.22.5/google-workspace-cli-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/385726985"
 provenance = "github-attestations"
 
 [tools."github:googleworkspace/cli"."platforms.linux-x64-musl"]
-checksum = "sha256:104567244b9de85a67595af1b2777424ee44c9a7138284aa4d59bbc163066d48"
-url = "https://github.com/googleworkspace/cli/releases/download/v0.22.3/google-workspace-cli-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/382321515"
+checksum = "sha256:4db473dde4b1ab872e4ff35d769b0d4af1f1a6441a605e79d5cf8ada9c87e920"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.22.5/google-workspace-cli-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/385726987"
 provenance = "github-attestations"
 
 [tools."github:googleworkspace/cli"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:b951ef847b38dd41a23d31a3aeaf3cb650421aac607bbfe63727bf4f4213ce44"
-url = "https://github.com/googleworkspace/cli/releases/download/v0.22.3/google-workspace-cli-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/382321505"
+checksum = "sha256:de78ecdbd2f1a84cca0063a7ecbc440240fc14b6ebccbb17f4646b792a8c5c1f"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.22.5/google-workspace-cli-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/385726985"
 provenance = "github-attestations"
 
 [tools."github:googleworkspace/cli"."platforms.macos-arm64"]
-checksum = "sha256:3e56ae8005bf33ec14ba3ef1541792b267ef0b6de6c344573eac19457e396d99"
-url = "https://github.com/googleworkspace/cli/releases/download/v0.22.3/google-workspace-cli-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/382321486"
+checksum = "sha256:1d2a9ffd5bc9b2c2c4b48630daf082fad13d9e57d741988a2c248eed562f7dac"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.22.5/google-workspace-cli-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/385726972"
 provenance = "github-attestations"
 
 [tools."github:googleworkspace/cli"."platforms.macos-x64"]
-checksum = "sha256:ccb477ceeb75ad301d780692224a61678cbba85251b7dc074fc67e94527f94cd"
-url = "https://github.com/googleworkspace/cli/releases/download/v0.22.3/google-workspace-cli-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/382321497"
+checksum = "sha256:51f9bd731404d4bba26c36e2e30dd68c56dccd1f834c01252cb0b14d6a6544b2"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.22.5/google-workspace-cli-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/385726978"
 provenance = "github-attestations"
 
 [tools."github:googleworkspace/cli"."platforms.macos-x64-baseline"]
-checksum = "sha256:ccb477ceeb75ad301d780692224a61678cbba85251b7dc074fc67e94527f94cd"
-url = "https://github.com/googleworkspace/cli/releases/download/v0.22.3/google-workspace-cli-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/382321497"
+checksum = "sha256:51f9bd731404d4bba26c36e2e30dd68c56dccd1f834c01252cb0b14d6a6544b2"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.22.5/google-workspace-cli-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/385726978"
 provenance = "github-attestations"
 
 [tools."github:googleworkspace/cli"."platforms.windows-x64"]
-checksum = "sha256:dc8df6b6596112d2ea9dd6c1159e9ef51f06ff0d0d2ad00a88ebdc3b72010315"
-url = "https://github.com/googleworkspace/cli/releases/download/v0.22.3/google-workspace-cli-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/382321503"
+checksum = "sha256:407705d695dc83d48b1c5f50d71b5aa64095bf6f17d5b439b2e9a373bbe67ec2"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.22.5/google-workspace-cli-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/385726984"
 provenance = "github-attestations"
 
 [tools."github:googleworkspace/cli"."platforms.windows-x64-baseline"]
-checksum = "sha256:dc8df6b6596112d2ea9dd6c1159e9ef51f06ff0d0d2ad00a88ebdc3b72010315"
-url = "https://github.com/googleworkspace/cli/releases/download/v0.22.3/google-workspace-cli-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/382321503"
+checksum = "sha256:407705d695dc83d48b1c5f50d71b5aa64095bf6f17d5b439b2e9a373bbe67ec2"
+url = "https://github.com/googleworkspace/cli/releases/download/v0.22.5/google-workspace-cli-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/385726984"
 provenance = "github-attestations"
 
 [[tools."github:harehare/mq"]]
@@ -721,73 +761,178 @@ url_api = "https://api.github.com/repos/nnnkkk7/lazyactions/releases/assets/3745
 version = "4.36.1"
 backend = "github:railwayapp/cli"
 
+[tools."github:railwayapp/cli"."platforms.linux-arm64"]
+checksum = "sha256:695379cefb6b6541d996be98270784f32c0839cd04d961a98ec9d28d850409e8"
+url = "https://github.com/railwayapp/cli/releases/download/v4.36.1/railway-v4.36.1-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/387762081"
+
+[tools."github:railwayapp/cli"."platforms.linux-arm64-musl"]
+checksum = "sha256:695379cefb6b6541d996be98270784f32c0839cd04d961a98ec9d28d850409e8"
+url = "https://github.com/railwayapp/cli/releases/download/v4.36.1/railway-v4.36.1-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/387762081"
+
+[tools."github:railwayapp/cli"."platforms.linux-x64"]
+checksum = "sha256:2aa55bb46128520516e1bbffa337c820392a6a134bcb6c569ee3218f556bb54a"
+url = "https://github.com/railwayapp/cli/releases/download/v4.36.1/railway-v4.36.1-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/387761875"
+
+[tools."github:railwayapp/cli"."platforms.linux-x64-baseline"]
+checksum = "sha256:2aa55bb46128520516e1bbffa337c820392a6a134bcb6c569ee3218f556bb54a"
+url = "https://github.com/railwayapp/cli/releases/download/v4.36.1/railway-v4.36.1-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/387761875"
+
+[tools."github:railwayapp/cli"."platforms.linux-x64-musl"]
+checksum = "sha256:23474f8a3206d4a69a03ab1744f81f9ce904d4795219ff46a4b0a2153c07c08f"
+url = "https://github.com/railwayapp/cli/releases/download/v4.36.1/railway-v4.36.1-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/387762162"
+
+[tools."github:railwayapp/cli"."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:2aa55bb46128520516e1bbffa337c820392a6a134bcb6c569ee3218f556bb54a"
+url = "https://github.com/railwayapp/cli/releases/download/v4.36.1/railway-v4.36.1-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/387761875"
+
 [tools."github:railwayapp/cli"."platforms.macos-arm64"]
 checksum = "sha256:64708a8e0913a47b52e5ef3d1028a790f4b2341fda24be04ca2390ea194285b2"
 url = "https://github.com/railwayapp/cli/releases/download/v4.36.1/railway-v4.36.1-aarch64-apple-darwin.tar.gz"
 url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/387762104"
 
+[tools."github:railwayapp/cli"."platforms.macos-x64"]
+checksum = "sha256:59964545aaf12b9c0cc320d937e7a456d9817f9cff8b5477803e25dc970f10f9"
+url = "https://github.com/railwayapp/cli/releases/download/v4.36.1/railway-v4.36.1-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/387762147"
+
+[tools."github:railwayapp/cli"."platforms.macos-x64-baseline"]
+checksum = "sha256:59964545aaf12b9c0cc320d937e7a456d9817f9cff8b5477803e25dc970f10f9"
+url = "https://github.com/railwayapp/cli/releases/download/v4.36.1/railway-v4.36.1-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/387762147"
+
+[tools."github:railwayapp/cli"."platforms.windows-x64"]
+checksum = "sha256:88c192a378f693bb409f3e0150131356b85d810c65ec27fa3f229775fcd499a6"
+url = "https://github.com/railwayapp/cli/releases/download/v4.36.1/railway-v4.36.1-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/387763689"
+
+[tools."github:railwayapp/cli"."platforms.windows-x64-baseline"]
+checksum = "sha256:07086abc01658c9beb2d00c6f6109b509f44f283a4822aaff91e9edb4ac8b88a"
+url = "https://github.com/railwayapp/cli/releases/download/v4.36.1/railway-v4.36.1-x86_64-pc-windows-gnu.zip"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/387764657"
+
 [[tools."github:railwayapp/railpack"]]
 version = "0.23.0"
 backend = "github:railwayapp/railpack"
+
+[tools."github:railwayapp/railpack"."platforms.linux-arm64"]
+checksum = "sha256:d4505d0f5f9f48c6350ad349111e10a1f5ba16c118834c85c6d0ecd630b25c34"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.23.0/railpack-v0.23.0-arm64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/384727837"
+
+[tools."github:railwayapp/railpack"."platforms.linux-arm64-musl"]
+checksum = "sha256:d4505d0f5f9f48c6350ad349111e10a1f5ba16c118834c85c6d0ecd630b25c34"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.23.0/railpack-v0.23.0-arm64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/384727837"
+
+[tools."github:railwayapp/railpack"."platforms.linux-x64"]
+checksum = "sha256:e8bffc181c13e68c1c78ec618f1418e60b1602ec548f3ec1054996394ce0f06a"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.23.0/railpack-v0.23.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/384727853"
+
+[tools."github:railwayapp/railpack"."platforms.linux-x64-baseline"]
+checksum = "sha256:e8bffc181c13e68c1c78ec618f1418e60b1602ec548f3ec1054996394ce0f06a"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.23.0/railpack-v0.23.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/384727853"
+
+[tools."github:railwayapp/railpack"."platforms.linux-x64-musl"]
+checksum = "sha256:e8bffc181c13e68c1c78ec618f1418e60b1602ec548f3ec1054996394ce0f06a"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.23.0/railpack-v0.23.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/384727853"
+
+[tools."github:railwayapp/railpack"."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:e8bffc181c13e68c1c78ec618f1418e60b1602ec548f3ec1054996394ce0f06a"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.23.0/railpack-v0.23.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/384727853"
+
+[tools."github:railwayapp/railpack"."platforms.macos-arm64"]
+checksum = "sha256:ddc3585eed274d7c77b0a5f6c51176f22f832ceecc0e9ce36e9343a6817aed2c"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.23.0/railpack-v0.23.0-arm64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/384727871"
+
+[tools."github:railwayapp/railpack"."platforms.macos-x64"]
+checksum = "sha256:6b110a3f6023afe3af55801798367c63151f8c2cd71682f9dd5993f151f8caeb"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.23.0/railpack-v0.23.0-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/384727876"
+
+[tools."github:railwayapp/railpack"."platforms.macos-x64-baseline"]
+checksum = "sha256:6b110a3f6023afe3af55801798367c63151f8c2cd71682f9dd5993f151f8caeb"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.23.0/railpack-v0.23.0-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/384727876"
+
+[tools."github:railwayapp/railpack"."platforms.windows-x64"]
+checksum = "sha256:d79795975ac711c7e4221ae3223fb16d206749792accf9dfe5a7efe589269739"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.23.0/railpack-v0.23.0-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/384727841"
+
+[tools."github:railwayapp/railpack"."platforms.windows-x64-baseline"]
+checksum = "sha256:d79795975ac711c7e4221ae3223fb16d206749792accf9dfe5a7efe589269739"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.23.0/railpack-v0.23.0-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/384727841"
 
 [[tools."github:zyedidia/micro"]]
 version = "nightly"
 backend = "github:zyedidia/micro"
 
 [tools."github:zyedidia/micro"."platforms.linux-arm64"]
-checksum = "sha256:e0781d339332fbd26dfd2b847e0167815ca9a6b4ccca9ba62a77772ec2f6ad3a"
+checksum = "sha256:0c6b049d1933f05237df10238bbfd25d9ad3552e24ad17f7af852f70d7642402"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/384293763"
+url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447738"
 
 [tools."github:zyedidia/micro"."platforms.linux-arm64-musl"]
-checksum = "sha256:e0781d339332fbd26dfd2b847e0167815ca9a6b4ccca9ba62a77772ec2f6ad3a"
+checksum = "sha256:0c6b049d1933f05237df10238bbfd25d9ad3552e24ad17f7af852f70d7642402"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/384293763"
+url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447738"
 
 [tools."github:zyedidia/micro"."platforms.linux-x64"]
-checksum = "sha256:f907008db346aac54a7cfd8a43da34750dc3a435c51dbaa276b8eff67b2e04c5"
+checksum = "sha256:61c1a7be86b51dec518da5c14b850f9fbff0392bc15cd9a0b41750ef93932898"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux32.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/384293765"
+url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447756"
 
 [tools."github:zyedidia/micro"."platforms.linux-x64-baseline"]
-checksum = "sha256:f907008db346aac54a7cfd8a43da34750dc3a435c51dbaa276b8eff67b2e04c5"
+checksum = "sha256:61c1a7be86b51dec518da5c14b850f9fbff0392bc15cd9a0b41750ef93932898"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux32.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/384293765"
+url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447756"
 
 [tools."github:zyedidia/micro"."platforms.linux-x64-musl"]
-checksum = "sha256:f907008db346aac54a7cfd8a43da34750dc3a435c51dbaa276b8eff67b2e04c5"
+checksum = "sha256:61c1a7be86b51dec518da5c14b850f9fbff0392bc15cd9a0b41750ef93932898"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux32.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/384293765"
+url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447756"
 
 [tools."github:zyedidia/micro"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:f907008db346aac54a7cfd8a43da34750dc3a435c51dbaa276b8eff67b2e04c5"
+checksum = "sha256:61c1a7be86b51dec518da5c14b850f9fbff0392bc15cd9a0b41750ef93932898"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux32.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/384293765"
+url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447756"
 
 [tools."github:zyedidia/micro"."platforms.macos-arm64"]
-checksum = "sha256:58ee59de6b82e25f7fb4354fb2be9de4f83ab1e66b297886f66cee351f0260f4"
+checksum = "sha256:408da457de67b90df10e3e1de94282094124276a427b65b84ee7cb0aaf459d55"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-macos-arm64.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/384293764"
+url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447750"
 
 [tools."github:zyedidia/micro"."platforms.macos-x64"]
-checksum = "sha256:af4e6431bc8e13fe432392020bd224a72c2cc4a52aae59cb2833eb2a18838bcd"
+checksum = "sha256:79e5213a63ee4daf08afa46a936dbc87b058d24c40fcd7099b95ba893074e801"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-osx.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/384293777"
+url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447729"
 
 [tools."github:zyedidia/micro"."platforms.macos-x64-baseline"]
-checksum = "sha256:af4e6431bc8e13fe432392020bd224a72c2cc4a52aae59cb2833eb2a18838bcd"
+checksum = "sha256:79e5213a63ee4daf08afa46a936dbc87b058d24c40fcd7099b95ba893074e801"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-osx.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/384293777"
+url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447729"
 
 [tools."github:zyedidia/micro"."platforms.windows-x64"]
-checksum = "sha256:502cb669946bb4ba3579ec78a8a0966b0e4b4887e12d1c5760c7fc6a9f26d010"
+checksum = "sha256:f543d4ec6970b684d26294982100d169d8a103451835bf59f6f3b2196af1310a"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-win32.zip"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/384293760"
+url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447743"
 
 [tools."github:zyedidia/micro"."platforms.windows-x64-baseline"]
-checksum = "sha256:502cb669946bb4ba3579ec78a8a0966b0e4b4887e12d1c5760c7fc6a9f26d010"
+checksum = "sha256:f543d4ec6970b684d26294982100d169d8a103451835bf59f6f3b2196af1310a"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-win32.zip"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/384293760"
+url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447743"
 
 [[tools.go]]
 version = "1.26.1"
@@ -952,46 +1097,57 @@ backend = "core:python"
 [tools.python."platforms.linux-arm64"]
 checksum = "sha256:53700338695e402a1a1fe22be4a41fbdacc70e22bb308a48eca8ed67cb7992be"
 url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260324/cpython-3.14.3+20260324-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz"
+provenance = "github-attestations"
 
 [tools.python."platforms.linux-arm64-musl"]
 checksum = "sha256:53700338695e402a1a1fe22be4a41fbdacc70e22bb308a48eca8ed67cb7992be"
 url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260324/cpython-3.14.3+20260324-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz"
+provenance = "github-attestations"
 
 [tools.python."platforms.linux-x64"]
 checksum = "sha256:d7a9f970914bb4c88756fe3bdcc186d4feb90e9500e54f1db47dae4dc9687e39"
 url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260324/cpython-3.14.3+20260324-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
+provenance = "github-attestations"
 
 [tools.python."platforms.linux-x64-baseline"]
 checksum = "sha256:d7a9f970914bb4c88756fe3bdcc186d4feb90e9500e54f1db47dae4dc9687e39"
 url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260324/cpython-3.14.3+20260324-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
+provenance = "github-attestations"
 
 [tools.python."platforms.linux-x64-musl"]
 checksum = "sha256:d7a9f970914bb4c88756fe3bdcc186d4feb90e9500e54f1db47dae4dc9687e39"
 url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260324/cpython-3.14.3+20260324-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
+provenance = "github-attestations"
 
 [tools.python."platforms.linux-x64-musl-baseline"]
 checksum = "sha256:d7a9f970914bb4c88756fe3bdcc186d4feb90e9500e54f1db47dae4dc9687e39"
 url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260324/cpython-3.14.3+20260324-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
+provenance = "github-attestations"
 
 [tools.python."platforms.macos-arm64"]
 checksum = "sha256:c43aecde4a663aebff99b9b83da0efec506479f1c3f98331442f33d2c43501f9"
 url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260324/cpython-3.14.3+20260324-aarch64-apple-darwin-install_only_stripped.tar.gz"
+provenance = "github-attestations"
 
 [tools.python."platforms.macos-x64"]
 checksum = "sha256:9ab41dbc2f100a2a45d1833b9c11165f51051c558b5213eda9a9731d5948a0c0"
 url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260324/cpython-3.14.3+20260324-x86_64-apple-darwin-install_only_stripped.tar.gz"
+provenance = "github-attestations"
 
 [tools.python."platforms.macos-x64-baseline"]
 checksum = "sha256:9ab41dbc2f100a2a45d1833b9c11165f51051c558b5213eda9a9731d5948a0c0"
 url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260324/cpython-3.14.3+20260324-x86_64-apple-darwin-install_only_stripped.tar.gz"
+provenance = "github-attestations"
 
 [tools.python."platforms.windows-x64"]
 checksum = "sha256:bbe19034b35b0267176a7442575ae7dc6343480fd4d35598cb7700173d431e09"
 url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260324/cpython-3.14.3+20260324-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
+provenance = "github-attestations"
 
 [tools.python."platforms.windows-x64-baseline"]
 checksum = "sha256:bbe19034b35b0267176a7442575ae7dc6343480fd4d35598cb7700173d431e09"
 url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260324/cpython-3.14.3+20260324-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
+provenance = "github-attestations"
 
 [[tools.ruby]]
 version = "3.4.9"
