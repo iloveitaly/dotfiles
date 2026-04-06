@@ -133,8 +133,10 @@ claude mcp add clipboard -- mcp-clip
 micro --plugin install clip
 micro --plugin install editorconfig
 micro --plugin install filemanager
+micro --plugin install detectindent
 micro --plugin install lsp
 micro --plugin install urlopen
 micro --plugin install jump
 micro --plugin install fzf
 micro --plugin install palettero
+micro --plugin install jump

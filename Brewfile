@@ -35,7 +35,7 @@ brew "gpatch" # update the builtin tool to the latest
 brew "gnu-sed"
 brew "buildkit"
 brew "boxes"
-
+brew "universal-ctags"
 brew "setapp"
 brew "awscli"
 brew "aws-sam-cli"

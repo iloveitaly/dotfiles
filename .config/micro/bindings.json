@@ -25,5 +25,5 @@
   "Ctrl-c": "Quit",
   "y": "Copy|CopyLine",
   "CtrlY": "CopyLine",
-  "Ctrl-o": "command:lsp goto-definition"
+  "Ctrl-o": "command:jumptag"
 }
