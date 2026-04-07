@@ -42,39 +42,39 @@ version = "nightly"
 backend = "aqua:micro-editor/micro"
 
 [tools."aqua:micro-editor/micro"."platforms.linux-x64"]
-checksum = "sha256:9ef6145ac0b5ba38f6b867b57be9549ce934aeed11ae058bd93349c3a810f3cf"
+checksum = "sha256:330ee2b8546992cf4252abc5dfac07225b4cb7985165ca8250fdc52982dffb07"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux64.tar.gz"
 
 [tools."aqua:micro-editor/micro"."platforms.linux-x64-baseline"]
-checksum = "sha256:9ef6145ac0b5ba38f6b867b57be9549ce934aeed11ae058bd93349c3a810f3cf"
+checksum = "sha256:330ee2b8546992cf4252abc5dfac07225b4cb7985165ca8250fdc52982dffb07"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux64.tar.gz"
 
 [tools."aqua:micro-editor/micro"."platforms.linux-x64-musl"]
-checksum = "sha256:9ef6145ac0b5ba38f6b867b57be9549ce934aeed11ae058bd93349c3a810f3cf"
+checksum = "sha256:330ee2b8546992cf4252abc5dfac07225b4cb7985165ca8250fdc52982dffb07"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux64.tar.gz"
 
 [tools."aqua:micro-editor/micro"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:9ef6145ac0b5ba38f6b867b57be9549ce934aeed11ae058bd93349c3a810f3cf"
+checksum = "sha256:330ee2b8546992cf4252abc5dfac07225b4cb7985165ca8250fdc52982dffb07"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux64.tar.gz"
 
 [tools."aqua:micro-editor/micro"."platforms.macos-arm64"]
-checksum = "sha256:b4df5eb7b0c515ca5acc15358515026bfcf2d079a224277704fa8dbb787518f1"
+checksum = "sha256:8dc728db9e6941780fce0e19849aa2d20bc5381973a6d86305ba08a2d2da08f9"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-osx.tar.gz"
 
 [tools."aqua:micro-editor/micro"."platforms.macos-x64"]
-checksum = "sha256:b4df5eb7b0c515ca5acc15358515026bfcf2d079a224277704fa8dbb787518f1"
+checksum = "sha256:8dc728db9e6941780fce0e19849aa2d20bc5381973a6d86305ba08a2d2da08f9"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-osx.tar.gz"
 
 [tools."aqua:micro-editor/micro"."platforms.macos-x64-baseline"]
-checksum = "sha256:b4df5eb7b0c515ca5acc15358515026bfcf2d079a224277704fa8dbb787518f1"
+checksum = "sha256:8dc728db9e6941780fce0e19849aa2d20bc5381973a6d86305ba08a2d2da08f9"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-osx.tar.gz"
 
 [tools."aqua:micro-editor/micro"."platforms.windows-x64"]
-checksum = "sha256:c71d7f61c98114d33f269ebb77a6a7bd0ca23705f839ad4326196b8e860e34f0"
+checksum = "sha256:73c55a13fcb96766241bec3ed180e20a2a233558763d7eb07fe1f4d41503faa0"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-win64.zip"
 
 [tools."aqua:micro-editor/micro"."platforms.windows-x64-baseline"]
-checksum = "sha256:c71d7f61c98114d33f269ebb77a6a7bd0ca23705f839ad4326196b8e860e34f0"
+checksum = "sha256:73c55a13fcb96766241bec3ed180e20a2a233558763d7eb07fe1f4d41503faa0"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-win64.zip"
 
 [[tools.bun]]
@@ -875,65 +875,6 @@ checksum = "sha256:d79795975ac711c7e4221ae3223fb16d206749792accf9dfe5a7efe589269
 url = "https://github.com/railwayapp/railpack/releases/download/v0.23.0/railpack-v0.23.0-x86_64-pc-windows-msvc.zip"
 url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/384727841"
 
-[[tools."github:zyedidia/micro"]]
-version = "nightly"
-backend = "github:zyedidia/micro"
-
-[tools."github:zyedidia/micro"."platforms.linux-arm64"]
-checksum = "sha256:0c6b049d1933f05237df10238bbfd25d9ad3552e24ad17f7af852f70d7642402"
-url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447738"
-
-[tools."github:zyedidia/micro"."platforms.linux-arm64-musl"]
-checksum = "sha256:0c6b049d1933f05237df10238bbfd25d9ad3552e24ad17f7af852f70d7642402"
-url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447738"
-
-[tools."github:zyedidia/micro"."platforms.linux-x64"]
-checksum = "sha256:61c1a7be86b51dec518da5c14b850f9fbff0392bc15cd9a0b41750ef93932898"
-url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux32.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447756"
-
-[tools."github:zyedidia/micro"."platforms.linux-x64-baseline"]
-checksum = "sha256:61c1a7be86b51dec518da5c14b850f9fbff0392bc15cd9a0b41750ef93932898"
-url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux32.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447756"
-
-[tools."github:zyedidia/micro"."platforms.linux-x64-musl"]
-checksum = "sha256:61c1a7be86b51dec518da5c14b850f9fbff0392bc15cd9a0b41750ef93932898"
-url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux32.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447756"
-
-[tools."github:zyedidia/micro"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:61c1a7be86b51dec518da5c14b850f9fbff0392bc15cd9a0b41750ef93932898"
-url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux32.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447756"
-
-[tools."github:zyedidia/micro"."platforms.macos-arm64"]
-checksum = "sha256:408da457de67b90df10e3e1de94282094124276a427b65b84ee7cb0aaf459d55"
-url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-macos-arm64.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447750"
-
-[tools."github:zyedidia/micro"."platforms.macos-x64"]
-checksum = "sha256:79e5213a63ee4daf08afa46a936dbc87b058d24c40fcd7099b95ba893074e801"
-url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-osx.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447729"
-
-[tools."github:zyedidia/micro"."platforms.macos-x64-baseline"]
-checksum = "sha256:79e5213a63ee4daf08afa46a936dbc87b058d24c40fcd7099b95ba893074e801"
-url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-osx.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447729"
-
-[tools."github:zyedidia/micro"."platforms.windows-x64"]
-checksum = "sha256:f543d4ec6970b684d26294982100d169d8a103451835bf59f6f3b2196af1310a"
-url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-win32.zip"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447743"
-
-[tools."github:zyedidia/micro"."platforms.windows-x64-baseline"]
-checksum = "sha256:f543d4ec6970b684d26294982100d169d8a103451835bf59f6f3b2196af1310a"
-url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-win32.zip"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/387447743"
-
 [[tools.go]]
 version = "1.26.1"
 backend = "core:go"
@@ -1155,37 +1096,37 @@ backend = "core:ruby"
 
 [tools.ruby."platforms.linux-arm64"]
 checksum = "sha256:f348275fd89d1234919005daadeaf6a7b7eacaabc5bb00e71c7d7fc150ed59b3"
-url = "https://github.com/jdx/ruby/releases/download/3.4.9/ruby-3.4.9.arm64_linux.tar.gz"
+url = "https://github.com/jdx/ruby/releases/download/3.4.9-1/ruby-3.4.9.arm64_linux.tar.gz"
 provenance = "github-attestations"
 
 [tools.ruby."platforms.linux-arm64-musl"]
 checksum = "sha256:f348275fd89d1234919005daadeaf6a7b7eacaabc5bb00e71c7d7fc150ed59b3"
-url = "https://github.com/jdx/ruby/releases/download/3.4.9/ruby-3.4.9.arm64_linux.tar.gz"
+url = "https://github.com/jdx/ruby/releases/download/3.4.9-1/ruby-3.4.9.arm64_linux.tar.gz"
 provenance = "github-attestations"
 
 [tools.ruby."platforms.linux-x64"]
 checksum = "sha256:7d8c21127b20508f695f8e0577a648395a03eb4199aab472d2a7b15bcda055d0"
-url = "https://github.com/jdx/ruby/releases/download/3.4.9/ruby-3.4.9.x86_64_linux.tar.gz"
+url = "https://github.com/jdx/ruby/releases/download/3.4.9-1/ruby-3.4.9.x86_64_linux.tar.gz"
 provenance = "github-attestations"
 
 [tools.ruby."platforms.linux-x64-baseline"]
 checksum = "sha256:7d8c21127b20508f695f8e0577a648395a03eb4199aab472d2a7b15bcda055d0"
-url = "https://github.com/jdx/ruby/releases/download/3.4.9/ruby-3.4.9.x86_64_linux.tar.gz"
+url = "https://github.com/jdx/ruby/releases/download/3.4.9-1/ruby-3.4.9.x86_64_linux.tar.gz"
 provenance = "github-attestations"
 
 [tools.ruby."platforms.linux-x64-musl"]
 checksum = "sha256:7d8c21127b20508f695f8e0577a648395a03eb4199aab472d2a7b15bcda055d0"
-url = "https://github.com/jdx/ruby/releases/download/3.4.9/ruby-3.4.9.x86_64_linux.tar.gz"
+url = "https://github.com/jdx/ruby/releases/download/3.4.9-1/ruby-3.4.9.x86_64_linux.tar.gz"
 provenance = "github-attestations"
 
 [tools.ruby."platforms.linux-x64-musl-baseline"]
 checksum = "sha256:7d8c21127b20508f695f8e0577a648395a03eb4199aab472d2a7b15bcda055d0"
-url = "https://github.com/jdx/ruby/releases/download/3.4.9/ruby-3.4.9.x86_64_linux.tar.gz"
+url = "https://github.com/jdx/ruby/releases/download/3.4.9-1/ruby-3.4.9.x86_64_linux.tar.gz"
 provenance = "github-attestations"
 
 [tools.ruby."platforms.macos-arm64"]
 checksum = "sha256:ef60a09b62610ff999b63cebdf1ce87c2dc13f4f6711f3127de4705bca65af10"
-url = "https://github.com/jdx/ruby/releases/download/3.4.9/ruby-3.4.9.macos.tar.gz"
+url = "https://github.com/jdx/ruby/releases/download/3.4.9-1/ruby-3.4.9.macos.tar.gz"
 provenance = "github-attestations"
 
 [tools.ruby."platforms.macos-x64"]
