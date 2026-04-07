@@ -174,7 +174,7 @@ checksum = "sha256:d17b413a19592af2cf57f9f742d49bef8837099e1407d73e79de5bc7834c4
 url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.17.9/cargo-binstall-x86_64-pc-windows-msvc.zip"
 
 [[tools."cargo:ast-grep"]]
-version = "0.42.0"
+version = "0.42.1"
 backend = "cargo:ast-grep"
 
 [[tools."cargo:fastmod"]]
@@ -249,11 +249,11 @@ backend = "core:elixir"
 checksum = "blake3:84a5a93b3af2a8edfe794a6728ed5f3ce6b2dc48b588a8b1d56fdb6fb6502f32"
 
 [[tools.erlang]]
-version = "28.4.1"
+version = "28.4.2"
 backend = "core:erlang"
 
 [tools.erlang."platforms.macos-arm64"]
-checksum = "blake3:59548807985f9d8851f74f0ed64480195ca5ba7377eea2743287786ea47a6443"
+checksum = "blake3:907e915075dff78f27899e42095237fcde900429eb12f8fd682a310dfe9da067"
 
 [[tools.fd]]
 version = "10.4.2"
@@ -296,52 +296,52 @@ checksum = "sha256:b2816e506390a89941c63c9187d58a3cc10e9a55f2ef0685f9ea0eccaf7c9
 url = "https://github.com/sharkdp/fd/releases/download/v10.4.2/fd-v10.4.2-x86_64-pc-windows-msvc.zip"
 
 [[tools.fzf]]
-version = "0.70.0"
+version = "0.71.0"
 backend = "aqua:junegunn/fzf"
 
 [tools.fzf."platforms.linux-arm64"]
-checksum = "sha256:90a07a13b61f56dd59ccfd0f0bf05070e9cec067713d313fa2607aab2dc0e422"
-url = "https://github.com/junegunn/fzf/releases/download/v0.70.0/fzf-0.70.0-linux_arm64.tar.gz"
+checksum = "sha256:98b7d322efae9c37e4bfbbab1cbcd8722eb742d9399511f96375feb40cc35d1d"
+url = "https://github.com/junegunn/fzf/releases/download/v0.71.0/fzf-0.71.0-linux_arm64.tar.gz"
 
 [tools.fzf."platforms.linux-arm64-musl"]
-checksum = "sha256:90a07a13b61f56dd59ccfd0f0bf05070e9cec067713d313fa2607aab2dc0e422"
-url = "https://github.com/junegunn/fzf/releases/download/v0.70.0/fzf-0.70.0-linux_arm64.tar.gz"
+checksum = "sha256:98b7d322efae9c37e4bfbbab1cbcd8722eb742d9399511f96375feb40cc35d1d"
+url = "https://github.com/junegunn/fzf/releases/download/v0.71.0/fzf-0.71.0-linux_arm64.tar.gz"
 
 [tools.fzf."platforms.linux-x64"]
-checksum = "sha256:8fd0e0b93bdf64ba90081ffb6658d77ea5a024c122b36852b1de30f9d2733754"
-url = "https://github.com/junegunn/fzf/releases/download/v0.70.0/fzf-0.70.0-linux_amd64.tar.gz"
+checksum = "sha256:22639bb38489dbca8acef57850cbb50231ab714d0e8e855ac52fae8b41233df4"
+url = "https://github.com/junegunn/fzf/releases/download/v0.71.0/fzf-0.71.0-linux_amd64.tar.gz"
 
 [tools.fzf."platforms.linux-x64-baseline"]
-checksum = "sha256:8fd0e0b93bdf64ba90081ffb6658d77ea5a024c122b36852b1de30f9d2733754"
-url = "https://github.com/junegunn/fzf/releases/download/v0.70.0/fzf-0.70.0-linux_amd64.tar.gz"
+checksum = "sha256:22639bb38489dbca8acef57850cbb50231ab714d0e8e855ac52fae8b41233df4"
+url = "https://github.com/junegunn/fzf/releases/download/v0.71.0/fzf-0.71.0-linux_amd64.tar.gz"
 
 [tools.fzf."platforms.linux-x64-musl"]
-checksum = "sha256:8fd0e0b93bdf64ba90081ffb6658d77ea5a024c122b36852b1de30f9d2733754"
-url = "https://github.com/junegunn/fzf/releases/download/v0.70.0/fzf-0.70.0-linux_amd64.tar.gz"
+checksum = "sha256:22639bb38489dbca8acef57850cbb50231ab714d0e8e855ac52fae8b41233df4"
+url = "https://github.com/junegunn/fzf/releases/download/v0.71.0/fzf-0.71.0-linux_amd64.tar.gz"
 
 [tools.fzf."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:8fd0e0b93bdf64ba90081ffb6658d77ea5a024c122b36852b1de30f9d2733754"
-url = "https://github.com/junegunn/fzf/releases/download/v0.70.0/fzf-0.70.0-linux_amd64.tar.gz"
+checksum = "sha256:22639bb38489dbca8acef57850cbb50231ab714d0e8e855ac52fae8b41233df4"
+url = "https://github.com/junegunn/fzf/releases/download/v0.71.0/fzf-0.71.0-linux_amd64.tar.gz"
 
 [tools.fzf."platforms.macos-arm64"]
-checksum = "sha256:75f4905c2e3d00666d81dffdd001bb2a9a8e0ad4e4ac8cecfc17a7401b99e6e4"
-url = "https://github.com/junegunn/fzf/releases/download/v0.70.0/fzf-0.70.0-darwin_arm64.tar.gz"
+checksum = "sha256:02dfb11de8773cb79aa4fc5bfc77e75c6604ee14728bc849fc162dd91a9714c4"
+url = "https://github.com/junegunn/fzf/releases/download/v0.71.0/fzf-0.71.0-darwin_arm64.tar.gz"
 
 [tools.fzf."platforms.macos-x64"]
-checksum = "sha256:46af74cfeb171c5e2eb936096a653061a0de0f5aeb70319bf9935d8d193e078f"
-url = "https://github.com/junegunn/fzf/releases/download/v0.70.0/fzf-0.70.0-darwin_amd64.tar.gz"
+checksum = "sha256:144e98ee6bcffaf915366162768000561cd2db8fb53b119d73110391a8e5b5f0"
+url = "https://github.com/junegunn/fzf/releases/download/v0.71.0/fzf-0.71.0-darwin_amd64.tar.gz"
 
 [tools.fzf."platforms.macos-x64-baseline"]
-checksum = "sha256:46af74cfeb171c5e2eb936096a653061a0de0f5aeb70319bf9935d8d193e078f"
-url = "https://github.com/junegunn/fzf/releases/download/v0.70.0/fzf-0.70.0-darwin_amd64.tar.gz"
+checksum = "sha256:144e98ee6bcffaf915366162768000561cd2db8fb53b119d73110391a8e5b5f0"
+url = "https://github.com/junegunn/fzf/releases/download/v0.71.0/fzf-0.71.0-darwin_amd64.tar.gz"
 
 [tools.fzf."platforms.windows-x64"]
-checksum = "sha256:7465a6738e2c844742df973459c7509aed2d10d7a72bfd6de201b867b4eda4cd"
-url = "https://github.com/junegunn/fzf/releases/download/v0.70.0/fzf-0.70.0-windows_amd64.zip"
+checksum = "sha256:15bf30fa658c596d740f0ce9a9a97b6b5d90566124903657d09fd109dd0973d2"
+url = "https://github.com/junegunn/fzf/releases/download/v0.71.0/fzf-0.71.0-windows_amd64.zip"
 
 [tools.fzf."platforms.windows-x64-baseline"]
-checksum = "sha256:7465a6738e2c844742df973459c7509aed2d10d7a72bfd6de201b867b4eda4cd"
-url = "https://github.com/junegunn/fzf/releases/download/v0.70.0/fzf-0.70.0-windows_amd64.zip"
+checksum = "sha256:15bf30fa658c596d740f0ce9a9a97b6b5d90566124903657d09fd109dd0973d2"
+url = "https://github.com/junegunn/fzf/releases/download/v0.71.0/fzf-0.71.0-windows_amd64.zip"
 
 [[tools."github:dlvhdr/diffnav"]]
 version = "0.11.0"
@@ -591,53 +591,53 @@ url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/3857
 provenance = "github-attestations"
 
 [[tools."github:harehare/mq"]]
-version = "0.5.24"
+version = "0.5.25"
 backend = "github:harehare/mq"
 
 [tools."github:harehare/mq"."platforms.linux-arm64"]
-checksum = "sha256:ba2595b3a8ca034caffa9e7fd27865a86423f206dfee2ddc3fff172aaf82a7cb"
-url = "https://github.com/harehare/mq/releases/download/v0.5.24/mq-aarch64-unknown-linux-gnu"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/383534354"
+checksum = "sha256:0ec46769f6dbbb598407ae4e82c58f659971114eceaebf60bdd7140f1cca42cc"
+url = "https://github.com/harehare/mq/releases/download/v0.5.25/mq-aarch64-unknown-linux-gnu"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/390025557"
 
 [tools."github:harehare/mq"."platforms.linux-arm64-musl"]
-checksum = "sha256:2a0e64f15c657b052b272387f35956a409864f0c79e795b1857406848b47625d"
-url = "https://github.com/harehare/mq/releases/download/v0.5.24/mq-aarch64-unknown-linux-musl"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/383534347"
+checksum = "sha256:03ac816910f763fae810dc5d98274446be193bd3d76a6343dc34affc55395a10"
+url = "https://github.com/harehare/mq/releases/download/v0.5.25/mq-aarch64-unknown-linux-musl"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/390025548"
 
 [tools."github:harehare/mq"."platforms.linux-x64"]
-checksum = "sha256:ab5d5f2178c840a06aa8bf8e38ece3ac5d3ad5e0d22b7d0015459324d7e1f49d"
-url = "https://github.com/harehare/mq/releases/download/v0.5.24/mq-check-x86_64-unknown-linux-gnu"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/383534333"
+checksum = "sha256:dece2f57cbfac4a19cc7a6df4a32f6194da38147b37b8ac0d0741852ef241cc7"
+url = "https://github.com/harehare/mq/releases/download/v0.5.25/mq-check-x86_64-unknown-linux-gnu"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/390025539"
 
 [tools."github:harehare/mq"."platforms.linux-x64-baseline"]
-checksum = "sha256:ab5d5f2178c840a06aa8bf8e38ece3ac5d3ad5e0d22b7d0015459324d7e1f49d"
-url = "https://github.com/harehare/mq/releases/download/v0.5.24/mq-check-x86_64-unknown-linux-gnu"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/383534333"
+checksum = "sha256:dece2f57cbfac4a19cc7a6df4a32f6194da38147b37b8ac0d0741852ef241cc7"
+url = "https://github.com/harehare/mq/releases/download/v0.5.25/mq-check-x86_64-unknown-linux-gnu"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/390025539"
 
 [tools."github:harehare/mq"."platforms.linux-x64-musl"]
-checksum = "sha256:cec48c5372458f6663ba75cac96052ed772510ab2fda8057ed1dbfbca606abbb"
-url = "https://github.com/harehare/mq/releases/download/v0.5.24/mq-check-x86_64-unknown-linux-musl"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/383534323"
+checksum = "sha256:4ec0ed2fcaa9325dda6d16fed1aca4ffc409951cab0e4bbc9fa2590da2b697ad"
+url = "https://github.com/harehare/mq/releases/download/v0.5.25/mq-check-x86_64-unknown-linux-musl"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/390025527"
 
 [tools."github:harehare/mq"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:ab5d5f2178c840a06aa8bf8e38ece3ac5d3ad5e0d22b7d0015459324d7e1f49d"
-url = "https://github.com/harehare/mq/releases/download/v0.5.24/mq-check-x86_64-unknown-linux-gnu"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/383534333"
+checksum = "sha256:dece2f57cbfac4a19cc7a6df4a32f6194da38147b37b8ac0d0741852ef241cc7"
+url = "https://github.com/harehare/mq/releases/download/v0.5.25/mq-check-x86_64-unknown-linux-gnu"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/390025539"
 
 [tools."github:harehare/mq"."platforms.macos-arm64"]
-checksum = "sha256:a21b0e55231e54e606c64e8a83f2bc8be36313167652a181d387ad342a12af3d"
-url = "https://github.com/harehare/mq/releases/download/v0.5.24/mq-aarch64-apple-darwin"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/383534353"
+checksum = "sha256:397bc2f3b3aa1bf7260361c25a14c1ed8e58ec9d4bd3cfdf51117004f1af5587"
+url = "https://github.com/harehare/mq/releases/download/v0.5.25/mq-aarch64-apple-darwin"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/390025559"
 
 [tools."github:harehare/mq"."platforms.windows-x64"]
-checksum = "sha256:fd70f0c660b7ce071eed50d3417adf55580839bd4071fd3628223ac5f98ddb5b"
-url = "https://github.com/harehare/mq/releases/download/v0.5.24/mq-check-x86_64-pc-windows-msvc.exe"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/383534332"
+checksum = "sha256:82961e31f2074f9e5d93589424499cd0d022c2ff97b4d8b68d75cb9ef13d5a2c"
+url = "https://github.com/harehare/mq/releases/download/v0.5.25/mq-check-x86_64-pc-windows-msvc.exe"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/390025537"
 
 [tools."github:harehare/mq"."platforms.windows-x64-baseline"]
-checksum = "sha256:fd70f0c660b7ce071eed50d3417adf55580839bd4071fd3628223ac5f98ddb5b"
-url = "https://github.com/harehare/mq/releases/download/v0.5.24/mq-check-x86_64-pc-windows-msvc.exe"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/383534332"
+checksum = "sha256:82961e31f2074f9e5d93589424499cd0d022c2ff97b4d8b68d75cb9ef13d5a2c"
+url = "https://github.com/harehare/mq/releases/download/v0.5.25/mq-check-x86_64-pc-windows-msvc.exe"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/390025537"
 
 [[tools."github:iloveitaly/richclip"]]
 version = "1.3.0"
@@ -991,7 +991,7 @@ version = "1.0.0"
 backend = "go:github.com/standardbeagle/mcp-clip"
 
 [[tools.just]]
-version = "1.48.1"
+version = "1.49.0"
 backend = "ubi:casey/just"
 
 [[tools.node]]
