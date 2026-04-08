@@ -5,11 +5,27 @@
     "description": "Clean view for GitHub Actions CLI logs",
     "regex": {
       "main": {
-        "pattern": "^(?<job>[^\t]+)\t(?<step>[^\t]+)\t(?<timestamp>[^\t]+)\t(?<body>.*)$"
+        "pattern": "^(?<job>[^\\t]+)\\t(?<step>[^\\t]+)\\t(?:\\x{feff})?(?<timestamp>\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?Z)(?: (?:(?:##\\[(?<level>warning|error|notice|debug)\\]\\s*)?(?<body>.*)))?$"
       }
     },
+    "level-field": "level",
+    "level": {
+      "warning": "^warning$",
+      "error": "^error$",
+      "notice": "^notice$",
+      "debug": "^debug$"
+    },
     "timestamp-field": "timestamp",
+    "timestamp-format": [
+      "%Y-%m-%dT%H:%M:%S.%fZ",
+      "%Y-%m-%dT%H:%M:%SZ"
+    ],
     "body-field": "body",
+    "partitions": {
+      "gha_group": {
+        "pattern": "^(?:[^\\t]+\\t[^\\t]+\\t(?:\\x{feff})?\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?Z ##\\[group\\])(?<group_name>[^\\r\\n]+)$"
+      }
+    },
     "value": {
       "job": {
         "kind": "string",
@@ -19,12 +35,50 @@
         "kind": "string",
         "hidden": true
       },
+      "level": {
+        "kind": "string",
+        "hidden": true
+      },
       "timestamp": {
         "kind": "string",
         "hidden": true
       },
       "body": {
         "kind": "string"
+      }
+    },
+    "sample": [
+      {
+        "line": "Backend\tUNKNOWN STEP\t2026-04-08T16:26:40.4064702Z ##[group]Runner Image Provisioner"
+      },
+      {
+        "line": "Backend\tUNKNOWN STEP\t2026-04-08T16:26:44.2620657Z hint: \tgit config --global init.defaultBranch <name>"
+      },
+      {
+        "line": "Backend\tUNKNOWN STEP\t2026-04-08T16:26:44.2620657Z ##[warning]Node.js 20 actions are deprecated.",
+        "level": "warning"
+      },
+      {
+        "line": "Backend\tUNKNOWN STEP\t2026-04-08T16:26:44.2620657Z [command]/usr/bin/git config --local --name-only --get-regexp core\\.sshCommand"
+      },
+      {
+        "line": "Backend\tUNKNOWN STEP\t2026-04-08T16:26:45.0000000Z ##[endgroup]"
+      }
+    ],
+    "highlights": {
+      "gha command": {
+        "pattern": "\\[command\\]",
+        "color": "green",
+        "underline": true
+      },
+      "gha group": {
+        "pattern": "##\\[group\\]",
+        "color": "cyan"
+      },
+      "gha endgroup": {
+        "pattern": "##\\[endgroup\\]",
+        "color": "yellow",
+        "underline": true
       }
     },
     "line-format": [
