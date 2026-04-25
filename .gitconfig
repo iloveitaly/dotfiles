@@ -92,6 +92,8 @@
   # generate a diff from a commit, useful for copy/apply into another related repo
   diff-from-commit = "!dc() { git diff --ignore-space-change $1^...$1;}; dc"
 
+  rdiff = !git --no-pager diff --no-ext-diff "$@"
+
   # quickly copy current branch name, useful for updating package definitions to a locally modified copy
   branch-copy = !git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy
 
