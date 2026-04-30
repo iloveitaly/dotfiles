@@ -513,6 +513,24 @@ macos-list-schemes() {
   fi
 }
 
+# trace lineage to the tmux server process
+tmuxtrace() {
+  local server_pid=$(tmux display-message -p '#{pid}' 2>/dev/null)
+  if [[ -z "$server_pid" ]]; then
+    echo "No tmux server found."
+    return 1
+  fi
+  local pids=()
+  local curr=$server_pid
+  while [[ $curr -gt 0 ]]; do
+    pids+=($curr)
+    curr=$(ps -o ppid= -p $curr | awk '{print $1}')
+  done
+  local pid_list=$(echo ${(j:,:)pids})
+  echo "TMUX SERVER LINEAGE (Parents Only):"
+  ps -p "$pid_list" -o pid,ppid,user,command
+}
+
 source ~/.node-functions
 source ~/.python-functions
 source ~/.git-functions
