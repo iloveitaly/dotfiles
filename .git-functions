@@ -595,3 +595,53 @@ git-staging-to-upstream-template() {
   rm -f "$patch_file"
   return $apply_status
 }
+
+# Usage: cp-to-upstream-template <file> [target-repo]
+#
+# Description:
+#   Copies a file into another repository, preserving the file path relative to
+#   the source file's Git repository root. If no target repo is provided, it
+#   falls back to the starter template.
+cp-to-upstream-template() {
+  local default_target_repo="$HOME/Projects/python/python-starter-template"
+  local source_file_input="$1"
+  local target_repo="${2:-$default_target_repo}"
+  
+  local source_file
+  local source_dir
+  local repo_root
+  local relative_path
+  local destination_file
+
+  if [[ -z "$source_file_input" ]]; then
+    echo "Usage: cp-to-upstream-template <file> [target-repo]"
+    return 1
+  fi
+
+  if [[ ! -d "$target_repo" ]]; then
+    echo "Target repo not found: $target_repo"
+    return 1
+  fi
+
+  source_file="${source_file_input:A}"
+  if [[ ! -f "$source_file" ]]; then
+    echo "Source file not found: $source_file_input"
+    return 1
+  fi
+
+  source_dir="${source_file:h}"
+  repo_root=$(git -C "$source_dir" rev-parse --show-toplevel 2>/dev/null) || {
+    echo "Source file is not in a git repository: $source_file_input"
+    return 1
+  }
+
+  if [[ "$source_file" != "$repo_root"/* ]]; then
+    echo "Could not determine file path relative to git root: $source_file_input"
+    return 1
+  fi
+
+  relative_path="${source_file#$repo_root/}"
+  destination_file="$target_repo/$relative_path"
+  mkdir -p "${destination_file:h}" || return 1
+  cp "$source_file" "$destination_file"
+}
