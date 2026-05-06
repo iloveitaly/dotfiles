@@ -23,7 +23,7 @@ export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 
 # PNPM (for global bins)
 export PNPM_HOME="$HOME/.pnpm"
-export PATH="$PNPM_HOME:$PATH"
+export PATH="$PNPM_HOME/bin:$PATH"
 
 # go stuff in the home is annoying, hide it please
 export GOPATH="$HOME/.local/share/go"
