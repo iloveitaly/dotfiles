@@ -82,8 +82,12 @@ version = "1.3.13"
 backend = "core:bun"
 
 [[tools.cargo-binstall]]
-version = "1.19.0"
+version = "1.19.1"
 backend = "aqua:cargo-bins/cargo-binstall"
+
+[tools.cargo-binstall."platforms.macos-arm64"]
+checksum = "sha256:bf9da6a27e432784f361cfbc70a6d04e548abc548470ae9a7587c3cffb8fb0a7"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.19.1/cargo-binstall-aarch64-apple-darwin.zip"
 
 [[tools."cargo:ast-grep"]]
 version = "0.42.1"
@@ -624,13 +628,13 @@ url = "https://github.com/nnnkkk7/lazyactions/releases/download/v0.0.13/lazyacti
 url_api = "https://api.github.com/repos/nnnkkk7/lazyactions/releases/assets/374567697"
 
 [[tools."github:railwayapp/cli"]]
-version = "4.47.0"
+version = "4.51.0"
 backend = "github:railwayapp/cli"
 
 [tools."github:railwayapp/cli"."platforms.macos-arm64"]
-checksum = "sha256:8ce071db33af6e62b08fead2d399e0add742503876d3f95b2bb76710bff0af75"
-url = "https://github.com/railwayapp/cli/releases/download/v4.47.0/railway-v4.47.0-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/412879176"
+checksum = "sha256:18b7184561bff911bc56cb51ac61a7e986cf600b95e6395b765ae77e493014a7"
+url = "https://github.com/railwayapp/cli/releases/download/v4.51.0/railway-v4.51.0-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/414365203"
 provenance = "github-attestations"
 
 [[tools."github:railwayapp/railpack"]]
@@ -801,12 +805,8 @@ checksum = "sha256:7c93e9d92bf68c07182b471aa187e35ee6cd08ef0f24ab060dfff605fcc1c
 url = "https://nodejs.org/dist/v22.22.2/node-v22.22.2-win-x64.zip"
 
 [[tools.pnpm]]
-version = "11.0.6"
+version = "11.0.8"
 backend = "aqua:pnpm/pnpm"
-
-[tools.pnpm."platforms.macos-arm64"]
-checksum = "sha256:ae419c3a40f02988840e9424ba1a97eb88c5bdb2135056cb754c6fb4f4f0f6a7"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.0.6/pnpm-darwin-arm64.tar.gz"
 
 [[tools.python]]
 version = "3.14.4"
@@ -927,5 +927,5 @@ version = "1.95.0"
 backend = "core:rust"
 
 [[tools.uv]]
-version = "0.11.10"
+version = "0.11.11"
 backend = "asdf:uv"
