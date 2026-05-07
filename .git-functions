@@ -252,6 +252,8 @@ git-cherry-pick () {
 # Requires: git, fzf, awk, head
 # Debug: Echoes steps for troubleshooting
 
+unalias gwt 2>/dev/null
+
 gwt() {
   local git_path=$(command -v git)
   if [[ -z "$git_path" ]]; then
@@ -591,6 +593,13 @@ git-staging-to-upstream-template() {
   # target the template repository.
   git -C "$target_repo" apply --3way -p1 "$patch_file"
   apply_status=$?
+
+  if [[ $apply_status -ne 0 ]]; then
+    echo "git apply failed; falling back to gpatch" >&2
+    gpatch -d "$target_repo" -p1 < "$patch_file"
+    apply_status=$?
+  fi
+
   # Always remove the temp patch file, regardless of whether apply succeeded.
   rm -f "$patch_file"
   return $apply_status
