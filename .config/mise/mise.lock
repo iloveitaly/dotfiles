@@ -753,8 +753,11 @@ version = "1.0.0"
 backend = "go:github.com/standardbeagle/mcp-clip"
 
 [[tools.just]]
-version = "1.49.0"
+version = "1.50.0"
 backend = "ubi:casey/just"
+
+[tools.just."platforms.macos-arm64-just"]
+checksum = "blake3:98a96dd1989c96996ee8fdbb5f300b65b1e73ffcb4885e8b08e0493580a8e802"
 
 [[tools.node]]
 version = "22.22.2"
