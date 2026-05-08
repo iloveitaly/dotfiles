@@ -114,7 +114,6 @@ if OS.mac?
     brew "gmailctl" # gmail filter configuration as code
     brew "cleanshot" # best screenshot tool, not sure if it's better than dropbox capture
     brew "google-cloud-sdk" # cli tools for google cloud
-    brew "azure-cli"
     brew "certbot"
     brew "git-credential-manager"
     brew "proxychains-ng"
