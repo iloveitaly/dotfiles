@@ -11,6 +11,9 @@ alias m="micro"
 alias data-tui="tw"
 alias json-view="fx"
 
+# tableplus with 1p ssh support and ssh log debugging
+alias tableplus="SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock /Applications/Setapp/TablePlus.app/Contents/MacOS/TablePlus"
+
 alias fixcamera="sudo killall VDCAssistant; sudo killall AppleCameraAssistant"
 
 # most recently modified file
