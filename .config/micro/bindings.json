@@ -16,14 +16,13 @@
   "Alt-b": "WordLeft",
   "Alt-f": "WordRight",
   "Ctrl-k": "SelectToEndOfLine,Cut",
-  "Ctrl-K": "CutLine",
   "Ctrl-v": "CursorPageDown",
   "Alt-v": "CursorPageUp",
   "CtrlSpace": "SelectToStartOfLine",
   "Alt-x": "CommandMode",
   "Ctrl-w": "DeleteWordLeft",
   "Ctrl-c": "Quit",
-  "y": "Copy|CopyLine",
+  // "y": "Copy|CopyLine",
   "CtrlY": "CopyLine",
   "Ctrl-o": "command:jumptag"
 }
