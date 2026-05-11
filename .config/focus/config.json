@@ -8,6 +8,11 @@
       // block urls every 15 minutes
       "task": "/Users/mike/.config/focus/block_urls.sh",
       "schedule": "0 */15 * * * *"
+    },
+    {
+      "task": "/Users/mike/.config/focus/claude_keepalive.sh",
+      // every 4 hours
+      "schedule": "0 */4 * * *"
     }
   ],
   "pause_limit": 5,
