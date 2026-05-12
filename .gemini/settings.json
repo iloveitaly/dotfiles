@@ -1,6 +1,8 @@
 {
-"context": {
-    "fileName": ["AGENTS.md", "GEMINI.md"]
+  "context": {
+    "fileName": [
+      "GEMINI.md"
+    ]
   },
   "security": {
     "auth": {
@@ -15,9 +17,16 @@
       "enabled": true,
       "maxAge": "120d"
     },
-    "preferredEditor": "vscode"
+    "preferredEditor": "vscode",
+    "plan": {
+      "enabled": true
+    }
   },
   "mcpServers": {
+  "opentofu": {
+  "command": "pnpx",
+  "args": ["@opentofu/opentofu-mcp-server"]
+  },
     "chrome-devtools": {
       "command": "bunx",
       "args": [
@@ -59,7 +68,6 @@
     "modelSteering": true,
     "useModelRouter": true,
     "skills": true,
-    "plan": true,
     "extensionReloading": true
   },
   "ui": {
