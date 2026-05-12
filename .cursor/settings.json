@@ -19,15 +19,15 @@
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "workbench.editorAssociations": {
-    "*.ipynb": "jupyter-notebook",
+    "*.ipynb": "jupyter-notebook"
   },
 
   "notebook.cellToolbarLocation": {
     "default": "right",
-    "jupyter-notebook": "left",
+    "jupyter-notebook": "left"
   },
   "editor.inlineSuggest.enabled": true,
   "security.workspace.trust.untrustedFiles": "open",
@@ -39,7 +39,6 @@
   "npm.keybindingsChangedWarningShown": true,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
-  "terminal.integrated.inheritEnv": false,
   "terminal.integrated.scrollback": 10000,
   "terminal.external.osxExec": "Ghostty.app",
   "terminal.integrated.macOptionClickForcesSelection": true,
@@ -51,13 +50,13 @@
   "terminal.integrated.profiles.osx": {
     "tmux": {
       "path": "/Users/mike/.tmux-shell.sh",
-      "icon": "terminal-tmux",
+      "icon": "terminal-tmux"
     },
     // for testing what environment is leaking out into your terminal, this should be plain!
     "plain bash": {
       "path": "bash",
-      "args": ["--noprofile", "--norc"],
-    },
+      "args": ["--noprofile", "--norc"]
+    }
   },
   "git.mergeEditor": true,
   "lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
@@ -65,18 +64,18 @@
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
     "**/node_modules/*/**": true,
-    "**/.venv/**": true,
+    "**/.venv/**": true
   },
   "files.associations": {
     ".tool-versions": "plaintext",
-    ".envrc": "shellscript",
+    ".envrc": "shellscript"
   },
   "githubPullRequests.pullBranch": "never",
   "debug.javascript.autoAttachFilter": "disabled",
   "editor.linkedEditing": true,
   "terminal.integrated.macOptionIsMeta": true,
   "[sql]": {
-    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode",
+    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
   },
   "elixirLS.fetchDeps": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
@@ -110,7 +109,7 @@
     "property",
     "string",
     "struct",
-    "typeparameter",
+    "typeparameter"
   ],
   "tailwind-fold.autoFold": false,
   "bashIde.enableSourceErrorDiagnostics": true,
@@ -119,12 +118,11 @@
     "editor.formatOnPaste",
     "editor.formatOnSave",
     "editor.formatOnType",
-    "files.trimTrailingWhitespace",
+    "files.trimTrailingWhitespace"
   ],
   "files.trimTrailingWhitespace": true,
-  "window.confirmBeforeClose": "always",
   "[shellscript]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format",
+    "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "remote.SSH.configFile": "~/.ssh/vscode_config",
   "editor.inlineSuggest.suppressSuggestions": true,
@@ -132,35 +130,18 @@
   "todohighlight.isEnable": true,
   "workbench.editor.closeOnFileDelete": true,
   "[dockerfile]": {
-    "editor.defaultFormatter": "ms-azuretools.vscode-docker",
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },
   "files.saveConflictResolution": "overwriteFileOnDisk",
   "git.blame.editorDecoration.enabled": true,
-  "typescript.experimental.expandableHover": true,
-
-  "python.analysis.typeEvaluation.enableReachabilityAnalysis": true,
-  "python.analysis.typeCheckingMode": "standard",
-  "python.terminal.activateEnvironment": false,
-  "python.analysis.completeFunctionParens": true,
-  "python.testing.pytestEnabled": true,
-  "python.REPL.sendToNativeREPL": false,
-  "python.REPL.enableREPLSmartSend": false,
-  "python.analysis.logLevel": "Trace",
-  "python.analysis.autoFormatStrings": true,
-  "python.analysis.autoImportCompletions": true,
-  "python.analysis.generateWithTypeAnnotation": true,
   "go.toolsManagement.autoUpdate": true,
   "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "docker.extension.enableComposeLanguageServer": false,
   "cursor.composer.shouldChimeAfterChatFinishes": true,
   "workbench.colorTheme": "Default Dark Modern",
-  // "terminal.integrated.tabs.enabled": false,
-  "python.analysis.cacheLSPData": true,
   "cursorpyright.analysis.autoImportCompletions": true,
-  "cursorpyright.analysis.logLevel": "Trace",
-  "cursorpyright.analysis.typeCheckingMode": "standard",
+
   "[dockercompose]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
@@ -168,11 +149,13 @@
     "editor.quickSuggestions": {
       "other": true,
       "comments": false,
-      "strings": true,
+      "strings": true
     },
-    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.defaultFormatter": "redhat.vscode-yaml"
   },
   "[github-actions-workflow]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.defaultFormatter": "redhat.vscode-yaml"
   },
+  "window.autoDetectColorScheme": false,
+  "python.languageServer": "None"
 }

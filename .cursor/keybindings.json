@@ -107,4 +107,46 @@
     "key": "shift+cmd+[",
     "command": "-debug.console.focusPrevious",
   },
+  {
+    "key": "shift+cmd+]",
+    "command": "-workbench.action.nextEditor",
+  },
+  {
+    "key": "shift+cmd+[",
+    "command": "-workbench.action.debug.prevConsole",
+  },
+  // terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus
+  {
+    "key": "shift+cmd+]",
+    "command": "-workbench.action.debug.nextConsole",
+  },
+  {
+    "key": "shift+cmd+[",
+    "command": "workbench.action.terminal.focusPrevious",
+    // "when": "terminalFocus && terminalHasBeenCreated",
+  },
+  {
+    "key": "shift+cmd+[",
+    "command": "-workbench.action.terminal.focusPrevious",
+    "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus",
+  },
+  {
+    "key": "cmd+1",
+    "command": "-glass.goToChat1",
+    "when": "isGlassAgentWorkspace",
+  },
+  {
+    "key": "cmd+1",
+    "command": "-glass.goToChat1",
+    "when": "isGlassAgentWorkspace && terminalFocusInAny",
+  },
+  {
+    "key": "cmd+1",
+    "command": "workbench.action.focusFirstEditorGroup",
+  },
+  {
+    "key": "cmd+1",
+    "command": "-workbench.action.focusFirstEditorGroup",
+    "when": "!cursor.chatEditorGroup.enabled",
+  },
 ]
