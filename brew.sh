@@ -81,7 +81,8 @@ pnpm install -g yalc
 
 # all of the cli coding tools
 pnpm install -g @sourcegraph/amp
-pnpm install -g @google/gemini-cli
+# gemini doesn't like pnpm as much
+npm install -g @google/gemini-cli
 curl -fsSL https://claude.ai/install.sh | bash
 pnpm install -g @openai/codex
 pnpm approve-builds -g
@@ -92,6 +93,7 @@ pnpx skills add ast-grep/agent-skill
 pnpx skills add https://github.com/iloveitaly/ai-skills --skill justfile
 pnpx skills add https://github.com/railwayapp/railway-skills --skill railway-docs --agent claude-code,gemini-cli,codex,cursor,github-copilot,opencode
 pnpx skills add https://github.com/github/awesome-copilot --skill gh-cli
+pnpm dlx skills add shadcn/ui
 
 #################
 # GH CLI Config #
