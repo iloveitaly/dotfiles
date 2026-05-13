@@ -1,21 +1,45 @@
-# readline config used by various applications, including ruby's IRB
+# readline config (affects python REPL, ruby irb, mysql, psql etc; ignored by zsh)
 
-# Make Tab autocomplete regardless of filename case
+# no terminal bell
+set bell-style none
+
+# case-insensitive tab complete
 set completion-ignore-case on
 
-# Append a slash when autocompleting symbolic links to directories
-set mark-symlinked-directories on
+# complete using text after cursor
+set skip-completed-text on
 
-# List all matches in case multiple possible completions are possible
+# show all on ambiguous
 set show-all-if-ambiguous on
 
-# https://coderwall.com/p/oqtj8w
+# color file types in list
+set colored-stats on
+
+# highlight common prefix
+set colored-completion-prefix on
+
+# show type symbols (/ * @)
+set visible-stats on
+
+# / after symlinked dirs
+set mark-symlinked-directories on
+
+# keep cursor on history search
+set history-preserve-point on
+
+# up arrow: history search back
 "\e[A": history-search-backward
+
+# down arrow: history search forward
 "\e[B": history-search-forward
 
-# Be more intelligent when autocompleting by also looking at the text after
-# the cursor. For example, when the current line is "cd ~/src/mozil", and
-# the cursor is on the "z", pressing Tab will not autocomplete it to "cd
-# ~/src/mozillail", but to "cd ~/src/mozilla". (This is supported by the
-# Readline used by Bash 4.)
-set skip-completed-text on
+# alt-left: word back (terminal-specific)
+"\e[1;3D": backward-word
+
+# alt-right: word forward
+"\e[1;3C": forward-word
+
+# UTF-8 input support
+set input-meta on
+set output-meta on
+set convert-meta off
