@@ -77,6 +77,13 @@ url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nig
 checksum = "sha256:73c55a13fcb96766241bec3ed180e20a2a233558763d7eb07fe1f4d41503faa0"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-win64.zip"
 
+[[tools.azure-cli]]
+version = "2.86.0"
+backend = "pipx:azure-cli"
+
+[tools.azure-cli.options]
+uvx_args = "--prerelease=allow"
+
 [[tools.bun]]
 version = "1.3.13"
 backend = "core:bun"
@@ -628,13 +635,13 @@ url = "https://github.com/nnnkkk7/lazyactions/releases/download/v0.0.13/lazyacti
 url_api = "https://api.github.com/repos/nnnkkk7/lazyactions/releases/assets/374567697"
 
 [[tools."github:railwayapp/cli"]]
-version = "4.51.0"
+version = "4.57.1"
 backend = "github:railwayapp/cli"
 
 [tools."github:railwayapp/cli"."platforms.macos-arm64"]
-checksum = "sha256:18b7184561bff911bc56cb51ac61a7e986cf600b95e6395b765ae77e493014a7"
-url = "https://github.com/railwayapp/cli/releases/download/v4.51.0/railway-v4.51.0-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/414365203"
+checksum = "sha256:1530991c32f3fe03ff5e6ca1d29f81c5a7ddec27f9bd597518b5f65e8235fa18"
+url = "https://github.com/railwayapp/cli/releases/download/v4.57.1/railway-v4.57.1-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/415612436"
 provenance = "github-attestations"
 
 [[tools."github:railwayapp/railpack"]]
@@ -697,52 +704,8 @@ url = "https://github.com/railwayapp/railpack/releases/download/v0.23.0/railpack
 url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/384727841"
 
 [[tools.go]]
-version = "1.26.2"
+version = "1.26.3"
 backend = "core:go"
-
-[tools.go."platforms.linux-arm64"]
-checksum = "sha256:c958a1fe1b361391db163a485e21f5f228142d6f8b584f6bef89b26f66dc5b23"
-url = "https://dl.google.com/go/go1.26.2.linux-arm64.tar.gz"
-
-[tools.go."platforms.linux-arm64-musl"]
-checksum = "sha256:c958a1fe1b361391db163a485e21f5f228142d6f8b584f6bef89b26f66dc5b23"
-url = "https://dl.google.com/go/go1.26.2.linux-arm64.tar.gz"
-
-[tools.go."platforms.linux-x64"]
-checksum = "sha256:990e6b4bbba816dc3ee129eaeaf4b42f17c2800b88a2166c265ac1a200262282"
-url = "https://dl.google.com/go/go1.26.2.linux-amd64.tar.gz"
-
-[tools.go."platforms.linux-x64-baseline"]
-checksum = "sha256:990e6b4bbba816dc3ee129eaeaf4b42f17c2800b88a2166c265ac1a200262282"
-url = "https://dl.google.com/go/go1.26.2.linux-amd64.tar.gz"
-
-[tools.go."platforms.linux-x64-musl"]
-checksum = "sha256:990e6b4bbba816dc3ee129eaeaf4b42f17c2800b88a2166c265ac1a200262282"
-url = "https://dl.google.com/go/go1.26.2.linux-amd64.tar.gz"
-
-[tools.go."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:990e6b4bbba816dc3ee129eaeaf4b42f17c2800b88a2166c265ac1a200262282"
-url = "https://dl.google.com/go/go1.26.2.linux-amd64.tar.gz"
-
-[tools.go."platforms.macos-arm64"]
-checksum = "sha256:32af1522bf3e3ff3975864780a429cc0b41d190ec7bf90faa661d6d64566e7af"
-url = "https://dl.google.com/go/go1.26.2.darwin-arm64.tar.gz"
-
-[tools.go."platforms.macos-x64"]
-checksum = "sha256:bc3f1500d9968c36d705442d90ba91addf9271665033748b82532682e90a7966"
-url = "https://dl.google.com/go/go1.26.2.darwin-amd64.tar.gz"
-
-[tools.go."platforms.macos-x64-baseline"]
-checksum = "sha256:bc3f1500d9968c36d705442d90ba91addf9271665033748b82532682e90a7966"
-url = "https://dl.google.com/go/go1.26.2.darwin-amd64.tar.gz"
-
-[tools.go."platforms.windows-x64"]
-checksum = "sha256:98eb3570bade15cb826b0909338df6cc6d2cf590bc39c471142002db3832b708"
-url = "https://dl.google.com/go/go1.26.2.windows-amd64.zip"
-
-[tools.go."platforms.windows-x64-baseline"]
-checksum = "sha256:98eb3570bade15cb826b0909338df6cc6d2cf590bc39c471142002db3832b708"
-url = "https://dl.google.com/go/go1.26.2.windows-amd64.zip"
 
 [[tools."go:github.com/karol-broda/snitch"]]
 version = "0.2.2"
@@ -753,11 +716,11 @@ version = "1.0.0"
 backend = "go:github.com/standardbeagle/mcp-clip"
 
 [[tools.just]]
-version = "1.50.0"
+version = "1.51.0"
 backend = "ubi:casey/just"
 
 [tools.just."platforms.macos-arm64-just"]
-checksum = "blake3:98a96dd1989c96996ee8fdbb5f300b65b1e73ffcb4885e8b08e0493580a8e802"
+checksum = "blake3:4600f21a3aa3a9a488eff00579b7be9ee31beb67b6adf175d21a98eb84bcfe1f"
 
 [[tools.node]]
 version = "22.22.2"
@@ -807,9 +770,18 @@ url = "https://nodejs.org/dist/v22.22.2/node-v22.22.2-win-x64.zip"
 checksum = "sha256:7c93e9d92bf68c07182b471aa187e35ee6cd08ef0f24ab060dfff605fcc1c57c"
 url = "https://nodejs.org/dist/v22.22.2/node-v22.22.2-win-x64.zip"
 
+[[tools.opentofu]]
+version = "1.11.6"
+backend = "aqua:opentofu/opentofu"
+
 [[tools.pnpm]]
-version = "11.0.8"
+version = "11.0.9"
 backend = "aqua:pnpm/pnpm"
+
+[tools.pnpm."platforms.macos-arm64"]
+checksum = "sha256:b7264bfdcbcee37d8fb302256fae799dd067f4e8996d7202fcb4a5a3ee2665f7"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.0.9/pnpm-darwin-arm64.tar.gz"
+provenance = "github-attestations"
 
 [[tools.python]]
 version = "3.14.4"
@@ -930,5 +902,5 @@ version = "1.95.0"
 backend = "core:rust"
 
 [[tools.uv]]
-version = "0.11.11"
+version = "0.11.12"
 backend = "asdf:uv"

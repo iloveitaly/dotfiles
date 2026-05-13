@@ -23,6 +23,8 @@ fzf = "latest"
 "github:harehare/mq" = "latest"
 "github:dlvhdr/diffnav" = "latest"
 "github:eza-community/eza" = "latest"
+azure-cli = "latest"
+opentofu = "latest"
 
 # language and language tooling
 direnv = "latest"
