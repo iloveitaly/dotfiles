@@ -2,34 +2,58 @@
 # Functions to make working with AI easier on the command line
 # ================================
 
-# combine all matching files into a single string and copy to clipboard, helpful for AI stuff
+# Usage: ai-find-and-copy <search string>|<files...>
+#
+# Description:
+#   Copies matching file contents to the clipboard.
+#   When given file arguments, it concatenates those files with --- separators.
+#   When given a search string, it finds files containing that literal text with rg and copies their contents.
+#   Shell-expanded globs like tmp/db-lint/* work when they resolve to regular files before the function runs.
 ai-find-and-copy() {
-  # $1 is the first argument to the function: the specific string to search for
+  local -a files_to_copy
+  local search_string
 
-  # Ensure the search string is provided
-  if [[ -z "$1" ]]; then
-    echo "Usage: find_and_bundle <string>"
+  if (( $# == 0 )); then
+    echo "Usage: ai-find-and-copy <search string>|<files...>"
     return 1
   fi
 
-  # Use ripgrep to find files containing the specific string
-  local files_with_string=($(rg --files-with-matches --no-messages --fixed-strings "$1"))
+  # If every argument resolves to an existing file, treat the input as a file list.
+  # This makes shell-expanded globs like tmp/db-lint/* behave as expected.
+  if [[ -f "$1" ]]; then
+    local file
+    for file in "$@"; do
+      if [[ ! -f "$file" ]]; then
+        echo "Expected files, but '$file' does not exist or is not a regular file."
+        return 1
+      fi
+    done
 
-  # Check if any files were found
-  if [[ ${#files_with_string[@]} -eq 0 ]]; then
-    echo "No files found with string: $1"
-    return 1
+    files_to_copy=("$@")
+  else
+    search_string="$*"
+    files_to_copy=(${(f)$(rg --files-with-matches --no-messages --fixed-strings "$search_string")})
+
+    if (( ${#files_to_copy[@]} == 0 )); then
+      echo "No files found with string: $search_string"
+      return 1
+    fi
   fi
 
   # Combine contents of the files, separated by "---"
-  for file in $files_with_string; do
+  local file
+  for file in "${files_to_copy[@]}"; do
     cat "$file"
-    echo "\n---\n"
+    printf '\n---\n\n'
   done | pbcopy  # Copy the combined content to the clipboard
 }
 
-# for quick gpt prompt generation
-ai-cat() {
+# Usage: ai-cat <files...>
+#
+# Description:
+#   Prints each file with a markdown header and fenced code block for quick LLM prompts.
+#   Accepts literal file paths and shell-expanded globs like tmp/db-lint/* when the glob matches files.
+ai-cat-glob() {
   for file in "$@"; do
     if [[ -f "$file" ]]; then
       echo "### File: $file"
@@ -41,6 +65,12 @@ ai-cat() {
       echo "File $file does not exist." >&2
     fi
   done
+}
+
+# Description: copy glob match into clipboard (with names)
+# Usage: ai-cat-glob <files...>
+ai-pbcopy-glob() {
+  ai-cat-glob "$@" | pbcopy
 }
 
 ask_llm_claude() {
