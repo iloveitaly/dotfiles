@@ -85,8 +85,11 @@ backend = "pipx:azure-cli"
 uvx_args = "--prerelease=allow"
 
 [[tools.bun]]
-version = "1.3.13"
+version = "1.3.14"
 backend = "core:bun"
+
+[tools.bun."platforms.macos-arm64"]
+checksum = "blake3:1d67c2e82e92e551d07c96e56f22d7124e8aba1a7b0d56b576c0d14dab045697"
 
 [[tools.cargo-binstall]]
 version = "1.19.1"
@@ -97,7 +100,7 @@ checksum = "sha256:bf9da6a27e432784f361cfbc70a6d04e548abc548470ae9a7587c3cffb8fb
 url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.19.1/cargo-binstall-aarch64-apple-darwin.zip"
 
 [[tools."cargo:ast-grep"]]
-version = "0.42.1"
+version = "0.42.2"
 backend = "cargo:ast-grep"
 
 [[tools."cargo:fastmod"]]
@@ -635,13 +638,13 @@ url = "https://github.com/nnnkkk7/lazyactions/releases/download/v0.0.13/lazyacti
 url_api = "https://api.github.com/repos/nnnkkk7/lazyactions/releases/assets/374567697"
 
 [[tools."github:railwayapp/cli"]]
-version = "4.57.1"
+version = "4.58.0"
 backend = "github:railwayapp/cli"
 
 [tools."github:railwayapp/cli"."platforms.macos-arm64"]
-checksum = "sha256:1530991c32f3fe03ff5e6ca1d29f81c5a7ddec27f9bd597518b5f65e8235fa18"
-url = "https://github.com/railwayapp/cli/releases/download/v4.57.1/railway-v4.57.1-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/415612436"
+checksum = "sha256:67c29606ffa815a212fbd4ffddde323699524d61e62eb8a7de6d67b4835d01ac"
+url = "https://github.com/railwayapp/cli/releases/download/v4.58.0/railway-v4.58.0-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/418505246"
 provenance = "github-attestations"
 
 [[tools."github:railwayapp/railpack"]]
@@ -723,124 +726,28 @@ backend = "ubi:casey/just"
 checksum = "blake3:4600f21a3aa3a9a488eff00579b7be9ee31beb67b6adf175d21a98eb84bcfe1f"
 
 [[tools.node]]
-version = "22.22.2"
+version = "22.22.3"
 backend = "core:node"
 
-[tools.node."platforms.linux-arm64"]
-checksum = "sha256:b2f3a96f31486bfc365192ad65ced14833ad2a3c2e1bcefec4846902f264fa28"
-url = "https://nodejs.org/dist/v22.22.2/node-v22.22.2-linux-arm64.tar.gz"
-
-[tools.node."platforms.linux-arm64-musl"]
-checksum = "sha256:b2f3a96f31486bfc365192ad65ced14833ad2a3c2e1bcefec4846902f264fa28"
-url = "https://nodejs.org/dist/v22.22.2/node-v22.22.2-linux-arm64.tar.gz"
-
-[tools.node."platforms.linux-x64"]
-checksum = "sha256:978978a635eef872fa68beae09f0aad0bbbae6757e444da80b570964a97e62a3"
-url = "https://nodejs.org/dist/v22.22.2/node-v22.22.2-linux-x64.tar.gz"
-
-[tools.node."platforms.linux-x64-baseline"]
-checksum = "sha256:978978a635eef872fa68beae09f0aad0bbbae6757e444da80b570964a97e62a3"
-url = "https://nodejs.org/dist/v22.22.2/node-v22.22.2-linux-x64.tar.gz"
-
-[tools.node."platforms.linux-x64-musl"]
-checksum = "sha256:978978a635eef872fa68beae09f0aad0bbbae6757e444da80b570964a97e62a3"
-url = "https://nodejs.org/dist/v22.22.2/node-v22.22.2-linux-x64.tar.gz"
-
-[tools.node."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:978978a635eef872fa68beae09f0aad0bbbae6757e444da80b570964a97e62a3"
-url = "https://nodejs.org/dist/v22.22.2/node-v22.22.2-linux-x64.tar.gz"
-
 [tools.node."platforms.macos-arm64"]
-checksum = "sha256:db4b275b83736df67533529a18cc55de2549a8329ace6c7bcc68f8d22d3c9000"
-url = "https://nodejs.org/dist/v22.22.2/node-v22.22.2-darwin-arm64.tar.gz"
-
-[tools.node."platforms.macos-x64"]
-checksum = "sha256:12a6abb9c2902cf48a21120da13f87fde1ed1b71a13330712949e8db818708ba"
-url = "https://nodejs.org/dist/v22.22.2/node-v22.22.2-darwin-x64.tar.gz"
-
-[tools.node."platforms.macos-x64-baseline"]
-checksum = "sha256:12a6abb9c2902cf48a21120da13f87fde1ed1b71a13330712949e8db818708ba"
-url = "https://nodejs.org/dist/v22.22.2/node-v22.22.2-darwin-x64.tar.gz"
-
-[tools.node."platforms.windows-x64"]
-checksum = "sha256:7c93e9d92bf68c07182b471aa187e35ee6cd08ef0f24ab060dfff605fcc1c57c"
-url = "https://nodejs.org/dist/v22.22.2/node-v22.22.2-win-x64.zip"
-
-[tools.node."platforms.windows-x64-baseline"]
-checksum = "sha256:7c93e9d92bf68c07182b471aa187e35ee6cd08ef0f24ab060dfff605fcc1c57c"
-url = "https://nodejs.org/dist/v22.22.2/node-v22.22.2-win-x64.zip"
+checksum = "sha256:0da7ff74ef8611328c8212f17943368713a2ad953fb7d89a8c8a0eae87c23207"
+url = "https://nodejs.org/dist/v22.22.3/node-v22.22.3-darwin-arm64.tar.gz"
 
 [[tools.opentofu]]
-version = "1.11.6"
+version = "1.12.0"
 backend = "aqua:opentofu/opentofu"
 
+[tools.opentofu."platforms.macos-arm64"]
+checksum = "sha256:9ad35307131102371d770cfc1a9806225fd5040acf1a3d3d8c3b5ad5418cd454"
+url = "https://github.com/opentofu/opentofu/releases/download/v1.12.0/tofu_1.12.0_darwin_arm64.tar.gz"
+
 [[tools.pnpm]]
-version = "11.0.9"
+version = "11.1.2"
 backend = "aqua:pnpm/pnpm"
 
-[tools.pnpm."platforms.macos-arm64"]
-checksum = "sha256:b7264bfdcbcee37d8fb302256fae799dd067f4e8996d7202fcb4a5a3ee2665f7"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.0.9/pnpm-darwin-arm64.tar.gz"
-provenance = "github-attestations"
-
 [[tools.python]]
-version = "3.14.4"
+version = "3.14.5"
 backend = "core:python"
-
-[tools.python."platforms.linux-arm64"]
-checksum = "sha256:b8b597fdb2f8dccdc502c11947b60a4b65eb6bce79cfa60c7ccf9b6e8352c60a"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260414/cpython-3.14.4+20260414-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz"
-provenance = "github-attestations"
-
-[tools.python."platforms.linux-arm64-musl"]
-checksum = "sha256:b8b597fdb2f8dccdc502c11947b60a4b65eb6bce79cfa60c7ccf9b6e8352c60a"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260414/cpython-3.14.4+20260414-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz"
-provenance = "github-attestations"
-
-[tools.python."platforms.linux-x64"]
-checksum = "sha256:fe9a9c32d13870af632cbac3dfc7528ae53597e94472aa4c7d6a42e8166136cd"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260414/cpython-3.14.4+20260414-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
-provenance = "github-attestations"
-
-[tools.python."platforms.linux-x64-baseline"]
-checksum = "sha256:fe9a9c32d13870af632cbac3dfc7528ae53597e94472aa4c7d6a42e8166136cd"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260414/cpython-3.14.4+20260414-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
-provenance = "github-attestations"
-
-[tools.python."platforms.linux-x64-musl"]
-checksum = "sha256:fe9a9c32d13870af632cbac3dfc7528ae53597e94472aa4c7d6a42e8166136cd"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260414/cpython-3.14.4+20260414-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
-provenance = "github-attestations"
-
-[tools.python."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:fe9a9c32d13870af632cbac3dfc7528ae53597e94472aa4c7d6a42e8166136cd"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260414/cpython-3.14.4+20260414-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz"
-provenance = "github-attestations"
-
-[tools.python."platforms.macos-arm64"]
-checksum = "sha256:6f304f4ec30854611f23316578302235fb517cd970519ecdd11a8c4db87fd843"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260414/cpython-3.14.4+20260414-aarch64-apple-darwin-install_only_stripped.tar.gz"
-provenance = "github-attestations"
-
-[tools.python."platforms.macos-x64"]
-checksum = "sha256:d51250a32fa5d9f0799c7bcb71720c27b10a3afd4a7de288120f96085d508a5a"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260414/cpython-3.14.4+20260414-x86_64-apple-darwin-install_only_stripped.tar.gz"
-provenance = "github-attestations"
-
-[tools.python."platforms.macos-x64-baseline"]
-checksum = "sha256:d51250a32fa5d9f0799c7bcb71720c27b10a3afd4a7de288120f96085d508a5a"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260414/cpython-3.14.4+20260414-x86_64-apple-darwin-install_only_stripped.tar.gz"
-provenance = "github-attestations"
-
-[tools.python."platforms.windows-x64"]
-checksum = "sha256:a976991dcd085c1bb5d9a8084823a6bc8b7f9b079d8c432574a6ddd68c3a6fe1"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260414/cpython-3.14.4+20260414-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
-provenance = "github-attestations"
-
-[tools.python."platforms.windows-x64-baseline"]
-checksum = "sha256:a976991dcd085c1bb5d9a8084823a6bc8b7f9b079d8c432574a6ddd68c3a6fe1"
-url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260414/cpython-3.14.4+20260414-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
-provenance = "github-attestations"
 
 [[tools.ruby]]
 version = "3.4.9"
@@ -902,5 +809,5 @@ version = "1.95.0"
 backend = "core:rust"
 
 [[tools.uv]]
-version = "0.11.12"
+version = "0.11.14"
 backend = "asdf:uv"
