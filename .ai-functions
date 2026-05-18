@@ -94,6 +94,13 @@ ask_llm_gemini() {
 # can't use a `?` in a function name, only an alias
 alias "ai?"="ask_llm_gemini"
 
+# Usage: mcp-inspect <server_key> [path/to/settings.json]
+#
+# Description:
+#   Launches the MCP inspector for a server defined in a JSON5 settings file.
+#   It defaults to .gemini/settings.json, expands environment variables in the server config,
+#   and passes the configured command and args through to @modelcontextprotocol/inspector.
+#   When no server key is provided, it prints usage and lists the available configured servers.
 mcp-inspect() {
   local SERVER=$1
   # Defaults to your settings file if a second argument isn't provided
