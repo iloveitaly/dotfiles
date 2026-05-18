@@ -1,3 +1,4 @@
+- [ ] path diff helper https://gemini.google.com/app/c2e3b9ad56056311
 - [ ] we should use exec in tmux wrapper https://gemini.google.com/app/771b089d656309b1
 - [ ] micro improvements
   - [ ] https://github.com/nazya/micro-opener
@@ -122,7 +123,6 @@
 - [ ] fix bun completions https://github.com/oven-sh/bun/issues/1272
 - [ ] git-delta seems way better than diff-so-fancy
   - [ ] rendering issue on zsh https://github.com/dandavison/delta/issues/1492, this is the main blocker
-  - [ ] wrong completion for delta https://github.com/dandavison/delta/issues/1022
 - [ ] https://www.nushell.sh zsh alternative
 - [ ] default npm packages on asdf https://github.com/asdf-vm/asdf-nodejs#default-npm-packages
 - [ ] change color of focused pane in tmux https://stackoverflow.com/questions/25532773/change-background-color-of-active-or-inactive-pane-in-tmux
@@ -211,6 +211,11 @@
 - [ ] look into https://github.com/unixorn/awesome-zsh-plugins#themes
 - [ ] https://wakatime.com/pricing they have a zsh plugin. Interesting programming productivity tool.
 - [ ] gpg-suite didn't work as well as pinentry for me, not sure if I was doing something wrong
+- [ ] micro editor plugin https://github.com/Neko-Box-Coder/MicroOmni?tab=readme-ov-file#-diff-view
+
+## Server
+
+- https://github.com/theimpostor/osc clipboard
 
 ## Tools
 
@@ -228,3 +233,8 @@
 
 - [ ] select contents in quotes
 - [ ] improve title contents https://github.com/intrntbrn/awesomewm-vim-tmux-navigator/blob/fc2b46896fe9daf1b1b1a6a0af5ae6fcfefa7511/README.md?plain=1#L146
+
+## Editors
+
+- [ ] https://github.com/pjg11/micro-urlopen?referrer=grok.com - url open for micro
+- [ ] https://github.com/google-gemini/gemini-cli/issues/24580 micro and gemini don't like each other
