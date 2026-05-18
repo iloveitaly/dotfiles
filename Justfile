@@ -6,11 +6,12 @@ set script-interpreter := ["zsh", "-euBh", "-o", "pipefail"]
 set unstable := true
 
 upgrade:
-	brew upgrade atuin awscli git rg fd gh zsh gmailctl dolt 1password-cli yazi dolt bat ov
+	brew upgrade atuin awscli git rg fd gh zsh gmailctl dolt yazi dolt bat ov
 	gh extension upgrade --all
 	
 	mise self-update
 	mise upgrade
+	ya pkg upgrade
 
 	# TODO can't figure out why this is not working
 	# this will update starship as well
