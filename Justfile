@@ -13,9 +13,9 @@ upgrade:
 	mise upgrade
 	ya pkg upgrade
 
-	# TODO can't figure out why this is not working
 	# this will update starship as well
-	# zsh -cl "zinit-update"
+	# zinit-update must have an interactive environment to run
+  echo "Please run \`zinit update\` in an interactive shell to update zinit plugins like starship."
 
 sync:
 	fd --hidden --max-depth 4 -t f --exclude=.git | \
