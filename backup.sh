@@ -36,3 +36,6 @@ mackup backup
 
 cp ~/Library/Application\ Support/Code/User/{settings,keybindings}.json .vscode/
 cp ~/Library/Application\ Support/Cursor/User/{settings,keybindings}.json .cursor/
+
+cp ~/.gemini/settings.json .gemini/
+cp ~/.claude/settings.json .claude/
