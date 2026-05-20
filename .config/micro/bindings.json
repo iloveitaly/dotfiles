@@ -11,7 +11,8 @@
   "AltShift-Left": "SelectToStartOfLine",
   "AltShift-Right": "SelectToEndOfLine",
   "Ctrl-a": "StartOfLine",
-  "Ctrl-A": "SelectAll",
+  // TODO looks like tmux + ghostty causes capital bindings not come through
+  // "CtrlShift-a": "SelectAll",
   "Ctrl-e": "EndOfLine",
   "Alt-b": "WordLeft",
   "Alt-f": "WordRight",
