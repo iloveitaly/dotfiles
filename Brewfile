@@ -67,7 +67,6 @@ brew "fzf"
 brew "bc" # used by git-fuzzy
 brew "git-delta" # diff replacement
 brew "bat" # cat, can also do paging
-brew "eza" # ls
 brew "hck" # cut
 brew "tre-command"
 brew "htop"
@@ -272,6 +271,9 @@ if OS.mac?
     brew "btop"
     brew "px"
     brew "sslscan"
+    brew "modem-dev/tap/hunk"
+    brew "odiff"
+    
     # homerow
 
     # == Mac App store
