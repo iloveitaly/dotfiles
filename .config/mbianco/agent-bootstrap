@@ -3,7 +3,7 @@
 
 # Returns 0 (true) when running under an AI-agent managed terminal.
 ai_is_agent_terminal() {
-  [[ "${VSCODE_AGENT:-}" == "1" || -n "${CURSOR_AGENT:-}" || "${CLAUDECODE:-}" == "1" || "${GEMINI_CLI:-}" == "1" ]]
+  [[ "${VSCODE_AGENT:-}" == "1" || -n "${CURSOR_AGENT:-}" || "${CLAUDECODE:-}" == "1" || "${GEMINI_CLI:-}" == "1" || "${ANTIGRAVITY_AGENT:-}" == "1" ]]
 }
 
 # test with:
