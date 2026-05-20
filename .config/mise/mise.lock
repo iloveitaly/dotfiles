@@ -470,54 +470,62 @@ url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/3857
 provenance = "github-attestations"
 
 [[tools."github:harehare/mq"]]
-version = "0.5.26"
+version = "0.5.30"
 backend = "github:harehare/mq"
 
 [tools."github:harehare/mq"."platforms.linux-arm64"]
-checksum = "sha256:0adc1dd07b60d9b9f97eddbda974ab22a797635317c900d7ba5a90b7bd242192"
-url = "https://github.com/harehare/mq/releases/download/v0.5.26/mq-aarch64-unknown-linux-gnu"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/396199292"
+checksum = "sha256:e508cff4224448ca166eac9db7b5e35a1ef5a0e2c796a6f4761bee0ee4ea9ec6"
+url = "https://github.com/harehare/mq/releases/download/v0.5.30/mq-aarch64-unknown-linux-gnu"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/422518158"
+provenance = "github-attestations"
 
 [tools."github:harehare/mq"."platforms.linux-arm64-musl"]
-checksum = "sha256:5eb3031c0cc35b21c575555c6e8466e811575c351d7d24907ee6d74beaffb6a5"
-url = "https://github.com/harehare/mq/releases/download/v0.5.26/mq-aarch64-unknown-linux-musl"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/396199286"
+checksum = "sha256:b7ad04190c280e9b6ec372a5ede52fc899b0a084a036133f830f97f7534d35f9"
+url = "https://github.com/harehare/mq/releases/download/v0.5.30/mq-aarch64-unknown-linux-musl"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/422518149"
+provenance = "github-attestations"
 
 [tools."github:harehare/mq"."platforms.linux-x64"]
-checksum = "sha256:16b26b70e6f2184b17e8c2314a74f0ce33b569618eb3551c6e8fedfcdd425e67"
-url = "https://github.com/harehare/mq/releases/download/v0.5.26/mq-check-x86_64-unknown-linux-gnu"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/396199285"
+checksum = "sha256:57825883dfa36ee48a387453d70d3a1c178c7dd20c583c78d2cdb9b2a1d3af1d"
+url = "https://github.com/harehare/mq/releases/download/v0.5.30/mq-x86_64-unknown-linux-gnu"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/422518129"
+provenance = "github-attestations"
 
 [tools."github:harehare/mq"."platforms.linux-x64-baseline"]
-checksum = "sha256:16b26b70e6f2184b17e8c2314a74f0ce33b569618eb3551c6e8fedfcdd425e67"
-url = "https://github.com/harehare/mq/releases/download/v0.5.26/mq-check-x86_64-unknown-linux-gnu"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/396199285"
+checksum = "sha256:57825883dfa36ee48a387453d70d3a1c178c7dd20c583c78d2cdb9b2a1d3af1d"
+url = "https://github.com/harehare/mq/releases/download/v0.5.30/mq-x86_64-unknown-linux-gnu"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/422518129"
+provenance = "github-attestations"
 
 [tools."github:harehare/mq"."platforms.linux-x64-musl"]
-checksum = "sha256:5a09db50d8ecdfb5fd6eb9ca577e475e12296310847d6cd263623ba77a7b067e"
-url = "https://github.com/harehare/mq/releases/download/v0.5.26/mq-check-x86_64-unknown-linux-musl"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/396199298"
+checksum = "sha256:df3080f2fe56f71de91dba03299675c9d998ecaa8cfa45a96d36eab02c1c94fd"
+url = "https://github.com/harehare/mq/releases/download/v0.5.30/mq-x86_64-unknown-linux-musl"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/422518123"
+provenance = "github-attestations"
 
 [tools."github:harehare/mq"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:16b26b70e6f2184b17e8c2314a74f0ce33b569618eb3551c6e8fedfcdd425e67"
-url = "https://github.com/harehare/mq/releases/download/v0.5.26/mq-check-x86_64-unknown-linux-gnu"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/396199285"
+checksum = "sha256:df3080f2fe56f71de91dba03299675c9d998ecaa8cfa45a96d36eab02c1c94fd"
+url = "https://github.com/harehare/mq/releases/download/v0.5.30/mq-x86_64-unknown-linux-musl"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/422518123"
+provenance = "github-attestations"
 
 [tools."github:harehare/mq"."platforms.macos-arm64"]
-checksum = "sha256:d3969c8ed859f3ac8001e43c7c233b01f8885f69458bc62fc1634f57a5b3565a"
-url = "https://github.com/harehare/mq/releases/download/v0.5.26/mq-aarch64-apple-darwin"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/396199301"
+checksum = "sha256:ae1fe07dcd2e683b63da47762fbb42158775764c4ea79ab1f04b519c63dee666"
+url = "https://github.com/harehare/mq/releases/download/v0.5.30/mq-aarch64-apple-darwin"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/422518177"
 provenance = "github-attestations"
 
 [tools."github:harehare/mq"."platforms.windows-x64"]
-checksum = "sha256:f841280681fff3b059b1f0a7453691af8ed01e839542ec6d89fb6a52afaabb9f"
-url = "https://github.com/harehare/mq/releases/download/v0.5.26/mq-check-x86_64-pc-windows-msvc.exe"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/396199294"
+checksum = "sha256:b5fabbd9224d1327e149b9acd05eee5f89cd9bb480b987861920475639e0c5c3"
+url = "https://github.com/harehare/mq/releases/download/v0.5.30/mq-x86_64-pc-windows-msvc.exe"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/422518135"
+provenance = "github-attestations"
 
 [tools."github:harehare/mq"."platforms.windows-x64-baseline"]
-checksum = "sha256:f841280681fff3b059b1f0a7453691af8ed01e839542ec6d89fb6a52afaabb9f"
-url = "https://github.com/harehare/mq/releases/download/v0.5.26/mq-check-x86_64-pc-windows-msvc.exe"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/396199294"
+checksum = "sha256:b5fabbd9224d1327e149b9acd05eee5f89cd9bb480b987861920475639e0c5c3"
+url = "https://github.com/harehare/mq/releases/download/v0.5.30/mq-x86_64-pc-windows-msvc.exe"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/422518135"
+provenance = "github-attestations"
 
 [[tools."github:iloveitaly/richclip"]]
 version = "1.3.0"
@@ -742,8 +750,53 @@ checksum = "sha256:9ad35307131102371d770cfc1a9806225fd5040acf1a3d3d8c3b5ad5418cd
 url = "https://github.com/opentofu/opentofu/releases/download/v1.12.0/tofu_1.12.0_darwin_arm64.tar.gz"
 
 [[tools.pnpm]]
-version = "11.1.2"
+version = "11.1.3"
 backend = "aqua:pnpm/pnpm"
+
+[tools.pnpm."platforms.linux-arm64"]
+checksum = "sha256:35676a3dacc7e325dd6ac90db35fd425f17748ea8095c2ea6d47c2375a974fcd"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.1.3/pnpm-linux-arm64.tar.gz"
+provenance = "github-attestations"
+
+[tools.pnpm."platforms.linux-arm64-musl"]
+checksum = "sha256:4d3ce91646621f5551f9723744df2ce7a2f2b00a238b957d5fc2bad88e972ead"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.1.3/pnpm-linux-arm64-musl.tar.gz"
+provenance = "github-attestations"
+
+[tools.pnpm."platforms.linux-x64"]
+checksum = "sha256:8e5685c22bc05e8092adb056bb3d848c3d7926a2c909ed028052098d59db9e6e"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.1.3/pnpm-linux-x64.tar.gz"
+provenance = "github-attestations"
+
+[tools.pnpm."platforms.linux-x64-baseline"]
+checksum = "sha256:8e5685c22bc05e8092adb056bb3d848c3d7926a2c909ed028052098d59db9e6e"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.1.3/pnpm-linux-x64.tar.gz"
+provenance = "github-attestations"
+
+[tools.pnpm."platforms.linux-x64-musl"]
+checksum = "sha256:729e484a7ca2c0319e188b4ce97523034a8a9913a6833c8afdc144b03a9ff260"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.1.3/pnpm-linux-x64-musl.tar.gz"
+provenance = "github-attestations"
+
+[tools.pnpm."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:729e484a7ca2c0319e188b4ce97523034a8a9913a6833c8afdc144b03a9ff260"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.1.3/pnpm-linux-x64-musl.tar.gz"
+provenance = "github-attestations"
+
+[tools.pnpm."platforms.macos-arm64"]
+checksum = "sha256:c258310926cfaaa59b50296bc0defca66a466799eb045d4f76fe3fc3c5e6565d"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.1.3/pnpm-darwin-arm64.tar.gz"
+provenance = "github-attestations"
+
+[tools.pnpm."platforms.windows-x64"]
+checksum = "sha256:46d42ba9d141605dfc65819a498b27971c4589c7ef139ad80c5e9da7a5c34b06"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.1.3/pnpm-win32-x64.zip"
+provenance = "github-attestations"
+
+[tools.pnpm."platforms.windows-x64-baseline"]
+checksum = "sha256:46d42ba9d141605dfc65819a498b27971c4589c7ef139ad80c5e9da7a5c34b06"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.1.3/pnpm-win32-x64.zip"
+provenance = "github-attestations"
 
 [[tools.python]]
 version = "3.14.5"
