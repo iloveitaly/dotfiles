@@ -105,6 +105,7 @@ alias py-venv-path="python -c 'import site; print(site.getsitepackages()[0])'"
 # alias py-venv="cd $(py-venv-path)"
 alias py-spy-all="ps aux | grep '[p]ython' | awk '{print \$2}' | xargs -I {} py-spy dump --pid {}"
 alias pyl="pytest --pdb -s --lf"
+alias pyfzf="pytest --fzf"
 
 # TODO why not just add /usr/libexec to the path?
 # PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
