@@ -49,3 +49,30 @@ patch-ide-integration:
 sync-gitconfig-agent:
 		yq -p ini -o ini '{"user": .user, "core": {"whitespace": .core.whitespace}}' .gitconfig > .gitconfig-agent
 		@echo "✓ .gitconfig-agent updated via yq"
+
+# Export OrbStack Development Root CA so Python requests (and other tools)
+# can verify *.orb.local HTTPS certificates.
+#
+# Why this is needed:
+# - OrbStack only installs its root CA into the macOS user keychain.
+# - Python's requests + certifi does not read the system/user keychain.
+# - Without this, you get SSL certificate verification errors on *.orb.local.
+#
+# REQUESTS_CA_BUNDLE *replaces* certifi's defaults rather than adding to
+# them, so pointing it at just the OrbStack cert would break every other
+# HTTPS call. We export the OrbStack root and concatenate it with
+# certifi's bundle to produce a single merged PEM.
+#
+# Re-run after upgrading certifi or if OrbStack rotates its root.
+#
+# Then in your shell rc or direnv:
+#   export REQUESTS_CA_BUNDLE="$HOME/.orbstack/certs/bundle.pem"
+#   export SSL_CERT_FILE="$HOME/.orbstack/certs/bundle.pem"
+
+export-orbstack-ca:
+    mkdir -p ~/.orbstack/certs
+    security find-certificate -a -c "OrbStack Development Root CA" -p > ~/.orbstack/certs/ca.pem.tmp
+    test -s ~/.orbstack/certs/ca.pem.tmp
+    mv ~/.orbstack/certs/ca.pem.tmp ~/.orbstack/certs/ca.pem
+    cat "$(python -m certifi)" ~/.orbstack/certs/ca.pem > ~/.orbstack/certs/bundle.pem.tmp
+    mv ~/.orbstack/certs/bundle.pem.tmp ~/.orbstack/certs/bundle.pem

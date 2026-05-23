@@ -13,6 +13,10 @@ export PYTHON_DEVELOPMENT_TOGGLE="$HOME/Projects/python"
 # mise will manage our py versions
 export UV_PYTHON_DOWNLOADS=never
 
+# more documentation on this in Justfile
+export REQUESTS_CA_BUNDLE="$HOME/.orbstack/certs/bundle.pem"
+export SSL_CERT_FILE="$HOME/.orbstack/certs/bundle.pem"
+
 # TODO explore using fd instead of `find`
 # export FZF_DEFAULT_COMMAND='fd --type f --type d --hidden --strip-cwd-prefix --exclude .git'
 
