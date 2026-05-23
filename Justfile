@@ -6,7 +6,7 @@ set script-interpreter := ["zsh", "-euBh", "-o", "pipefail"]
 set unstable := true
 
 upgrade:
-	brew upgrade atuin awscli git rg fd gh zsh gmailctl dolt yazi dolt bat ov
+	brew upgrade atuin awscli git rg fd gh zsh gmailctl dolt yazi dolt bat ov difftastic
 	gh extension upgrade --all
 	
 	mise self-update
@@ -15,7 +15,7 @@ upgrade:
 
 	# this will update starship as well
 	# zinit-update must have an interactive environment to run
-  echo "Please run \`zinit update\` in an interactive shell to update zinit plugins like starship."
+	echo "Please run \`zinit update\` in an interactive shell to update zinit plugins like starship."
 
 sync:
 	fd --hidden --max-depth 4 -t f --exclude=.git | \
