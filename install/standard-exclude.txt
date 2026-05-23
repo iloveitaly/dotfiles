@@ -21,3 +21,5 @@ time-machine-includes.sh
 metadata.json
 /zsh_plugins
 /templates
+/.antigravitycli
+/.claude
