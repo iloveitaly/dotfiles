@@ -15,9 +15,6 @@ export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 # poetry, orb, mise, etc
 export PATH="$HOME/.local/bin:$PATH"
 
-# TODO really? shouldn't we do this in the bun plugin? Or can we redirect installs?
-export PATH="$HOME/.bun/bin:$PATH"
-
 # for latest gnu make
 export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 
