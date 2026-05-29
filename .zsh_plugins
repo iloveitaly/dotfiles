@@ -90,7 +90,7 @@ zinit wait'0b' lucid for \
 #   - colors: sets aliases for some colors and most styles via '$c'
 #   - lib/spectrum.zsh: 'spectrum_ls' alias to visually inspect colors
 #   - git-open: gh browse doesn't always work for repos I did not clone from my user
-#   - azure: uses bashinit, which seems to need to run after the wait 0a above, which is why it's included here
+#   - azure: uses bashinit, which seems to need to run after the wait 0a above (see zsh_plugins/1/azure.zsh)
 zinit wait'1' lucid for \
   multisrc"${HOME}/.config/mbianco/zsh_plugins/1/*.zsh" nocompile \
   MichaelAquilina/zsh-auto-notify \
@@ -98,7 +98,6 @@ zinit wait'1' lucid for \
   zpm-zsh/colors \
   OMZ::lib/spectrum.zsh \
   zpm-zsh/ssh \
-  'https://gist.github.com/iloveitaly/c91b3e26d47f131badec7abb859b870a/raw/azure.plugin.zsh' \
   paulirish/git-open
 
 # binaries installed via zinit. No rush to install these, which is why we are `wait'2'`
