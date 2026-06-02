@@ -39,6 +39,7 @@ ruby       = "3"
 rust       = "latest"
 pnpm       = "latest"
 golang     = "latest"
+zig        = "latest"  
 
 [settings]
 experimental = true
