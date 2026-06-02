@@ -68,6 +68,8 @@ sync-gitconfig-agent:
 # Then in your shell rc or direnv:
 #   export REQUESTS_CA_BUNDLE="$HOME/.orbstack/certs/bundle.pem"
 #   export SSL_CERT_FILE="$HOME/.orbstack/certs/bundle.pem"
+# 
+# https://github.com/orbstack/orbstack/issues/1159
 
 export-orbstack-ca:
     mkdir -p ~/.orbstack/certs
@@ -76,3 +78,7 @@ export-orbstack-ca:
     mv ~/.orbstack/certs/ca.pem.tmp ~/.orbstack/certs/ca.pem
     cat "$(python -m certifi)" ~/.orbstack/certs/ca.pem > ~/.orbstack/certs/bundle.pem.tmp
     mv ~/.orbstack/certs/bundle.pem.tmp ~/.orbstack/certs/bundle.pem
+
+# Remove legacy standalone bun dirs (bun is managed via mise)
+clean:
+    rm -rf "$HOME/.bun" "$HOME/.cache/.bun/bin"
