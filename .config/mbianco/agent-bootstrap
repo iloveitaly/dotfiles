@@ -55,11 +55,18 @@ ai_load_agent_configuration() {
 
     [[ ${AGENT_DEBUG:-} -eq 1 ]] && echo "In agent shell, sourced configuration"
 
-    export AGENT_CONFIGURED=1
-
     # without this, the git config which uses fancy pagers, etc will be used
     export GIT_CONFIG_NOSYSTEM=1
     export GIT_CONFIG_GLOBAL=$HOME/.gitconfig-agent
+
+    export GIT_EDITOR=true
+    export PAGER=cat
+    export GIT_PAGER=$PAGER
+    export GH_PAGER=$PAGER
+    export MANPAGER=$PAGER
+
+    # for our own internal debugging
+    export AGENT_CONFIGURED=1
 
     return 0
   else

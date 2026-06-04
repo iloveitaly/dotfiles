@@ -23,9 +23,12 @@ if ai_is_agent_terminal; then
   # TODO unclear if all of this is needed
   unset PROMPT
 
+  # ai_load_agent_configuration is designed for zsh, so we customize the configuration for bash here
+
   # without this, the git config which uses fancy pagers, etc will be used
   export GIT_CONFIG_NOSYSTEM=1
   export GIT_CONFIG_GLOBAL=$HOME/.gitconfig-agent
+
   export GIT_EDITOR=true
   export PAGER=cat
   export GIT_PAGER=$PAGER
@@ -35,6 +38,7 @@ if ai_is_agent_terminal; then
   # Simple prompt for bash if it happens to be interactive (though BASH_ENV is mostly for non-interactive)
   export PS1='\w $ '
 
+  # for our own internal debugging
   export AGENT_CONFIGURED=1
   export AGENT_BASH_CONFIGURED=1
 fi
