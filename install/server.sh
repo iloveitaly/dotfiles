@@ -14,10 +14,8 @@ sudo snap install yq speedtest
 
 curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 
-if [ ! -f /etc/apt/sources.list.d/mise.list ]; then
-  wget -qO - https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | sudo tee /etc/apt/keyrings/mise-archive-keyring.gpg 1>/dev/null
-  echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.gpg arch=arm64] https://mise.jdx.dev/deb stable main" | sudo tee /etc/apt/sources.list.d/mise.list
-fi
+# musl to avoid glibc issues on some servers (pi)
+curl https://mise.run | MISE_INSTALL_MUSL=1 sh
 
 if [ ! -f /etc/apt/sources.list.d/azlux.list ]; then
   # https://packages.azlux.fr, has ctop, btop and others
@@ -33,6 +31,8 @@ sudo apt install -y \
   rsync watch iotop powertop mise libreadline-dev libffi-dev libyaml-dev \
   btop docker-ctop ov \
   nmap
+
+# TODO snap btop install
 
 mise install -y
 
@@ -71,7 +71,6 @@ sed -i '/zicompdef/d' ~/.zsh_plugins # assumes rg, etc which is not the same on 
 sed -i '/zsh-auto-notify/d' ~/.zsh_plugins
 # sed -i '/fast-syntax-highlighting/d' ~/.zsh_plugins
 # sed -i '/zsh-autosuggestions/d' ~/.zsh_plugins
-sed -i '/zsh-asdf-direnv/d' ~/.zsh_plugins
 
 sudo chsh -s "$(which zsh)" "$(whoami)"
 
