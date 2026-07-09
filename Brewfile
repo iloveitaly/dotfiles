@@ -39,6 +39,7 @@ brew "universal-ctags"
 brew "setapp"
 brew "awscli"
 brew "aws-sam-cli"
+brew "container"
 
 # == Data manipulation
 brew "jq" # json extraction

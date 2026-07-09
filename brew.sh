@@ -22,6 +22,9 @@ brew update && brew upgrade
 brew bundle -v || (echo "Brewfile failed, exiting early" && exit 1)
 brew cleanup
 
+brew services start container
+container system kernel set --recommended
+
 # shell
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
