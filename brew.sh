@@ -112,6 +112,7 @@ gh alias set repo-create-private --clobber --shell 'repo=$(basename $PWD) && gh 
 gh alias set repo-url --clobber --shell 'url=$(gh repo view --json url --jq ".url" | tr -d " \n"); echo -n "$url" | pbcopy && echo "$url"'
 gh alias set repo-events --clobber --shell 'gh api repos/$(gh repo view --json owner -q ".owner.login")/$(gh repo view --json name -q ".name")/events'
 gh alias set myprs --clobber --shell 'id=$(set -e; gh pr list --state=all -L100 --author $(git config github.user) $@ | fzf | cut -f1); [ -n "$id" ] && gh pr view "$id" --web && echo "$id"'
+gh alias set rerun-failed --shell --clobber 'gh run list --commit "$(git rev-parse HEAD)" --status failure --json databaseId -q ".[].databaseId" | xargs -n1 gh run rerun --failed'
 
 gh extension install dlvhdr/gh-enhance
 gh extension install dlvhdr/gh-dash
