@@ -5,6 +5,7 @@ alias cat='bat --wrap=never'
 # shortcuts for commonly used utilities
 alias j='just'
 alias m="micro"
+alias mr="mise run"
 
 # names I can never remember
 # tabiew is a terrible name but awesome tool to inspect tabular data on the cli
