@@ -1,4 +1,4 @@
-[manager]
+[mgr]
 show_hidden = true
 
 # https://github.com/yazi-rs/plugins/tree/main/git.yazi
@@ -11,8 +11,3 @@ group = "git"
 url   = "*/"
 run   = "git"
 group = "git"
-
-[[manager.prepend_keymap]]
-on = ["Y"]
-run = "shell 'cat $0 | pbcopy' --confirm"
-desc = "Copy file content to clipboard"
