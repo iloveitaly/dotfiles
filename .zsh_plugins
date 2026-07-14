@@ -51,7 +51,7 @@ zinit wait'0b' lucid for \
   as"program" pick"bin/git-fuzzy" bigH/git-fuzzy \
   'https://gist.github.com/iloveitaly/64b3ebdb50b90057ac820b25b4072970/raw/direnv.plugin.zsh' \
   iloveitaly/zsh-ai-completions \
-  multisrc"${HOME}/.config/mbianco/zsh_plugins/0b/*.zsh" nocompile \
+  multisrc"${HOME}/.config/mbianco/zsh_plugins/0b/*.zsh" \
   'https://gist.github.com/iloveitaly/4eac0f4ddb3f8162f95fa3ed6f123a06/raw/1password.zsh' \
   'https://gist.github.com/iloveitaly/b0748e2f9f6831f9b8781ed8790e3404/raw/gh-cli.plugin.zsh' \
   'https://gist.github.com/iloveitaly/043d91a2968597fe601673664b124dd3/raw/orbctl.zsh' \
@@ -74,6 +74,7 @@ zinit wait'0b' lucid for \
   'https://gist.github.com/iloveitaly/7569436744f46132cf742072fc8f4d58/raw/atuin.plugin.zsh' \
   atload'_zsh_autosuggest_start' zsh-users/zsh-autosuggestions \
   atinit'zicompdef zbnc_zsh_better_npm_completion pnpm; zicompinit; zicdreplay' zpm-zsh/zsh-better-npm-completion \
+  multisrc"${HOME}/.config/mbianco/zsh_plugins/after-compinit/*.zsh" \
   Aloxaf/fzf-tab
 
 # TODO pnpm is just working off of npm completions for now :/
@@ -89,9 +90,8 @@ zinit wait'0b' lucid for \
 #   - colors: sets aliases for some colors and most styles via '$c'
 #   - lib/spectrum.zsh: 'spectrum_ls' alias to visually inspect colors
 #   - git-open: gh browse doesn't always work for repos I did not clone from my user
-#   - azure: uses bashinit, which seems to need to run after the wait 0a above (see zsh_plugins/1/azure.zsh)
 zinit wait'1' lucid for \
-  multisrc"${HOME}/.config/mbianco/zsh_plugins/1/*.zsh" nocompile \
+  multisrc"${HOME}/.config/mbianco/zsh_plugins/1/*.zsh" \
   MichaelAquilina/zsh-auto-notify \
   chrissicool/zsh-256color \
   zpm-zsh/colors \
