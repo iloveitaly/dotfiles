@@ -128,11 +128,9 @@ quit_and_reopen_app "Superwhisper" || true
 claude update
 amp update
 bun update -g @github/copilot
-pnpm install -g @google/gemini-cli
 code --update-extensions
 cursor --update-extensions
 opencode upgrade
-gemini extension update --all
 
 uv cache clean
 
