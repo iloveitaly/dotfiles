@@ -155,16 +155,6 @@ zinit wait'2' lucid for \
 zinit ice from"gh-r" as"command" atload'eval "$(starship init zsh)"'
 zinit load starship/starship
 
-# avoid loading the builtin git and docker completions
-# https://mikebian.co/git-completions-tooling-on-the-command-line/
-if command -v brew &>/dev/null; then
-  rm $(brew --prefix)/share/zsh/site-functions/_git 2>/dev/null
-  rm $(brew --prefix)/share/zsh/site-functions/_docker 2>/dev/null
-
-  rm $(brew --prefix)/share/zsh/functions/_swift 2>/dev/null
-  # TODO does the above also remove? /opt/homebrew/Cellar/zsh/5.9/share/zsh/functions
-fi
-
 # zoxide needs to override this zinit alias
 unalias zi
 
