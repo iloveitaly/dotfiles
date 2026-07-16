@@ -131,6 +131,7 @@ bun update -g @github/copilot
 code --update-extensions
 cursor --update-extensions
 opencode upgrade
+agy update
 
 uv cache clean
 
