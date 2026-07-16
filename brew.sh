@@ -131,6 +131,10 @@ claude mcp add --transport http github https://api.githubcopilot.com/mcp -H "Aut
 # install via mise
 claude mcp add clipboard -- mcp-clip
 
+# antigravity installation
+curl -fsSL https://antigravity.google/cli/install.sh | bash
+
+
 ##############################
 # Micro Editor Configuration
 # ~/.config/micro/plug

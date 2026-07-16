@@ -119,6 +119,8 @@ if OS.mac?
     brew "proxychains-ng"
     brew "mcpm"
     brew "soulver-cli"
+    brew "localsend"
+    brew "google-gemini"
 
     tap "ryanbekhen/nanoproxy"
     brew "nanoproxy"
