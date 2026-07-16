@@ -90,10 +90,6 @@ zinit wait'0b' lucid for \
   'https://gist.github.com/iloveitaly/b342092217821c92e6d478ca501af342/raw/rg.plugin.zsh' \
   'https://gist.github.com/iloveitaly/9103604f442e0474dd18b4acd596739a/raw/just.plugin.zsh' \
   'https://gist.github.com/iloveitaly/ebf69624c7b4cbd2f63b3e1e9f7846f9/raw/starship.plugin.zsh' \
-  'https://github.com/iloveitaly/dotfiles/blob/master/zsh_plugins/swift.plugin.zsh' \
-  'https://github.com/iloveitaly/dotfiles/blob/master/zsh_plugins/ngrok.plugin.zsh' \
-  'https://github.com/iloveitaly/dotfiles/blob/master/zsh_plugins/ultraman.plugin.zsh' \
-  'https://github.com/iloveitaly/dotfiles/blob/master/zsh_plugins/gitleaks.plugin.zsh' \
   'http://github.com/dolthub/dolt/blob/main/dolt.plugin.zsh' \
   'https://github.com/railwayapp/railpack/blob/main/railpack.plugin.zsh' \
   'https://github.com/junegunn/fzf/blob/v0.58.0/shell/completion.zsh' \

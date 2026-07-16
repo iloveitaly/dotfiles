@@ -1,5 +1,6 @@
 # make sure you execute this *after* asdf/mise are loaded
-# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/swiftpm
+#
+# fpath + #compdef cache — must load in 0b/ before the compinit pivot.
 
 plugin_dir="${0:A:h}"
 cache_file="$plugin_dir/_ultraman"
