@@ -121,6 +121,7 @@ if OS.mac?
     brew "soulver-cli"
     brew "localsend"
     brew "google-gemini"
+    brew "codex"
 
     tap "ryanbekhen/nanoproxy"
     brew "nanoproxy"

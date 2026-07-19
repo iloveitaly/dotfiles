@@ -128,10 +128,11 @@ quit_and_reopen_app "Superwhisper" || true
 claude update
 amp update
 bun update -g @github/copilot
-code --update-extensions
-cursor --update-extensions
 opencode upgrade
 agy update
+codex update
+code --update-extensions
+cursor --update-extensions
 
 uv cache clean
 
