@@ -122,6 +122,7 @@ if OS.mac?
     brew "localsend"
     brew "google-gemini"
     brew "codex"
+    brew "chatgpt"
 
     tap "ryanbekhen/nanoproxy"
     brew "nanoproxy"
