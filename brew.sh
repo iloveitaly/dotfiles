@@ -84,19 +84,19 @@ pnpm install -g yalc
 
 # all of the cli coding tools
 pnpm install -g @sourcegraph/amp
-# gemini doesn't like pnpm as much
-npm install -g @google/gemini-cli
-curl -fsSL https://claude.ai/install.sh | bash
-pnpm install -g @openai/codex
-pnpm approve-builds -g
 bun install -g @github/copilot@latest
 bun add -g opencode-ai
+curl -fsSL https://claude.ai/install.sh | bash
+curl -fsSL https://antigravity.google/cli/install.sh | bash
+curl -fsSL https://x.ai/cli/install.sh | bash
+pnpm approve-builds -g
 
 pnpx skills add ast-grep/agent-skill
 pnpx skills add https://github.com/iloveitaly/ai-skills --skill justfile
 pnpx skills add https://github.com/railwayapp/railway-skills --skill railway-docs --agent claude-code,gemini-cli,codex,cursor,github-copilot,opencode
 pnpx skills add https://github.com/github/awesome-copilot --skill gh-cli
 pnpm dlx skills add shadcn/ui
+
 
 #################
 # GH CLI Config #
@@ -126,14 +126,16 @@ gh extension install iloveitaly/gh-ai-pr
 # mcpm import remote mcp-chrome-bridge --url http://127.0.0.1:12306/mcp
 # mcpm target set @cursor
 
+# we want to be careful about mcps and only globally install (a) what is not included by default and (b) what is geniunely globally useful 
 # claude doesn't support dynamic ENV vars?
 claude mcp add --transport http github https://api.githubcopilot.com/mcp -H "Authorization: Bearer $(gh auth token)"
-# install via mise
-claude mcp add clipboard -- mcp-clip
+claude mcp add --transport http grep https://mcp.grep.app
 
-# antigravity installation
-curl -fsSL https://antigravity.google/cli/install.sh | bash
+codex mcp add github --url https://api.githubcopilot.com/mcp --bearer-token-env-var GITHUB_TOKEN
+codex mcp add chrome-devtools -- pnpx -y chrome-devtools-mcp@latest
+codex mcp add grep --url https://mcp.grep.app
 
+mcp-add --name grep --type http --url https://mcp.grep.app --scope global --clients opencode,codex,claude
 
 ##############################
 # Micro Editor Configuration
