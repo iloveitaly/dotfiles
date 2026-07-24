@@ -36,6 +36,11 @@ static_exclusions=(
   "$HOME/Library/Caches/mix"
   "$HOME/Library/Caches/Yarn"
   "$HOME/Library/Application Support/superwhisper"
+  "$HOME/Library/Application Support/Claude"
+  "$HOME/Library/Application Support/Cursor"
+  "$HOME/Library/Application Support/WebCatalog"
+  "$HOME/Library/Application Support/Code"
+  "$HOME/Library/Application Support/Superhuman"
 
   /Library/Developer
 
