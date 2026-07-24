@@ -135,7 +135,9 @@ codex mcp add github --url https://api.githubcopilot.com/mcp --bearer-token-env-
 codex mcp add chrome-devtools -- pnpx -y chrome-devtools-mcp@latest
 codex mcp add grep --url https://mcp.grep.app
 
-mcp-add --name grep --type http --url https://mcp.grep.app --scope global --clients opencode,codex,claude
+# cursor-agent has it's own browser
+
+mcp-add --name grep --type http --url https://mcp.grep.app --scope global --clients opencode,codex,claude,cursor
 
 ##############################
 # Micro Editor Configuration
