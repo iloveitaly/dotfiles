@@ -41,11 +41,10 @@ $username\
 $character"""
 
 [hostname]
-# always show — this config only lives on remote hosts
+# always show cloud mark — this config only lives on remote hosts
 ssh_only = false
-format = "[☁️ $hostname]($style) "
+format = "[☁️]($style) "
 style = "bold cyan"
-trim_at = "."
 
 [directory]
 style = "blue"
@@ -91,8 +90,11 @@ fi
 ${MARKER_BEGIN}
 export PATH="\${HOME}/.local/bin:\${PATH}"
 eval "\$(mise activate zsh)"
+eval "\$(fzf --zsh)"
 eval "\$(atuin init zsh)"
 eval "\$(starship init zsh)"
+autoload -Uz compinit && compinit
+(( \$+commands[docker] )) && eval "\$(docker completion zsh)"
 ${MARKER_END}
 EOF
 } >"${ZSHRC}"
