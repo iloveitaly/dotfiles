@@ -23,7 +23,7 @@ export PATH="${HOME}/.local/bin:${PATH}"
 eval "$(mise activate bash)"
 
 # writes ~/.config/mise/config.toml and installs binaries
-mise use -g fzf ripgrep lazydocker atuin starship dua
+mise use -g fzf ripgrep lazydocker atuin starship dua micro
 
 mkdir -p "${HOME}/.local/bin" "${HOME}/.config"
 
@@ -97,8 +97,10 @@ eval "\$(mise activate zsh)"
 eval "\$(fzf --zsh)"
 eval "\$(atuin init zsh)"
 eval "\$(starship init zsh)"
+alias m=micro
+alias d=docker
 autoload -Uz compinit && compinit
-(( \$+commands[docker] )) && eval "\$(docker completion zsh)"
+(( \$+commands[docker] )) && eval "\$(docker completion zsh)" && compdef d=docker
 source "\${HOME}/.local/share/fzf-tab/fzf-tab.plugin.zsh"
 ${MARKER_END}
 EOF
