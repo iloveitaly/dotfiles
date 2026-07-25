@@ -224,6 +224,7 @@ if OS.mac?
     cask "tableplus"
     cask "openrefine", { args: { no_quarantine: true } }
     cask "keycastr"
+    cask "block-buzz"
 
     # == Quicklook Plugins
     # These need to be manually enabled in macos preferences
