@@ -11,8 +11,9 @@ $git_status\
 $cmd_duration\
 $line_break\
 $direnv\
+$python\
 ${custom.novenv}\
-${custom.venv}\
+$jobs\
 $character"""
 
 [directory]
@@ -33,6 +34,7 @@ style = "bright-black"
 format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
 style = "cyan"
 stashed = "≡"
+ignore_submodules = true
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
@@ -42,27 +44,21 @@ style = "bright-black"
 format = "[$duration]($style) "
 style = "yellow"
 
-# https://github.com/starship/starship/issues/5889#issuecomment-2023788992
-[custom.venv]
-description = "show simple 'venv' indicator instead of full name"
-command = """
-print "venv"
-"""
-when = '''[[ -n "$VIRTUAL_ENV" ]]'''
-format = '[$output ](blue)'
+# Native replacement for custom.venv — detect_env_vars defaults to ["VIRTUAL_ENV"]
+[python]
+format = '[venv ](blue)'
+detect_extensions = []
+detect_files = []
+detect_folders = []
 
-# https://github.com/starship/starship/issues/5889
+# No native "missing venv" signal yet (https://github.com/starship/starship/issues/3251)
 [custom.novenv]
 description = "show indicator when venv is missing"
 command = """
 print "no-venv"
 """
-when = '''[[ -f "requirements.txt" || -f "pyproject.toml" || -f "poetry.lock" || -f "Pipfile" ]] && [[ -z "$VIRTUAL_ENV" ]]'''
+when = '''[[ -f "requirements.txt" || -f "pyproject.toml" || -f "uv.lock" || -f "poetry.lock" || -f "Pipfile" || -f ".python-version" ]] && [[ -z "$VIRTUAL_ENV" ]]'''
 format = '[$output ](red)'
-
-# TODO would be cool to indicate when a venv is not in place https://github.com/starship/starship/issues/3251
-[python]
-disabled = true
 
 [direnv]
 format = '[$symbol($loaded/)($allowed)]($style) '
