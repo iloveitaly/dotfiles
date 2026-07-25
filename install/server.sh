@@ -7,7 +7,7 @@
 set -euo pipefail
 
 sudo apt-get update
-sudo apt-get install -y zsh curl ca-certificates
+sudo apt-get install -y zsh curl ca-certificates git
 
 # Docker Engine (system daemon — not available via mise)
 if ! command -v docker &>/dev/null; then
@@ -26,6 +26,12 @@ eval "$(mise activate bash)"
 mise use -g fzf ripgrep lazydocker atuin starship dua
 
 mkdir -p "${HOME}/.local/bin" "${HOME}/.config"
+
+# fzf-tab: Tab completions via fzf (must load after compinit)
+FZF_TAB="${HOME}/.local/share/fzf-tab"
+if [[ ! -d "${FZF_TAB}/.git" ]]; then
+  git clone --depth 1 https://github.com/Aloxaf/fzf-tab "${FZF_TAB}"
+fi
 
 # cloud-server prompt: always show host (no username), keep noise low
 STARSHIP_TOML="${HOME}/.config/starship.toml"
@@ -93,6 +99,7 @@ eval "\$(atuin init zsh)"
 eval "\$(starship init zsh)"
 autoload -Uz compinit && compinit
 (( \$+commands[docker] )) && eval "\$(docker completion zsh)"
+source "\${HOME}/.local/share/fzf-tab/fzf-tab.plugin.zsh"
 ${MARKER_END}
 EOF
 } >"${ZSHRC}"
