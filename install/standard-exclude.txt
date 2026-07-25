@@ -5,10 +5,10 @@ Justfile
 Brewfile
 Brewfile.lock.json
 brew.sh
-server.sh
+linux.sh
 TODO
 backup.sh
-server.sh
+linux.sh
 bootstrap.sh
 distracting_websites.txt
 DefaultKeyBinding.dict

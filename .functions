@@ -534,6 +534,6 @@ tmuxtrace() {
 source ~/.node-functions
 source ~/.python-functions
 source ~/.git-functions
-source ~/.docker-functions
+source ~/.macos-docker-functions
 source ~/.mise-functions
 source ~/.ai-functions
