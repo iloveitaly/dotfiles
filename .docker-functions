@@ -2,6 +2,9 @@
 # Docker Utilities
 ###########################
 
+# OrbStack and related helpers are macOS-only
+[[ "$OSTYPE" == "darwin"* ]] || return 0
+
 # there are some docker options that must be set manually using config.json
 set_docker_config() {
   mkdir ~/.docker
@@ -9,7 +12,7 @@ set_docker_config() {
   # set default `ps` format to be much shorter
   touch ~/.docker/config.json
 
-  # the default ps format is way too large. Shorten it up and then
+  # the default ps format is way too large
   yq -i '.psFormat = "table {{.ID}}\t{{.Image}}\t{{.Names}}"' ~/.docker/config.json
 
   # set default log size to be a reasonable, but not unbounded, size
@@ -25,8 +28,6 @@ set_docker_config() {
 
   # https://docs.orbstack.dev/features/debug
   # `docker context ls` to get a list of contexts
-  # TODO maybe only do this on macos environment?
-
   for host in $DOCKER_HOSTS; do
     docker context create $host --docker host=ssh://$host@$host.lan
   done
@@ -161,34 +162,6 @@ function backup-docker-volume() {
     print "Backup created: $backup_file"
 }
 
-# Function to stop Dokku 'run' zombie containers (running but not connected to TTY).
-# Usage: dokku_clean_run
-# Targets containers with '.run.' in name, running without TTY allocation.
-# These are typically lingering one-off Dokku run containers.
-dokku_clean_run() {
-  containers=$(docker ps -q --filter "name=.run.")
-  if [ -n "$containers" ]; then
-    zombie_ids=()
-    zombie_names=()
-    for id in $containers; do
-      if [ "$(docker inspect -f '{{.Config.Tty}}' $id)" = "false" ]; then
-        zombie_ids+=("$id")
-        name=$(docker inspect -f '{{.Name}}' $id | sed 's/^\///')
-        zombie_names+=("$name")
-      fi
-    done
-    if [ ${#zombie_ids[@]} -gt 0 ]; then
-      names_str=$(IFS=' '; echo "${zombie_names[*]}")
-      echo "Stopping zombie containers: $names_str"
-      docker stop "${zombie_ids[@]}"
-    else
-      echo "No zombie containers to stop."
-    fi
-  else
-    echo "No running containers with '.run.' in name."
-  fi
-}
-
 docker-clean-images() {
   # railpack builder cache
   docker exec buildkit buildctl prune
@@ -205,7 +178,7 @@ docker-clean-images() {
 # Container name is based on basename of PWD.
 # If container already exists, prompts to kill & restart.
 
-container-shell() {
+dev-container-shell() {
   local name="container-shell-$(basename "$PWD")"
 
   if docker ps -a --format '{{.Names}}' | grep -q "^${name}$"; then
