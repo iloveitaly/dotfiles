@@ -29,8 +29,7 @@ mkdir -p "${HOME}/.local/bin" "${HOME}/.config"
 
 # cloud-server prompt: always show host (no username), keep noise low
 STARSHIP_TOML="${HOME}/.config/starship.toml"
-if [[ ! -f "${STARSHIP_TOML}" ]]; then
-  cat >"${STARSHIP_TOML}" <<'EOF'
+cat >"${STARSHIP_TOML}" <<'EOF'
 # useful on docker hosts: duration (slow pulls/builds), docker context, root user
 format = """
 $hostname\
@@ -71,7 +70,6 @@ show_always = false
 success_symbol = "[❯](purple)"
 error_symbol = "[❯](red)"
 EOF
-fi
 
 # zshrc: preserve original once; regenerate .zshrc as backup + bootstrap block
 ZSHRC="${HOME}/.zshrc"
