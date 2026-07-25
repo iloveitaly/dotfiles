@@ -72,15 +72,8 @@ alias gha='g fuzzy actions'
 alias gpr='g fuzzy pr'
 alias dnav="git diff --no-ext-diff | diffnav"
 
-# rails
-alias b="bundle"
-
-# elixir
-alias imix="iex -S mix"
-
 # docker
 alias d="docker"
-alias dc='docker-compose'
 # containers, networks, and ports + truncation
 alias d-ps-network='docker ps --format "{{.ID}} {{.Names}} {{.Networks}} {{.Ports}}" | awk "{if(length(\$4) > 17) \$4 = substr(\$4, 1, 17) \"...\"; printf \"%s %s %s %s\n\", \$1, \$2, \$3, \$4}" | column -t'
 
