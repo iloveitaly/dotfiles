@@ -53,7 +53,7 @@ truncation_length = 3
 format = "[$symbol$context]($style) "
 style = "blue"
 symbol = "🐳 "
-only_with_compose_file = false
+only_with_files = false
 
 [cmd_duration]
 min_time = 2_000
@@ -63,7 +63,7 @@ style = "yellow"
 # only appears as root (default); useful safety signal on cloud boxes
 [username]
 format = "[$user]($style) "
-style = "bold red"
+style_root = "bold red"
 show_always = false
 
 [character]
