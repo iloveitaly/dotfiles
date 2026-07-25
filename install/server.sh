@@ -30,11 +30,19 @@ mise use -g \
   atuin@latest \
   starship@latest \
   dua@latest \
-  aqua:micro-editor/micro@nightly \
+  github:micro-editor/micro@nightly \
   zoxide@latest
 mise upgrade
 
 mkdir -p "${HOME}/.local/bin" "${HOME}/.config"
+
+# micro editor config from this repo
+MICRO_CFG="${HOME}/.config/micro"
+MICRO_RAW="https://raw.githubusercontent.com/iloveitaly/dotfiles/master/.config/micro"
+mkdir -p "${MICRO_CFG}/syntax"
+curl -fsSL "${MICRO_RAW}/settings.json" -o "${MICRO_CFG}/settings.json"
+curl -fsSL "${MICRO_RAW}/bindings.json" -o "${MICRO_CFG}/bindings.json"
+curl -fsSL "${MICRO_RAW}/syntax/git-commit.yaml" -o "${MICRO_CFG}/syntax/git-commit.yaml"
 
 # fzf-tab: Tab completions via fzf (must load after compinit)
 FZF_TAB="${HOME}/.local/share/fzf-tab"
