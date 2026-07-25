@@ -206,7 +206,7 @@ url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/asset
 provenance = "github-attestations"
 
 [[tools."cargo:ast-grep"]]
-version = "0.44.1"
+version = "0.45.0"
 backend = "cargo:ast-grep"
 
 [[tools."cargo:fastmod"]]
@@ -504,63 +504,63 @@ url = "https://github.com/junegunn/fzf/releases/download/v0.74.1/fzf-0.74.1-wind
 url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/481468090"
 
 [[tools."github:dlvhdr/diffnav"]]
-version = "0.11.0"
+version = "0.12.0"
 backend = "github:dlvhdr/diffnav"
 
 [tools."github:dlvhdr/diffnav"."platforms.linux-arm64"]
-checksum = "sha256:902b88c34d3e0c26c2f2f0cef2f3550d4f12b8e8e72323f36a86b668a009b0d8"
-url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589421"
+checksum = "sha256:5d23e9b5cc8e4d2be0463886d57ac0590c348e24b5611eb54a4bc84685e707c9"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.12.0/diffnav_Linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/488282414"
 
 [tools."github:dlvhdr/diffnav"."platforms.linux-arm64-musl"]
-checksum = "sha256:902b88c34d3e0c26c2f2f0cef2f3550d4f12b8e8e72323f36a86b668a009b0d8"
-url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589421"
+checksum = "sha256:5d23e9b5cc8e4d2be0463886d57ac0590c348e24b5611eb54a4bc84685e707c9"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.12.0/diffnav_Linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/488282414"
 
 [tools."github:dlvhdr/diffnav"."platforms.linux-x64"]
-checksum = "sha256:35b0c3afb84f14b7e0aed411fbb9fd352b67a90885448f94a38829ebf74275e4"
-url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589420"
+checksum = "sha256:1531569b74863f08dd82379041fbc9c0cf5103893ac5b3ff053453dd048bb807"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.12.0/diffnav_Linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/488282413"
 
 [tools."github:dlvhdr/diffnav"."platforms.linux-x64-baseline"]
-checksum = "sha256:35b0c3afb84f14b7e0aed411fbb9fd352b67a90885448f94a38829ebf74275e4"
-url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589420"
+checksum = "sha256:1531569b74863f08dd82379041fbc9c0cf5103893ac5b3ff053453dd048bb807"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.12.0/diffnav_Linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/488282413"
 
 [tools."github:dlvhdr/diffnav"."platforms.linux-x64-musl"]
-checksum = "sha256:35b0c3afb84f14b7e0aed411fbb9fd352b67a90885448f94a38829ebf74275e4"
-url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589420"
+checksum = "sha256:1531569b74863f08dd82379041fbc9c0cf5103893ac5b3ff053453dd048bb807"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.12.0/diffnav_Linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/488282413"
 
 [tools."github:dlvhdr/diffnav"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:35b0c3afb84f14b7e0aed411fbb9fd352b67a90885448f94a38829ebf74275e4"
-url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589420"
+checksum = "sha256:1531569b74863f08dd82379041fbc9c0cf5103893ac5b3ff053453dd048bb807"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.12.0/diffnav_Linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/488282413"
 
 [tools."github:dlvhdr/diffnav"."platforms.macos-arm64"]
-checksum = "sha256:a4cbb3222708fc5662877d3b0a01f5b7625363f6e83c498cb746bf6b3058588e"
-url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589428"
+checksum = "sha256:2db80564b9e3687fad83769ef52209fadc56702c03614afb8855261a81d1d38a"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.12.0/diffnav_Darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/488282411"
 
 [tools."github:dlvhdr/diffnav"."platforms.macos-x64"]
-checksum = "sha256:33a3911292dcf013953e3678aaa85fbc4aab50af5946002c8ff25e84c1b75cc2"
-url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Darwin_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589427"
+checksum = "sha256:29a45a968e22703668ed0cd1969cf333b96b039b015755cc5312f80d315a78a1"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.12.0/diffnav_Darwin_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/488282400"
 
 [tools."github:dlvhdr/diffnav"."platforms.macos-x64-baseline"]
-checksum = "sha256:33a3911292dcf013953e3678aaa85fbc4aab50af5946002c8ff25e84c1b75cc2"
-url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Darwin_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589427"
+checksum = "sha256:29a45a968e22703668ed0cd1969cf333b96b039b015755cc5312f80d315a78a1"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.12.0/diffnav_Darwin_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/488282400"
 
 [tools."github:dlvhdr/diffnav"."platforms.windows-x64"]
-checksum = "sha256:cd246c70f90e1346ec363f5819b9d9259112ce13c216f2aeebe7795f66288732"
-url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Windows_x86_64.zip"
-url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589423"
+checksum = "sha256:4c02537248b9852bbb33c8b866107fd51efe9a7753e1576d5ea99f92344d8916"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.12.0/diffnav_Windows_x86_64.zip"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/488282401"
 
 [tools."github:dlvhdr/diffnav"."platforms.windows-x64-baseline"]
-checksum = "sha256:cd246c70f90e1346ec363f5819b9d9259112ce13c216f2aeebe7795f66288732"
-url = "https://github.com/dlvhdr/diffnav/releases/download/v0.11.0/diffnav_Windows_x86_64.zip"
-url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/378589423"
+checksum = "sha256:4c02537248b9852bbb33c8b866107fd51efe9a7753e1576d5ea99f92344d8916"
+url = "https://github.com/dlvhdr/diffnav/releases/download/v0.12.0/diffnav_Windows_x86_64.zip"
+url_api = "https://api.github.com/repos/dlvhdr/diffnav/releases/assets/488282401"
 
 [[tools."github:eza-community/eza"]]
 version = "0.23.5"
@@ -751,61 +751,61 @@ url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/3857
 provenance = "github-attestations"
 
 [[tools."github:harehare/mq"]]
-version = "0.6.5"
+version = "0.7.0"
 backend = "github:harehare/mq"
 
 [tools."github:harehare/mq"."platforms.linux-arm64"]
-checksum = "sha256:5e25ceb206495f64fb2fff77acb16d68e7c97aaf5ba57419bd93d503fadd80d1"
-url = "https://github.com/harehare/mq/releases/download/v0.6.5/mq-aarch64-unknown-linux-gnu"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/473535367"
+checksum = "sha256:8b567fd2a0360de8ce8c82397d2ee260ff1fa5c73535a07cf75aac43588660ff"
+url = "https://github.com/harehare/mq/releases/download/v0.7.0/mq-aarch64-unknown-linux-gnu"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/485908576"
 provenance = "github-attestations"
 
 [tools."github:harehare/mq"."platforms.linux-arm64-musl"]
-checksum = "sha256:612b1042457ba0ce9853b374e947acebcb519f04076c772aed810894e1f9e1b9"
-url = "https://github.com/harehare/mq/releases/download/v0.6.5/mq-aarch64-unknown-linux-musl"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/473535385"
+checksum = "sha256:f8abfa7238ff4a322cbd90b5f00843e9c8939d98dac0064b484498607137fb22"
+url = "https://github.com/harehare/mq/releases/download/v0.7.0/mq-aarch64-unknown-linux-musl"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/485908615"
 provenance = "github-attestations"
 
 [tools."github:harehare/mq"."platforms.linux-x64"]
-checksum = "sha256:de4e17e9dab36578fac8cac736f3cd64c7dac2d3095a301c4cdf018af3399244"
-url = "https://github.com/harehare/mq/releases/download/v0.6.5/mq-x86_64-unknown-linux-gnu"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/473535434"
+checksum = "sha256:88ac9db1a62e3cc5213224a4cbe75ab8924dbca6cc6a988ecb9cafa538ed02cf"
+url = "https://github.com/harehare/mq/releases/download/v0.7.0/mq-x86_64-unknown-linux-gnu"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/485908687"
 provenance = "github-attestations"
 
 [tools."github:harehare/mq"."platforms.linux-x64-baseline"]
-checksum = "sha256:de4e17e9dab36578fac8cac736f3cd64c7dac2d3095a301c4cdf018af3399244"
-url = "https://github.com/harehare/mq/releases/download/v0.6.5/mq-x86_64-unknown-linux-gnu"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/473535434"
+checksum = "sha256:88ac9db1a62e3cc5213224a4cbe75ab8924dbca6cc6a988ecb9cafa538ed02cf"
+url = "https://github.com/harehare/mq/releases/download/v0.7.0/mq-x86_64-unknown-linux-gnu"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/485908687"
 provenance = "github-attestations"
 
 [tools."github:harehare/mq"."platforms.linux-x64-musl"]
-checksum = "sha256:e0d9dc8f0bbb7e66c59acb682cf956966cfd045de15143a00ff16b8f62755f72"
-url = "https://github.com/harehare/mq/releases/download/v0.6.5/mq-x86_64-unknown-linux-musl"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/473535454"
+checksum = "sha256:55078ec75f6be6092a3cd72d9bcb5a88ad700c98465b2907a3d146c600e02227"
+url = "https://github.com/harehare/mq/releases/download/v0.7.0/mq-x86_64-unknown-linux-musl"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/485908722"
 provenance = "github-attestations"
 
 [tools."github:harehare/mq"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:e0d9dc8f0bbb7e66c59acb682cf956966cfd045de15143a00ff16b8f62755f72"
-url = "https://github.com/harehare/mq/releases/download/v0.6.5/mq-x86_64-unknown-linux-musl"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/473535454"
+checksum = "sha256:55078ec75f6be6092a3cd72d9bcb5a88ad700c98465b2907a3d146c600e02227"
+url = "https://github.com/harehare/mq/releases/download/v0.7.0/mq-x86_64-unknown-linux-musl"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/485908722"
 provenance = "github-attestations"
 
 [tools."github:harehare/mq"."platforms.macos-arm64"]
-checksum = "sha256:f05e33d68776f536ca110487ae17cf965836ac1ad5889321a23439745d7f138d"
-url = "https://github.com/harehare/mq/releases/download/v0.6.5/mq-aarch64-apple-darwin"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/473535353"
+checksum = "sha256:ee11cee3d6855a8d23005a56d77013b14738838abe4a656bd82aeb884ee06645"
+url = "https://github.com/harehare/mq/releases/download/v0.7.0/mq-aarch64-apple-darwin"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/485908541"
 provenance = "github-attestations"
 
 [tools."github:harehare/mq"."platforms.windows-x64"]
-checksum = "sha256:b71cf436731e45981981f2fbc4fc8d996f75c5e0d844c18c4bbd96218a5166a8"
-url = "https://github.com/harehare/mq/releases/download/v0.6.5/mq-x86_64-pc-windows-msvc.exe"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/473535419"
+checksum = "sha256:4eb9a733875190e4583dee70a556042045da863824b6c57e3cf903a926d2644d"
+url = "https://github.com/harehare/mq/releases/download/v0.7.0/mq-x86_64-pc-windows-msvc.exe"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/485908658"
 provenance = "github-attestations"
 
 [tools."github:harehare/mq"."platforms.windows-x64-baseline"]
-checksum = "sha256:b71cf436731e45981981f2fbc4fc8d996f75c5e0d844c18c4bbd96218a5166a8"
-url = "https://github.com/harehare/mq/releases/download/v0.6.5/mq-x86_64-pc-windows-msvc.exe"
-url_api = "https://api.github.com/repos/harehare/mq/releases/assets/473535419"
+checksum = "sha256:4eb9a733875190e4583dee70a556042045da863824b6c57e3cf903a926d2644d"
+url = "https://github.com/harehare/mq/releases/download/v0.7.0/mq-x86_64-pc-windows-msvc.exe"
+url_api = "https://api.github.com/repos/harehare/mq/releases/assets/485908658"
 provenance = "github-attestations"
 
 [[tools."github:iloveitaly/richclip"]]
@@ -927,143 +927,143 @@ url = "https://github.com/nnnkkk7/lazyactions/releases/download/v0.0.13/lazyacti
 url_api = "https://api.github.com/repos/nnnkkk7/lazyactions/releases/assets/374567697"
 
 [[tools."github:railwayapp/cli"]]
-version = "5.27.2"
+version = "5.28.1"
 backend = "github:railwayapp/cli"
 
 [tools."github:railwayapp/cli"."platforms.linux-arm64"]
-checksum = "sha256:f559b3a5857b50cbf9f601d5ef0a20324bdce731d982b0e0f276c75b1d8ff433"
-url = "https://github.com/railwayapp/cli/releases/download/v5.27.2/railway-v5.27.2-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/484512556"
+checksum = "sha256:c7ba92155969dcefd52ffdf7571a4136d96e2b3fdea5c50004640928d5f52698"
+url = "https://github.com/railwayapp/cli/releases/download/v5.28.1/railway-v5.28.1-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/487946722"
 provenance = "github-attestations"
 
 [tools."github:railwayapp/cli"."platforms.linux-arm64-musl"]
-checksum = "sha256:f559b3a5857b50cbf9f601d5ef0a20324bdce731d982b0e0f276c75b1d8ff433"
-url = "https://github.com/railwayapp/cli/releases/download/v5.27.2/railway-v5.27.2-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/484512556"
+checksum = "sha256:c7ba92155969dcefd52ffdf7571a4136d96e2b3fdea5c50004640928d5f52698"
+url = "https://github.com/railwayapp/cli/releases/download/v5.28.1/railway-v5.28.1-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/487946722"
 provenance = "github-attestations"
 
 [tools."github:railwayapp/cli"."platforms.linux-x64"]
-checksum = "sha256:a0bc1e684ec4ada394533c8bd374aa6e954a4b4c14cf85d637941a53b6eb6132"
-url = "https://github.com/railwayapp/cli/releases/download/v5.27.2/railway-v5.27.2-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/484513346"
+checksum = "sha256:cc2ab3c12f7175c7a750eb3c1cceecc5c857f43a7914e32ed724ca3910133e30"
+url = "https://github.com/railwayapp/cli/releases/download/v5.28.1/railway-v5.28.1-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/487946323"
 provenance = "github-attestations"
 
 [tools."github:railwayapp/cli"."platforms.linux-x64-baseline"]
-checksum = "sha256:a0bc1e684ec4ada394533c8bd374aa6e954a4b4c14cf85d637941a53b6eb6132"
-url = "https://github.com/railwayapp/cli/releases/download/v5.27.2/railway-v5.27.2-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/484513346"
+checksum = "sha256:cc2ab3c12f7175c7a750eb3c1cceecc5c857f43a7914e32ed724ca3910133e30"
+url = "https://github.com/railwayapp/cli/releases/download/v5.28.1/railway-v5.28.1-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/487946323"
 provenance = "github-attestations"
 
 [tools."github:railwayapp/cli"."platforms.linux-x64-musl"]
-checksum = "sha256:714aa8addae46b90d41347cad41a206558db6314ab822af0c4054662958aac72"
-url = "https://github.com/railwayapp/cli/releases/download/v5.27.2/railway-v5.27.2-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/484513376"
+checksum = "sha256:bb0cb3a581acdaa590e26020f0152233fb5791cae544813385d9871588a543d3"
+url = "https://github.com/railwayapp/cli/releases/download/v5.28.1/railway-v5.28.1-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/487946694"
 provenance = "github-attestations"
 
 [tools."github:railwayapp/cli"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:714aa8addae46b90d41347cad41a206558db6314ab822af0c4054662958aac72"
-url = "https://github.com/railwayapp/cli/releases/download/v5.27.2/railway-v5.27.2-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/484513376"
+checksum = "sha256:bb0cb3a581acdaa590e26020f0152233fb5791cae544813385d9871588a543d3"
+url = "https://github.com/railwayapp/cli/releases/download/v5.28.1/railway-v5.28.1-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/487946694"
 provenance = "github-attestations"
 
 [tools."github:railwayapp/cli"."platforms.macos-arm64"]
-checksum = "sha256:73cb4eb01e1a1b82c1127208db26c18a93aa72c48ba1d32b6b9c592f7d228905"
-url = "https://github.com/railwayapp/cli/releases/download/v5.27.2/railway-v5.27.2-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/484512869"
+checksum = "sha256:4c3434b07a75a9a26c85270aff5ed2fab590315b5c018125a8570bc2071b76c9"
+url = "https://github.com/railwayapp/cli/releases/download/v5.28.1/railway-v5.28.1-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/487947873"
 provenance = "github-attestations"
 
 [tools."github:railwayapp/cli"."platforms.macos-x64"]
-checksum = "sha256:8b6a81e58dee6a550c9cccbe16edeedc4f2143fd642fbc72e56e58cb81cb1586"
-url = "https://github.com/railwayapp/cli/releases/download/v5.27.2/railway-v5.27.2-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/484514103"
+checksum = "sha256:4c5ca5b6074b2dd7b00f80c503481c3c43f902b7af1059ea4bc3422cf0fb78d9"
+url = "https://github.com/railwayapp/cli/releases/download/v5.28.1/railway-v5.28.1-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/487946601"
 provenance = "github-attestations"
 
 [tools."github:railwayapp/cli"."platforms.macos-x64-baseline"]
-checksum = "sha256:8b6a81e58dee6a550c9cccbe16edeedc4f2143fd642fbc72e56e58cb81cb1586"
-url = "https://github.com/railwayapp/cli/releases/download/v5.27.2/railway-v5.27.2-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/484514103"
+checksum = "sha256:4c5ca5b6074b2dd7b00f80c503481c3c43f902b7af1059ea4bc3422cf0fb78d9"
+url = "https://github.com/railwayapp/cli/releases/download/v5.28.1/railway-v5.28.1-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/487946601"
 provenance = "github-attestations"
 
 [tools."github:railwayapp/cli"."platforms.windows-x64"]
-checksum = "sha256:16a897595713890406a03d2328b316a1c7ba82ed777dd3ab4cca003d451a0e2c"
-url = "https://github.com/railwayapp/cli/releases/download/v5.27.2/railway-v5.27.2-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/484515815"
+checksum = "sha256:7c709aa012ac72a7688ff4d9f70cfcec6cbdd1203e32dd9a5b8010ad34362783"
+url = "https://github.com/railwayapp/cli/releases/download/v5.28.1/railway-v5.28.1-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/487949015"
 provenance = "github-attestations"
 
 [tools."github:railwayapp/cli"."platforms.windows-x64-baseline"]
-checksum = "sha256:50a86b3297138d58480b3dbbc44e9eb9629e72b70dace3da54f4eaa9bb8b2ae2"
-url = "https://github.com/railwayapp/cli/releases/download/v5.27.2/railway-v5.27.2-x86_64-pc-windows-gnu.zip"
-url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/484518410"
+checksum = "sha256:6045b2b8ead115514ac963713a706f1677dcc23e15e8e85a1e785975415f77c7"
+url = "https://github.com/railwayapp/cli/releases/download/v5.28.1/railway-v5.28.1-x86_64-pc-windows-gnu.zip"
+url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/487950036"
 provenance = "github-attestations"
 
 [[tools."github:railwayapp/railpack"]]
-version = "0.31.2"
+version = "0.33.0"
 backend = "github:railwayapp/railpack"
 
 [tools."github:railwayapp/railpack"."platforms.linux-arm64"]
-checksum = "sha256:7ab60491deb69b6b2a41131b1f672392a75600b9489bc004ae15f40f94f54eea"
-url = "https://github.com/railwayapp/railpack/releases/download/v0.31.2/railpack-v0.31.2-arm64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/483709245"
+checksum = "sha256:7315e9a8d2f95f5faec1cd592a1b4d54be9ee2f855c600f58a90e41bd349488e"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.33.0/railpack-v0.33.0-arm64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/487614454"
 provenance = "github-attestations"
 
 [tools."github:railwayapp/railpack"."platforms.linux-arm64-musl"]
-checksum = "sha256:7ab60491deb69b6b2a41131b1f672392a75600b9489bc004ae15f40f94f54eea"
-url = "https://github.com/railwayapp/railpack/releases/download/v0.31.2/railpack-v0.31.2-arm64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/483709245"
+checksum = "sha256:7315e9a8d2f95f5faec1cd592a1b4d54be9ee2f855c600f58a90e41bd349488e"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.33.0/railpack-v0.33.0-arm64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/487614454"
 provenance = "github-attestations"
 
 [tools."github:railwayapp/railpack"."platforms.linux-x64"]
-checksum = "sha256:81f7f8a2e625ec66d0936aebea1f889e66d42c3186bc8d0c80b0c37d7773d9be"
-url = "https://github.com/railwayapp/railpack/releases/download/v0.31.2/railpack-v0.31.2-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/483709260"
+checksum = "sha256:e62b8abaf1349aaa92ebe9d552ffd023ea06511b73b1197e6c32db26f483f511"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.33.0/railpack-v0.33.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/487614450"
 provenance = "github-attestations"
 
 [tools."github:railwayapp/railpack"."platforms.linux-x64-baseline"]
-checksum = "sha256:81f7f8a2e625ec66d0936aebea1f889e66d42c3186bc8d0c80b0c37d7773d9be"
-url = "https://github.com/railwayapp/railpack/releases/download/v0.31.2/railpack-v0.31.2-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/483709260"
+checksum = "sha256:e62b8abaf1349aaa92ebe9d552ffd023ea06511b73b1197e6c32db26f483f511"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.33.0/railpack-v0.33.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/487614450"
 provenance = "github-attestations"
 
 [tools."github:railwayapp/railpack"."platforms.linux-x64-musl"]
-checksum = "sha256:81f7f8a2e625ec66d0936aebea1f889e66d42c3186bc8d0c80b0c37d7773d9be"
-url = "https://github.com/railwayapp/railpack/releases/download/v0.31.2/railpack-v0.31.2-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/483709260"
+checksum = "sha256:e62b8abaf1349aaa92ebe9d552ffd023ea06511b73b1197e6c32db26f483f511"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.33.0/railpack-v0.33.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/487614450"
 provenance = "github-attestations"
 
 [tools."github:railwayapp/railpack"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:81f7f8a2e625ec66d0936aebea1f889e66d42c3186bc8d0c80b0c37d7773d9be"
-url = "https://github.com/railwayapp/railpack/releases/download/v0.31.2/railpack-v0.31.2-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/483709260"
+checksum = "sha256:e62b8abaf1349aaa92ebe9d552ffd023ea06511b73b1197e6c32db26f483f511"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.33.0/railpack-v0.33.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/487614450"
 provenance = "github-attestations"
 
 [tools."github:railwayapp/railpack"."platforms.macos-arm64"]
-checksum = "sha256:39d8c39c393a133a345cde6fdd17244970c0e501fa2004c4385e2a6f1a1d5d8b"
-url = "https://github.com/railwayapp/railpack/releases/download/v0.31.2/railpack-v0.31.2-arm64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/483709243"
+checksum = "sha256:23adb9c3ceb63873b36dd1914c43918346336cbd79f007c272462a3053a0b97c"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.33.0/railpack-v0.33.0-arm64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/487614435"
 provenance = "github-attestations"
 
 [tools."github:railwayapp/railpack"."platforms.macos-x64"]
-checksum = "sha256:0de444c852136d91b69524ad33a7dd9f1c57d6bfa18cfd0fcd5452589df0b5d1"
-url = "https://github.com/railwayapp/railpack/releases/download/v0.31.2/railpack-v0.31.2-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/483709253"
+checksum = "sha256:ef9759fa52819ff04d12946454e4a3de59c3aa3ec6911f29da3623e5c5387e45"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.33.0/railpack-v0.33.0-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/487614455"
 provenance = "github-attestations"
 
 [tools."github:railwayapp/railpack"."platforms.macos-x64-baseline"]
-checksum = "sha256:0de444c852136d91b69524ad33a7dd9f1c57d6bfa18cfd0fcd5452589df0b5d1"
-url = "https://github.com/railwayapp/railpack/releases/download/v0.31.2/railpack-v0.31.2-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/483709253"
+checksum = "sha256:ef9759fa52819ff04d12946454e4a3de59c3aa3ec6911f29da3623e5c5387e45"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.33.0/railpack-v0.33.0-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/487614455"
 provenance = "github-attestations"
 
 [tools."github:railwayapp/railpack"."platforms.windows-x64"]
-checksum = "sha256:fa5d615468638c51613211def0acec9a349f0ab8a75cf996d2d3d2b0207bc426"
-url = "https://github.com/railwayapp/railpack/releases/download/v0.31.2/railpack-v0.31.2-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/483709257"
+checksum = "sha256:264b080d3d1af3485830aedd2fc1c5abfe7e17db58c8b931f9cf9a781799e780"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.33.0/railpack-v0.33.0-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/487614436"
 provenance = "github-attestations"
 
 [tools."github:railwayapp/railpack"."platforms.windows-x64-baseline"]
-checksum = "sha256:fa5d615468638c51613211def0acec9a349f0ab8a75cf996d2d3d2b0207bc426"
-url = "https://github.com/railwayapp/railpack/releases/download/v0.31.2/railpack-v0.31.2-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/483709257"
+checksum = "sha256:264b080d3d1af3485830aedd2fc1c5abfe7e17db58c8b931f9cf9a781799e780"
+url = "https://github.com/railwayapp/railpack/releases/download/v0.33.0/railpack-v0.33.0-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/487614436"
 provenance = "github-attestations"
 
 [[tools.go]]
@@ -1233,61 +1233,61 @@ url = "https://github.com/opentofu/opentofu/releases/download/v1.12.5/tofu_1.12.
 url_api = "https://api.github.com/repos/opentofu/opentofu/releases/assets/484602547"
 
 [[tools.pnpm]]
-version = "11.15.1"
+version = "11.17.0"
 backend = "aqua:pnpm/pnpm"
 
 [tools.pnpm."platforms.linux-arm64"]
-checksum = "sha256:361e385867146972d0635a41a1871cb44c9c23f65acce78a5f1ca1d44ac0afcd"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.15.1/pnpm-linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/482780455"
+checksum = "sha256:730d17de742a3efbb020ba91d7acfc0456c6ba6ad1cd8eb49f4c229fe9f504d3"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.17.0/pnpm-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/487422123"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-arm64-musl"]
-checksum = "sha256:5e293db656ee6a54387945572e06f08245140a7427c8e67b821d56471f373b77"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.15.1/pnpm-linux-arm64-musl.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/482780459"
+checksum = "sha256:cc072c0e7bdd290f52fb9afdcea778ede69f96f0f4dae63623163fc11d4beec3"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.17.0/pnpm-linux-arm64-musl.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/487422121"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-x64"]
-checksum = "sha256:0c1373b6390f6b89ff8b896d3647c9826577ddc49173a2f732da69b36569f9e0"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.15.1/pnpm-linux-x64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/482780457"
+checksum = "sha256:bdb1db01bf0f757495405a59a09c5c287f315889dc98d3b14bc374b9fe43a0bf"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.17.0/pnpm-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/487422122"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-x64-baseline"]
-checksum = "sha256:0c1373b6390f6b89ff8b896d3647c9826577ddc49173a2f732da69b36569f9e0"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.15.1/pnpm-linux-x64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/482780457"
+checksum = "sha256:bdb1db01bf0f757495405a59a09c5c287f315889dc98d3b14bc374b9fe43a0bf"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.17.0/pnpm-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/487422122"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-x64-musl"]
-checksum = "sha256:593039435b88cb4e15c60c18ba032a1ae6a28159287199f20aacc44ad553a094"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.15.1/pnpm-linux-x64-musl.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/482780453"
+checksum = "sha256:db2e4eeecab336bd41bbbc7a39626b166f1a15bb189efcf6a1dafdf159f23fe7"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.17.0/pnpm-linux-x64-musl.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/487422116"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:593039435b88cb4e15c60c18ba032a1ae6a28159287199f20aacc44ad553a094"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.15.1/pnpm-linux-x64-musl.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/482780453"
+checksum = "sha256:db2e4eeecab336bd41bbbc7a39626b166f1a15bb189efcf6a1dafdf159f23fe7"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.17.0/pnpm-linux-x64-musl.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/487422116"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.macos-arm64"]
-checksum = "sha256:4ff53ecc9de8df115d4efef60eab77f91be4f8237cdaca078351a22e707d1849"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.15.1/pnpm-darwin-arm64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/482780456"
+checksum = "sha256:1e9a35d76f9d382af365d95c64f3abf7815e24350653f5bb1a37e4546265bc2b"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.17.0/pnpm-darwin-arm64.tar.gz"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/487422117"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.windows-x64"]
-checksum = "sha256:e9179d727211d5556e969fccfa36f828392892c54728a711c9da1cc3093f7900"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.15.1/pnpm-win32-x64.zip"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/482780452"
+checksum = "sha256:3025c174a6dcffec14a071a5c854cb0c350a09a8c7c2857a75f75cc7b29b939c"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.17.0/pnpm-win32-x64.zip"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/487422118"
 provenance = "github-attestations"
 
 [tools.pnpm."platforms.windows-x64-baseline"]
-checksum = "sha256:e9179d727211d5556e969fccfa36f828392892c54728a711c9da1cc3093f7900"
-url = "https://github.com/pnpm/pnpm/releases/download/v11.15.1/pnpm-win32-x64.zip"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/482780452"
+checksum = "sha256:3025c174a6dcffec14a071a5c854cb0c350a09a8c7c2857a75f75cc7b29b939c"
+url = "https://github.com/pnpm/pnpm/releases/download/v11.17.0/pnpm-win32-x64.zip"
+url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/487422118"
 provenance = "github-attestations"
 
 [[tools.python]]
@@ -1353,6 +1353,18 @@ provenance = "github-attestations"
 version = "3.4.10"
 backend = "core:ruby"
 
+[tools.ruby."platforms.windows-x64"]
+checksum = "sha256:89e3c5e235ac88b9b7e8daaf639eaaab74d7c470667354f6bf0f7432f3191ebb"
+url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.4.10-1/rubyinstaller-3.4.10-1-x64.7z"
+
+[tools.ruby."platforms.windows-x64-baseline"]
+checksum = "sha256:89e3c5e235ac88b9b7e8daaf639eaaab74d7c470667354f6bf0f7432f3191ebb"
+url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.4.10-1/rubyinstaller-3.4.10-1-x64.7z"
+
+[[tools.ruby]]
+version = "3.4.10"
+backend = "core:ruby"
+
 [tools.ruby.options]
 compile = "false"
 precompiled_url = "jdx/ruby"
@@ -1410,24 +1422,12 @@ url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstalle
 checksum = "sha256:89e3c5e235ac88b9b7e8daaf639eaaab74d7c470667354f6bf0f7432f3191ebb"
 url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.4.10-1/rubyinstaller-3.4.10-1-x64.7z"
 
-[[tools.ruby]]
-version = "3.4.10"
-backend = "core:ruby"
-
-[tools.ruby."platforms.windows-x64"]
-checksum = "sha256:89e3c5e235ac88b9b7e8daaf639eaaab74d7c470667354f6bf0f7432f3191ebb"
-url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.4.10-1/rubyinstaller-3.4.10-1-x64.7z"
-
-[tools.ruby."platforms.windows-x64-baseline"]
-checksum = "sha256:89e3c5e235ac88b9b7e8daaf639eaaab74d7c470667354f6bf0f7432f3191ebb"
-url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.4.10-1/rubyinstaller-3.4.10-1-x64.7z"
-
 [[tools.rust]]
 version = "1.97.1"
 backend = "core:rust"
 
 [[tools.uv]]
-version = "0.11.31"
+version = "0.11.32"
 backend = "asdf:uv"
 
 [[tools.zig]]
