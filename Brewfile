@@ -181,7 +181,6 @@ if OS.mac?
     cask "zoom"
     cask "the-unarchiver"
     cask "sketch"
-    # cask "disk-sensei"
     cask "paw"
     cask "safari-technology-preview"
     cask "openrefine"
@@ -210,6 +209,8 @@ if OS.mac?
     cask "loom"
     cask "ngrok"
     cask "firefox" # for debugging, not actual use
+    cask "angristan/tap/macthrottle"
+    cask "dua-cli"
 
     # == Experimental
     cask "tip"
