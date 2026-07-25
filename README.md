@@ -74,6 +74,7 @@ interesting_repos=(
   https://github.com/nateberkopec/dotfiles
   https://github.com/melchoy/dotfiles
   https://github.com/jmduke/dotfiles
+  https://github.com/fearphage/dotfiles-1
 )
 
 cd ~/Projects/dotfiles-inspiration
