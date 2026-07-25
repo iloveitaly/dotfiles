@@ -22,8 +22,17 @@ fi
 export PATH="${HOME}/.local/bin:${PATH}"
 eval "$(mise activate bash)"
 
-# writes ~/.config/mise/config.toml and installs binaries
-mise use -g fzf ripgrep lazydocker atuin starship dua micro
+# writes ~/.config/mise/config.toml and installs/upgrades to latest
+mise use -g \
+  fzf@latest \
+  ripgrep@latest \
+  lazydocker@latest \
+  atuin@latest \
+  starship@latest \
+  dua@latest \
+  aqua:micro-editor/micro@nightly \
+  zoxide@latest
+mise upgrade
 
 mkdir -p "${HOME}/.local/bin" "${HOME}/.config"
 
@@ -95,6 +104,7 @@ ${MARKER_BEGIN}
 export PATH="\${HOME}/.local/bin:\${PATH}"
 eval "\$(mise activate zsh)"
 eval "\$(fzf --zsh)"
+eval "\$(zoxide init zsh)"
 eval "\$(atuin init zsh)"
 eval "\$(starship init zsh)"
 alias m=micro
