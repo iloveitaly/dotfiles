@@ -50,6 +50,12 @@ if [[ ! -d "${FZF_TAB}/.git" ]]; then
   git clone --depth 1 https://github.com/Aloxaf/fzf-tab "${FZF_TAB}"
 fi
 
+# user completion dir (dokku, etc.) — prepended to fpath before compinit
+ZFUNC="${HOME}/.zfunc"
+mkdir -p "${ZFUNC}"
+curl -fsSL -o "${ZFUNC}/_dokku" \
+  https://raw.githubusercontent.com/iloveitaly/zsh-dokku/master/completions/_dokku
+
 # cloud-server prompt: always show host (no username), keep noise low
 STARSHIP_TOML="${HOME}/.config/starship.toml"
 cat >"${STARSHIP_TOML}" <<'EOF'
@@ -117,6 +123,7 @@ eval "\$(atuin init zsh)"
 eval "\$(starship init zsh)"
 alias m=micro
 alias d=docker
+fpath=("\${HOME}/.zfunc" \$fpath)
 autoload -Uz compinit && compinit
 (( \$+commands[docker] )) && eval "\$(docker completion zsh)" && compdef d=docker
 source "\${HOME}/.local/share/fzf-tab/fzf-tab.plugin.zsh"
