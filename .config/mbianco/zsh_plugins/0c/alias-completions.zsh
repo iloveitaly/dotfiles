@@ -6,3 +6,4 @@ zicompdef fdd=fd
 zicompdef rgg=rg
 zicompdef rgu=rg
 zicompdef rgc=rg
+zicompdef dk=dokku
