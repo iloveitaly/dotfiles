@@ -42,43 +42,93 @@ version = "nightly"
 backend = "aqua:micro-editor/micro"
 
 [tools."aqua:micro-editor/micro"."platforms.linux-x64"]
-checksum = "sha256:330ee2b8546992cf4252abc5dfac07225b4cb7985165ca8250fdc52982dffb07"
+checksum = "sha256:854582eb7b249d7f8ce5ed26862d3950d91e68d79051ec0beb0d66e94b30e0a5"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux64.tar.gz"
+url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/490839085"
 
 [tools."aqua:micro-editor/micro"."platforms.linux-x64-baseline"]
-checksum = "sha256:330ee2b8546992cf4252abc5dfac07225b4cb7985165ca8250fdc52982dffb07"
+checksum = "sha256:854582eb7b249d7f8ce5ed26862d3950d91e68d79051ec0beb0d66e94b30e0a5"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux64.tar.gz"
+url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/490839085"
 
 [tools."aqua:micro-editor/micro"."platforms.linux-x64-musl"]
-checksum = "sha256:330ee2b8546992cf4252abc5dfac07225b4cb7985165ca8250fdc52982dffb07"
+checksum = "sha256:854582eb7b249d7f8ce5ed26862d3950d91e68d79051ec0beb0d66e94b30e0a5"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux64.tar.gz"
+url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/490839085"
 
 [tools."aqua:micro-editor/micro"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:330ee2b8546992cf4252abc5dfac07225b4cb7985165ca8250fdc52982dffb07"
+checksum = "sha256:854582eb7b249d7f8ce5ed26862d3950d91e68d79051ec0beb0d66e94b30e0a5"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-linux64.tar.gz"
+url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/490839085"
 
 [tools."aqua:micro-editor/micro"."platforms.macos-arm64"]
-checksum = "sha256:7d38eeba1afc6cfa6a06144f83309621a653f3c89ca81192ea421c124a745359"
+checksum = "sha256:3bda9d870333d5309f23627bf2868da827ba2ce0976efcc0bcdaccaa68e31008"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-osx.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/481928272"
+url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/490839090"
 
 [tools."aqua:micro-editor/micro"."platforms.macos-x64"]
-checksum = "sha256:7d38eeba1afc6cfa6a06144f83309621a653f3c89ca81192ea421c124a745359"
+checksum = "sha256:3bda9d870333d5309f23627bf2868da827ba2ce0976efcc0bcdaccaa68e31008"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-osx.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/481928272"
+url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/490839090"
 
 [tools."aqua:micro-editor/micro"."platforms.macos-x64-baseline"]
-checksum = "sha256:7d38eeba1afc6cfa6a06144f83309621a653f3c89ca81192ea421c124a745359"
+checksum = "sha256:3bda9d870333d5309f23627bf2868da827ba2ce0976efcc0bcdaccaa68e31008"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-osx.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/481928272"
+url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/490839090"
 
 [tools."aqua:micro-editor/micro"."platforms.windows-x64"]
-checksum = "sha256:73c55a13fcb96766241bec3ed180e20a2a233558763d7eb07fe1f4d41503faa0"
+checksum = "sha256:1bcd22aa56ea5ad09317a16fa84f712f02220f06fc95149d8e9165de17499c3a"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-win64.zip"
+url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/490839078"
 
 [tools."aqua:micro-editor/micro"."platforms.windows-x64-baseline"]
-checksum = "sha256:73c55a13fcb96766241bec3ed180e20a2a233558763d7eb07fe1f4d41503faa0"
+checksum = "sha256:1bcd22aa56ea5ad09317a16fa84f712f02220f06fc95149d8e9165de17499c3a"
 url = "https://github.com/micro-editor/micro/releases/download/nightly/micro-nightly-win64.zip"
+url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/490839078"
+
+[[tools.ast-grep]]
+version = "0.45.0"
+backend = "aqua:ast-grep/ast-grep"
+
+[tools.ast-grep."platforms.linux-arm64"]
+checksum = "sha256:62b60892dafacfa76d6de87157659f880bbf85ff38bdab52db12f1f14ec60f94"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.45.0/app-aarch64-unknown-linux-gnu.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/487374979"
+
+[tools.ast-grep."platforms.linux-x64"]
+checksum = "sha256:78931ae35ebac33d9a72b3aecea3e3d62d6e5b0b718ac8bbedfbe69d68421e41"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.45.0/app-x86_64-unknown-linux-gnu.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/487374029"
+
+[tools.ast-grep."platforms.linux-x64-baseline"]
+checksum = "sha256:78931ae35ebac33d9a72b3aecea3e3d62d6e5b0b718ac8bbedfbe69d68421e41"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.45.0/app-x86_64-unknown-linux-gnu.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/487374029"
+
+[tools.ast-grep."platforms.macos-arm64"]
+checksum = "sha256:ec2e3680f4f84c68b48420bcca01d21389787c7318b52083dde6f46ac12ad946"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.45.0/app-aarch64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/487376083"
+
+[tools.ast-grep."platforms.macos-x64"]
+checksum = "sha256:78d0d9db2f4dfd964fd313e70e92571c6d4204243ad8f3d0abbb2ffc56e45fc6"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.45.0/app-x86_64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/487375810"
+
+[tools.ast-grep."platforms.macos-x64-baseline"]
+checksum = "sha256:78d0d9db2f4dfd964fd313e70e92571c6d4204243ad8f3d0abbb2ffc56e45fc6"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.45.0/app-x86_64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/487375810"
+
+[tools.ast-grep."platforms.windows-x64"]
+checksum = "sha256:a1b5b7c06994992755d4cd0b9cf10c2f4a6e7b4a82d2810edee5985a59f67ac5"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.45.0/app-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/487376855"
+
+[tools.ast-grep."platforms.windows-x64-baseline"]
+checksum = "sha256:a1b5b7c06994992755d4cd0b9cf10c2f4a6e7b4a82d2810edee5985a59f67ac5"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.45.0/app-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/487376855"
 
 [[tools.azure-cli]]
 version = "2.88.0"
@@ -136,78 +186,74 @@ checksum = "sha256:538f9c846355d9e847b2671bc00c47da4229a0befb24df3282b739770f3b4
 url = "https://github.com/oven-sh/bun/releases/download/bun-v1.3.14/bun-windows-x64-baseline.zip"
 
 [[tools.cargo-binstall]]
-version = "1.21.0"
+version = "1.21.1"
 backend = "aqua:cargo-bins/cargo-binstall"
 
 [tools.cargo-binstall."platforms.linux-arm64"]
-checksum = "sha256:31f0564854bd031f20c9abfe33312ea630e6a06a2f6d6309b54b5649608f55be"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.0/cargo-binstall-aarch64-unknown-linux-musl.tgz"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/476613087"
+checksum = "sha256:1dc2979f3c83aade9a1b4344589d14fafa63459b759222528d11419f5cca9cc2"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.1/cargo-binstall-aarch64-unknown-linux-musl.tgz"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/489425352"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.linux-arm64-musl"]
-checksum = "sha256:31f0564854bd031f20c9abfe33312ea630e6a06a2f6d6309b54b5649608f55be"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.0/cargo-binstall-aarch64-unknown-linux-musl.tgz"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/476613087"
+checksum = "sha256:1dc2979f3c83aade9a1b4344589d14fafa63459b759222528d11419f5cca9cc2"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.1/cargo-binstall-aarch64-unknown-linux-musl.tgz"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/489425352"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.linux-x64"]
-checksum = "sha256:b1880b3631d1ff0fd1f286a0d20f82f373355651f9fbd7f4d0d7fbfe218bf562"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.0/cargo-binstall-x86_64-unknown-linux-musl.tgz"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/476612736"
+checksum = "sha256:630c8f8803a686aa6779497f0f0fb51d49822fb5fc3c514d8ced33b34e338e6e"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.1/cargo-binstall-x86_64-unknown-linux-musl.tgz"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/489425174"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.linux-x64-baseline"]
-checksum = "sha256:b1880b3631d1ff0fd1f286a0d20f82f373355651f9fbd7f4d0d7fbfe218bf562"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.0/cargo-binstall-x86_64-unknown-linux-musl.tgz"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/476612736"
+checksum = "sha256:630c8f8803a686aa6779497f0f0fb51d49822fb5fc3c514d8ced33b34e338e6e"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.1/cargo-binstall-x86_64-unknown-linux-musl.tgz"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/489425174"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.linux-x64-musl"]
-checksum = "sha256:b1880b3631d1ff0fd1f286a0d20f82f373355651f9fbd7f4d0d7fbfe218bf562"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.0/cargo-binstall-x86_64-unknown-linux-musl.tgz"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/476612736"
+checksum = "sha256:630c8f8803a686aa6779497f0f0fb51d49822fb5fc3c514d8ced33b34e338e6e"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.1/cargo-binstall-x86_64-unknown-linux-musl.tgz"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/489425174"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:b1880b3631d1ff0fd1f286a0d20f82f373355651f9fbd7f4d0d7fbfe218bf562"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.0/cargo-binstall-x86_64-unknown-linux-musl.tgz"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/476612736"
+checksum = "sha256:630c8f8803a686aa6779497f0f0fb51d49822fb5fc3c514d8ced33b34e338e6e"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.1/cargo-binstall-x86_64-unknown-linux-musl.tgz"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/489425174"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.macos-arm64"]
-checksum = "sha256:e44737132b2d0543e72a6f128307ebbf204b171f57b2ea9db55b8bbe54b6b632"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.0/cargo-binstall-aarch64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/476613286"
+checksum = "sha256:bd03935f1a6d652647f6d42a2cd39396a55094ffddc65bed0debebfe32feea43"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.1/cargo-binstall-aarch64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/489425460"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.macos-x64"]
-checksum = "sha256:ad7cd72d8074ef613ab392cae291c7c8bcc25a4f6690e726ed665ded8640871e"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.0/cargo-binstall-x86_64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/476612855"
+checksum = "sha256:73894951a5c5343476e703b9f2ccea9e829396147ee33bded6a5e94c09298d81"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.1/cargo-binstall-x86_64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/489425224"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.macos-x64-baseline"]
-checksum = "sha256:ad7cd72d8074ef613ab392cae291c7c8bcc25a4f6690e726ed665ded8640871e"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.0/cargo-binstall-x86_64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/476612855"
+checksum = "sha256:73894951a5c5343476e703b9f2ccea9e829396147ee33bded6a5e94c09298d81"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.1/cargo-binstall-x86_64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/489425224"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.windows-x64"]
-checksum = "sha256:f87cc2ca3a103664dab3eac521aa4e49ae72fa0b1e70fba837cd12932001629b"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.0/cargo-binstall-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/476612813"
+checksum = "sha256:27aee4e73cd8b1d479730cb9cdbd89b1114453a135689d4ee1a7e7f913f0ffe1"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.1/cargo-binstall-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/489425215"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.windows-x64-baseline"]
-checksum = "sha256:f87cc2ca3a103664dab3eac521aa4e49ae72fa0b1e70fba837cd12932001629b"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.0/cargo-binstall-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/476612813"
+checksum = "sha256:27aee4e73cd8b1d479730cb9cdbd89b1114453a135689d4ee1a7e7f913f0ffe1"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.21.1/cargo-binstall-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/489425215"
 provenance = "github-attestations"
-
-[[tools."cargo:ast-grep"]]
-version = "0.45.0"
-backend = "cargo:ast-grep"
 
 [[tools."cargo:fastmod"]]
 version = "0.4.4"
@@ -216,10 +262,6 @@ backend = "cargo:fastmod"
 [[tools."cargo:markdown-extract-cli"]]
 version = "2.1.0"
 backend = "cargo:markdown-extract-cli"
-
-[[tools."cargo:usage-cli"]]
-version = "3.5.6"
-backend = "cargo:usage-cli"
 
 [[tools.direnv]]
 version = "2.37.1"
@@ -725,6 +767,7 @@ checksum = "sha256:1d2a9ffd5bc9b2c2c4b48630daf082fad13d9e57d741988a2c248eed562f7
 url = "https://github.com/googleworkspace/cli/releases/download/v0.22.5/google-workspace-cli-aarch64-apple-darwin.tar.gz"
 url_api = "https://api.github.com/repos/googleworkspace/cli/releases/assets/385726972"
 provenance = "github-attestations"
+provenance_verified = true
 
 [tools."github:googleworkspace/cli"."platforms.macos-x64"]
 checksum = "sha256:51f9bd731404d4bba26c36e2e30dd68c56dccd1f834c01252cb0b14d6a6544b2"
@@ -795,6 +838,7 @@ checksum = "sha256:ee11cee3d6855a8d23005a56d77013b14738838abe4a656bd82aeb884ee06
 url = "https://github.com/harehare/mq/releases/download/v0.7.0/mq-aarch64-apple-darwin"
 url_api = "https://api.github.com/repos/harehare/mq/releases/assets/485908541"
 provenance = "github-attestations"
+provenance_verified = true
 
 [tools."github:harehare/mq"."platforms.windows-x64"]
 checksum = "sha256:4eb9a733875190e4583dee70a556042045da863824b6c57e3cf903a926d2644d"
@@ -971,6 +1015,7 @@ checksum = "sha256:4c3434b07a75a9a26c85270aff5ed2fab590315b5c018125a8570bc2071b7
 url = "https://github.com/railwayapp/cli/releases/download/v5.28.1/railway-v5.28.1-aarch64-apple-darwin.tar.gz"
 url_api = "https://api.github.com/repos/railwayapp/cli/releases/assets/487947873"
 provenance = "github-attestations"
+provenance_verified = true
 
 [tools."github:railwayapp/cli"."platforms.macos-x64"]
 checksum = "sha256:4c5ca5b6074b2dd7b00f80c503481c3c43f902b7af1059ea4bc3422cf0fb78d9"
@@ -1041,6 +1086,7 @@ checksum = "sha256:23adb9c3ceb63873b36dd1914c43918346336cbd79f007c272462a3053a0b
 url = "https://github.com/railwayapp/railpack/releases/download/v0.33.0/railpack-v0.33.0-arm64-apple-darwin.tar.gz"
 url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/487614435"
 provenance = "github-attestations"
+provenance_verified = true
 
 [tools."github:railwayapp/railpack"."platforms.macos-x64"]
 checksum = "sha256:ef9759fa52819ff04d12946454e4a3de59c3aa3ec6911f29da3623e5c5387e45"
@@ -1425,6 +1471,65 @@ url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstalle
 [[tools.rust]]
 version = "1.97.1"
 backend = "core:rust"
+
+[[tools.usage]]
+version = "4.0.0"
+backend = "aqua:jdx/usage"
+
+[tools.usage."platforms.linux-arm64"]
+checksum = "sha256:bb9556ad822852f1824d9fb6e4d4063d3bf2639929ec4b74750c1f419c2ef733"
+url = "https://github.com/jdx/usage/releases/download/v4.0.0/usage-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/jdx/usage/releases/assets/489800370"
+
+[tools.usage."platforms.linux-arm64-musl"]
+checksum = "sha256:bb9556ad822852f1824d9fb6e4d4063d3bf2639929ec4b74750c1f419c2ef733"
+url = "https://github.com/jdx/usage/releases/download/v4.0.0/usage-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/jdx/usage/releases/assets/489800370"
+
+[tools.usage."platforms.linux-x64"]
+checksum = "sha256:3ce4d8d30f27db44f0aa2fe8bd351229e36e8d38b09060b0cadb7e02be57c69e"
+url = "https://github.com/jdx/usage/releases/download/v4.0.0/usage-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/jdx/usage/releases/assets/489800150"
+
+[tools.usage."platforms.linux-x64-baseline"]
+checksum = "sha256:3ce4d8d30f27db44f0aa2fe8bd351229e36e8d38b09060b0cadb7e02be57c69e"
+url = "https://github.com/jdx/usage/releases/download/v4.0.0/usage-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/jdx/usage/releases/assets/489800150"
+
+[tools.usage."platforms.linux-x64-musl"]
+checksum = "sha256:3ce4d8d30f27db44f0aa2fe8bd351229e36e8d38b09060b0cadb7e02be57c69e"
+url = "https://github.com/jdx/usage/releases/download/v4.0.0/usage-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/jdx/usage/releases/assets/489800150"
+
+[tools.usage."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:3ce4d8d30f27db44f0aa2fe8bd351229e36e8d38b09060b0cadb7e02be57c69e"
+url = "https://github.com/jdx/usage/releases/download/v4.0.0/usage-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/jdx/usage/releases/assets/489800150"
+
+[tools.usage."platforms.macos-arm64"]
+checksum = "sha256:b86b3b96590c40156977906758b92238fab506edcbdc5331f9efb034207e2ab4"
+url = "https://github.com/jdx/usage/releases/download/v4.0.0/usage-universal-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/jdx/usage/releases/assets/489800167"
+
+[tools.usage."platforms.macos-x64"]
+checksum = "sha256:b86b3b96590c40156977906758b92238fab506edcbdc5331f9efb034207e2ab4"
+url = "https://github.com/jdx/usage/releases/download/v4.0.0/usage-universal-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/jdx/usage/releases/assets/489800167"
+
+[tools.usage."platforms.macos-x64-baseline"]
+checksum = "sha256:b86b3b96590c40156977906758b92238fab506edcbdc5331f9efb034207e2ab4"
+url = "https://github.com/jdx/usage/releases/download/v4.0.0/usage-universal-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/jdx/usage/releases/assets/489800167"
+
+[tools.usage."platforms.windows-x64"]
+checksum = "sha256:91a241e3abf4925855814ae8cab3e6e826736b9cfaddc55a12cf4c3fe03d0dc7"
+url = "https://github.com/jdx/usage/releases/download/v4.0.0/usage-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/jdx/usage/releases/assets/489801502"
+
+[tools.usage."platforms.windows-x64-baseline"]
+checksum = "sha256:91a241e3abf4925855814ae8cab3e6e826736b9cfaddc55a12cf4c3fe03d0dc7"
+url = "https://github.com/jdx/usage/releases/download/v4.0.0/usage-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/jdx/usage/releases/assets/489801502"
 
 [[tools.uv]]
 version = "0.11.32"
