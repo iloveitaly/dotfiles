@@ -6,6 +6,7 @@ alias cat='bat --wrap=never'
 alias j='just'
 alias m="micro"
 alias mr="mise run"
+alias dk="dokku"
 
 # names I can never remember
 # tabiew is a terrible name but awesome tool to inspect tabular data on the cli
