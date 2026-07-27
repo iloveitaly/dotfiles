@@ -31,7 +31,10 @@ mise use -g \
   starship@latest \
   dua@latest \
   github:micro-editor/micro@nightly \
-  zoxide@latest
+  zoxide@latest \
+  btop@latest \
+  github:moncho/dry@latest \
+  github:mrjackwills/oxker@latest
 mise upgrade
 
 mkdir -p "${HOME}/.local/bin" "${HOME}/.config"
@@ -123,9 +126,11 @@ eval "\$(atuin init zsh)"
 eval "\$(starship init zsh)"
 alias m=micro
 alias d=docker
+alias dk=dokku
 fpath=("\${HOME}/.zfunc" \$fpath)
 autoload -Uz compinit && compinit
 (( \$+commands[docker] )) && eval "\$(docker completion zsh)" && compdef d=docker
+compdef dk=dokku
 source "\${HOME}/.local/share/fzf-tab/fzf-tab.plugin.zsh"
 ${MARKER_END}
 EOF
