@@ -654,3 +654,62 @@ cp-to-upstream-template() {
   mkdir -p "${destination_file:h}" || return 1
   cp "$source_file" "$destination_file"
 }
+
+# github failures: latest run for a branch, get the logs, pipe to lnav
+ghf() {
+  local branch run
+  local run_id run_status conclusion workflow_name run_url
+
+  branch="$(command git branch --show-current)" || return
+  if [[ -z "$branch" ]]; then
+    print -u2 "ghf: HEAD is not attached to a branch"
+    return 1
+  fi
+
+  run="$(
+    command gh run list \
+      --branch "$branch" \
+      --limit 100 \
+      --json databaseId,status,conclusion,event,workflowName,url \
+      --jq '
+        first(.[] | select(.event != "schedule"))
+        | select(. != null)
+        | [
+            (.databaseId | tostring),
+            .status,
+            (.conclusion // ""),
+            .workflowName,
+            .url
+          ]
+        | join("\u001f")
+      '
+  )" || return
+
+  if [[ -z "$run" ]]; then
+    print -u2 "ghf: no non-scheduled runs found for $branch"
+    return 1
+  fi
+
+  IFS=$'\x1f' read -r \
+    run_id run_status conclusion workflow_name run_url <<< "$run"
+
+  if [[ "$run_status" != "completed" ]]; then
+    print -r -- "$workflow_name: $run_status"
+    print -r -- "$run_url"
+    return
+  fi
+
+  if [[ "$conclusion" == "success" ]]; then
+    print -r -- "$workflow_name: succeeded"
+    return
+  fi
+
+  if [[ "$conclusion" != "failure" ]]; then
+    print -r -- "$workflow_name: $conclusion"
+    print -r -- "$run_url"
+    return
+  fi
+
+  print -r -- "$workflow_name: failed"
+  command gh run view "$run_id" --log-failed | command lnav -t
+}
