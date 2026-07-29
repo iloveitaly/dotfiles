@@ -79,6 +79,5 @@ export-orbstack-ca:
     cat "$(python -m certifi)" ~/.orbstack/certs/ca.pem > ~/.orbstack/certs/bundle.pem.tmp
     mv ~/.orbstack/certs/bundle.pem.tmp ~/.orbstack/certs/bundle.pem
 
-# Remove legacy standalone bun dirs (bun is managed via mise)
 clean:
-    rm -rf "$HOME/.bun" "$HOME/.cache/.bun/bin"
+    rm -rf "$HOME/.cache/.bun/bin"
