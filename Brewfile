@@ -278,7 +278,7 @@ if OS.mac?
     brew "btop"
     brew "px"
     brew "sslscan"
-    brew "modem-dev/tap/hunk"
+    brew "hunk"
     brew "odiff"
     
     # homerow
