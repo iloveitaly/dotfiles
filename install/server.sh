@@ -33,6 +33,7 @@ mise use -g \
   github:micro-editor/micro@nightly \
   zoxide@latest \
   btop@latest \
+  bat@latest \
   github:moncho/dry@latest \
   github:mrjackwills/oxker@latest
 mise upgrade
