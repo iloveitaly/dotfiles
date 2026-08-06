@@ -1398,6 +1398,55 @@ backend = "ubi:casey/just"
 [tools.just."platforms.macos-arm64-just"]
 checksum = "blake3:18c7fb43e46cb689f763ee5d1c1c403344fe76bead68453b8f5e765ccff1644d"
 
+[[tools.lnav]]
+version = "0.14.0"
+backend = "aqua:tstack/lnav"
+
+[tools.lnav."platforms.linux-arm64"]
+checksum = "sha256:027e9f540567cd0e9ba00335ab9be0275a414b14608e10d49dc2d6a2633aa546"
+url = "https://github.com/tstack/lnav/releases/download/v0.14.0/lnav-0.14.0-linux-musl-arm64.zip"
+url_api = "https://api.github.com/repos/tstack/lnav/releases/assets/394881009"
+
+[tools.lnav."platforms.linux-arm64-musl"]
+checksum = "sha256:027e9f540567cd0e9ba00335ab9be0275a414b14608e10d49dc2d6a2633aa546"
+url = "https://github.com/tstack/lnav/releases/download/v0.14.0/lnav-0.14.0-linux-musl-arm64.zip"
+url_api = "https://api.github.com/repos/tstack/lnav/releases/assets/394881009"
+
+[tools.lnav."platforms.linux-x64"]
+checksum = "sha256:9d146d1da2af005a77920afff5da96d2ae0771ee25450b0954b27de95e7f0f57"
+url = "https://github.com/tstack/lnav/releases/download/v0.14.0/lnav-0.14.0-linux-musl-x86_64.zip"
+url_api = "https://api.github.com/repos/tstack/lnav/releases/assets/394881335"
+
+[tools.lnav."platforms.linux-x64-baseline"]
+checksum = "sha256:9d146d1da2af005a77920afff5da96d2ae0771ee25450b0954b27de95e7f0f57"
+url = "https://github.com/tstack/lnav/releases/download/v0.14.0/lnav-0.14.0-linux-musl-x86_64.zip"
+url_api = "https://api.github.com/repos/tstack/lnav/releases/assets/394881335"
+
+[tools.lnav."platforms.linux-x64-musl"]
+checksum = "sha256:9d146d1da2af005a77920afff5da96d2ae0771ee25450b0954b27de95e7f0f57"
+url = "https://github.com/tstack/lnav/releases/download/v0.14.0/lnav-0.14.0-linux-musl-x86_64.zip"
+url_api = "https://api.github.com/repos/tstack/lnav/releases/assets/394881335"
+
+[tools.lnav."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:9d146d1da2af005a77920afff5da96d2ae0771ee25450b0954b27de95e7f0f57"
+url = "https://github.com/tstack/lnav/releases/download/v0.14.0/lnav-0.14.0-linux-musl-x86_64.zip"
+url_api = "https://api.github.com/repos/tstack/lnav/releases/assets/394881335"
+
+[tools.lnav."platforms.macos-arm64"]
+checksum = "sha256:f282d567e1bdb2c3e54d9502671b8011c0d4e3700b2616cf72778602f8ee0371"
+url = "https://github.com/tstack/lnav/releases/download/v0.14.0/lnav-0.14.0-aarch64-macos.zip"
+url_api = "https://api.github.com/repos/tstack/lnav/releases/assets/394875547"
+
+[tools.lnav."platforms.windows-x64"]
+checksum = "sha256:62e35078b0ba6ff94cb38a3e31df0197b372a96e3e516a0bfc740061729be023"
+url = "https://github.com/tstack/lnav/releases/download/v0.14.0/lnav-0.14.0-windows-x86_64.zip"
+url_api = "https://api.github.com/repos/tstack/lnav/releases/assets/394884727"
+
+[tools.lnav."platforms.windows-x64-baseline"]
+checksum = "sha256:62e35078b0ba6ff94cb38a3e31df0197b372a96e3e516a0bfc740061729be023"
+url = "https://github.com/tstack/lnav/releases/download/v0.14.0/lnav-0.14.0-windows-x86_64.zip"
+url_api = "https://api.github.com/repos/tstack/lnav/releases/assets/394884727"
+
 [[tools.node]]
 version = "22.23.1"
 backend = "core:node"
