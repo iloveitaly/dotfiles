@@ -6,7 +6,7 @@ set script-interpreter := ["zsh", "-euBh", "-o", "pipefail"]
 set unstable := true
 
 upgrade:
-	brew upgrade atuin awscli git rg fd gh zsh gmailctl dolt yazi dolt bat ov difftastic hunk lnav
+	brew upgrade awscli git rg fd gh zsh gmailctl dolt yazi dolt bat hunk lnav
 	gh extension upgrade --all
 	
 	mise self-update

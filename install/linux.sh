@@ -27,9 +27,9 @@ fi
 sudo apt update
 sudo apt install -y \
   git vim lynx rename wget ngrep iftop lftp httpie ncdu curl gawk jq sqlite3 zsh tre-command \
-  zsh entr prettyping less fd-find tldr zoxide bc delta bat tree htop dnsutils moreutils qpdf \
+  zsh entr prettyping less fd-find tldr zoxide bc bat tree htop dnsutils moreutils qpdf \
   rsync watch iotop powertop mise libreadline-dev libffi-dev libyaml-dev \
-  btop docker-ctop ov \
+  btop docker-ctop \
   nmap
 
 # TODO snap btop install
@@ -45,10 +45,6 @@ curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-
 # recent versions of these packages are not available via apt
 # usagecli is required for mise completions
 cargo binstall -y ripgrep eza du-dust usage-cli oxker
-
-curl --proto '=https' --tlsv1.2 -LsSf https://github.com/atuinsh/atuin/releases/latest/download/atuin-installer.sh | sh -s -- --no-modify-path
-# I don't want to add yet another binary to my path, especially since this is different than macOS
-ln -s ~/.atuin/bin/atuin ~/.local/bin
 
 cat <<EOF >~/.extra
 alias cat=batcat

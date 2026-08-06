@@ -66,7 +66,6 @@ brew "tldr"
 brew "zoxide"
 brew "fzf"
 brew "bc" # used by git-fuzzy
-brew "git-delta" # diff replacement
 brew "bat" # cat, can also do paging
 brew "hck" # cut
 brew "tre-command"
@@ -104,7 +103,6 @@ if OS.mac?
     brew "pstree" # procs seem to have a tree view and is a bit better
     brew "broot" # better file finding
     brew "dolt"
-    brew "noborus/tap/ov" # pager replacement
     brew "lnav" # log viewer, partial pager replacement
     brew "ollama"
     brew "buildpacks/tap/pack"
