@@ -1,5 +1,6 @@
 .git/
 install/
+omarchy/
 osx.sh
 Justfile
 Brewfile
@@ -23,3 +24,6 @@ metadata.json
 /templates
 /.antigravitycli
 /.claude
+AGENTS.md
+pty.plist
+tmux.plist
