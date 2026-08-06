@@ -7,6 +7,9 @@ export EDITOR=nvim
 alias pbcopy='wl-copy'
 alias pbpaste='wl-paste'
 
+# forgit is a bash script, so zsh pbcopy aliases do not apply
+export FORGIT_COPY_CMD='wl-copy'
+
 # macOS `open`: return immediately, no shell job-control entries (no jobs/fg).
 # Bare `xdg-open &` leaves a stoppable job; setsid+disown matches macOS.
 open() {
