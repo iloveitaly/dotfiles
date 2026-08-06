@@ -63,6 +63,16 @@ zinit-nuke() {
 # where is a completion function actually defined?
 # example: `completion-where git`
 function completion-where {
+    if [[ -z $1 ]]; then
+        echo "Usage: completion-where <command>" >&2
+        return 1
+    fi
+
+    if [[ -z $_comps[$1] ]]; then
+        echo "No completion defined for '$1'" >&2
+        return 1
+    fi
+
     echo $^fpath/$_comps[$1](N)
     whence -v $_comps[$1]
 }
