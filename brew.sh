@@ -102,10 +102,6 @@ pnpm dlx skills add shadcn/ui
 # GH CLI Config #
 #################
 
-# let programs that don't properly source the shell know where gpg is
-# https://github.com/denolehov/obsidian-git/issues/21
-git config --global gpg.program $(which gpg)
-
 # create a new public repo from the current directory and enable github actions
 gh alias set repo-create --clobber --shell 'repo=$(basename $PWD) && gh repo create --public --source $PWD $repo && owner=$(gh repo view --json owner -q .owner.login) && gh api -X PUT repos/$owner/$repo/actions/permissions -F enabled=true'
 gh alias set repo-create-private --clobber --shell 'repo=$(basename $PWD) && gh repo create --private --source $PWD $repo && owner=$(gh repo view --json owner -q .owner.login) && gh api -X PUT repos/$owner/$repo/actions/permissions -F enabled=true'

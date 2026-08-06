@@ -113,14 +113,8 @@
   lm = "!f(){ local method=$1; local file=$2; [[ -n \"$method\" && -n \"$file\" ]] || exit 1; git log -L :$method:$file;}; f"
 
 [interactive]
-    diffFilter = delta --color-only
-
-    # https://github.com/Wilfred/difftastic/issues/280
-    # TODO can we use difftastic for this?
-    # diffFilter = difft
-
-[delta]
-    navigate = true  # use n and N to move between diff sections
+  # difftastic handles normal diffs (diff.external); delta only for interactive hunk selection (add -p, etc.)
+  diffFilter = delta --color-only
 
 [pretty]
   # TODO if there's no body, an extra newline is added :/
@@ -142,11 +136,14 @@
     difftool = true
 
 [diff]
-  external = difft
+  # --color always: git runs external diffs with a non-TTY pipe, so auto is monochrome
+  external = difft --color always
   tool = ksdiff
   renames = copies                    # identify renames and copies
   mnemonicprefix = true               # use better symbols than A and B
   algorithm = histogram               # Better diffs
+  # Marks moved blocks for delta --color-only (add -p); ignored when diff.external (difft) runs
+  colorMoved = default
 
 [difftool]
   prompt = false
@@ -186,8 +183,12 @@
 [feature]
 	manyfiles = true
 [gpg]
-  # this may change as time goes on, use $(which gpg) to update
-  program = /opt/homebrew/bin/gpg
+  format = ssh
+
+[gpg "ssh"]
+  # macOS 1Password; omarchy Justfile rewrites to /opt/1Password/op-ssh-sign on Arch
+  program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+
 [init]
   defaultBranch = master
 
