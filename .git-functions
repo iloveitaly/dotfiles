@@ -25,6 +25,30 @@ git-add-origin() {
   git remote add "$remote_name" "https://github.com/iloveitaly/$repo_name.git"
 }
 
+# when origin is someone else's repo, add a `fork` remote for the same name under iloveitaly
+git-add-fork() {
+  local origin_url
+  origin_url=$(git remote get-url origin 2>/dev/null) || {
+    echo "Error: no origin remote" >&2
+    return 1
+  }
+
+  if [[ "$origin_url" == *iloveitaly* ]]; then
+    echo "origin already points to iloveitaly, skipping"
+    return 0
+  fi
+
+  if git remote get-url fork >/dev/null 2>&1; then
+    echo "Error: fork remote already exists" >&2
+    return 1
+  fi
+
+  local repo_name
+  repo_name=$(gh repo view --json name --jq '.name')
+  git remote add fork "https://github.com/iloveitaly/$repo_name.git"
+  echo "Added fork remote: https://github.com/iloveitaly/$repo_name.git"
+}
+
 # consumes .git-custom-branch and generates a new `custom` branch
 function git-squash-custom-branch {
   # Check if the .git-custom-branch file exists
