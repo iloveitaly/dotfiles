@@ -103,7 +103,6 @@ if OS.mac?
     brew "pstree" # procs seem to have a tree view and is a bit better
     brew "broot" # better file finding
     brew "dolt"
-    brew "lnav" # log viewer, partial pager replacement
     brew "ollama"
     brew "buildpacks/tap/pack"
     brew "dive" # docker inspection
