@@ -14,6 +14,7 @@ lnav = "latest"
 # "github:moby/buildkit" = "latest"
 # latest stable — nightly rewrites the same tag and breaks mise.lock checksums
 "aqua:micro-editor/micro" = "latest"
+"aqua:neovim/neovim" = "latest"
 "aqua:noborus/ov" = "latest"
 "fd" = "latest"
 "github:gitleaks/gitleaks" = "latest"
