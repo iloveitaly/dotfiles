@@ -1,0 +1,4 @@
+# Omarchy / Arch — override macOS Homebrew paths from shared .tmux.conf
+# Synced to ~/.tmux.conf.local by `just sync`
+set -g default-shell /usr/bin/zsh
+set-environment -g PATH "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"

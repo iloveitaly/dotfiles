@@ -1,0 +1,42 @@
+# Omarchy / Arch — Linux overrides for shared ghostty config (config-file = ?config.local)
+command = /usr/bin/tmux
+
+# Coding agents ring BEL for "done" / "needs input". Default `attention` asks the
+# compositor to activate the window; with Omarchy's focus_on_activate that steals
+# keyboard/workspace focus. Keep title 🔔; leave system/audio off (Ghostty defaults).
+# Prefer agent desktop notify (OSC 9 / notify-send → mako) over focus grab.
+# https://ghostty.org/docs/config/reference#bell-features
+bell-features = no-attention
+
+# Omarchy maps Super+V → Shift+Insert. Ghostty's default Shift+Insert is
+# paste_from_selection (primary); rebind so Cmd/Super+V pastes the clipboard.
+keybind = shift+insert=paste_from_clipboard
+
+# Match macOS tabs: Cmd+T/W and Cmd+1..9. Hypr uses binddn for these so Super
+# reaches Ghostty; browsers ignore Super and get Ctrl via cmd-*-tab.sh.
+# Super+workspace is on Hyper. Alt+N remains Ghostty's stock default.
+keybind = super+t=new_tab
+keybind = super+w=close_tab:this
+keybind = super+1=goto_tab:1
+keybind = super+2=goto_tab:2
+keybind = super+3=goto_tab:3
+keybind = super+4=goto_tab:4
+keybind = super+5=goto_tab:5
+keybind = super+6=goto_tab:6
+keybind = super+7=goto_tab:7
+keybind = super+8=goto_tab:8
+keybind = super+9=last_tab
+
+# Cmd/Super+D splits (macOS / iTerm muscle memory). Physical Cmd is Super via keyd.
+# Linux defaults are ctrl+shift+o / ctrl+shift+e; these stay available too.
+# super+shift+d needs Hyprland SUPER SHIFT+D unbound (see bindings-unbind.conf).
+keybind = super+d=new_split:right
+keybind = super+shift+d=new_split:down
+
+# Cmd+Option+arrows → focus pane. Needs Hyprland SUPER ALT+arrows unbound
+# (bindings-unbind.conf) and keyd cmd+alt.* passthrough (app.conf / [cmd+alt])
+# so arrows stay arrows (bare Cmd rewrites left/right→home/end, up/down→C-home/C-end).
+keybind = super+alt+arrow_left=goto_split:left
+keybind = super+alt+arrow_right=goto_split:right
+keybind = super+alt+arrow_up=goto_split:up
+keybind = super+alt+arrow_down=goto_split:down

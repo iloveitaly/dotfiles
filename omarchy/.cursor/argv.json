@@ -1,0 +1,5 @@
+{
+	"enable-crash-reporter": true,
+	// Hyprland isn't a Chromium-known DE, so force libsecret or Cursor can't use the keyring.
+	"password-store": "gnome-libsecret"
+}

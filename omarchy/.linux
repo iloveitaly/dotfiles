@@ -1,0 +1,17 @@
+# Linux / Omarchy shell overrides (sourced from ~/.zshrc when present).
+# Shared .exports defaults EDITOR=micro (macOS); use nvim on this host.
+
+export EDITOR=nvim
+
+# macOS command shims for Wayland
+alias pbcopy='wl-copy'
+alias pbpaste='wl-paste'
+
+# macOS `open`: return immediately, no shell job-control entries (no jobs/fg).
+# Bare `xdg-open &` leaves a stoppable job; setsid+disown matches macOS.
+open() {
+  local f
+  for f in "$@"; do
+    setsid xdg-open "$f" </dev/null >/dev/null 2>&1 &!
+  done
+}

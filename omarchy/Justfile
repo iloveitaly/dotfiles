@@ -1,0 +1,96 @@
+# Quiet recipes: no step-by-step chatter; one colored success line at the end. Inspect the recipe body for details.
+set shell := ["zsh", "-cu", "-o", "pipefail"]
+
+root := justfile_directory()
+
+sync:
+	# Home-shaped tree; exclude repo-only paths (anchor / so hypr/scripts still syncs)
+	rsync -a --exclude '/Justfile' --exclude '/AGENTS.md' --exclude '/README.md' --exclude '/scripts/' --exclude '/etc/' {{ root }}/ ~/
+	sudo rsync -a --mkpath {{ root }}/etc/keyd/ /etc/keyd/
+	chmod +x ~/.config/hypr/scripts/* 2>/dev/null || true
+	# Shared .config/nvim omits theme.lua (host symlink). Prefer Omarchy 4 state path, else 3.x.
+	theme_neovim="$HOME/.local/state/omarchy/current/theme/neovim.lua"; [[ -e $theme_neovim ]] || theme_neovim="$HOME/.config/omarchy/current/theme/neovim.lua"; mkdir -p ~/.config/nvim/lua/plugins; [[ -e $theme_neovim ]] && ln -snf "$theme_neovim" ~/.config/nvim/lua/plugins/theme.lua
+	# Omarchy XDG conf overrides ~/.tmux.conf and breaks TPM plugin path/discovery
+	rm -f ~/.config/tmux/tmux.conf
+	[[ -d ~/.tmux/plugins/tpm ]] || git clone --depth 1 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	# One entry point; order of overlays lives in dotfiles.conf
+	grep -qF 'source = ~/.config/hypr/dotfiles.conf' ~/.config/hypr/hyprland.conf || printf '\nsource = ~/.config/hypr/dotfiles.conf\n' >> ~/.config/hypr/hyprland.conf
+	sudo keyd reload
+	hyprctl reload >/dev/null
+	# keyd-application-mapper only starts via Hyprland exec-once; re-ensure after sync
+	bash {{ root }}/scripts/ensure-keyd-application-mapper.sh
+	# shared .gitconfig pins macOS GCM / 1Password SSH-sign paths — rewrite Arch overrides after rsync
+	git config --global --replace-all gpg.format ssh
+	git config --global --replace-all gpg.ssh.program /opt/1Password/op-ssh-sign
+	git config --global --unset-all gpg.program 2>/dev/null || true
+	[[ -x /usr/lib/git-core/git-credential-libsecret ]] && git config --global --replace-all credential.helper libsecret || git config --global --replace-all credential.helper store
+	git config --global --replace-all commit.gpgsign true
+	git config --global --replace-all core.editor "nvim +startinsert"
+	@echo "{{GREEN}}ok{{NORMAL}}  omarchy sync"
+
+# Arch git/1Password SSH-sign + docker + keyd group + login shell. Each recipe line is a new shell.
+configure:
+	# shared .gitconfig pins macOS GCM / 1Password SSH-sign paths — Arch overrides
+	git config --global --replace-all gpg.format ssh
+	git config --global --replace-all gpg.ssh.program /opt/1Password/op-ssh-sign
+	git config --global --unset-all gpg.program 2>/dev/null || true
+	[[ -x /usr/lib/git-core/git-credential-libsecret ]] && git config --global --replace-all credential.helper libsecret || git config --global --replace-all credential.helper store
+	git config --global --replace-all commit.gpgsign true
+	git config --global --replace-all core.editor "nvim +startinsert"
+	# Drop macOS Docker leftovers (OrbStack / osxkeychain). Docker recreates config as needed.
+	rm -f ~/.docker/config.json
+	getent group keyd >/dev/null 2>&1 && sudo usermod -aG keyd "$USER"
+	# Login shell → zsh (install-pkgs ensures the package). Skip if already set.
+	zsh_path="$(command -v zsh)"; if [[ -n "$zsh_path" && -x "$zsh_path" ]]; then grep -qxF "$zsh_path" /etc/shells 2>/dev/null || echo "$zsh_path" | sudo tee -a /etc/shells >/dev/null; [[ "$(getent passwd "$USER" | cut -d: -f7)" == "$zsh_path" ]] || sudo chsh -s "$zsh_path" "$USER"; fi
+	# $EDITOR for omarchy-launch-editor / menus (writes ~/.config/uwsm/default)
+	omarchy default editor nvim
+	@echo "{{GREEN}}ok{{NORMAL}}  omarchy configure"
+
+install: install-pkgs sync configure
+
+install-pkgs:
+	# mise → ~/.local/bin/mise (same install script as install/server.sh)
+	[[ -x "${HOME}/.local/bin/mise" ]] || curl https://mise.run | sh
+	# yazi + plugins (same as brew.sh: ya pkg add yazi-rs/plugins:git)
+	export PATH="${HOME}/.local/bin:${PATH}"; mise install yazi; mise exec -- ya pkg add yazi-rs/plugins:git
+	# bc: git-fuzzy layout math (preview %); without it fzf gets "invalid preview window option: %"
+	sudo pacman -S --needed --noconfirm zsh tmux gnupg entr tailscale bc
+	# first login is interactive: sudo tailscale up --accept-routes
+	sudo systemctl enable --now tailscaled.service
+	omarchy pkg aur add todoist-appimage slack-desktop
+	# Vicinae (Raycast-style launcher). User-local install avoids AUR sudo in some envs.
+	# Prefer AUR when available: omarchy pkg aur add vicinae-bin
+	command -v vicinae >/dev/null || curl -fsSL https://vicinae.com/install | bash -s -- --prefix "$HOME/.local"
+	mkdir -p ~/.config/systemd/user
+	[[ -f ~/.local/lib/systemd/user/vicinae.service ]] && ln -sfn ~/.local/lib/systemd/user/vicinae.service ~/.config/systemd/user/vicinae.service
+	systemctl --user daemon-reload
+	systemctl --user enable --now vicinae.service
+	# Snippet expansion / paste need evdev/uinput via input-server capabilities
+	input_server="$HOME/.local/lib/vicinae/usr/libexec/vicinae/vicinae-input-server"; [[ -x "$input_server" ]] && sudo setcap cap_dac_override=ep "$input_server"
+	omarchy install browser chrome
+	omarchy default browser chrome
+	# Webapps: focus existing Chrome app window or launch. Superhuman uses one profile per account
+	# (Default / Profile 1). Window pattern matches Chrome class (...__-Default / ...__-Profile_1).
+	# Prefer duckduckgo icons — google s2/favicons often fails (t2.gstatic.com blocked/unreachable)
+	icon="https://icons.duckduckgo.com/ip3/superhuman.com.ico" url="https://mail.superhuman.com" && omarchy webapp install "Superhuman Work" "$url" "$icon" "omarchy-launch-or-focus-webapp mail.superhuman.com__-Default $url --profile-directory=Default" && omarchy webapp install "Superhuman Personal" "$url" "$icon" "omarchy-launch-or-focus-webapp mail.superhuman.com__-Profile_1 $url --profile-directory=\"Profile 1\""
+	icon="https://icons.duckduckgo.com/ip3/music.youtube.com.ico" url="https://music.youtube.com/" && omarchy webapp install "YouTube Music" "$url" "$icon" "omarchy-launch-or-focus-webapp \"YouTube Music\" $url"
+	icon="https://icons.duckduckgo.com/ip3/grok.com.ico" url="https://grok.com" && omarchy webapp install "Grok" "$url" "$icon"
+	# Todoist AppImage: user .desktop overrides /usr/share so launcher focuses existing window
+	mkdir -p ~/.local/share/applications
+	cat > ~/.local/share/applications/todoist.desktop <<'EOF'
+	[Desktop Entry]
+	Name=Todoist
+	Exec=omarchy-launch-or-focus todoist "uwsm-app -- env DESKTOPINTEGRATION=false /usr/bin/todoist --no-sandbox %U"
+	Terminal=false
+	Type=Application
+	Icon=todoist
+	StartupWMClass=todoist
+	Comment=The Best To-Do List App and Task Manager
+	MimeType=x-scheme-handler/todoist;x-scheme-handler/com.todoist;
+	Categories=Office;
+	EOF
+	chmod +x ~/.local/share/applications/todoist.desktop
+	omarchy webapp remove Superhuman Basecamp Figma X Fizzy 2>/dev/null || true
+	# mise `op` must be setgid root:onepassword-cli or it won't talk to the 1Password desktop app
+	if getent group onepassword-cli >/dev/null 2>&1; then for op in ~/.local/share/mise/installs/1password-cli/*/op(N); do sudo chown root:onepassword-cli "$op"; sudo chmod 2755 "$op"; done; fi
+	@echo "{{GREEN}}ok{{NORMAL}}  omarchy install-pkgs"
