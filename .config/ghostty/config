@@ -24,3 +24,6 @@ font-feature = -dlig
 
 split-divider-color = #FFFFFF
 
+# Machine-specific overrides (optional). See config.local / omarchy sync.
+config-file = ?config.local
+
