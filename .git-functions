@@ -619,8 +619,15 @@ git-staging-to-upstream-template() {
   apply_status=$?
 
   if [[ $apply_status -ne 0 ]]; then
-    echo "git apply failed; falling back to gpatch" >&2
-    gpatch -d "$target_repo" -p1 < "$patch_file"
+    # gpatch is Homebrew's GNU patch on macOS; on Linux the system `patch` is GNU.
+    local patch_cmd
+    if command -v gpatch >/dev/null 2>&1; then
+      patch_cmd=gpatch
+    else
+      patch_cmd=patch
+    fi
+    echo "git apply failed; falling back to $patch_cmd" >&2
+    "$patch_cmd" -d "$target_repo" -p1 < "$patch_file"
     apply_status=$?
   fi
 
