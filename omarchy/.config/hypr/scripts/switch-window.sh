@@ -1,26 +1,28 @@
 #!/usr/bin/env bash
-# Fuzzy-switch among all open Hyprland windows (Walker dmenu).
+# Fuzzy-switch among open windows on the *current* workspace (Walker dmenu).
 # Bound to Hyper+W (see bindings-switcher.conf).
 #
-# Each mapped, non-hidden client is listed as:
-#   [workspace] class — title
-# Selecting focuses that window (and its workspace).
+# Each mapped, non-hidden client on the active workspace is listed as:
+#   class — title
+# Selecting focuses that window.
 
 set -euo pipefail
 
 clients_json=$(hyprctl clients -j 2>/dev/null) || exit 0
 [[ -n "$clients_json" && "$clients_json" != "[]" ]] || exit 0
 
-# Sort by focus history (0 = most recently focused). Skip unmapped/hidden.
+ws_id=$(hyprctl activeworkspace -j 2>/dev/null | jq -r '.id // empty')
+[[ -n "$ws_id" ]] || exit 0
+
+# Sort by focus history (0 = most recently focused). Current workspace only.
 # Address is field 1 (tab-separated) so titles may contain anything.
-mapfile -t lines < <(jq -r '
-  [.[] | select(.mapped == true and .hidden == false)]
+mapfile -t lines < <(jq -r --argjson ws "$ws_id" '
+  [.[] | select(.mapped == true and .hidden == false and .workspace.id == $ws)]
   | sort_by(.focusHistoryID)
   | .[]
   | (.title // "") as $t
   | (.class // "?") as $c
-  | (.workspace.name // "?") as $w
-  | "\(.address)\t[\($w)] \($c) — \($t | gsub("[\t\n]"; " "))"
+  | "\(.address)\t\($c) — \($t | gsub("[\t\n]"; " "))"
 ' <<<"$clients_json")
 
 ((${#lines[@]} > 0)) || exit 0

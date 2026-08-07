@@ -49,7 +49,11 @@ omarchy/
 ├── .cursor/argv.json                # → ~/.cursor/argv.json (password-store for Hyprland)
 ├── .linux                           # → ~/.linux (zsh: EDITOR=nvim, pbcopy/open shims; not .extra)
 ├── .config/keyd/app.conf            # → ~/.config/keyd/app.conf
+├── .config/chrome-flags.conf        # → ~/.config/chrome-flags.conf (Wayland; profile via launcher)
 ├── .config/ghostty/config.local     # → ~/.config/ghostty/config.local (tmux path, etc.)
+├── .local/bin/chrome-personal       # Chrome → Personal profile (directory "Profile 1")
+├── .local/share/applications/
+│   └── google-chrome.desktop        # overrides stock so omarchy-launch-browser uses chrome-personal
 ├── .tmux.conf.local                 # → ~/.tmux.conf.local (zsh + PATH; overrides Homebrew)
 └── .config/hypr/                    # → ~/.config/hypr/ (sourced from hyprland.conf)
     ├── bindings-hyper.conf
@@ -127,7 +131,7 @@ compose  = layer(alt)    # compose/menu → Alt if present
 - The Windows logo key is **Option/Alt** after remap.
 - **1Password Quick Access (macOS-style):** **Cmd+Shift+Space** = Super+Shift+Space → `1password --quick-access` (`bindings-1password.conf`). Stock Omarchy used that chord for **toggle Waybar**; that bind is unbound here.
 - **Caps Lock** → Hyper (`Ctrl+Alt+Shift+Super`) for window focus / workspace numbers (see `bindings-hyper.conf`, `bindings-workspaces.conf`).
-- **Hyper+W** → fuzzy list of **open windows** (`bindings-switcher.conf` / `switch-window.sh`).
+- **Hyper+W** → fuzzy list of **open windows on the current workspace** (`bindings-switcher.conf` / `switch-window.sh`).
 - **Hyper+D** → toggle Voxtype dictation (`bindings-hyper.conf`; stock also has Super+Ctrl+X and F9 push-to-talk).
 - **Cmd+Tab** (Super+Tab) → fuzzy list of **running applications** (macOS-style; one entry per app; `switch-app.sh`). Stock Super+Tab was next workspace (unbound). **Super+Space** still launches any installed app via Walker.
 - **Hyper+F** → fullscreen (stock was Super+F). **Cmd+F** is **Ctrl+F** (search) via keyd — so Super+F never reached Hyprland and looked “broken,” including on scrolling.
@@ -153,10 +157,25 @@ Keyboard
 
 | Put it in… | When | Examples here |
 |------------|------|----------------|
-| **keyd** (`etc/keyd/default.conf`) | Physical key identity; Mac text chords that should arrive as *different* keycodes so Hyprland never sees Super for that press | Alt→Cmd layer; Win/Compose→Alt; Caps→Hyper; Cmd+A/Z/F→Ctrl+letter; Cmd+arrows→Home/End; Alt+Backspace→Ctrl+Backspace; Alt+Delete→Ctrl+Delete |
+| **keyd** (`etc/keyd/default.conf`) | Physical key identity; Mac text chords that should arrive as *different* keycodes so Hyprland never sees Super for that press | Alt→Cmd layer; Win/Compose→Alt; Caps→Hyper; Cmd+A/Z/F→Ctrl+letter; Cmd+arrows→Home/End; Option+Left/Right→Ctrl+arrows (word jump); Option+Backspace/Delete→Ctrl+Backspace/Delete |
 | **Hyprland bind** | Window-manager actions | Cmd+Q close (`bindings-close.conf`); Hyper+arrows focus + Hyper+D Voxtype + Hyper+F fullscreen (`bindings-hyper.conf`); Hyper+W / Cmd+Tab switchers (`bindings-switcher.conf`); 1Password (`bindings-1password.conf`) |
 | **Hyprland `sendshortcut` / wtype** | Super must stay Super for the bind, but the app needs a Linux chord | Cmd+C/V/X clipboard (stock Omarchy); Cmd+Shift+C history (`bindings-clipboard.conf`); browser Cmd+T/W/1–9 via `scripts/cmd-*-tab.sh` (`bindings-tabs.conf`, `binddn`) |
 | **App config** (Ghostty `config.local`, keyd `app.conf`) | App-native Super chords, or true per-app remaps | Ghostty `super+t/w/1..9` + splits; Chromium optional keyd mapper path |
+
+### Chrome only (no stock Chromium)
+
+Omarchy’s base image installs **Chromium**. This machine drops it in `just install-pkgs` (`omarchy pkg drop chromium`) and uses **Google Chrome** only (`omarchy default browser chrome`).
+
+The **Personal** profile lives in directory `Profile 1` (not `Default` — that is “Your Chrome” / work).
+
+Stock AUR `chrome-flags.conf` cannot pass `--profile-directory="Profile 1"` (the wrapper splits on spaces). Instead:
+
+- `~/.local/bin/chrome-personal` launches Chrome with `--profile-directory="Profile 1"`
+- `~/.local/share/applications/google-chrome.desktop` points `Exec` at that wrapper so Super+Shift+B / Walker / `xdg-open` all open Personal
+
+Webapps follow the default browser (Chrome) and may pin profiles (e.g. Superhuman Work → `Default`, Superhuman Personal → `Profile 1`).
+
+Note: `omarchy reinstall pkgs` would put Chromium back from the base list; re-run `just install-pkgs` (or `omarchy pkg drop chromium`) after that.
 
 ### Chromium / browser tab chords (Cmd)
 
@@ -175,6 +194,8 @@ Keyboard
 | Cmd+[ / ] | history back / forward (Alt+Left / Alt+Right) |
 | Cmd+Shift+[ / ] | prev / next tab |
 | Cmd+Option+Left/Right | prev / next tab |
+
+**Ctrl+W** in browsers is remapped to **Ctrl+Backspace** (delete previous word, macOS-style). Close tab stays **Cmd+W** (`cmd.w = C-w` / Hyprland scripts). Terminals are not remapped — real Ctrl+W stays for readline/nvim.
 
 Window close remains **Cmd+Q**. Workspace switch is **Hyper+1…0**.
 

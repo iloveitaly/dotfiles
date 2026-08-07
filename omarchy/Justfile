@@ -8,6 +8,9 @@ sync:
 	rsync -a --exclude '/Justfile' --exclude '/AGENTS.md' --exclude '/README.md' --exclude '/scripts/' --exclude '/etc/' {{ root }}/ ~/
 	sudo rsync -a --mkpath {{ root }}/etc/keyd/ /etc/keyd/
 	chmod +x ~/.config/hypr/scripts/* 2>/dev/null || true
+	chmod +x ~/.local/bin/chrome-personal 2>/dev/null || true
+	# Prefer Personal Chrome profile for app launcher / omarchy-launch-browser
+	update-desktop-database ~/.local/share/applications 2>/dev/null || true
 	# Shared .config/nvim omits theme.lua (host symlink). Prefer Omarchy 4 state path, else 3.x.
 	theme_neovim="$HOME/.local/state/omarchy/current/theme/neovim.lua"; [[ -e $theme_neovim ]] || theme_neovim="$HOME/.config/omarchy/current/theme/neovim.lua"; mkdir -p ~/.config/nvim/lua/plugins; [[ -e $theme_neovim ]] && ln -snf "$theme_neovim" ~/.config/nvim/lua/plugins/theme.lua
 	# Omarchy XDG conf overrides ~/.tmux.conf and breaks TPM plugin path/discovery
@@ -54,7 +57,8 @@ install-pkgs:
 	# yazi + plugins (same as brew.sh: ya pkg add yazi-rs/plugins:git)
 	export PATH="${HOME}/.local/bin:${PATH}"; mise install yazi; mise exec -- ya pkg add yazi-rs/plugins:git
 	# bc: git-fuzzy layout math (preview %); without it fzf gets "invalid preview window option: %"
-	sudo pacman -S --needed --noconfirm zsh tmux gnupg entr tailscale bc
+	# bind: dig / host / nslookup (package provides bind-tools / dnsutils)
+	sudo pacman -S --needed --noconfirm zsh tmux gnupg entr tailscale bc bind
 	# first login is interactive: sudo tailscale up --accept-routes
 	sudo systemctl enable --now tailscaled.service
 	omarchy pkg aur add todoist-appimage slack-desktop
@@ -69,6 +73,8 @@ install-pkgs:
 	input_server="$HOME/.local/lib/vicinae/usr/libexec/vicinae/vicinae-input-server"; [[ -x "$input_server" ]] && sudo setcap cap_dac_override=ep "$input_server"
 	omarchy install browser chrome
 	omarchy default browser chrome
+	# Stock Omarchy base ships Chromium; drop it — Chrome is the only browser here
+	omarchy pkg drop chromium
 	# Webapps: focus existing Chrome app window or launch. Superhuman uses one profile per account
 	# (Default / Profile 1). Window pattern matches Chrome class (...__-Default / ...__-Profile_1).
 	# Prefer duckduckgo icons — google s2/favicons often fails (t2.gstatic.com blocked/unreachable)
