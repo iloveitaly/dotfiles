@@ -1734,6 +1734,65 @@ checksum = "sha256:ada613a2af32c04cf7c54726243c56d76f0e59f5f61d2f28371d3b9d8efad
 url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260804/cpython-3.14.6+20260804-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
 provenance = "github-attestations"
 
+[[tools.qdns]]
+version = "0.19.12"
+backend = "github:natesales/q"
+
+[tools.qdns."platforms.linux-arm64"]
+checksum = "sha256:ac7de2a6aef215789eb077d55c3ada001e2a0c4f858fc8492e95820d8f499ef5"
+url = "https://github.com/natesales/q/releases/download/v0.19.12/q_0.19.12_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/natesales/q/releases/assets/363278365"
+
+[tools.qdns."platforms.linux-arm64-musl"]
+checksum = "sha256:ac7de2a6aef215789eb077d55c3ada001e2a0c4f858fc8492e95820d8f499ef5"
+url = "https://github.com/natesales/q/releases/download/v0.19.12/q_0.19.12_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/natesales/q/releases/assets/363278365"
+
+[tools.qdns."platforms.linux-x64"]
+checksum = "sha256:4adfaa55594a68d8aec60348aaa6345d5232701a1c05ac144ad3fd12dc291f7a"
+url = "https://github.com/natesales/q/releases/download/v0.19.12/q_0.19.12_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/natesales/q/releases/assets/363278366"
+
+[tools.qdns."platforms.linux-x64-baseline"]
+checksum = "sha256:4adfaa55594a68d8aec60348aaa6345d5232701a1c05ac144ad3fd12dc291f7a"
+url = "https://github.com/natesales/q/releases/download/v0.19.12/q_0.19.12_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/natesales/q/releases/assets/363278366"
+
+[tools.qdns."platforms.linux-x64-musl"]
+checksum = "sha256:4adfaa55594a68d8aec60348aaa6345d5232701a1c05ac144ad3fd12dc291f7a"
+url = "https://github.com/natesales/q/releases/download/v0.19.12/q_0.19.12_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/natesales/q/releases/assets/363278366"
+
+[tools.qdns."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:4adfaa55594a68d8aec60348aaa6345d5232701a1c05ac144ad3fd12dc291f7a"
+url = "https://github.com/natesales/q/releases/download/v0.19.12/q_0.19.12_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/natesales/q/releases/assets/363278366"
+
+[tools.qdns."platforms.macos-arm64"]
+checksum = "sha256:4ac106c317d96199c9b684b1093d7ed0e5bc4e008081cd86d3f017826b437faa"
+url = "https://github.com/natesales/q/releases/download/v0.19.12/q_0.19.12_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/natesales/q/releases/assets/363278364"
+
+[tools.qdns."platforms.macos-x64"]
+checksum = "sha256:ddab1798213840510556558d5f7e66fe66dd2b239bc7cd4c3d5fc5b916b6ec15"
+url = "https://github.com/natesales/q/releases/download/v0.19.12/q_0.19.12_darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/natesales/q/releases/assets/363278363"
+
+[tools.qdns."platforms.macos-x64-baseline"]
+checksum = "sha256:ddab1798213840510556558d5f7e66fe66dd2b239bc7cd4c3d5fc5b916b6ec15"
+url = "https://github.com/natesales/q/releases/download/v0.19.12/q_0.19.12_darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/natesales/q/releases/assets/363278363"
+
+[tools.qdns."platforms.windows-x64"]
+checksum = "sha256:35238a11b4b2623064dbb7e61207a53e1b55619f3249f2e9b3acd26f8de18d14"
+url = "https://github.com/natesales/q/releases/download/v0.19.12/q_0.19.12_windows_amd64.zip"
+url_api = "https://api.github.com/repos/natesales/q/releases/assets/363278355"
+
+[tools.qdns."platforms.windows-x64-baseline"]
+checksum = "sha256:35238a11b4b2623064dbb7e61207a53e1b55619f3249f2e9b3acd26f8de18d14"
+url = "https://github.com/natesales/q/releases/download/v0.19.12/q_0.19.12_windows_amd64.zip"
+url_api = "https://api.github.com/repos/natesales/q/releases/assets/363278355"
+
 [[tools.ruby]]
 version = "3.4.10"
 backend = "core:ruby"

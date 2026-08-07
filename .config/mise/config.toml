@@ -23,6 +23,7 @@ lnav = "latest"
 "1password-cli" = "latest"
 fzf = "latest"
 yazi = "latest"
+qdns = "latest" # q is a modern dns tool
 "github:harehare/mq" = "latest"
 "github:dlvhdr/diffnav" = "latest"
 "aqua:Wilfred/difftastic" = "latest"
