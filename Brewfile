@@ -277,7 +277,8 @@ if OS.mac?
     brew "sslscan"
     brew "hunk"
     brew "odiff"
-    
+    brew "koekeishiya/formulae/yabai"
+
     # homerow
 
     # == Mac App store
