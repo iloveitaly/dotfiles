@@ -723,6 +723,31 @@ checksum = "sha256:d3227232221e68aa8790666e915604269d5471b61792a5d78a043ac653351
 url = "https://github.com/erlang/otp/releases/download/OTP-28.5/otp_win64_28.5.zip"
 url_api = "https://api.github.com/repos/erlang/otp/releases/assets/403511532"
 
+[[tools.erlang]]
+version = "28.5"
+backend = "core:erlang"
+
+[tools.erlang.options]
+precompiled_os = "ubuntu-24.04"
+
+[tools.erlang."platforms.linux-arm64"]
+checksum = "sha256:2c7e8ca23e6864eb20eff5d44738bfa123aed8cd21ed6d98e533d751eee28d9c"
+url = "https://github.com/erlang/otp/releases/download/OTP-28.5/otp_src_28.5.tar.gz"
+url_api = "https://api.github.com/repos/erlang/otp/releases/assets/403501100"
+install = "source"
+
+[tools.erlang."platforms.linux-x64"]
+checksum = "sha256:2c7e8ca23e6864eb20eff5d44738bfa123aed8cd21ed6d98e533d751eee28d9c"
+url = "https://github.com/erlang/otp/releases/download/OTP-28.5/otp_src_28.5.tar.gz"
+url_api = "https://api.github.com/repos/erlang/otp/releases/assets/403501100"
+install = "source"
+
+[tools.erlang."platforms.linux-x64-baseline"]
+checksum = "sha256:2c7e8ca23e6864eb20eff5d44738bfa123aed8cd21ed6d98e533d751eee28d9c"
+url = "https://github.com/erlang/otp/releases/download/OTP-28.5/otp_src_28.5.tar.gz"
+url_api = "https://api.github.com/repos/erlang/otp/releases/assets/403501100"
+install = "source"
+
 [[tools.fd]]
 version = "10.4.2"
 backend = "aqua:sharkdp/fd"
