@@ -7,6 +7,9 @@ export EDITOR=nvim
 alias pbcopy='wl-copy'
 alias pbpaste='wl-paste'
 
+# shared .aliases points tailscale at the macOS app binary
+unalias tailscale 2>/dev/null
+
 # forgit is a bash script, so zsh pbcopy aliases do not apply
 export FORGIT_COPY_CMD='wl-copy'
 
