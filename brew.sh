@@ -114,6 +114,7 @@ gh extension install dlvhdr/gh-enhance
 gh extension install dlvhdr/gh-dash
 gh extension install iloveitaly/gh-url
 gh extension install iloveitaly/gh-ai-pr
+gh extension install github/gh-stack
 
 # mcp setup
 # mcpm profile add dev
