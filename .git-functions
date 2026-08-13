@@ -19,6 +19,22 @@ function gd() {
   git difftool $1 -t Kaleidoscope -y
 }
 
+# reset the local copy to the upstream latest (helpful when upstream has been rebased on master or something like that)
+git-upstream-reset() {
+  if ! git rev-parse --is-inside-work-tree &>/dev/null; then
+    echo "Error: Not inside a Git repository." >&2
+    return 1
+  fi
+
+  if [[ -n "$(git status --porcelain)" ]]; then
+    echo "Error: Working directory is dirty. Aborting reset." >&2
+    return 1
+  fi
+
+  echo "Working directory is clean. Resetting to upstream..."
+  git fetch && git reset --hard @{u}
+}
+
 git-add-origin() {
   local remote_name="${1:-origin}"
   local repo_name=$(gh repo view --json name --jq '.name')
