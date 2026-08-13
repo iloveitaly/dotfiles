@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+# yabai config — space labels + float layout (not a tiling setup)
+# https://github.com/koekeishiya/yabai/wiki
+
+# Scripting addition (spaces create/destroy, some focus features).
+# Requires partial SIP disable + sudoers; leave commented until configured.
+# https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
+# yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+# sudo yabai --load-sa
+
+# Keep normal macOS window placement; only use yabai for space labels / moves.
+yabai -m config layout float
+
+# Named spaces (Mission Control indices are 1-based).
+# Space 1 left unlabeled as the default desktop.
+yabai -m space 2 --label communications
+yabai -m space 3 --label ai-dev
+yabai -m space 4 --label railpack
+yabai -m space 5 --label movie-tickets
+yabai -m space 6 --label open-source
+
+echo "yabai configuration loaded."
