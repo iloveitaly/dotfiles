@@ -6,9 +6,21 @@ root := justfile_directory()
 sync:
 	# Home-shaped tree; exclude repo-only paths (anchor / so hypr/scripts still syncs)
 	rsync -a --exclude '/Justfile' --exclude '/AGENTS.md' --exclude '/README.md' --exclude '/scripts/' --exclude '/etc/' {{ root }}/ ~/
-	sudo rsync -a --mkpath {{ root }}/etc/keyd/ /etc/keyd/
+	chmod 600 ~/.ssh/authorized_keys 2>/dev/null || true
+	# /etc/keyd is user-owned on this host (no sudo). Prefer plain rsync; fall back to sudo.
+	if [[ -w /etc/keyd ]]; then rsync -a --mkpath {{ root }}/etc/keyd/ /etc/keyd/; else sudo rsync -a --mkpath {{ root }}/etc/keyd/ /etc/keyd/; fi
+	# sshd drop-in is root-owned. Cached sudo only — `just configure-ssh` is the TTY path.
+	if [[ -w /etc/ssh/sshd_config.d ]]; then rsync -a --mkpath {{ root }}/etc/ssh/sshd_config.d/ /etc/ssh/sshd_config.d/; sshd -t; systemctl is-active --quiet sshd && systemctl reload sshd; elif sudo -n true 2>/dev/null; then sudo rsync -a --mkpath {{ root }}/etc/ssh/sshd_config.d/ /etc/ssh/sshd_config.d/; sudo sshd -t; systemctl is-active --quiet sshd && sudo systemctl reload sshd; fi
 	chmod +x ~/.config/hypr/scripts/* 2>/dev/null || true
-	chmod +x ~/.local/bin/chrome-personal 2>/dev/null || true
+	chmod +x ~/.local/bin/chrome-personal \
+		~/.local/bin/chrome-ensure-personal-prefs \
+		~/.local/bin/launch-or-focus-workspace \
+		~/.local/bin/grok-web \
+		~/.local/bin/gemini-web \
+		~/.local/bin/todoist \
+		~/.local/bin/superhuman-personal ~/.local/bin/superhuman-work 2>/dev/null || true
+	# Personal profile: hide bookmarks bar; New Tab→Grok via chrome-flags extension
+	~/.local/bin/chrome-ensure-personal-prefs 2>/dev/null || true
 	# Prefer Personal Chrome profile for app launcher / omarchy-launch-browser
 	update-desktop-database ~/.local/share/applications 2>/dev/null || true
 	# Shared .config/nvim omits theme.lua (host symlink). Prefer Omarchy 4 state path, else 3.x.
@@ -18,10 +30,13 @@ sync:
 	[[ -d ~/.tmux/plugins/tpm ]] || git clone --depth 1 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	# One entry point; order of overlays lives in dotfiles.conf
 	grep -qF 'source = ~/.config/hypr/dotfiles.conf' ~/.config/hypr/hyprland.conf || printf '\nsource = ~/.config/hypr/dotfiles.conf\n' >> ~/.config/hypr/hyprland.conf
-	sudo keyd reload
+	# keyd reload is IPC (keyd group); no root needed
+	keyd reload
 	hyprctl reload >/dev/null
 	# keyd-application-mapper only starts via Hyprland exec-once; re-ensure after sync
 	bash {{ root }}/scripts/ensure-keyd-application-mapper.sh
+	# wayvnc: localhost:5900; Tailscale Serve publishes it on the tailnet (operator from configure)
+	if (( $+commands[wayvnc] )); then systemctl --user daemon-reload; systemctl --user enable --now wayvnc.service; tailscale serve --bg --yes --tcp 5900 tcp://127.0.0.1:5900 || true; fi
 	# shared .gitconfig pins macOS GCM / 1Password SSH-sign paths — rewrite Arch overrides after rsync
 	git config --global --replace-all gpg.format ssh
 	git config --global --replace-all gpg.ssh.program /opt/1Password/op-ssh-sign
@@ -47,7 +62,38 @@ configure:
 	zsh_path="$(command -v zsh)"; if [[ -n "$zsh_path" && -x "$zsh_path" ]]; then grep -qxF "$zsh_path" /etc/shells 2>/dev/null || echo "$zsh_path" | sudo tee -a /etc/shells >/dev/null; [[ "$(getent passwd "$USER" | cut -d: -f7)" == "$zsh_path" ]] || sudo chsh -s "$zsh_path" "$USER"; fi
 	# $EDITOR for omarchy-launch-editor / menus (writes ~/.config/uwsm/default)
 	omarchy default editor nvim
+	# operator: serve without sudo. --auto-update when a newer client is available
+	sudo tailscale set --operator="$USER" --auto-update
+	tailscale serve --bg --yes --tcp 5900 tcp://127.0.0.1:5900 || sudo tailscale serve --bg --yes --tcp 5900 tcp://127.0.0.1:5900
+	just configure-ssh
 	@echo "{{GREEN}}ok{{NORMAL}}  omarchy configure"
+
+# Enable sshd on Tailscale IPs only + UFW on tailscale0; drop file private key once 1Password is offering it.
+configure-ssh:
+	sudo rsync -a --mkpath {{ root }}/etc/ssh/sshd_config.d/ /etc/ssh/sshd_config.d/
+	sudo rsync -a --mkpath {{ root }}/etc/systemd/system/sshd.service.d/ /etc/systemd/system/sshd.service.d/
+	{ print -r -- "ListenAddress $(tailscale ip -4)"; ip6=$(tailscale ip -6); [[ -n $ip6 ]] && print -r -- "ListenAddress $ip6"; } | sudo tee /etc/ssh/sshd_config.d/20-tailscale-listen.conf >/dev/null
+	sudo systemctl start sshdgenkeys.service
+	sudo sshd -t
+	sudo systemctl daemon-reload
+	sudo systemctl enable --now sshd.service
+	sudo systemctl restart sshd.service
+	if systemctl is-active --quiet ufw; then sudo ufw --force delete allow SSH || true; sudo ufw --force delete allow 22/tcp || true; sudo ufw allow in on tailscale0 to any port 22 proto tcp comment 'SSH tailscale'; fi
+	if [[ -S ~/.1password/agent.sock ]] && SSH_AUTH_SOCK="$HOME/.1password/agent.sock" ssh-add -L 2>/dev/null | grep -qF 'AAAAC3NzaC1lZDI1NTE5AAAAICwLUUgnt+gbin8Q9k584YSTg1efJc5syi51vOV3o/pA'; then rm -f ~/.ssh/id_ed25519_personal; fi
+	@echo "{{GREEN}}ok{{NORMAL}}  omarchy configure-ssh"
+
+# Static binaries from pkgs.tailscale.com (not the Arch package). Login state in /var/lib/tailscale is kept.
+# Advertise as an exit node. Approve in admin: Machines → Edit route settings → Use as exit node.
+# https://tailscale.com/docs/features/exit-nodes/how-to/setup
+install-tailscale:
+	bash {{ root }}/scripts/install-tailscale-static.sh
+	sudo rsync -a --mkpath {{ root }}/etc/sysctl.d/ /etc/sysctl.d/
+	sudo sysctl -p /etc/sysctl.d/99-tailscale.conf
+	# firewalld: Tailscale needs masquerade or forwarding is dropped (github.com/tailscale/tailscale/issues/3416)
+	if command -v firewall-cmd >/dev/null && firewall-cmd --state >/dev/null 2>&1; then sudo firewall-cmd --permanent --add-masquerade && sudo firewall-cmd --reload; fi
+	sudo tailscale set --advertise-exit-node
+	sudo tailscale up
+	@echo "{{GREEN}}ok{{NORMAL}}  omarchy install-tailscale"
 
 install: install-pkgs sync configure
 
@@ -58,10 +104,14 @@ install-pkgs:
 	export PATH="${HOME}/.local/bin:${PATH}"; mise install yazi; mise exec -- ya pkg add yazi-rs/plugins:git
 	# bc: git-fuzzy layout math (preview %); without it fzf gets "invalid preview window option: %"
 	# bind: dig / host / nslookup (package provides bind-tools / dnsutils)
-	sudo pacman -S --needed --noconfirm zsh tmux gnupg entr tailscale bc bind
-	# first login is interactive: sudo tailscale up --accept-routes
-	sudo systemctl enable --now tailscaled.service
-	omarchy pkg aur add todoist-appimage slack-desktop
+	sudo pacman -S --needed --noconfirm zsh tmux gnupg entr bc bind
+	# Tailscale: static binaries so `tailscale set --auto-update` can apply (Arch pkg cannot)
+	just install-tailscale
+	omarchy pkg add wayvnc
+	omarchy pkg aur add slack-desktop
+	omarchy pkg aur add beeper-v4-bin
+	# Todoist: webapp (always current) — drop legacy AppImage if present
+	omarchy pkg drop todoist-appimage
 	# Vicinae (Raycast-style launcher). User-local install avoids AUR sudo in some envs.
 	# Prefer AUR when available: omarchy pkg aur add vicinae-bin
 	command -v vicinae >/dev/null || curl -fsSL https://vicinae.com/install | bash -s -- --prefix "$HOME/.local"
@@ -75,27 +125,29 @@ install-pkgs:
 	omarchy default browser chrome
 	# Stock Omarchy base ships Chromium; drop it — Chrome is the only browser here
 	omarchy pkg drop chromium
-	# Webapps: focus existing Chrome app window or launch. Superhuman uses one profile per account
-	# (Default / Profile 1). Window pattern matches Chrome class (...__-Default / ...__-Profile_1).
-	# Prefer duckduckgo icons — google s2/favicons often fails (t2.gstatic.com blocked/unreachable)
-	icon="https://icons.duckduckgo.com/ip3/superhuman.com.ico" url="https://mail.superhuman.com" && omarchy webapp install "Superhuman Work" "$url" "$icon" "omarchy-launch-or-focus-webapp mail.superhuman.com__-Default $url --profile-directory=Default" && omarchy webapp install "Superhuman Personal" "$url" "$icon" "omarchy-launch-or-focus-webapp mail.superhuman.com__-Profile_1 $url --profile-directory=\"Profile 1\""
+	# Webapps: Superhuman needs dedicated launchers — omarchy-launch-or-focus-webapp eval-splits
+	# "--profile-directory=Profile 1" into Profile + 1 and opens the wrong Chrome profile.
+	# Window class patterns: ...__-Default / ...__-Profile_1. Prefer duckduckgo icons.
+	icon="https://icons.duckduckgo.com/ip3/superhuman.com.ico" url="https://mail.superhuman.com"
+	omarchy webapp install "Superhuman Work" "$url" "$icon" "omarchy-launch-or-focus mail.superhuman.com__-Default superhuman-work"
+	omarchy webapp install "Superhuman Personal" "$url" "$icon" "omarchy-launch-or-focus mail.superhuman.com__-Profile_1 superhuman-personal"
 	icon="https://icons.duckduckgo.com/ip3/music.youtube.com.ico" url="https://music.youtube.com/" && omarchy webapp install "YouTube Music" "$url" "$icon" "omarchy-launch-or-focus-webapp \"YouTube Music\" $url"
-	icon="https://icons.duckduckgo.com/ip3/grok.com.ico" url="https://grok.com" && omarchy webapp install "Grok" "$url" "$icon"
-	# Todoist AppImage: user .desktop overrides /usr/share so launcher focuses existing window
-	mkdir -p ~/.local/share/applications
-	cat > ~/.local/share/applications/todoist.desktop <<'EOF'
-	[Desktop Entry]
-	Name=Todoist
-	Exec=omarchy-launch-or-focus todoist "uwsm-app -- env DESKTOPINTEGRATION=false /usr/bin/todoist --no-sandbox %U"
-	Terminal=false
-	Type=Application
-	Icon=todoist
-	StartupWMClass=todoist
-	Comment=The Best To-Do List App and Task Manager
-	MimeType=x-scheme-handler/todoist;x-scheme-handler/com.todoist;
-	Categories=Office;
-	EOF
-	chmod +x ~/.local/share/applications/todoist.desktop
+	# Grok web UI: normal Chrome window (tabs). Launcher is grok-web — do NOT overwrite
+	# ~/.local/bin/grok (xAI Grok Build CLI → ~/.grok/bin/grok).
+	icon="https://icons.duckduckgo.com/ip3/grok.com.ico" url="https://grok.com"
+	omarchy webapp install "Grok" "$url" "$icon" "grok-web"
+	# Ensure CLI symlink is not a webapp script (agent-style install layout)
+	[[ -L ~/.local/bin/grok || ! -e ~/.local/bin/grok ]] || true
+	[[ -x ~/.grok/bin/grok ]] && ln -sfn ~/.grok/bin/grok ~/.local/bin/grok
+	icon="https://icons.duckduckgo.com/ip3/app.grammarly.com.ico" url="https://app.grammarly.com/"
+	omarchy webapp install "Grammarly" "$url" "$icon" "omarchy-launch-or-focus-webapp app.grammarly.com $url"
+	# Gemini webapp: Default Chrome profile. Launcher gemini-web — not the gemini CLI stub.
+	icon="https://icons.duckduckgo.com/ip3/gemini.google.com.ico" url="https://gemini.google.com"
+	omarchy webapp install "Gemini" "$url" "$icon" "gemini-web"
+	# Todoist webapp (replaces todoist-appimage). One window per workspace via todoist launcher.
+	icon="https://icons.duckduckgo.com/ip3/todoist.com.ico" url="https://app.todoist.com/app"
+	omarchy webapp install "Todoist" "$url" "$icon" "todoist"
+	rm -f ~/.local/share/applications/todoist.desktop
 	omarchy webapp remove Superhuman Basecamp Figma X Fizzy 2>/dev/null || true
 	# mise `op` must be setgid root:onepassword-cli or it won't talk to the 1Password desktop app
 	if getent group onepassword-cli >/dev/null 2>&1; then for op in ~/.local/share/mise/installs/1password-cli/*/op(N); do sudo chown root:onepassword-cli "$op"; sudo chmod 2755 "$op"; done; fi

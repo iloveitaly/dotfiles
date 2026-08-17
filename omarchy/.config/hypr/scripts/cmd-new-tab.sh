@@ -6,7 +6,7 @@
 # super+t=new_tab (config.local). Browsers ignore Super+T; we inject Ctrl+T.
 # Super is still held during the bind, so wtype is more reliable than sendshortcut.
 # Do not use `chromium about:blank` — that attaches to some browser session, not
-# necessarily the focused window (e.g. Todoist).
+# necessarily the focused window.
 #
 # See omarchy/README.md "Key input layering".
 
@@ -24,8 +24,8 @@ send_ctrl_t() {
 }
 
 case "$class_lc" in
-  # Browsers + Electron / web apps that use Ctrl+T (incl. native Todoist)
-  chromium|google-chrome*|brave-browser|brave-browser*|firefox|firefox-*|chrome-*|todoist)
+  # Browsers + Chrome web apps (class chrome-*, e.g. Todoist / Grammarly)
+  chromium|google-chrome*|brave-browser|brave-browser*|firefox|firefox-*|chrome-*)
     send_ctrl_t
     ;;
   com.mitchellh.ghostty|ghostty)

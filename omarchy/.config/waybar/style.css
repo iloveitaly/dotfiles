@@ -62,10 +62,6 @@ window#waybar.empty #window {
   margin-right: 13px;
 }
 
-#custom-expand-icon {
-  margin-right: 18px;
-}
-
 tooltip {
   padding: 2px;
 }

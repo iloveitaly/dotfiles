@@ -46,12 +46,21 @@ Some docks also need firmware updates (`fwupd`) and PCIe resource kernel paramet
 omarchy/
 ├── Justfile                         # install / sync / configure
 ├── etc/keyd/default.conf            # → /etc/keyd/default.conf
+├── etc/ssh/sshd_config.d/10-dotfiles.conf  # → /etc/ssh/sshd_config.d/ (pubkey only)
+├── etc/systemd/system/sshd.service.d/after-tailscale.conf  # sshd after tailscaled
+├── .ssh/authorized_keys             # → ~/.ssh/authorized_keys (personal 1Password pubkey)
+├── .ssh/op                          # → ~/.ssh/op (IdentityAgent → 1Password)
 ├── .cursor/argv.json                # → ~/.cursor/argv.json (password-store for Hyprland)
 ├── .linux                           # → ~/.linux (zsh: EDITOR=nvim, pbcopy/open shims; not .extra)
 ├── .config/keyd/app.conf            # → ~/.config/keyd/app.conf
 ├── .config/chrome-flags.conf        # → ~/.config/chrome-flags.conf (Wayland; profile via launcher)
 ├── .config/ghostty/config.local     # → ~/.config/ghostty/config.local (tmux path, etc.)
-├── .local/bin/chrome-personal       # Chrome → Personal profile (directory "Profile 1")
+├── .config/wayvnc/config            # → ~/.config/wayvnc/config (localhost only)
+├── .config/systemd/user/wayvnc.service  # Hyprland session VNC; published via Tailscale Serve
+├── .local/bin/chrome-personal       # Chrome Personal; one browser window per workspace
+├── .local/bin/launch-or-focus-workspace  # focus matching class on active WS, else launch
+├── .local/bin/superhuman-personal   # Superhuman → Profile 1 (workspace-scoped)
+├── .local/bin/superhuman-work       # Superhuman → Default (workspace-scoped)
 ├── .local/share/applications/
 │   └── google-chrome.desktop        # overrides stock so omarchy-launch-browser uses chrome-personal
 ├── .tmux.conf.local                 # → ~/.tmux.conf.local (zsh + PATH; overrides Homebrew)
@@ -172,8 +181,22 @@ Stock AUR `chrome-flags.conf` cannot pass `--profile-directory="Profile 1"` (the
 
 - `~/.local/bin/chrome-personal` launches Chrome with `--profile-directory="Profile 1"`
 - `~/.local/share/applications/google-chrome.desktop` points `Exec` at that wrapper so Super+Shift+B / Walker / `xdg-open` all open Personal
+- **One main browser window per workspace:** if a `google-chrome` window already exists on the active workspace, Super+Shift+B / the Chrome launcher focuses it instead of opening another. Web apps (`chrome-*` classes) are separate. `--incognito` / `--new-window` still open a new window.
 
-Webapps follow the default browser (Chrome) and may pin profiles (e.g. Superhuman Work → `Default`, Superhuman Personal → `Profile 1`).
+Webapps follow the default browser (Chrome) and may pin profiles.
+
+**Superhuman** uses dedicated launchers (`superhuman-personal` / `superhuman-work`), not `omarchy-launch-or-focus-webapp`. Upstream builds the launch string with an unquoted `eval`, which splits `--profile-directory=Profile 1` into `Profile` + `1` and opens the empty **Person 1** profile instead of logged-in **Personal** (`Profile 1`).
+
+| App | Script | Chrome directory | UI name |
+|-----|--------|------------------|---------|
+| Superhuman Personal | `superhuman-personal` | `Profile 1` | Personal (iloveitaly@…) |
+| Superhuman Work | `superhuman-work` | `Default` | Your Chrome |
+| Grok (web UI) | `grok-web` | `Profile 1` (no `--app`) | Chrome tab strip — **not** the xAI `grok` CLI |
+
+Chrome Personal extras (after full Chrome restart):
+
+- Bookmarks bar hidden (`chrome-ensure-personal-prefs` → Profile 1)
+- **New Tab → https://grok.com/** via `~/.local/share/chrome-extensions/grok-newtab` loaded in `chrome-flags.conf`
 
 Note: `omarchy reinstall pkgs` would put Chromium back from the base list; re-run `just install-pkgs` (or `omarchy pkg drop chromium`) after that.
 
@@ -194,8 +217,14 @@ Note: `omarchy reinstall pkgs` would put Chromium back from the base list; re-ru
 | Cmd+[ / ] | history back / forward (Alt+Left / Alt+Right) |
 | Cmd+Shift+[ / ] | prev / next tab |
 | Cmd+Option+Left/Right | prev / next tab |
+| **Cmd+click** | **Ctrl+click** (open link in new tab) |
+| **Cmd+Shift+click** | **Ctrl+Shift+click** (open link in new window) |
 
 **Ctrl+W** in browsers is remapped to **Ctrl+Backspace** (delete previous word, macOS-style). Close tab stays **Cmd+W** (`cmd.w = C-w` / Hyprland scripts). Terminals are not remapped — real Ctrl+W stays for readline/nvim.
+
+**Option+Left/Right** is word jump (`C-left` / `C-right`) in `etc/keyd/default.conf` and restated in browser `app.conf` sections. Linux Chrome’s default **Alt+arrows = history** is overridden; history stays **Cmd+[ / ]**.
+
+**Mapper footgun:** `keyd-application-mapper` runs `keyd bind reset <all app bindings>` on every focus change. If any binding references a missing composite layer (e.g. `cmd+shift.*` without `[cmd+shift]` in `default.conf`), the **entire** bind fails after reset — bare Alt+arrows return and Chrome history wins. Composites used by `app.conf` must exist in `etc/keyd/default.conf` (`cmd+alt`, `cmd+shift`, `cmd+control`, …).
 
 Window close remains **Cmd+Q**. Workspace switch is **Hyper+1…0**.
 
@@ -214,7 +243,51 @@ Intentionally **not** remapped in keyd: **C/V/X** (clipboard, Hyprland), **Q** (
 
 ```bash
 cd omarchy
-just install    # packages + sync + git/1Password SSH-sign configure
-just sync       # keyd + Hyprland + ghostty local, reload
-just configure  # Arch git/1Password SSH-sign paths, editor, gpgsign
+just install    # packages + sync + git/1Password SSH-sign + sshd
+just sync       # keyd + Hyprland + sshd drop-in + ghostty local, reload
+just configure  # Arch git/1Password SSH-sign paths, editor, gpgsign, sshd
+just configure-ssh  # sshd on Tailscale IPs only + UFW on tailscale0
+```
+
+## SSH
+
+OpenSSH server on this host; client uses the 1Password agent (no file private key).
+
+**Incoming** (`just sync` installs the drop-in + `authorized_keys`; `just configure-ssh` enables the daemon):
+
+- `sshd` pubkey only — no passwords, no root
+- Listens only on this host’s Tailscale IPs (`20-tailscale-listen.conf`, written by `configure-ssh`). Not on LAN (`192.168.7.34`) or `0.0.0.0`
+- UFW allows port 22 only on `tailscale0`
+- Personal 1Password pubkey in `omarchy/.ssh/authorized_keys`
+
+From another tailnet device with that key in 1Password (e.g. **biancobook**):
+
+```bash
+ssh biancobox                 # Tailscale MagicDNS (shared .ssh/config sets User)
+ssh biancobox@100.72.5.66     # Tailscale IPv4
+```
+
+This is regular `sshd` bound to the tailnet, not Tailscale SSH (`tailscale set --ssh` is not enabled). LAN SSH is not opened.
+
+**Outgoing:** `omarchy/.ssh/op` sets `IdentityAgent ~/.1password/agent.sock`. Shared `.ssh/config` uses `IgnoreUnknown UseKeychain` so stock OpenSSH on Linux can parse the Apple-only option. `~/.linux` exports `SSH_AUTH_SOCK` when the 1Password socket exists and nothing else has set it.
+
+`~/.ssh/id_ed25519_personal` is removed once the agent is offering the same key.
+
+## Remote desktop (wayvnc + Tailscale)
+
+Shares this Hyprland session over the tailnet. wayvnc listens on `127.0.0.1:5900` only; `tailscale serve` forwards tailnet TCP/5900 there. Nothing is opened on the LAN or the public internet.
+
+`just install` adds the package, enables the user service, and publishes Serve (`just install-pkgs` + `just configure`). `just sync` re-enables the service if wayvnc is already installed.
+
+Connect from another tailnet device (e.g. **biancobook**):
+
+1. Install a VNC viewer (TigerVNC or RealVNC). macOS Screen Sharing often fails against wayvnc without VNC auth.
+2. Connect to `biancobox:5900` or `100.72.5.66:5900` (or `biancobox.yattle-interval.ts.net:5900`).
+3. No VNC password — Tailscale already authenticates the peer.
+
+The physical Samsung 32" 4K (`DP-3`, scale 1.25) is what you see. Auto-resize is off so a laptop client does not change the desk monitor.
+
+```bash
+systemctl --user status wayvnc.service
+tailscale serve status
 ```
