@@ -44,7 +44,6 @@ brew "container"
 # == Data manipulation
 brew "jq" # json extraction
 brew "fx" # json tui
-brew "q", link_name: "qsql" if OS.mac? # sql on csv
 brew "dsq" # sql over json and other formats
 brew "yq" # yq for yaml and others, great for in place manipulating files
 brew "dasel" # consistent language for extracting data from XML, CSV, and others. No aggregates.
