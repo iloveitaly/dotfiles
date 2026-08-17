@@ -115,9 +115,9 @@ source "${ZINIT_HOME}/zinit.zsh"
 # Load Config & Plugins
 # ======================
 
-# Load ~/.exports, ~/.aliases, ~/.functions and ~/.extra
-# ~/.extra can be used for settings you don’t want to commit
-for file in exports aliases functions extra; do
+# Load ~/.exports, ~/.aliases, etc
+# ~/.extra is for settings you don’t want to commit
+for file in exports aliases functions linux extra; do
   file="$HOME/.$file"
   [ -e "$file" ] && source "$file"
 done
@@ -132,6 +132,10 @@ source ~/.zsh_plugins
 # Keybindings
 # ===========
 
+# ZLE picks viins/vicmd when EDITOR/VISUAL contains "vi" at shell start (nvim does).
+# Keep emacs bindings; $EDITOR can still be nvim for edit-command-line / external tools.
+bindkey -e
+
 bindkey "^[[A" history-substring-search-up # Up
 bindkey "^[[B" history-substring-search-down # Down
 
@@ -141,6 +145,12 @@ bindkey "^K" kill-line
 # cmd+shift+k is not possible in the terminal without remapping cmd, which is not a good idea given it's lack of support
 # opt+shift+k deletes backward, ctrl+U defaults to kill-whole-line
 bindkey "^[K" backward-kill-line
+
+# Ctrl+Delete → delete next word. zsh/vi mode does not bind this by default (Ctrl+W does
+# previous word). On Omarchy, keyd maps Option+Delete (Win key) → Ctrl+Delete.
+# Sequences: xterm CSI, and CSI-u (Ghostty/Kitty keyboard protocol).
+bindkey '^[[3;5~' kill-word
+bindkey '^[[3;5u' kill-word
 
 # open up current command in EDITOR, ctrl+x then ctrl+e
 autoload -U edit-command-line
