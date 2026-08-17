@@ -3,6 +3,15 @@
 
 export EDITOR=nvim
 
+# 1Password SSH agent for git / CLIs that ignore ssh_config IdentityAgent.
+# The sock is always expected on this host; do not override a forwarded agent.
+if [[ -z "${SSH_AUTH_SOCK:-}" ]]; then
+  export SSH_AUTH_SOCK="${HOME}/.1password/agent.sock"
+fi
+if [[ ! -S "${HOME}/.1password/agent.sock" ]]; then
+  print -u2 -- "warning: expected 1Password SSH agent socket at ${HOME}/.1password/agent.sock"
+fi
+
 # macOS command shims for Wayland
 alias pbcopy='wl-copy'
 alias pbpaste='wl-paste'
