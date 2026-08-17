@@ -5,6 +5,7 @@ alias cat='bat --wrap=never'
 # shortcuts for commonly used utilities
 alias j='just'
 alias m="micro"
+alias v="nvim"
 alias mr="mise run"
 alias dk="dokku"
 
