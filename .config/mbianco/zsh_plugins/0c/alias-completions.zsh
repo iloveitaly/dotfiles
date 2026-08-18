@@ -3,6 +3,7 @@
 # runs after this directory is sourced.
 
 zicompdef fdd=fd
+zicompdef fdu=fd
 zicompdef rgg=rg
 zicompdef rgu=rg
 zicompdef rgc=rg
