@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Fuzzy-switch among open windows on the *current* workspace (Walker dmenu).
+# Fuzzy-switch among open windows on the *current* workspace (omarchy-menu-select).
 # Bound to Hyper+W (see bindings-switcher.conf).
 #
 # Each mapped, non-hidden client on the active workspace is listed as:
@@ -35,9 +35,7 @@ done
 
 selected=$(
   printf '%s\n' "${labels[@]}" |
-    omarchy-launch-walker --dmenu \
-      -p "Windows" \
-      --width 720 --minheight 1 --maxheight 400 \
+    omarchy-menu-select "Windows" -- --width 720 --maxheight 400 \
       2>/dev/null
 ) || exit 0
 
@@ -54,5 +52,5 @@ done
 
 [[ -n "$address" ]] || exit 0
 
-hyprctl dispatch focuswindow "address:$address" >/dev/null
-hyprctl dispatch alterzorder top,address:"$address" >/dev/null 2>&1 || true
+hyprctl dispatch "hl.dsp.focus({ window = \"address:$address\" })" >/dev/null
+hyprctl dispatch "hl.dsp.window.bring_to_top()" >/dev/null 2>&1 || true

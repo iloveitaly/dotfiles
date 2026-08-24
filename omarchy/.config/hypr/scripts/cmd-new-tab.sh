@@ -19,7 +19,7 @@ send_ctrl_t() {
   if command -v wtype >/dev/null 2>&1; then
     wtype -M ctrl -k t -m ctrl
   else
-    hyprctl dispatch sendshortcut "CTRL,T,activewindow"
+    hyprctl dispatch 'hl.dsp.send_shortcut({ mods = "CTRL", key = "T" })'
   fi
 }
 

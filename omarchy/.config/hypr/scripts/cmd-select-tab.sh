@@ -23,7 +23,7 @@ case "$class_lc" in
     if command -v wtype >/dev/null 2>&1; then
       wtype -M ctrl -k "$n" -m ctrl
     else
-      hyprctl dispatch sendshortcut "CTRL,$n,activewindow"
+      hyprctl dispatch "hl.dsp.send_shortcut({ mods = \"CTRL\", key = \"$n\" })"
     fi
     ;;
   com.mitchellh.ghostty|ghostty)

@@ -43,9 +43,7 @@ done
 
 selected=$(
   printf '%s\n' "${labels[@]}" |
-    omarchy-launch-walker --dmenu \
-      -p "Apps" \
-      --width 560 --minheight 1 --maxheight 400 \
+    omarchy-menu-select "Apps" -- --width 560 --maxheight 400 \
       2>/dev/null
 ) || exit 0
 
@@ -62,5 +60,5 @@ done
 
 [[ -n "$address" ]] || exit 0
 
-hyprctl dispatch focuswindow "address:$address" >/dev/null
-hyprctl dispatch alterzorder top,address:"$address" >/dev/null 2>&1 || true
+hyprctl dispatch "hl.dsp.focus({ window = \"address:$address\" })" >/dev/null
+hyprctl dispatch "hl.dsp.window.bring_to_top()" >/dev/null 2>&1 || true

@@ -16,7 +16,7 @@ send_ctrl() {
   if command -v wtype >/dev/null 2>&1; then
     wtype -M ctrl -k "$key" -m ctrl
   else
-    hyprctl dispatch sendshortcut "CTRL,$key,activewindow"
+    hyprctl dispatch "hl.dsp.send_shortcut({ mods = \"CTRL\", key = \"$key\" })"
   fi
 }
 
@@ -25,7 +25,7 @@ send_ctrl_shift() {
   if command -v wtype >/dev/null 2>&1; then
     wtype -M ctrl -M shift -k "$key" -m shift -m ctrl
   else
-    hyprctl dispatch sendshortcut "CTRL SHIFT,$key,activewindow"
+    hyprctl dispatch "hl.dsp.send_shortcut({ mods = \"CTRL SHIFT\", key = \"$key\" })"
   fi
 }
 
