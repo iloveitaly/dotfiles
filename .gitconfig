@@ -124,7 +124,7 @@
   pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
   pretty=compressed-oneline
 [rerere]
-  enabled = 0
+  enabled = true
 
 # on macos, the keychain is used by default, but using this enables the same auth method to be used on linux too
 [credential]
