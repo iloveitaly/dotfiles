@@ -8,6 +8,9 @@ alias m="micro"
 alias mr="mise run"
 alias dk="dokku"
 
+# create a new ghostty instance that does not use tmux
+alias graw='open -na Ghostty --args --title="ZSH without Tmux" -e /opt/homebrew/bin/zsh'
+
 # names I can never remember
 # tabiew is a terrible name but awesome tool to inspect tabular data on the cli
 alias data-tui="tw"
