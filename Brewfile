@@ -208,7 +208,6 @@ if OS.mac?
     cask "firefox" # for debugging, not actual use
     cask "angristan/tap/macthrottle"
     cask "dua-cli"
-    cask "desktoppr"
 
     # == Experimental
     cask "tip"
