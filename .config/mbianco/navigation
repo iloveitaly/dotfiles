@@ -90,7 +90,15 @@ function _is_venv() {
 
 alias ff="fzf --preview='bat --color=always {}'"
 
-# TODO this should use the `cd` thing and just overload there instead
+# fd + fzf, unrestricted (like rgu)
+fdu() {
+  fd --no-ignore-vcs --hidden \
+    --exclude .git --exclude .venv --exclude .pnpm --exclude node_modules --exclude .tox --exclude cdk.out \
+    "$@" |
+    fzf --keep-right --preview 'if [ -d {} ]; then eza -1 --color=always {}; elif [ -f {} ]; then bat --color=always {}; fi'
+}
+
+# TODO this should use the `cd` alt+c thing and just overload there instead
 # fd + fzf, cd into the selected directory
 fdd() {
   local additional_args=""
