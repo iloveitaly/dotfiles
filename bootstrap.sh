@@ -6,7 +6,7 @@ rsync --exclude-from=install/standard-exclude.txt -av . ~
 
 if [[ $(uname) == "Linux" ]]; then
   echo "Detecting Linux environment, using server install"
-  ./install/linux.sh
+  ./install/linux-devbox.sh
   exit 0
 fi
 

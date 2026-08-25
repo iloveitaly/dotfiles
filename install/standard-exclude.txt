@@ -6,10 +6,8 @@ Justfile
 Brewfile
 Brewfile.lock.json
 brew.sh
-linux.sh
 TODO
 backup.sh
-linux.sh
 bootstrap.sh
 distracting_websites.txt
 DefaultKeyBinding.dict

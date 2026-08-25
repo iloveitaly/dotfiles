@@ -1,10 +1,12 @@
-.tmux.conf
-.tmux-shell.sh
 .ssh
-mackup.cfg
+.mackup.cfg
 .config/karabiner/
 .config/gmailctl/
 .config/focus/
 .config/extrakto/
 .config/docker/
+.docker/config.json
+.yabairc
+.config/ghostty/
+.config/infat/
 time-machine-includes.sh
