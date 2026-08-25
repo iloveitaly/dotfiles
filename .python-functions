@@ -49,25 +49,18 @@ function py-debugging-install() {
 }
 
 function ipy() {
-  local should_add_with_options=1
+  # Ephemeral extras via uv --with: does not mutate pyproject.toml / uv.lock / .venv.
   typeset -a WITH_OPTIONS
-  
-  if [ -f "uv.lock" ]; then
-    should_add_with_options=0
-  fi
-
-  if [ "$should_add_with_options" -eq 1 ]; then
-    for pkg in ${(z)PYTHON_DEBUGGING_PACKAGES}; do
-      WITH_OPTIONS+=("--with" "$pkg")
-    done
-  fi
+  for pkg in ${(z)PYTHON_DEBUGGING_PACKAGES}; do
+    WITH_OPTIONS+=("--with" "$pkg")
+  done
 
   if [ -f "uv.lock" ]; then
+    # Project env + layered debugging packages (uv run --with is safe with a lockfile).
     if [ -f "playground.py" ]; then
-      # Explicitly pass the array elements
       uv run "${WITH_OPTIONS[@]}" ipython -i playground.py
     else
-      uv tool run "${WITH_OPTIONS[@]}" ipython
+      uv run "${WITH_OPTIONS[@]}" ipython
     fi
   elif [ -f "playground.py" ]; then
     chmod +x playground.py
