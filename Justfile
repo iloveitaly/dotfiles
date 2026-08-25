@@ -5,6 +5,8 @@ set script-interpreter := ["zsh", "-euBh", "-o", "pipefail"]
 
 set unstable := true
 
+rsync_cmd := "rsync --exclude-from=install/standard-exclude.txt -av . ~"
+
 upgrade:
 	brew upgrade awscli git rg fd gh zsh gmailctl dolt yazi dolt bat hunk
 	gh extension upgrade --all
@@ -18,8 +20,12 @@ upgrade:
 	echo "Please run \`zinit update\` in an interactive shell to update zinit plugins like starship."
 
 sync:
-	fd --hidden --max-depth 4 -t f --exclude=.git | \
-		entr rsync --exclude-from=install/standard-exclude.txt -av . ~
+	if command -v entr &>/dev/null; then \
+		fd --hidden --max-depth 4 -t f --exclude=.git | entr {{rsync_cmd}}; \
+	else \
+		echo "entr not found, running a one-shot sync instead" >&2; \
+		{{rsync_cmd}}; \
+	fi
 
 # what quicklook plugins are installed?
 list-quicklook:
