@@ -54,6 +54,7 @@ mise use -g \
   bat@latest \
   github:moncho/dry@latest \
   github:mrjackwills/oxker@latest \
+  github:theimpostor/osc@latest \
   watchexec@latest \
   yq@latest \
   dust@latest \
