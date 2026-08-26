@@ -25,12 +25,19 @@ yabai -m space 7 --label protege
 # (Spotlight / Raycast / Cmd-Tab), instead of switching to their old Space.
 # `window --space mouse` is not enough: macOS still swooshes to the old Space
 # after the move, and `mouse` can land on the other display.
-pull_to_active_space="${HOME}/.config/yabai/pull-to-active-space.sh"
-yabai -m signal --add event=window_focused app="^1Password$" label="pull-1password" action="$pull_to_active_space"
-yabai -m signal --add event=window_focused app="^Todoist$" label="pull-todoist" action="$pull_to_active_space"
-yabai -m signal --add event=window_focused app="^Obsidian$" label="pull-obsidian" action="$pull_to_active_space"
+# pull_to_active_space="${HOME}/.config/yabai/pull-to-active-space.sh"
+# yabai -m signal --add event=window_focused app="^1Password$" label="pull-1password" action="$pull_to_active_space"
+# yabai -m signal --add event=window_focused app="^Todoist$" label="pull-todoist" action="$pull_to_active_space"
+# yabai -m signal --add event=window_focused app="^Obsidian$" label="pull-obsidian" action="$pull_to_active_space"
 
 # Update Raycast yabai extension menu bar indicator on space change
-yabai -m signal --add event=space_changed action="nohup open -g raycast://extensions/krzysztoff1/yabai/screens-menu-bar?launchType=background > /dev/null 2>&1 &"
+yabai -m signal --add event=space_changed \
+  label="refresh-raycast-spaces" \
+  action="open -g 'raycast://extensions/krzysztoff1/yabai/screens-menu-bar?launchType=background'"
 
-echo "yabai configuration loaded."
+yabai -m rule --add app="^Discord$" space=^railpack
+
+yabai -m rule --add app="^Superwhisper$" manage=off sticky=on
+yabai -m rule --add app="^1Password$" manage=off sticky=on
+yabai -m rule --add app="^Todoist$" manage=off sticky=on
+yabai -m rule --add app="^Obsidian$" manage=off sticky=on
