@@ -43,3 +43,5 @@ yabai -m rule --add app="^Todoist$" manage=off sticky=on
 yabai -m rule --add app="^Obsidian$" manage=off sticky=on
 yabai -m rule --add app="^Raycast$" manage=off sticky=on
 yabai -m rule --add app="^Tailscale$" manage=off sticky=on
+yabai -m rule --add app="^Harvest$" manage=off sticky=on
+yabai -m rule --add app="^YT Music$" manage=off sticky=on
