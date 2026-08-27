@@ -41,3 +41,5 @@ yabai -m rule --add app="^Superwhisper$" manage=off sticky=on
 yabai -m rule --add app="^1Password$" manage=off sticky=on
 yabai -m rule --add app="^Todoist$" manage=off sticky=on
 yabai -m rule --add app="^Obsidian$" manage=off sticky=on
+yabai -m rule --add app="^Raycast$" manage=off sticky=on
+yabai -m rule --add app="^Tailscale$" manage=off sticky=on
