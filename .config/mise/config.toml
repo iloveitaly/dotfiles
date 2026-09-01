@@ -34,7 +34,6 @@ opentofu = "latest"
 "pipx:aiautocommit" = "latest"
 
 # language and language tooling
-atuin = "latest"
 direnv = "latest"
 just = "latest"
 bun = "latest"
@@ -49,6 +48,15 @@ pnpm       = "latest"
 golang     = "latest"
 zig        = "latest"  
 "github:tbillington/kondo" = "latest"
+
+# Amazon Linux ships an older glibc than atuin's GNU release requires. Use its
+# statically linked musl asset on Linux, while GitHub's normal asset selection
+# remains in effect for macOS and other platforms.
+[tools."github:atuinsh/atuin"]
+version = "latest"
+
+[tools."github:atuinsh/atuin".platforms.linux-x64]
+asset_pattern = "*musl*"
 
 [settings]
 experimental = true
