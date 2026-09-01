@@ -42,6 +42,7 @@ fi
 mkdir -p "${HOME}/.local/bin" "${HOME}/.config"
 export PATH="${HOME}/.local/bin:${PATH}"
 eval "$(mise activate bash)"
+mise self-update -y
 
 # tools not already pinned in the rsynced ~/.config/mise/config.toml
 mise use -g \
@@ -55,6 +56,8 @@ mise use -g \
   github:moncho/dry@latest \
   github:mrjackwills/oxker@latest \
   github:theimpostor/osc@latest \
+  github:containers/bubblewrap@latest \
+  github:shshemi/tabiew@latest \
   watchexec@latest \
   yq@latest \
   dust@latest \
@@ -82,14 +85,21 @@ ya pkg install
 # letting cargo-binstall fetch another incompatible prebuilt binary.
 MISE_CARGO_BINSTALL=false mise use -g "cargo:tree-sitter-cli@latest"
 
+# forgit expects macOS-style pbcopy/pbpaste commands. There is no display server
+# on this headless devbox, so use osc to relay clipboard data to the local
+# terminal over OSC52. Keep them as executables so forgit works outside zsh too.
+install -m 0755 /dev/stdin "${HOME}/.local/bin/pbcopy" <<'EOF'
+#!/bin/bash
+exec "${HOME}/.local/bin/mise" exec -- osc copy "$@"
+EOF
+install -m 0755 /dev/stdin "${HOME}/.local/bin/pbpaste" <<'EOF'
+#!/bin/bash
+exec "${HOME}/.local/bin/mise" exec -- osc paste "$@"
+EOF
+
 cat <<EOF >>~/.extra
 alias dokku="docker exec -it dokku dokku"
 alias dokku-shell="docker exec -it dokku bash -l"
-
-# the \$python/\$custom.novenv modules scan the cwd on every prompt; S3/FUSE mounts
-# blow past starship's 30ms scan_timeout and warn on every cd. only silences the
-# log — set scan_timeout in starship.toml if the scan latency itself is a problem
-export STARSHIP_LOG=error
 EOF
 
 # delete some zsh_plugins that are macos specific
@@ -108,7 +118,10 @@ git config --global credential.helper store
 # cleaner output since this will be running inside ansible, or something similar
 export ZINIT_COLORIZE=false
 
-# run zinit to install all plugins
-zsh -lc "source ~/.zshrc && zinit update --parallel"
+# zinit's update report pipes its output through a hardcoded `less -FRXi`
+# (see .zinit-pager in zinit-autoload.zsh) regardless of $PAGER/$GIT_PAGER,
+# which hangs forever with no TTY attached; --no-pager switches zinit to its
+# own non-interactive `cat`-based path instead
+zsh -lc "source ~/.zshrc && zinit update --parallel --no-pager"
 
 echo "Done."
