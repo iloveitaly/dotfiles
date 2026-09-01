@@ -1,5 +1,7 @@
+- [ ] ctrl+. does not work in tmux https://grok.com/share/bGVnYWN5_943467ba-1adb-4ef8-a46b-d4bf08de8cb5
+- [ ] documentation on zsh functions https://grok.com/share/bGVnYWN5_0a94dbb8-f069-47fd-8500-d01d07cc9117
+- [ ] https://github.com/MenkeTechnologies/zsh-more-completions
 - [ ] path diff helper https://gemini.google.com/app/c2e3b9ad56056311
-- [ ] we should use exec in tmux wrapper https://gemini.google.com/app/771b089d656309b1
 - [ ] micro improvements
   - [ ] https://github.com/nazya/micro-opener
 - [ ] https://github.com/ck3mp3r/laio-cli tmux plugin for layout management
