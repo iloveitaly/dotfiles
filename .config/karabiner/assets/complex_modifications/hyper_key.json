@@ -1,8 +1,8 @@
 {
-  "title": "Caps Lock to Hyper Key (Command-Control-Shift)",
+  "title": "Caps Lock to Hyper Key (Command-Control-Option-Shift)",
   "rules": [
     {
-      "description": "Hyper Key: map Caps Lock to Shift-Command-Control (Escape if alone)",
+      "description": "Hyper Key: map Caps Lock to Shift-Command-Control-Option",
       "manipulators": [
         {
           "from": {
@@ -15,11 +15,6 @@
             {
               "key_code": "left_shift",
               "modifiers": ["left_command", "left_control", "left_option"]
-            }
-          ],
-          "to_if_alone": [
-            {
-              "key_code": "escape"
             }
           ],
           "type": "basic"
