@@ -77,6 +77,9 @@
   # verbose single commit display
   showv = show --format=fuller
 
+  # show only the full commit message for the supplied revision
+  showm = show -s --format=%B
+
   # TODO should accept a commit sha instead of locking to head
   commit-patch = "format-patch -k --stdout HEAD~1"
 
