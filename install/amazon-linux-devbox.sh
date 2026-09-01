@@ -20,7 +20,7 @@ cd "${HOME}" || exit 1
 
 sudo dnf install -y \
   zsh ca-certificates git util-linux-user gcc gcc-c++ make \
-  tree htop sqlite jq git-lfs nmap cronie tmux \
+  tree htop sqlite jq git-lfs nmap cronie tmux bubblewrap \
   clang
 
 # build headers: mise installs precompiled python by default, but these are
@@ -42,6 +42,14 @@ fi
 mkdir -p "${HOME}/.local/bin" "${HOME}/.config"
 export PATH="${HOME}/.local/bin:${PATH}"
 eval "$(mise activate bash)"
+
+# GitHub-backed mise tools require an already-resolvable token. `mise token`
+# checks its configured sources (environment, OAuth cache, gh CLI, etc.)
+# without exposing the token in installer output.
+if [[ -z "$(mise token github --raw 2>/dev/null)" ]]; then
+  echo "A GitHub token resolvable by mise is required (for example, MISE_GITHUB_TOKEN)." >&2
+  exit 1
+fi
 mise self-update -y
 
 # tools not already pinned in the rsynced ~/.config/mise/config.toml
@@ -56,7 +64,6 @@ mise use -g \
   github:moncho/dry@latest \
   github:mrjackwills/oxker@latest \
   github:theimpostor/osc@latest \
-  github:containers/bubblewrap@latest \
   github:shshemi/tabiew@latest \
   watchexec@latest \
   yq@latest \
@@ -118,10 +125,9 @@ git config --global credential.helper store
 # cleaner output since this will be running inside ansible, or something similar
 export ZINIT_COLORIZE=false
 
-# zinit's update report pipes its output through a hardcoded `less -FRXi`
-# (see .zinit-pager in zinit-autoload.zsh) regardless of $PAGER/$GIT_PAGER,
-# which hangs forever with no TTY attached; --no-pager switches zinit to its
-# own non-interactive `cat`-based path instead
-zsh -lc "source ~/.zshrc && zinit update --parallel --no-pager"
+# zinit's --no-pager path calls `cat`, but ~/.aliases maps that to bat. Give
+# zsh non-TTY stdout so bat also disables its pager instead of spawning $PAGER
+# (ov), which stops when zinit runs its parallel update job in the background.
+zsh -lc "source ~/.zshrc && zinit update --parallel --no-pager" | /usr/bin/cat
 
 echo "Done."
