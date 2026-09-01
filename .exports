@@ -14,7 +14,10 @@ export PYTHON_DEVELOPMENT_TOGGLE="$HOME/Projects/python"
 export UV_PYTHON_DOWNLOADS=never
 
 # more documentation on this in Justfile
-export REQUESTS_CA_BUNDLE="$HOME/.orbstack/certs/bundle.pem"
+# conditional to support linux / non-orbstack systems
+if [[ -f "$HOME/.orbstack/certs/bundle.pem" ]]; then
+  export REQUESTS_CA_BUNDLE="$HOME/.orbstack/certs/bundle.pem"
+fi
 # export SSL_CERT_FILE="$HOME/.orbstack/certs/bundle.pem"
 
 # TODO explore using fd instead of `find`
