@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-# test with `❯ sudo env -i .config/focus/initial_wake.sh`
+# test with `sudo env -i .config/focus/initial_wake.sh`
 
 # assume the script is executed without common environment variables
 # additionally, since it's not executed in login mode, ~/.zshrc is not loaded
@@ -123,16 +123,6 @@ quit_and_reopen_app "Raycast" || true
 
 # superwhisper also seems to consume a ton of resources over time
 quit_and_reopen_app "Superwhisper" || true
-
-# update all of the llms!
-claude update
-amp update
-bun update -g @github/copilot
-opencode upgrade
-agy update
-codex update
-code --update-extensions
-cursor --update-extensions
 
 uv cache clean
 
