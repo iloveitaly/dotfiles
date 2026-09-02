@@ -43,6 +43,11 @@ mkdir -p "${HOME}/.local/bin" "${HOME}/.config"
 export PATH="${HOME}/.local/bin:${PATH}"
 eval "$(mise activate bash)"
 
+# erlang/ruby compile from source and are slow/unneeded on this devbox;
+# elixir depends on erlang, so it must go too or erlang gets pulled back in.
+# Remove them before any install-capable mise command sees the rsynced config.
+mise use -g --remove erlang --remove elixir --remove ruby
+
 # GitHub-backed mise tools require an already-resolvable token. `mise token`
 # checks its configured sources (environment, OAuth cache, gh CLI, etc.)
 # without exposing the token in installer output.
@@ -73,10 +78,6 @@ mise use -g \
   tealdeer@latest \
   gh@latest \
   lazygit@latest
-
-# erlang/ruby compile from source and are slow/unneeded on this devbox;
-# elixir depends on erlang, so it must go too or erlang gets pulled back in
-mise use -g --remove erlang --remove elixir --remove ruby
 
 # installs/upgrades everything pinned in ~/.config/mise/config.toml (rsynced above)
 mise install -y
