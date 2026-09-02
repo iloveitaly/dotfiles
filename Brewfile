@@ -67,7 +67,6 @@ brew "fzf"
 brew "bc" # used by git-fuzzy
 brew "bat" # cat, can also do paging
 brew "hck" # cut
-brew "tre-command"
 brew "htop"
 brew "procs" # ps
 brew "sd" # sed

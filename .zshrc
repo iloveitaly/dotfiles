@@ -48,7 +48,7 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 # force completion generation for more obscure commands
 # TODO unsure if vitest + eslint will really work here automatically given it's installed via pnpm
 # TODO look at mise usage tool here, could be a bit better
-zstyle :plugin:zsh-completion-generator programs ncdu tre vitest eslint fastmod ipython fzf
+zstyle :plugin:zsh-completion-generator programs ncdu vitest eslint fastmod ipython fzf
 
 # =============
 # fzf-tab config
