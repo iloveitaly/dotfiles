@@ -8,6 +8,11 @@
       "headers": {
         "Authorization": "Bearer {env:GITHUB_MCP_PAT}"
       }
+    },
+    "grep": {
+      "type": "remote",
+      "url": "https://mcp.grep.app",
+      "enabled": true
     }
   }
 }
