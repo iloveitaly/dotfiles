@@ -1,17 +1,17 @@
-# D venv ❯ gtime llm-ide-rules --show-completion > /dev/null
-# 0.56user 0.29system 0:00.87elapsed 98%CPU (0avgtext+0avgdata 64096maxresident)k
-# 0inputs+0outputs (2major+8793minor)pagefaults 0swaps
+# gtime llm-ide-rules --show-completion > /dev/null
+# ~0.3s (Python/Typer) — cache (slower than find ~2ms)
 #
 # Post-compinit: source the cached script so registration runs (fpath-only
 # would miss the current session after zicompinit).
 
-name="llm-ide-prompts"
 plugin_dir="${0:A:h}"
-cache_file="$plugin_dir/_$name"
+cache_file="$plugin_dir/_llm-ide-rules"
 
-if (( $+commands[$name] )); then
+if (( $+commands[llm-ide-rules] )); then
   if [[ ! -f "$cache_file" || ! $(/usr/bin/find "$cache_file" -mtime -15 2>/dev/null) ]]; then
-    opencode completion >| "$cache_file"
+    llm-ide-rules --show-completion >| "$cache_file"
   fi
   source "$cache_file"
+  # zinit multisrc may skip trailing compdef inside the generated script
+  compdef _llm_ide_rules_completion llm-ide-rules
 fi
