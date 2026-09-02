@@ -19,9 +19,9 @@ tealdeer = "latest"
 gh = "latest"
 lazygit = "latest"
 
-# nvim-treesitter needs the tree-sitter CLI to compile parsers. Its prebuilt
-# release requires a newer glibc than AL2023 ships, so compile it locally.
-"cargo:tree-sitter-cli" = { version = "latest", install_env = { MISE_CARGO_BINSTALL = "false" } }
+# nvim-treesitter needs the tree-sitter CLI to compile parsers. Prefer the
+# static musl build because the GNU release requires a newer glibc than AL2023.
+"cargo:tree-sitter-cli" = { version = "latest", install_env = { CARGO_BUILD_TARGET = "x86_64-unknown-linux-musl" } }
 
 [settings]
 # These compile from source, are slow and are not needed on this devbox. Elixir
