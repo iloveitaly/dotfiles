@@ -13,9 +13,14 @@ rsync --exclude-from="install/standard-exclude.txt" \
   --exclude-from="install/server-exclude.txt" \
   -av . ~
 
+# This fragment is Amazon-specific, so install it explicitly rather than
+# including it in the cross-platform dotfiles rsync above.
+install -Dm 0644 install/mise/amazon-linux.toml \
+  "${HOME}/.config/mise/conf.d/amazon-linux.toml"
+
 # leave the clone: mise treats a `.config/mise/config.toml` relative to cwd as
 # a local project config layered on top of the global one, and the repo's own
-# copy (untouched on purpose) still pins erlang/elixir/ruby
+# copy is separate from the Amazon-specific global fragment installed above
 cd "${HOME}" || exit 1
 
 sudo dnf install -y \
@@ -43,11 +48,6 @@ mkdir -p "${HOME}/.local/bin" "${HOME}/.config"
 export PATH="${HOME}/.local/bin:${PATH}"
 eval "$(mise activate bash)"
 
-# erlang/ruby compile from source and are slow/unneeded on this devbox;
-# elixir depends on erlang, so it must go too or erlang gets pulled back in.
-# Remove them before any install-capable mise command sees the rsynced config.
-mise use -g --remove erlang --remove elixir --remove ruby
-
 # GitHub-backed mise tools require an already-resolvable token. `mise token`
 # checks its configured sources (environment, OAuth cache, gh CLI, etc.)
 # without exposing the token in installer output.
@@ -57,41 +57,13 @@ if [[ -z "$(mise token github --raw 2>/dev/null)" ]]; then
 fi
 mise self-update -y
 
-# tools not already pinned in the rsynced ~/.config/mise/config.toml
-mise use -g \
-  ripgrep@latest \
-  lazydocker@latest \
-  starship@latest \
-  dua@latest \
-  zoxide@latest \
-  btop@latest \
-  bat@latest \
-  github:moncho/dry@latest \
-  github:mrjackwills/oxker@latest \
-  github:theimpostor/osc@latest \
-  github:shshemi/tabiew@latest \
-  watchexec@latest \
-  yq@latest \
-  dust@latest \
-  duf@latest \
-  sd@latest \
-  tealdeer@latest \
-  gh@latest \
-  lazygit@latest
-
-# installs/upgrades everything pinned in ~/.config/mise/config.toml (rsynced above)
+# installs/upgrades everything in the base config and Amazon-specific fragment
 mise install -y
 mise upgrade
 
 # yazi's git.yazi plugin is only declared in ~/.config/yazi/package.toml (rsynced
 # above) — it isn't fetched until `ya pkg install` runs
 ya pkg install
-
-# nvim-treesitter needs the tree-sitter CLI to compile parsers. Its own
-# prebuilt release binary requires a newer glibc than AL2023 ships
-# (GLIBC_2.35/2.39 vs AL2023's 2.34), so compile it locally instead of
-# letting cargo-binstall fetch another incompatible prebuilt binary.
-MISE_CARGO_BINSTALL=false mise use -g "cargo:tree-sitter-cli@latest"
 
 # forgit expects macOS-style pbcopy/pbpaste commands. There is no display server
 # on this headless devbox, so use osc to relay clipboard data to the local
