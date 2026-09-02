@@ -14,6 +14,7 @@ upgrade:
 	mise self-update
 	mise upgrade
 	ya pkg upgrade
+	XDG_CONFIG_HOME="{{justfile_directory()}}/.config" nvim --headless "+Lazy! update" +qa
 
 	# this will update starship as well
 	# zinit-update must have an interactive environment to run
