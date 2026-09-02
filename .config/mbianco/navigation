@@ -7,7 +7,7 @@ alias ls='eza -l --group-directories-first'
 alias la="eza -laF --group-directories-first"
 alias lsd='eza -l -D'
 alias tree='eza --tree --git-ignore -L 3'
-alias recent-file="exa -s modified --reverse | head -n 1"
+alias recent-file="eza -s modified --reverse | head -n 1"
 alias fs="stat -f \"%z bytes\""
 alias ds="du -sh"
 
@@ -107,7 +107,7 @@ fdd() {
     additional_args="--no-ignore-vcs --hidden"
   fi
 
-  local file_or_directory=$(fd ${=additional_args} "$@" | fzf --preview 'if [ -d {} ]; then exa -1 --color=always {}; elif [ -f {} ]; then cat {}; fi')
+  local file_or_directory=$(fd ${=additional_args} "$@" | fzf --preview 'if [ -d {} ]; then eza -1 --color=always {}; elif [ -f {} ]; then cat {}; fi')
 
   # cd into dir or view the file
   if [[ -n "$file_or_directory" ]]; then
