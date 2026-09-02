@@ -60,8 +60,8 @@ zstyle ':completion:*:descriptions' format '[%d]'
 # set list-colors to enable filename colorizing
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS:-''}
 
-# preview directory's content with exa when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
@@ -69,8 +69,8 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 # menu if nb items > 2
 zstyle ':completion:*' menu select=2
 
-# preview directory's content with exa when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 
 # don't show fzf unless there are more than 4 items
 # zstyle ':fzf-tab:*' ignore false 4
