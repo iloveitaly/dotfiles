@@ -253,6 +253,7 @@ if OS.mac?
     brew "keith/formulae/zap"
     brew "mas"
     brew "webkit2png"
+    brew "wallpaper"
     brew "rga"
     brew "cmake" # for ruby native extensions
     brew "make" # to get the latest version (4.x vs 3.x)
