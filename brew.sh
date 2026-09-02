@@ -89,6 +89,8 @@ bun add -g opencode-ai
 curl -fsSL https://claude.ai/install.sh | bash
 curl -fsSL https://antigravity.google/cli/install.sh | bash
 curl -fsSL https://x.ai/cli/install.sh | bash
+curl -fsSL https://github.com/aaif-goose/goose/releases/download/stable/download_cli.sh | bash
+
 pnpm approve-builds -g
 
 pnpx skills add ast-grep/agent-skill
