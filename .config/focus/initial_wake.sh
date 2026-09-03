@@ -54,12 +54,12 @@ fi
 
 apps=(
   $work_apps
-  Slack GitHub
-  Dropbox "Dropbox Capture" "Google Drive" Numbers Stocks SoundPaste
-  Discord Buffer Signal Telegram
-  Podcasts "Amazon Music" Spotify
+  GitHub
+  Dropbox "Google Drive" Numbers Stocks SoundPaste
+  Buffer Signal Telegram
+  Podcasts Spotify "YT Music"
   Dictionary Notes Preview "QuickTime Player" Contacts
-  zoom.us Reader Texts Gmail "System Settings" Music Superhuman
+  zoom.us Gmail "System Settings" Music
   "Google Software Update" "Google Chrome Canary" "Firefox"
   "Activity Monitor" "System Preferences" "App Store" "Disk Utility" "System Information" Console "Find My"
 )
