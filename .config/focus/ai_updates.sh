@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # update all of the llms!
 claude update
 opencode upgrade
