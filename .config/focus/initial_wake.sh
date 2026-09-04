@@ -100,6 +100,13 @@ done
 
 twitter_logout
 
+# it seems to get junked up after a while and slow down
+# a daily restart keeps it operating quickly
+quit_and_reopen_app "Raycast" || true
+
+# superwhisper also seems to consume a ton of resources over time
+quit_and_reopen_app "Superwhisper" || true
+
 # prompt user for context on what's left in the browser tabs
 dialogResult=$(
   osascript <<EOT
@@ -111,19 +118,6 @@ EOT
 # cleanup browser tabs
 echo "Cleaning browser tabs..."
 uvx clean-workspace --tab-description "$dialogResult"
-
-# TODO the script below is not properly running as root
-
-# must run as non-root user!
-# su - mike -c "~/.time-machine-includes.sh"
-
-# it seems to get junked up after a while and slow down
-# a daily restart keeps it operating quickly
-quit_and_reopen_app "Raycast" || true
-
-# superwhisper also seems to consume a ton of resources over time
-quit_and_reopen_app "Superwhisper" || true
-
 uv cache clean
 
 # in case you overrode them for some testing
