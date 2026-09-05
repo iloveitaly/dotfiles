@@ -542,7 +542,7 @@ tmuxtrace() {
 }
 
 source ~/.node-functions
-source ~/.python-functions
+source "${HOME}/.config/mbianco/python"
 source ~/.git-functions
 source ~/.macos-docker-functions
 source ~/.mise-functions
