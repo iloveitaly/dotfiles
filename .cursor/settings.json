@@ -49,7 +49,7 @@
   "terminal.integrated.automationProfile.osx": "zsh",
   "terminal.integrated.profiles.osx": {
     "tmux": {
-      "path": "/Users/mike/.tmux-shell.sh",
+      "path": "/Users/mike/.config/mbianco/tmux-shell.sh",
       "icon": "terminal-tmux"
     },
     // for testing what environment is leaking out into your terminal, this should be plain!
