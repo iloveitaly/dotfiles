@@ -4,8 +4,9 @@
 # additionally, since it's not executed in login mode, ~/.zshrc is not loaded
 export USER=mike
 export HOME=/Users/$USER
+# add `mise` bin to path
+export PATH="$HOME/.local/bin:/sbin:/usr/sbin:/opt/homebrew/bin:$PATH"
 
-source ~/.asdf/asdf.sh
 source ~/.config/focus/functions.sh
 
 # stop caffinating so the computer actually falls back to sleep
