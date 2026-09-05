@@ -90,6 +90,7 @@ curl -fsSL https://claude.ai/install.sh | bash
 curl -fsSL https://antigravity.google/cli/install.sh | bash
 curl -fsSL https://x.ai/cli/install.sh | bash
 curl -fsSL https://github.com/aaif-goose/goose/releases/download/stable/download_cli.sh | bash
+curl -fsSL https://dev.meta.ai/install.sh | bash
 
 pnpm approve-builds -g
 
@@ -98,7 +99,6 @@ pnpx skills add https://github.com/iloveitaly/ai-skills --skill justfile
 pnpx skills add https://github.com/railwayapp/railway-skills --skill railway-docs --agent claude-code,gemini-cli,codex,cursor,github-copilot,opencode
 pnpx skills add https://github.com/github/awesome-copilot --skill gh-cli
 pnpm dlx skills add shadcn/ui
-
 
 #################
 # GH CLI Config #
@@ -133,6 +133,9 @@ claude mcp add --transport http grep https://mcp.grep.app
 codex mcp add github --url https://api.githubcopilot.com/mcp --bearer-token-env-var GITHUB_TOKEN
 codex mcp add chrome-devtools -- pnpx -y chrome-devtools-mcp@latest
 codex mcp add grep --url https://mcp.grep.app
+
+pnpx ~/Projects/javascript/mcp-add --name chrome-mcp --command "pnpx -y chrome-devtools-mcp@latest" --type studio --scope global --clients antigravity
+pnpx ~/Projects/javascript/mcp-add --name grep --url https://mcp.grep.app --type http --scope global --clients antigravity
 
 # cursor-agent has it's own browser
 
