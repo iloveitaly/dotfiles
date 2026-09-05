@@ -286,34 +286,6 @@ pbcat() {
   cat "$@" | pbcopy
 }
 
-copy_with_context() {
-  local file=$1
-  local line=$2
-
-  if [[ -z "$file" ]]; then
-    echo "Usage: copy_with_context <file> <line> | <file-with-line>"
-    return 1
-  fi
-
-  # if line DNE, then it must be embedded in the first argument
-  if [[ -z "$line" ]]; then
-    IFS=':' read file line _other <<< "$file"
-  fi
-
-  # check if $line is a number
-  if ! [[ $line =~ ^[0-9]+$ ]]; then
-    echo "Error: Line number must be a number (extracted line: $line)."
-    return 1
-  fi
-
-  local context=10
-
-  local start=$((line - context > 0 ? line - context : 1))
-  local end=$((line + context))
-
-  sed -n "${start},${end}p" "$file" | pbcopy
-}
-
 # convert a pdf to a jpeg for usage in gpt-v
 # ChatGPT cannot handle 3p documents
 # TODO try to group content into two-page pairs in the future: https://stackoverflow.com/questions/17025515/converting-a-multi-page-pdf-to-multiple-pages-using-a-single-command

@@ -73,16 +73,14 @@ export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 # - ctrl-o opens the file in vscode (or the default application)
 # - ctrl-y copies the file path to the clipboard
 # - ctrl-e opens the file in a CLI editorb
-# - ctrl-b copies the contents of the file path, at the specified line, with context, to the clipboard
 # - ctrl+Y selects all results, copies them to the clipboard, and deselects them (so you can still open files, etc)
 export FZF_DEFAULT_OPTS="\
 --bind 'ctrl-Y:select-all+execute-silent(printf \"%s\n\" {+} | pbcopy)+deselect-all' \
 --bind='ctrl-u:preview-half-page-up' \
 --bind='ctrl-d:preview-half-page-down' \
---bind='ctrl-o:execute-silent(~/.open-file-path.sh {})' \
+--bind='ctrl-o:execute-silent(~/.config/mbianco/open-file-path.sh {})' \
 --bind='ctrl-y:execute-silent(pbcopy <<< {})' \
---bind='ctrl-e:execute(~/.open-file-path.sh EDITOR {})' \
---bind='ctrl-b:execute-silent(~/.copy-with-context.sh {})' \
+--bind='ctrl-e:execute(~/.config/mbianco/open-file-path.sh EDITOR {})' \
 --preview-window 'right:70%' \
 --bind='?:toggle-preview' \
 --bind='+:toggle-header'
