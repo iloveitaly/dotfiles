@@ -27,7 +27,6 @@ brew "sqlite"
 brew "md5sha1sum"
 brew "git-lfs"
 brew "vimcal"
-brew "caddy"
 brew "yazi"
 brew "gitx" # visual git tool, kaleidoscope alternative
 brew "kdiff3"
@@ -101,7 +100,6 @@ if OS.mac?
     brew "pstree" # procs seem to have a tree view and is a bit better
     brew "broot" # better file finding
     brew "dolt"
-    brew "ollama"
     brew "buildpacks/tap/pack"
     brew "dive" # docker inspection
     brew "pgcli" # better psql, with autocompletion and DATABASE_URL connection support
