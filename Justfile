@@ -8,16 +8,16 @@ set unstable := true
 rsync_cmd := "rsync --exclude-from=install/standard-exclude.txt -av . ~"
 
 upgrade:
-	brew upgrade awscli git rg fd gh zsh gmailctl dolt yazi dolt bat hunk
+	brew upgrade -y awscli git rg fd gh zsh gmailctl dolt yazi bat hunk block-buzz
 	gh extension upgrade --all
 	
-	mise self-update
-	mise upgrade
-	ya pkg upgrade
+	mise self-update -y
+	mise upgrade -y
+	ya pkg upgrade --discard
 	XDG_CONFIG_HOME="{{justfile_directory()}}/.config" nvim --headless "+Lazy! update" +qa
 
 	# this will update starship as well
-	# zinit-update must have an interactive environment to run
+	# zinit update has job-control/pager quirks in non-interactive subshells
 	echo "Please run \`zinit update\` in an interactive shell to update zinit plugins like starship."
 
 sync:
