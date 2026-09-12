@@ -1,23 +1,4 @@
 [tools]
-ripgrep = "latest"
-lazydocker = "latest"
-starship = "latest"
-dua = "latest"
-zoxide = "latest"
-btop = "latest"
-bat = "latest"
-"github:moncho/dry" = "latest"
-"github:mrjackwills/oxker" = "latest"
-"github:theimpostor/osc" = "latest"
-"github:shshemi/tabiew" = "latest"
-watchexec = "latest"
-yq = "latest"
-dust = "latest"
-duf = "latest"
-sd = "latest"
-tealdeer = "latest"
-gh = "latest"
-lazygit = "latest"
 
 # nvim-treesitter needs the tree-sitter CLI to compile parsers. Its GNU release
 # requires a newer glibc than AL2023. Explicitly selecting its default feature

@@ -22,12 +22,10 @@ brew "awk" # in codespaces, the default version is especially strange
 brew "session-manager-plugin" if OS.mac?
 brew "cloc" # code analytics
 brew "hey"
-brew "gh"
 brew "sqlite"
 brew "md5sha1sum"
 brew "git-lfs"
 brew "vimcal"
-brew "yazi"
 brew "chafa"
 brew "gitx" # visual git tool, kaleidoscope alternative
 brew "kdiff3"
@@ -45,36 +43,27 @@ brew "container"
 brew "jq" # json extraction
 brew "fx" # json tui
 brew "dsq" # sql over json and other formats
-brew "yq" # yq for yaml and others, great for in place manipulating files
 brew "dasel" # consistent language for extracting data from XML, CSV, and others. No aggregates.
 tap "brimdata/tap"
 brew "brimdata/tap/zq" # faster/better jq, has aggregates
 brew "htmlq" # jq for html
 brew "xsv" # csv tooling
-brew "tabiew" # tui for csv and data viewing
 # https://github.com/forensicmatt/datatui
 
 # == Shell productivity utilities
 brew "zsh"
-brew "ripgrep"
 brew "entr"
 brew "prettyping"
 brew "less"
 brew "yank"
-brew "tldr"
-brew "zoxide"
-brew "fzf"
 brew "bc" # used by git-fuzzy
-brew "bat" # cat, can also do paging
 brew "hck" # cut
 brew "htop"
 brew "procs" # ps
-brew "sd" # sed
 brew "svn" # for `zinit ice svn`
 brew "dog" # dig replacement
 brew "moreutils" # sponge
 brew "xplr" # file management
-brew "dust" # du replacement, another option is duf
 brew "qpdf" # for decrypting pdf files
 brew "rsync" # get the latest version for new features
 brew "watch" # execute program every X seconds
@@ -102,7 +91,6 @@ if OS.mac?
     brew "broot" # better file finding
     brew "dolt"
     brew "buildpacks/tap/pack"
-    brew "dive" # docker inspection
     brew "pgcli" # better psql, with autocompletion and DATABASE_URL connection support
     brew "kitty" # yet another terminal
     brew "gmailctl" # gmail filter configuration as code
@@ -204,7 +192,6 @@ if OS.mac?
     cask "ngrok"
     cask "firefox" # for debugging, not actual use
     cask "angristan/tap/macthrottle"
-    cask "dua-cli"
 
     # == Experimental
     cask "tip"
@@ -271,7 +258,6 @@ if OS.mac?
     brew "smudge/smudge/nightlight"
     brew "hyperfine"
     brew "zrok"
-    brew "btop"
     brew "px"
     brew "sslscan"
     brew "hunk"
@@ -288,7 +274,7 @@ if OS.mac?
     mas "Harvest", id: 506189836
     mas "Free Ruler", id: 1483172210
     mas "Tailscale", id: 1475387142
-    mas "Flighty" id: 1358823008
+    mas "Flighty", id: 1358823008
     # shareful
     # quicklook plugin
 

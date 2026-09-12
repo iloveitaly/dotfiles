@@ -2,9 +2,11 @@
 # Minimal bootstrap for cloud hosts that mostly run Docker.
 #
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/iloveitaly/dotfiles/master/install/server.sh | bash
+#   run from a clone: ./install/server.sh
 
 set -euo pipefail
+
+cd "$(dirname "$0")/.." || exit 1
 
 sudo apt-get update
 sudo apt-get install -y zsh curl ca-certificates git
@@ -22,31 +24,23 @@ fi
 export PATH="${HOME}/.local/bin:${PATH}"
 eval "$(mise activate bash)"
 
-# writes ~/.config/mise/config.toml and installs/upgrades to latest
-mise use -g \
-  fzf@latest \
-  ripgrep@latest \
-  lazydocker@latest \
-  atuin@latest \
-  starship@latest \
-  dua@latest \
-  github:micro-editor/micro@nightly \
-  zoxide@latest \
-  btop@latest \
-  bat@latest \
-  github:moncho/dry@latest \
-  github:mrjackwills/oxker@latest
-mise upgrade
-
-mkdir -p "${HOME}/.local/bin" "${HOME}/.config"
+mkdir -p "${HOME}/.local/bin" "${HOME}/.config/mise"
+cp .config/mise/config.toml "${HOME}/.config/mise/config.toml"
 
 # micro editor config from this repo
 MICRO_CFG="${HOME}/.config/micro"
-MICRO_RAW="https://raw.githubusercontent.com/iloveitaly/dotfiles/master/.config/micro"
-mkdir -p "${MICRO_CFG}/syntax"
-curl -fsSL "${MICRO_RAW}/settings.json" -o "${MICRO_CFG}/settings.json"
-curl -fsSL "${MICRO_RAW}/bindings.json" -o "${MICRO_CFG}/bindings.json"
-curl -fsSL "${MICRO_RAW}/syntax/git-commit.yaml" -o "${MICRO_CFG}/syntax/git-commit.yaml"
+mkdir -p "${MICRO_CFG}"
+cp -R .config/micro/* "${MICRO_CFG}/"
+
+# leave the clone before running mise commands
+cd "${HOME}" || exit 1
+
+# erlang/ruby compile from source and are slow/unneeded on cloud servers;
+# elixir depends on erlang, so it must go too
+mise settings set disable_tools '["erlang", "elixir", "ruby"]'
+
+mise install -y
+mise upgrade
 
 # fzf-tab: Tab completions via fzf (must load after compinit)
 FZF_TAB="${HOME}/.local/share/fzf-tab"

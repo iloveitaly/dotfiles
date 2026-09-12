@@ -33,6 +33,39 @@ azure-cli = "latest"
 opentofu = "latest"
 "pipx:aiautocommit" = "latest"
 
+# navigation, search & shell productivity
+ripgrep = "latest"
+bat = "latest"
+zoxide = "latest"
+starship = "latest"
+watchexec = "latest"
+tealdeer = "latest"
+
+# git & github
+lazygit = "latest"
+gh = "latest"
+
+# containers
+lazydocker = "latest"
+ctop = "latest"
+"github:mrjackwills/oxker" = "latest"
+"github:moncho/dry" = "latest"
+
+# data & text processing
+yq = "latest"
+sd = "latest"
+"github:shshemi/tabiew" = "latest"
+
+# system & disk inspection
+btop = "latest"
+dua = "latest"
+dust = "latest"
+duf = "latest"
+"pipx:speedtest-cli" = "latest"
+
+# clipboard
+"github:theimpostor/osc" = "latest"
+
 # language and language tooling
 direnv = "latest"
 just = "latest"
