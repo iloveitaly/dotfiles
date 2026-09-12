@@ -513,6 +513,27 @@ tmuxtrace() {
   ps -p "$pid_list" -o pid,ppid,user,command
 }
 
+buffer-tweet() {
+  local tmp
+  tmp=$(mktemp /tmp/buffer_draft.XXXXXX.txt)
+
+  ${EDITOR:-nvim} "$tmp"
+
+  if [[ ! -s "$tmp" ]]; then
+    echo "Draft empty. Aborting post."
+    rm -f "$tmp"
+    return 1
+  fi
+
+  buffer posts create \
+    --channel-id "$BUFFER_CHANNEL_ID" \
+    --mode addToQueue \
+    --scheduling-type automatic \
+    --text "$(<"$tmp")"
+
+  rm -f "$tmp"
+}
+
 source ~/.node-functions
 source "${HOME}/.config/mbianco/python"
 source ~/.git-functions
