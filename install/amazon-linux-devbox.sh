@@ -26,7 +26,7 @@ cd "${HOME}" || exit 1
 sudo dnf install -y \
   zsh ca-certificates git util-linux-user gcc gcc-c++ make \
   tree htop sqlite jq git-lfs nmap cronie tmux bubblewrap \
-  clang
+  clang libicu
 
 # build headers: mise installs precompiled python by default, but these are
 # needed for MISE_PYTHON_COMPILE=1 and for native wheels built at pip-install time
