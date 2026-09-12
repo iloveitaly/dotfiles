@@ -9,7 +9,3 @@
 # Prefer portable musl artifacts when a backend publishes both GNU and musl
 # Linux builds. AL2023 intentionally remains on glibc 2.34.
 libc = "musl"
-
-# These compile from source, are slow and are not needed on this devbox. Elixir
-# also depends on Erlang, so both must be disabled.
-disable_tools = ["erlang", "elixir", "ruby"]

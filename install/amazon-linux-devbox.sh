@@ -13,10 +13,18 @@ rsync --exclude-from="install/standard-exclude.txt" \
   --exclude-from="install/server-exclude.txt" \
   -av . ~
 
-# This fragment is Amazon-specific, so install it explicitly rather than
-# including it in the cross-platform dotfiles rsync above.
+# Install shared Linux fragment and Amazon-specific fragment explicitly
+# rather than including them in the cross-platform dotfiles rsync above.
+install -Dm 0644 install/mise/linux.toml \
+  "${HOME}/.config/mise/conf.d/linux.toml"
 install -Dm 0644 install/mise/amazon-linux.toml \
   "${HOME}/.config/mise/conf.d/amazon-linux.toml"
+
+# forgit expects macOS-style pbcopy/pbpaste. Headless hosts have no display
+# server, so relay clipboard data over OSC52 via osc. Executables (not aliases)
+# so forgit works outside zsh too.
+install -Dm 0755 install/linux/bin/pbcopy "${HOME}/.local/bin/pbcopy"
+install -Dm 0755 install/linux/bin/pbpaste "${HOME}/.local/bin/pbpaste"
 
 # leave the clone: mise treats a `.config/mise/config.toml` relative to cwd as
 # a local project config layered on top of the global one, and the repo's own
@@ -64,18 +72,6 @@ mise upgrade
 # yazi's git.yazi plugin is only declared in ~/.config/yazi/package.toml (rsynced
 # above) — it isn't fetched until `ya pkg install` runs
 ya pkg install
-
-# forgit expects macOS-style pbcopy/pbpaste commands. There is no display server
-# on this headless devbox, so use osc to relay clipboard data to the local
-# terminal over OSC52. Keep them as executables so forgit works outside zsh too.
-install -m 0755 /dev/stdin "${HOME}/.local/bin/pbcopy" <<'EOF'
-#!/bin/bash
-exec "${HOME}/.local/bin/mise" exec -- osc copy "$@"
-EOF
-install -m 0755 /dev/stdin "${HOME}/.local/bin/pbpaste" <<'EOF'
-#!/bin/bash
-exec "${HOME}/.local/bin/mise" exec -- osc paste "$@"
-EOF
 
 cat <<EOF >>~/.extra
 alias dokku="docker exec -it dokku dokku"

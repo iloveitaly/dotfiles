@@ -3,10 +3,27 @@
 #
 # Usage:
 #   run from a clone: ./install/server.sh
+# GitHub-backed mise tools need a resolvable token (not stored on disk), e.g.:
+#   MISE_GITHUB_TOKEN=... ./install/server.sh
 
 set -euo pipefail
+export DEBIAN_FRONTEND=noninteractive
 
 cd "$(dirname "$0")/.." || exit 1
+
+rsync --exclude-from="install/standard-exclude.txt" \
+  --exclude-from="install/server-exclude.txt" \
+  -av . ~
+
+# Headless fragment is install-time only — not part of the cross-platform rsync.
+install -Dm 0644 install/mise/linux.toml \
+  "${HOME}/.config/mise/conf.d/linux.toml"
+
+# forgit expects macOS-style pbcopy/pbpaste. Headless hosts have no display
+# server, so relay clipboard data over OSC52 via osc. Executables (not aliases)
+# so forgit works outside zsh too.
+install -Dm 0755 install/linux/bin/pbcopy "${HOME}/.local/bin/pbcopy"
+install -Dm 0755 install/linux/bin/pbpaste "${HOME}/.local/bin/pbpaste"
 
 sudo apt-get update
 sudo apt-get install -y zsh curl ca-certificates git
@@ -16,6 +33,7 @@ if ! command -v docker &>/dev/null; then
   curl -fsSL https://get.docker.com | sudo sh
 fi
 sudo usermod -aG docker "$(whoami)"
+# TODO: sudo systemctl enable --now docker
 
 # mise → ~/.local/bin/mise
 if [[ ! -x "${HOME}/.local/bin/mise" ]]; then
@@ -24,35 +42,25 @@ fi
 export PATH="${HOME}/.local/bin:${PATH}"
 eval "$(mise activate bash)"
 
-mkdir -p "${HOME}/.local/bin" "${HOME}/.config/mise"
-cp .config/mise/config.toml "${HOME}/.config/mise/config.toml"
+# GitHub-backed mise tools require an already-resolvable token. `mise token`
+# checks its configured sources (environment, OAuth cache, gh CLI, etc.)
+# without exposing the token in installer output.
+if [[ -z "$(mise token github --raw 2>/dev/null)" ]]; then
+  echo "A GitHub token resolvable by mise is required (for example, MISE_GITHUB_TOKEN)." >&2
+  exit 1
+fi
+mise self-update -y
 
-# micro editor config from this repo
-MICRO_CFG="${HOME}/.config/micro"
-mkdir -p "${MICRO_CFG}"
-cp -R .config/micro/* "${MICRO_CFG}/"
-
-# leave the clone before running mise commands
+# leave the clone: mise treats a `.config/mise/config.toml` relative to cwd as
+# a local project config layered on top of the global one
 cd "${HOME}" || exit 1
-
-# erlang/ruby compile from source and are slow/unneeded on cloud servers;
-# elixir depends on erlang, so it must go too
-mise settings set disable_tools '["erlang", "elixir", "ruby"]'
 
 mise install -y
 mise upgrade
 
-# fzf-tab: Tab completions via fzf (must load after compinit)
-FZF_TAB="${HOME}/.local/share/fzf-tab"
-if [[ ! -d "${FZF_TAB}/.git" ]]; then
-  git clone --depth 1 https://github.com/Aloxaf/fzf-tab "${FZF_TAB}"
-fi
-
-# user completion dir (dokku, etc.) — prepended to fpath before compinit
-ZFUNC="${HOME}/.zfunc"
-mkdir -p "${ZFUNC}"
-curl -fsSL -o "${ZFUNC}/_dokku" \
-  https://raw.githubusercontent.com/iloveitaly/zsh-dokku/master/completions/_dokku
+# yazi's git.yazi plugin is only declared in ~/.config/yazi/package.toml (rsynced
+# above) — it isn't fetched until `ya pkg install` runs
+ya pkg install
 
 # cloud-server prompt: always show host (no username), keep noise low
 STARSHIP_TOML="${HOME}/.config/starship.toml"
@@ -98,43 +106,30 @@ success_symbol = "[❯](purple)"
 error_symbol = "[❯](red)"
 EOF
 
-# zshrc: preserve original once; regenerate .zshrc as backup + bootstrap block
-ZSHRC="${HOME}/.zshrc"
-ZSHRC_BACKUP="${HOME}/.zshrc.pre-bootstrap"
-MARKER_BEGIN="# START CUSTOM BOOTSTRAP"
-MARKER_END="# END CUSTOM BOOTSTRAP"
-
-if [[ -f "${ZSHRC}" && ! -f "${ZSHRC_BACKUP}" ]] && ! grep -qxF "${MARKER_BEGIN}" "${ZSHRC}" 2>/dev/null; then
-  cp -a "${ZSHRC}" "${ZSHRC_BACKUP}"
-fi
-
-{
-  [[ -f "${ZSHRC_BACKUP}" ]] && cat "${ZSHRC_BACKUP}"
-  cat <<EOF
-
-${MARKER_BEGIN}
-export PATH="\${HOME}/.local/bin:\${PATH}"
-eval "\$(mise activate zsh)"
-eval "\$(fzf --zsh)"
-eval "\$(zoxide init zsh)"
-eval "\$(atuin init zsh)"
-eval "\$(starship init zsh)"
-alias m=micro
-alias d=docker
-alias dk=dokku
-fpath=("\${HOME}/.zfunc" \$fpath)
-autoload -Uz compinit && compinit
-(( \$+commands[docker] )) && eval "\$(docker completion zsh)" && compdef d=docker
-compdef dk=dokku
-source "\${HOME}/.local/share/fzf-tab/fzf-tab.plugin.zsh"
-${MARKER_END}
+cat <<EOF >>~/.extra
+alias dokku="docker exec -it dokku dokku"
+alias dokku-shell="docker exec -it dokku bash -l"
 EOF
-} >"${ZSHRC}"
+
+# delete some zsh_plugins that are macos specific
+sed -i '/zicompdef/d' ~/.zsh_plugins # assumes rg, etc which is not the same on servers :/
+sed -i '/zsh-auto-notify/d' ~/.zsh_plugins
 
 # make zsh the login shell
 if ! grep -qxF "$(command -v zsh)" /etc/shells; then
   echo "$(command -v zsh)" | sudo tee -a /etc/shells >/dev/null
 fi
 sudo chsh -s "$(command -v zsh)" "$(whoami)"
+
+git config --global commit.gpgsign false
+git config --global credential.helper store
+
+# cleaner output since this will be running inside ansible, or something similar
+export ZINIT_COLORIZE=false
+
+# zinit's --no-pager path calls `cat`, but ~/.aliases maps that to bat. Give
+# zsh non-TTY stdout so bat also disables its pager instead of spawning $PAGER
+# (ov), which stops when zinit runs its parallel update job in the background.
+zsh -lc "source ~/.zshrc && zinit update --parallel --no-pager" | /usr/bin/cat
 
 echo "Done."
