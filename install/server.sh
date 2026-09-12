@@ -28,9 +28,8 @@ install -Dm 0755 install/linux/bin/pbpaste "${HOME}/.local/bin/pbpaste"
 sudo apt-get update
 sudo apt-get install -y zsh curl ca-certificates git
 
-# On Ubuntu hosts (including Orange Pi arm64), stock git is frozen (e.g. 2.34 on 22.04 LTS).
-# Use the official git-core PPA to get modern git releases, while skipping on non-Ubuntu
-# distros (like Debian / Raspberry Pi OS) where PPAs are incompatible.
+# Use official git-core PPA for modern git on Ubuntu hosts (e.g. 22.04 on Orange Pi).
+# Skips non-Ubuntu systems (like Debian or RPM) where PPAs are incompatible.
 if [[ -f /etc/os-release ]]; then
   # shellcheck source=/dev/null
   . /etc/os-release
