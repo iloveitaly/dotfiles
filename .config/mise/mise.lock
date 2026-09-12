@@ -421,6 +421,14 @@ backend = "pipx:azure-cli"
 [tools.azure-cli.options]
 uvx_args = "--prerelease=allow --with pip"
 
+[[tools.bat]]
+version = "0.26.1"
+backend = "aqua:sharkdp/bat"
+
+[[tools.btop]]
+version = "1.4.7"
+backend = "aqua:aristocratos/btop"
+
 [[tools.bun]]
 version = "1.4.2"
 backend = "core:bun"
@@ -547,6 +555,10 @@ backend = "cargo:fastmod"
 version = "2.1.0"
 backend = "cargo:markdown-extract-cli"
 
+[[tools.ctop]]
+version = "0.7.7"
+backend = "aqua:bcicen/ctop"
+
 [[tools.direnv]]
 version = "2.37.1"
 backend = "asdf:direnv"
@@ -609,6 +621,18 @@ url_api = "https://api.github.com/repos/wagoodman/dive/releases/assets/241842460
 checksum = "sha256:3e764ff28c7b89f4da679deac80483249fbbae3a1d512c103d54609eec09086a"
 url = "https://github.com/wagoodman/dive/releases/download/v0.13.1/dive_0.13.1_windows_amd64.zip"
 url_api = "https://api.github.com/repos/wagoodman/dive/releases/assets/241842460"
+
+[[tools.dua]]
+version = "2.44.0"
+backend = "aqua:Byron/dua-cli"
+
+[[tools.duf]]
+version = "0.9.1"
+backend = "aqua:muesli/duf"
+
+[[tools.dust]]
+version = "1.2.5"
+backend = "aqua:bootandy/dust"
 
 [[tools.elixir]]
 version = "1.20.4-otp-29"
@@ -866,6 +890,10 @@ checksum = "sha256:cf5c137d9b391c3988c54af8f5fc490ffbef6f70444651e7d57fdb45ad04c
 url = "https://github.com/junegunn/fzf/releases/download/v0.74.3/fzf-0.74.3-windows_amd64.zip"
 url_api = "https://api.github.com/repos/junegunn/fzf/releases/assets/517537078"
 
+[[tools.gh]]
+version = "2.97.0"
+backend = "aqua:cli/cli"
+
 [[tools."github:atuinsh/atuin"]]
 version = "18.22.0"
 backend = "github:atuinsh/atuin"
@@ -910,37 +938,6 @@ provenance = "github-attestations"
 checksum = "sha256:b7848f9fd1445eb9679ab206013eee71ceb82971cbb770cec2a2e999510cb52d"
 url = "https://github.com/atuinsh/atuin/releases/download/v18.22.0/atuin-x86_64-pc-windows-msvc.zip"
 url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/553690950"
-provenance = "github-attestations"
-
-[[tools."github:atuinsh/atuin"]]
-version = "18.22.0"
-backend = "github:atuinsh/atuin"
-
-[tools."github:atuinsh/atuin".options]
-asset_pattern = "*musl*"
-
-[tools."github:atuinsh/atuin"."platforms.linux-x64"]
-checksum = "sha256:b3c123df1887cf27c6480a87d148c86831cd83da478e0a8ab773ca188f3f3222"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.22.0/atuin-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/553690977"
-provenance = "github-attestations"
-
-[tools."github:atuinsh/atuin"."platforms.linux-x64-baseline"]
-checksum = "sha256:b3c123df1887cf27c6480a87d148c86831cd83da478e0a8ab773ca188f3f3222"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.22.0/atuin-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/553690977"
-provenance = "github-attestations"
-
-[tools."github:atuinsh/atuin"."platforms.linux-x64-musl"]
-checksum = "sha256:b3c123df1887cf27c6480a87d148c86831cd83da478e0a8ab773ca188f3f3222"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.22.0/atuin-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/553690977"
-provenance = "github-attestations"
-
-[tools."github:atuinsh/atuin"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:b3c123df1887cf27c6480a87d148c86831cd83da478e0a8ab773ca188f3f3222"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.22.0/atuin-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/553690977"
 provenance = "github-attestations"
 
 [[tools."github:dlvhdr/diffnav"]]
@@ -1308,6 +1305,14 @@ checksum = "sha256:be6b6bde3b70d38d84503c73ee5e5ad65801e48ff124e5af26d022fba709b
 url = "https://github.com/iloveitaly/richclip/releases/download/v1.3.0/richclip.zip"
 url_api = "https://api.github.com/repos/iloveitaly/richclip/releases/assets/375807887"
 
+[[tools."github:moncho/dry"]]
+version = "0.13.0"
+backend = "github:moncho/dry"
+
+[[tools."github:mrjackwills/oxker"]]
+version = "0.13.4"
+backend = "github:mrjackwills/oxker"
+
 [[tools."github:nnnkkk7/lazyactions"]]
 version = "0.0.13"
 backend = "github:nnnkkk7/lazyactions"
@@ -1508,6 +1513,10 @@ url = "https://github.com/railwayapp/railpack/releases/download/v0.39.0/railpack
 url_api = "https://api.github.com/repos/railwayapp/railpack/releases/assets/543243531"
 provenance = "github-attestations"
 
+[[tools."github:shshemi/tabiew"]]
+version = "0.15.1"
+backend = "github:shshemi/tabiew"
+
 [[tools."github:tbillington/kondo"]]
 version = "0.9"
 backend = "github:tbillington/kondo"
@@ -1567,6 +1576,10 @@ checksum = "sha256:4c70e7de85bfaf1b66de931654e9943681af42b093cd591530fc0dd4cc4a0
 url = "https://github.com/tbillington/kondo/releases/download/v0.9/kondo-x86_64-pc-windows-msvc.zip"
 url_api = "https://api.github.com/repos/tbillington/kondo/releases/assets/344632458"
 
+[[tools."github:theimpostor/osc"]]
+version = "0.4.8"
+backend = "github:theimpostor/osc"
+
 [[tools.go]]
 version = "1.27.1"
 backend = "core:go"
@@ -1625,6 +1638,14 @@ backend = "ubi:casey/just"
 
 [tools.just."platforms.macos-arm64-just"]
 checksum = "blake3:f96e4268dadce81f9b0251aecd6cc28fe3cb1e70d6a0161ad9aa86c77e84528e"
+
+[[tools.lazydocker]]
+version = "0.25.2"
+backend = "aqua:jesseduffield/lazydocker"
+
+[[tools.lazygit]]
+version = "0.65.0"
+backend = "aqua:jesseduffield/lazygit"
 
 [[tools.lnav]]
 version = "0.14.1"
@@ -1785,6 +1806,10 @@ url_api = "https://api.github.com/repos/opentofu/opentofu/releases/assets/520762
 [[tools."pipx:aiautocommit"]]
 version = "0.26.0"
 backend = "pipx:aiautocommit"
+
+[[tools."pipx:speedtest-cli"]]
+version = "2.1.3"
+backend = "pipx:speedtest-cli"
 
 [[tools.pnpm]]
 version = "12.4.1"
@@ -1974,6 +1999,10 @@ checksum = "sha256:35238a11b4b2623064dbb7e61207a53e1b55619f3249f2e9b3acd26f8de18
 url = "https://github.com/natesales/q/releases/download/v0.19.12/q_0.19.12_windows_amd64.zip"
 url_api = "https://api.github.com/repos/natesales/q/releases/assets/363278355"
 
+[[tools.ripgrep]]
+version = "15.1.0"
+backend = "aqua:BurntSushi/ripgrep"
+
 [[tools.ruby]]
 version = "3.4.10"
 backend = "core:ruby"
@@ -2051,6 +2080,18 @@ url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstalle
 version = "1.98.1"
 backend = "core:rust"
 
+[[tools.sd]]
+version = "1.1.0"
+backend = "aqua:chmln/sd"
+
+[[tools.starship]]
+version = "1.26.0"
+backend = "aqua:starship/starship"
+
+[[tools.tealdeer]]
+version = "1.9.0"
+backend = "aqua:tealdeer-rs/tealdeer"
+
 [[tools.usage]]
 version = "6.8.0"
 backend = "aqua:jdx/usage"
@@ -2114,6 +2155,10 @@ url_api = "https://api.github.com/repos/jdx/usage/releases/assets/547482883"
 version = "0.12.13"
 backend = "asdf:uv"
 
+[[tools.watchexec]]
+version = "2.7.0"
+backend = "aqua:watchexec/watchexec"
+
 [[tools.yazi]]
 version = "26.9.1"
 backend = "aqua:sxyazi/yazi"
@@ -2173,6 +2218,10 @@ checksum = "sha256:7c033e5f2de6355fd03d865319053fc97db780275974ed17653c057f5d0f8
 url = "https://github.com/sxyazi/yazi/releases/download/v26.9.1/yazi-x86_64-pc-windows-msvc.zip"
 url_api = "https://api.github.com/repos/sxyazi/yazi/releases/assets/539261401"
 
+[[tools.yq]]
+version = "4.53.6"
+backend = "aqua:mikefarah/yq"
+
 [[tools.zig]]
 version = "0.16.0"
 backend = "core:zig"
@@ -2221,3 +2270,7 @@ url = "https://ziglang.org/download/0.16.0/zig-x86_64-windows-0.16.0.zip"
 [tools.zig."platforms.windows-x64-baseline"]
 checksum = "sha256:68659eb5f1e4eb1437a722f1dd889c5a322c9954607f5edcf337bc3684a75a7e"
 url = "https://ziglang.org/download/0.16.0/zig-x86_64-windows-0.16.0.zip"
+
+[[tools.zoxide]]
+version = "0.10.0"
+backend = "aqua:ajeetdsouza/zoxide"
