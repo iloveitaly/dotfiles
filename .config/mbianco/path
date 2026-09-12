@@ -12,6 +12,9 @@ fi
 # postgres utilities
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 
+# OrbStack command-line tools and completions
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+
 # poetry, orb, mise, etc
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -25,6 +28,11 @@ export PATH="$PNPM_HOME:$PATH"
 # go stuff in the home is annoying, hide it please
 export GOPATH="$HOME/.local/share/go"
 export PATH="$PATH:$GOPATH/bin"
+
+# Obsidian CLI
+if [[ -d "/Applications/Obsidian.app/Contents/MacOS" ]]; then
+  export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
+fi
 
 # https://specifications.freedesktop.org/basedir/latest/
 # not exactly a path mutation, but similar in spirit

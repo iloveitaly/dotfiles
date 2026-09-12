@@ -31,7 +31,18 @@ just configure-launchagents
 
 # some tools can setup bashrc and other files that we don't want
 # for instance, homebrew will setup a bashrc file. In order to provide a completely clean bash environment, we remove it.
-rm ~/.bashrc
+rm -f ~/.bashrc
+
+# often tools will install stuff into zprofile, so we want to confirm before deleting
+if [[ -f ~/.zprofile ]]; then
+  echo "~/.zprofile found:"
+  cat ~/.zprofile
+  read -p "Delete ~/.zprofile? [y/N] " -n 1 -r
+  echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    rm ~/.zprofile
+  fi
+fi
 
 # mackup restore
 
