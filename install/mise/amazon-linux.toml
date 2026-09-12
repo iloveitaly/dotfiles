@@ -4,8 +4,3 @@
 # requires a newer glibc than AL2023. Explicitly selecting its default feature
 # makes mise skip cargo-binstall and compile the CLI natively with cargo install.
 "cargo:tree-sitter-cli" = { version = "latest", features = ["qjs-rt"] }
-
-[settings]
-# Prefer portable musl artifacts when a backend publishes both GNU and musl
-# Linux builds. AL2023 intentionally remains on glibc 2.34.
-libc = "musl"

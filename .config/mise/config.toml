@@ -88,7 +88,10 @@ zig        = "latest"
 version = "latest"
 
 [tools."github:atuinsh/atuin".platforms.linux-x64]
-asset_pattern = "*musl*"
+asset_pattern = "*x86_64*musl*"
+
+[tools."github:atuinsh/atuin".platforms.linux-arm64]
+asset_pattern = "*aarch64*musl*"
 
 [settings]
 experimental = true
