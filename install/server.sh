@@ -28,6 +28,22 @@ install -Dm 0755 install/linux/bin/pbpaste "${HOME}/.local/bin/pbpaste"
 sudo apt-get update
 sudo apt-get install -y zsh curl ca-certificates git
 
+# On Ubuntu hosts (including Orange Pi arm64), stock git is frozen (e.g. 2.34 on 22.04 LTS).
+# Use the official git-core PPA to get modern git releases, while skipping on non-Ubuntu
+# distros (like Debian / Raspberry Pi OS) where PPAs are incompatible.
+if [[ -f /etc/os-release ]]; then
+  # shellcheck source=/dev/null
+  . /etc/os-release
+  if [[ "${ID:-}" == "ubuntu" ]]; then
+    if ! command -v add-apt-repository &>/dev/null; then
+      sudo apt-get install -y software-properties-common
+    fi
+    sudo add-apt-repository -y ppa:git-core/ppa
+    sudo apt-get update
+    sudo apt-get install -y git
+  fi
+fi
+
 # Docker Engine (system daemon — not available via mise)
 if ! command -v docker &>/dev/null; then
   curl -fsSL https://get.docker.com | sudo sh
@@ -60,7 +76,7 @@ mise upgrade
 
 # yazi's git.yazi plugin is only declared in ~/.config/yazi/package.toml (rsynced
 # above) — it isn't fetched until `ya pkg install` runs
-ya pkg install
+mise exec -- ya pkg install
 
 # cloud-server prompt: always show host (no username), keep noise low
 STARSHIP_TOML="${HOME}/.config/starship.toml"
