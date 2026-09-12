@@ -258,7 +258,6 @@ if OS.mac?
     brew "smudge/smudge/nightlight"
     brew "hyperfine"
     brew "zrok"
-    brew "btop"
     brew "px"
     brew "sslscan"
     brew "hunk"
