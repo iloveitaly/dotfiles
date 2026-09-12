@@ -28,6 +28,7 @@ brew "md5sha1sum"
 brew "git-lfs"
 brew "vimcal"
 brew "yazi"
+brew "chafa"
 brew "gitx" # visual git tool, kaleidoscope alternative
 brew "kdiff3"
 brew "gpatch" # update the builtin tool to the latest
@@ -113,7 +114,6 @@ if OS.mac?
     brew "mcpm"
     brew "soulver-cli"
     brew "localsend"
-    brew "google-gemini"
     brew "codex"
     brew "chatgpt"
 
@@ -219,6 +219,7 @@ if OS.mac?
     cask "openrefine", { args: { no_quarantine: true } }
     cask "keycastr"
     cask "block-buzz"
+    cask "google-gemini"
 
     # == Quicklook Plugins
     # These need to be manually enabled in macos preferences
