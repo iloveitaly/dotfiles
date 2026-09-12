@@ -57,7 +57,6 @@ sd = "latest"
 "github:shshemi/tabiew" = "latest"
 
 # system & disk inspection
-btop = "latest"
 dua = "latest"
 dust = "latest"
 duf = "latest"

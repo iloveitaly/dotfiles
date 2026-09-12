@@ -1,3 +1,6 @@
+[tools]
+btop = "latest"
+
 [settings]
 # Erlang, Elixir, and Ruby compile from source on Linux and are unneeded outside macOS.
 disable_tools = ["erlang", "elixir", "ruby"]
