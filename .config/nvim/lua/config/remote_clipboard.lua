@@ -49,6 +49,16 @@ function M.setup()
     return
   end
 
+  if vim.fn.executable("pbcopy") == 1 and vim.fn.executable("pbpaste") == 1 then
+    vim.g.clipboard = {
+      name = "pbcopy/pbpaste",
+      copy = { ["+"] = { "pbcopy" }, ["*"] = { "pbcopy" } },
+      paste = { ["+"] = { "pbpaste" }, ["*"] = { "pbpaste" } },
+      cache_enabled = 0,
+    }
+    return
+  end
+
   local osc52 = require("vim.ui.clipboard.osc52")
   local has_wayland = vim.env.WAYLAND_DISPLAY ~= nil
     and vim.fn.executable("wl-copy") == 1
