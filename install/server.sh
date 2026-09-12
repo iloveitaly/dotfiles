@@ -35,9 +35,9 @@ fi
 sudo usermod -aG docker "$(whoami)"
 # TODO: sudo systemctl enable --now docker
 
-# mise → ~/.local/bin/mise
+# mise → ~/.local/bin/mise (musl to avoid glibc issues on some servers/pis)
 if [[ ! -x "${HOME}/.local/bin/mise" ]]; then
-  curl https://mise.run | sh
+  curl https://mise.run | MISE_INSTALL_MUSL=1 sh
 fi
 export PATH="${HOME}/.local/bin:${PATH}"
 eval "$(mise activate bash)"

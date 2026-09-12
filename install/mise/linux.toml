@@ -2,5 +2,8 @@
 btop = "latest"
 
 [settings]
+# Prefer portable musl artifacts when a backend publishes both GNU and musl Linux builds.
+libc = "musl"
+
 # Erlang, Elixir, and Ruby compile from source on Linux and are unneeded outside macOS.
 disable_tools = ["erlang", "elixir", "ruby"]
