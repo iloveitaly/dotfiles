@@ -2,7 +2,7 @@
 
 Add one `.zsh` file per CLI under the appropriate load directory.
 
-- Use `0b/` only when the generated completion must be discovered by `compinit` through `fpath` (for example, a script with `#compdef` that cannot be sourced directly).
+- Use `0b/` only when the generated completion must be discovered by `compinit` through `fpath` (for example, a script with `#compdef` that cannot be sourced directly). Only append to `fpath+=$plugin_dir`; never call `compdef` or `autoload` in `0b/` (`compinit` discovers them at the pivot).
 - Use `0c/` when the script can be sourced or evaluated after `compinit`. Most generated completion plugins belong here. Explicitly call `compdef _<command> <command>` after sourcing: zinit multisrc can skip a generator's trailing registration.
 - Guard every plugin with `if (( $+commands[<command>] )); then ... fi` so a missing CLI never slows shell startup or emits errors.
 
