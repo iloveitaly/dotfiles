@@ -77,6 +77,7 @@ memory_limit=1024M
 pnpm install -g hostile
 pnpm install -g wrangler@latest
 pnpm install -g yalc
+pnpm install -g @bufferapp/cli
 
 ####################
 # AI Configuration #

@@ -513,6 +513,7 @@ tmuxtrace() {
   ps -p "$pid_list" -o pid,ppid,user,command
 }
 
+# tweet without going to X
 buffer-tweet() {
   local tmp
   tmp=$(mktemp /tmp/buffer_draft.XXXXXX.txt)
