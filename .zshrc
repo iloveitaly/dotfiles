@@ -200,6 +200,10 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 # https://github.com/zsh-users/zsh-autosuggestions/issues/351
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
 
+# Binds widgets once at startup instead of every prompt (saves ~150ms).
+# Safe unless custom ZLE widgets are loaded dynamically mid-session.
+export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+
 # ===============
 # Word Definition
 # ===============
