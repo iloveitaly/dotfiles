@@ -119,6 +119,7 @@ zinit wait'0c' lucid for \
 #   - git-open: gh browse doesn't always work for repos I did not clone from my user
 zinit wait'1' lucid for \
   multisrc"${HOME}/.config/mbianco/zsh_plugins/1/*.zsh" \
+  if'[[ "$OSTYPE" == darwin* || $+commands[notify-send] -eq 1 ]]' \
   MichaelAquilina/zsh-auto-notify \
   chrissicool/zsh-256color \
   zpm-zsh/colors \
