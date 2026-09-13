@@ -1,0 +1,3 @@
+[settings.hook_env]
+# Cache hook-env checks to drop prompt resolution from ~270ms to ~23ms on slow ARM/storage
+cache_ttl = "30s"
