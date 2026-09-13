@@ -19,6 +19,12 @@ rsync --exclude-from="install/standard-exclude.txt" \
 install -Dm 0644 install/mise/linux.toml \
   "${HOME}/.config/mise/conf.d/linux.toml"
 
+# Cache hook-env checks to drop prompt resolution from ~270ms to ~23ms on slow ARM/storage
+cat >"${HOME}/.config/mise/conf.d/server.toml" <<'EOF'
+[settings.hook_env]
+cache_ttl = "30s"
+EOF
+
 # forgit expects macOS-style pbcopy/pbpaste. Headless hosts have no display
 # server, so relay clipboard data over OSC52 via osc. Executables (not aliases)
 # so forgit works outside zsh too.
@@ -72,6 +78,7 @@ cd "${HOME}" || exit 1
 
 mise install -y
 mise upgrade
+mise prune -y
 
 # yazi's git.yazi plugin is only declared in ~/.config/yazi/package.toml (rsynced
 # above) — it isn't fetched until `ya pkg install` runs

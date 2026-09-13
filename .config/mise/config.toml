@@ -101,3 +101,5 @@ binstall = true
 
 [settings.pipx]
 uvx = true
+
+
