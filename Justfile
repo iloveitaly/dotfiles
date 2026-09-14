@@ -8,11 +8,12 @@ set unstable := true
 rsync_cmd := "rsync --exclude-from=install/standard-exclude.txt -av . ~"
 
 upgrade:
-	brew upgrade -y awscli git rg fd gh zsh gmailctl dolt yazi bat hunk block-buzz
+	brew upgrade -y awscli git zsh gmailctl dolt hunk block-buzz yabai
 	gh extension upgrade --all
 	
 	mise self-update -y
 	mise upgrade -y
+	mise prune -y
 	ya pkg upgrade --discard
 	XDG_CONFIG_HOME="{{justfile_directory()}}/.config" nvim --headless "+Lazy! update" +qa
 
