@@ -84,7 +84,6 @@ pnpm install -g @bufferapp/cli
 ####################
 
 # all of the cli coding tools
-pnpm install -g @sourcegraph/amp
 bun install -g @github/copilot@latest
 bun add -g opencode-ai
 curl -fsSL https://claude.ai/install.sh | bash
@@ -118,13 +117,6 @@ gh extension install dlvhdr/gh-dash
 gh extension install iloveitaly/gh-url
 gh extension install iloveitaly/gh-ai-pr
 gh extension install github/gh-stack
-
-# mcp setup
-# mcpm profile add dev
-# mcpm target set %dev
-# npm install -g mcp-chrome-bridge
-# mcpm import remote mcp-chrome-bridge --url http://127.0.0.1:12306/mcp
-# mcpm target set @cursor
 
 # we want to be careful about mcps and only globally install (a) what is not included by default and (b) what is geniunely globally useful 
 # claude doesn't support dynamic ENV vars?
