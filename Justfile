@@ -87,5 +87,73 @@ export-orbstack-ca:
     cat "$(python -m certifi)" ~/.orbstack/certs/ca.pem > ~/.orbstack/certs/bundle.pem.tmp
     mv ~/.orbstack/certs/bundle.pem.tmp ~/.orbstack/certs/bundle.pem
 
+# Drop package-manager / toolchain caches and project build junk older than 30d.
+# Safe regenerable state only — not Docker (see clean-docker) and not full mise installs
+# wipe (mise prune only removes unreferenced versions).
 clean:
-    rm -rf "$HOME/.cache/.bun/bin"
+    npm cache clean --force
+    pnpm store prune
+    # `bun pm cache rm` requires a package.json; wipe the global install cache instead
+    rm -rf "$HOME/.cache/.bun/install" "$HOME/.cache/.bun/bin"
+
+    # Python
+    uv cache clean
+    pip cache purge
+
+    # Go module + build caches
+    go clean -cache -testcache -modcache
+
+    # Toolchain managers
+    mise cache prune
+    mise prune
+    brew cleanup --prune=all
+
+# Reclaim Docker/OrbStack disk (dangling images, stopped containers, build cache,
+# unused volumes). Prompts once; does not remove tagged in-use images (-a would).
+clean-docker:
+    docker system prune --volumes
+    docker builder prune
+
+# Configure Docker defaults: table psFormat on all OSes; log limits & containerd on macOS/OrbStack; log limits on Linux.
+[script]
+set-docker-config:
+    # CLI client config: set compact `docker ps` column formatting across all OSes
+    mkdir -p "$HOME/.docker"
+    [[ -f "$HOME/.docker/config.json" ]] || echo '{}' > "$HOME/.docker/config.json"
+
+    # simplify default ps format so it actually fits on the screen
+    yq -i -o json '.psFormat = "table {{ "{{" }}.ID}}\t{{ "{{" }}.Image}}\t{{ "{{" }}.Names}}"' "$HOME/.docker/config.json"
+
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS / OrbStack: cap log size and enable containerd snapshotter (required by Railpack / BuildKit)
+        mkdir -p "$HOME/.orbstack/config"
+        [[ -f "$HOME/.orbstack/config/docker.json" ]] || echo '{}' > "$HOME/.orbstack/config/docker.json"
+        yq -i -o json '
+            .log-driver = "json-file" |
+            .log-opts.max-size = "10m" |
+            .log-opts.max-file = "3" |
+            .features."containerd-snapshotter" = true
+        ' "$HOME/.orbstack/config/docker.json"
+
+        # Register remote Docker hosts over SSH for multi-host CLI access
+        for host in ${DOCKER_HOSTS:-}; do
+            docker context create "$host" --docker "host=ssh://$host@$host.lan" 2>/dev/null || true
+        done
+
+        if command -v orb >/dev/null; then
+            orb restart docker
+        fi
+    else
+        # Linux: write daemon log caps to /etc/docker/daemon.json; pipe via user yq so sudo secure_path doesn't drop mise binaries
+        sudo mkdir -p /etc/docker
+        { sudo cat /etc/docker/daemon.json 2>/dev/null || echo '{}'; } | yq -o json '
+            .log-driver = "json-file" |
+            .log-opts.max-size = "10m" |
+            .log-opts.max-file = "3"
+        ' | sudo tee /etc/docker/daemon.json >/dev/null
+
+        # Reload systemd Docker service if currently running to apply the new daemon configuration
+        if command -v systemctl >/dev/null && systemctl is-active --quiet docker; then
+            sudo systemctl reload docker 2>/dev/null || sudo systemctl restart docker 2>/dev/null || true
+        fi
+    fi
