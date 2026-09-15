@@ -128,6 +128,9 @@ EOF
 cat <<EOF >>~/.extra
 alias dokku="docker exec -it dokku dokku"
 alias dokku-shell="docker exec -it dokku bash -l"
+
+# shared .aliases points tailscale at the macOS app binary
+unalias tailscale 2>/dev/null || true
 EOF
 
 # delete some zsh_plugins that are macos specific
