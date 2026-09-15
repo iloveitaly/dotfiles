@@ -5,15 +5,14 @@ set script-interpreter := ["zsh", "-euBh", "-o", "pipefail"]
 
 set unstable := true
 
-rsync_cmd := "rsync --exclude-from=install/standard-exclude.txt -av . ~"
-
 upgrade:
-	brew upgrade -y awscli git zsh gmailctl dolt hunk block-buzz yabai
+	brew upgrade -y awscli git zsh gmailctl dolt hunk block-buzz yabai fx
 	gh extension upgrade --all
 	
 	mise self-update -y
 	mise upgrade -y
 	mise prune -y
+
 	ya pkg upgrade --discard
 	XDG_CONFIG_HOME="{{justfile_directory()}}/.config" nvim --headless "+Lazy! update" +qa
 
@@ -114,46 +113,40 @@ clean-docker:
     docker system prune --volumes
     docker builder prune
 
-# Configure Docker defaults: table psFormat on all OSes; log limits & containerd on macOS/OrbStack; log limits on Linux.
+# Configure Docker defaults: compact `docker ps` everywhere; cap daemon json-file logs.
+# Daemon file: OrbStack ~/.orbstack/config/docker.json on macOS, /etc/docker/daemon.json on Linux.
+# containerd-snapshotter is the Docker 29+ default on fresh installs, so we don't set it.
 [script]
 set-docker-config:
-    # CLI client config: set compact `docker ps` column formatting across all OSes
     mkdir -p "$HOME/.docker"
     [[ -f "$HOME/.docker/config.json" ]] || echo '{}' > "$HOME/.docker/config.json"
-
-    # simplify default ps format so it actually fits on the screen
     yq -i -o json '.psFormat = "table {{ "{{" }}.ID}}\t{{ "{{" }}.Image}}\t{{ "{{" }}.Names}}"' "$HOME/.docker/config.json"
 
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        # macOS / OrbStack: cap log size and enable containerd snapshotter (required by Railpack / BuildKit)
-        mkdir -p "$HOME/.orbstack/config"
-        [[ -f "$HOME/.orbstack/config/docker.json" ]] || echo '{}' > "$HOME/.orbstack/config/docker.json"
-        yq -i -o json '
-            .log-driver = "json-file" |
-            .log-opts.max-size = "10m" |
-            .log-opts.max-file = "3" |
-            .features."containerd-snapshotter" = true
-        ' "$HOME/.orbstack/config/docker.json"
+    daemon_patch='
+        .log-driver = "json-file" |
+        .log-opts.max-size = "10m" |
+        .log-opts.max-file = "3"
+    '
 
-        # Register remote Docker hosts over SSH for multi-host CLI access
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        daemon_json="$HOME/.orbstack/config/docker.json"
+        mkdir -p "${daemon_json:h}"
+        [[ -f "$daemon_json" ]] || echo '{}' > "$daemon_json"
+        yq -i -o json "$daemon_patch" "$daemon_json"
+    else
+        # pipe via user yq so sudo secure_path doesn't drop mise binaries
+        daemon_json="/etc/docker/daemon.json"
+        sudo mkdir -p "${daemon_json:h}"
+        { sudo cat "$daemon_json" 2>/dev/null || echo '{}'; } | yq -o json "$daemon_patch" | sudo tee "$daemon_json" >/dev/null
+    fi
+
+    if [[ "$OSTYPE" == "darwin"* ]]; then
         for host in ${DOCKER_HOSTS:-}; do
             docker context create "$host" --docker "host=ssh://$host@$host.lan" 2>/dev/null || true
         done
-
         if command -v orb >/dev/null; then
             orb restart docker
         fi
-    else
-        # Linux: write daemon log caps to /etc/docker/daemon.json; pipe via user yq so sudo secure_path doesn't drop mise binaries
-        sudo mkdir -p /etc/docker
-        { sudo cat /etc/docker/daemon.json 2>/dev/null || echo '{}'; } | yq -o json '
-            .log-driver = "json-file" |
-            .log-opts.max-size = "10m" |
-            .log-opts.max-file = "3"
-        ' | sudo tee /etc/docker/daemon.json >/dev/null
-
-        # Reload systemd Docker service if currently running to apply the new daemon configuration
-        if command -v systemctl >/dev/null && systemctl is-active --quiet docker; then
-            sudo systemctl reload docker 2>/dev/null || sudo systemctl restart docker 2>/dev/null || true
-        fi
+    elif command -v systemctl >/dev/null && systemctl is-active --quiet docker; then
+        sudo systemctl reload docker 2>/dev/null || sudo systemctl restart docker 2>/dev/null || true
     fi
