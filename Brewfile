@@ -90,7 +90,6 @@ if OS.mac?
     brew "pstree" # procs seem to have a tree view and is a bit better
     brew "broot" # better file finding
     brew "dolt"
-    brew "buildpacks/tap/pack"
     brew "pgcli" # better psql, with autocompletion and DATABASE_URL connection support
     brew "kitty" # yet another terminal
     brew "gmailctl" # gmail filter configuration as code
@@ -236,7 +235,6 @@ if OS.mac?
     brew "mackup"
     brew "infat"
     brew "spoof-mac"
-    brew "keith/formulae/zap"
     brew "mas"
     brew "webkit2png"
     brew "wallpaper"
