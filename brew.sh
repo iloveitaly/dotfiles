@@ -83,6 +83,9 @@ pnpm install -g @bufferapp/cli
 # AI Configuration #
 ####################
 
+# playwright-style browser automation
+uv tool install 'camoufox[gui,geoip]'
+
 # all of the cli coding tools
 bun install -g @github/copilot@latest
 bun add -g opencode-ai
