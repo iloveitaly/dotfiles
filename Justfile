@@ -20,13 +20,11 @@ upgrade:
 	# zinit update has job-control/pager quirks in non-interactive subshells
 	echo "Please run \`zinit update\` in an interactive shell to update zinit plugins like starship."
 
+# linux installs have a custom sync command that is run
+[macos]
 sync:
-	if command -v entr &>/dev/null; then \
-		fd --hidden --max-depth 4 -t f --exclude=.git | entr {{rsync_cmd}}; \
-	else \
-		echo "entr not found, running a one-shot sync instead" >&2; \
-		{{rsync_cmd}}; \
-	fi
+	fd --hidden --max-depth 4 -t f --exclude=.git | \
+		entr rsync --exclude-from=install/standard-exclude.txt -av . ~
 
 # what quicklook plugins are installed?
 list-quicklook:
