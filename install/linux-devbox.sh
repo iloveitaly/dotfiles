@@ -68,7 +68,7 @@ sed -i '/zsh-auto-notify/d' ~/.zsh_plugins
 sudo chsh -s "$(which zsh)" "$(whoami)"
 
 git config --global --unset commit.gpgsign
-git config --global credential.helper store
+git config --global --replace-all credential.helper store
 
 # if `python` doesn't exist, let's alias python3 to it if it exists
 if ! command -v python &>/dev/null && command -v python3 &>/dev/null; then
