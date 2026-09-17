@@ -258,7 +258,6 @@ if OS.mac?
     brew "zrok"
     brew "px"
     brew "sslscan"
-    brew "hunk"
     brew "odiff"
     brew "koekeishiya/formulae/yabai"
 

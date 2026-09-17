@@ -80,6 +80,7 @@ pnpm       = "latest"
 golang     = "latest"
 zig        = "latest"  
 "github:tbillington/kondo" = "latest"
+hunk = "latest"
 
 # Amazon Linux ships an older glibc than atuin's GNU release requires. Use its
 # statically linked musl asset on Linux, while GitHub's normal asset selection
