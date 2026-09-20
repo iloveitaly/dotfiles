@@ -78,6 +78,7 @@ pnpm install -g hostile
 pnpm install -g wrangler@latest
 pnpm install -g yalc
 pnpm install -g @bufferapp/cli
+pnpm install -g @doist/todoist-cli
 
 ####################
 # AI Configuration #
