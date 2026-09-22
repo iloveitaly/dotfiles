@@ -6,7 +6,7 @@ set script-interpreter := ["zsh", "-euBh", "-o", "pipefail"]
 set unstable := true
 
 upgrade:
-	brew upgrade -y awscli git zsh gmailctl dolt hunk block-buzz yabai fx
+	brew upgrade -y awscli git zsh gmailctl dolt block-buzz yabai fx
 	gh extension upgrade --all
 	
 	mise self-update -y
