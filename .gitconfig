@@ -2,6 +2,10 @@
   # configure identity and other user-specific configuration here
   path = ./.gitconfig-local
 
+[user]
+  # 1Password SSH key (public); private key stays in 1Password / ssh-agent
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICwLUUgnt+gbin8Q9k584YSTg1efJc5syi51vOV3o/pA
+
 [core]
   excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
@@ -189,7 +193,7 @@
   format = ssh
 
 [gpg "ssh"]
-  # macOS 1Password; omarchy Justfile rewrites to /opt/1Password/op-ssh-sign on Arch
+  # macOS 1Password; Linux overrides in .gitconfig-linux (included last)
   program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 
 [init]
@@ -221,3 +225,7 @@
   added = yellow
   changed = green
   untracked = cyan
+
+# after shared keys so Linux credential/editor/ssh-sign win; ignored if absent
+[include]
+  path = ./.gitconfig-linux
