@@ -1,7 +1,0 @@
-[user]
-  name = Your Name
-  email = you@example.com
-  signingkey = YOUR_GPG_KEY_FINGERPRINT
-
-[github]
-  user = your-github-username
