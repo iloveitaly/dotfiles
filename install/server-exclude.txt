@@ -5,6 +5,7 @@
 .config/focus/
 .config/extrakto/
 .config/docker/
+# macOS client config (OrbStack context, osxkeychain). Linux must not sync it.
 .docker/config.json
 .yabairc
 .config/ghostty/
