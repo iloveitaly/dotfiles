@@ -1,0 +1,18 @@
+[Unit]
+Description=wayvnc VNC server (assistant; Tailscale + default route :5901)
+Documentation=https://github.com/any1/wayvnc
+After=sway-headless.service tailscaled.service
+Requires=sway-headless.service
+Wants=tailscaled.service
+
+[Service]
+Type=simple
+ExecStart=%h/.config/wayvnc/listen
+Restart=on-failure
+RestartSec=3
+Environment=XDG_RUNTIME_DIR=%t
+Environment=WAYVNC_PORT=5901
+Environment=WAYVNC_AUTH=tls
+
+[Install]
+WantedBy=default.target

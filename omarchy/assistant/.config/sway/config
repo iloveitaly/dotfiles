@@ -1,0 +1,10 @@
+# Headless Sway for user assistant. Virtual output only (WLR_BACKENDS=headless).
+# Compositor GL is WLR_RENDERER=gles2 on the amdgpu render node (unit file).
+# Solid bg so a working VNC capture is obvious (default sway is black).
+output * resolution 1920x1080 bg #1a4a7a solid_color
+
+exec /usr/bin/ghostty
+
+bindsym Mod4+Return exec /usr/bin/ghostty
+bindsym Mod4+q kill
+bindsym Mod4+Shift+e exec /usr/bin/swaymsg exit
