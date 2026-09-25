@@ -30,6 +30,18 @@ To run everything else (brew install, keybindings, zsh setup, etc):
 ./bootstrap.sh
 ```
 
+### Omarchy
+
+On [Omarchy](https://omarchy.org/), from `omarchy/`:
+
+```bash
+just install    # first time: packages + sync + configure
+just sync       # day to day: shared tree + Hyprland/keyd overlay
+just configure  # host setup again: sshd, assistant, dev, wayvnc firewall
+```
+
+See [omarchy/README.md](omarchy/README.md) for the rest.
+
 ## Development
 
 This command will sync your config files each time you make a change:
