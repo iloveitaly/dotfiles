@@ -1,0 +1,37 @@
+#!/bin/bash
+# Focus a matching window on the active Hyprland workspace, or run a command.
+#
+# Usage: launch-or-focus-workspace <class-regex> <command> [args...]
+#
+# class-regex is a jq/Oniguruma regex tested against the window class (case-insensitive).
+# Among matches on the active workspace, the most recently focused window wins.
+# If none match, runs: command [args...]
+
+set -euo pipefail
+
+if (($# < 2)); then
+  echo "Usage: launch-or-focus-workspace <class-regex> <command> [args...]" >&2
+  exit 1
+fi
+
+class_re=$1
+shift
+
+ws=$(hyprctl activeworkspace -j | jq -r '.id')
+addr=$(
+  hyprctl clients -j | jq -r --argjson ws "$ws" --arg re "$class_re" '
+    [.[]
+      | select(.workspace.id == $ws)
+      | select(.class | test($re; "i"))
+    ]
+    | sort_by(.focusHistoryID)
+    | .[0].address // empty
+  '
+)
+
+if [[ -n "${addr:-}" ]]; then
+  hyprctl dispatch "hl.dsp.focus({ window = \"address:$addr\" })" >/dev/null
+  exit 0
+fi
+
+exec "$@"

@@ -1,0 +1,8 @@
+#!/bin/bash
+# Superhuman in Google Chrome Personal (directory "Profile 1").
+# One app window per workspace; does not use omarchy-launch-or-focus-webapp
+# (that path splits on the space in "Profile 1").
+exec launch-or-focus-workspace 'mail\.superhuman\.com__-Profile_1' \
+  setsid uwsm-app -- /usr/bin/google-chrome-stable \
+  --profile-directory="Profile 1" \
+  --app=https://mail.superhuman.com

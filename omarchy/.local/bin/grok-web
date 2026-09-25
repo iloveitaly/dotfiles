@@ -1,0 +1,31 @@
+#!/bin/bash
+# Grok web UI as a normal Chrome window (tab strip), Personal profile.
+# Omarchy webapps use --app=… which removes tabs; this intentionally does not.
+#
+# One Grok window per workspace: focus an existing google-chrome window whose
+# title mentions Grok, otherwise open a new window at grok.com.
+
+set -euo pipefail
+
+ws=$(hyprctl activeworkspace -j | jq -r '.id')
+addr=$(
+  hyprctl clients -j | jq -r --argjson ws "$ws" '
+    [.[]
+      | select(.workspace.id == $ws)
+      | select(.class | test("^google-chrome$"; "i"))
+      | select(.title | test("\\bGrok\\b"; "i"))
+    ]
+    | sort_by(.focusHistoryID)
+    | .[0].address // empty
+  '
+)
+
+if [[ -n "${addr:-}" ]]; then
+  hyprctl dispatch "hl.dsp.focus({ window = \"address:$addr\" })" >/dev/null
+  exit 0
+fi
+
+exec setsid uwsm-app -- /usr/bin/google-chrome-stable \
+  --profile-directory="Profile 1" \
+  --new-window \
+  https://grok.com

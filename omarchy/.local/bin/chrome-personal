@@ -1,0 +1,44 @@
+#!/bin/bash
+# Google Chrome — Personal profile (directory "Profile 1").
+# One normal browser window (class google-chrome) per Hyprland workspace:
+# focus the existing one on this workspace, or open a new window here.
+# Web apps use class chrome-* and are not treated as the main browser.
+#
+# With URL/flag args (xdg-open, etc.): focus the workspace window if any, then
+# hand off to Chrome so the existing process opens a tab (no second window).
+# --incognito / --private always open a new private window.
+
+set -euo pipefail
+
+chrome=(/usr/bin/google-chrome-stable --profile-directory="Profile 1")
+
+for arg in "$@"; do
+  case $arg in
+  --incognito | --private | --new-window)
+    exec setsid uwsm-app -- "${chrome[@]}" "${@/--private/--incognito}"
+    ;;
+  esac
+done
+
+ws=$(hyprctl activeworkspace -j | jq -r '.id')
+addr=$(
+  hyprctl clients -j | jq -r --argjson ws "$ws" '
+    [.[]
+      | select(.workspace.id == $ws)
+      | select(.class | test("^google-chrome$"; "i"))
+    ]
+    | sort_by(.focusHistoryID)
+    | .[0].address // empty
+  '
+)
+
+if [[ -n "${addr:-}" ]]; then
+  hyprctl dispatch "hl.dsp.focus({ window = \"address:$addr\" })" >/dev/null
+  if (($# > 0)); then
+    # Reuse the Chrome process; prefer the focused window for the new tab.
+    exec "${chrome[@]}" "$@"
+  fi
+  exit 0
+fi
+
+exec setsid uwsm-app -- "${chrome[@]}" "$@"

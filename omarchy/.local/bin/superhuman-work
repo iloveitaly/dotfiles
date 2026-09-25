@@ -1,0 +1,7 @@
+#!/bin/bash
+# Superhuman in Google Chrome Default ("Your Chrome" / work).
+# One app window per workspace.
+exec launch-or-focus-workspace 'mail\.superhuman\.com__-Default' \
+  setsid uwsm-app -- /usr/bin/google-chrome-stable \
+  --profile-directory=Default \
+  --app=https://mail.superhuman.com

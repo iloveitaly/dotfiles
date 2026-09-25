@@ -1,0 +1,9 @@
+{
+  "manifest_version": 3,
+  "name": "New Tab → Grok",
+  "description": "Open https://grok.com for every new tab (Personal / Grok workflow).",
+  "version": "1.0.0",
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  }
+}

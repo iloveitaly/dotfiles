@@ -1,0 +1,7 @@
+#!/bin/bash
+# Todoist Chrome webapp (Personal profile). One window per Hyprland workspace.
+# Matches class like chrome-app.todoist.com__-Profile_1.
+exec launch-or-focus-workspace 'app\.todoist\.com' \
+  setsid uwsm-app -- /usr/bin/google-chrome-stable \
+  --profile-directory="Profile 1" \
+  --app=https://app.todoist.com/app

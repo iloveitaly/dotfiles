@@ -1,0 +1,18 @@
+[Unit]
+Description=wayvnc VNC server (Tailscale + default route, DP-3)
+Documentation=https://github.com/any1/wayvnc
+PartOf=graphical-session.target
+After=graphical-session.target tailscaled.service
+Wants=tailscaled.service
+
+[Service]
+Type=simple
+ExecStart=%h/.config/wayvnc/listen
+Restart=on-failure
+RestartSec=3
+Environment=XDG_RUNTIME_DIR=%t
+Environment=WAYVNC_AUTH=tls
+Environment=WAYVNC_OUTPUT=DP-3
+
+[Install]
+WantedBy=graphical-session.target

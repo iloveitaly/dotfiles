@@ -1,0 +1,10 @@
+# Shell type scale, in px. Stock is 12. Bar labels and icons follow this.
+# GTK and terminal fonts are unchanged. Menus and notifications use the same scale.
+[font]
+base-size = 20
+
+# Cross-axis size at base-size 12, then multiplied by base-size/12.
+# 24 * 20/12 = 40px top bar. 26 * 20/12 = 43px side bar.
+[bar]
+size-horizontal = 24
+size-vertical = 26

@@ -1,0 +1,46 @@
+#!/bin/bash
+# Ensure Google Chrome "Personal" profile (directory Profile 1) prefs:
+#   - bookmarks bar hidden
+# Safe to run while Chrome is open; if the profile Preferences file is locked
+# or rewritten on exit, run again after a full Chrome quit (or just sync).
+
+set -euo pipefail
+
+prefs="$HOME/.config/google-chrome/Profile 1/Preferences"
+if [[ ! -f $prefs ]]; then
+  echo "chrome-ensure-personal-prefs: no Profile 1 Preferences yet (open Chrome Personal once)" >&2
+  exit 0
+fi
+
+python3 - "$prefs" <<'PY'
+import json, sys
+from pathlib import Path
+
+path = Path(sys.argv[1])
+data = json.loads(path.read_text(encoding="utf-8"))
+
+bb = data.setdefault("bookmark_bar", {})
+changed = False
+if bb.get("show_on_all_tabs") is not False:
+    bb["show_on_all_tabs"] = False
+    changed = True
+if bb.get("show_apps_shortcut") is not False:
+    bb["show_apps_shortcut"] = False
+    changed = True
+
+# Prefer grok as homepage (Home button / some open-page paths). New Tab is
+# handled by the grok-newtab extension loaded via chrome-flags.conf.
+if data.get("homepage") != "https://grok.com/":
+    data["homepage"] = "https://grok.com/"
+    changed = True
+if data.get("homepage_is_newtabpage") is not False:
+    data["homepage_is_newtabpage"] = False
+    changed = True
+
+if not changed:
+    print("chrome-ensure-personal-prefs: already set")
+    raise SystemExit(0)
+
+path.write_text(json.dumps(data, separators=(",", ":"), ensure_ascii=False), encoding="utf-8")
+print("chrome-ensure-personal-prefs: updated", path)
+PY

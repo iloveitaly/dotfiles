@@ -1,0 +1,8 @@
+#!/bin/bash
+# Gemini Chrome webapp (Default profile — "Your Chrome"). One window per workspace.
+# Binary is gemini-web so we never overwrite ~/.local/bin/gemini (Omarchy gemini-cli stub).
+# Window class looks like chrome-gemini.google.com__-Default.
+exec launch-or-focus-workspace 'gemini\.google\.com' \
+  setsid uwsm-app -- /usr/bin/google-chrome-stable \
+  --profile-directory=Default \
+  --app=https://gemini.google.com

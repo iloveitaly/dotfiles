@@ -1,0 +1,98 @@
+#!/bin/bash
+# Bind wayvnc to whichever of these exist: Tailscale IPv4, Tailscale IPv6,
+# and the default-route IPv4 (skipped when that iface is tailscale0).
+# Exit if none exist. Do not listen on 0.0.0.0.
+# WAYVNC_PORT defaults to 5900 (desk). assistant sets 5901.
+# WAYVNC_AUTH is required: tls, password, or none. Unset is refused.
+# WAYVNC_OUTPUT (desk unit sets DP-3) selects one output. --gpu stays off
+# unless WAYVNC_GPU=1; assistant capture breaks while Hyprland holds DRM master.
+set -euo pipefail
+
+port=${WAYVNC_PORT:-5900}
+auth=${WAYVNC_AUTH:-}
+cfgdir=${XDG_CONFIG_HOME:-$HOME/.config}/wayvnc
+
+if [[ -z $auth ]]; then
+  echo "wayvnc-listen: WAYVNC_AUTH is unset (tls|password|none)" >&2
+  exit 1
+fi
+
+addrs=()
+ts4=$(tailscale ip -4 2>/dev/null || true)
+ts6=$(tailscale ip -6 2>/dev/null || true)
+ts4=${ts4%%$'\n'*}
+ts6=${ts6%%$'\n'*}
+[[ -n $ts4 ]] && addrs+=("${ts4}:${port}")
+[[ -n $ts6 ]] && addrs+=("[${ts6}]:${port}")
+
+lan_if=$(ip -4 route show default | awk '/^default/ {print $5; exit}')
+lan_ip=$(ip -4 route show default | awk '/^default/ {for (i=1;i<=NF;i++) if ($i=="src") {print $(i+1); exit}}')
+if [[ -z $lan_ip && -n $lan_if && $lan_if != tailscale0 ]]; then
+  lan_ip=$(ip -4 -o addr show dev "$lan_if" scope global | awk '{print $4; exit}' | cut -d/ -f1)
+fi
+if [[ -n $lan_if && $lan_if != tailscale0 && -n $lan_ip ]]; then
+  addrs+=("${lan_ip}:${port}")
+fi
+
+if (( ${#addrs[@]} == 0 )); then
+  echo "wayvnc-listen: no Tailscale or default-route address to bind" >&2
+  exit 1
+fi
+
+if [[ -z ${WAYLAND_DISPLAY:-} ]]; then
+  runtime=${XDG_RUNTIME_DIR:-/run/user/$(id -u)}
+  for _ in $(seq 1 40); do
+    for sock in "$runtime"/wayland-[0-9]*; do
+      if [[ -S $sock ]]; then
+        export WAYLAND_DISPLAY="${sock##*/}"
+        break 2
+      fi
+    done
+    sleep 0.25
+  done
+fi
+if [[ -z ${WAYLAND_DISPLAY:-} ]]; then
+  echo "wayvnc-listen: no Wayland socket in ${XDG_RUNTIME_DIR:-unset}" >&2
+  exit 1
+fi
+
+extra=()
+[[ ${WAYVNC_GPU:-} == 1 ]] && extra+=(--gpu)
+[[ -n ${WAYVNC_OUTPUT:-} ]] && extra+=(-o "$WAYVNC_OUTPUT")
+
+runcfg="${XDG_RUNTIME_DIR:-/tmp}/wayvnc.config"
+umask 077
+{
+  printf 'port=%s\n' "$port"
+  case $auth in
+    tls|password)
+      if [[ ! -f $cfgdir/tls_cert.pem || ! -f $cfgdir/tls_key.pem ]]; then
+        echo "wayvnc-listen: $auth auth needs $cfgdir/tls_{cert,key}.pem (just ensure-wayvnc-tls)" >&2
+        exit 1
+      fi
+      if [[ ! -f $cfgdir/password ]]; then
+        echo "wayvnc-listen: $auth auth needs $cfgdir/password (just ensure-wayvnc-tls)" >&2
+        exit 1
+      fi
+      pass=$(tr -d '\n' <"$cfgdir/password")
+      printf 'enable_auth=true\n'
+      printf 'certificate_file=%s\n' "$cfgdir/tls_cert.pem"
+      printf 'private_key_file=%s\n' "$cfgdir/tls_key.pem"
+      printf 'password=%s\n' "$pass"
+      if [[ $auth == password ]]; then
+        printf 'relax_encryption=true\n'
+      elif [[ -f $cfgdir/rsa_key.pem ]]; then
+        # Traditional RSA PEM (ssh-keygen -m pem). OpenSSL PKCS8 tls_key.pem will SEGV neatvnc.
+        printf 'rsa_private_key_file=%s\n' "$cfgdir/rsa_key.pem"
+      fi
+      ;;
+    none)
+      ;;
+    *)
+      echo "wayvnc-listen: unknown WAYVNC_AUTH=$auth (tls|password|none)" >&2
+      exit 1
+      ;;
+  esac
+} >"$runcfg"
+
+exec /usr/bin/wayvnc --disable-resizing --render-cursor -C "$runcfg" "${extra[@]}" "${addrs[@]}"
