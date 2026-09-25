@@ -186,6 +186,7 @@ if OS.mac?
     cask "karabiner-elements"
     cask "insomnia"
     cask "stats"
+    cask "tigervnc"
     cask "vnc-viewer"
     cask "loom"
     cask "ngrok"
