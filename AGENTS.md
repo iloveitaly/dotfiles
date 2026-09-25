@@ -39,3 +39,12 @@ zsh -fc 'autoload -Uz compinit; compinit -D; source /private/tmp/<command>-compl
 ```
 
 Inspect `git status --short` before finishing, because this repository may already contain unrelated user changes.
+
+## No host IPs in Git
+
+Never write Tailscale or network host addresses into files that are committed.
+
+- Forbidden in the tree: Tailscale IPv4/IPv6 (`100.x`, `fd7a:…`), LAN/WAN host IPs (e.g. the static ethernet address), and host-specific CIDRs that identify this machine.
+- Discover at runtime: `tailscale ip`, `ip -4 addr show <iface>`. Generate listen/bind config in recipes or helpers; do not snapshot the result into the repo.
+- In docs and comments, name the interface (`enp5s0`, `tailscale0`) or MagicDNS (`biancobox`), not the address.
+- `127.0.0.1` / `0.0.0.0` / `::1` as bind examples are fine. UFW and listeners should key off interface names (`in on tailscale0`, `in on enp5s0`), not a host IP.
