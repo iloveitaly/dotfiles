@@ -50,6 +50,44 @@ This command will sync your config files each time you make a change:
 just sync
 ```
 
+## Git Config in Different Environments
+
+`~/.gitconfig` includes `~/.gitconfig-local` last. That file is gitignored. Git ignores the include when the file is missing. Keys in it override the shared config.
+
+Create `~/.gitconfig-local`:
+
+```ini
+[user]
+  name = Your Name
+  email = you@example.com
+  # SSH public key for commit signing (gpg.format=ssh); or a GPG fingerprint if still on openpgp
+  # signingkey = ssh-ed25519 AAAA...comment
+
+[github]
+  user = your-github-username
+```
+
+On a Mac the shared file is the rest of the setup. `gpg.ssh.program` is 1Password's `op-ssh-sign`, `user.signingkey` is the 1Password SSH public key, `credential.helper` is Git Credential Manager, and `core.editor` is `micro`.
+
+On Linux, add this to the same file. On Omarchy, interactive SSH still uses the 1Password agent. Git then uses the on-disk personal key. The private key has to be at `~/.ssh/id_ed25519_personal`.
+
+```ini
+[core]
+  editor = nvim +startinsert
+  sshCommand = ssh -i ~/.ssh/id_ed25519_personal -o IdentitiesOnly=yes -o IdentityAgent=none
+
+[credential]
+  helper = libsecret
+
+[gpg "ssh"]
+  program = ssh-keygen
+
+[user]
+  signingkey = ~/.ssh/id_ed25519_personal.pub
+```
+
+Headless installs (`install/linux-devbox.sh`, `install/server.sh`, `install/amazon-linux-devbox.sh`) turn commit signing off and set `credential.helper` to `store`.
+
 ## Clone Interesting Dotfiles Locally
 
 Clone all of these dotfiles into `dotfiles-inspiration` folder so you can easily `rg` for configuration keywords:
