@@ -1,0 +1,8 @@
+# Lazydocker: merge container stderr into stdout so error streams, stack
+# traces, and exit diagnostics render inside the primary logs viewport.
+# Lazydocker executes templates via os/exec directly, so the 2>&1 redirect
+# must be evaluated by an explicit `sh -c` wrapper.
+commandTemplates:
+  viewContainerLogs: 'sh -c "docker logs --timestamps --follow --since=60m {{ .Container.ID }} 2>&1"'
+  serviceLogs: 'sh -c "{{ .DockerCompose }} logs --since=60m --follow {{ .Service.Name }} 2>&1"'
+  viewServiceLogs: 'sh -c "{{ .DockerCompose }} logs --timestamps --follow --since=60m {{ .Service.Name }} 2>&1"'
