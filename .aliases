@@ -111,6 +111,3 @@ alias pyfzf="pytest --fzf"
 alias plistbuddy="/usr/libexec/PlistBuddy"
 
 alias htop="htop --sort-key=PERCENT_CPU"
-
-# https://tailscale.com/kb/1080/cli?tab=macos
-alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"

@@ -34,6 +34,11 @@ if [[ -d "/Applications/Obsidian.app/Contents/MacOS" ]]; then
   export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
 fi
 
+# Tailscale CLI (macOS app bundle; Linux uses the system binary)
+if [[ -d "/Applications/Tailscale.app/Contents/MacOS" ]]; then
+  export PATH="$PATH:/Applications/Tailscale.app/Contents/MacOS"
+fi
+
 # https://specifications.freedesktop.org/basedir/latest/
 # not exactly a path mutation, but similar in spirit
 # without this many utilities will use ~/Library/Application Support, which I hate
