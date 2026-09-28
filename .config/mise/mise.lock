@@ -1244,56 +1244,6 @@ url = "https://github.com/atuinsh/atuin/releases/download/v18.23.0/atuin-x86_64-
 url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/580134234"
 provenance = "github-attestations"
 
-[[tools."github:atuinsh/atuin"]]
-version = "18.23.0"
-backend = "github:atuinsh/atuin"
-
-[tools."github:atuinsh/atuin".options]
-asset_pattern = "*aarch64*musl*"
-
-[tools."github:atuinsh/atuin"."platforms.linux-arm64"]
-checksum = "sha256:faf91adc71e6b661b21ed4f486babbd7af9d17363d4276da4a0251f83c72498d"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.23.0/atuin-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/580134145"
-provenance = "github-attestations"
-
-[tools."github:atuinsh/atuin"."platforms.linux-arm64-musl"]
-checksum = "sha256:faf91adc71e6b661b21ed4f486babbd7af9d17363d4276da4a0251f83c72498d"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.23.0/atuin-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/580134145"
-provenance = "github-attestations"
-
-[[tools."github:atuinsh/atuin"]]
-version = "18.23.0"
-backend = "github:atuinsh/atuin"
-
-[tools."github:atuinsh/atuin".options]
-asset_pattern = "*x86_64*musl*"
-
-[tools."github:atuinsh/atuin"."platforms.linux-x64"]
-checksum = "sha256:d1b40dd6e7cd3d823867ffe22b39a025bc420f7875926ae9ca974155378da14d"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.23.0/atuin-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/580134247"
-provenance = "github-attestations"
-
-[tools."github:atuinsh/atuin"."platforms.linux-x64-baseline"]
-checksum = "sha256:d1b40dd6e7cd3d823867ffe22b39a025bc420f7875926ae9ca974155378da14d"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.23.0/atuin-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/580134247"
-provenance = "github-attestations"
-
-[tools."github:atuinsh/atuin"."platforms.linux-x64-musl"]
-checksum = "sha256:d1b40dd6e7cd3d823867ffe22b39a025bc420f7875926ae9ca974155378da14d"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.23.0/atuin-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/580134247"
-provenance = "github-attestations"
-
-[tools."github:atuinsh/atuin"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:d1b40dd6e7cd3d823867ffe22b39a025bc420f7875926ae9ca974155378da14d"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.23.0/atuin-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/580134247"
-provenance = "github-attestations"
-
 [[tools."github:dlvhdr/diffnav"]]
 version = "0.12.0"
 backend = "github:dlvhdr/diffnav"
