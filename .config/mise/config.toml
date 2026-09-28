@@ -60,7 +60,6 @@ sd = "latest"
 dua = "latest"
 dust = "latest"
 duf = "latest"
-"pipx:speedtest-cli" = "latest"
 
 # clipboard
 "github:theimpostor/osc" = "latest"

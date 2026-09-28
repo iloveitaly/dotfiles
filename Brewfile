@@ -230,6 +230,9 @@ if OS.mac?
 
     # == MacOS-only Shell Tooling
     # some of these tools are strictly terminal related, but do not play well with linux/codespaces
+    tap "teamookla/speedtest"
+    brew "teamookla/speedtest/speedtest"
+
     brew "wp-cli", args: ["ignore-dependencies"]
     brew "ffmpeg" # mainly for gif generation
     brew "gifsicle"
