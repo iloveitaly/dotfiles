@@ -16,3 +16,5 @@ code --update-extensions
 cursor --update-extensions
 
 pnpx skills update -g
+
+uv tool run camoufox fetch
