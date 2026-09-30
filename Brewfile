@@ -192,6 +192,7 @@ if OS.mac?
     cask "ngrok"
     cask "firefox" # for debugging, not actual use
     cask "angristan/tap/macthrottle"
+    cask "openusage"
 
     # == Experimental
     cask "tip"
