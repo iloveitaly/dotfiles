@@ -1,5 +1,5 @@
 #!/bin/bash
-# Minimal bootstrap for Debian, Ubuntu, and Arch hosts that mostly run Docker.
+# Minimal bootstrap for Debian, Ubuntu, Arch, and Omarchy hosts that mostly run Docker.
 #
 # Usage:
 #   run from a clone: ./install/server.sh
@@ -16,7 +16,7 @@ fi
 . /etc/os-release
 
 case "${ID:-}" in
-  arch)
+  arch|omarchy)
     package_manager=pacman
     # Arch does not support partial upgrades; update the system with its packages.
     echo -e "\033[0;33mSudo: upgrade system packages and install bootstrap dependencies with pacman.\033[0m"
@@ -30,7 +30,7 @@ case "${ID:-}" in
     sudo apt-get install -y zsh curl ca-certificates git rsync
     ;;
   *)
-    echo "Unsupported distribution: ${ID:-unknown}. Expected debian, ubuntu, or arch." >&2
+    echo "Unsupported distribution: ${ID:-unknown}. Expected debian, ubuntu, arch, or omarchy." >&2
     exit 1
     ;;
 esac
