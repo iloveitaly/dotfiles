@@ -107,6 +107,8 @@ quit_and_reopen_app "Raycast" || true
 # superwhisper also seems to consume a ton of resources over time
 quit_and_reopen_app "Superwhisper" || true
 
+# there can be some lingering chrome mcp processes hanging around
+
 # prompt user for context on what's left in the browser tabs
 dialogResult=$(
   osascript <<EOT
@@ -118,7 +120,7 @@ EOT
 # cleanup browser tabs
 echo "Cleaning browser tabs..."
 uvx clean-workspace --tab-description "$dialogResult"
-uv cache clean
+timeout 3s uv cache clean || echo "uv cache in use, skipping cleanup"
 
 # in case you overrode them for some testing
 clear-dns-servers
