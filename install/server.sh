@@ -1,5 +1,5 @@
 #!/bin/bash
-# Minimal bootstrap for cloud hosts that mostly run Docker.
+# Minimal bootstrap for Debian, Ubuntu, and Arch hosts that mostly run Docker.
 #
 # Usage:
 #   run from a clone: ./install/server.sh
@@ -7,7 +7,33 @@
 #   MISE_GITHUB_TOKEN=... ./install/server.sh
 
 set -euo pipefail
-export DEBIAN_FRONTEND=noninteractive
+
+if [[ ! -f /etc/os-release ]]; then
+  echo "Cannot detect the distribution: /etc/os-release is missing." >&2
+  exit 1
+fi
+# shellcheck source=/dev/null
+. /etc/os-release
+
+case "${ID:-}" in
+  arch)
+    package_manager=pacman
+    # Arch does not support partial upgrades; update the system with its packages.
+    echo -e "\033[0;33mSudo: upgrade system packages and install bootstrap dependencies with pacman.\033[0m"
+    sudo pacman -Syu --needed --noconfirm zsh curl ca-certificates git rsync
+    ;;
+  debian|ubuntu)
+    package_manager=apt
+    export DEBIAN_FRONTEND=noninteractive
+    echo -e "\033[0;33mSudo: refresh apt package lists and install bootstrap dependencies.\033[0m"
+    sudo apt-get update
+    sudo apt-get install -y zsh curl ca-certificates git rsync
+    ;;
+  *)
+    echo "Unsupported distribution: ${ID:-unknown}. Expected debian, ubuntu, or arch." >&2
+    exit 1
+    ;;
+esac
 
 cd "$(dirname "$0")/.." || exit 1
 
@@ -28,30 +54,32 @@ install -Dm 0644 install/mise/server.toml \
 install -Dm 0755 install/linux/bin/pbcopy "${HOME}/.local/bin/pbcopy"
 install -Dm 0755 install/linux/bin/pbpaste "${HOME}/.local/bin/pbpaste"
 
-sudo apt-get update
-sudo apt-get install -y zsh curl ca-certificates git
-
 # Use official git-core PPA for modern git on Ubuntu hosts (e.g. 22.04 on Orange Pi).
-# Skips non-Ubuntu systems (like Debian or RPM) where PPAs are incompatible.
-if [[ -f /etc/os-release ]]; then
-  # shellcheck source=/dev/null
-  . /etc/os-release
-  if [[ "${ID:-}" == "ubuntu" ]]; then
-    if ! command -v add-apt-repository &>/dev/null; then
-      sudo apt-get install -y software-properties-common
-    fi
-    sudo add-apt-repository -y ppa:git-core/ppa
-    sudo apt-get update
-    sudo apt-get install -y git
+# Skips non-Ubuntu systems where PPAs are incompatible.
+if [[ "${ID:-}" == "ubuntu" ]]; then
+  echo -e "\033[0;33mSudo: add the git-core PPA and install an up-to-date Git.\033[0m"
+  if ! command -v add-apt-repository &>/dev/null; then
+    sudo apt-get install -y software-properties-common
   fi
+  sudo add-apt-repository -y ppa:git-core/ppa
+  sudo apt-get update
+  sudo apt-get install -y git
 fi
 
 # Docker Engine (system daemon — not available via mise)
 if ! command -v docker &>/dev/null; then
-  curl -fsSL https://get.docker.com | sudo sh
+  if [[ "$package_manager" == "pacman" ]]; then
+    echo -e "\033[0;33mSudo: install Docker Engine, Compose, and Buildx with pacman.\033[0m"
+    sudo pacman -S --needed --noconfirm docker docker-compose docker-buildx
+  else
+    echo -e "\033[0;33mSudo: run Docker's installer to configure its repository and install Docker Engine.\033[0m"
+    curl -fsSL https://get.docker.com | sudo sh
+  fi
 fi
-sudo usermod -aG docker "$(whoami)"
-# TODO: sudo systemctl enable --now docker
+if [[ "$package_manager" == "pacman" ]]; then
+  echo -e "\033[0;33mSudo: enable Docker at boot and start its system service.\033[0m"
+  sudo systemctl enable --now docker
+fi
 
 # mise → ~/.local/bin/mise (musl to avoid glibc issues on some servers/pis)
 if [[ ! -x "${HOME}/.local/bin/mise" ]]; then
@@ -136,8 +164,10 @@ sed -i '/zsh-auto-notify/d' ~/.zsh_plugins
 
 # make zsh the login shell
 if ! grep -qxF "$(command -v zsh)" /etc/shells; then
+  echo -e "\033[0;33mSudo: register zsh in /etc/shells as an allowed login shell.\033[0m"
   echo "$(command -v zsh)" | sudo tee -a /etc/shells >/dev/null
 fi
+echo -e "\033[0;33mSudo: change the current user's login shell to zsh.\033[0m"
 sudo chsh -s "$(command -v zsh)" "$(whoami)"
 
 git config --global commit.gpgsign false
