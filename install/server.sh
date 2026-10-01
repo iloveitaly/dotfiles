@@ -8,6 +8,36 @@
 
 set -euo pipefail
 
+privilege_mode=none
+sudo_skip_reason="the current user is not in the sudo or wheel group"
+if [[ "$(id -u)" == 0 ]]; then
+  privilege_mode=root
+elif ! command -v sudo &>/dev/null; then
+  sudo_skip_reason="sudo is not installed"
+else
+  case " $(id -nG) " in
+    *" sudo "*|*" wheel "*) privilege_mode=sudo ;;
+  esac
+fi
+
+run_sudo() {
+  local reason="$1"
+  shift
+  case "$privilege_mode" in
+    root)
+      echo -e "\033[0;33mRoot: $reason\033[0m" >&2
+      "$@"
+      ;;
+    sudo)
+      echo -e "\033[0;33mSudo: $reason\033[0m" >&2
+      sudo "$@"
+      ;;
+    none)
+      echo -e "\033[0;33mWarning: skipping $reason ($sudo_skip_reason).\033[0m" >&2
+      ;;
+  esac
+}
+
 if [[ ! -f /etc/os-release ]]; then
   echo "Cannot detect the distribution: /etc/os-release is missing." >&2
   exit 1
@@ -19,15 +49,14 @@ case "${ID:-}" in
   arch|omarchy)
     package_manager=pacman
     # Arch does not support partial upgrades; update the system with its packages.
-    echo -e "\033[0;33mSudo: upgrade system packages and install bootstrap dependencies with pacman.\033[0m"
-    sudo pacman -Syu --needed --noconfirm zsh curl ca-certificates git rsync
+    run_sudo "upgrade system packages and install bootstrap dependencies with pacman" \
+      pacman -Syu --needed --noconfirm zsh curl ca-certificates git rsync
     ;;
   debian|ubuntu)
     package_manager=apt
     export DEBIAN_FRONTEND=noninteractive
-    echo -e "\033[0;33mSudo: refresh apt package lists and install bootstrap dependencies.\033[0m"
-    sudo apt-get update
-    sudo apt-get install -y zsh curl ca-certificates git rsync
+    run_sudo "refresh apt package lists" apt-get update
+    run_sudo "install bootstrap dependencies" apt-get install -y zsh curl ca-certificates git rsync
     ;;
   *)
     echo "Unsupported distribution: ${ID:-unknown}. Expected debian, ubuntu, arch, or omarchy." >&2
@@ -57,28 +86,26 @@ install -Dm 0755 install/linux/bin/pbpaste "${HOME}/.local/bin/pbpaste"
 # Use official git-core PPA for modern git on Ubuntu hosts (e.g. 22.04 on Orange Pi).
 # Skips non-Ubuntu systems where PPAs are incompatible.
 if [[ "${ID:-}" == "ubuntu" ]]; then
-  echo -e "\033[0;33mSudo: add the git-core PPA and install an up-to-date Git.\033[0m"
   if ! command -v add-apt-repository &>/dev/null; then
-    sudo apt-get install -y software-properties-common
+    run_sudo "install PPA management tools" apt-get install -y software-properties-common
   fi
-  sudo add-apt-repository -y ppa:git-core/ppa
-  sudo apt-get update
-  sudo apt-get install -y git
+  run_sudo "add the git-core PPA" add-apt-repository -y ppa:git-core/ppa
+  run_sudo "refresh apt package lists for the git-core PPA" apt-get update
+  run_sudo "install an up-to-date Git" apt-get install -y git
 fi
 
 # Docker Engine (system daemon — not available via mise)
 if ! command -v docker &>/dev/null; then
   if [[ "$package_manager" == "pacman" ]]; then
-    echo -e "\033[0;33mSudo: install Docker Engine, Compose, and Buildx with pacman.\033[0m"
-    sudo pacman -S --needed --noconfirm docker docker-compose docker-buildx
+    run_sudo "install Docker Engine, Compose, and Buildx with pacman" \
+      pacman -S --needed --noconfirm docker docker-compose docker-buildx
   else
-    echo -e "\033[0;33mSudo: run Docker's installer to configure its repository and install Docker Engine.\033[0m"
-    curl -fsSL https://get.docker.com | sudo sh
+    run_sudo "configure Docker's repository and install Docker Engine" \
+      bash -o pipefail -c 'curl -fsSL https://get.docker.com | sh'
   fi
 fi
 if [[ "$package_manager" == "pacman" ]]; then
-  echo -e "\033[0;33mSudo: enable Docker at boot and start its system service.\033[0m"
-  sudo systemctl enable --now docker
+  run_sudo "enable Docker at boot and start its system service" systemctl enable --now docker
 fi
 
 # mise → ~/.local/bin/mise (musl to avoid glibc issues on some servers/pis)
@@ -164,11 +191,10 @@ sed -i '/zsh-auto-notify/d' ~/.zsh_plugins
 
 # make zsh the login shell
 if ! grep -qxF "$(command -v zsh)" /etc/shells; then
-  echo -e "\033[0;33mSudo: register zsh in /etc/shells as an allowed login shell.\033[0m"
-  echo "$(command -v zsh)" | sudo tee -a /etc/shells >/dev/null
+  run_sudo "register zsh in /etc/shells as an allowed login shell" \
+    tee -a /etc/shells <<<"$(command -v zsh)" >/dev/null
 fi
-echo -e "\033[0;33mSudo: change the current user's login shell to zsh.\033[0m"
-sudo chsh -s "$(command -v zsh)" "$(whoami)"
+run_sudo "change the current user's login shell to zsh" chsh -s "$(command -v zsh)" "$(whoami)"
 
 git config --global commit.gpgsign false
 git config --global --replace-all credential.helper store
