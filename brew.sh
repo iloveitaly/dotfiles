@@ -71,6 +71,10 @@ memory_limit=1024M
 # xdebug.client_port = 9000
 " >$(asdf where php)/conf.d/php.ini
 
+####################
+# Global Node Tools#
+####################
+
 # node
 # remember to use `npx npkill` to remove unneeded `node_modules` folders
 # tried bun + pnpm, but they do not have as good support by mise, it's easier to use npm for tooling
