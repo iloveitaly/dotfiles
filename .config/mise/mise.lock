@@ -101,54 +101,54 @@ url = "https://github.com/Wilfred/difftastic/releases/download/0.71.0/difft-0.71
 url_api = "https://api.github.com/repos/Wilfred/difftastic/releases/assets/573539441"
 
 [[tools."aqua:dandavison/delta"]]
-version = "0.20.0"
+version = "0.20.1"
 backend = "aqua:dandavison/delta"
 specifiers = ["latest"]
 
 [tools."aqua:dandavison/delta"."platforms.linux-arm64"]
-checksum = "sha256:c3730d1f774c59066bafb91cead886a1a30ebefca707359a4513fa8e45a6b81f"
-url = "https://github.com/dandavison/delta/releases/download/0.20.0/delta-0.20.0-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/610057558"
+checksum = "sha256:da7f4338f593572ff426ae153e0870e2fdc72729416eff551b40cdeb67940db8"
+url = "https://github.com/dandavison/delta/releases/download/0.20.1/delta-0.20.1-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/610499593"
 
 [tools."aqua:dandavison/delta"."platforms.linux-arm64-musl"]
-checksum = "sha256:c3730d1f774c59066bafb91cead886a1a30ebefca707359a4513fa8e45a6b81f"
-url = "https://github.com/dandavison/delta/releases/download/0.20.0/delta-0.20.0-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/610057558"
+checksum = "sha256:da7f4338f593572ff426ae153e0870e2fdc72729416eff551b40cdeb67940db8"
+url = "https://github.com/dandavison/delta/releases/download/0.20.1/delta-0.20.1-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/610499593"
 
 [tools."aqua:dandavison/delta"."platforms.linux-x64"]
-checksum = "sha256:d230b86c51e4764f0bc3285859652316c26ff39f2283d44f97a9d54387bcab4e"
-url = "https://github.com/dandavison/delta/releases/download/0.20.0/delta-0.20.0-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/610056023"
+checksum = "sha256:50f08c879f84c81ceb220e476491a7f492d2c9c671e79918cc44badf961a6240"
+url = "https://github.com/dandavison/delta/releases/download/0.20.1/delta-0.20.1-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/610498121"
 
 [tools."aqua:dandavison/delta"."platforms.linux-x64-baseline"]
-checksum = "sha256:d230b86c51e4764f0bc3285859652316c26ff39f2283d44f97a9d54387bcab4e"
-url = "https://github.com/dandavison/delta/releases/download/0.20.0/delta-0.20.0-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/610056023"
+checksum = "sha256:50f08c879f84c81ceb220e476491a7f492d2c9c671e79918cc44badf961a6240"
+url = "https://github.com/dandavison/delta/releases/download/0.20.1/delta-0.20.1-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/610498121"
 
 [tools."aqua:dandavison/delta"."platforms.linux-x64-musl"]
-checksum = "sha256:6566c4ca33558f0b63ead06febdc4e50ed05fba3becd70d35329c5120fb698d3"
-url = "https://github.com/dandavison/delta/releases/download/0.20.0/delta-0.20.0-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/610056836"
+checksum = "sha256:69dcb4043f55c29118f408c6efd30115e0a4e0a6709253343b8c8fa814ab4a31"
+url = "https://github.com/dandavison/delta/releases/download/0.20.1/delta-0.20.1-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/610498263"
 
 [tools."aqua:dandavison/delta"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:6566c4ca33558f0b63ead06febdc4e50ed05fba3becd70d35329c5120fb698d3"
-url = "https://github.com/dandavison/delta/releases/download/0.20.0/delta-0.20.0-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/610056836"
+checksum = "sha256:69dcb4043f55c29118f408c6efd30115e0a4e0a6709253343b8c8fa814ab4a31"
+url = "https://github.com/dandavison/delta/releases/download/0.20.1/delta-0.20.1-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/610498263"
 
 [tools."aqua:dandavison/delta"."platforms.macos-arm64"]
-checksum = "sha256:e50d88b6b16e15bc9fef9034b2007fe4a217e8bd61061665966058eb82c1eb84"
-url = "https://github.com/dandavison/delta/releases/download/0.20.0/delta-0.20.0-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/610056040"
+checksum = "sha256:bc1839cea69288d4673a24faffbb825d408ca907e0f7d33b1678c9e6cdd5e58e"
+url = "https://github.com/dandavison/delta/releases/download/0.20.1/delta-0.20.1-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/610498923"
 
 [tools."aqua:dandavison/delta"."platforms.windows-x64"]
-checksum = "sha256:f1338f6f364abd4b471c45368271a7ef4bc6a87c4dbcf917f4940068176172c9"
-url = "https://github.com/dandavison/delta/releases/download/0.20.0/delta-0.20.0-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/610059519"
+checksum = "sha256:c9af7484b33f1dbc1312a892fc7d5753a6d3365140a4000d49e575a2de742c25"
+url = "https://github.com/dandavison/delta/releases/download/0.20.1/delta-0.20.1-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/610501426"
 
 [tools."aqua:dandavison/delta"."platforms.windows-x64-baseline"]
-checksum = "sha256:f1338f6f364abd4b471c45368271a7ef4bc6a87c4dbcf917f4940068176172c9"
-url = "https://github.com/dandavison/delta/releases/download/0.20.0/delta-0.20.0-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/610059519"
+checksum = "sha256:c9af7484b33f1dbc1312a892fc7d5753a6d3365140a4000d49e575a2de742c25"
+url = "https://github.com/dandavison/delta/releases/download/0.20.1/delta-0.20.1-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/610501426"
 
 [[tools."aqua:micro-editor/micro"]]
 version = "2.0.15"
@@ -647,7 +647,7 @@ url = "https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-window
 url_api = "https://api.github.com/repos/bcicen/ctop/releases/assets/60241491"
 
 [[tools.direnv]]
-version = "2.37.1"
+version = "2.38.1"
 backend = "asdf:direnv"
 specifiers = ["latest"]
 
@@ -1267,56 +1267,6 @@ provenance = "github-attestations"
 checksum = "sha256:3e1c1282da39039a7ceb8e53c6b624dfb86200823559bbe80c0ace3d0baf09ae"
 url = "https://github.com/atuinsh/atuin/releases/download/v18.23.0/atuin-x86_64-pc-windows-msvc.zip"
 url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/580134234"
-provenance = "github-attestations"
-
-[[tools."github:atuinsh/atuin"]]
-version = "18.23.0"
-backend = "github:atuinsh/atuin"
-
-[tools."github:atuinsh/atuin".options]
-asset_pattern = "*aarch64*musl*"
-
-[tools."github:atuinsh/atuin"."platforms.linux-arm64"]
-checksum = "sha256:faf91adc71e6b661b21ed4f486babbd7af9d17363d4276da4a0251f83c72498d"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.23.0/atuin-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/580134145"
-provenance = "github-attestations"
-
-[tools."github:atuinsh/atuin"."platforms.linux-arm64-musl"]
-checksum = "sha256:faf91adc71e6b661b21ed4f486babbd7af9d17363d4276da4a0251f83c72498d"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.23.0/atuin-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/580134145"
-provenance = "github-attestations"
-
-[[tools."github:atuinsh/atuin"]]
-version = "18.23.0"
-backend = "github:atuinsh/atuin"
-
-[tools."github:atuinsh/atuin".options]
-asset_pattern = "*x86_64*musl*"
-
-[tools."github:atuinsh/atuin"."platforms.linux-x64"]
-checksum = "sha256:d1b40dd6e7cd3d823867ffe22b39a025bc420f7875926ae9ca974155378da14d"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.23.0/atuin-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/580134247"
-provenance = "github-attestations"
-
-[tools."github:atuinsh/atuin"."platforms.linux-x64-baseline"]
-checksum = "sha256:d1b40dd6e7cd3d823867ffe22b39a025bc420f7875926ae9ca974155378da14d"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.23.0/atuin-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/580134247"
-provenance = "github-attestations"
-
-[tools."github:atuinsh/atuin"."platforms.linux-x64-musl"]
-checksum = "sha256:d1b40dd6e7cd3d823867ffe22b39a025bc420f7875926ae9ca974155378da14d"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.23.0/atuin-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/580134247"
-provenance = "github-attestations"
-
-[tools."github:atuinsh/atuin"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:d1b40dd6e7cd3d823867ffe22b39a025bc420f7875926ae9ca974155378da14d"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.23.0/atuin-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/580134247"
 provenance = "github-attestations"
 
 [[tools."github:dlvhdr/diffnav"]]
@@ -2376,64 +2326,64 @@ url = "https://github.com/jesseduffield/lazydocker/releases/download/v0.25.2/laz
 url_api = "https://api.github.com/repos/jesseduffield/lazydocker/releases/assets/399711571"
 
 [[tools.lazygit]]
-version = "0.65.1"
+version = "0.66.0"
 backend = "aqua:jesseduffield/lazygit"
 specifiers = ["latest"]
 
 [tools.lazygit."platforms.linux-arm64"]
-checksum = "sha256:49abecdf6adf4f2dfdb11bf7b9bfada267ea523612ed809d1c6d87f6c04000a7"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.65.1/lazygit_0.65.1_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/560658270"
+checksum = "sha256:9a4fc4656897ac9f7877b835473ce1a75620cc267f554c57fc4ff266407f3257"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.66.0/lazygit_0.66.0_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/613198511"
 
 [tools.lazygit."platforms.linux-arm64-musl"]
-checksum = "sha256:49abecdf6adf4f2dfdb11bf7b9bfada267ea523612ed809d1c6d87f6c04000a7"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.65.1/lazygit_0.65.1_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/560658270"
+checksum = "sha256:9a4fc4656897ac9f7877b835473ce1a75620cc267f554c57fc4ff266407f3257"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.66.0/lazygit_0.66.0_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/613198511"
 
 [tools.lazygit."platforms.linux-x64"]
-checksum = "sha256:02beacbcda0fa342e50ae3480ba8147307353af3fb28e1d5f790e02329c201a6"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.65.1/lazygit_0.65.1_linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/560658266"
+checksum = "sha256:5b45541155d20bd32bf2cc5ab5b7e3d91c2eebf0fb1242281350edc27d59d2b7"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.66.0/lazygit_0.66.0_linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/613198391"
 
 [tools.lazygit."platforms.linux-x64-baseline"]
-checksum = "sha256:02beacbcda0fa342e50ae3480ba8147307353af3fb28e1d5f790e02329c201a6"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.65.1/lazygit_0.65.1_linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/560658266"
+checksum = "sha256:5b45541155d20bd32bf2cc5ab5b7e3d91c2eebf0fb1242281350edc27d59d2b7"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.66.0/lazygit_0.66.0_linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/613198391"
 
 [tools.lazygit."platforms.linux-x64-musl"]
-checksum = "sha256:02beacbcda0fa342e50ae3480ba8147307353af3fb28e1d5f790e02329c201a6"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.65.1/lazygit_0.65.1_linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/560658266"
+checksum = "sha256:5b45541155d20bd32bf2cc5ab5b7e3d91c2eebf0fb1242281350edc27d59d2b7"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.66.0/lazygit_0.66.0_linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/613198391"
 
 [tools.lazygit."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:02beacbcda0fa342e50ae3480ba8147307353af3fb28e1d5f790e02329c201a6"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.65.1/lazygit_0.65.1_linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/560658266"
+checksum = "sha256:5b45541155d20bd32bf2cc5ab5b7e3d91c2eebf0fb1242281350edc27d59d2b7"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.66.0/lazygit_0.66.0_linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/613198391"
 
 [tools.lazygit."platforms.macos-arm64"]
-checksum = "sha256:65a367c6ea9a88efebaaf7998a6835eedb987e04916cef677264ff9b31b1b13e"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.65.1/lazygit_0.65.1_darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/560658243"
+checksum = "sha256:e9fe2fe1f1bbc1b4c3214b33e8e0d57a4d6e3c2276aa9aa713f9bcbdc223e65c"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.66.0/lazygit_0.66.0_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/613198499"
 
 [tools.lazygit."platforms.macos-x64"]
-checksum = "sha256:fde13daf583511aa24c42ca154911643231a5af784c7cdd8117264b2fc035b33"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.65.1/lazygit_0.65.1_darwin_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/560658244"
+checksum = "sha256:2b621118f03b8249f0cc6bed378e25bf679e0ef1c97ceed01f92814f5a91a576"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.66.0/lazygit_0.66.0_darwin_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/613198449"
 
 [tools.lazygit."platforms.macos-x64-baseline"]
-checksum = "sha256:fde13daf583511aa24c42ca154911643231a5af784c7cdd8117264b2fc035b33"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.65.1/lazygit_0.65.1_darwin_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/560658244"
+checksum = "sha256:2b621118f03b8249f0cc6bed378e25bf679e0ef1c97ceed01f92814f5a91a576"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.66.0/lazygit_0.66.0_darwin_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/613198449"
 
 [tools.lazygit."platforms.windows-x64"]
-checksum = "sha256:bed669be29204932560836a58dc6519ba43c10ea7dc7df63af8a1d96424e191d"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.65.1/lazygit_0.65.1_windows_x86_64.zip"
-url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/560658241"
+checksum = "sha256:ed8fab4af7b8bac474084e976214a96569dea841c9f9b293502b83d8c3163e4b"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.66.0/lazygit_0.66.0_windows_x86_64.zip"
+url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/613198441"
 
 [tools.lazygit."platforms.windows-x64-baseline"]
-checksum = "sha256:bed669be29204932560836a58dc6519ba43c10ea7dc7df63af8a1d96424e191d"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.65.1/lazygit_0.65.1_windows_x86_64.zip"
-url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/560658241"
+checksum = "sha256:ed8fab4af7b8bac474084e976214a96569dea841c9f9b293502b83d8c3163e4b"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.66.0/lazygit_0.66.0_windows_x86_64.zip"
+url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/613198441"
 
 [[tools.lnav]]
 version = "0.14.1"
@@ -3164,6 +3114,72 @@ url_api = "https://api.github.com/repos/jdx/usage/releases/assets/596046007"
 version = "0.12.23"
 backend = "aqua:astral-sh/uv"
 specifiers = ["latest"]
+
+[tools.uv."platforms.linux-arm64"]
+checksum = "sha256:6524bd338177ed50d035d39354e12545e993bbeba2ecbddf0480c5b3a81d313f"
+url = "https://github.com/astral-sh/uv/releases/download/0.12.23/uv-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/608232491"
+provenance = "github-attestations"
+
+[tools.uv."platforms.linux-arm64-musl"]
+checksum = "sha256:b536543cc4d50661986b165c76ee8aa9056e4fa332edcd153ff2e98760f9359b"
+url = "https://github.com/astral-sh/uv/releases/download/0.12.23/uv-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/608232500"
+provenance = "github-attestations"
+
+[tools.uv."platforms.linux-x64"]
+checksum = "sha256:9167d72b3319674b6303c4cbe071854bba13ebdf3d76b1a7cbdc175471fb66d6"
+url = "https://github.com/astral-sh/uv/releases/download/0.12.23/uv-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/608232628"
+provenance = "github-attestations"
+
+[tools.uv."platforms.linux-x64-baseline"]
+checksum = "sha256:9167d72b3319674b6303c4cbe071854bba13ebdf3d76b1a7cbdc175471fb66d6"
+url = "https://github.com/astral-sh/uv/releases/download/0.12.23/uv-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/608232628"
+provenance = "github-attestations"
+
+[tools.uv."platforms.linux-x64-musl"]
+checksum = "sha256:1cff8783850e794470aadb73f54b749542a511fc57b0ce6468b64bd3852e0ade"
+url = "https://github.com/astral-sh/uv/releases/download/0.12.23/uv-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/608232639"
+provenance = "github-attestations"
+
+[tools.uv."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:1cff8783850e794470aadb73f54b749542a511fc57b0ce6468b64bd3852e0ade"
+url = "https://github.com/astral-sh/uv/releases/download/0.12.23/uv-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/608232639"
+provenance = "github-attestations"
+
+[tools.uv."platforms.macos-arm64"]
+checksum = "sha256:50487ae565ccd96e499056b4674d438f4c53170202617b4c759defe0c6a1b544"
+url = "https://github.com/astral-sh/uv/releases/download/0.12.23/uv-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/608232483"
+provenance = "github-attestations"
+
+[tools.uv."platforms.macos-x64"]
+checksum = "sha256:960da44cb4b73685206ddd250b19e0a117fa41095710c1038f081f5cb613efb4"
+url = "https://github.com/astral-sh/uv/releases/download/0.12.23/uv-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/608232607"
+provenance = "github-attestations"
+
+[tools.uv."platforms.macos-x64-baseline"]
+checksum = "sha256:960da44cb4b73685206ddd250b19e0a117fa41095710c1038f081f5cb613efb4"
+url = "https://github.com/astral-sh/uv/releases/download/0.12.23/uv-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/608232607"
+provenance = "github-attestations"
+
+[tools.uv."platforms.windows-x64"]
+checksum = "sha256:75d05de6762778c31ee183398de7dd15093fad0ed90b1f236d8205ea5ec00c90"
+url = "https://github.com/astral-sh/uv/releases/download/0.12.23/uv-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/608232617"
+provenance = "github-attestations"
+
+[tools.uv."platforms.windows-x64-baseline"]
+checksum = "sha256:75d05de6762778c31ee183398de7dd15093fad0ed90b1f236d8205ea5ec00c90"
+url = "https://github.com/astral-sh/uv/releases/download/0.12.23/uv-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/608232617"
+provenance = "github-attestations"
 
 [[tools.watchexec]]
 version = "2.7.4"
