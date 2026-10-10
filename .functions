@@ -138,6 +138,11 @@ get-dns-servers() {
   done
 }
 
+flush-system-dns() {
+  sudo dscacheutil -flushcache
+  sudo killall -HUP mDNSResponder
+}
+
 set-dns-servers() {
   # PIHOLE_TAILSCALE_IP PIHOLE_LOCAL_IP defined elsewhere
 
@@ -153,7 +158,7 @@ set-dns-servers() {
   sudo networksetup -setsearchdomains "Wi-Fi" $TAILSCALE_SEARCH_DOMAIN
   sudo networksetup -setsearchdomains "Ethernet" $TAILSCALE_SEARCH_DOMAIN
 
-  flushdns
+  flush-system-dns
 }
 
 set-public-dns-servers() {
@@ -180,7 +185,7 @@ clear-dns-servers() {
   sudo networksetup -setsearchdomains "Wi-Fi" empty
   sudo networksetup -setsearchdomains "Ethernet" empty
 
-  flushdns
+  flush-system-dns
 }
 
 # TODO need to restart and test; I think I corrupted something

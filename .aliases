@@ -55,10 +55,6 @@ alias localip="ipconfig getifaddr \$(default-network-device)"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 alias whois="whois -h whois-servers.net"
 
-# Flush Directory Service cache
-alias flushdns="sudo killall -HUP mDNSResponder; sudo dscacheutil -flushcache; sudo killall -HUP configd; && echo 'All caches flushed.'"
-alias flushdns="sudo killall -HUP mDNSResponder; sudo dscacheutil -flushcache"
-
 # View HTTP traffic
 alias sniff="sudo ngrep -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
