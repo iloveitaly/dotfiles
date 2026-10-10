@@ -44,8 +44,6 @@ brew "jq" # json extraction
 brew "fx" # json tui
 brew "dsq" # sql over json and other formats
 brew "dasel" # consistent language for extracting data from XML, CSV, and others. No aggregates.
-tap "brimdata/tap"
-brew "brimdata/tap/zq" # faster/better jq, has aggregates
 brew "htmlq" # jq for html
 brew "xsv" # csv tooling
 # https://github.com/forensicmatt/datatui
@@ -193,6 +191,7 @@ if OS.mac?
     cask "firefox" # for debugging, not actual use
     cask "angristan/tap/macthrottle"
     cask "openusage"
+    cask "vibe-island"
 
     # == Experimental
     cask "tip"
