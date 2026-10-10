@@ -31,7 +31,7 @@ qdns = "latest" # q is a modern dns tool
 "github:eza-community/eza" = "latest"
 azure-cli = "latest"
 opentofu = "latest"
-"pipx:aiautocommit" = "latest"
+"pypi:aiautocommit" = "latest"
 
 # navigation, search & shell productivity
 ripgrep = "latest"
@@ -67,17 +67,20 @@ duf = "latest"
 # language and language tooling
 direnv = "latest"
 just = "latest"
-bun = "latest"
 uv = "latest"
-nodejs     = "22"
-erlang     = "28"
-elixir     = "1"
-python     = "latest"
-ruby       = "3"
-rust       = "latest"
-pnpm       = "latest"
-golang     = "latest"
-zig        = "latest"  
+pnpm = "latest"
+
+# wait ~1mo before adopting new language releases
+bun        = { version = "latest", minimum_release_age = "1mo" }
+nodejs     = { version = "22",     minimum_release_age = "1mo" }
+erlang     = { version = "28",     minimum_release_age = "1mo" }
+elixir     = { version = "1",      minimum_release_age = "1mo" }
+python     = { version = "latest", minimum_release_age = "1mo" }
+ruby       = { version = "3",      minimum_release_age = "1mo" }
+rust       = { version = "latest", minimum_release_age = "1mo" }
+golang     = { version = "latest", minimum_release_age = "1mo" }
+zig        = { version = "latest", minimum_release_age = "1mo" }
+
 "github:tbillington/kondo" = "latest"
 hunk = "latest"
 
@@ -99,7 +102,7 @@ experimental = true
 [settings.cargo]
 binstall = true
 
-[settings.pipx]
+[settings.pypi]
 uvx = true
 
 
