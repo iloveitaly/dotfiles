@@ -3,14 +3,19 @@
 #   - No GitHub tokens should be stored on server
 #
 
+set -euo pipefail
+
 cd "$(dirname "$0")/.." || exit 1
 
 rsync --exclude-from="install/standard-exclude.txt" \
   --exclude-from="install/server-exclude.txt" \
   -av . ~
 
+# Headless fragments are install-time only — not part of the cross-platform rsync.
 install -Dm 0644 install/mise/linux.toml \
   "${HOME}/.config/mise/conf.d/linux.toml"
+install -Dm 0644 install/mise/server.toml \
+  "${HOME}/.config/mise/conf.d/server.toml"
 
 # forgit expects macOS-style pbcopy/pbpaste. Headless hosts have no display
 # server, so relay clipboard data over OSC52 via osc. Executables (not aliases)
@@ -28,7 +33,7 @@ sudo apt update
 sudo apt install -y \
   git vim lynx rename wget ngrep iftop lftp httpie ncdu curl gawk jq sqlite3 zsh \
   entr prettyping less bc tree htop dnsutils moreutils qpdf \
-  rsync watch iotop powertop mise libreadline-dev libffi-dev libyaml-dev \
+  rsync watch iotop powertop libreadline-dev libffi-dev libyaml-dev \
   nmap
 
 export PATH="${HOME}/.local/bin:${PATH}"
@@ -48,26 +53,29 @@ mise self-update -y
 cd "${HOME}" || exit 1
 
 mise install -y
+mise upgrade
+mise prune -y
 
-cat <<EOF >~/.extra
+# yazi's git.yazi plugin is only declared in ~/.config/yazi/package.toml (rsynced
+# above) — it isn't fetched until `ya pkg install` runs
+mise exec -- ya pkg install
+
+cat <<EOF >>~/.extra
 alias dokku="docker exec -it dokku dokku"
 alias dokku-shell="docker exec -it dokku bash -l"
-
-eval "\$(fzf --zsh)"
-
-# since we are removing the plugin which handles this
-eval "\$(mise exec -- direnv hook zsh)"
 EOF
 
 # delete some zsh_plugins that are macos specific
 sed -i '/zicompdef/d' ~/.zsh_plugins # assumes rg, etc which is not the same on servers :/
 sed -i '/zsh-auto-notify/d' ~/.zsh_plugins
-# sed -i '/fast-syntax-highlighting/d' ~/.zsh_plugins
-# sed -i '/zsh-autosuggestions/d' ~/.zsh_plugins
 
-sudo chsh -s "$(which zsh)" "$(whoami)"
+# make zsh the login shell
+if ! grep -qxF "$(command -v zsh)" /etc/shells; then
+  echo "$(command -v zsh)" | sudo tee -a /etc/shells >/dev/null
+fi
+sudo chsh -s "$(command -v zsh)" "$(whoami)"
 
-git config --global --unset commit.gpgsign
+git config --global commit.gpgsign false
 git config --global --replace-all credential.helper store
 
 # if `python` doesn't exist, let's alias python3 to it if it exists
@@ -82,3 +90,5 @@ export ZINIT_COLORIZE=false
 # zsh non-TTY stdout so bat also disables its pager instead of spawning $PAGER
 # (ov), which stops when zinit runs its parallel update job in the background.
 zsh -lc "source ~/.zshrc && zinit update --parallel --no-pager" | /usr/bin/cat
+
+echo -e "\033[0;32mDone: linux-devbox install complete (dotfiles, mise, zsh login shell, zinit).\033[0m"
