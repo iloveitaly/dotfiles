@@ -82,16 +82,15 @@ quit_app() {
   # TODO check if the application is still running and try the kill approach
 }
 
+# Daily restart for menu-bar apps. pkill -i covers Superwhisper's lowercase
+# process name. sleep gives the process a moment to exit before open.
 quit_and_reopen_app() {
   local app=$1
 
-  quit_app "$app"
-
-  # wait until the app is completely closed
-  while pgrep -q -x "$app"; do sleep 0.1; done
-
-  quit_and_wait_app "$app"
-  open -a "$app"
+  echo "Restarting $app..."
+  pkill -ix "$app" || true
+  sleep 1
+  open -a "$app" || echo "Failed to reopen $app"
 }
 
 for app in $apps; do
@@ -119,8 +118,11 @@ EOT
 
 # cleanup browser tabs
 echo "Cleaning browser tabs..."
+export UV_LOCK_TIMEOUT=3
 uvx clean-workspace --tab-description "$dialogResult"
-timeout 3s uv cache clean || echo "uv cache in use, skipping cleanup"
+# `uv cache clean` ignores UV_LOCK_TIMEOUT and waits out a lock left by the uvx above.
+# --force skips that wait. Cap the runtime so a large cache cannot stall wake.
+timeout 60s uv cache clean --force || echo "uv cache clean skipped"
 
 # in case you overrode them for some testing
 clear-dns-servers
