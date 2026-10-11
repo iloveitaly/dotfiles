@@ -106,6 +106,8 @@ quit_and_reopen_app "Raycast" || true
 # superwhisper also seems to consume a ton of resources over time
 quit_and_reopen_app "Superwhisper" || true
 
+quit_and_reopen_app "iMCP" || true
+
 # there can be some lingering chrome mcp processes hanging around
 
 # prompt user for context on what's left in the browser tabs
@@ -117,9 +119,11 @@ EOT
 )
 
 # cleanup browser tabs
-echo "Cleaning browser tabs..."
+echo "Cleaning workspace..."
 export UV_LOCK_TIMEOUT=3
-uvx clean-workspace --tab-description "$dialogResult"
+uvx clean-workspace@latest --tab-description "$dialogResult"
+
+echo "Cleaning cache..."
 # `uv cache clean` ignores UV_LOCK_TIMEOUT and waits out a lock left by the uvx above.
 # --force skips that wait. Cap the runtime so a large cache cannot stall wake.
 timeout 60s uv cache clean --force || echo "uv cache clean skipped"
