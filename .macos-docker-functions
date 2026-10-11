@@ -71,7 +71,7 @@ dsh() {
       --header="ctrl-o: orb debug | ctrl-l: logs | ctrl-i: inspect | ctrl-e: exec" \
       --prompt="Select Docker container: " \
       --bind="ctrl-o:execute(orb debug -c {1} {2})" \
-      --bind="ctrl-l:execute(docker --context {1} logs -f {2} | ov)" \
+      --bind="ctrl-l:execute(docker --context {1} logs -f {2} 2>&1 | ov)" \
       --bind="ctrl-i:execute(docker --context {1} inspect {2} | ov)" \
       --bind="ctrl-e:execute(docker --context {1} exec -it {2} bash -l)"
   )"
