@@ -1,4 +1,5 @@
 [tools]
+"jq" = "latest"
 "go:github.com/karol-broda/snitch" = "latest"
 "github:nnnkkk7/lazyactions" = "latest"
 cargo-binstall = "latest"
