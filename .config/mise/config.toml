@@ -29,6 +29,7 @@ qdns = "latest" # q is a modern dns tool
 "github:dlvhdr/diffnav" = "latest"
 "aqua:Wilfred/difftastic" = "latest"
 "aqua:dandavison/delta" = "latest"
+# macOS release binaries are not published yet: https://github.com/eza-community/eza/issues/228
 "github:eza-community/eza" = "latest"
 azure-cli = "latest"
 opentofu = "latest"
