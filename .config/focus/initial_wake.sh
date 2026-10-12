@@ -16,7 +16,6 @@ source ~/.functions
 source ~/.extra
 
 source ~/.config/focus/functions.sh
-source ~/.config/focus/twitter_logout.sh
 
 unthrottle-internet
 
@@ -96,8 +95,6 @@ quit_and_reopen_app() {
 for app in $apps; do
   quit_app $app
 done
-
-twitter_logout
 
 # it seems to get junked up after a while and slow down
 # a daily restart keeps it operating quickly
