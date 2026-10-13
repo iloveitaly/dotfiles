@@ -37,6 +37,7 @@ brew "universal-ctags"
 brew "setapp"
 brew "awscli"
 brew "aws-sam-cli"
+brew "oci-cli" # oracle cloud
 brew "container"
 
 # == Data manipulation
