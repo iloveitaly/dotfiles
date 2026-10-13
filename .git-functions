@@ -337,7 +337,7 @@ gwt() {
     local reset=$'\033[0m'
     local green=$'\033[32m'
     local lines=()
-    local current_path current_branch ts date_str file wt_name
+    local current_path current_branch date_str main_marker
     while IFS= read -r line; do
       if [[ $line == "worktree "* ]]; then
         current_path=${line#worktree }
@@ -353,14 +353,18 @@ gwt() {
         fi
         # Get the last commit date from git log
         date_str=$("$git_path" -C "$current_path" log -1 --format=%cd --date=format:%Y-%m-%d 2>/dev/null) || date_str="unknown"
-        lines+=("${current_path} ${gray}(${current_branch})${reset} ${green}[${date_str}]${reset}")
+        # Git lists the original/main worktree first.
+        main_marker=
+        (( ${#lines} == 0 )) && main_marker=" ${green}[main]${reset}"
+        # Keep the full path in a hidden field for switching directories.
+        lines+=("${current_path}"$'\t'"${current_path:t}${main_marker} ${gray}(${current_branch})${reset} ${green}[${date_str}]${reset}")
         current_path= current_branch=
       fi
     done < <("$git_path" worktree list --porcelain)
 
-    local selected=$(printf '%s\n' "${lines[@]}" | fzf --ansi --height 40% --border)
+    local selected=$(printf '%s\n' "${lines[@]}" | fzf --ansi --height 40% --border --delimiter=$'\t' --with-nth=2..)
     if [[ -n "$selected" ]]; then
-      local worktree_path="${selected%% *}"
+      local worktree_path="${selected%%$'\t'*}"
       cd "$worktree_path" || return 1
     fi
   else
