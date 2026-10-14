@@ -196,9 +196,6 @@ if ! grep -qxF "$(command -v zsh)" /etc/shells; then
 fi
 run_sudo "change the current user's login shell to zsh" chsh -s "$(command -v zsh)" "$(whoami)"
 
-git config --global commit.gpgsign false
-git config --global --replace-all credential.helper store
-
 # cleaner output since this will be running inside ansible, or something similar
 export ZINIT_COLORIZE=false
 

@@ -23,8 +23,8 @@ install -Dm 0644 install/mise/server.toml \
 install -Dm 0755 install/linux/bin/pbcopy "${HOME}/.local/bin/pbcopy"
 install -Dm 0755 install/linux/bin/pbpaste "${HOME}/.local/bin/pbpaste"
 
-# mise → ~/.local/bin/mise (musl to avoid glibc issues on some servers/pis)
-if [[ ! -x "${HOME}/.local/bin/mise" ]]; then
+# mise (musl to avoid glibc issues on some servers/pis)
+if ! command -v mise &>/dev/null; then
   curl https://mise.run | MISE_INSTALL_MUSL=1 sh
 fi
 
@@ -74,9 +74,6 @@ if ! grep -qxF "$(command -v zsh)" /etc/shells; then
   echo "$(command -v zsh)" | sudo tee -a /etc/shells >/dev/null
 fi
 sudo chsh -s "$(command -v zsh)" "$(whoami)"
-
-git config --global commit.gpgsign false
-git config --global --replace-all credential.helper store
 
 # if `python` doesn't exist, let's alias python3 to it if it exists
 if ! command -v python &>/dev/null && command -v python3 &>/dev/null; then
