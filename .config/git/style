@@ -1,0 +1,11 @@
+[pretty]
+  # TODO if there's no body, an extra newline is added :/
+  compressed-oneline="%Cred%h%Creset %Cgreen(%cr)%Creset %s %C(bold blue)<%an>%Creset%n%b"
+
+[format]
+  pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
+  pretty=compressed-oneline
+
+[commit]
+  # Show the diff as a comment in the commit message template.
+  verbose = true

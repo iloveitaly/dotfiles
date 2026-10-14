@@ -1,0 +1,53 @@
+[alias]
+  # reset and restore multiple files, requiring an explicit file reference
+  unconflict = "!f() { \
+    if [ $# -eq 0 ]; then echo 'Error: No files specified'; exit 1; fi; \
+    for arg in \"$@\"; do [ \"$arg\" = \".\" ] && { echo 'Error: Use specific files (not .)'; exit 1; }; done; \
+    git reset -- \"$@\" && git restore -- \"${@}\"; \
+  }; f"
+
+  # git reset and restore the file, useful when dealing with merge conflicts
+  rr = "!f() { [ -z \"$1\" ] && { echo 'Error: No file specified.' >&2; exit 1; }; git reset \"$1\" && git restore \"$1\"; }; f"
+
+  # review changes exclusive to the current branch (right diff) using Kalidescope
+  ksreview = "!f() { local SHA=${1:-HEAD}; local default_branch=$(git branch -l master main | sed 's/^* //'); local BRANCH=${2:-$default_branch}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool $BRANCH...$SHA; }; f"
+
+  # NOTE aliases don't seem to be able to execute sub commands and store the result in a variable
+  # i.e. don't try `f() { local=$(git something $1); git something-else $local }`, use xargs instead
+  # https://stackoverflow.com/questions/1309430/how-to-embed-bash-script-directly-inside-a-git-alias
+
+  # `ffixup file_path` will automatically fixup against the last modification against the specified file
+  # https://stackoverflow.com/questions/26243145/git-aliases-operate-in-the-wrong-directory
+  ffixup = "!f() { cd -- ${GIT_PREFIX:-.}; local file=$1; git rev-list --max-count=1 HEAD -- $file | tr -d '[:space:]' | xargs -I{} git commit --fixup={} $file; }; f"
+
+  fixup = !sh -c 'git commit --fixup=$1' -
+  squash = !sh -c 'git commit --squash=$1' -
+
+  # `tee /dev/tty` allows us to output the result to stdout *and* pipe it to pbcopy
+  sha = !git rev-parse HEAD | tr -d "[:space:]" | tee /dev/tty | pbcopy
+
+  # http://stackoverflow.com/questions/12373733/staging-deleted-files
+  rm-deleted = !git rm $(git ls-files --deleted)
+
+  # http://stackoverflow.com/questions/2514172/listing-each-branch-and-its-last-revisions-date-in-git
+  branchdate = !git for-each-ref --sort='-authordate' --format='%(refname)%09%(authordate)' refs/heads | sed -e 's-refs/heads/--' | less
+
+  # generate a diff from a commit, useful for copy/apply into another related repo
+  diff-from-commit = "!dc() { git diff --ignore-space-change $1^...$1;}; dc"
+
+  rdiff = !git --no-pager diff --no-ext-diff "$@"
+
+  # quickly copy current branch name, useful for updating package definitions to a locally modified copy
+  branch-copy = !git rev-parse --abbrev-ref HEAD | tr -d '\n' | pbcopy
+
+  # TODO should look into removing this old cleanup
+  # http://stackoverflow.com/questions/6127328/how-can-i-delete-all-git-branches-which-have-been-merged
+  cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop\\|main' | xargs -n 1 git branch -d"
+
+  # get remote branches that aren't pulled by default via the repo's config
+  # helpful for large projects where you limit branches pulled via `fetch`
+  remote-fetch = "!rf() { git config --add remote.origin.fetch +refs/heads/$1:refs/remotes/origin/$1 && git fetch origin +$1:refs/remotes/origin/$1 && git c -t origin/$1; }; rf"
+  remote-purge = "!rp() { git config --unset remote.origin.fetch \".*$1.*\"; git update-ref -d refs/remotes/origin/$1; }; rp"
+
+  # http://urbanautomaton.com/blog/2014/09/22/tracking-method-history-in-git/
+  lm = "!f(){ local method=$1; local file=$2; [[ -n \"$method\" && -n \"$file\" ]] || exit 1; git log -L :$method:$file;}; f"

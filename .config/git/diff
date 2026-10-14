@@ -1,0 +1,41 @@
+[interactive]
+  # difftastic handles normal diffs (diff.external); delta only for interactive hunk selection (add -p, etc.)
+  diffFilter = delta --color-only
+
+[pager]
+  # Use a pager if the difftool output is larger than one screenful,
+  # consistent with the behaviour of `git diff`.
+  difftool = true
+
+[diff]
+  # --color always: git runs external diffs with a non-TTY pipe, so auto is monochrome
+  external = difft --color always
+  tool = ksdiff
+  renames = copies                    # identify renames and copies
+  mnemonicprefix = true               # use better symbols than A and B
+  algorithm = histogram               # Better diffs
+  # Marks moved blocks for delta --color-only (add -p); ignored when diff.external (difft) runs
+  colorMoved = default
+
+[difftool]
+  prompt = false
+
+[difftool "ksdiff"]
+  prompt = false
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+  # cmd = ksdiff --wait $LOCAL $REMOTE
+[difftool "code"]
+  cmd = code --wait --diff $LOCAL $REMOTE
+
+[merge]
+  log = true
+  ff = only
+  # https://blog.nilbus.com/take-the-pain-out-of-git-conflict-resolution-use-diff3/
+  conflictstyle = zdiff3
+  tool = code
+
+[mergetool "code"]
+  cmd = code --wait --merge \"$REMOTE\" \"$LOCAL\" \"$BASE\" \"$MERGED\"
+[mergetool "ksdiff"]
+  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+  trustExitCode = true

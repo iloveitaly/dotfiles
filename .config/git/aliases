@@ -1,0 +1,36 @@
+[alias]
+  amend = commit --amend --reuse-message=HEAD
+  st = status -sb
+  ss = status -uno
+  s = switch
+  f = fuzzy status
+  a = add
+  b = branch
+  c = checkout
+  d = diff
+  dc = diff --cached
+  cm = commit
+  cp = cherry-pick
+  r = rebase
+  logv = log --pretty=fuller
+  undo-commit = reset --soft HEAD^
+
+  # full dump of last commit message
+  last-message = log -1 --pretty=format:%B
+
+  ri = rebase --interactive --autosquash
+
+  # Like "git show myfile", but uses the last commit that changed "myfile".
+  showlast = log -n 1 -p
+
+  # verbose single commit display
+  showv = show --format=fuller
+
+  # show only the full commit message for the supplied revision
+  showm = show -s --format=%B
+
+  # TODO should accept a commit sha instead of locking to head
+  commit-patch = "format-patch -k --stdout HEAD~1"
+
+  search-commits = "log --grep" # search log messages
+  search-log = "log -p -S" # search contents of the commit diffs
