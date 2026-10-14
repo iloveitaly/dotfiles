@@ -108,8 +108,8 @@ if [[ "$package_manager" == "pacman" ]]; then
   run_sudo "enable Docker at boot and start its system service" systemctl enable --now docker
 fi
 
-# mise → ~/.local/bin/mise (musl to avoid glibc issues on some servers/pis)
-if [[ ! -x "${HOME}/.local/bin/mise" ]]; then
+# mise (musl to avoid glibc issues on some servers/pis)
+if ! command -v mise &>/dev/null; then
   curl https://mise.run | MISE_INSTALL_MUSL=1 sh
 fi
 export PATH="${HOME}/.local/bin:${PATH}"

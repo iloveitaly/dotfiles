@@ -48,8 +48,8 @@ fi
 sudo systemctl enable --now docker
 sudo usermod -aG docker "$(whoami)"
 
-# mise → ~/.local/bin/mise
-if [[ ! -x "${HOME}/.local/bin/mise" ]]; then
+# mise
+if ! command -v mise &>/dev/null; then
   curl https://mise.run | sh
 fi
 mkdir -p "${HOME}/.local/bin" "${HOME}/.config"
