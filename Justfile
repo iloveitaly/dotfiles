@@ -6,19 +6,19 @@ set script-interpreter := ["zsh", "-euBh", "-o", "pipefail"]
 set unstable := true
 
 upgrade:
-    brew upgrade -y awscli git zsh gmailctl dolt block-buzz yabai fx tmux imcp httpie eza telnet speedtest yt-dlp
-    gh extension upgrade --all
+		brew upgrade -y awscli git zsh gmailctl dolt block-buzz yabai fx tmux imcp httpie eza telnet speedtest yt-dlp
+		gh extension upgrade --all
 
-    mise self-update -y
-    # Includes ov (aqua:noborus/ov), configured as latest in mise
-    mise upgrade -y
-    mise prune -y
+		mise self-update -y
+		# Includes ov (aqua:noborus/ov), configured as latest in mise
+		mise upgrade -y
+		mise prune -y
 
-    # uv tools used often and not installed through mise (llm-ide-rules, ipython)
-    if command -v uv >/dev/null; then uv tool upgrade --all; fi
+		# uv tools used often and not installed through mise (llm-ide-rules, ipython)
+		if command -v uv >/dev/null; then uv tool upgrade --all; fi
 
-    ya pkg upgrade --discard
-    XDG_CONFIG_HOME="{{justfile_directory()}}/.config" nvim --headless "+Lazy! update" +qa
+		ya pkg upgrade --discard
+		XDG_CONFIG_HOME="{{justfile_directory()}}/.config" nvim --headless "+Lazy! update" +qa
 
     # this will update starship as well
     # zinit update has job-control/pager quirks in non-interactive subshells
