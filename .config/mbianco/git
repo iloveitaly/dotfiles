@@ -283,7 +283,7 @@ git-cherry-pick () {
 # Usage:
 # Source this in .zshrc or run as a function.
 #
-# gwt                # List and switch to existing worktree via fzf
+# gwt                # List and switch to existing worktree via fzf (preview: status + oneline log)
 # gwt <branch>       # Create new worktree for <branch> (creates branch if not exists) in $GWT_BASE/<project>/<branch>, then cd to it
 #
 # Environment variables:
@@ -362,7 +362,11 @@ gwt() {
       fi
     done < <("$git_path" worktree list --porcelain)
 
-    local selected=$(printf '%s\n' "${lines[@]}" | fzf --ansi --height 40% --border --delimiter=$'\t' --with-nth=2..)
+    # glo is `git log --oneline --decorate`: one commit per line.
+    # {1} is the worktree path (hidden from the list by --with-nth).
+    local preview_cmd="\"$git_path\" -C {1} --no-pager -c color.ui=always status | head -n 10; printf '\\033[0m\n'; \"$git_path\" -C {1} --no-pager -c color.ui=always log --oneline --decorate -n 20"
+    local selected=$(printf '%s\n' "${lines[@]}" | fzf --ansi --height 60% --border --delimiter=$'\t' --with-nth=2.. \
+      --preview "$preview_cmd" --preview-window=right:55%:wrap)
     if [[ -n "$selected" ]]; then
       local worktree_path="${selected%%$'\t'*}"
       cd "$worktree_path" || return 1
