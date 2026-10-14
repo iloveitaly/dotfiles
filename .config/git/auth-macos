@@ -13,8 +13,9 @@
   # macOS 1Password. On Linux, set this in ~/.gitconfig-local (included last).
   program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 
+# on macos, the keychain is used by default. Using this enables (a) the same auth method to be used and (b) better GH integration compared to keychain
 [credential]
-  helper = osxkeychain
+  helper = /usr/local/bin/git-credential-manager
 
 [commit]
   gpgsign = true

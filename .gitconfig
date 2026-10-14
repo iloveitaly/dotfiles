@@ -1,21 +1,7 @@
-[user]
-  name = Michael Bianco
-  email = mike@mikebian.co
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICwLUUgnt+gbin8Q9k584YSTg1efJc5syi51vOV3o/pA
-
-[github]
-  user = iloveitaly
-
-[gpg]
-  format = ssh
-
-[gpg "ssh"]
-  # macOS 1Password. On Linux, set this in ~/.gitconfig-local (included last).
-  program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
-
-# on macos, the keychain is used by default, but using this enables the same auth method to be used on linux too
-[credential]
-  helper = /usr/local/bin/git-credential-manager
-
-[commit]
-  gpgsign = true
+[include]
+  path = ./.config/git/aliases
+  path = ./.config/git/functions
+  path = ./.config/git/color
+  path = ./.config/git/diff
+  path = ./.config/git/style
+  path = ./.config/git/settings
