@@ -46,12 +46,7 @@ configure-launchagents:
 
 pull-ide-integration:
 	cp ~/Library/Application\ Support/Code/User/{settings,keybindings}.json .vscode/
-	cp ~/Library/Application\ Support/Cursor/User/{settings,keybindings}.json .cursor/
-
-# vscode and cursor integration
-patch-ide-integration:
-	cp "$(code --locate-shell-integration-path zsh)" .vscode/zsh-integration-original.zsh
-	patch -o .vscode/zsh-integration.zsh .vscode/zsh-integration-original.zsh .vscode/zsh-integration.patch
+	cp ~/.cursor/{settings.json,keybindings.json} .vscode/
 
 # Extract user and core.whitespace config to .gitconfig-agent, the default gitconfig assumes an interactive TUI, so we have a simplified config
 # to avoid weird agent problems.
