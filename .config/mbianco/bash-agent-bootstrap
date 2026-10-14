@@ -26,8 +26,8 @@ if ai_is_agent_terminal; then
   # ai_load_agent_configuration is designed for zsh, so we customize the configuration for bash here
 
   # without this, the git config which uses fancy pagers, etc will be used
-  export GIT_CONFIG_NOSYSTEM=1
-  export GIT_CONFIG_GLOBAL=$HOME/.gitconfig-agent
+  # export GIT_CONFIG_NOSYSTEM=1
+  # export GIT_CONFIG_GLOBAL=$HOME/.gitconfig-agent
 
   export GIT_EDITOR=true
   export PAGER=cat

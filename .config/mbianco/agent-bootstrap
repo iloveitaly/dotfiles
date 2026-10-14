@@ -47,17 +47,11 @@ ai_load_agent_configuration() {
     source <(mise activate)
     source <(direnv hook zsh)
 
-    # Only run VS Code shell integration for VSC and Cursor
-    # https://code.visualstudio.com/docs/terminal/shell-integration
-    if [[ "${VSCODE_AGENT:-}" == "1" || -n "${CURSOR_AGENT:-}" ]]; then
-      source "$(code --locate-shell-integration-path zsh)"
-    fi
-
     [[ ${AGENT_DEBUG:-} -eq 1 ]] && echo "In agent shell, sourced configuration"
 
     # without this, the git config which uses fancy pagers, etc will be used
-    export GIT_CONFIG_NOSYSTEM=1
-    export GIT_CONFIG_GLOBAL=$HOME/.gitconfig-agent
+    # export GIT_CONFIG_NOSYSTEM=1
+    # export GIT_CONFIG_GLOBAL=$HOME/.gitconfig-agent
 
     export GIT_EDITOR=true
     export PAGER=cat
