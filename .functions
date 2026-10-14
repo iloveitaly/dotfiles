@@ -542,7 +542,6 @@ buffer-tweet() {
 
 source ~/.node-functions
 source "${HOME}/.config/mbianco/python"
-source ~/.git-functions
+source "${HOME}/.config/mbianco/git"
 source "${HOME}/.config/mbianco/docker"
-source ~/.mise-functions
 source ~/.ai-functions
