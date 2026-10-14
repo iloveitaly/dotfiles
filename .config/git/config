@@ -1,0 +1,7 @@
+[include]
+  path = ./.config/git/aliases
+  path = ./.config/git/functions
+  path = ./.config/git/color
+  path = ./.config/git/diff
+  path = ./.config/git/style
+  path = ./.config/git/settings
