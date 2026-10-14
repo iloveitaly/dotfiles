@@ -1,18 +1,12 @@
+# runs on interactive and login shells
+
 # first, setup PATH mutations to access mise, direnv, etc
 # shellcheck source=./.config/mbianco/path
 source "${HOME}/.config/mbianco/path"
 
-# now, let's check early for a agent-driven shell
+# now, let's check early for a agent-driven shell so we can exit early if we are in an agent environment
 # shellcheck source=./.config/mbianco/agent-bootstrap
 source "${HOME}/.config/mbianco/agent-bootstrap"
-
-if [ -v VSCODE_TASK_RUNNING ]; then
-    # mise first, since it manages/install direnv
-  source <(mise activate)
-  source <(direnv hook zsh)
-
-  source "$(code --locate-shell-integration-path zsh)"
-fi
 
 # if an agent is running the terminal, we can assume the necessary config has been setup
 # and we can exit early to avoid loading unnecessary plugins and completions.
@@ -97,6 +91,7 @@ setopt hist_ignore_dups         # Ignore consecutive duplicates.
 setopt hist_reduce_blanks       # Remove superfluous blanks.
 setopt hist_save_no_dups        # Omit older commands in favor of newer ones.
 
+# =============
 # Evals
 # =============
 
@@ -109,7 +104,6 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
-
 
 # ======================
 # Load Config & Plugins

@@ -19,7 +19,6 @@ ai_load_agent_configuration() {
   #   return 0
   # fi
 
-
   # TODO document exactly why we need this
   # shellcheck source=./.path
   source "${HOME}/.config/mbianco/path"

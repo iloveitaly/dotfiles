@@ -1,6 +1,7 @@
-# Only run in non-interactive, non-login shells.
-# This file exists only because Cursor runs terminals in this limited mode,
-# so we need a minimal early gate here.
+# always executed in all shell types
+# however, this is designed to only be executed in non-interactive, non-login shells
+
+# exit early if we are in an interactive or login shell, zshrc will handle the rest
 if [[ -o interactive || -o login ]]; then
   return 0
 fi
