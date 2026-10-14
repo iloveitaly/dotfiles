@@ -544,4 +544,3 @@ source ~/.node-functions
 source "${HOME}/.config/mbianco/python"
 source "${HOME}/.config/mbianco/git"
 source "${HOME}/.config/mbianco/docker"
-source ~/.ai-functions
