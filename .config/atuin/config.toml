@@ -43,8 +43,8 @@ update_check = true
 # search_mode = "fuzzy"
 
 ## which filter mode to use
-## possible values: global, host, session, directory
-# filter_mode = "global"
+## possible values: global, host, session, directory, workspace
+filter_mode = "workspace"
 
 ## With workspace filtering enabled, Atuin will filter for commands executed
 ## in any directory within a git repository tree (default: false)
@@ -244,6 +244,9 @@ autostart = true
 
 ## The port that should be used for TCP on non unix systems
 # tcp_port = 8889
+
+[ui]
+syntax_highlight = true
 
 [dotfiles]
 ## prevent commands matching any of these regexes from being written to history.
