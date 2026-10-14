@@ -1,0 +1,14 @@
+[user]
+  name = Michael Bianco
+  email = mike@mikebian.co
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMbrReXvrTiYMN1QBFSJgnh69DIDT3qwUf6Hn/2/y2E8
+
+[github]
+  user = iloveitaly
+
+[credential]
+    helper =
+
+# use ssh for github urls to avoid requiring gh cli auth
+[url "git@github.com:"]
+	insteadOf = https://github.com/
