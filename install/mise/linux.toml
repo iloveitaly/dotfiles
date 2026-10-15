@@ -2,9 +2,6 @@
 btop = "latest"
 
 [settings]
-# Prefer portable musl artifacts when a backend publishes both GNU and musl Linux builds.
-libc = "musl"
-
 # Erlang, Elixir, and Ruby compile from source on Linux and are unneeded outside macOS.
 # Bun's musl release isn't statically linked (it hard-requires a real musl libc
 # runtime), unlike this box's other musl artifacts, so it can't run on glibc-only
