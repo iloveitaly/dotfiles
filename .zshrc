@@ -304,8 +304,3 @@ _zsh_autosuggest_strategy_atuin_global() {
 export ZSH_AUTOSUGGEST_STRATEGY=(atuin_auto atuin_global)
 # autocomplete on completions as well
 # export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-
-# since we can't use the default kill detached in tmux, we need to do it ourselves
-setopt localoptions nomonitor
-(tmux-kill-detached-sessions &> /dev/null &) & disown
-setopt localoptions monitor
