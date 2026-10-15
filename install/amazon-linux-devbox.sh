@@ -56,13 +56,6 @@ mkdir -p "${HOME}/.local/bin" "${HOME}/.config"
 export PATH="${HOME}/.local/bin:${PATH}"
 eval "$(mise activate bash)"
 
-# GitHub-backed mise tools require an already-resolvable token. `mise token`
-# checks its configured sources (environment, OAuth cache, gh CLI, etc.)
-# without exposing the token in installer output.
-if [[ -z "$(mise token github --raw 2>/dev/null)" ]]; then
-  echo -e "\033[0;31mA GitHub token resolvable by mise is required (for example, MISE_GITHUB_TOKEN).\033[0m" >&2
-  exit 1
-fi
 mise self-update -y
 
 # installs/upgrades everything in the base config and Amazon-specific fragment

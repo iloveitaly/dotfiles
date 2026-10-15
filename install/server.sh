@@ -3,8 +3,6 @@
 #
 # Usage:
 #   run from a clone: ./install/server.sh
-# GitHub-backed mise tools need a resolvable token (not stored on disk), e.g.:
-#   MISE_GITHUB_TOKEN=... ./install/server.sh
 
 set -euo pipefail
 
@@ -115,13 +113,6 @@ fi
 export PATH="${HOME}/.local/bin:${PATH}"
 eval "$(mise activate bash)"
 
-# GitHub-backed mise tools require an already-resolvable token. `mise token`
-# checks its configured sources (environment, OAuth cache, gh CLI, etc.)
-# without exposing the token in installer output.
-if [[ -z "$(mise token github --raw 2>/dev/null)" ]]; then
-  echo -e "\033[0;31mA GitHub token resolvable by mise is required (for example, MISE_GITHUB_TOKEN).\033[0m" >&2
-  exit 1
-fi
 mise self-update -y
 
 # leave the clone: mise treats a `.config/mise/config.toml` relative to cwd as
