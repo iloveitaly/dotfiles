@@ -41,11 +41,13 @@
 #   wait'0c'  — AFTER compinit: bashcompinit, source/eval/argcomplete completions, fzf-tab (last)
 #   wait'1'   — non-completion deferred niceties
 #   wait'2'   — heavy optional plugins
+#   wait'10'  — background completion-cache maintenance
 #
 # Local plugin dirs (~/.config/mbianco/zsh_plugins/) match turbo slots:
 #   0b/  — pre-compinit (fpath, early tools)
 #   0c/  — post-compinit only (source/eval/argcomplete registrations)
 #   1/   — deferred non-completion scripts
+#   10/  — late background maintenance
 #
 # Completion registration conventions:
 #   | Kind                              | Slot              | How to register                          |
@@ -91,7 +93,7 @@ zinit wait'0b' lucid for \
   atload'_zsh_autosuggest_start' zsh-users/zsh-autosuggestions \
   atinit'zicompdef zbnc_zsh_better_npm_completion pnpm' zpm-zsh/zsh-better-npm-completion \
   as"null" id-as"compinit-pivot" \
-    atinit'zicompinit; source ${HOME}/.config/mbianco/zsh_plugins/alias-completions.zsh; zicdreplay' \
+    atinit'ZINIT[COMPINIT_OPTS]=-C; zicompinit; source ${HOME}/.config/mbianco/zsh_plugins/alias-completions.zsh; zicdreplay' \
     zdharma-continuum/null
 
 # post-compinit only. fzf-tab must remain last in this group.
@@ -138,6 +140,12 @@ zinit wait'2' lucid for \
   OMZ::plugins/extract \
   OMZ::plugins/universalarchive \
   OMZP::git-auto-fetch
+
+# Trust the cache at startup; rebuild it daily in the background for future shells.
+zinit wait'10' lucid for \
+  as"null" id-as"completion-cache-refresh" \
+    multisrc"${HOME}/.config/mbianco/zsh_plugins/10/*.zsh" \
+    zdharma-continuum/null
 
 # Prompt : https://github.com/starship/starship
 zinit ice from"gh-r" as"command" atload'eval "$(starship init zsh)"'
