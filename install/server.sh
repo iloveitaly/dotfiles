@@ -58,7 +58,7 @@ case "${ID:-}" in
   debian|ubuntu)
     package_manager=apt
     run_sudo "refresh apt package lists" apt-get update
-    run_sudo "install bootstrap dependencies" apt-get install -y zsh curl ca-certificates git rsync
+    run_sudo "install bootstrap dependencies" apt-get install -y zsh curl ca-certificates git rsync build-essential
     ;;
   *)
     echo "Unsupported distribution: ${ID:-unknown}. Expected debian, ubuntu, arch, or omarchy." >&2
