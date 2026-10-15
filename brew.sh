@@ -102,8 +102,8 @@ curl -fsSL https://dev.meta.ai/install.sh | bash
 
 pnpm approve-builds -g
 
-pnpx skills add ast-grep/agent-skill
-pnpx skills add https://github.com/iloveitaly/ai-skills --skill justfile
+pnpx skills@latest add ast-grep/agent-skill
+pnpx skills add https://github.com/iloveitaly/ai-skills -g --all
 pnpx skills add https://github.com/railwayapp/railway-skills --skill railway-docs --agent claude-code,gemini-cli,codex,cursor,github-copilot,opencode
 pnpx skills add https://github.com/github/awesome-copilot --skill gh-cli
 pnpm dlx skills add shadcn/ui
