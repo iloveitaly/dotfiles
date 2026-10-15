@@ -49,14 +49,14 @@ sudo systemctl enable --now docker
 sudo usermod -aG docker "$(whoami)"
 
 # mise
-if ! command -v mise &>/dev/null; then
+if command -v mise &>/dev/null; then
+  mise self-update --yes
+else
   curl https://mise.run | sh
 fi
 mkdir -p "${HOME}/.local/bin" "${HOME}/.config"
 export PATH="${HOME}/.local/bin:${PATH}"
 eval "$(mise activate bash)"
-
-mise self-update -y
 
 # installs/upgrades everything in the base config and Amazon-specific fragment
 mise install -y

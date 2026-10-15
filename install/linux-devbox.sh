@@ -24,7 +24,9 @@ install -Dm 0755 install/linux/bin/pbcopy "${HOME}/.local/bin/pbcopy"
 install -Dm 0755 install/linux/bin/pbpaste "${HOME}/.local/bin/pbpaste"
 
 # mise (musl to avoid glibc issues on some servers/pis)
-if ! command -v mise &>/dev/null; then
+if command -v mise &>/dev/null; then
+  mise self-update --yes
+else
   curl https://mise.run | MISE_INSTALL_MUSL=1 sh
 fi
 
@@ -38,8 +40,6 @@ sudo apt install -y \
 
 export PATH="${HOME}/.local/bin:${PATH}"
 eval "$(mise activate bash)"
-
-mise self-update -y
 
 # leave the clone: mise treats a `.config/mise/config.toml` relative to cwd as
 # a local project config layered on top of the global one
