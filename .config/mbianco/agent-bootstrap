@@ -4,8 +4,8 @@
 # Returns 0 (true) when running under an AI-agent managed terminal.
 # https://github.com/sdairs/is-ai-agent use this as a reference
 ai_is_agent_terminal() {
-  # TERM=dumb is a fallback for agents that don't set a dedicated env var
-  [[ "${VSCODE_AGENT:-}" == "1" || -n "${CURSOR_AGENT:-}" || "${CLAUDECODE:-}" == "1" || "${GEMINI_CLI:-}" == "1" || "${ANTIGRAVITY_AGENT:-}" == "1" || "${GROK_AGENT:-}" == "1" || "${CODEX_CI:-}" == "1" || "${TERM:-}" == "dumb" ]]
+  # TERM=dumb is a fallback for agents that don't set a dedicated env var.
+  [[ -n "${AI_AGENT:-}" || -n "${AGENT:-}" || -n "${VSCODE_AGENT:-}" || -n "${CURSOR_AGENT:-}" || -n "${CLAUDECODE:-}" || -n "${GEMINI_CLI:-}" || -n "${ANTIGRAVITY_AGENT:-}" || -n "${GROK_SESSION_ID:-}" || -n "${CODEX_CI:-}" || "${TERM:-}" == "dumb" ]]
 }
 
 # test with:
