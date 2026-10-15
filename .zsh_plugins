@@ -91,7 +91,7 @@ zinit wait'0b' lucid for \
   atload'_zsh_autosuggest_start' zsh-users/zsh-autosuggestions \
   atinit'zicompdef zbnc_zsh_better_npm_completion pnpm' zpm-zsh/zsh-better-npm-completion \
   as"null" id-as"compinit-pivot" \
-    atinit'ZINIT[COMPINIT_OPTS]=-C; zicompinit; source ${HOME}/.config/mbianco/zsh_plugins/alias-completions.zsh; zicdreplay' \
+    atinit'zicompinit; source ${HOME}/.config/mbianco/zsh_plugins/alias-completions.zsh; zicdreplay' \
     zdharma-continuum/null
 
 # post-compinit only. fzf-tab must remain last in this group.
