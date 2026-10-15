@@ -1,6 +1,6 @@
 # Functions/aliases don't inherit completions by default; map them to the
-# underlying command's completer. Loaded from 0c/ (wait'0c'); zicdreplay
-# runs after this directory is sourced.
+# underlying command's completer. Sourced by the compinit pivot after
+# zicompinit and before zicdreplay, so the copies see $_comps.
 
 if (( $+commands[fd] )); then
   zicompdef fdd=fd
