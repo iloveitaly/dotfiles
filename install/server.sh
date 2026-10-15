@@ -6,6 +6,11 @@
 
 set -euo pipefail
 
+export DEBIAN_FRONTEND=noninteractive
+export ZINIT_COLORIZE=false
+mkdir -p "${HOME}/.local/bin"
+export PATH="${HOME}/.local/bin:${PATH}"
+
 privilege_mode=none
 sudo_skip_reason="the current user is not in the sudo or wheel group"
 if [[ "$(id -u)" == 0 ]]; then
@@ -52,7 +57,6 @@ case "${ID:-}" in
     ;;
   debian|ubuntu)
     package_manager=apt
-    export DEBIAN_FRONTEND=noninteractive
     run_sudo "refresh apt package lists" apt-get update
     run_sudo "install bootstrap dependencies" apt-get install -y zsh curl ca-certificates git rsync
     ;;
@@ -112,7 +116,6 @@ if command -v mise &>/dev/null; then
 else
   curl https://mise.run | MISE_INSTALL_MUSL=1 sh
 fi
-export PATH="${HOME}/.local/bin:${PATH}"
 eval "$(mise activate bash)"
 
 # leave the clone: mise treats a `.config/mise/config.toml` relative to cwd as
@@ -186,9 +189,6 @@ if ! grep -qxF "$(command -v zsh)" /etc/shells; then
     tee -a /etc/shells <<<"$(command -v zsh)" >/dev/null
 fi
 run_sudo "change the current user's login shell to zsh" chsh -s "$(command -v zsh)" "$(whoami)"
-
-# cleaner output since this will be running inside ansible, or something similar
-export ZINIT_COLORIZE=false
 
 # zinit's --no-pager path calls `cat`, but ~/.aliases maps that to bat. Give
 # zsh non-TTY stdout so bat also disables its pager instead of spawning $PAGER

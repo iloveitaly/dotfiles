@@ -5,6 +5,11 @@
 
 set -euo pipefail
 
+export DEBIAN_FRONTEND=noninteractive
+export ZINIT_COLORIZE=false
+mkdir -p "${HOME}/.local/bin"
+export PATH="${HOME}/.local/bin:${PATH}"
+
 cd "$(dirname "$0")/.." || exit 1
 
 rsync --exclude-from="install/standard-exclude.txt" \
@@ -38,7 +43,6 @@ sudo apt install -y \
   rsync watch iotop powertop libreadline-dev libffi-dev libyaml-dev \
   nmap
 
-export PATH="${HOME}/.local/bin:${PATH}"
 eval "$(mise activate bash)"
 
 # leave the clone: mise treats a `.config/mise/config.toml` relative to cwd as
@@ -72,9 +76,6 @@ sudo chsh -s "$(command -v zsh)" "$(whoami)"
 if ! command -v python &>/dev/null && command -v python3 &>/dev/null; then
   sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 fi
-
-# cleaner output since this will be running inside ansible, or something similar
-export ZINIT_COLORIZE=false
 
 # zinit's --no-pager path calls `cat`, but ~/.aliases maps that to bat. Give
 # zsh non-TTY stdout so bat also disables its pager instead of spawning $PAGER

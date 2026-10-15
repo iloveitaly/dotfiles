@@ -7,6 +7,10 @@
 
 set -euo pipefail
 
+export ZINIT_COLORIZE=false
+mkdir -p "${HOME}/.local/bin" "${HOME}/.config"
+export PATH="${HOME}/.local/bin:${PATH}"
+
 cd "$(dirname "$0")/.." || exit 1
 
 rsync --exclude-from="install/standard-exclude.txt" \
@@ -54,8 +58,6 @@ if command -v mise &>/dev/null; then
 else
   curl https://mise.run | sh
 fi
-mkdir -p "${HOME}/.local/bin" "${HOME}/.config"
-export PATH="${HOME}/.local/bin:${PATH}"
 eval "$(mise activate bash)"
 
 # installs/upgrades everything in the base config and Amazon-specific fragment
@@ -80,9 +82,6 @@ if ! grep -qxF "$(command -v zsh)" /etc/shells; then
   echo "$(command -v zsh)" | sudo tee -a /etc/shells >/dev/null
 fi
 sudo chsh -s "$(command -v zsh)" "$(whoami)"
-
-# cleaner output since this will be running inside ansible, or something similar
-export ZINIT_COLORIZE=false
 
 # zinit's --no-pager path calls `cat`, but ~/.aliases maps that to bat. Give
 # zsh non-TTY stdout so bat also disables its pager instead of spawning $PAGER
