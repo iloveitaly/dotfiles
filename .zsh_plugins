@@ -64,6 +64,11 @@
 #   zicdreplay so any stubbed compdef calls are applied.
 #   Debug: ZSH_COMP_DEBUG=1 prints key _comps entries after 0c loads.
 
+# Make compdef available before deferred plugins and their hooks can call it.
+# The pivot below runs again after 0b has populated fpath; both loads trust the cache.
+ZINIT[COMPINIT_OPTS]=-C
+zicompinit
+
 # tools we need right away
 zinit wait'0a' lucid for \
   wintermi/zsh-mise \
