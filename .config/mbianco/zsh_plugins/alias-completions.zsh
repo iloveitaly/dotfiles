@@ -1,16 +1,15 @@
-# Functions/aliases don't inherit completions by default; map them to the
-# underlying command's completer. Sourced by the compinit pivot after
-# zicompinit and before zicdreplay, so the copies see $_comps.
+# Functions/aliases don't inherit completions by default. Register their
+# completers explicitly so a stale compinit cache cannot break registration.
+# Sourced by the compinit pivot after zicompinit and before zicdreplay.
 
 if (( $+commands[fd] )); then
-  zicompdef fdd=fd
-  zicompdef fdu=fd
+  autoload -Uz _fd
+  zicompdef _fd fd fdd fdu
 fi
 
 if (( $+commands[rg] )); then
-  zicompdef rgg=rg
-  zicompdef rgu=rg
-  zicompdef rgc=rg
+  autoload -Uz _rg
+  zicompdef _rg rg rgg rgu rgc
 fi
 
 if (( $+commands[dokku] )); then
