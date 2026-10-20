@@ -231,6 +231,9 @@ if OS.mac?
 
     # == MacOS-only Shell Tooling
     # some of these tools are strictly terminal related, but do not play well with linux/codespaces
+    tap "schappim/ocr"
+    brew "schappim/ocr/ocr"
+
     tap "teamookla/speedtest"
     brew "teamookla/speedtest/speedtest"
 
