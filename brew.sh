@@ -96,6 +96,8 @@ bun install -g @github/copilot@latest
 bun add -g opencode-ai
 curl -fsSL https://claude.ai/install.sh | bash
 curl -fsSL https://antigravity.google/cli/install.sh | bash
+# macOS: brew install codex (Brewfile); Linux: standalone installer
+[[ "$(uname -s)" != "Darwin" ]] && curl -fsSL https://chatgpt.com/codex/install.sh | sh
 curl -fsSL https://x.ai/cli/install.sh | bash
 curl -fsSL https://github.com/aaif-goose/goose/releases/download/stable/download_cli.sh | bash
 curl -fsSL https://dev.meta.ai/install.sh | bash
@@ -104,6 +106,7 @@ pnpm approve-builds -g
 
 pnpx skills@latest add ast-grep/agent-skill
 pnpx skills add https://github.com/iloveitaly/ai-skills -g --all
+pnpx skills add blader/humanizer --global
 pnpx skills add https://github.com/railwayapp/railway-skills --skill railway-docs --agent claude-code,gemini-cli,codex,cursor,github-copilot,opencode
 pnpx skills add https://github.com/github/awesome-copilot --skill gh-cli
 pnpm dlx skills add shadcn/ui
