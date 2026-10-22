@@ -54,7 +54,7 @@ fi
 apps=(
   $work_apps
   GitHub
-  Dropbox "Google Drive" Numbers Stocks SoundPaste
+  Dropbox Numbers Stocks SoundPaste
   Buffer Signal Telegram
   Podcasts Spotify "YT Music"
   Dictionary Notes Preview "QuickTime Player" Contacts
