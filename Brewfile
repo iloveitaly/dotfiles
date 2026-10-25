@@ -127,6 +127,7 @@ if OS.mac?
     cask "grammarly-desktop"
     cask "spotify"
     cask "bartender"
+    cask "thaw"
     cask "microsoft-teams"
     cask "arctype"
     cask "arc"
