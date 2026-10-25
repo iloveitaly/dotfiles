@@ -13,6 +13,7 @@ $git_status\
 $cmd_duration\
 $line_break\
 $direnv\
+$mise\
 $python\
 ${custom.novenv}\
 $jobs\
@@ -31,6 +32,7 @@ format = "$symbol\u00A0"
 [git_branch]
 format = "[$branch]($style)"
 style = "bright-black"
+ignore_bare_repo = true
 
 [git_status]
 format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
@@ -48,10 +50,17 @@ style = "yellow"
 
 # Native replacement for custom.venv — detect_env_vars defaults to ["VIRTUAL_ENV"]
 [python]
-format = '[venv ](blue)'
+format = '[$virtualenv ](blue)'
+generic_venv_names = [".venv", "venv", "env"]
 detect_extensions = []
 detect_files = []
 detect_folders = []
+
+[mise]
+format = '[$symbol]($style) '
+symbol = "mise"
+style = "purple"
+disabled = false
 
 # No native "missing venv" signal yet (https://github.com/starship/starship/issues/3251)
 [custom.novenv]
