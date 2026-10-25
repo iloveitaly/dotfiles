@@ -20,9 +20,11 @@ upgrade:
 		ya pkg upgrade --discard
 		XDG_CONFIG_HOME="{{justfile_directory()}}/.config" nvim --headless "+Lazy! update" +qa
 
-    # this will update starship as well
-    # zinit update has job-control/pager quirks in non-interactive subshells
-    echo "Please run \`zinit update\` in an interactive shell to update zinit plugins like starship."
+		# this will update starship as well
+		# zinit update has job-control/pager quirks in non-interactive subshells
+		echo "Please run \`zinit update\` in an interactive shell to update zinit plugins like starship."
+
+		just sync
 
 # linux installs have a custom sync command that is run
 [macos]
