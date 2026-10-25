@@ -109,6 +109,7 @@ pnpx skills add https://github.com/iloveitaly/ai-skills -g --all
 pnpx skills add blader/humanizer --global
 pnpx skills add https://github.com/railwayapp/railway-skills --skill railway-docs --agent claude-code,gemini-cli,codex,cursor,github-copilot,opencode
 pnpx skills add https://github.com/github/awesome-copilot --skill gh-cli
+pnpx skills add github/gh-stack --global
 pnpm dlx skills add shadcn/ui
 
 #################
