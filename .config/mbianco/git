@@ -768,3 +768,25 @@ ghf() {
   print -r -- "$workflow_name: failed"
   command gh run view "$run_id" --log-failed | command lnav -t
 }
+
+gh-stack-parent() {
+  gh stack view --json | jq -r '
+  .trunk as $trunk
+  | (.branches[] | select(.isCurrent) | .base) as $base
+  | ([.branches[] | select(.head == $base) | .name][0]) // $trunk
+'
+}
+
+hunk-stack() {
+  local stack_json base trunk
+  stack_json=$(gh stack view --json 2>/dev/null)
+
+  if [[ -n "$stack_json" ]]; then
+    base=$(jq -r '.branches[] | select(.isCurrent) | .base' <<< "$stack_json")
+    trunk=$(jq -r '.trunk // "main"' <<< "$stack_json")
+  fi
+
+  local target="${base:-${trunk:-main}}"
+
+  hunk diff --watch --transparent-bg "$target" "$@"
+}
