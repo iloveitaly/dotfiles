@@ -9,5 +9,9 @@
   "alwaysThinkingEnabled": true,
   "effortLevel": "medium",
   "skipDangerousModePermissionPrompt": true,
-  "theme": "dark"
+  "theme": "dark",
+  "skipAutoPermissionPrompt": true,
+  "permissions": {
+    "defaultMode": "auto"
+  }
 }
