@@ -3,6 +3,9 @@
 # Important to separate into a separate file so it can be sourced in ~/.zshenv for agents
 # ===============================
 
+# Deduplicate PATH automatically (keeps first occurrence)
+# typeset -U path PATH
+
 # we tried linux homebrew, but it's terrible, so we conditionally load brew so these dotfiles support a linux environment
 brew_path="/opt/homebrew/bin/brew"
 if [[ -x "$brew_path" ]]; then
