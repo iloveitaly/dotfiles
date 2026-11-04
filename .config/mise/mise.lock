@@ -352,70 +352,80 @@ url = "https://github.com/noborus/ov/releases/download/v0.55.0/ov_0.55.0_windows
 url_api = "https://api.github.com/repos/noborus/ov/releases/assets/597204774"
 
 [[tools.ast-grep]]
-version = "0.51.0"
+version = "0.51.1"
 backend = "aqua:ast-grep/ast-grep"
 specifiers = ["latest"]
 
 [tools.ast-grep."platforms.linux-arm64"]
-checksum = "sha256:73af0ebe5958acee012754a5b2826a186580ef83333092408a7a01096fc30b8b"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.0/app-aarch64-unknown-linux-gnu.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/644253212"
+checksum = "sha256:db02fae2d8eace5fc40c55242068882452dd03eab38a1d950d5fd981cf112926"
+checksum_source = "mise-versions"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-aarch64-unknown-linux-gnu.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/701846463"
 
 [tools.ast-grep."platforms.linux-arm64-musl"]
-checksum = "sha256:73af0ebe5958acee012754a5b2826a186580ef83333092408a7a01096fc30b8b"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.0/app-aarch64-unknown-linux-gnu.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/644253212"
+checksum = "sha256:db02fae2d8eace5fc40c55242068882452dd03eab38a1d950d5fd981cf112926"
+checksum_source = "mise-versions"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-aarch64-unknown-linux-gnu.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/701846463"
 
 [tools.ast-grep."platforms.linux-x64"]
-checksum = "sha256:a7eead5552d3a8daad70f5d50d935da44bd0c138e946b5b0a96b1d38169fa639"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.0/app-x86_64-unknown-linux-gnu.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/644248664"
+checksum = "sha256:42514f77ae0c8a25d7d32154d31d3e7e16f3ab894f8ce76ce417de234ee49157"
+checksum_source = "mise-versions"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-x86_64-unknown-linux-gnu.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/701823082"
 
 [tools.ast-grep."platforms.linux-x64-baseline"]
-checksum = "sha256:a7eead5552d3a8daad70f5d50d935da44bd0c138e946b5b0a96b1d38169fa639"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.0/app-x86_64-unknown-linux-gnu.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/644248664"
+checksum = "sha256:42514f77ae0c8a25d7d32154d31d3e7e16f3ab894f8ce76ce417de234ee49157"
+checksum_source = "mise-versions"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-x86_64-unknown-linux-gnu.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/701823082"
 
 [tools.ast-grep."platforms.linux-x64-musl"]
-checksum = "sha256:a7eead5552d3a8daad70f5d50d935da44bd0c138e946b5b0a96b1d38169fa639"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.0/app-x86_64-unknown-linux-gnu.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/644248664"
+checksum = "sha256:42514f77ae0c8a25d7d32154d31d3e7e16f3ab894f8ce76ce417de234ee49157"
+checksum_source = "mise-versions"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-x86_64-unknown-linux-gnu.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/701823082"
 
 [tools.ast-grep."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:a7eead5552d3a8daad70f5d50d935da44bd0c138e946b5b0a96b1d38169fa639"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.0/app-x86_64-unknown-linux-gnu.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/644248664"
+checksum = "sha256:42514f77ae0c8a25d7d32154d31d3e7e16f3ab894f8ce76ce417de234ee49157"
+checksum_source = "mise-versions"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-x86_64-unknown-linux-gnu.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/701823082"
 
 [tools.ast-grep."platforms.macos-arm64"]
-checksum = "sha256:e18e13c27ed6c4b3ec4de00745b0755dee9dc26c035e226f4dd5d147dca99cc8"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.0/app-aarch64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/644256001"
+checksum = "sha256:a95772097b4d02bd9d45ed63b300c37041ae3c36632b3bf19250cc7c10187dc4"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-aarch64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/701845634"
 
 [tools.ast-grep."platforms.macos-x64"]
-checksum = "sha256:8438fe549da59da28518c45bdaab5b851aabafe8fb4f8dc05c261a7649b4eca6"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.0/app-x86_64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/644256580"
+checksum = "sha256:302b92868fa1b0439f0927b1f31668e03636b12a8e646fb1a3cd8de816c78242"
+checksum_source = "mise-versions"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-x86_64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/700681117"
 
 [tools.ast-grep."platforms.macos-x64-baseline"]
-checksum = "sha256:8438fe549da59da28518c45bdaab5b851aabafe8fb4f8dc05c261a7649b4eca6"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.0/app-x86_64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/644256580"
+checksum = "sha256:302b92868fa1b0439f0927b1f31668e03636b12a8e646fb1a3cd8de816c78242"
+checksum_source = "mise-versions"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-x86_64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/700681117"
 
 [tools.ast-grep."platforms.windows-x64"]
-checksum = "sha256:1a5b7824c5925ac34257f806488e54860817cefd855fd308d13df7550d068908"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.0/app-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/644255645"
+checksum = "sha256:12a0cefb77498820ef6fb302ed8758cbda39be87d4c15120dc74c1dea968a50d"
+checksum_source = "mise-versions"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/701859070"
 
 [tools.ast-grep."platforms.windows-x64-baseline"]
-checksum = "sha256:1a5b7824c5925ac34257f806488e54860817cefd855fd308d13df7550d068908"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.0/app-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/644255645"
+checksum = "sha256:12a0cefb77498820ef6fb302ed8758cbda39be87d4c15120dc74c1dea968a50d"
+checksum_source = "mise-versions"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/701859070"
 
 [[tools.azure-cli]]
-version = "2.91.0"
+version = "2.92.0"
 backend = "pypi:azure-cli"
 specifiers = ["latest"]
-uv = { path = "locks/azure-cli/2.91.0~a837e014", digest = "sha256:91ebc52f4344731e750363c1d7f5b2c5acbcb5b49ee191ca41194de4dd143da9" }
+uv = { path = "locks/azure-cli/2.92.0~a837e014", digest = "sha256:1e51ef853c48e8c648793d1592000f0b2a6777bbc03bc6b19db109df1e288b55" }
 
 [tools.azure-cli.options]
 dependency_prereleases = "allow"
@@ -782,74 +792,74 @@ url = "https://github.com/wagoodman/dive/releases/download/v0.13.1/dive_0.13.1_w
 url_api = "https://api.github.com/repos/wagoodman/dive/releases/assets/241842460"
 
 [[tools.dua]]
-version = "2.46.0"
+version = "3.0.0"
 backend = "aqua:Byron/dua-cli"
 specifiers = ["latest"]
 
 [tools.dua."platforms.linux-arm64"]
-checksum = "sha256:a7ba6bce1f1d16392b4c9f385e7439deda71627ed3c55eb09d5dfcbe6b481a58"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.46.0/dua-v2.46.0-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/644782913"
+checksum = "sha256:642ce5d1ca43ec7504c9452d1d662a02aeb5f451d7fc0093c81c1580f50577f2"
+url = "https://github.com/Byron/dua-cli/releases/download/v3.0.0/dua-v3.0.0-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/701241019"
 provenance = "github-attestations"
 
 [tools.dua."platforms.linux-arm64-musl"]
-checksum = "sha256:a7ba6bce1f1d16392b4c9f385e7439deda71627ed3c55eb09d5dfcbe6b481a58"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.46.0/dua-v2.46.0-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/644782913"
+checksum = "sha256:642ce5d1ca43ec7504c9452d1d662a02aeb5f451d7fc0093c81c1580f50577f2"
+url = "https://github.com/Byron/dua-cli/releases/download/v3.0.0/dua-v3.0.0-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/701241019"
 provenance = "github-attestations"
 
 [tools.dua."platforms.linux-x64"]
-checksum = "sha256:4f284a388a063a99f938c6e0f5ea8d932868e1f9a4224622d97488f4ec671b41"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.46.0/dua-v2.46.0-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/644781322"
+checksum = "sha256:59438b0934a521dd4cf2896fa42046023df60e1c25812a07cef913dc2b2d103f"
+url = "https://github.com/Byron/dua-cli/releases/download/v3.0.0/dua-v3.0.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/701237992"
 provenance = "github-attestations"
 
 [tools.dua."platforms.linux-x64-baseline"]
-checksum = "sha256:4f284a388a063a99f938c6e0f5ea8d932868e1f9a4224622d97488f4ec671b41"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.46.0/dua-v2.46.0-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/644781322"
+checksum = "sha256:59438b0934a521dd4cf2896fa42046023df60e1c25812a07cef913dc2b2d103f"
+url = "https://github.com/Byron/dua-cli/releases/download/v3.0.0/dua-v3.0.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/701237992"
 provenance = "github-attestations"
 
 [tools.dua."platforms.linux-x64-musl"]
-checksum = "sha256:4f284a388a063a99f938c6e0f5ea8d932868e1f9a4224622d97488f4ec671b41"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.46.0/dua-v2.46.0-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/644781322"
+checksum = "sha256:59438b0934a521dd4cf2896fa42046023df60e1c25812a07cef913dc2b2d103f"
+url = "https://github.com/Byron/dua-cli/releases/download/v3.0.0/dua-v3.0.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/701237992"
 provenance = "github-attestations"
 
 [tools.dua."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:4f284a388a063a99f938c6e0f5ea8d932868e1f9a4224622d97488f4ec671b41"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.46.0/dua-v2.46.0-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/644781322"
+checksum = "sha256:59438b0934a521dd4cf2896fa42046023df60e1c25812a07cef913dc2b2d103f"
+url = "https://github.com/Byron/dua-cli/releases/download/v3.0.0/dua-v3.0.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/701237992"
 provenance = "github-attestations"
 
 [tools.dua."platforms.macos-arm64"]
-checksum = "sha256:857af70a6be7fe3d22611a3aa082f17789435ad0b89808845ef13f85789e8e1b"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.46.0/dua-v2.46.0-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/644782242"
+checksum = "sha256:d27ba25d6ee2672111c035c8f5aed958a70f11c472cfc00056209d1142df4dea"
+url = "https://github.com/Byron/dua-cli/releases/download/v3.0.0/dua-v3.0.0-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/701240250"
 provenance = "github-attestations"
 
 [tools.dua."platforms.macos-x64"]
-checksum = "sha256:1fe7c6bd3cc1f3d37ee78d22a9f5ec5bd6d33eb24e5c8bf5864aa7efa03f8324"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.46.0/dua-v2.46.0-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/644782386"
+checksum = "sha256:299cd781fbe7ab1d2c0147adf932141b2ace73fad865c333d643a0c89bf06b5c"
+url = "https://github.com/Byron/dua-cli/releases/download/v3.0.0/dua-v3.0.0-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/701239727"
 provenance = "github-attestations"
 
 [tools.dua."platforms.macos-x64-baseline"]
-checksum = "sha256:1fe7c6bd3cc1f3d37ee78d22a9f5ec5bd6d33eb24e5c8bf5864aa7efa03f8324"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.46.0/dua-v2.46.0-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/644782386"
+checksum = "sha256:299cd781fbe7ab1d2c0147adf932141b2ace73fad865c333d643a0c89bf06b5c"
+url = "https://github.com/Byron/dua-cli/releases/download/v3.0.0/dua-v3.0.0-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/701239727"
 provenance = "github-attestations"
 
 [tools.dua."platforms.windows-x64"]
-checksum = "sha256:49616d1deb36109274f19c09dd70420d45bd0c58ea1441236b65b2fd0bdc89ff"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.46.0/dua-v2.46.0-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/644785088"
+checksum = "sha256:5426e4a62ae7c0a893cf7dad2ecdb7b1645b636c200ca2f767a302d0f0716a1f"
+url = "https://github.com/Byron/dua-cli/releases/download/v3.0.0/dua-v3.0.0-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/701243980"
 provenance = "github-attestations"
 
 [tools.dua."platforms.windows-x64-baseline"]
-checksum = "sha256:49616d1deb36109274f19c09dd70420d45bd0c58ea1441236b65b2fd0bdc89ff"
-url = "https://github.com/Byron/dua-cli/releases/download/v2.46.0/dua-v2.46.0-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/644785088"
+checksum = "sha256:5426e4a62ae7c0a893cf7dad2ecdb7b1645b636c200ca2f767a302d0f0716a1f"
+url = "https://github.com/Byron/dua-cli/releases/download/v3.0.0/dua-v3.0.0-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/Byron/dua-cli/releases/assets/701243980"
 provenance = "github-attestations"
 
 [[tools.duf]]
@@ -913,64 +923,74 @@ url = "https://github.com/muesli/duf/releases/download/v0.9.1/duf_0.9.1_windows_
 url_api = "https://api.github.com/repos/muesli/duf/releases/assets/291083822"
 
 [[tools.dust]]
-version = "1.2.6"
+version = "1.2.7"
 backend = "aqua:bootandy/dust"
 specifiers = ["latest"]
 
 [tools.dust."platforms.linux-arm64"]
-checksum = "sha256:ec6a63bc275a33000443d444fd5424e56745aa995bc88e1080cd951e5e9e5cbf"
-url = "https://github.com/bootandy/dust/releases/download/v1.2.6/dust-v1.2.6-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/568852461"
+checksum = "sha256:64496fe9e56dabb379308b3a079816818f6022d0b93638d06206a9144ca795d9"
+checksum_source = "mise-versions"
+url = "https://github.com/bootandy/dust/releases/download/v1.2.7/dust-v1.2.7-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/699455926"
 
 [tools.dust."platforms.linux-arm64-musl"]
-checksum = "sha256:a51cf42a4654864837cc116eaca914271d7a09a9c2a60de90ecc2187b8d855a7"
-url = "https://github.com/bootandy/dust/releases/download/v1.2.6/dust-v1.2.6-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/568851984"
+checksum = "sha256:4c8ebaf224179bfd42db45d8a50fd5304bbd89532eda94db684d309c7b734ed6"
+checksum_source = "mise-versions"
+url = "https://github.com/bootandy/dust/releases/download/v1.2.7/dust-v1.2.7-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/699455978"
 
 [tools.dust."platforms.linux-x64"]
-checksum = "sha256:14f788707aad217667f6812cf1a9639bf5c861a2ee815d486cffc36051f5e759"
-url = "https://github.com/bootandy/dust/releases/download/v1.2.6/dust-v1.2.6-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/568852367"
+checksum = "sha256:ec3bf712c660dcaa5578b996741f5cca36b30c021c1e4b49352b11137a95a96e"
+checksum_source = "mise-versions"
+url = "https://github.com/bootandy/dust/releases/download/v1.2.7/dust-v1.2.7-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/699456259"
 
 [tools.dust."platforms.linux-x64-baseline"]
-checksum = "sha256:14f788707aad217667f6812cf1a9639bf5c861a2ee815d486cffc36051f5e759"
-url = "https://github.com/bootandy/dust/releases/download/v1.2.6/dust-v1.2.6-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/568852367"
+checksum = "sha256:ec3bf712c660dcaa5578b996741f5cca36b30c021c1e4b49352b11137a95a96e"
+checksum_source = "mise-versions"
+url = "https://github.com/bootandy/dust/releases/download/v1.2.7/dust-v1.2.7-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/699456259"
 
 [tools.dust."platforms.linux-x64-musl"]
-checksum = "sha256:cbf2cb5c9d6227e46fc4b29c03dc43b8632020dfc5cf269d263d6e29c399e044"
-url = "https://github.com/bootandy/dust/releases/download/v1.2.6/dust-v1.2.6-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/568853682"
+checksum = "sha256:2f1a1106f1f14c0b684b2f0a5f4482c6d53e07a871df4afc11e3b91ade300b55"
+checksum_source = "mise-versions"
+url = "https://github.com/bootandy/dust/releases/download/v1.2.7/dust-v1.2.7-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/699458387"
 
 [tools.dust."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:cbf2cb5c9d6227e46fc4b29c03dc43b8632020dfc5cf269d263d6e29c399e044"
-url = "https://github.com/bootandy/dust/releases/download/v1.2.6/dust-v1.2.6-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/568853682"
+checksum = "sha256:2f1a1106f1f14c0b684b2f0a5f4482c6d53e07a871df4afc11e3b91ade300b55"
+checksum_source = "mise-versions"
+url = "https://github.com/bootandy/dust/releases/download/v1.2.7/dust-v1.2.7-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/699458387"
 
 [tools.dust."platforms.macos-arm64"]
-checksum = "sha256:7603c92462bd56305847732eb25d70ab06386d7bcfbce7532b7cf3937fd9684f"
-url = "https://github.com/bootandy/dust/releases/download/v1.2.6/dust-v1.2.6-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/568852877"
+checksum = "sha256:38e1b3b4e5e6a5cdb044b5fdb32ea45f18dc78276711796214806f20f7705a99"
+url = "https://github.com/bootandy/dust/releases/download/v1.2.7/dust-v1.2.7-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/699455834"
 
 [tools.dust."platforms.macos-x64"]
-checksum = "sha256:7603c92462bd56305847732eb25d70ab06386d7bcfbce7532b7cf3937fd9684f"
-url = "https://github.com/bootandy/dust/releases/download/v1.2.6/dust-v1.2.6-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/568852877"
+checksum = "sha256:5eef77d18dfd2d1d56d1b3c415bc2d41b5b793bc63b5c7f706005d058a48a363"
+checksum_source = "mise-versions"
+url = "https://github.com/bootandy/dust/releases/download/v1.2.7/dust-v1.2.7-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/699455855"
 
 [tools.dust."platforms.macos-x64-baseline"]
-checksum = "sha256:7603c92462bd56305847732eb25d70ab06386d7bcfbce7532b7cf3937fd9684f"
-url = "https://github.com/bootandy/dust/releases/download/v1.2.6/dust-v1.2.6-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/568852877"
+checksum = "sha256:5eef77d18dfd2d1d56d1b3c415bc2d41b5b793bc63b5c7f706005d058a48a363"
+checksum_source = "mise-versions"
+url = "https://github.com/bootandy/dust/releases/download/v1.2.7/dust-v1.2.7-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/699455855"
 
 [tools.dust."platforms.windows-x64"]
-checksum = "sha256:6a73222902d6960ce7183cd833a5d3ea99a3e3ff3cfb33720c1939a41cb7744d"
-url = "https://github.com/bootandy/dust/releases/download/v1.2.6/dust-v1.2.6-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/568855278"
+checksum = "sha256:d07a41521958895e701ad55f342302b7362799d6a328c843e8e2208ba0564c30"
+checksum_source = "mise-versions"
+url = "https://github.com/bootandy/dust/releases/download/v1.2.7/dust-v1.2.7-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/699459326"
 
 [tools.dust."platforms.windows-x64-baseline"]
-checksum = "sha256:6a73222902d6960ce7183cd833a5d3ea99a3e3ff3cfb33720c1939a41cb7744d"
-url = "https://github.com/bootandy/dust/releases/download/v1.2.6/dust-v1.2.6-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/568855278"
+checksum = "sha256:d07a41521958895e701ad55f342302b7362799d6a328c843e8e2208ba0564c30"
+checksum_source = "mise-versions"
+url = "https://github.com/bootandy/dust/releases/download/v1.2.7/dust-v1.2.7-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/699459326"
 
 [[tools.elixir]]
 version = "1.20.4-otp-29"
@@ -3389,74 +3409,74 @@ signer = "sigstore-oidc:https://github.com/jdx/usage/.github/workflows/publish-c
 repository_ids = { repository = "677629099" }
 
 [[tools.uv]]
-version = "0.13.6"
+version = "0.13.7"
 backend = "aqua:astral-sh/uv"
 specifiers = ["latest"]
 
 [tools.uv."platforms.linux-arm64"]
-checksum = "sha256:229e194255c7958d86d56e8790d969a6f74736592133f0dfd0076f754c642c1d"
-url = "https://github.com/astral-sh/uv/releases/download/0.13.6/uv-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/679980412"
+checksum = "sha256:71279f8d3c67241e807b9d8db872d1bf541579fb9f08b7d1eb1682196d1e57dc"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.7/uv-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/704009469"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-arm64-musl"]
-checksum = "sha256:819692e404d23e5aae6bc44c0e260f1f5492fd1910ab4693b2c650f926dbe800"
-url = "https://github.com/astral-sh/uv/releases/download/0.13.6/uv-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/679980430"
+checksum = "sha256:2d3ec076a0c4c0e8250bb6418c44080828b544f1a3be0b6e46adf9fb6923de45"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.7/uv-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/704009487"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64"]
-checksum = "sha256:f29c3e94ffabd7e6f3ba521dba169a9b7ec12100bf3257087f0f24f6123f3645"
-url = "https://github.com/astral-sh/uv/releases/download/0.13.6/uv-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/679980644"
+checksum = "sha256:c5221ff41b7892bfc223543883600125f6a47fe845093e0f5bdff4f359196d83"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.7/uv-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/704009823"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64-baseline"]
-checksum = "sha256:f29c3e94ffabd7e6f3ba521dba169a9b7ec12100bf3257087f0f24f6123f3645"
-url = "https://github.com/astral-sh/uv/releases/download/0.13.6/uv-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/679980644"
+checksum = "sha256:c5221ff41b7892bfc223543883600125f6a47fe845093e0f5bdff4f359196d83"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.7/uv-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/704009823"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64-musl"]
-checksum = "sha256:5d61f26b6c7213779eda90edc6971ea6b0b796bfb8d49a574c8ad69b59838548"
-url = "https://github.com/astral-sh/uv/releases/download/0.13.6/uv-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/679980664"
+checksum = "sha256:287491da03f2a785c70fa75b13e1f849918c2f2b5415fe84876b8214eeb792f9"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.7/uv-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/704009859"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:5d61f26b6c7213779eda90edc6971ea6b0b796bfb8d49a574c8ad69b59838548"
-url = "https://github.com/astral-sh/uv/releases/download/0.13.6/uv-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/679980664"
+checksum = "sha256:287491da03f2a785c70fa75b13e1f849918c2f2b5415fe84876b8214eeb792f9"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.7/uv-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/704009859"
 provenance = "github-attestations"
 
 [tools.uv."platforms.macos-arm64"]
-checksum = "sha256:60fbd5c8a1ed681845eea28d9d622fcde03c51e91a43465b64a1e17db1ed3472"
-url = "https://github.com/astral-sh/uv/releases/download/0.13.6/uv-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/679980393"
+checksum = "sha256:81b811b57e4624df7ed3aac148e0359100d9962f3d9dce00aec533dc2e086731"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.7/uv-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/704009442"
 provenance = "github-attestations"
 
 [tools.uv."platforms.macos-x64"]
-checksum = "sha256:63ba17fdda55ad1a230d4b37fc6017ffa10c23688c83818bd3bfdf914c652a02"
-url = "https://github.com/astral-sh/uv/releases/download/0.13.6/uv-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/679980609"
+checksum = "sha256:20c47e4c1f630b8abaff8c291fa9b9aa300fef92c4fbff95adf198b55287cda7"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.7/uv-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/704009775"
 provenance = "github-attestations"
 
 [tools.uv."platforms.macos-x64-baseline"]
-checksum = "sha256:63ba17fdda55ad1a230d4b37fc6017ffa10c23688c83818bd3bfdf914c652a02"
-url = "https://github.com/astral-sh/uv/releases/download/0.13.6/uv-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/679980609"
+checksum = "sha256:20c47e4c1f630b8abaff8c291fa9b9aa300fef92c4fbff95adf198b55287cda7"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.7/uv-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/704009775"
 provenance = "github-attestations"
 
 [tools.uv."platforms.windows-x64"]
-checksum = "sha256:a2a8820d5eea32f08ef467ef3b7f66883a9b076d5737a2fc2fbb5f458d1bb50f"
-url = "https://github.com/astral-sh/uv/releases/download/0.13.6/uv-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/679980629"
+checksum = "sha256:0cdc5b38fe5a8168ed6a25814f5ba43c21d313dd3187314fccb37b7cec46e021"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.7/uv-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/704009796"
 provenance = "github-attestations"
 
 [tools.uv."platforms.windows-x64-baseline"]
-checksum = "sha256:a2a8820d5eea32f08ef467ef3b7f66883a9b076d5737a2fc2fbb5f458d1bb50f"
-url = "https://github.com/astral-sh/uv/releases/download/0.13.6/uv-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/679980629"
+checksum = "sha256:0cdc5b38fe5a8168ed6a25814f5ba43c21d313dd3187314fccb37b7cec46e021"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.7/uv-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/704009796"
 provenance = "github-attestations"
 
 [[tools.watchexec]]
