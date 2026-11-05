@@ -3,13 +3,15 @@
 
 local M = {}
 
-local function is_prompt_line(line)
-  if not line then return false end
-  -- Match prompt character ❯ (or vi-mode ❮) followed by non-breaking space (UTF-8 \194\160)
-  -- Or match prompt symbol at the beginning of the line
-  return line:find("[❯❮]\194\160") ~= nil
-    or line:match("^%s*[❯❮]%s") ~= nil
-    or line:find("❯") ~= nil
+-- Lua patterns are byte-based: match each UTF-8 prompt symbol literally.
+local function prompt_command(line)
+  for _, symbol in ipairs({ "❯", "❮" }) do
+    local rest = line:match("^%s*" .. symbol .. "(.*)$")
+    if rest and (rest == "" or rest:match("^%s") or rest:sub(1, 2) == "\194\160") then
+      if rest:sub(1, 2) == "\194\160" then rest = rest:sub(3) end
+      return rest:match("^%s*(.-)%s*$")
+    end
+  end
 end
 
 local function show_toast(title, msg)
@@ -27,36 +29,35 @@ local function get_last_cmd_and_output(content)
     lines[#lines + 1] = line
   end
 
-  local prompts = {}
+  -- The newest prompt is still being edited. Walk completed commands backwards,
+  -- keeping each command's output bounded by its immediate successor prompt.
+  local next_prompt
+  local cmd_idx, cmd_text, last_output_line
   for i = #lines, 1, -1 do
-    if is_prompt_line(lines[i]) then
-      prompts[#prompts + 1] = i
-      if #prompts == 2 then break end
+    local command = prompt_command(lines[i])
+    if command ~= nil then
+      if next_prompt and command ~= "" then
+        cmd_idx, cmd_text = i, command
+        -- This Starship configuration has a status line before each prompt.
+        last_output_line = next_prompt - 2
+        break
+      end
+      next_prompt = i
     end
   end
 
-  if #prompts < 2 then
-    error("No previous command found in this pane", 0)
+  if not cmd_idx then
+    error("No previous non-empty command found in this pane", 0)
   end
 
-  local cmd_idx = prompts[2]
-  -- Strip leading prompt characters and non-breaking spaces
-  local cmd_text = lines[cmd_idx]:gsub(".*[❯❮]\194\160%s*", ""):gsub("^%s*[❯❮]%s*", "")
   local first_output_line = cmd_idx + 1
-
-  -- Output ends before current prompt (skipping Starship status line at prompts[1] - 1)
-  local last_output_line = prompts[1] - 2
-
-  -- Trim trailing empty or whitespace-only lines
   while last_output_line >= first_output_line and lines[last_output_line]:match("^%s*$") do
     last_output_line = last_output_line - 1
   end
 
   local result_lines = { cmd_text }
-  if last_output_line >= first_output_line then
-    for i = first_output_line, last_output_line do
-      result_lines[#result_lines + 1] = lines[i]
-    end
+  for i = first_output_line, last_output_line do
+    result_lines[#result_lines + 1] = lines[i]
   end
 
   return table.concat(result_lines, "\n"), cmd_text, #result_lines
@@ -68,16 +69,16 @@ function M.setup()
     title = "Copy Last Command and Output",
     category = "Workflows",
     run = function(ctx)
-      -- Call the fully-qualified block method: com.superlogical.terminal
-      local res, err = rex.block.call("com.superlogical.terminal", "format", { format = "text", trim = true })
+      if not ctx.block_id then error("No active pane found", 0) end
+      local res, err = rex.block.call("com.superlogical.terminal", "format", { block_id = ctx.block_id, format = "text", trim = true })
       if not res or not res.content then
         error(err or "Failed to read terminal content", 0)
       end
 
       local text_to_copy, cmd_name, line_count = get_last_cmd_and_output(res.content)
       local r, exec_err = rex.exec({ "env", "LC_CTYPE=UTF-8", "pbcopy" }, { stdin = text_to_copy })
-      if exec_err or (r and not r.ok) then
-        error("pbcopy failed: " .. (r and r.stderr or exec_err), 0)
+      if exec_err or not r or not r.ok then
+        error("pbcopy failed: " .. tostring(exec_err or (r and r.stderr) or "no result"), 0)
       end
 
       -- Display toast notification
