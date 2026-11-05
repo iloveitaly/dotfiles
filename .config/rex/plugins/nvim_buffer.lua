@@ -33,7 +33,7 @@ function M.setup(opts)
 
       local vim_cmds = table.concat({
         "set clipboard=unnamedplus",
-        "setlocal buftype=nofile bufhidden=wipe nomodifiable readonly signcolumn=no",
+        "setlocal buftype=nofile bufhidden=wipe nomodifiable readonly signcolumn=no nonumber norelativenumber",
         "nnoremap <silent><buffer> q <Cmd>qa!<CR>",
         "vnoremap <silent><buffer> <CR> y",
         "execute 'normal! Gzb'",
