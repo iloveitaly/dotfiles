@@ -171,66 +171,6 @@ checksum = "sha256:c9af7484b33f1dbc1312a892fc7d5753a6d3365140a4000d49e575a2de742
 url = "https://github.com/dandavison/delta/releases/download/0.20.1/delta-0.20.1-x86_64-pc-windows-msvc.zip"
 url_api = "https://api.github.com/repos/dandavison/delta/releases/assets/610501426"
 
-[[tools."aqua:micro-editor/micro"]]
-version = "2.0.15"
-backend = "aqua:micro-editor/micro"
-specifiers = ["latest"]
-
-[tools."aqua:micro-editor/micro"."platforms.linux-arm64"]
-checksum = "sha256:5ca127857bf5500be3879f1a70b27556e737a49da04a1be5334de9e8e8781ad9"
-url = "https://github.com/micro-editor/micro/releases/download/v2.0.15/micro-2.0.15-linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/334842990"
-
-[tools."aqua:micro-editor/micro"."platforms.linux-arm64-musl"]
-checksum = "sha256:5ca127857bf5500be3879f1a70b27556e737a49da04a1be5334de9e8e8781ad9"
-url = "https://github.com/micro-editor/micro/releases/download/v2.0.15/micro-2.0.15-linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/334842990"
-
-[tools."aqua:micro-editor/micro"."platforms.linux-x64"]
-checksum = "sha256:267d238eac1e26ed053d13d4d48bd421b87f9eb538b604f0b2f74a85598b6cc2"
-url = "https://github.com/micro-editor/micro/releases/download/v2.0.15/micro-2.0.15-linux64-static.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/334842982"
-
-[tools."aqua:micro-editor/micro"."platforms.linux-x64-baseline"]
-checksum = "sha256:267d238eac1e26ed053d13d4d48bd421b87f9eb538b604f0b2f74a85598b6cc2"
-url = "https://github.com/micro-editor/micro/releases/download/v2.0.15/micro-2.0.15-linux64-static.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/334842982"
-
-[tools."aqua:micro-editor/micro"."platforms.linux-x64-musl"]
-checksum = "sha256:267d238eac1e26ed053d13d4d48bd421b87f9eb538b604f0b2f74a85598b6cc2"
-url = "https://github.com/micro-editor/micro/releases/download/v2.0.15/micro-2.0.15-linux64-static.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/334842982"
-
-[tools."aqua:micro-editor/micro"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:267d238eac1e26ed053d13d4d48bd421b87f9eb538b604f0b2f74a85598b6cc2"
-url = "https://github.com/micro-editor/micro/releases/download/v2.0.15/micro-2.0.15-linux64-static.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/334842982"
-
-[tools."aqua:micro-editor/micro"."platforms.macos-arm64"]
-checksum = "sha256:2ff285cc49f2ac3f7a6e9110e2dabd3c848b73eed56a8396d627c0af80a34624"
-url = "https://github.com/micro-editor/micro/releases/download/v2.0.15/micro-2.0.15-macos-arm64.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/334842985"
-
-[tools."aqua:micro-editor/micro"."platforms.macos-x64"]
-checksum = "sha256:d765b9bdd6478c4f5a3cbd5a93ebe7bab2b9cec30b5350016975cf1045855cee"
-url = "https://github.com/micro-editor/micro/releases/download/v2.0.15/micro-2.0.15-osx.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/334842967"
-
-[tools."aqua:micro-editor/micro"."platforms.macos-x64-baseline"]
-checksum = "sha256:d765b9bdd6478c4f5a3cbd5a93ebe7bab2b9cec30b5350016975cf1045855cee"
-url = "https://github.com/micro-editor/micro/releases/download/v2.0.15/micro-2.0.15-osx.tar.gz"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/334842967"
-
-[tools."aqua:micro-editor/micro"."platforms.windows-x64"]
-checksum = "sha256:90635c53c11aa2a0d997f5e3ed43528877740725500207640b29551cef18479b"
-url = "https://github.com/micro-editor/micro/releases/download/v2.0.15/micro-2.0.15-win64.zip"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/334842961"
-
-[tools."aqua:micro-editor/micro"."platforms.windows-x64-baseline"]
-checksum = "sha256:90635c53c11aa2a0d997f5e3ed43528877740725500207640b29551cef18479b"
-url = "https://github.com/micro-editor/micro/releases/download/v2.0.15/micro-2.0.15-win64.zip"
-url_api = "https://api.github.com/repos/micro-editor/micro/releases/assets/334842961"
-
 [[tools."aqua:neovim/neovim"]]
 version = "0.12.6"
 backend = "aqua:neovim/neovim"

@@ -1,5 +1,5 @@
 # Linux / Omarchy shell overrides (sourced from ~/.zshrc when present).
-# Shared .exports defaults EDITOR=micro (macOS); use nvim on this host.
+# Shared .exports defaults EDITOR=nvim.
 
 export EDITOR=nvim
 
