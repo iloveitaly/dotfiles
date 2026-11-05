@@ -9,22 +9,40 @@ ai_is_agent_terminal() {
 }
 
 # test with:
-# env -i AGENT_DEBUG=1 VSCODE_AGENT=1 USER=$(whoami) HOME="$HOME" $(which zsh) -l
+# AGENT_DEBUG=1 VSCODE_AGENT=1 zsh -lc 'print -r -- "$PWD"'
+#
+# Called by ai_load_agent_configuration during non-interactive agent startup.
+ai_refresh_agent_environment() {
+  # Environment configuration can launch another zsh. Suppress recursive refreshes
+  # only while these generators run; ordinary child shells must refresh for $PWD.
+  [[ -n "${_AI_AGENT_ENV_REFRESHING:-}" ]] && return 0
+
+  # Export this function-local flag to child processes, then restore it on return.
+  local -x _AI_AGENT_ENV_REFRESHING=1
+
+  # mise supplies tools (including direnv); .envrc overrides are applied last.
+  # Keep overlapping variables in one system: both track values for unloading.
+  eval "$(command mise hook-env -s zsh)"
+
+  if (( $+commands[direnv] )); then
+    eval "$(command direnv export zsh)"
+  else
+    print -u2 -- 'Warning: direnv is not installed; skipping .envrc loading.'
+  fi
+}
+
 ai_load_agent_configuration() {
-  # this is loaded when `TERM=dumb` is set, which is the case in the cursor agent terminal (and any non-interactive terminal)
-  # however, it's also loaded when running `zsh` in tmux, so we need to be careful about what we put here.
+  # .zshenv and .zshrc call this only after ai_is_agent_terminal succeeds.
+  # Non-interactive shells have no prompt hooks. Refresh for their starting
+  # directory even when general agent settings were inherited from a parent.
+  # 
+  # This runs once at startup. A later cd in this shell does not refresh the env.
+  # This is helpful to autoload mise + direnv configuration for the directory an agent is operating under.
+  if [[ ! -o interactive ]]; then
+    ai_refresh_agent_environment
+  fi
 
-  # Return early if not running in a dumb terminal, this is what cursor specifies
-  # if [[ "${TERM:-}" != "dumb" && -o interactive ]]; then
-  #   [[ ${AGENT_DEBUG:-} -eq 1 ]] && echo "Interactive shell detected"
-  #   return 0
-  # fi
-
-  # TODO document exactly why we need this
-  # shellcheck source=./.path
-  source "${HOME}/.config/mbianco/path"
-
-  # if agent is already configured, do nothing
+  # General agent settings can be inherited; directory environments cannot.
   if [[ -n "${AGENT_CONFIGURED:-}" ]]; then
     [[ ${AGENT_DEBUG:-} -eq 1 ]] && echo "Agent already configured, skipping"
     return 0
@@ -41,27 +59,26 @@ ai_load_agent_configuration() {
     echo -e "\033[36mDebug: Shell nesting level is $shlvl\033[0m"
   fi
 
-  # VS Code does not operate the same as Cursor: terminals are interactive, not dumb, and no ENV var is set to indicate
-  # it's being managed by an agent. We manually set a variable in our VCS config to indicate this.
-  if ai_is_agent_terminal; then
-    # mise first, since it manages/install direnv
+  if [[ -o interactive ]]; then
+    # Interactive shells continue refreshing through their usual hooks.
     source <(mise activate)
-    source <(direnv hook zsh)
-
-    [[ ${AGENT_DEBUG:-} -eq 1 ]] && echo "In agent shell, sourced configuration"
-
-    export GIT_EDITOR=true
-    export PAGER=cat
-    export GIT_PAGER=$PAGER
-    export GH_PAGER=$PAGER
-    export MANPAGER=$PAGER
-
-    # for our own internal debugging
-    export AGENT_CONFIGURED=1
-
-    return 0
-  else
-    echo -e "\033[33mNot in agent, and not interactive. We may be missing a new agent type?\033[0m"
-    return 1
+    if (( $+commands[direnv] )); then
+      source <(direnv hook zsh)
+    else
+      print -u2 -- 'Warning: direnv is not installed; skipping .envrc loading.'
+    fi
   fi
+
+  [[ ${AGENT_DEBUG:-} -eq 1 ]] && echo "In agent shell, sourced configuration"
+
+  export GIT_EDITOR=true
+  export PAGER=cat
+  export GIT_PAGER=$PAGER
+  export GH_PAGER=$PAGER
+  export MANPAGER=$PAGER
+
+  # for our own internal debugging
+  export AGENT_CONFIGURED=1
+
+  return 0
 }
