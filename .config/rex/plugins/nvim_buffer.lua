@@ -9,12 +9,6 @@ function M.setup(opts)
   local key = opts.key or "ctrl+h>v"
   local bounds = opts.bounds or { 0.05, 0.05, 0.9, 0.9 }
   local bg_color = opts.bg_color or "#282c34"
-  local home = os.getenv("HOME") or ""
-  local path_prepend = opts.path_prepend or {
-    home .. "/.local/share/mise/shims",
-    home .. "/.local/bin",
-    "/opt/homebrew/bin",
-  }
   local unwrap_flag = opts.unwrap and "--unwrap" or ""
 
   rex.action({
@@ -60,7 +54,6 @@ rex focus -s "$1" -b "$2" >/dev/null 2>&1
           options = {
             shell = "zsh",
             login = true,
-            path_prepend = path_prepend,
             theme = {
               background = bg_color,
             },
