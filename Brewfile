@@ -83,9 +83,6 @@ if OS.mac?
     tap "afnanenayet/tap"
     brew "afnanenayet/tap/diffsitter"
 
-    tap "noahgorstein/tap"
-    brew "noahgorstein/tap/jqp" # jq playground
-
     brew "act" # gha local runner
     brew "pstree" # procs seem to have a tree view and is a bit better
     brew "broot" # better file finding
@@ -103,9 +100,6 @@ if OS.mac?
     brew "localsend"
     brew "codex"
     brew "chatgpt"
-
-    tap "ryanbekhen/nanoproxy"
-    brew "nanoproxy"
 end
 
 if OS.mac?
@@ -230,6 +224,7 @@ if OS.mac?
     cask "font-hack"
     cask "font-roboto-mono-nerd-font"
     cask "font-fira-code-nerd-font"
+    cask "font-jetbrains-mono-nerd-font"
 
     # == MacOS-only Shell Tooling
     # some of these tools are strictly terminal related, but do not play well with linux/codespaces
@@ -263,7 +258,6 @@ if OS.mac?
     # == Experimental
     brew "siege" # load testing tool
     brew "ameshkov/tap/dnslookup"
-    brew "smudge/smudge/nightlight"
     brew "hyperfine"
     brew "zrok"
     brew "px"
