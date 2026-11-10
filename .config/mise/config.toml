@@ -68,6 +68,7 @@ duf = "latest"
 # language and language tooling
 direnv = "latest"
 just = "latest"
+"github:terror/just-lsp" = "latest"
 uv = "latest"
 pnpm = "latest"
 
