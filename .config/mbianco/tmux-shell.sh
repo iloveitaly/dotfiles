@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Description: tmux launcher for VS Code which will name the sessions. Naming sessions is helpful when inspecting them
-# later (via tmux list-sessions) or reattaching to them (which will happen automatically in VSC). Note that bash
+# Description: tmux launcher for Cursor which will name the sessions. Naming sessions is helpful when inspecting them
+# later (via tmux list-sessions) or reattaching to them (which will happen automatically in Cursor). Note that bash
 # is intentional and important here: it avoids ~/.zshenv being sourced, which can cause homebrew and other PATH mutations
 # to load which will impact mise, direnv, etc downstream. The intention here is to start a very clean + simple shell.
 

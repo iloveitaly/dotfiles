@@ -1,12 +1,15 @@
 #!/usr/bin/env zsh
-# Description: hook for tmux-fastcopy to open files, that contain like + column references, in vscode
+# Description: hook for tmux-fastcopy / extrakto / fzf to open files with line & column references in nvim/cursor
 
-source ~/.functions
+source "${0:A:h}/navigation" 2>/dev/null || source "${HOME}/.config/mbianco/navigation" 2>/dev/null
 
-# if first argument is EDITOR, remove it from $@
-if [[ $1 == "EDITOR" ]]; then
+if [[ $1 == "CURSOR" ]]; then
   shift
-  ${EDITOR:-nvim} "$@"
+  [[ -z "$1" ]] && exit 0
+  open_in_cursor "$@"
 else
-  open_in_vscode $@
+  # Default to open_in_nvim; strip optional EDITOR prefix if passed
+  [[ $1 == "EDITOR" ]] && shift
+  [[ -z "$1" ]] && exit 0
+  open_in_nvim "$@"
 fi

@@ -508,11 +508,11 @@ git-rm-merged() {
 }
 
 # mergetool does *not* open the actual files, which means the AI tools for the project won't work
-# this attempts to open all merge files in the project folder in vs code
-git-mergetool-vscode() {
+# this attempts to open all merge files in the project folder in cursor
+git-mergetool-cursor() {
   repo=$(git rev-parse --show-toplevel)
   files=($(git diff --name-only --diff-filter=U))
-  code --reuse-window "$repo" "${files[@]}"
+  cursor --reuse-window "$repo" "${files[@]}"
 }
 
 # rebase on the current branch's upstream, preferring 'upstream' remote if it exists

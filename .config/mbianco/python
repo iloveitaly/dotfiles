@@ -153,7 +153,7 @@ pip-show() {
     package_path="${package_path:A}"
     echo "$package_path"
     cd "$package_path" || return 1
-    code "$package_path"
+    cursor "$package_path"
     return 0
   fi
   egg_candidates=(
@@ -181,7 +181,7 @@ pip-show() {
   fi
   echo "$package_path"
   cd "$package_path" || return 1
-  code "$package_path"
+  cursor "$package_path"
 }
 
 # TODO should make it more flexible: check for venv and different py versions
