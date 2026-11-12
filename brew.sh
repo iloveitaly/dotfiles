@@ -104,3 +104,4 @@ gh extension install dlvhdr/gh-dash
 gh extension install iloveitaly/gh-url
 gh extension install iloveitaly/gh-ai-pr
 gh extension install github/gh-stack
+gh extension install github/gh-actions-lock
