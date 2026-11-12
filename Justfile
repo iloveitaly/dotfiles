@@ -3,58 +3,61 @@ set shell := ["zsh", "-cu", "-o", "pipefail"]
 # determines what shell to use for [script]
 set script-interpreter := ["zsh", "-euBh", "-o", "pipefail"]
 
-set unstable := true
+set unstable
 
 upgrade:
-		brew upgrade -y awscli git zsh gmailctl dolt block-buzz yabai fx tmux imcp httpie eza telnet speedtest yt-dlp
-		gh extension upgrade --all
+    brew upgrade -y awscli git zsh gmailctl dolt block-buzz yabai fx tmux imcp httpie eza telnet speedtest yt-dlp
+    gh extension upgrade --all
 
-		mise self-update -y
-		# Includes ov (aqua:noborus/ov), configured as latest in mise
-		mise upgrade -y
-		mise prune -y
+    mise self-update -y
+    mise upgrade -y
+    mise prune -y
 
-		# uv tools used often and not installed through mise (llm-ide-rules, ipython)
-		if command -v uv >/dev/null; then uv tool upgrade --all; fi
+    if command -v uv >/dev/null; then uv tool upgrade --all; fi
 
-		ya pkg upgrade --discard
-		XDG_CONFIG_HOME="{{justfile_directory()}}/.config" nvim --headless "+Lazy! update" +qa
+    ya pkg upgrade --discard
+    pnpx skills update -g -y
+    XDG_CONFIG_HOME="{{ justfile_directory() }}/.config" nvim --headless "+Lazy! update" +qa
 
-		# this will update starship as well
-		# zinit update has job-control/pager quirks in non-interactive subshells
-		echo "Please run \`zinit update\` in an interactive shell to update zinit plugins like starship."
+    # this will update starship as well
+    # zinit update has job-control/pager quirks in non-interactive subshells
+    echo "Please run \`zinit update\` in an interactive shell to update zinit plugins like starship."
 
-		just sync
+    just sync
 
 # linux installs have a custom sync command that is run
 [macos]
 sync:
-	fd --hidden --max-depth 4 -t f --exclude=.git | \
-		entr rsync --exclude-from=install/standard-exclude.txt -av . ~
+    rsync --exclude-from=install/standard-exclude.txt --exclude=.config/git/config -av . ~
+
+    # install hub config to ~/.gitconfig, then inject macOS auth include
+    cp .config/git/config ~/.gitconfig
+    uvx lineinfile@latest add --bof "[include] path = ./.config/git/auth-macos" ~/.gitconfig
+
+[macos]
+watch:
+    watchexec -- just sync
+
+[macos]
+_sync: sync
 
 # what quicklook plugins are installed?
 list-quicklook:
-	qlmanage -m plugins
+    qlmanage -m plugins
 
 configure-launchagents:
-	# tmux first
-	# TODO link to blog post
-	cp ./tmux.plist ~/Library/LaunchAgents/mikebianco.tmux.plist
-	tmux kill-server
-	launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/mikebianco.tmux.plist
+    # tmux first
+    # TODO link to blog post
+    cp ./tmux.plist ~/Library/LaunchAgents/mikebianco.tmux.plist
+    tmux kill-server
+    launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/mikebianco.tmux.plist
 
-	sudo cp ./pty.plist /Library/LaunchDaemons/mikebianco.pty.plist
-	sudo launchctl bootstrap system /Library/LaunchDaemons/mikebianco.pty.plist
+    sudo cp ./pty.plist /Library/LaunchDaemons/mikebianco.pty.plist
+    sudo launchctl bootstrap system /Library/LaunchDaemons/mikebianco.pty.plist
 
 pull-ide-integration:
-	cp ~/Library/Application\ Support/Code/User/{settings,keybindings}.json .vscode/
-	cp ~/.cursor/{settings.json,keybindings.json} .vscode/
-
-# Extract user and core.whitespace config to .gitconfig-agent, the default gitconfig assumes an interactive TUI, so we have a simplified config
-# to avoid weird agent problems.
-sync-gitconfig-agent:
-		yq -p ini -o ini '{"user": .user, "core": {"whitespace": .core.whitespace}}' .gitconfig > .gitconfig-agent
-		@echo "✓ .gitconfig-agent updated via yq"
+    cp ~/Library/Application\ Support/Code/User/{settings,keybindings}.json .vscode/
+    cp ~/.cursor/{settings.json,keybindings.json} .vscode/
 
 # Export OrbStack Development Root CA so Python requests (and other tools)
 # can verify *.orb.local HTTPS certificates.
@@ -74,7 +77,7 @@ sync-gitconfig-agent:
 # Then in your shell rc or direnv:
 #   export REQUESTS_CA_BUNDLE="$HOME/.orbstack/certs/bundle.pem"
 #   export SSL_CERT_FILE="$HOME/.orbstack/certs/bundle.pem"
-# 
+#
 # https://github.com/orbstack/orbstack/issues/1159
 
 export-orbstack-ca:
@@ -122,30 +125,32 @@ set-docker-config:
     yq -i -o json '.psFormat = "table {{ "{{" }}.ID}}\t{{ "{{" }}.Image}}\t{{ "{{" }}.Names}}"' "$HOME/.docker/config.json"
 
     daemon_patch='
-        .log-driver = "json-file" |
-        .log-opts.max-size = "10m" |
-        .log-opts.max-file = "3"
+    		.log-driver = "json-file" |
+    		.log-opts.max-size = "10m" |
+    		.log-opts.max-file = "3"
     '
 
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        daemon_json="$HOME/.orbstack/config/docker.json"
-        mkdir -p "${daemon_json:h}"
-        [[ -f "$daemon_json" ]] || echo '{}' > "$daemon_json"
-        yq -i -o json "$daemon_patch" "$daemon_json"
+    		daemon_json="$HOME/.orbstack/config/docker.json"
+    		mkdir -p "${daemon_json:h}"
+    		[[ -f "$daemon_json" ]] || echo '{}' > "$daemon_json"
+    		yq -i -o json "$daemon_patch" "$daemon_json"
     else
-        # pipe via user yq so sudo secure_path doesn't drop mise binaries
-        daemon_json="/etc/docker/daemon.json"
-        sudo mkdir -p "${daemon_json:h}"
-        { sudo cat "$daemon_json" 2>/dev/null || echo '{}'; } | yq -o json "$daemon_patch" | sudo tee "$daemon_json" >/dev/null
+    		# pipe via user yq so sudo secure_path doesn't drop mise binaries
+    		daemon_json="/etc/docker/daemon.json"
+    		sudo mkdir -p "${daemon_json:h}"
+    		{ sudo cat "$daemon_json" 2>/dev/null || echo '{}'; } | yq -o json "$daemon_patch" | sudo tee "$daemon_json" >/dev/null
     fi
 
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        for host in ${DOCKER_HOSTS:-}; do
-            docker context create "$host" --docker "host=ssh://$host@$host.lan" 2>/dev/null || true
-        done
-        if command -v orb >/dev/null; then
-            orb restart docker
-        fi
+    		for host in ${DOCKER_HOSTS:-}; do
+    				docker context create "$host" --docker "host=ssh://$host@$host.lan" 2>/dev/null || true
+    		done
+    		if command -v orb >/dev/null; then
+    				orb restart docker
+    		fi
     elif command -v systemctl >/dev/null && systemctl is-active --quiet docker; then
-        sudo systemctl reload docker 2>/dev/null || sudo systemctl restart docker 2>/dev/null || true
+    		sudo systemctl reload docker 2>/dev/null || sudo systemctl restart docker 2>/dev/null || true
     fi
+
+
