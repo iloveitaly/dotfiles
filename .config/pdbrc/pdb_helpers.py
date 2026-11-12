@@ -17,10 +17,10 @@ def print_stack(frame):
         print(f"{indicator}#{i} {filename}:{lineno} in {func_name}")
 
 
-def open_in_vscode_from_frame(frame):
+def open_in_cursor_from_frame(frame):
     filename = frame.f_code.co_filename
     lineno = frame.f_lineno
-    cmd = f"code -g {filename}:{lineno}"
+    cmd = f"cursor -g {filename}:{lineno}"
     os.system(cmd)
 
 

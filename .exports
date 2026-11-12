@@ -79,9 +79,9 @@ export FZF_DEFAULT_OPTS="\
 --bind 'ctrl-Y:select-all+execute-silent(printf \"%s\n\" {+} | pbcopy)+deselect-all' \
 --bind='ctrl-u:preview-half-page-up' \
 --bind='ctrl-d:preview-half-page-down' \
---bind='ctrl-o:execute-silent(~/.config/mbianco/open-file-path.sh CURSOR {})' \
+--bind='ctrl-o:execute-silent(open-in-editor --editor cursor -- {})' \
 --bind='ctrl-y:execute-silent(pbcopy <<< {})' \
---bind='ctrl-e:execute(~/.config/mbianco/open-file-path.sh {})' \
+--bind='ctrl-e:execute(open-in-editor -- {})' \
 --preview-window 'right:70%' \
 --bind='?:toggle-preview' \
 --bind='+:toggle-header'
