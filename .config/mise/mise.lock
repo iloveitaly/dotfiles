@@ -292,74 +292,75 @@ url = "https://github.com/noborus/ov/releases/download/v0.55.0/ov_0.55.0_windows
 url_api = "https://api.github.com/repos/noborus/ov/releases/assets/597204774"
 
 [[tools.ast-grep]]
-version = "0.51.1"
+version = "0.51.2"
 backend = "aqua:ast-grep/ast-grep"
 specifiers = ["latest"]
 
 [tools.ast-grep."platforms.linux-arm64"]
-checksum = "sha256:db02fae2d8eace5fc40c55242068882452dd03eab38a1d950d5fd981cf112926"
+checksum = "sha256:c3ab2bd43959db28621dc1551c13ea5fe5db4c1fc7b18086dade6b65042c78d0"
 checksum_source = "mise-versions"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-aarch64-unknown-linux-gnu.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/701846463"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.2/app-aarch64-unknown-linux-gnu.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/734228024"
 
 [tools.ast-grep."platforms.linux-arm64-musl"]
-checksum = "sha256:db02fae2d8eace5fc40c55242068882452dd03eab38a1d950d5fd981cf112926"
+checksum = "sha256:c3ab2bd43959db28621dc1551c13ea5fe5db4c1fc7b18086dade6b65042c78d0"
 checksum_source = "mise-versions"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-aarch64-unknown-linux-gnu.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/701846463"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.2/app-aarch64-unknown-linux-gnu.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/734228024"
 
 [tools.ast-grep."platforms.linux-x64"]
-checksum = "sha256:42514f77ae0c8a25d7d32154d31d3e7e16f3ab894f8ce76ce417de234ee49157"
+checksum = "sha256:40604c21c38d4c7581c56bdddeef277c56bf3c0113620aa96e78ae87e82366df"
 checksum_source = "mise-versions"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-x86_64-unknown-linux-gnu.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/701823082"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.2/app-x86_64-unknown-linux-gnu.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/734234607"
 
 [tools.ast-grep."platforms.linux-x64-baseline"]
-checksum = "sha256:42514f77ae0c8a25d7d32154d31d3e7e16f3ab894f8ce76ce417de234ee49157"
+checksum = "sha256:40604c21c38d4c7581c56bdddeef277c56bf3c0113620aa96e78ae87e82366df"
 checksum_source = "mise-versions"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-x86_64-unknown-linux-gnu.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/701823082"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.2/app-x86_64-unknown-linux-gnu.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/734234607"
 
 [tools.ast-grep."platforms.linux-x64-musl"]
-checksum = "sha256:42514f77ae0c8a25d7d32154d31d3e7e16f3ab894f8ce76ce417de234ee49157"
+checksum = "sha256:40604c21c38d4c7581c56bdddeef277c56bf3c0113620aa96e78ae87e82366df"
 checksum_source = "mise-versions"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-x86_64-unknown-linux-gnu.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/701823082"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.2/app-x86_64-unknown-linux-gnu.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/734234607"
 
 [tools.ast-grep."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:42514f77ae0c8a25d7d32154d31d3e7e16f3ab894f8ce76ce417de234ee49157"
+checksum = "sha256:40604c21c38d4c7581c56bdddeef277c56bf3c0113620aa96e78ae87e82366df"
 checksum_source = "mise-versions"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-x86_64-unknown-linux-gnu.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/701823082"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.2/app-x86_64-unknown-linux-gnu.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/734234607"
 
 [tools.ast-grep."platforms.macos-arm64"]
-checksum = "sha256:a95772097b4d02bd9d45ed63b300c37041ae3c36632b3bf19250cc7c10187dc4"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-aarch64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/701845634"
+checksum = "sha256:ea4f4082d25e5f8e0450add6fd488dd008a373c90483cc2031759c8431f1dcfb"
+checksum_source = "mise-versions"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.2/app-aarch64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/734229272"
 
 [tools.ast-grep."platforms.macos-x64"]
-checksum = "sha256:302b92868fa1b0439f0927b1f31668e03636b12a8e646fb1a3cd8de816c78242"
+checksum = "sha256:ef347c331d97cb6a043809091bd96bdd64de6a8354f01da66764496885230591"
 checksum_source = "mise-versions"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-x86_64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/700681117"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.2/app-x86_64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/734230817"
 
 [tools.ast-grep."platforms.macos-x64-baseline"]
-checksum = "sha256:302b92868fa1b0439f0927b1f31668e03636b12a8e646fb1a3cd8de816c78242"
+checksum = "sha256:ef347c331d97cb6a043809091bd96bdd64de6a8354f01da66764496885230591"
 checksum_source = "mise-versions"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-x86_64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/700681117"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.2/app-x86_64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/734230817"
 
 [tools.ast-grep."platforms.windows-x64"]
-checksum = "sha256:12a0cefb77498820ef6fb302ed8758cbda39be87d4c15120dc74c1dea968a50d"
+checksum = "sha256:7d5a83bf2f9a4020dc529df371537c860e7a665e52789ac67ef231123a6b4a7e"
 checksum_source = "mise-versions"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/701859070"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.2/app-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/734239161"
 
 [tools.ast-grep."platforms.windows-x64-baseline"]
-checksum = "sha256:12a0cefb77498820ef6fb302ed8758cbda39be87d4c15120dc74c1dea968a50d"
+checksum = "sha256:7d5a83bf2f9a4020dc529df371537c860e7a665e52789ac67ef231123a6b4a7e"
 checksum_source = "mise-versions"
-url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.1/app-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/701859070"
+url = "https://github.com/ast-grep/ast-grep/releases/download/0.51.2/app-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/ast-grep/ast-grep/releases/assets/734239161"
 
 [[tools.azure-cli]]
 version = "2.92.0"
@@ -481,74 +482,74 @@ checksum = "sha256:d7a7d3eb216614544aab0cde2d8d9f2e4e87839bf5a30a1cd11d077f02d84
 url = "https://github.com/oven-sh/bun/releases/download/bun-v1.4.3/bun-windows-x64-baseline.zip"
 
 [[tools.cargo-binstall]]
-version = "1.26.2"
+version = "1.27.0"
 backend = "aqua:cargo-bins/cargo-binstall"
 specifiers = ["latest"]
 
 [tools.cargo-binstall."platforms.linux-arm64"]
-checksum = "sha256:027438af19e7d9d90accabbb047101c8636c40253f760e92e84cf2f90feddad3"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.26.2/cargo-binstall-aarch64-unknown-linux-gnu.tgz"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/695465531"
+checksum = "sha256:d4232f4081ddcb3e9d09493296de5483e9530cf254f7be9df5aa9ccaf034d3de"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.27.0/cargo-binstall-aarch64-unknown-linux-gnu.tgz"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/734983326"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.linux-arm64-musl"]
-checksum = "sha256:a235250cd684af9bf1e3a1e4c216b1d36e6c553553d5d789744f27689d81c2d6"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.26.2/cargo-binstall-aarch64-unknown-linux-musl.tgz"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/695465354"
+checksum = "sha256:84f2afefd325e52c92702a1f2a396902301ccdafd7614270cbbf46b9cff3accf"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.27.0/cargo-binstall-aarch64-unknown-linux-musl.tgz"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/734983098"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.linux-x64"]
-checksum = "sha256:4f28eba175325f67f7c4bb8ae8686914d2d88fead279c0b8c4d3125264d7a512"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.26.2/cargo-binstall-x86_64-unknown-linux-gnu.tgz"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/695464312"
+checksum = "sha256:4121a0e8c7a97997cb0662859b258f34f3c5cca0d55ebc57d935e3cfcabdc413"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.27.0/cargo-binstall-x86_64-unknown-linux-gnu.tgz"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/734981484"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.linux-x64-baseline"]
-checksum = "sha256:4f28eba175325f67f7c4bb8ae8686914d2d88fead279c0b8c4d3125264d7a512"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.26.2/cargo-binstall-x86_64-unknown-linux-gnu.tgz"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/695464312"
+checksum = "sha256:4121a0e8c7a97997cb0662859b258f34f3c5cca0d55ebc57d935e3cfcabdc413"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.27.0/cargo-binstall-x86_64-unknown-linux-gnu.tgz"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/734981484"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.linux-x64-musl"]
-checksum = "sha256:9e0e064f189a9abb9f8df5fb93c3c810ef5cc19e7212d998c7a64c9e4d3527d5"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.26.2/cargo-binstall-x86_64-unknown-linux-musl.tgz"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/695464185"
+checksum = "sha256:b2e4b70fcddc5bd6fd90c5cf8dc17b4cf0ea54a3db16c65ee0307f42c9bd3187"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.27.0/cargo-binstall-x86_64-unknown-linux-musl.tgz"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/734981208"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:9e0e064f189a9abb9f8df5fb93c3c810ef5cc19e7212d998c7a64c9e4d3527d5"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.26.2/cargo-binstall-x86_64-unknown-linux-musl.tgz"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/695464185"
+checksum = "sha256:b2e4b70fcddc5bd6fd90c5cf8dc17b4cf0ea54a3db16c65ee0307f42c9bd3187"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.27.0/cargo-binstall-x86_64-unknown-linux-musl.tgz"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/734981208"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.macos-arm64"]
-checksum = "sha256:0f9ddd602d439ea64f03a5c188c59656d5ef389ecdcbff044c8d373e51c0e2b3"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.26.2/cargo-binstall-aarch64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/695465979"
+checksum = "sha256:69cfe1156ad39e91f4e6802db1ce1e2f02ac926452d6c20fd14a328c68f676c8"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.27.0/cargo-binstall-aarch64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/734983777"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.macos-x64"]
-checksum = "sha256:a114e207a9cd116f97708f175ba5e4f0a37836ff9c4d1ea63c8364436decf70f"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.26.2/cargo-binstall-x86_64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/695464551"
+checksum = "sha256:1bb92ce2e92b32db64c4f4f9c29c836991ff7b37bf4be1f227334f596c287b1b"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.27.0/cargo-binstall-x86_64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/734981986"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.macos-x64-baseline"]
-checksum = "sha256:a114e207a9cd116f97708f175ba5e4f0a37836ff9c4d1ea63c8364436decf70f"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.26.2/cargo-binstall-x86_64-apple-darwin.zip"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/695464551"
+checksum = "sha256:1bb92ce2e92b32db64c4f4f9c29c836991ff7b37bf4be1f227334f596c287b1b"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.27.0/cargo-binstall-x86_64-apple-darwin.zip"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/734981986"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.windows-x64"]
-checksum = "sha256:c377a4977ffdbdcbf58dd263055b2f1d56ba873c69fbd6bfc60bef98256183a3"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.26.2/cargo-binstall-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/695464456"
+checksum = "sha256:624ae880d18eb0ee8c7934982e52b2aca23998cb87a01b1e59223083b6ee5dae"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.27.0/cargo-binstall-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/734981764"
 provenance = "github-attestations"
 
 [tools.cargo-binstall."platforms.windows-x64-baseline"]
-checksum = "sha256:c377a4977ffdbdcbf58dd263055b2f1d56ba873c69fbd6bfc60bef98256183a3"
-url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.26.2/cargo-binstall-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/695464456"
+checksum = "sha256:624ae880d18eb0ee8c7934982e52b2aca23998cb87a01b1e59223083b6ee5dae"
+url = "https://github.com/cargo-bins/cargo-binstall/releases/download/v1.27.0/cargo-binstall-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/cargo-bins/cargo-binstall/releases/assets/734981764"
 provenance = "github-attestations"
 
 [[tools."cargo:fastmod"]]
@@ -734,7 +735,7 @@ url_api = "https://api.github.com/repos/wagoodman/dive/releases/assets/241842460
 [[tools.dua]]
 version = "3.0.0"
 backend = "aqua:Byron/dua-cli"
-specifiers = ["latest"]
+specifiers = ["3.0.0"]
 
 [tools.dua."platforms.linux-arm64"]
 checksum = "sha256:642ce5d1ca43ec7504c9452d1d662a02aeb5f451d7fc0093c81c1580f50577f2"
@@ -1267,7 +1268,7 @@ url_api = "https://api.github.com/repos/cli/cli/releases/assets/679195750"
 provenance = "github-attestations"
 
 [[tools."github:atuinsh/atuin"]]
-version = "18.24.5"
+version = "18.24.6"
 backend = "github:atuinsh/atuin"
 specifiers = ["latest"]
 
@@ -1275,19 +1276,19 @@ specifiers = ["latest"]
 asset_pattern = "*aarch64*musl*"
 
 [tools."github:atuinsh/atuin"."platforms.linux-arm64"]
-checksum = "sha256:b44b3f264652b847b2e524ec397aa498c13076ed75cf213239ed2b9a0de2f99d"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.24.5/atuin-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/707958969"
+checksum = "sha256:0dcc72a06738f913040cdd990298a37d9ef062c8849026d0a3410d2def4c6bf7"
+url = "https://github.com/atuinsh/atuin/releases/download/v18.24.6/atuin-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/729825747"
 provenance = "github-attestations"
 
 [tools."github:atuinsh/atuin"."platforms.linux-arm64-musl"]
-checksum = "sha256:b44b3f264652b847b2e524ec397aa498c13076ed75cf213239ed2b9a0de2f99d"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.24.5/atuin-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/707958969"
+checksum = "sha256:0dcc72a06738f913040cdd990298a37d9ef062c8849026d0a3410d2def4c6bf7"
+url = "https://github.com/atuinsh/atuin/releases/download/v18.24.6/atuin-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/729825747"
 provenance = "github-attestations"
 
 [[tools."github:atuinsh/atuin"]]
-version = "18.24.5"
+version = "18.24.6"
 backend = "github:atuinsh/atuin"
 specifiers = ["latest"]
 
@@ -1295,62 +1296,62 @@ specifiers = ["latest"]
 asset_pattern = "*x86_64*musl*"
 
 [tools."github:atuinsh/atuin"."platforms.linux-x64"]
-checksum = "sha256:54182762c9d91a4f779748f622749ff6963956db005feb13e62d037196b05618"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.24.5/atuin-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/707959222"
+checksum = "sha256:49b6e7a93cd6d8c77ee02bdb0eef0acff4c80ddaa0efb00c8179285771043698"
+url = "https://github.com/atuinsh/atuin/releases/download/v18.24.6/atuin-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/729825973"
 provenance = "github-attestations"
 
 [tools."github:atuinsh/atuin"."platforms.linux-x64-baseline"]
-checksum = "sha256:54182762c9d91a4f779748f622749ff6963956db005feb13e62d037196b05618"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.24.5/atuin-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/707959222"
+checksum = "sha256:49b6e7a93cd6d8c77ee02bdb0eef0acff4c80ddaa0efb00c8179285771043698"
+url = "https://github.com/atuinsh/atuin/releases/download/v18.24.6/atuin-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/729825973"
 provenance = "github-attestations"
 
 [tools."github:atuinsh/atuin"."platforms.linux-x64-musl"]
-checksum = "sha256:54182762c9d91a4f779748f622749ff6963956db005feb13e62d037196b05618"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.24.5/atuin-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/707959222"
+checksum = "sha256:49b6e7a93cd6d8c77ee02bdb0eef0acff4c80ddaa0efb00c8179285771043698"
+url = "https://github.com/atuinsh/atuin/releases/download/v18.24.6/atuin-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/729825973"
 provenance = "github-attestations"
 
 [tools."github:atuinsh/atuin"."platforms.linux-x64-musl-baseline"]
-checksum = "sha256:54182762c9d91a4f779748f622749ff6963956db005feb13e62d037196b05618"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.24.5/atuin-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/707959222"
+checksum = "sha256:49b6e7a93cd6d8c77ee02bdb0eef0acff4c80ddaa0efb00c8179285771043698"
+url = "https://github.com/atuinsh/atuin/releases/download/v18.24.6/atuin-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/729825973"
 provenance = "github-attestations"
 
 [[tools."github:atuinsh/atuin"]]
-version = "18.24.5"
+version = "18.24.6"
 backend = "github:atuinsh/atuin"
 specifiers = ["latest"]
 
 [tools."github:atuinsh/atuin"."platforms.macos-arm64"]
-checksum = "sha256:644e92d5667e2ebbc00758c71d5974bc907d238eaa6cdc32b24eb73dce7f9a5a"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.24.5/atuin-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/707958967"
+checksum = "sha256:756b7d2f8cb919d29888ea52b2fb19aba92ed52ddbca456839088ccc63257f5b"
+url = "https://github.com/atuinsh/atuin/releases/download/v18.24.6/atuin-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/729825753"
 provenance = "github-attestations"
 
 [tools."github:atuinsh/atuin"."platforms.macos-x64"]
-checksum = "sha256:220450dd55eee9a0b30797bb02412d90849c839f90ac1ae377a877c282e2deaa"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.24.5/atuin-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/707959162"
+checksum = "sha256:3d0126fdf00a079882b89d059f246488af700c4a8092a9400a92ce05688fdba4"
+url = "https://github.com/atuinsh/atuin/releases/download/v18.24.6/atuin-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/729825887"
 provenance = "github-attestations"
 
 [tools."github:atuinsh/atuin"."platforms.macos-x64-baseline"]
-checksum = "sha256:220450dd55eee9a0b30797bb02412d90849c839f90ac1ae377a877c282e2deaa"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.24.5/atuin-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/707959162"
+checksum = "sha256:3d0126fdf00a079882b89d059f246488af700c4a8092a9400a92ce05688fdba4"
+url = "https://github.com/atuinsh/atuin/releases/download/v18.24.6/atuin-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/729825887"
 provenance = "github-attestations"
 
 [tools."github:atuinsh/atuin"."platforms.windows-x64"]
-checksum = "sha256:8ec5f2519d8019c129d3fb83a6c97eca29aa23391d8802af306d0c6de8cde30e"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.24.5/atuin-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/707959190"
+checksum = "sha256:d500e0dc85a85bb69513da6c9d933cf15dbeb2497ab404e0189ba47a5d829fe9"
+url = "https://github.com/atuinsh/atuin/releases/download/v18.24.6/atuin-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/729825916"
 provenance = "github-attestations"
 
 [tools."github:atuinsh/atuin"."platforms.windows-x64-baseline"]
-checksum = "sha256:8ec5f2519d8019c129d3fb83a6c97eca29aa23391d8802af306d0c6de8cde30e"
-url = "https://github.com/atuinsh/atuin/releases/download/v18.24.5/atuin-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/707959190"
+checksum = "sha256:d500e0dc85a85bb69513da6c9d933cf15dbeb2497ab404e0189ba47a5d829fe9"
+url = "https://github.com/atuinsh/atuin/releases/download/v18.24.6/atuin-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/atuinsh/atuin/releases/assets/729825916"
 provenance = "github-attestations"
 
 [[tools."github:dlvhdr/diffnav"]]
