@@ -21,9 +21,7 @@ curl -fsSL https://dev.meta.ai/install.sh | bash
 pnpm approve-builds -g
 
 # Antigravity global skills directory bridge
-mkdir -p ~/.gemini/config/skills ~/.gemini/antigravity-cli ~/.gemini/antigravity
-ln -sfn ~/.gemini/config/skills ~/.gemini/antigravity-cli/skills
-ln -sfn ~/.gemini/config/skills ~/.gemini/antigravity/skills
+mkdir -p ~/.gemini/config
 echo "{\"entries\":[{\"path\":\"$HOME/.agents/skills\"}]}" > ~/.gemini/config/skills.json
 
 SKILLS_AGENTS=(claude-code cursor codex opencode github-copilot gemini-cli antigravity-cli antigravity)
@@ -34,7 +32,9 @@ pnpx skills add blader/humanizer -g --agent "${SKILLS_AGENTS[@]}" -y
 pnpx skills add https://github.com/railwayapp/railway-skills -g --skill railway-docs --agent "${SKILLS_AGENTS[@]}" -y
 pnpx skills add https://github.com/github/awesome-copilot -g --skill gh-cli --agent "${SKILLS_AGENTS[@]}" -y
 pnpx skills add github/gh-stack -g --agent "${SKILLS_AGENTS[@]}" -y
+pnpx skills add github/gh-actions-lock -g --agent "${SKILLS_AGENTS[@]}" -y
 pnpm dlx skills add shadcn/ui -g --agent "${SKILLS_AGENTS[@]}" -y
+pnpx skills add GoogleChrome/modern-web-guidance -g --agent "${SKILLS_AGENTS[@]}" -y
 pnpx skills add https://github.com/anthropics/claude-plugins-official -g --skill skill-creator --agent "${SKILLS_AGENTS[@]}" -y
 
 # we want to be careful about mcps and only globally install (a) what is not included by default and (b) what is geniunely globally useful 
