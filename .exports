@@ -72,15 +72,17 @@ export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 # - always show preview on the right
 # - ctrl-{u,d} scroll the preview
 # - ctrl-o opens the file in cursor
-# - ctrl-y copies the file path to the clipboard
+# - ctrl-y copies the current line to the clipboard
+# - alt-y copies marked lines to the clipboard (no-op when nothing is marked)
+# - ctrl-alt-y copies every match to the clipboard
 # - ctrl-e opens the file in a CLI editorb
-# - ctrl+Y selects all results, copies them to the clipboard, and deselects them (so you can still open files, etc)
 export FZF_DEFAULT_OPTS="\
---bind 'ctrl-Y:select-all+execute-silent(printf \"%s\n\" {+} | pbcopy)+deselect-all' \
+--bind='ctrl-y:execute-silent(pbcopy <<< {})' \
+--bind='alt-y:execute-silent(if [ \"\$FZF_SELECT_COUNT\" -gt 0 ]; then pbcopy < {+f}; fi)' \
+--bind='ctrl-alt-y:execute-silent(if [ \"\$FZF_MATCH_COUNT\" -gt 0 ]; then pbcopy < {*f}; fi)' \
 --bind='ctrl-u:preview-half-page-up' \
 --bind='ctrl-d:preview-half-page-down' \
 --bind='ctrl-o:execute-silent(open-in-editor --editor cursor -- {})' \
---bind='ctrl-y:execute-silent(pbcopy <<< {})' \
 --bind='ctrl-e:execute(open-in-editor -- {})' \
 --preview-window 'right:70%' \
 --bind='?:toggle-preview' \
