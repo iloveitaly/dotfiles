@@ -21,6 +21,31 @@ if ! groups | grep -qw keyd; then
   exit 0
 fi
 
+# Discover Hyprland instance if running outside session (e.g. over SSH)
+if [[ -z "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]]; then
+  for dir in "${XDG_RUNTIME_DIR:-/run/user/$UID}"/hypr/*; do
+    if [[ -d "$dir" ]]; then
+      export HYPRLAND_INSTANCE_SIGNATURE="${dir##*/}"
+      break
+    fi
+  done
+fi
+
+if [[ -z "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]]; then
+  echo "keyd-application-mapper: skipped — no active Hyprland session" >&2
+  exit 0
+fi
+
+# keyd-application-mapper requires WAYLAND_DISPLAY to connect to the compositor
+if [[ -z "${WAYLAND_DISPLAY:-}" ]]; then
+  for sock in "${XDG_RUNTIME_DIR:-/run/user/$UID}"/wayland-[0-9]*; do
+    if [[ -S "$sock" ]]; then
+      export WAYLAND_DISPLAY="${sock##*/}"
+      break
+    fi
+  done
+fi
+
 # Foreground in background; no -d (restart loops on some setups)
 keyd-application-mapper >/dev/null 2>&1 &
 disown 2>/dev/null || true

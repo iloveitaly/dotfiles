@@ -51,12 +51,10 @@ omarchy/
 ├── .ssh/authorized_keys             # → ~/.ssh/authorized_keys (personal 1Password pubkey)
 ├── .ssh/op                          # → ~/.ssh/op (IdentityAgent → 1Password)
 ├── .cursor/argv.json                # → ~/.cursor/argv.json (password-store for Hyprland)
-├── .linux                           # → ~/.linux (zsh: EDITOR=nvim, pbcopy/open shims; not .extra)
+├── .linux                           # → ~/.linux (zsh: EDITOR=nvim, open shim; not .extra)
 ├── .config/keyd/app.conf            # → ~/.config/keyd/app.conf
 ├── .config/chrome-flags.conf        # → ~/.config/chrome-flags.conf (Wayland; profile via launcher)
 ├── .config/ghostty/config.local     # → ~/.config/ghostty/config.local (tmux path, etc.)
-├── .config/wayvnc/config            # → ~/.config/wayvnc/config (localhost only)
-├── .config/systemd/user/wayvnc.service  # Hyprland session VNC; published via Tailscale Serve
 ├── .local/bin/chrome-personal       # Chrome Personal; one browser window per workspace
 ├── .local/bin/launch-or-focus-workspace  # focus matching class on active WS, else launch
 ├── .local/bin/superhuman-personal   # Superhuman → Profile 1 (workspace-scoped)
@@ -256,7 +254,7 @@ OpenSSH server on this host; client uses the 1Password agent (no file private ke
 **Incoming** (`just sync` installs the drop-in + `authorized_keys`; `just configure-ssh` enables the daemon):
 
 - `sshd` pubkey only — no passwords, no root
-- Listens only on this host’s Tailscale IPs (`20-tailscale-listen.conf`, written by `configure-ssh`). Not on LAN (`192.168.7.34`) or `0.0.0.0`
+- Listens only on this host’s Tailscale IPs (`20-tailscale-listen.conf`, written by `configure-ssh`). Not on LAN or `0.0.0.0`
 - UFW allows port 22 only on `tailscale0`
 - Personal 1Password pubkey in `omarchy/.ssh/authorized_keys`
 
@@ -264,7 +262,6 @@ From another tailnet device with that key in 1Password (e.g. **biancobook**):
 
 ```bash
 ssh biancobox                 # Tailscale MagicDNS (shared .ssh/config sets User)
-ssh biancobox@100.72.5.66     # Tailscale IPv4
 ```
 
 This is regular `sshd` bound to the tailnet, not Tailscale SSH (`tailscale set --ssh` is not enabled). LAN SSH is not opened.
@@ -273,21 +270,4 @@ This is regular `sshd` bound to the tailnet, not Tailscale SSH (`tailscale set -
 
 `~/.ssh/id_ed25519_personal` is removed once the agent is offering the same key.
 
-## Remote desktop (wayvnc + Tailscale)
 
-Shares this Hyprland session over the tailnet. wayvnc listens on `127.0.0.1:5900` only; `tailscale serve` forwards tailnet TCP/5900 there. Nothing is opened on the LAN or the public internet.
-
-`just install` adds the package, enables the user service, and publishes Serve (`just install-pkgs` + `just configure`). `just sync` re-enables the service if wayvnc is already installed.
-
-Connect from another tailnet device (e.g. **biancobook**):
-
-1. Install a VNC viewer (TigerVNC or RealVNC). macOS Screen Sharing often fails against wayvnc without VNC auth.
-2. Connect to `biancobox:5900` or `100.72.5.66:5900` (or `biancobox.yattle-interval.ts.net:5900`).
-3. No VNC password — Tailscale already authenticates the peer.
-
-The physical Samsung 32" 4K (`DP-3`, scale 1.25) is what you see. Auto-resize is off so a laptop client does not change the desk monitor.
-
-```bash
-systemctl --user status wayvnc.service
-tailscale serve status
-```

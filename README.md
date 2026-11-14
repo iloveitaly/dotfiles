@@ -37,7 +37,7 @@ On [Omarchy](https://omarchy.org/), from `omarchy/`:
 ```bash
 just install    # first time: packages + sync + configure
 just sync       # day to day: shared tree + Hyprland/keyd overlay
-just configure  # host setup again: sshd, assistant, dev, wayvnc firewall
+just configure  # host setup again: sshd, dev
 ```
 
 See [omarchy/README.md](omarchy/README.md) for the rest.
