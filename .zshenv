@@ -1,5 +1,6 @@
 # - Always executed in all shell types
 # - Initialize agent command environments here or any configuration you always want to load
+# - test with `env -i HOME="$HOME" USER="$USER" TERM=xterm-256color zsh -l -c 'which fzf mise'`
 
 # interactive shells use .zshrc too, so short-circuit early
 if [[ -o interactive ]]; then
