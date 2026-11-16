@@ -125,7 +125,6 @@ if OS.mac?
     cask "thaw"
     cask "microsoft-teams"
     cask "arctype"
-    cask "arc"
     cask "signal"
     cask "google-chrome"
     cask "dropbox"
@@ -263,7 +262,7 @@ if OS.mac?
     brew "px"
     brew "sslscan"
     brew "odiff"
-    brew "koekeishiya/formulae/yabai"
+    brew "asmvik/formulae/yabai"
 
     # homerow
 
