@@ -522,7 +522,8 @@ buffer-tweet() {
     return 1
   fi
 
-  buffer posts create \
+  # The npm package "buffer" is the Node polyfill and ships no binary.
+  pnpx @bufferapp/cli@latest posts create \
     --channel-id "$BUFFER_CHANNEL_ID" \
     --mode addToQueue \
     --scheduling-type automatic \
