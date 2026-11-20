@@ -4,12 +4,20 @@
 local M = {}
 
 -- Lua patterns are byte-based: match each UTF-8 prompt symbol literally.
+-- Starship prints direnv, mise, python, and no-venv on the same line, before
+-- the symbol. The character module ends with a non-breaking space (U+00A0),
+-- which distinguishes the prompt from a ❯ that appears in command output.
 local function prompt_command(line)
   for _, symbol in ipairs({ "❯", "❮" }) do
     local rest = line:match("^%s*" .. symbol .. "(.*)$")
     if rest and (rest == "" or rest:match("^%s") or rest:sub(1, 2) == "\194\160") then
       if rest:sub(1, 2) == "\194\160" then rest = rest:sub(3) end
-      return rest:match("^%s*(.-)%s*$")
+      return rest:match("^%s*(.-)%s*$"), symbol
+    end
+
+    local _, after = line:match("^(.-)" .. symbol .. "(\194\160.*)$")
+    if after then
+      return after:sub(3):match("^%s*(.-)%s*$"), symbol
     end
   end
 end
@@ -23,6 +31,25 @@ local function show_toast(title, msg)
   })
 end
 
+local function join_lines(lines)
+  local n = #lines
+  if n <= 500 then
+    return table.concat(lines, "\n")
+  end
+  -- gopher-lua's table.concat pushes every element onto the registry stack and overflows
+  -- around ~16k-20k items, so join in bounded chunks.
+  local chunks = {}
+  for s = 1, n, 500 do
+    local e = math.min(s + 499, n)
+    local chunk = {}
+    for j = s, e do
+      chunk[#chunk + 1] = lines[j]
+    end
+    chunks[#chunks + 1] = table.concat(chunk, "\n")
+  end
+  return join_lines(chunks)
+end
+
 local function get_last_cmd_and_output(content)
   local lines = {}
   for line in (content .. "\n"):gmatch("(.-)\r?\n") do
@@ -32,12 +59,12 @@ local function get_last_cmd_and_output(content)
   -- The newest prompt is still being edited. Walk completed commands backwards,
   -- keeping each command's output bounded by its immediate successor prompt.
   local next_prompt
-  local cmd_idx, cmd_text, last_output_line
+  local cmd_idx, cmd_text, cmd_symbol, last_output_line
   for i = #lines, 1, -1 do
-    local command = prompt_command(lines[i])
+    local command, symbol = prompt_command(lines[i])
     if command ~= nil then
       if next_prompt and command ~= "" then
-        cmd_idx, cmd_text = i, command
+        cmd_idx, cmd_text, cmd_symbol = i, command, symbol
         -- This Starship configuration has a status line before each prompt.
         last_output_line = next_prompt - 2
         break
@@ -55,12 +82,12 @@ local function get_last_cmd_and_output(content)
     last_output_line = last_output_line - 1
   end
 
-  local result_lines = { cmd_text }
+  local result_lines = { cmd_symbol .. " " .. cmd_text }
   for i = first_output_line, last_output_line do
     result_lines[#result_lines + 1] = lines[i]
   end
 
-  return table.concat(result_lines, "\n"), cmd_text, #result_lines
+  return join_lines(result_lines), cmd_text, #result_lines
 end
 
 function M.setup()
