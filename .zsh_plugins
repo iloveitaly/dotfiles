@@ -131,7 +131,6 @@ zinit wait'1' lucid for \
   chrissicool/zsh-256color \
   zpm-zsh/colors \
   OMZ::lib/spectrum.zsh \
-  zpm-zsh/ssh \
   paulirish/git-open
 
 # binaries installed via zinit. No rush to install these, which is why we are `wait'2'`
