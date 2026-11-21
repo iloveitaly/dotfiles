@@ -15,7 +15,7 @@ resolution-markers = [
 
 [options]
 prerelease-mode = "allow"
-exclude-newer = "2026-11-03T16:57:00.474292Z"
+exclude-newer = "2026-11-19T11:29:22.377239Z"
 
 [[package]]
 name = "antlr4-python3-runtime"
@@ -104,7 +104,7 @@ wheels = [
 
 [[package]]
 name = "azure-cli"
-version = "2.92.0"
+version = "2.93.0"
 source = { registry = "https://pypi.org/simple/" }
 dependencies = [
     { name = "antlr4-python3-runtime" },
@@ -216,14 +216,14 @@ dependencies = [
     { name = "websocket-client" },
     { name = "xmltodict" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e4/67/4451e711940ba0a755db01bfaeca45a4c0e1f4025bd91d20bc2d56377199/azure_cli-2.92.0.tar.gz", hash = "sha256:5099dd52f108fbd7bf2e50a9618d90cc29185f569f708e02876ca4215e9e2e54", size = 10583165, upload-time = "2026-11-03T02:17:47.123Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/34/c6/7944a94ec6ee9d493190cfb5f45eea02dd5f5f5565da06c6c6e89b41b6ff/azure_cli-2.93.0.tar.gz", hash = "sha256:8488e88423aa2e625160e73e91cce65a802ca68fcbe01a410d9c149bdd32a536", size = 10804261, upload-time = "2026-11-15T23:22:40.503Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/66/50/0e0d681e761eab74995375f2a0ac254e1e5bd1f5204d34f8a31c0bd087d3/azure_cli-2.92.0-py3-none-any.whl", hash = "sha256:7257ab8c949e3d412fc220686d2adce56e72f5190c6ffa2799c91441a3210291", size = 14722232, upload-time = "2026-11-03T02:17:53Z" },
+    { url = "https://files.pythonhosted.org/packages/48/9a/d8cf756229f4ab5c1fdf01db1c5d09f55cc4ce7ecbe12178d0d3a4c06861/azure_cli-2.93.0-py3-none-any.whl", hash = "sha256:96c8b6c0ccad4576d8628641ec8beaf49872107fb30c9cad9feb82ff7b84ed2d", size = 15199778, upload-time = "2026-11-15T23:22:46.45Z" },
 ]
 
 [[package]]
 name = "azure-cli-core"
-version = "2.92.0"
+version = "2.93.0"
 source = { registry = "https://pypi.org/simple/" }
 dependencies = [
     { name = "argcomplete" },
@@ -248,9 +248,9 @@ dependencies = [
     { name = "pyopenssl" },
     { name = "requests", extra = ["socks"] },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/4f/4e/05ad6efdaaba59b44818010f87b7d1d5a6ef3c9de7aac54f1e7cae4bce88/azure_cli_core-2.92.0.tar.gz", hash = "sha256:1c80ab7e75cb7f759685d129f36891bc569b7ad206e3eabd14896da49f58c31a", size = 250448, upload-time = "2026-11-03T02:17:50.766Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/fa/a2/fc25fb284fff113002dddd242cb253bb9b40349c487f7f29667605b31e6f/azure_cli_core-2.93.0.tar.gz", hash = "sha256:518d3c452e762c0d508973552e94bf6bd18753e1a0f28ca17a7281ceefb2b204", size = 250868, upload-time = "2026-11-15T23:22:44.131Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/cb/51/6cf6a26251b07ba47d2962301ac902151f224b2cee4ffb2eeb3cf1e618a0/azure_cli_core-2.92.0-py3-none-any.whl", hash = "sha256:667987028d4f5ca211c24deb8e84321b399ae08b1aa5aca58a045da2ae06c1dd", size = 281259, upload-time = "2026-11-03T02:17:55.651Z" },
+    { url = "https://files.pythonhosted.org/packages/a8/ee/7e91bd67eaa249b3dca886271421924f533e15cc7370941b1ed587038926/azure_cli_core-2.93.0-py3-none-any.whl", hash = "sha256:e721cf38728d429be28de791abc352910c9233b719b80ddabebf92c150f6574a", size = 281538, upload-time = "2026-11-15T23:22:49.243Z" },
 ]
 
 [[package]]
@@ -823,16 +823,16 @@ wheels = [
 
 [[package]]
 name = "azure-mgmt-keyvault"
-version = "14.0.1"
+version = "14.1.0"
 source = { registry = "https://pypi.org/simple/" }
 dependencies = [
     { name = "azure-mgmt-core" },
     { name = "isodate" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/df/dd/e74f82797ee3ff7001832427a218f3079e6174b9fa8b354b84434172d89d/azure_mgmt_keyvault-14.0.1.tar.gz", hash = "sha256:d141a8084ae4c7c5bd1cafeca49a8f3fbebc58dc5bc5290f322ea73d8b307ef7", size = 105496, upload-time = "2026-03-27T08:02:15.282Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/72/d7/9b72ab97a5a1faddf9c13659fb1f39cb82a2423879f57968b4ed8c237b58/azure_mgmt_keyvault-14.1.0.tar.gz", hash = "sha256:d27d412e6d7b5b76bfc7a8267b8e3d30852c7c6dc560609ec7d93d4816bd29fc", size = 131248, upload-time = "2026-10-09T12:27:38.12Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/9c/c3/29238b1ef3784c31722b900c9c187d7c23dd0d7e724e970f3a7c104ed7aa/azure_mgmt_keyvault-14.0.1-py3-none-any.whl", hash = "sha256:7710873c5b667e19d86109caf2898dddb902e5ed21013e01d7d85ebb496928d7", size = 104380, upload-time = "2026-03-27T08:02:16.726Z" },
+    { url = "https://files.pythonhosted.org/packages/45/25/b453ac7c810a1cd67776aa8f5966800b559a499547e3bd6b533428efafb2/azure_mgmt_keyvault-14.1.0-py3-none-any.whl", hash = "sha256:d4e2e459adbf2752f03fb14894d30595d4e26efb3edfb22c91486c73ea01f9a6", size = 120331, upload-time = "2026-10-09T12:27:39.879Z" },
 ]
 
 [[package]]
@@ -1035,16 +1035,16 @@ wheels = [
 
 [[package]]
 name = "azure-mgmt-recoveryservicesbackup"
-version = "11.1.0"
+version = "11.2.0"
 source = { registry = "https://pypi.org/simple/" }
 dependencies = [
     { name = "azure-mgmt-core" },
     { name = "isodate" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/3e/e8/83b82f5c6adad44d16ac148ef28ecaba45a7cf6cd8c43def43458907d1c4/azure_mgmt_recoveryservicesbackup-11.1.0.tar.gz", hash = "sha256:b7b4ab1746e8a920b80c1f12a7e806dc13f0ba5cf7e357c7b457c5626fe26de4", size = 288117, upload-time = "2026-09-09T16:17:44.469Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/cd/1a/42ccb83e600cfb2d70d0443b75c8e8f754551ee5d0ac035567101bbb99dc/azure_mgmt_recoveryservicesbackup-11.2.0.tar.gz", hash = "sha256:c9bddfa98da82ab6d8798ce28112b297fead212f23feb872f4c3df61d5e474ea", size = 299603, upload-time = "2026-10-16T05:59:21.07Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e2/97/4a1eaa55a571e083a491687fee646ca52ddf9be84e713b7b75a3e2ad60fb/azure_mgmt_recoveryservicesbackup-11.1.0-py3-none-any.whl", hash = "sha256:5655f814e766e91c947be1df9cb5976c72d2d4a189da09b63d07946b3bd5f518", size = 245737, upload-time = "2026-09-09T16:17:45.888Z" },
+    { url = "https://files.pythonhosted.org/packages/db/1c/f8525139ae2c1099ffb41790e4e4e0adfd8fbe106735a73de6838fe9f125/azure_mgmt_recoveryservicesbackup-11.2.0-py3-none-any.whl", hash = "sha256:8d4300009ef1ab2345bc3f6269a69eb0d6d6d79daee043596df6d12dd6ec43f0", size = 254972, upload-time = "2026-10-16T05:59:22.674Z" },
 ]
 
 [[package]]
@@ -1267,17 +1267,16 @@ wheels = [
 
 [[package]]
 name = "azure-mgmt-sql"
-version = "4.0.0b22"
+version = "5.0.0b2"
 source = { registry = "https://pypi.org/simple/" }
 dependencies = [
-    { name = "azure-common" },
     { name = "azure-mgmt-core" },
     { name = "isodate" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/a3/4a/e41603713e2626100e11208cb047799395eb5d89c4162c7b3d20245000eb/azure_mgmt_sql-4.0.0b22.tar.gz", hash = "sha256:92edd837d5bd0b2c78cec2b102ce24f7fa1e0d7029ce2daea80511a9aef61f49", size = 633079, upload-time = "2025-07-30T07:24:43.964Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/38/53/8bc8b1824dc515d0beeea4f151f233c01eaf8518b8d4a1f63c944a192c7d/azure_mgmt_sql-5.0.0b2.tar.gz", hash = "sha256:89f3e8750f3dc7148c514ab03f198d9fbe2a231ba4c4b8d9fec7855198ba00ef", size = 672156, upload-time = "2026-10-09T06:39:30.257Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ec/78/f543541cd66214f6621bb988f0b2d0d2c03b8b6b3ca2219dc47c2b5e4cd9/azure_mgmt_sql-4.0.0b22-py3-none-any.whl", hash = "sha256:79261d114512e14d014193b4b533a3b9a190f7cafe924f36b4015b1752dfa75c", size = 1231472, upload-time = "2025-07-30T07:24:45.877Z" },
+    { url = "https://files.pythonhosted.org/packages/89/1b/a4afeb7ac2fefa6e727f2fd38071c4026eb0d204c904cf34100824439273/azure_mgmt_sql-5.0.0b2-py3-none-any.whl", hash = "sha256:6b46ddf0769e7ef5154988ec6ff4d1004743cd853ac145d7dcfb88ed12421463", size = 559432, upload-time = "2026-10-09T06:39:33.007Z" },
 ]
 
 [[package]]
@@ -1296,16 +1295,16 @@ wheels = [
 
 [[package]]
 name = "azure-mgmt-storage"
-version = "25.0.0"
+version = "25.3.0"
 source = { registry = "https://pypi.org/simple/" }
 dependencies = [
     { name = "azure-mgmt-core" },
     { name = "isodate" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/47/6a/62d21f86b62cf990cb7d63f470dd4a766277a68a71543ef9331e0ee16f7d/azure_mgmt_storage-25.0.0.tar.gz", hash = "sha256:52c4bb1fb395fcfa7a2e8fb024c1dabc5a67bd6fa23c0d2d5a7fb29314f172d2", size = 228272, upload-time = "2026-05-20T08:37:01.135Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/8b/8c/fab588ef865839d8e4e14118142433dca61190161c2a860b7d072c5f28ab/azure_mgmt_storage-25.3.0.tar.gz", hash = "sha256:bc4fe1ea26f8c58bf9ca6b365095cfd326d65cefa135dd5f29e09353cb6313ec", size = 343883, upload-time = "2026-10-16T20:44:58.721Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/3d/ca/92239e71a92cd3a60c5c6175539defcec5ffa086bd9507817330cf7f4662/azure_mgmt_storage-25.0.0-py3-none-any.whl", hash = "sha256:7824840e8251aa6b2c27abf29cbd0ab86fc6685aa69e44f61c2f53168e71ff2d", size = 215194, upload-time = "2026-05-20T08:37:02.555Z" },
+    { url = "https://files.pythonhosted.org/packages/5b/ca/134c184afb8719ac7fc9ba55fc3a48bd110dd4daa6bb1f37e5ccd3272242/azure_mgmt_storage-25.3.0-py3-none-any.whl", hash = "sha256:cb26707847202a4eb34d6d4ba621d9f4d0b322b2af1565da6109d2a1ec161b8e", size = 294353, upload-time = "2026-10-16T20:45:00.281Z" },
 ]
 
 [[package]]
@@ -2115,7 +2114,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "azure-cli", specifier = "==2.92.0" },
+    { name = "azure-cli", specifier = "==2.93.0" },
     { name = "pip" },
 ]
 
@@ -2644,11 +2643,11 @@ wheels = [
 
 [[package]]
 name = "semver"
-version = "3.1.0"
+version = "3.1.2"
 source = { registry = "https://pypi.org/simple/" }
-sdist = { url = "https://files.pythonhosted.org/packages/92/f5/e1dfe8e1d91c54ce212fd93916eb01fd1c590f413be0a0978c39a97aa1bb/semver-3.1.0.tar.gz", hash = "sha256:14bc073439513d7773662a338f4db9829cf16c12b74b9568e2d2689975fbd7fc", size = 304162, upload-time = "2026-09-12T18:38:14.045Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ec/a0/3d3f51a1304c0e8c93e06a23308f566f2d52d62f92dac903b85ef79dea6f/semver-3.1.2.tar.gz", hash = "sha256:bea193552413194252d33ff26ce0962b76669bd1c6fb17e8e203ac37f072feaf", size = 293659, upload-time = "2026-11-15T17:01:42.931Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/be/02/bce7a1d70e9d0f6ea8623c16386138c251b5855af6cd3a11433d3fba4e66/semver-3.1.0-py3-none-any.whl", hash = "sha256:6e4998f8b4762acdfea85f9bfd5b4032e0bb50038dc04bf82011b42d5d1145c5", size = 18783, upload-time = "2026-09-12T18:38:12.457Z" },
+    { url = "https://files.pythonhosted.org/packages/ab/60/27e29790ff15ea0a485b8dc200d514328294f956e4abc3d43d88c0b5338d/semver-3.1.2-py3-none-any.whl", hash = "sha256:45d107c3fa880910441dfab9d555046cba2829a25feeadfe4a1566439635c510", size = 19100, upload-time = "2026-11-15T17:01:41.321Z" },
 ]
 
 [[package]]
