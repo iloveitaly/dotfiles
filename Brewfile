@@ -14,6 +14,7 @@ brew "iftop" # network top
 brew "trippy" # traceroute
 brew "lftp"
 brew "iproute2mac"
+brew "wakeonlan"
 # required fix for me: https://github.com/httpie/cli/issues/1535#issuecomment-1773774369
 brew "httpie"
 brew "ncdu"
