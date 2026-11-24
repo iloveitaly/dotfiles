@@ -17,6 +17,7 @@ curl -fsSL https://antigravity.google/cli/install.sh | bash
 curl -fsSL https://x.ai/cli/install.sh | bash
 curl -fsSL https://github.com/aaif-goose/goose/releases/download/stable/download_cli.sh | bash
 curl -fsSL https://dev.meta.ai/install.sh | bash
+curl -fsSL https://opencode.ai/browse/install | bash
 
 pnpm approve-builds -g
 
